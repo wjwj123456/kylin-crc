@@ -1,1 +1,15 @@
 /target/
+
+.classpath
+
+.settings/
+
+.project
+
+.idea
+
+/lib
+
+lib
+
+*.class
