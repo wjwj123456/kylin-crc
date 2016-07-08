@@ -1,6 +1,4 @@
 package data;
- 
-
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -14,8 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.mysql.cj.fabric.xmlrpc.base.Data;
-import com.mysql.cj.mysqlx.protobuf.MysqlxCrud.Order;
+
 
 import dataservice.ReviewDataService;
 import po.TaskPO;
@@ -49,13 +46,13 @@ public class ReviewDataImpl implements ReviewDataService {
 		String sql = "INSERT INTO task (uname, tname,type, project,discribe,deadline,state) VALUES (?, ?, ?, ?, ?, ?,? )";
 		Timestamp tt=new Timestamp(po.getDeadline().getTime());
 		pStatement = connection.prepareStatement(sql);
-		pStatement.setString(0, po.getUserName());
-		pStatement.setString(1, po.getTaskName());
-		pStatement.setString(2, String.valueOf(po.getType()));
-		pStatement.setString(3, po.getProject());
-		pStatement.setString(4, po.getDescribe());
-		pStatement.setTimestamp(5, tt);
-		pStatement.setInt(6,po.getState());
+		pStatement.setString(1, po.getUserName());
+		pStatement.setString(2, po.getTaskName());
+		pStatement.setString(3, String.valueOf(po.getType()));
+		pStatement.setString(4, po.getProject());
+		pStatement.setString(5, po.getDescribe());
+		pStatement.setTimestamp(6, tt);
+		pStatement.setInt(7,po.getState());
 		int i = pStatement.executeUpdate();
 		if(i==0) {
 			flag = 1;
@@ -68,20 +65,29 @@ public class ReviewDataImpl implements ReviewDataService {
 	
 	
 	public static void main(String[] args) {
-//		ReviewDataImpl reviewDataImpl=new ReviewDataImpl();
-//		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-//		
-//		Date deadline = null;
+		ReviewDataImpl reviewDataImpl=new ReviewDataImpl();
+		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		
+		Date deadline1 = null;
+		Date deadline2 = null;
+		Date deadline3 = null;
+		try {
+			deadline1 = dateFormat.parse("2016-7-10 23:59:59");
+			deadline2 = dateFormat.parse("2016-7-12 23:59:59");
+			deadline3 = dateFormat.parse("2016-7-14 23:59:59");
+			
+		} catch (ParseException e) {
+//			 TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		TaskPO po1=new TaskPO("crc","task1", Type.code,"project1", "this is a code review", deadline1,0);
+		TaskPO po2=new TaskPO("crc","task2", Type.code,"project1", "this is a code review", deadline2,0);
+		TaskPO po3=new TaskPO("crc","task3", Type.code,"project1", "this is a code review", deadline3,0);
 //		try {
-//			deadline = dateFormat.parse("2016-7-10 23:59:59");
-//		} catch (ParseException e) {
-////			 TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		TaskPO po=new TaskPO("task1", Type.code,"project1", "this is a code review", deadline);
-//		try {
-//			reviewDataImpl.saveReviewInfo(po);
+//			reviewDataImpl.saveReviewInfo(po1);
+//			reviewDataImpl.saveReviewInfo(po2);
+//			reviewDataImpl.saveReviewInfo(po3);
 //		} catch (ClassNotFoundException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -89,6 +95,18 @@ public class ReviewDataImpl implements ReviewDataService {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		try {
+			List<TaskPO> list=reviewDataImpl.getTaskList("crc");
+			for(TaskPO po:list){
+//				System.out.println(po.getDeadline());
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	
 	}
@@ -117,9 +135,10 @@ public class ReviewDataImpl implements ReviewDataService {
 		String sql = "SELECT * FROM task WHERE uname = '" + userName + "'" +"order by "+"'deadline'"+"DESC";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
-		if(rSet.next()) {
-			TaskPO po=new TaskPO(rSet.getString(0), rSet.getString(1), Type.valueOf(rSet.getString(2)), rSet.getString(3), rSet.getString(4), rSet.getDate(5), rSet.getInt(6));
+		while(rSet.next()) {
+			TaskPO po=new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)), rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
 			poList.add(po);
+			
 		}
 		
 		DBManager.stopAll(rSet, pStatement, connection);
