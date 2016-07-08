@@ -41,9 +41,14 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right" >
+				<%if(session.getAttribute("username")!=null){%>
+					<li><a href="#" id="user-name">${username}</a></li>
+					<li><a id="login" style="cursor: pointer;">登出</a></li>
+				<%}else{%>
 				<%--username--%>
-				<li><a href="#" id="user-name">${username}</a></li>
-				<li><a id="login">登录</a></li>
+				
+				<li><a id="login" style="cursor: pointer;">登录</a></li>
+				<%} %>
 			</ul>
 		</div>
 	</div>
@@ -54,7 +59,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					<h1 class="text-center text-primary">登录</h1>
+					<h1 class="text-center text-primary" >登录</h1>
 				</div>
 				<div class="modal-body" style="height: 250px">
 					

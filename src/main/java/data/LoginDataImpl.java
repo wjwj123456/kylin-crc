@@ -14,7 +14,10 @@ public class LoginDataImpl implements LoginDataService{
 		int flag = -1;
 		Connection connection = DBManager.connect();
 		int isExist = verifyAccount(userName, password);
-		if(isExist == 0 || isExist == 2) flag = 1;
+		if(isExist == 0 || isExist == 2) {
+			flag = 1;
+			return flag;
+		}
 		PreparedStatement pStatement = null;
 		String sql = "INSERT INTO user (uname, email, password) VALUES (?, ?, ?)";
 		pStatement = connection.prepareStatement(sql);
@@ -56,9 +59,15 @@ public class LoginDataImpl implements LoginDataService{
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		int isExist = verifyAccount(userName, password);
-		if(isExist == 0)	flag = 2;
+		if(isExist == 0) {
+			flag = 2;
+			return flag;
+		}
 		else {
-			if(isExist == 1)	flag = 1;
+			if(isExist == 1) {
+				flag = 1;
+				return flag;
+			}
 		}
 		String sql = "UPDATE user SET password = ? WHERE uname = ?";
 		pStatement = connection.prepareStatement(sql);

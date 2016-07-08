@@ -10,9 +10,22 @@
 <link href="css/theme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
-<title>CRC Index</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/datetimepicker.css" rel="stylesheet">
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/application.js"></script>
+<script src="js/holder.js"></script>
+
+
+<title>CRC new Task</title>
 </head>
 <body role="document">
+	<div id="alert-user" class="alert alert-danger hidden" role="alert">
+		<strong>错误：</strong>请输入您用户名
+	</div>
 	<nav class="navbar  navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -111,6 +124,10 @@
 		</div>
 	</div>
 	<div class="container">
+		<div class="jumbotron">
+			<h2>新任务</h2>
+			<p>创建你的新任务</p>
+		</div>
 		<form class="form-horizontal" action="">
 			<div class="form-group">
 				<label for="inputName" class="col-sm-2 control-label">评审名</label>
@@ -135,17 +152,18 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="discription" class="col-sm-2 control-label">结束时间</label>
+				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
 				<div class="col-sm-10">
-					<div class="input-append date form_datetime"
-						data-date="2013-02-21T15:25:00Z">
-						<input size="16" type="text" value="" readonly> <span
+					<div class="input-append date form_datetime">
+						<input size="16" type="text" value="" readonly name="deadline"> <span
 							class="add-on"><i class="icon-remove"></i></span> <span
 							class="add-on"><i class="icon-calendar"></i></span>
 					</div>
 				</div>
 			</div>
-			<div class="form-group"></div>
+			<div class="form-group" style="text-align: right;">
+				<button class="btn btn-success ">确认创建</button>
+			</div>
 
 		</form>
 	</div>
@@ -158,6 +176,7 @@
 			minuteStep : 10
 		});
 	</script>
+
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
