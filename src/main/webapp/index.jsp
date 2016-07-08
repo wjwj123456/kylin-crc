@@ -41,9 +41,9 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right" >
-				
-				<li><a data-toggle="modal" data-target="#loginModal" href="" id="login">登录</a></li>
-
+				<%--username--%>
+				<li><a href="#" id="user-name">${username}</a></li>
+				<li><a id="login">登录</a></li>
 			</ul>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 								class="form-control input-lg" placeholder="登录密码">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block" onclick="submit()">立刻登录</button>
+							<button class="btn btn-primary btn-lg btn-block" onclick="login()">立刻登录</button>
 							<span><a data-toggle="modal" data-target="#signUpModal"
 								data-dismiss="modal" href="" class="pull-right">注册</a></span>
 
