@@ -10,12 +10,14 @@ function submit() {
     jQuery.ajax({
         url: '/login',
         style: 'post',
-        data: $("form").serialize(),
+        data: 'username=' + $('#username').text().trim() + '&password=' + $('#password').text(),
         success: function (data) {
             if (data == 'success') {
-                self.location = ''
+                console.log('test');
+                $('#loginModal').modal('hide');
+                $('#login').text('登出');
             } else {
-
+                console.log($('#login').text())
             }
         }
     });
