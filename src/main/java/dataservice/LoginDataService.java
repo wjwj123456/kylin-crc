@@ -11,12 +11,12 @@ public interface LoginDataService {
 	 * @param userName
 	 * @param email
 	 * @param password
-	 * @return  boolean    
+	 * @return  int    0表示成功，1表示用户名存在，2表示未知错误，-1表示数据库操作失效
 	 * @author     lpt
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public boolean createAccount(String userName,String email,String password) throws ClassNotFoundException, SQLException;
+	public int createAccount(String userName,String email,String password) throws ClassNotFoundException, SQLException;
 	/**
 	 * 验证一个用户的账户名和密码是否匹配
 	 * @param userName
@@ -31,10 +31,10 @@ public interface LoginDataService {
 	 * 用户修改自己的密码
 	 * @param userName
 	 * @param password
-	 * @return  boolean         
+	 * @return  int		0表示修改成功，1表示用户名不存在，2表示密码没有改变，3表示未知错误，-1表示数据库操作失效     
 	 * @author      lpt
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public boolean changePassword(String userName,String password) throws ClassNotFoundException, SQLException;
+	public int changePassword(String userName,String password) throws ClassNotFoundException, SQLException;
 }

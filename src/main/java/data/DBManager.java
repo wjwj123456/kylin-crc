@@ -2,6 +2,7 @@ package data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,4 +28,18 @@ public class DBManager {
 		if(connection!=null) 
 			connection.close();
 	}
+	
+	public static ResultSet getQueryResultSet(String querySql,Connection con){		
+		
+		ResultSet rs = null;
+		try {
+			PreparedStatement pst = con.prepareStatement(querySql);
+			rs = pst.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;	
+	}
 }
+
