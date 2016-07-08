@@ -4,24 +4,25 @@ import java.sql.SQLException;
 
 import blservice.LoginBlService;
 import data.LoginDataImpl;
+import dataservice.LoginDataService;
 
 public class LoginBLImpl implements LoginBlService{
 
-	private LoginDataImpl loginDataImpl;
+	private LoginDataService loginDataService;
 	
 	public LoginBLImpl() {
-		this.loginDataImpl = new LoginDataImpl();
+		this.loginDataService = new LoginDataImpl();
 	}
-	public boolean createAccount(String userName, String email, String password) throws ClassNotFoundException, SQLException {
-		return loginDataImpl.createAccount(userName, email, password);
+	public int createAccount(String userName, String email, String password) throws ClassNotFoundException, SQLException {
+		return loginDataService.createAccount(userName, email, password);
 	}
 
 	public int verifyAccount(String userName, String password) throws ClassNotFoundException, SQLException {
-		return loginDataImpl.verifyAccount(userName, password);
+		return loginDataService.verifyAccount(userName, password);
 	}
 
-	public boolean changePassword(String userName, String password) throws ClassNotFoundException, SQLException {
-		return loginDataImpl.changePassword(userName, password);
+	public int changePassword(String userName, String password) throws ClassNotFoundException, SQLException {
+		return loginDataService.changePassword(userName, password);
 	}
 
 }

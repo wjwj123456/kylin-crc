@@ -7,6 +7,7 @@ package data;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -40,9 +41,9 @@ public class ReviewDataImpl implements ReviewDataService {
 	* @see dataservice.ReviewDataService#saveReviewInfo(po.ReviewPO)
 	*
 	*/
-	public boolean saveReviewInfo(ReviewPO po) throws ClassNotFoundException, SQLException {
+	public int saveReviewInfo(ReviewPO po) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		boolean flag = true;
+		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		String sql = "INSERT INTO review (rname, type, project,discribe,deadline) VALUES (?, ?, ?, ?, ?)";
@@ -55,22 +56,22 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement.setTimestamp(5, tt);
 		int i = pStatement.executeUpdate();
 		if(i==0) {
-			flag = false;
+			flag = 1;
 		}
 		DBManager.stopAll(null, pStatement, connection);
 		return flag;
 	}
 
-	
+
 	
 	
 	public static void main(String[] args) {
 		ReviewDataImpl reviewDataImpl=new ReviewDataImpl();
 		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		
-		Date deadline =new Date(2016,7,10,23,59,59);
+		Date deadline = null;
 		try {
-			deadline = dateFormat.parse("2016-7-10 6:59:59");
+			deadline = dateFormat.parse("2016-7-10 23:59:59");
 		} catch (ParseException e) {
 //			 TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,5 +88,6 @@ public class ReviewDataImpl implements ReviewDataService {
 			e.printStackTrace();
 		}
 		
+	
 	}
 }

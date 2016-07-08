@@ -27,4 +27,6 @@ public class DBManager {
 		if(connection!=null) 
 			connection.close();
 	}
+	
 }
+
