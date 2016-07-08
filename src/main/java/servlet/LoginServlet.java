@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	System.out.println("doGet");
         String operationType = request.getParameter("type");
 
         if (operationType.equals("login")) {
