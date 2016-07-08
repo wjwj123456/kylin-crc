@@ -1,8 +1,8 @@
 package blservice;
 
-import vo.ReviewVO;
+import vo.TaskVO;
 
 public interface ReviewBlService {
-	public void saveReviewInfo(ReviewVO vo);
+	public void saveReviewInfo(TaskVO vo);
 }
                  

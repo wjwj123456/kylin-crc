@@ -4,7 +4,6 @@ package po;
  * Created by lpt on 16-7-8.
  */
 public class UserPO {
-	int id;
 	String  name;
 	String email;
 	String password;
@@ -14,12 +13,7 @@ public class UserPO {
 		this.email = email;
 		this.password = password;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getName() {
 		return name;
 	}

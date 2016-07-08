@@ -1,8 +1,10 @@
 package dataservice;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import po.ReviewPO;
+import po.TaskPO;
 
 public interface ReviewDataService {
 	/**
@@ -12,6 +14,8 @@ public interface ReviewDataService {
 	 * @return int 0 - 成功 1 - 任务名重复  
 	 * @author lpt14
 	 */
-	public int saveReviewInfo(ReviewPO po) throws ClassNotFoundException, SQLException;
+	public int saveReviewInfo(TaskPO po) throws ClassNotFoundException, SQLException;
+	
+	public List<TaskPO> getTaskList(String userName) throws SQLException, ClassNotFoundException;
 
 }
