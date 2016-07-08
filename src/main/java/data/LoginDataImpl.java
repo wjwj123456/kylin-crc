@@ -10,9 +10,11 @@ import dataservice.LoginDataService;
 
 public class LoginDataImpl implements LoginDataService{
 
-	public boolean createAccount(String userName, String email, String password) throws ClassNotFoundException, SQLException {
-		boolean flag = true;
+	public int createAccount(String userName, String email, String password) throws ClassNotFoundException, SQLException {
+		int flag = -1;
 		Connection connection = DBManager.connect();
+		int isExist = verifyAccount(userName, password);
+		if(isExist == 0 || isExist == 2) flag = 1;
 		PreparedStatement pStatement = null;
 		String sql = "INSERT INTO user (uname, email, password) VALUES (?, ?, ?)";
 		pStatement = connection.prepareStatement(sql);
@@ -20,8 +22,11 @@ public class LoginDataImpl implements LoginDataService{
 		pStatement.setString(2, email);
 		pStatement.setString(3, password);
 		int i = pStatement.executeUpdate();
-		if(i==0) {
-			flag = false;
+		if(i==1) {
+			flag = 0;
+		}
+		else {
+			flag = 2;
 		}
 		DBManager.stopAll(null, pStatement, connection);
 		return flag;
@@ -46,16 +51,22 @@ public class LoginDataImpl implements LoginDataService{
 		return flag;
 	}
 
-	public boolean changePassword(String userName, String password) throws ClassNotFoundException, SQLException {
-		boolean flag = true;
+	public int changePassword(String userName, String password) throws ClassNotFoundException, SQLException {
+		int flag = -1;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
+		int isExist = verifyAccount(userName, password);
+		if(isExist == 0)	flag = 2;
+		else {
+			if(isExist == 1)	flag = 1;
+		}
 		String sql = "UPDATE user SET password = ? WHERE uname = ?";
 		pStatement = connection.prepareStatement(sql);
 		pStatement.setString(1, password);
 		pStatement.setString(2, userName);
 		int i = pStatement.executeUpdate();
-		if(i==0)	flag = false;
+		if(i==1)	flag = 0;
+		else	flag = 3;
 		DBManager.stopAll(null, pStatement, connection);
 		return flag;
 	}
