@@ -8,7 +8,8 @@ package dataservice;
 public interface LoginDataService {
 	/**
 	 * 创建一个用户
-	 * @param accountName
+	 * @param userName
+	 * @param email
 	 * @param password
 	 * @return  boolean    
 	 * @author     lpt
@@ -16,7 +17,7 @@ public interface LoginDataService {
 	public boolean createAccount(String userName,String email,String password);
 	/**
 	 * 验证一个用户的账户名和密码是否匹配
-	 * @param accountName
+	 * @param userName
 	 * @param password
 	 * @return  boolean        
 	 * @author      lpt
@@ -24,7 +25,7 @@ public interface LoginDataService {
 	public boolean verifyAccount(String userName,String password);
 	/**
 	 * 用户修改自己的密码
-	 * @param accountName
+	 * @param userName
 	 * @param password
 	 * @return  boolean         
 	 * @author      lpt

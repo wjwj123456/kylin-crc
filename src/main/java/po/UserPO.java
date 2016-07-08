@@ -8,9 +8,8 @@ public class UserPO {
 	String  name;
 	String email;
 	String password;
-	public UserPO(int id, String name, String email, String password) {
+	public UserPO(String name, String email, String password) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;

@@ -4,26 +4,27 @@ package blservice;
 public interface LoginBlService {
 	/**
 	 * 创建账户
-	 * @param accountName
+	 * @param userName
+	 * @param email
 	 * @param password
 	 * @return  boolean       
 	 * @author      lpt
 	 */
-	public boolean createAccount(String accountName,String email,String password);
+	public boolean createAccount(String userName,String email,String password);
 	/**
 	 * 验证账户
-	 * @param accountName
+	 * @param userName
 	 * @param password
 	 * @return  boolean        
 	 * @author      lpt
 	 */
-	public boolean verifyAccount(String accountName,String password);
+	public boolean verifyAccount(String userName,String password);
 	/**
 	 * 更改账户密码
-	 * @param accountName
+	 * @param userName
 	 * @param password
 	 * @return  boolean       
 	 * @author      lpt
 	 */
-	public boolean changePassword(String accountName,String password);
+	public boolean changePassword(String userName,String password);
 }
