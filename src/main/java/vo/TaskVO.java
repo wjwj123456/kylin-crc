@@ -3,25 +3,36 @@ package vo;
 
 import java.util.Date;
 
-public class ReviewVO {
-	String name;
+public class TaskVO {
+	String userName;
+	String taskName;
 	Type type;
 	String project;
 	String describe;
 	Date deadline;
-	public ReviewVO(String name, Type type, String project, String describe, Date deadline) {
+	int state;
+	public TaskVO(String userName, String taskName, Type type, String project, String describe, Date deadline,
+			int state) {
 		super();
-		this.name = name;
+		this.userName = userName;
+		this.taskName = taskName;
 		this.type = type;
 		this.project = project;
 		this.describe = describe;
 		this.deadline = deadline;
+		this.state = state;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getTaskName() {
+		return taskName;
+	}
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 	public Type getType() {
 		return type;
@@ -47,6 +58,11 @@ public class ReviewVO {
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
-	
-	
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+
 }
