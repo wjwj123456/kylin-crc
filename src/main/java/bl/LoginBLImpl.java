@@ -1,11 +1,8 @@
 package bl;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import blservice.LoginBlService;
-import data.DBManager;
 import data.LoginDataImpl;
 import dataservice.LoginDataService;
 
