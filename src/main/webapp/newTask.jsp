@@ -137,14 +137,27 @@
 			<div class="form-group">
 				<label for="discription" class="col-sm-2 control-label">结束时间</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="3" id="discription"></textarea>
+					<div class="input-append date form_datetime"
+						data-date="2013-02-21T15:25:00Z">
+						<input size="16" type="text" value="" readonly> <span
+							class="add-on"><i class="icon-remove"></i></span> <span
+							class="add-on"><i class="icon-calendar"></i></span>
+					</div>
 				</div>
 			</div>
 			<div class="form-group"></div>
 
 		</form>
 	</div>
-
+	<script type="text/javascript">
+		$(".form_datetime").datetimepicker({
+			format : "dd MM yyyy - hh:ii",
+			autoclose : true,
+			todayBtn : true,
+			startDate : "2013-02-14 10:00",
+			minuteStep : 10
+		});
+	</script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
