@@ -153,29 +153,28 @@
 		</div>
 	</div>
 	<div id="inviseModal" class="modal fade">
-		<div class="modal-dialog" style="width:800px;">
+		<div class="modal-dialog" style="width: 800px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
 					<h2 class="text-left text-primary">邀请评审者</h2>
 				</div>
-				<div class="modal-body" >
+				<div class="modal-body" style="height: 450px">
 
-					<div class="form-group">
-						<input type="text" name='username' class="form-control input-lg"
-							id="username" placeholder="用户名">
-					</div>
-					<div class="form-group">
-						<input type="password" name="password" id="password"
-							class="form-control input-lg" placeholder="登录密码">
-					</div>
-					<div class="form-group">
-						<button class="btn btn-primary btn-lg btn-block" onclick="login()">立刻登录</button>
-						<span><a data-toggle="modal" data-target="#signUpModal"
-							data-dismiss="modal" href="" class="pull-right">注册</a></span>
+					
+						<div class="col-md-6" style=" height:400px; overflow:auto">
+							<table class="table">
+							<%for(int i = 0;i<100;i++){ %>
+							<tr><th>12</th><td>12</td></tr>
+							<%} %>
+							</table>
+						</div>
+						<div class="col-md-6" style="position:absolute; height:400px; overflow:auto">
+							
+						</div>
+					
 
-					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
