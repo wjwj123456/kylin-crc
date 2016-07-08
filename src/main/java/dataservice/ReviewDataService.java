@@ -6,11 +6,12 @@ import po.ReviewPO;
 
 public interface ReviewDataService {
 	/**
-	 * @param   po
+	 * @param po
 	 * @throws ClassNotFoundException
-	 * @throws SQLException      
-	 * @return boolean   是否成功保存
-	 * @author      lpt14
+	 * @throws SQLException
+	 * @return int 0 - 成功 1 - 任务名重复  
+	 * @author lpt14
 	 */
- public boolean saveReviewInfo(ReviewPO po) throws ClassNotFoundException, SQLException;
+	public int saveReviewInfo(ReviewPO po) throws ClassNotFoundException, SQLException;
+
 }
