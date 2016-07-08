@@ -40,10 +40,10 @@
 						<li><a href="#about">git地址</a></li>
 					</ul></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right" >
-				<%--username--%>
-				<li><a href="#" id="user-name">${username}</a></li>
-				<li><a id="login">登录</a></li>
+			<ul class="nav navbar-nav navbar-right">
+
+				<li><a data-toggle="modal" data-target="#loginModal" href="">登录</a></li>
+
 			</ul>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 								class="form-control input-lg" placeholder="登录密码">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block" onclick="login()">立刻登录</button>
+							<button class="btn btn-primary btn-lg btn-block">立刻登录</button>
 							<span><a data-toggle="modal" data-target="#signUpModal"
 								data-dismiss="modal" href="" class="pull-right">注册</a></span>
 
@@ -110,27 +110,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="jumbotron">
-		<div class="container">
-			<div class="col-md-4">
-				<h1>欢迎</h1>
-			</div>
-			<div class="col-md-8">
-				<ul>
-					<li><a href="#new">新建评审</a></li>
-				</ul>
-			</div>
-			
-			
-		</div>
-		
-	</div>
 	
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
 	<script src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-	<script src="js/login.js"></script>
 </body>
 
 </html>
