@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+body {
+  padding-top: 40px;
+  padding-bottom: 0px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(20,20,20,.5);
+  text-align: center;
+}
+.inner {
+  padding: 30px;
+}
+
