@@ -1,6 +1,7 @@
 package po;
 
-import java.util.Calendar;
+
+import java.util.Date;
 
 import vo.Type;
 
@@ -9,8 +10,8 @@ public class ReviewPO {
 	Type type;
 	String project;
 	String describe;
-	Calendar deadline;
-	public ReviewPO(String name, Type type, String project, String describe, Calendar deadline) {
+	Date deadline;
+	public ReviewPO(String name, Type type, String project, String describe, Date deadline) {
 		super();
 		this.name = name;
 		this.type = type;
@@ -42,10 +43,10 @@ public class ReviewPO {
 	public void setDescribe(String describe) {
 		this.describe = describe;
 	}
-	public Calendar getDeadline() {
+	public Date getDeadline() {
 		return deadline;
 	}
-	public void setDeadline(Calendar deadline) {
+	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
 	

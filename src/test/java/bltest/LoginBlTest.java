@@ -22,7 +22,7 @@ public class LoginBlTest {
 
 	@Test
 	public void testVerifyAccount() throws ClassNotFoundException, SQLException {
-		assertEquals(1,loginDataImpl.verifyAccount("crc", "123") );
+		assertEquals(0,loginDataImpl.verifyAccount("crc", "123") );
 	}
 
 	@Test
