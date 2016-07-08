@@ -12,7 +12,7 @@
 	rel="stylesheet">
 <title>CRC Index</title>
 </head>
-<body>
+<body role="document">
 	<nav class="navbar  navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -110,6 +110,21 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="col-md-4">
+				<h1>欢迎</h1>
+			</div>
+			<div class="col-md-8">
+				<ul>
+					<li><a href="#new">新建评审</a></li>
+				</ul>
+			</div>
+			
+			
+		</div>
+		
 	</div>
 	
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
