@@ -15,7 +15,7 @@
 <title>My CRC</title>
 </head>
 <body role="document">
-	<nav class="navbar  navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -51,16 +51,137 @@
 			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
 			<ul class="nav bs-docs-sidenav">
 
-				<li><a href="#section-1">基本信息</a></li>
-				<li><a href="#section-2">进行中评审</a></li>
-				<li><a href="#section-3">历史评审</a></li>
-				<li><a href="#section-4">个人分析</a></li>
+				<li><a href="#basicInfo">基本信息</a></li>
+				<li><a href="#runningReview">进行中评审</a></li>
+				<li><a href="#historyReview">历史评审</a></li>
+				<li><a href="#personalAnalyze">个人分析</a></li>
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
 		<div class="col-md-10">
 			<div class="bs-docs-section">
-				<h2></h2>
+				<h2 id="basicInfo">基本信息</h2>
+				<table class="table">
+					<tr>
+						<th>haha</th>
+						<td>haha</td>
+						<th>haha</th>
+						<td>haha</td>
+					</tr>
+					<tr>
+						<th>haha</th>
+						<td>haha</td>
+						<th>haha</th>
+						<td>haha</td>
+					</tr>
+					<tr>
+						<th>haha</th>
+						<td>haha</td>
+						<th>haha</th>
+						<td>haha</td>
+					</tr>
+				</table>
+				<hr>
+				<h2 id="runningReview">进行中评审</h2>
+				<table class="table">
+					<tr>
+						<th>评审名</th>
+						<th>描述</th>
+						<th>deadline</th>
+						<th>操作</th>
+					</tr>
+					<tr>
+						<td>haha</td>
+						<td>haha</td>
+						<td>haha</td>
+						<td><button class="btn-success" data-toggle="modal"
+								data-target="#inviseModal">邀请</button></td>
+					</tr>
+					<tr>
+						<td>haha</td>
+						<td>haha</td>
+						<td>haha</td>
+						<td><button class="btn-success">邀请</button></td>
+					</tr>
+				</table>
+				<hr>
+				<h2 id="historyReview">历史评审</h2>
+				<table class="table">
+					<tr>
+						<th>评审名</th>
+						<th>描述</th>
+						<th>deadline</th>
+						<th>操作</th>
+					</tr>
+					<tr>
+						<td>haha</td>
+						<td>haha</td>
+						<td>haha</td>
+						<td><button class="btn-success">邀请</button></td>
+					</tr>
+					<tr>
+						<td>haha</td>
+						<td>haha</td>
+						<td>haha</td>
+						<td><button class="btn-success">邀请</button></td>
+					</tr>
+				</table>
+				<hr>
+				<h2 id="personalAnalyze">个人分析</h2>
+				<table class="table">
+					<tr>
+						<th>haha</th>
+						<td>haha</td>
+						<th>haha</th>
+						<td>haha</td>
+					</tr>
+					<tr>
+						<th>haha</th>
+						<td>haha</td>
+						<th>haha</th>
+						<td>haha</td>
+					</tr>
+					<tr>
+						<th>haha</th>
+						<td>haha</td>
+						<th>haha</th>
+						<td>haha</td>
+					</tr>
+				</table>
+				<hr>
+			</div>
+		</div>
+	</div>
+	<div id="inviseModal" class="modal fade">
+		<div class="modal-dialog" style="width:800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">x</button>
+					<h2 class="text-left text-primary">邀请评审者</h2>
+				</div>
+				<div class="modal-body" >
+
+					<div class="form-group">
+						<input type="text" name='username' class="form-control input-lg"
+							id="username" placeholder="用户名">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" id="password"
+							class="form-control input-lg" placeholder="登录密码">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-lg btn-block" onclick="login()">立刻登录</button>
+						<span><a data-toggle="modal" data-target="#signUpModal"
+							data-dismiss="modal" href="" class="pull-right">注册</a></span>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-primary">提交更改</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -68,6 +189,7 @@
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
