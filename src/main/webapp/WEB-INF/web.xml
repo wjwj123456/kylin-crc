@@ -11,7 +11,7 @@
   </welcome-file-list>
 
   <servlet>
-    <description>检查登录信息</description>
+    <description>verify the login info(/login), handle the logout operation(/logout)</description>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>servlet.LoginServlet</servlet-class>
   </servlet>
@@ -19,6 +19,9 @@
     <servlet-name>loginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
 
 </web-app>
