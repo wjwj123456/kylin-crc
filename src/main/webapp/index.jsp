@@ -40,9 +40,9 @@
 						<li><a href="#about">git地址</a></li>
 					</ul></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-
-				<li><a data-toggle="modal" data-target="#loginModal" href="">登录</a></li>
+			<ul class="nav navbar-nav navbar-right" >
+				
+				<li><a data-toggle="modal" data-target="#loginModal" href="" id="login">登录</a></li>
 
 			</ul>
 		</div>
@@ -67,7 +67,7 @@
 								class="form-control input-lg" placeholder="登录密码">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block">立刻登录</button>
+							<button class="btn btn-primary btn-lg btn-block" onclick="submit()">立刻登录</button>
 							<span><a data-toggle="modal" data-target="#signUpModal"
 								data-dismiss="modal" href="" class="pull-right">注册</a></span>
 
@@ -130,6 +130,7 @@
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
 	<script src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script src="js/login.js"></script>
 </body>
 
 </html>
