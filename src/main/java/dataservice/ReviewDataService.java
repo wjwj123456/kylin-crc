@@ -6,7 +6,6 @@ import po.ReviewPO;
 
 public interface ReviewDataService {
 	/**
-	 * 
 	 * @param   po
 	 * @throws ClassNotFoundException
 	 * @throws SQLException      
