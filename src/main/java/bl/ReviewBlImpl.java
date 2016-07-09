@@ -115,4 +115,19 @@ public class ReviewBlImpl implements ReviewBlService {
 		return result;
 	}
 
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @param userName
+	* @return
+	* @see blservice.ReviewBlService#saveReviewer(java.lang.String[])
+	*
+	*/
+	public int saveReviewer(String[] userName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

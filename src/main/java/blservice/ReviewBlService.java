@@ -9,5 +9,6 @@ public interface ReviewBlService {
 	public int saveReviewInfo(TaskVO vo);
 	public List<TaskVO> geTaskList(String userName);
 	public List<UserVO> searchUserByKeyword(String keyword) throws ClassNotFoundException;
+	public int saveReviewer(String[] userName);
 }
                  

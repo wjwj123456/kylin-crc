@@ -199,7 +199,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	* @see dataservice.ReviewDataService#saveReviewer(java.lang.String)
 	*
 	*/
-	public int saveReviewer(String userName) {
+	public int saveReviewer(String[] userName) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
