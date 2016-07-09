@@ -95,13 +95,13 @@
 						<td>haha</td>
 						<td>haha</td>
 						<td><button class="btn-success" data-toggle="modal"
-								data-target="#inviseModal">邀请</button></td>
+								data-target="#inviseModal">查看</button></td>
 					</tr>
 					<tr>
 						<td>haha</td>
 						<td>haha</td>
 						<td>haha</td>
-						<td><button class="btn-success">邀请</button></td>
+						<td><button class="btn-success">查看</button></td>
 					</tr>
 				</table>
 				<hr>
@@ -117,13 +117,13 @@
 						<td>haha</td>
 						<td>haha</td>
 						<td>haha</td>
-						<td><button class="btn-success">邀请</button></td>
+						<td><button class="btn-success">查看</button></td>
 					</tr>
 					<tr>
 						<td>haha</td>
 						<td>haha</td>
 						<td>haha</td>
-						<td><button class="btn-success">邀请</button></td>
+						<td><button class="btn-success">查看</button></td>
 					</tr>
 				</table>
 				<hr>
