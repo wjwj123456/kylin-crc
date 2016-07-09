@@ -8,6 +8,7 @@ import vo.UserVO;
 public interface ReviewBlService {
 	public int saveReviewInfo(TaskVO vo);
 	public List<TaskVO> geTaskList(String userName);
+	public List<TaskVO> getTaskList();
 	public List<UserVO> searchUserByKeyword(String keyword) throws ClassNotFoundException;
 	/**
 	 * save all user who has been invited
@@ -23,7 +24,6 @@ public interface ReviewBlService {
 	 * @author      lpt14
 	 */
 	public int saveAcceptReviewer(String userName,String taskName);
-	
 	
 	
 	
