@@ -52,6 +52,7 @@
 			<ul class="nav bs-docs-sidenav">
 
 				<li><a href="#basicInfo">基本信息</a></li>
+				<li><a href="#message">消息</a></li>
 				<li><a href="#runningReview">进行中评审</a></li>
 				<li><a href="#historyReview">历史评审</a></li>
 				<li><a href="#personalAnalyze">个人分析</a></li>
@@ -79,6 +80,15 @@
 						<td>haha</td>
 						<th>haha</th>
 						<td>haha</td>
+					</tr>
+				</table>
+				<hr>
+				<h2 id="message">消息</h2>
+				<table class="table" id="messageTable">
+					<tr>
+						<th>发信人</th>
+						<th>项目名</th>
+						<th>操作</th>
 					</tr>
 				</table>
 				<hr>
@@ -174,13 +184,13 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="toInvite">
-								<tr >
+								<tr>
 									<th>用户名</th>
 								</tr>
 								<%
 									for (int i = 0; i < 10; i++) {
 								%>
-								<tr >
+								<tr>
 									<td>12</td>
 								</tr>
 								<%
@@ -194,7 +204,7 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="invited">
-								
+
 							</table>
 						</div>
 					</div>
