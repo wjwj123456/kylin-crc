@@ -162,7 +162,7 @@
 				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
 				<div class="col-sm-10">
 					<div class="input-append date form_datetime">
-						<input size="16" type="text" value="" readonly name="deadline">
+						<input size="16" type="text" value="" readonly name="deadline" id="deadline">
 						<span class="add-on"><i class="icon-remove"></i></span> <span
 							class="add-on"><i class="icon-calendar"></i></span>
 					</div>
@@ -190,6 +190,7 @@
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
+	<script src="js/newTask.js"></script>
 </body>
 
 </html>
