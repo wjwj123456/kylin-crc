@@ -1,5 +1,5 @@
-Boolean hasUser;
-Boolean hasPass;
+var hasUser;
+var hasPass;
 
 $('#login').on('click', function() {
 	if ($(this).text().trim() == '登录') {
