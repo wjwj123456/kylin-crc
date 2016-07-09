@@ -12,6 +12,7 @@ import blservice.ReviewBlService;
 import data.ReviewDataImpl;
 import dataservice.ReviewDataService;
 import po.TaskPO;
+import po.UserPO;
 import vo.TaskVO;
 import vo.UserVO;
 
@@ -86,16 +87,32 @@ public class ReviewBlImpl implements ReviewBlService {
 	/**
 	* TODO:（方法描述）
 	*
-	* @author lpt14
+	* @author ldk14
 	* @since 2016年7月9日
 	* @param keyword
 	* @return
+	 * @throws ClassNotFoundException 
 	* @see blservice.ReviewBlService#searchUserByKeyword(java.lang.String)
 	*
 	*/
-	public List<UserVO> searchUserByKeyword(String keyword) {
+	public List<UserVO> searchUserByKeyword(String keyword)  {
 		// TODO Auto-generated method stub
-		return null;
+		List<UserVO> result=new ArrayList<UserVO>();
+		List<UserPO> list = new ArrayList<UserPO>();
+		try {
+			list = reviewDataService.searchUserByKeyword(keyword);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(UserPO po:list){
+			UserVO vo=new UserVO(po.getName(), po.getEmail(), po.getPassword());
+		result.add(vo);
+		}
+		return result;
 	}
 
 }

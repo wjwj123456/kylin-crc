@@ -15,7 +15,7 @@ public class DBManager {
 		String username = "ykk2";
 		String password = "123qwe";
 		
-		Connection connection = DriverManager.getConnection(url, username, password);
+		Connection connection = DriverManager.getConnection(url+"?characterEncoding=gbk", username, password);
 		return connection;
 	}
 	

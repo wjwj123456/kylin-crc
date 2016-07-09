@@ -169,4 +169,22 @@ public class ReviewDataImpl implements ReviewDataService {
 
 
 
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @param userName
+	* @return
+	* @see dataservice.ReviewDataService#saveReviewer(java.lang.String)
+	*
+	*/
+	public int saveReviewer(String userName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
 }
