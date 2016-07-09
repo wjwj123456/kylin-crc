@@ -17,9 +17,7 @@ function login() {
 				+ '&password=' + $('#password').val(),
 		success : function(data) {
 			if (data == 0) {
-				$('#loginModal').modal('hide');
-				$('#user-name').text($('#username').val().trim());
-				$('#login').text('登出');
+				location.reload(true);
 			} else if (data == 1) {
 				alert('用户名不存在')
 			} else if (data == 2) {

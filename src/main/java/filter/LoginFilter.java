@@ -31,7 +31,7 @@ public class LoginFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		System.out.println("doFilter.....");
+		
 		if (req.getSession().getAttribute("username") == null) {
 			req.getRequestDispatcher("index.jsp").forward(request, response);
 		}
