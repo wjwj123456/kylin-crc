@@ -32,7 +32,6 @@
     <servlet-name>CreateTaskServlet</servlet-name>
     <url-pattern>/CreateTaskServlet</url-pattern>
   </servlet-mapping>
-  
   <filter>
     <display-name>LoginFilter</display-name>
     <filter-name>LoginFilter</filter-name>
@@ -42,4 +41,24 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description>invite one or several reviewers</description>
+    <display-name>InviteServlet</display-name>
+    <servlet-name>InviteServlet</servlet-name>
+    <servlet-class>servlet.InviteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InviteServlet</servlet-name>
+    <url-pattern>/InviteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>search usernames by keywords</description>
+    <display-name>SearchServlet</display-name>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>servlet.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/SearchServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

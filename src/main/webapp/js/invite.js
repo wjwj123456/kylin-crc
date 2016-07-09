@@ -7,6 +7,6 @@ $(function() {
 
 function addInvite(obj) {
 	$(obj).hide();
-	$('#invited').append($(obj));
+	$('#invited').prepend($(obj));
 	$(obj).show();
 }
