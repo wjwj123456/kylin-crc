@@ -151,19 +151,57 @@ public class ReviewDataImpl implements ReviewDataService {
 
 
 
+ 	/**
+  	* TODO:（方法描述）
+  	*
+ -	* @author lpt14
+ +	* @author ldk14
+  	* @since 2016年7月9日
+  	* @param keyword
+  	* @return
+ +	 * @throws SQLException 
+ +	 * @throws ClassNotFoundException 
+ 	 * @throws SQLException 
+ 	 * @throws ClassNotFoundException 
+  	* @see dataservice.ReviewDataService#searchUserByKeyword(java.lang.String)
+  	*
+  	*/
+ 	public List<UserPO> searchUserByKeyword(String keyword) throws ClassNotFoundException, SQLException {
+
+  		// TODO Auto-generated method stub
+ 		List<UserPO> poList=new ArrayList<UserPO>();
+ 		int flag = -1;
+ 		Connection connection = DBManager.connect();
+ 		PreparedStatement pStatement = null;
+ 		String sql = "SELECT * FROM user WHERE uname like '%" + keyword + "%'" ;
+ 		pStatement = connection.prepareStatement(sql);
+ 		ResultSet rSet = pStatement.executeQuery();
+ 		while(rSet.next()) {
+ 			UserPO po = new UserPO(rSet.getString(1), rSet.getString(2), rSet.getString(3));
+ 			poList.add(po);
+ 			
+ 		}
+ 		
+ 		DBManager.stopAll(rSet, pStatement, connection);
+ 		return poList;
+  	}
+
+
+
+
 	/**
 	* TODO:（方法描述）
 	*
 	* @author lpt14
 	* @since 2016年7月9日
-	* @param keyword
+	* @param userName
 	* @return
-	* @see dataservice.ReviewDataService#searchUserByKeyword(java.lang.String)
+	* @see dataservice.ReviewDataService#saveReviewer(java.lang.String)
 	*
 	*/
-	public List<UserPO> searchUserByKeyword(String keyword) {
+	public int saveReviewer(String[] userName) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 

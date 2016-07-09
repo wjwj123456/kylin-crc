@@ -18,7 +18,11 @@ public interface ReviewDataService {
 	public int saveReviewInfo(TaskPO po) throws ClassNotFoundException, SQLException;
 	
 	public List<TaskPO> getTaskList(String userName) throws SQLException, ClassNotFoundException;
-				
-	public List<UserPO> searchUserByKeyword(String keyword);
+			
+	
+	public  int saveReviewer(String[] userName);
+
+	public List<UserPO> searchUserByKeyword(String keyword) throws SQLException, ClassNotFoundException;
+
 
 }

@@ -9,7 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <description>verify the login info(/login), handle the logout operation(/logout)</description>
     <servlet-name>loginServlet</servlet-name>
@@ -23,7 +22,6 @@
     <servlet-name>loginServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description>create new task</description>
     <display-name>CreateTaskServlet</display-name>
@@ -34,4 +32,14 @@
     <servlet-name>CreateTaskServlet</servlet-name>
     <url-pattern>/CreateTaskServlet</url-pattern>
   </servlet-mapping>
+  
+  <filter>
+    <display-name>LoginFilter</display-name>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
 </web-app>

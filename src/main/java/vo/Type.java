@@ -4,7 +4,7 @@ public enum Type {
 	code,
 	document;
 	
-	public Type getType(String type) {
+	public static Type getType(String type) {
 		return Type.code;
 	}
 }
