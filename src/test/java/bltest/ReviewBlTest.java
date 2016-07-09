@@ -32,4 +32,12 @@ public class ReviewBlTest {
 		assertEquals(0, reviewBlImpl.geTaskList("fdjsjf").size());
 	}
 
+	@Test
+	public void testSearchUserByKeyword() {
+		assertEquals(1, reviewBlImpl.searchUserByKeyword("crc").size());
+		assertEquals(2, reviewBlImpl.searchUserByKeyword("c").size());
+		assertEquals(0, reviewBlImpl.searchUserByKeyword("iii").size());
+	
+	}
+
 }
