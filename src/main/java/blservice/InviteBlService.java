@@ -1,5 +1,6 @@
 package blservice;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import vo.TaskVO;
@@ -10,7 +11,7 @@ public interface InviteBlService {
 	 * @param reviewerName
 	 * @return TaskVOs
 	 */
-	public List<TaskVO> getInvitationInfo(String reviewerName);
+	public List<TaskVO> getInvitationInfo(String reviewerName)throws SQLException, ClassNotFoundException;
 	
 	
 	/**
