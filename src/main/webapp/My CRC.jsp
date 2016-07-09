@@ -167,18 +167,20 @@
 							<input size="40" type="text" class="form-control" id="searchName"
 								placeholder="用户名关键字">
 						</div>
-						<button type="button" class="btn btn-success">搜索</button>
+						<button type="button" class="btn btn-success" id="search">搜索</button>
 					</div>
 					<div class="col-md-6">
 						<p>待邀请</p>
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="toInvite">
+								<tr >
+									<th>用户名</th>
+								</tr>
 								<%
-									for (int i = 0; i < 100; i++) {
+									for (int i = 0; i < 10; i++) {
 								%>
 								<tr >
-									<th>12</th>
 									<td>12</td>
 								</tr>
 								<%
@@ -200,7 +202,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消
 					</button>
-					<button type="button" class="btn btn-primary">确认邀请</button>
+					<button type="button" class="btn btn-primary" id="confirmInvite">确认邀请</button>
 				</div>
 			</div>
 		</div>
