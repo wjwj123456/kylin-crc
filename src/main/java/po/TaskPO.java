@@ -24,6 +24,19 @@ public class TaskPO {
 		this.deadline = deadline;
 		this.state = state;
 	}
+	
+	
+	
+	
+	public TaskPO(String userName, String taskName) {
+		super();
+		this.userName = userName;
+		this.taskName = taskName;
+	}
+
+
+
+
 	public String getUserName() {
 		return userName;
 	}

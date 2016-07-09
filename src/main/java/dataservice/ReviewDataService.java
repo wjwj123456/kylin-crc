@@ -20,9 +20,25 @@ public interface ReviewDataService {
 	public List<TaskPO> getTaskList(String userName) throws SQLException, ClassNotFoundException;
 			
 	
-	public  int saveReviewer(String[] userName);
 
 	public List<UserPO> searchUserByKeyword(String keyword) throws SQLException, ClassNotFoundException;
 
 
+	/**
+	 * save all user who has been invited
+	 * @param userName  
+	 * @return int   0 -- success     1-- fail   
+	 * @author      lpt14
+	 */
+	public int saveInvitation(String[] userName,String taskName) throws SQLException, ClassNotFoundException;     
+	/**
+	 * save user who agree the invitation
+	 * @param  userName 
+	 * @return int 0 -- success     1-- fail       
+	 * @author      lpt14
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public int saveAcceptReviewer(String userName,String taskName) throws SQLException, ClassNotFoundException;
+	
 }

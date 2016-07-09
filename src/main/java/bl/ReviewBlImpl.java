@@ -130,4 +130,54 @@ public class ReviewBlImpl implements ReviewBlService {
 		return 0;
 	}
 
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @param userName
+	* @return
+	* @see blservice.ReviewBlService#saveInvitation(java.lang.String[])
+	*
+	*/
+	public int saveInvitation(String[] userName,String taskName) {
+		// TODO Auto-generated method stub
+		int flag=0;
+		try {
+			flag= reviewDataService.saveInvitation(userName, taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @param userName
+	* @return
+	* @see blservice.ReviewBlService#saveAcceptReviewer(java.lang.String)
+	*
+	*/
+	public int saveAcceptReviewer(String userName,String taskName) {
+		// TODO Auto-generated method stub
+		int flag=0;
+		try {
+			flag=reviewDataService.saveAcceptReviewer(userName, taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return flag;
+	}
+
 }
