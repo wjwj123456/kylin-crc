@@ -34,10 +34,37 @@ public class ReviewBlTest {
 
 	@Test
 	public void testSearchUserByKeyword() {
-		assertEquals(1, reviewBlImpl.searchUserByKeyword("crc").size());
-		assertEquals(2, reviewBlImpl.searchUserByKeyword("c").size());
+//		assertEquals(1, reviewBlImpl.searchUserByKeyword("crc").size());
+//		assertEquals(2, reviewBlImpl.searchUserByKeyword("c").size());
 		assertEquals(0, reviewBlImpl.searchUserByKeyword("iii").size());
-	
+		assertNotEquals(0, reviewBlImpl.searchUserByKeyword("crc").size());
+		assertNotEquals(0, reviewBlImpl.searchUserByKeyword("c").size());
 	}
 
+	
+	@Test
+	public void testSaveReviewer() {
+
+	}
+
+	@Test
+	public void testSaveInvitation() {
+		String taskName = "task1";
+		String[] names = new String[2];
+		names[0] = "aoliao";
+		names[1] = "cr";
+		assertEquals(0,reviewBlImpl.saveInvitation(names, taskName) );
+	}
+
+	@Test
+	public void testSaveAcceptReviewer() {
+		String taskName = "task1";
+		String userName = "aoliao";
+
+		assertEquals(0,reviewBlImpl.saveAcceptReviewer(userName, taskName) );
+		
+		String userName2 = "cr";
+
+		assertEquals(0,reviewBlImpl.saveAcceptReviewer(userName2, taskName) );
+	}
 }
