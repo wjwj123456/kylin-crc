@@ -6,17 +6,6 @@ $('#login').on('click', function() {
 	}
 });
 
-// /**
-// * the operation after clicking login/logout button
-// */
-// function submit() {
-// if ($('#login').text().trim() == '登录') {
-// login();
-// } else {
-// logout();
-// }
-// }
-
 /**
  * login operation
  */
@@ -44,7 +33,6 @@ function login() {
  * logout operation
  */
 function logout() {
-	alert('logout')
 	jQuery.ajax({
 		url : '/crc/logout',
 		style : 'post',
