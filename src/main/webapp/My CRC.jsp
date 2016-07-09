@@ -94,14 +94,14 @@
 						<td>haha</td>
 						<td>haha</td>
 						<td>haha</td>
-						<td><button class="btn-success" data-toggle="modal"
+						<td><button class="btn btn-success" data-toggle="modal"
 								data-target="#inviseModal">查看</button></td>
 					</tr>
 					<tr>
 						<td>haha</td>
 						<td>haha</td>
 						<td>haha</td>
-						<td><button class="btn-success">查看</button></td>
+						<td><button class="btn btn-success">查看</button></td>
 					</tr>
 				</table>
 				<hr>
@@ -117,13 +117,13 @@
 						<td>haha</td>
 						<td>haha</td>
 						<td>haha</td>
-						<td><button class="btn-success">查看</button></td>
+						<td><button class="btn btn-success">查看</button></td>
 					</tr>
 					<tr>
 						<td>haha</td>
 						<td>haha</td>
 						<td>haha</td>
-						<td><button class="btn-success">查看</button></td>
+						<td><button class="btn btn-success">查看</button></td>
 					</tr>
 				</table>
 				<hr>
@@ -160,24 +160,56 @@
 						aria-hidden="true">x</button>
 					<h2 class="text-left text-primary">邀请评审者</h2>
 				</div>
-				<div class="modal-body" style="height: 450px;overflow:auto">
+				<div class="modal-body" style="height: 450px; overflow: auto">
 
-					
-						
+					<div class="row form-group">
+						<div class="col-md-8">
+							<input size="40" type="text" class="form-control" id="searchName"
+								placeholder="用户名关键字">
+						</div>
+						<button type="button" class="btn btn-success">搜索</button>
+					</div>
+					<div class="col-md-6" >
+						<p>待邀请</p>
+						<div style="height: 250px; overflow: auto">
+							
 							<table class="table">
-							<%for(int i = 0;i<100;i++){ %>
-							<tr><th>12</th><td>12</td></tr>
-							<%} %>
-							</table>
-						
-					
-					
-
+							<%
+								for (int i = 0; i < 100; i++) {
+							%>
+							<tr>
+								<th>12</th>
+								<td>12</td>
+							</tr>
+							<%
+								}
+							%>
+						</table>
+						</div>
+					</div>
+					<div class="col-md-6" >
+						<p>已邀请</p>
+						<div style="height: 250px; overflow: auto">
+							
+							<table class="table">
+							<%
+								for (int i = 0; i < 100; i++) {
+							%>
+							<tr>
+								<th>12</th>
+								<td>12</td>
+							</tr>
+							<%
+								}
+							%>
+						</table>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消
 					</button>
-					<button type="button" class="btn btn-primary">提交更改</button>
+					<button type="button" class="btn btn-primary">确认邀请</button>
 				</div>
 			</div>
 		</div>
