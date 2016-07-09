@@ -61,13 +61,11 @@ public class SearchServlet extends HttpServlet {
 		List<UserVO> users = review.searchUserByKeyword(request.getParameter("keyword"));
 		
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
+		jsonObject.put("result", users.size() == 0 ? "empty" : "success");
 		jsonObject.put("users", users);
 		
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.put(jsonObject);
-		
-		System.out.println(jsonArray);
 		
 		PrintWriter out = response.getWriter();
 		out.print(jsonArray);
