@@ -11,7 +11,6 @@ function createNewTask() {
 				+ '&describe=' + $('#discription').val().trim() + '&deadline=' + $('#deadline').val(),
 		success : function(data) {
 			if (data == 'success') {
-				alert(1);
 				top.location = 'My CRC.jsp';
 			}
 		}
