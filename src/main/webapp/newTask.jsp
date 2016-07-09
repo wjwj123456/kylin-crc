@@ -55,7 +55,14 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 
-				<li><a data-toggle="modal" data-target="#loginModal" href="">登录</a></li>
+				<%if(session.getAttribute("username")!=null){%>
+					<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
+					<li><a id="login" style="cursor: pointer;">登出</a></li>
+				<%}else{%>
+				<%--username--%>
+				
+				<li><a id="login" style="cursor: pointer;">登录</a></li>
+				<%} %>
 
 			</ul>
 		</div>
@@ -155,17 +162,16 @@
 				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
 				<div class="col-sm-10">
 					<div class="input-append date form_datetime">
-						<input size="16" type="text" value="" readonly name="deadline"> <span
-							class="add-on"><i class="icon-remove"></i></span> <span
+						<input size="16" type="text" value="" readonly name="deadline">
+						<span class="add-on"><i class="icon-remove"></i></span> <span
 							class="add-on"><i class="icon-calendar"></i></span>
 					</div>
 				</div>
 			</div>
-			<div class="form-group" style="text-align: right;">
-				<button class="btn btn-success ">确认创建</button>
-			</div>
-
 		</form>
+		<div class="form-group" style="text-align: right;">
+			<button class="btn btn-success " id="createTask">确认创建</button>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(".form_datetime").datetimepicker({
@@ -183,6 +189,7 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script src="js/login.js"></script>
 </body>
 
 </html>
