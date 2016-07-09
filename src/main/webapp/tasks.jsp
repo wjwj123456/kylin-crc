@@ -10,6 +10,8 @@
 <link href="css/theme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
+<link href="http://v3.bootcss.com/assets/css/docs.min.css"
+	rel="stylesheet">
 <title>CRC Index</title>
 </head>
 <body role="document">
@@ -115,26 +117,53 @@
 			</div>
 		</div>
 	</div>
-	<div class="jumbotron">
-		<div class="container">
-			<div class="col-md-4">
-				<h1>欢迎</h1>
-			</div>
-			<div class="col-md-8">
-				<ul>
-					<li><a href="newTask.jsp">新建评审</a></li>
-				</ul>
-			</div>
-			
-			
+	
+	
+	<div class="container"> 
+		<div id="suspensionNavigation" class="col-md-2" role="complementary">
+			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+			<ul class="nav bs-docs-sidenav">
+
+				<li><a href="#title">评审名</a></li>
+				<li><a href="#message">说明</a></li>
+				<li><a href="#deadline">截止时间</a></li>
+				<li><a href="#review">评审</a></li>
+				<li><a href="#repot">评审报告</a></li>
+			</ul>
+			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
-		
+		<div class="col-md-10 bs-docs-section">
+			<h2>XXX</h2>
+			<hr>
+			<h2>说明</h2>
+				<p>类型：XX评审</p>
+				<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+				<button class="btn btn-success" id="join">参加评审</button>
+			<hr>
+			<h2>截止时间</h2>
+				<strong>XXXX-XX-XX  XX:XX</strong>
+			<hr>
+			<h2>评审</h2>
+			
+			<hr>
+			<h2>评审报告</h2>
+			<hr>
+		</div>
 	</div>
 	
+	
+	
+	
+	
+	
+	
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
-	<script src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script
+		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script
+		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
 </body>
 

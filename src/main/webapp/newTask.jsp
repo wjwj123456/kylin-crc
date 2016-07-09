@@ -26,7 +26,7 @@
 	<div id="alert-user" class="alert alert-danger hidden" role="alert">
 		<strong>错误：</strong>请输入您用户名
 	</div>
-	<nav class="navbar navbar-inverse  navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -53,8 +53,7 @@
 						<li><a href="#about">git地址</a></li>
 					</ul></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-
+			<ul class="nav navbar-nav navbar-right" >
 				<%if(session.getAttribute("username")!=null){%>
 					<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
 					<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -63,7 +62,6 @@
 				
 				<li><a id="login" style="cursor: pointer;">登录</a></li>
 				<%} %>
-
 			</ul>
 		</div>
 	</div>
@@ -74,24 +72,24 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					<h1 class="text-center text-primary">登录</h1>
+					<h1 class="text-center text-primary" >登录</h1>
 				</div>
 				<div class="modal-body" style="height: 250px">
+					
+						<div class="form-group " id="usergroup">
+							<input type="text" name='username' class="form-control input-lg" id="username"
+								placeholder="用户名">
+						</div>
+						<div class="form-group" id="passgroup">
+							<input type="password" name="password" id="password"
+								class="form-control input-lg" placeholder="登录密码">
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary btn-lg btn-block" onclick="login()" id="loginNow">立刻登录</button>
+							<span><a data-toggle="modal" data-target="#signUpModal"
+								data-dismiss="modal" href="" class="pull-right">注册</a></span>
 
-					<div class="form-group">
-						<input type="text" name='username' class="form-control input-lg"
-							id="username" placeholder="用户名">
-					</div>
-					<div class="form-group">
-						<input type="password" name="password" id="password"
-							class="form-control input-lg" placeholder="登录密码">
-					</div>
-					<div class="form-group">
-						<button class="btn btn-primary btn-lg btn-block">立刻登录</button>
-						<span><a data-toggle="modal" data-target="#signUpModal"
-							data-dismiss="modal" href="" class="pull-right">注册</a></span>
-
-					</div>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -107,7 +105,7 @@
 				</div>
 				<div class="modal-body" style="height: 300px">
 					<form action="/register" class="form col-md-12 center-block"
-						method="get">
+						 method="get">
 						<div class="form-group">
 							<input type="text" name='username' class="form-control input-lg"
 								placeholder="用户名">
@@ -117,11 +115,11 @@
 								class="form-control input-lg" placeholder="登录密码">
 						</div>
 						<div class="form-group">
-							<input type="text" name="mail" class="form-control input-lg"
-								placeholder="邮箱">
+							<input type="text" name="mail"
+								class="form-control input-lg" placeholder="邮箱">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block">立刻注册</button>
+							<button class="btn btn-primary btn-lg btn-block" onclick="register()" id="registNow">立刻注册</button>
 							<span><a data-toggle="modal" data-target="#loginModal"
 								data-dismiss="modal" href="" class="pull-right">已有账号，点此登陆</a></span>
 						</div>
@@ -136,7 +134,7 @@
 			<p>创建你的新任务</p>
 		</div>
 		<form class="form-horizontal" action="">
-			<div class="form-group">
+			<div class="form-group" id="nameGroup">
 				<label for="inputName" class="col-sm-2 control-label">评审名</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="inputName"
@@ -152,13 +150,13 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="discripGroup">
 				<label for="discription" class="col-sm-2 control-label">评审说明</label>
 				<div class="col-sm-10">
 					<textarea class="form-control" rows="3" id="discription"></textarea>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="deadGroup">
 				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
 				<div class="col-sm-10">
 					<div class="input-append date form_datetime">
