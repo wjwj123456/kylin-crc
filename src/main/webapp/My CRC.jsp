@@ -160,19 +160,17 @@
 						aria-hidden="true">x</button>
 					<h2 class="text-left text-primary">邀请评审者</h2>
 				</div>
-				<div class="modal-body" style="height: 450px">
+				<div class="modal-body" style="height: 450px;overflow:auto">
 
 					
-						<div class="col-md-6" style=" height:400px; overflow:auto">
+						
 							<table class="table">
 							<%for(int i = 0;i<100;i++){ %>
 							<tr><th>12</th><td>12</td></tr>
 							<%} %>
 							</table>
-						</div>
-						<div class="col-md-6" style="position:absolute; height:400px; overflow:auto">
-							
-						</div>
+						
+					
 					
 
 				</div>
