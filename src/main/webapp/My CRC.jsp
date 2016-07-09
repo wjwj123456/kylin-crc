@@ -227,6 +227,7 @@
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/invite.js"></script>
+	<script src="js/search.js"></script>
 </body>
 
 </html>

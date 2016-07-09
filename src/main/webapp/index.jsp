@@ -72,7 +72,7 @@
 								class="form-control input-lg" placeholder="登录密码">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block" onclick="login()">立刻登录</button>
+							<button class="btn btn-primary btn-lg btn-block" onclick="login()" id="loginNow">立刻登录</button>
 							<span><a data-toggle="modal" data-target="#signUpModal"
 								data-dismiss="modal" href="" class="pull-right">注册</a></span>
 
@@ -106,7 +106,7 @@
 								class="form-control input-lg" placeholder="邮箱">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block">立刻注册</button>
+							<button class="btn btn-primary btn-lg btn-block" onclick="register()" id="registNow">立刻注册</button>
 							<span><a data-toggle="modal" data-target="#loginModal"
 								data-dismiss="modal" href="" class="pull-right">已有账号，点此登陆</a></span>
 						</div>
