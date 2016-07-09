@@ -15,6 +15,11 @@ public class InviteBlImpl implements InviteBlService{
 
 	private  InviteDataService inviteDataService = new InviteDataImpl() ;
 	
+	/**
+	 * ldk
+	 * 查找邀请信息
+	 */
+	
 	public List<TaskVO> getInvitationInfo(String reviewerName) {
 		// TODO Auto-generated method stub
 		List<TaskVO> result=new ArrayList<TaskVO>();
@@ -35,6 +40,10 @@ public class InviteBlImpl implements InviteBlService{
 		return result;
 	}
 
+	/**
+	 * ldk
+	 * 0:删除成功　１：失败
+	 */
 	public int deleteInvitationInfo(String userName, String taskName) {
 		// TODO Auto-generated method stub
 		int flag =-1;
