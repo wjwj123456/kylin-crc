@@ -69,3 +69,17 @@ function logout() {
 		}
 	});
 }
+
+/**
+ * register operation
+ */
+function register() {
+	jQuery.ajax({
+		url: '/crc/RegisterServlet',
+		style: 'post',
+		data: 'userName=' + '&email=' + '&password=',
+		success: function(data) {
+			alert(data);
+		}
+	});
+}

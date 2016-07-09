@@ -1,25 +1,26 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bl.ReviewBlImpl;
+import bl.LoginBLImpl;
 
 /**
- * Servlet implementation class InviteServlet
- * 
- * invite one or several reviewers
+ * Servlet implementation class RegisterServlet
  */
-public class InviteServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InviteServlet() {
+    public RegisterServlet() {
         super();
     }
 
@@ -27,10 +28,24 @@ public class InviteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getQueryString());
-		String taskName = "";
-		ReviewBlImpl review = new ReviewBlImpl();
-		review.saveInvitation(getUsers(), taskName);
+		request.setCharacterEncoding("UTF-8");
+		
+		String userName = request.getParameter("userName");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		LoginBLImpl login = new LoginBLImpl();
+		try {
+			int result = login.createAccount(userName, email, password);
+			String[] temp = new String[]{"success", "exists", "unknown error"};
+			
+			PrintWriter out = response.getWriter();
+			out.print(temp[result]);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -39,13 +54,5 @@ public class InviteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	/**
-	 * parse usernames from data in json into String[]
-	 * 
-	 * @return usernames invited
-	 */
-	private String[] getUsers() {
-		return null;
-	}
+
 }
