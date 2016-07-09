@@ -191,7 +191,7 @@
 						<p>已邀请</p>
 						<div style="height: 250px; overflow: auto">
 
-							<table class="table" id="invitde">
+							<table class="table" id="invited">
 								
 							</table>
 						</div>
