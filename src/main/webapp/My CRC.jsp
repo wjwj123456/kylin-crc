@@ -95,7 +95,7 @@
 						<td>haha</td>
 						<td>haha</td>
 						<td><button class="btn btn-success" data-toggle="modal"
-								data-target="#inviseModal">查看</button></td>
+								data-target="#inviteModal">查看</button></td>
 					</tr>
 					<tr>
 						<td>haha</td>
@@ -152,7 +152,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="inviseModal" class="modal fade">
+	<div id="inviteModal" class="modal fade">
 		<div class="modal-dialog" style="width: 800px;">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -173,11 +173,11 @@
 						<p>待邀请</p>
 						<div style="height: 250px; overflow: auto">
 
-							<table class="table">
+							<table class="table" id="toInvite">
 								<%
 									for (int i = 0; i < 100; i++) {
 								%>
-								<tr>
+								<tr >
 									<th>12</th>
 									<td>12</td>
 								</tr>
@@ -191,17 +191,8 @@
 						<p>已邀请</p>
 						<div style="height: 250px; overflow: auto">
 
-							<table class="table">
-								<%
-									for (int i = 0; i < 100; i++) {
-								%>
-								<tr>
-									<th>12</th>
-									<td>12</td>
-								</tr>
-								<%
-									}
-								%>
+							<table class="table" id="invited">
+								
 							</table>
 						</div>
 					</div>
@@ -223,6 +214,7 @@
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
+	<script src="js/invite.js"></script>
 </body>
 
 </html>
