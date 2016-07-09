@@ -193,11 +193,9 @@ public class ReviewDataImpl implements ReviewDataService {
 		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "UPDATE review SET isAgree = ? WHERE uname = ? and tname= ?";
+		String sql = "UPDATE review SET isAgree = ? WHERE uname = '"+userName +"'and tname='" +taskName+"'";
 		pStatement = connection.prepareStatement(sql);
 		pStatement.setInt(1, 1);
-		pStatement.setString(2, userName);
-		pStatement.setString(3, taskName);
 		int i = pStatement.executeUpdate();
 		if(i==1)	flag = 0;
 		else	flag = 3;
@@ -222,7 +220,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "INSERT INTO review (tname, ,uname, isAgree) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
 
 		pStatement = connection.prepareStatement(sql);
 		for (int i = 0; i < userName.length; i++) {
