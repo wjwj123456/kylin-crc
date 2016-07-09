@@ -42,7 +42,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right" >
 				<%if(session.getAttribute("username")!=null){%>
-					<li><a href="#" id="user-name">${username}</a></li>
+					<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
 					<li><a id="login" style="cursor: pointer;">登出</a></li>
 				<%}else{%>
 				<%--username--%>
@@ -122,7 +122,7 @@
 			</div>
 			<div class="col-md-8">
 				<ul>
-					<li><a href="#new">新建评审</a></li>
+					<li><a href="newTask.jsp">新建评审</a></li>
 				</ul>
 			</div>
 			
