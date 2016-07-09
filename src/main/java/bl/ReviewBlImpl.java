@@ -140,9 +140,19 @@ public class ReviewBlImpl implements ReviewBlService {
 	* @see blservice.ReviewBlService#saveInvitation(java.lang.String[])
 	*
 	*/
-	public int saveInvitation(String[] userName) {
+	public int saveInvitation(String[] userName,String taskName) {
 		// TODO Auto-generated method stub
-		return 0;
+		int flag=0;
+		try {
+			flag= reviewDataService.saveInvitation(userName, taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	/**
@@ -155,9 +165,19 @@ public class ReviewBlImpl implements ReviewBlService {
 	* @see blservice.ReviewBlService#saveAcceptReviewer(java.lang.String)
 	*
 	*/
-	public int saveAcceptReviewer(String userName) {
+	public int saveAcceptReviewer(String userName,String taskName) {
 		// TODO Auto-generated method stub
-		return 0;
+		int flag=0;
+		try {
+			flag=reviewDataService.saveAcceptReviewer(userName, taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return flag;
 	}
 
 }

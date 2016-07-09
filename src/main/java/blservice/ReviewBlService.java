@@ -15,14 +15,14 @@ public interface ReviewBlService {
 	 * @return int   0 -- success     1-- fail   
 	 * @author      lpt14
 	 */
-	public int saveInvitation(String[] userName);     
+	public int saveInvitation(String[] userName,String taskName);     
 	/**
 	 * save user who agree the invitation
 	 * @param  userName 
 	 * @return int 0 -- success     1-- fail       
 	 * @author      lpt14
 	 */
-	public int saveAcceptReviewer(String userName);
+	public int saveAcceptReviewer(String userName,String taskName);
 	
 	
 	

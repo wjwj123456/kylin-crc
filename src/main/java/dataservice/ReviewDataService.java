@@ -30,13 +30,15 @@ public interface ReviewDataService {
 	 * @return int   0 -- success     1-- fail   
 	 * @author      lpt14
 	 */
-	public int saveInvitation(String[] userName);     
+	public int saveInvitation(String[] userName,String taskName) throws SQLException, ClassNotFoundException;     
 	/**
 	 * save user who agree the invitation
 	 * @param  userName 
 	 * @return int 0 -- success     1-- fail       
 	 * @author      lpt14
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public int saveAcceptReviewer(String userName);
+	public int saveAcceptReviewer(String userName,String taskName) throws SQLException, ClassNotFoundException;
 	
 }
