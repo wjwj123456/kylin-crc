@@ -169,40 +169,40 @@
 						</div>
 						<button type="button" class="btn btn-success">搜索</button>
 					</div>
-					<div class="col-md-6" >
+					<div class="col-md-6">
 						<p>待邀请</p>
 						<div style="height: 250px; overflow: auto">
-							
+
 							<table class="table">
-							<%
-								for (int i = 0; i < 100; i++) {
-							%>
-							<tr>
-								<th>12</th>
-								<td>12</td>
-							</tr>
-							<%
-								}
-							%>
-						</table>
+								<%
+									for (int i = 0; i < 100; i++) {
+								%>
+								<tr>
+									<th>12</th>
+									<td>12</td>
+								</tr>
+								<%
+									}
+								%>
+							</table>
 						</div>
 					</div>
-					<div class="col-md-6" >
+					<div class="col-md-6">
 						<p>已邀请</p>
 						<div style="height: 250px; overflow: auto">
-							
+
 							<table class="table">
-							<%
-								for (int i = 0; i < 100; i++) {
-							%>
-							<tr>
-								<th>12</th>
-								<td>12</td>
-							</tr>
-							<%
-								}
-							%>
-						</table>
+								<%
+									for (int i = 0; i < 100; i++) {
+								%>
+								<tr>
+									<th>12</th>
+									<td>12</td>
+								</tr>
+								<%
+									}
+								%>
+							</table>
 						</div>
 					</div>
 				</div>
