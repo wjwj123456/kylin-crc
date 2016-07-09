@@ -11,6 +11,13 @@ public class TaskVO {
 	String describe;
 	Date deadline;
 	int state;
+	
+	
+	public TaskVO(String userName, String taskName) {
+		super();
+		this.userName = userName;
+		this.taskName = taskName;
+	}
 	public TaskVO(String userName, String taskName, Type type, String project, String describe, Date deadline,
 			int state) {
 		super();

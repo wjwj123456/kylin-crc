@@ -236,4 +236,35 @@ public class ReviewDataImpl implements ReviewDataService {
 		return flag;
 	}
 
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	* @see dataservice.ReviewDataService#getTaskList()
+	*
+	*/
+	public List<TaskPO> getTaskList() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+		int flag = -1;
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		String sql = "SELECT * FROM task ";
+		pStatement = connection.prepareStatement(sql);
+		ResultSet rSet = pStatement.executeQuery();
+		while (rSet.next()) {
+			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+			poList.add(po);
+
+		}
+
+		DBManager.stopAll(rSet, pStatement, connection);
+		return poList;
+	}
+
 }

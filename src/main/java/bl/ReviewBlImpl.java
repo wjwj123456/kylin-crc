@@ -180,4 +180,35 @@ public class ReviewBlImpl implements ReviewBlService {
 	return flag;
 	}
 
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @return
+	* @see blservice.ReviewBlService#getTaskList()
+	*
+	*/
+	public List<TaskVO> getTaskList() {
+		// TODO Auto-generated method stub
+		List<TaskPO> list=new ArrayList<TaskPO>();
+		try {
+			 list=reviewDataService.getTaskList();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	List<TaskVO> voList=new ArrayList<TaskVO>();
+	for(TaskPO po:list){
+		voList.add(new TaskVO(po.getUserName(), po.getTaskName()));
+		
+	}
+	
+	return voList;
+	
+	}
+
 }
