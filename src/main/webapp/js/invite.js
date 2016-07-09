@@ -6,7 +6,13 @@ $(function() {
 });
 
 function addInvite(obj) {
-	$(obj).hide();
-	$('#invited').append($(obj));
-	$(obj).show();
+	// $(obj).hide();
+	var temp = obj.clone();
+	if (isUnique(temp))
+		$('#invited').append(temp);
+	// $(obj).show();
+}
+function isUnique(obj) {
+	
+	return true;
 }
