@@ -155,30 +155,108 @@
 			<p id="preWord">开始评审前，请确认</p>
 			<button class="btn btn-success" id="startReview">开始评审</button>
 			<div class="codeBlock">
-				<form action="" class="form-horizontal">
-					<div class="form-group">
-						<label for="inputName" class="col-sm-1 control-label">文件名</label>
-						<div class="col-sm-5">
-							<input type="text" class="form-control" id="inputName"
-								placeholder="**.*">
-						</div>
-						<label for="inputName" class="col-sm-1 control-label">行数</label>
-						<div class="col-sm-5">
-							<input type="text" class="form-control" id="inputName"
-								placeholder="">
-						</div>
+				<div style="height: 300px; overflow: auto;border: 1px solid #AAAAAA;border-radius:2%;margin-bottom: 20px">
+					<table class="table">
+						<tr id="start">
+							<th width=120px>文件名</th>
+							<th width=50px>行数</th>
+							<th>描述</th>
+							<th width=10px></th>
+						</tr>
+						
+						<tr>
+							<td>文件名</td>
+							<td>行数</td>
+							<td>描述</td>
+							<td><button type="button" class="close"
+						aria-hidden="true" id="delete" onclick="deleteItem(this)">x</button></td>
+						</tr>
+					</table>
+				</div>
 
-
+				<form action="">
+					<div class="row">
+						<div class="form-group col-sm-6" id="fileGroup">
+							<label for="fileName" class="col-sm-2 control-label">文件名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="fileName"
+									placeholder="**.*">
+							</div>
+						</div>
+						<div class="form-group col-sm-6" id="lineGroup">
+							<label for="lineNum" class="col-sm-2 control-label">行数</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="lineNum"
+									placeholder="">
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="inputName" class="col-sm-1 control-label">描述</label>
+
+					<div class="form-group" id="discripGroup">
+						<label for="discription" class="col-sm-1 control-label">描述</label>
 						<div class="col-sm-11">
 							<textarea class="form-control" rows="1" id="discription"></textarea>
 						</div>
 					</div>
-					<div id="start"></div>
+					
 				</form>
-				<button class="btn btn-default" id="add">+</button>
+				<button class="btn btn-success" id="add">添加</button>
+			</div>
+			<div class="docBlock">
+				<div style="height: 300px; overflow: auto;border: 1px solid #AAAAAA;border-radius:2%;margin-bottom: 20px">
+					<table class="table">
+						<tr id="start">
+							<th width=120px>文件名</th>
+							<th width=50px>页码</th>
+							<th width=50px>行数</th>
+							<th>描述</th>
+							<th width=10px></th>
+						</tr>
+						
+						<tr>
+							<td>文件名</td>
+							<td>页码</td>
+							<td>行数</td>
+							<td>描述</td>
+							<td><button type="button" class="close"
+						aria-hidden="true" id="delete" onclick="deleteItem(this)">x</button></td>
+						</tr>
+					</table>
+				</div>
+
+				<form action="">
+					<div class="row">
+						<div class="form-group col-sm-4" id="fileGroup">
+							<label for="fileName" class="col-sm-3 control-label">文件名</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="fileName"
+									placeholder="**.*">
+							</div>
+						</div>
+						<div class="form-group col-sm-4" id="lineGroup">
+							<label for="lineNum" class="col-sm-3 control-label">页码</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="lineNum"
+									placeholder="">
+							</div>
+						</div>
+						<div class="form-group col-sm-4" id="lineGroup">
+							<label for="lineNum" class="col-sm-3 control-label">行数</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="lineNum"
+									placeholder="">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group" id="discripGroup">
+						<label for="discription" class="col-sm-1 control-label">描述</label>
+						<div class="col-sm-11">
+							<textarea class="form-control" rows="1" id="discription"></textarea>
+						</div>
+					</div>				
+				</form>
+				<button class="btn btn-success" id="add">添加</button>
 			</div>
 
 
