@@ -3,9 +3,11 @@ package blservice;
 import java.util.List;
 
 import vo.TaskVO;
+import vo.UserVO;
 
 public interface ReviewBlService {
-	public void saveReviewInfo(TaskVO vo);
+	public int saveReviewInfo(TaskVO vo);
 	public List<TaskVO> geTaskList(String userName);
+	public List<UserVO> searchUserByKeyword(String keyword);
 }
                  
