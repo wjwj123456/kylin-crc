@@ -12,7 +12,7 @@
 	rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
-<title>CRC Index</title>
+<title>CRC Task</title>
 </head>
 <body role="document">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -42,15 +42,21 @@
 						<li><a href="#about">git地址</a></li>
 					</ul></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right" >
-				<%if(session.getAttribute("username")!=null){%>
-					<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
-					<li><a id="login" style="cursor: pointer;">登出</a></li>
-				<%}else{%>
+			<ul class="nav navbar-nav navbar-right">
+				<%
+					if (session.getAttribute("username") != null) {
+				%>
+				<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
+				<li><a id="login" style="cursor: pointer;">登出</a></li>
+				<%
+					} else {
+				%>
 				<%--username--%>
-				
+
 				<li><a id="login" style="cursor: pointer;">登录</a></li>
-				<%} %>
+				<%
+					}
+				%>
 			</ul>
 		</div>
 	</div>
@@ -61,24 +67,25 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					<h1 class="text-center text-primary" >登录</h1>
+					<h1 class="text-center text-primary">登录</h1>
 				</div>
 				<div class="modal-body" style="height: 250px">
-					
-						<div class="form-group " id="usergroup">
-							<input type="text" name='username' class="form-control input-lg" id="username"
-								placeholder="用户名">
-						</div>
-						<div class="form-group" id="passgroup">
-							<input type="password" name="password" id="password"
-								class="form-control input-lg" placeholder="登录密码">
-						</div>
-						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block" onclick="login()" id="loginNow">立刻登录</button>
-							<span><a data-toggle="modal" data-target="#signUpModal"
-								data-dismiss="modal" href="" class="pull-right">注册</a></span>
 
-						</div>
+					<div class="form-group " id="usergroup">
+						<input type="text" name='username' class="form-control input-lg"
+							id="username" placeholder="用户名">
+					</div>
+					<div class="form-group" id="passgroup">
+						<input type="password" name="password" id="password"
+							class="form-control input-lg" placeholder="登录密码">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-lg btn-block" onclick="login()"
+							id="loginNow">立刻登录</button>
+						<span><a data-toggle="modal" data-target="#signUpModal"
+							data-dismiss="modal" href="" class="pull-right">注册</a></span>
+
+					</div>
 				</div>
 			</div>
 		</div>
@@ -94,7 +101,7 @@
 				</div>
 				<div class="modal-body" style="height: 300px">
 					<form action="/register" class="form col-md-12 center-block"
-						 method="get">
+						method="get">
 						<div class="form-group">
 							<input type="text" name='username' class="form-control input-lg"
 								placeholder="用户名">
@@ -104,11 +111,12 @@
 								class="form-control input-lg" placeholder="登录密码">
 						</div>
 						<div class="form-group">
-							<input type="text" name="mail"
-								class="form-control input-lg" placeholder="邮箱">
+							<input type="text" name="mail" class="form-control input-lg"
+								placeholder="邮箱">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block" onclick="register()" id="registNow">立刻注册</button>
+							<button class="btn btn-primary btn-lg btn-block"
+								onclick="register()" id="registNow">立刻注册</button>
 							<span><a data-toggle="modal" data-target="#loginModal"
 								data-dismiss="modal" href="" class="pull-right">已有账号，点此登陆</a></span>
 						</div>
@@ -117,9 +125,9 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	<div class="container"> 
+
+
+	<div class="container">
 		<div id="suspensionNavigation" class="col-md-2" role="complementary">
 			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
 			<ul class="nav bs-docs-sidenav">
@@ -136,35 +144,65 @@
 			<h2>XXX</h2>
 			<hr>
 			<h2>说明</h2>
-				<p>类型：XX评审</p>
-				<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-				<button class="btn btn-success" id="join">参加评审</button>
+			<p>类型：XX评审</p>
+			<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+			<button class="btn btn-success" id="join">参加评审</button>
 			<hr>
 			<h2>截止时间</h2>
-				<strong>XXXX-XX-XX  XX:XX</strong>
+			<strong>XXXX-XX-XX XX:XX</strong>
 			<hr>
 			<h2>评审</h2>
-			
+			<p id="preWord">开始评审前，请确认</p>
+			<button class="btn btn-success" id="startReview">开始评审</button>
+			<div class="codeBlock">
+				<form action="" class="form-horizontal">
+					<div class="form-group">
+						<label for="inputName" class="col-sm-1 control-label">文件名</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="inputName"
+								placeholder="**.*">
+						</div>
+						<label for="inputName" class="col-sm-1 control-label">行数</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="inputName"
+								placeholder="">
+						</div>
+
+
+					</div>
+					<div class="form-group">
+						<label for="inputName" class="col-sm-1 control-label">描述</label>
+						<div class="col-sm-11">
+							<textarea class="form-control" rows="1" id="discription"></textarea>
+						</div>
+					</div>
+					<div id="start"></div>
+				</form>
+				<button class="btn btn-default" id="add">+</button>
+			</div>
+
+
 			<hr>
 			<h2>评审报告</h2>
 			<hr>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
+	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
+	<script src="js/review.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 var isOK = false;
 
 $('#createTask').on('click', function() {
+	isOK=true;
 	checkOK();
 	if (isOK) {
 		createNewTask();
@@ -27,23 +28,19 @@ function checkOK() {
 	if($('#inputName').val()==""){
 		$('#nameGroup').addClass('has-error');
 		isOK=false;
-		return
 	}else {
 		$('#nameGroup').removeClass('has-error');
 	}
 	if($('#discription').val()==""){
 		$('#discripGroup').addClass('has-error');
 		isOK=false;
-		return
 	}else {
 		$('#discripGroup').removeClass('has-error');
 	}
 	if($('#deadline').val()==""){
 		$('#deadGroup').addClass('has-error');
 		isOK=false;
-		return
 	}else {
 		$('#deadGroup').removeClass('has-error');
 	}
-	isOK=true;
 }
