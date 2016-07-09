@@ -35,11 +35,12 @@ public class ReviewBlImpl implements ReviewBlService {
 	* @see blservice.ReviewBlService#saveReviewInfo(vo.TaskVO)
 	*
 	*/
-	public void saveReviewInfo(TaskVO vo) {
+	public int saveReviewInfo(TaskVO vo) {
 		// TODO Auto-generated method stub
 		TaskPO po=new TaskPO(vo.getUserName(), vo.getTaskName(), vo.getType(), vo.getProject(), vo.getDescribe(), vo.getDeadline(), vo.getState());
+		int flag=0;
 		try {
-			reviewDataService.saveReviewInfo(po);
+			flag=reviewDataService.saveReviewInfo(po);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,6 +48,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return flag;
 	
 	}
 

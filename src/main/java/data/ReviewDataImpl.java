@@ -17,6 +17,7 @@ import java.util.List;
 import dataservice.ReviewDataService;
 import po.TaskPO;
 import po.UserPO;
+import tools.Tools;
 import vo.Type;
 
 /**
@@ -145,6 +146,24 @@ public class ReviewDataImpl implements ReviewDataService {
 		DBManager.stopAll(rSet, pStatement, connection);
 		return poList;
 		
+	}
+
+
+
+
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @param keyword
+	* @return
+	* @see dataservice.ReviewDataService#searchUserByKeyword(java.lang.String)
+	*
+	*/
+	public List<UserPO> searchUserByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
