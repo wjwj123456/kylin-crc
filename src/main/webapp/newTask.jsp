@@ -175,7 +175,7 @@
 	</div>
 	<script type="text/javascript">
 		$(".form_datetime").datetimepicker({
-			format : "dd MM yyyy - hh:ii",
+			format : "yyyy-MM-dd hh:ii",
 			autoclose : true,
 			todayBtn : true,
 			startDate : "2013-02-14 10:00",
