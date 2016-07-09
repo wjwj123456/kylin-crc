@@ -13,6 +13,7 @@ import data.ReviewDataImpl;
 import dataservice.ReviewDataService;
 import po.TaskPO;
 import vo.TaskVO;
+import vo.UserVO;
 
 /**
 * TODO: （类描述）
@@ -80,6 +81,21 @@ public class ReviewBlImpl implements ReviewBlService {
 		result.add(vo);
 		}
 		return result;
+	}
+
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月9日
+	* @param keyword
+	* @return
+	* @see blservice.ReviewBlService#searchUserByKeyword(java.lang.String)
+	*
+	*/
+	public List<UserVO> searchUserByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
