@@ -7,7 +7,7 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/theme.css" rel="stylesheet">
+<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
@@ -15,7 +15,7 @@
 <title>CRC Task</title>
 </head>
 <body role="document">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -141,17 +141,17 @@
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
 		<div class="col-md-10 bs-docs-section">
-			<h2>XXX</h2>
+			<h2 id="title">XXX</h2>
 			<hr>
-			<h2>说明</h2>
+			<h2 id="message">说明</h2>
 			<p>类型：XX评审</p>
 			<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
 			<button class="btn btn-success" id="join">参加评审</button>
 			<hr>
-			<h2>截止时间</h2>
+			<h2 id="deadline">截止时间</h2>
 			<strong>XXXX-XX-XX XX:XX</strong>
 			<hr>
-			<h2>评审</h2>
+			<h2 id="review">评审</h2>
 			<p id="preWord">开始评审前，请确认</p>
 			<button class="btn btn-success" id="startReview">开始评审</button>
 			<div class="codeBlock">
@@ -261,7 +261,7 @@
 
 
 			<hr>
-			<h2>评审报告</h2>
+			<h2 id="report">评审报告</h2>
 			<hr>
 		</div>
 	</div>

@@ -7,7 +7,7 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/theme.css" rel="stylesheet">
+<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
@@ -15,7 +15,7 @@
 <title>My CRC</title>
 </head>
 <body role="document">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -54,112 +54,111 @@
 				<li><a href="#basicInfo">基本信息</a></li>
 				<li><a href="#message">消息</a></li>
 				<li><a href="#runningReview">进行中评审</a></li>
-				<li><a href="#historyReview">历史评审</a></li>
-				<li><a href="#personalAnalyze">个人分析</a></li>
+				<li><a href="#hisReview">历史评审</a></li>
+				<li><a href="#perAnalyze">个人分析</a></li>
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
-		<div class="col-md-10">
-			<div class="bs-docs-section">
-				<h2 id="basicInfo">基本信息</h2>
-				<table class="table">
-					<tr>
-						<th>haha</th>
-						<td>haha</td>
-						<th>haha</th>
-						<td>haha</td>
-					</tr>
-					<tr>
-						<th>haha</th>
-						<td>haha</td>
-						<th>haha</th>
-						<td>haha</td>
-					</tr>
-					<tr>
-						<th>haha</th>
-						<td>haha</td>
-						<th>haha</th>
-						<td>haha</td>
-					</tr>
-				</table>
-				<hr>
-				<h2 id="message">消息</h2>
-				<table class="table" id="messageTable">
-					<tr>
-						<th>发信人</th>
-						<th>项目名</th>
-						<th>操作</th>
-					</tr>
-				</table>
-				<hr>
-				<h2 id="runningReview">进行中评审</h2>
-				<table class="table">
-					<tr>
-						<th>评审名</th>
-						<th>描述</th>
-						<th>deadline</th>
-						<th>操作</th>
-					</tr>
-					<tr>
-						<td>haha</td>
-						<td>haha</td>
-						<td>haha</td>
-						<td><button class="btn btn-success" data-toggle="modal"
-								data-target="#inviteModal">查看</button></td>
-					</tr>
-					<tr>
-						<td>haha</td>
-						<td>haha</td>
-						<td>haha</td>
-						<td><button class="btn btn-success">查看</button></td>
-					</tr>
-				</table>
-				<hr>
-				<h2 id="historyReview">历史评审</h2>
-				<table class="table">
-					<tr>
-						<th>评审名</th>
-						<th>描述</th>
-						<th>deadline</th>
-						<th>操作</th>
-					</tr>
-					<tr>
-						<td>haha</td>
-						<td>haha</td>
-						<td>haha</td>
-						<td><button class="btn btn-success">查看</button></td>
-					</tr>
-					<tr>
-						<td>haha</td>
-						<td>haha</td>
-						<td>haha</td>
-						<td><button class="btn btn-success">查看</button></td>
-					</tr>
-				</table>
-				<hr>
-				<h2 id="personalAnalyze">个人分析</h2>
-				<table class="table">
-					<tr>
-						<th>haha</th>
-						<td>haha</td>
-						<th>haha</th>
-						<td>haha</td>
-					</tr>
-					<tr>
-						<th>haha</th>
-						<td>haha</td>
-						<th>haha</th>
-						<td>haha</td>
-					</tr>
-					<tr>
-						<th>haha</th>
-						<td>haha</td>
-						<th>haha</th>
-						<td>haha</td>
-					</tr>
-				</table>
-				<hr>
-			</div>
+		<div class="col-md-10 bs-docs-section">
+
+			<h2 id="basicInfo">基本信息</h2>
+			<table class="table">
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+			</table>
+			<hr>
+			<h2 id="message">消息</h2>
+			<table class="table" id="messageTable">
+				<tr>
+					<th>发信人</th>
+					<th>项目名</th>
+					<th>操作</th>
+				</tr>
+			</table>
+			<hr>
+			<h2 id="runningReview">进行中评审</h2>
+			<table class="table">
+				<tr>
+					<th>评审名</th>
+					<th>描述</th>
+					<th>deadline</th>
+					<th>操作</th>
+				</tr>
+				<tr>
+					<td>haha</td>
+					<td>haha</td>
+					<td>haha</td>
+					<td><button class="btn btn-success" data-toggle="modal"
+							data-target="#inviteModal">查看</button></td>
+				</tr>
+				<tr>
+					<td>haha</td>
+					<td>haha</td>
+					<td>haha</td>
+					<td><button class="btn btn-success">查看</button></td>
+				</tr>
+			</table>
+			<hr>
+			<h2 id="hisReview">历史评审</h2>
+			<table class="table">
+				<tr>
+					<th>评审名</th>
+					<th>描述</th>
+					<th>deadline</th>
+					<th>操作</th>
+				</tr>
+				<tr>
+					<td>haha</td>
+					<td>haha</td>
+					<td>haha</td>
+					<td><button class="btn btn-success">查看</button></td>
+				</tr>
+				<tr>
+					<td>haha</td>
+					<td>haha</td>
+					<td>haha</td>
+					<td><button class="btn btn-success">查看</button></td>
+				</tr>
+			</table>
+			<hr>
+			<h2 id="perAnalyze">个人分析</h2>
+			<table class="table">
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+			</table>
+			<hr>
 		</div>
 	</div>
 	<div id="inviteModal" class="modal fade">

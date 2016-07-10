@@ -33,6 +33,7 @@ $('#password').on('blur',function(){
  * login operation
  */
 function login() {
+	isOK();
 	if(hasUser&&hasPass){
 		jQuery.ajax({
 			url : '/crc/login',
@@ -82,4 +83,20 @@ function register() {
 			alert(data);
 		}
 	});
+}
+function isOK(){
+	if($('#username').val()==""){
+		$('#usergroup').addClass('has-error');
+		hasUser=false;
+	}else {
+		$('#usergroup').removeClass('has-error');
+		hasUser=true;
+	}
+	if($('#password').val()==""){
+		$('#passgroup').addClass('has-error');
+		hasPass=false;
+	}else {
+		$('#passgroup').removeClass('has-error');
+		hasPass=true;
+	}
 }
