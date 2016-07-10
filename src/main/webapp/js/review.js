@@ -18,6 +18,17 @@ $('#confirmReport').on('click',function(){
 		
 	}
 });
+$('#merge').on('click',function(){
+	var list = new Array();
+	var temp = $('#toMerge-code').find('input');
+	for( i = 0;i<temp.length;i++){
+		if($(temp[i]).prop('checked')==true){
+			list.append($('#toMerge-code').find('tr')[i+1]);
+		}
+	}
+	
+	$('#chooseModal').modal('show');
+});
 //$('#start').before('<div class='form-group'> <label for='inputName' class='col-sm-1 control-label'>文件名</label> <div class='col-sm-5'> <input type='text' class='form-control' id='inputName' placeholder='**.*'> </div> <label for='inputName' class='col-sm-1 control-label'>行数</label> <div class='col-sm-5'> <input type='text' class='form-control' id='inputName' placeholder=''> </div> </div> <div class='form-group'> <label for='inputName' class='col-sm-1 control-label'>描述</label> <div class='col-sm-11'> <textarea class='form-control' rows='1' id='discription'></textarea> </div> </div>');
 function deleteItem(obj){
 	$(obj).parent().parent().remove();
