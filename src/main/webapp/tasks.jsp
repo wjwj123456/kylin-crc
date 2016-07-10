@@ -136,7 +136,7 @@
 				<li><a href="#message">说明</a></li>
 				<li><a href="#deadline">截止时间</a></li>
 				<li><a href="#review">评审</a></li>
-				<li><a href="#repot">评审报告</a></li>
+				<li><a href="#report">评审报告</a></li>
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
