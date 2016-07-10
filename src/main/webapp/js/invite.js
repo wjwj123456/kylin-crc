@@ -3,9 +3,24 @@ $(function() {
 		addInvite($(this));
 	});
 	$('#searchName').bind('input propertychange', function() {
-		searchUser($(this).val().trim());
+		if ($(this).val().trim() != '') {			
+			searchUser($(this).val().trim());
+		}
 	});
 });
+
+function invite() {
+	
+	jQuery.ajax({
+		url: '/crc/InviteServlet',
+		type: 'post',
+		data: '',
+		success: function(data) {
+			
+		}
+	});
+}
+
 $(function() {
 	// 初始化typeahead
 	$('#searchName').typeahead({
@@ -29,12 +44,18 @@ $(function() {
 	// 延迟时间
 	});
 });
+
+/**
+ * add a user into invite list
+ */
 function addInvite(obj) {
-	var temp = obj.clone();
-	if (isUnique(temp))
-		$('#invited').append(temp);
+	if (isUnique(obj))
+		$('#invited').prepend(obj.clone());
 }
 
+/**
+ * judge whether a user already in invite list
+ */
 function isUnique(obj) {
 	var username = $('#invited').find('tr');
 
@@ -55,5 +76,5 @@ function isUnique(obj) {
  * @returns
  */
 function displayUser(users) {
-	alert(users[0])
+	console.log(users)
 }
