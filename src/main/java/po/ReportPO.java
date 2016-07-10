@@ -4,13 +4,16 @@ public class ReportPO {
 
 	String taskName;
 	String userName;
-	String location;
+	String fileName;
+	int page;
+	int location;
 	String description;
-	
-	public ReportPO(String taskName, String userName, String location, String description) {
+	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description) {
 		super();
 		this.taskName = taskName;
 		this.userName = userName;
+		this.fileName = fileName;
+		this.page = page;
 		this.location = location;
 		this.description = description;
 	}
@@ -26,10 +29,22 @@ public class ReportPO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getLocation() {
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getLocation() {
 		return location;
 	}
-	public void setLocation(String location) {
+	public void setLocation(int location) {
 		this.location = location;
 	}
 	public String getDescription() {
@@ -38,6 +53,8 @@ public class ReportPO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+
 	
 	
 }
