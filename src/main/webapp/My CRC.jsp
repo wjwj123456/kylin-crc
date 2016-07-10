@@ -203,7 +203,9 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="invited">
-
+								<tr>
+									<th>用户名</th>
+								</tr>
 							</table>
 						</div>
 					</div>

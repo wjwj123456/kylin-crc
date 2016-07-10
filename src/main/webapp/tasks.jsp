@@ -199,15 +199,6 @@
 							<textarea class="form-control" rows="1" id="discription"></textarea>
 						</div>
 					</div>
-					<div class="row" style="padding-top: 50px">
-						<div class="form-group col-sm-7" id="timeGroup">
-							<label for="timeCost" class="col-sm-2 control-label">评审时间</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="timeCost"
-									placeholder="分钟">
-							</div>
-						</div>
-					</div>
 				</form>
 				<button class="btn btn-success" id="add">添加</button>
 			</div>
@@ -281,7 +272,92 @@
 				</div>
 				<button class="btn btn-success" id="confirmReport">确认评审结果</button>
 			</div>
+			<div id="mergeBlock">
+				<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>
+				<div class="row" style="height: 400px; overflow: auto;">
+					<table class="table" id="toMerge-code">
+						<tr>
+							<th width=10px></th>
+							<th>文件名</th>
+							<th>行数</th>
+							<th>描述</th>
+							<th>评审人</th>
+						</tr>
+						<%
+							for (int i = 0; i < 10; i++) {
+						%>
+						<tr>
+							<td><input type="checkbox" checked="true"><%=i%></td>
+							<td>121</td>
+							<td>1212</td>
+							<td>1212</td>
+							<td>1212</td>
+						</tr>
+						<%
+							}
+						%>
+					</table>
+					<table class="table" id="toMerge-file">
+						<tr>
+							<th></th>
+							<th>文件名</th>
+							<th>页码</th>
+							<th>行数</th>
+							<th>描述</th>
+							<th>评审人</th>
+						</tr>
+					</table>
+				</div>
 
+				<div class="row" style="text-align: center; padding-bottom: 20px">
+					<button class="btn btn-success" id="merge">合并</button>
+				</div>
+				<div class="row" style="height: 400px; overflow: auto;">
+					<table class="table" id="merged-code">
+						<tr>
+
+							<th>文件名</th>
+							<th>行数</th>
+							<th>描述</th>
+							<th>评审人</th>
+							<th></th>
+						</tr>
+					</table>
+					<table class="table" id="merged-file">
+						<tr>
+
+							<th>文件名</th>
+							<th>页码</th>
+							<th>行数</th>
+							<th>描述</th>
+							<th>评审人</th>
+							<th></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="chooseModal" class="modal fade">
+				<div class="modal-dialog" style="width: 800px;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">x</button>
+							<h2 class="text-left text-primary">选择保留项</h2>
+						</div>
+						<div class="modal-body" style="height: 250px; overflow: auto">
+							<table class="table">
+								<tr><th></th></tr>
+							</table>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-primary" id="confirmInvite">确认邀请</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<hr>
 			<h2 id="report">评审报告</h2>
