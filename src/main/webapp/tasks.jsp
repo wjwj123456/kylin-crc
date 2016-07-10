@@ -155,7 +155,8 @@
 			<p id="preWord">开始评审前，请确认</p>
 			<button class="btn btn-success" id="startReview">开始评审</button>
 			<div class="codeBlock">
-				<div style="height: 300px; overflow: auto;border: 1px solid #AAAAAA;border-radius:2%;margin-bottom: 20px">
+				<div
+					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
 					<table class="table">
 						<tr id="start">
 							<th width=120px>文件名</th>
@@ -163,13 +164,13 @@
 							<th>描述</th>
 							<th width=10px></th>
 						</tr>
-						
+
 						<tr>
 							<td>文件名</td>
 							<td>行数</td>
 							<td>描述</td>
-							<td><button type="button" class="close"
-						aria-hidden="true" id="delete" onclick="deleteItem(this)">x</button></td>
+							<td><button type="button" class="close" aria-hidden="true"
+									id="delete" onclick="deleteItem(this)">x</button></td>
 						</tr>
 					</table>
 				</div>
@@ -198,12 +199,21 @@
 							<textarea class="form-control" rows="1" id="discription"></textarea>
 						</div>
 					</div>
-					
+					<div class="row" style="padding-top: 50px">
+						<div class="form-group col-sm-7" id="timeGroup">
+							<label for="timeCost" class="col-sm-2 control-label">评审时间</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="timeCost"
+									placeholder="分钟">
+							</div>
+						</div>
+					</div>
 				</form>
 				<button class="btn btn-success" id="add">添加</button>
 			</div>
 			<div class="docBlock">
-				<div style="height: 300px; overflow: auto;border: 1px solid #AAAAAA;border-radius:2%;margin-bottom: 20px">
+				<div
+					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
 					<table class="table">
 						<tr id="start">
 							<th width=120px>文件名</th>
@@ -212,14 +222,14 @@
 							<th>描述</th>
 							<th width=10px></th>
 						</tr>
-						
+
 						<tr>
 							<td>文件名</td>
 							<td>页码</td>
 							<td>行数</td>
 							<td>描述</td>
-							<td><button type="button" class="close"
-						aria-hidden="true" id="delete" onclick="deleteItem(this)">x</button></td>
+							<td><button type="button" class="close" aria-hidden="true"
+									id="delete" onclick="deleteItem(this)">x</button></td>
 						</tr>
 					</table>
 				</div>
@@ -227,16 +237,16 @@
 				<form action="">
 					<div class="row">
 						<div class="form-group col-sm-4" id="fileGroup">
-							<label for="fileName" class="col-sm-3 control-label">文件名</label>
-							<div class="col-sm-9">
+							<label for="fileName" class="col-sm-4 control-label">文件名</label>
+							<div class="col-sm-8">
 								<input type="text" class="form-control" id="fileName"
 									placeholder="**.*">
 							</div>
 						</div>
-						<div class="form-group col-sm-4" id="lineGroup">
-							<label for="lineNum" class="col-sm-3 control-label">页码</label>
+						<div class="form-group col-sm-4" id="pageGroup">
+							<label for="pageNum" class="col-sm-3 control-label">页码</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="lineNum"
+								<input type="text" class="form-control" id="pageNum"
 									placeholder="">
 							</div>
 						</div>
@@ -247,6 +257,7 @@
 									placeholder="">
 							</div>
 						</div>
+
 					</div>
 
 					<div class="form-group" id="discripGroup">
@@ -254,9 +265,21 @@
 						<div class="col-sm-11">
 							<textarea class="form-control" rows="1" id="discription"></textarea>
 						</div>
-					</div>				
+					</div>
+
 				</form>
 				<button class="btn btn-success" id="add">添加</button>
+
+			</div>
+			<div class="row" style="padding-top: 20px">
+				<div class="form-group col-sm-7" id="timeGroup">
+					<label for="timeCost" class="col-sm-2 control-label">评审时间</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="timeCost"
+							placeholder="分钟">
+					</div>
+				</div>
+				<button class="btn btn-success" id="confirmReport">确认评审结果</button>
 			</div>
 
 
