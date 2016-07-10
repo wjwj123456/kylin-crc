@@ -38,15 +38,22 @@ public class ReportDataImpl implements ReportDataService{
 		return flag;
 	}
 
-	public int setCompleteTime(double time) throws ClassNotFoundException, SQLException{
-		return 0;
+	public int setCompleteTime(String taskName, String reviewerName ,double time) throws ClassNotFoundException, SQLException{
 		// TODO Auto-generated method stub
-//		int flag = 0;
-//		Connection connection = DBManager.connect();
-//		PreparedStatement pStatement = null;
-//		
-//		String sql = "INSERT INTO review (tname, uname,filename, page,location,description,state,origin) VALUES (?, ?, ?, ?, ?, ?,?,? )";
-//		pStatement = connection.prepareStatement(sql);
+		int flag = -1;
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		
+		String sql = "UPDATE review SET  time = ? WHERE tname = '"+taskName+"' and uname = '"+reviewerName+"'";
+		pStatement = connection.prepareStatement(sql);
+		pStatement.setDouble(1, time);
+		int i = pStatement.executeUpdate();
+		if(i==1)	
+			flag = 0;
+		else	
+			flag = 1;
+		DBManager.stopAll(null, pStatement, connection);
+		return flag;
 
 	}
 

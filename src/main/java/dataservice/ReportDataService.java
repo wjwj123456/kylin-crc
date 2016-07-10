@@ -20,5 +20,5 @@ public interface ReportDataService {
 	 * @param time
 	 * @return 0:设置成功       1：设置失败
 	 */
-	public int setCompleteTime(double time)throws ClassNotFoundException, SQLException;
+	public int setCompleteTime(String taskName, String reviewerName ,double time)throws ClassNotFoundException, SQLException;
 }

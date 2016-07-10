@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.fabric.xmlrpc.base.Array;
-
 import blservice.ReportBlService;
 import data.ReportDataImpl;
 import dataservice.ReportDataService;
@@ -37,9 +35,19 @@ public class ReportBlImpl implements ReportBlService{
 		return 0;
 	}
 
-	public int setCompleteTime(double time) {
+	public int setCompleteTime(String taskName, String reviewerName ,double time) {
 		// TODO Auto-generated method stub
-		return 0;
+		int flag = -1;
+		try {
+			flag = reportDataService.setCompleteTime(taskName, reviewerName, time);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }
