@@ -64,8 +64,7 @@ function logout() {
 		data : 'type=logout',
 		success : function(data) {
 			if (data == 'success') {
-				$('#login').text('登录')
-				$('#user-name').text('');
+				top.location = 'index.jsp';
 			}
 		}
 	});
@@ -75,15 +74,26 @@ function logout() {
  * register operation
  */
 function register() {
+	var userName = $('#signUpModal').find(':input[name="username"]').val().trim();
+	var password = $('#signUpModal').find(':input[name="password"]').val().trim();
+	var email = $('#signUpModal').find(':input[name="mail"]').val().trim();
+	
 	jQuery.ajax({
 		url: '/crc/RegisterServlet',
 		style: 'post',
-		data: 'userName=' + '&email=' + '&password=',
+		data: 'userName=' + userName + '&email=' + email + '&password=' + password,
 		success: function(data) {
-			alert(data);
+			if (data == '1') {
+				alert('账户已存在')
+			} else if (data == '2') {
+				alert('未知错误')
+			} else if (data == '0') {
+				alert('创建成功')
+			}
 		}
 	});
 }
+
 function isOK(){
 	if($('#username').val()==""){
 		$('#usergroup').addClass('has-error');
