@@ -345,8 +345,13 @@
 							<h2 class="text-left text-primary">选择保留项</h2>
 						</div>
 						<div class="modal-body" style="height: 250px; overflow: auto">
-							<table class="table">
-								<tr><th></th></tr>
+							<table class="table" id="choose-code">
+								<tr>
+									<th>文件名</th>
+									<th>行数</th>
+									<th>描述</th>
+									<th>评审人</th>
+								</tr>
 							</table>
 
 						</div>

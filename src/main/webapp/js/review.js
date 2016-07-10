@@ -20,11 +20,15 @@ $('#confirmReport').on('click',function(){
 });
 $('#merge').on('click',function(){
 	var list = new Array();
-	var temp = $('#toMerge-code').find('input');
-	for( i = 0;i<temp.length;i++){
-		if($(temp[i]).prop('checked')==true){
-			list.append($('#toMerge-code').find('tr')[i+1]);
+	var inputs = $('#toMerge-code').find('input');
+	for( i = 0;i<inputs.length;i++){
+		if($(inputs[i]).prop('checked')==true){
+			var temp=$($('#toMerge-code').find('tr')[i+1]).clone();
+			list.push(temp);
 		}
+	}
+	for(i in list){
+		$('#choose-code').append($(list[i]));
 	}
 	
 	$('#chooseModal').modal('show');
