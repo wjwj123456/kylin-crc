@@ -190,7 +190,7 @@
 									for (int i = 0; i < 10; i++) {
 								%>
 								<tr>
-									<td>12</td>
+									<td>i</td>
 								</tr>
 								<%
 									}
@@ -207,7 +207,7 @@
 									<th>用户名</th>
 								</tr>
 							</table>
-						</div>
+						</div>	
 					</div>
 				</div>
 				<div class="modal-footer">
