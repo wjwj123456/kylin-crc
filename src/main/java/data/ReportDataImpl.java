@@ -1,13 +1,13 @@
-package bl;
+package data;
 
 import java.util.List;
 
-import blservice.ReportBlService;
-import vo.ReportVO;
+import dataservice.ReportDataService;
+import po.ReportPO;
 
-public class ReportBlImpl implements ReportBlService{
+public class ReportDataImpl implements ReportDataService{
 
-	public int createReport(List<ReportVO> vos) {
+	public int createReport(List<ReportPO> pos) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
