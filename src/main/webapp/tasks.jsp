@@ -154,7 +154,7 @@
 			<h2 id="review">评审</h2>
 			<p id="preWord">开始评审前，请确认</p>
 			<button class="btn btn-success" id="startReview">开始评审</button>
-			<div class="codeBlock">
+			<div id="codeBlock">
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
 					<table class="table">
@@ -177,32 +177,32 @@
 
 				<form action="">
 					<div class="row">
-						<div class="form-group col-sm-6" id="fileGroup">
-							<label for="fileName" class="col-sm-2 control-label">文件名</label>
+						<div class="form-group col-sm-6" id="fileGroup-code">
+							<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="fileName"
+								<input type="text" class="form-control" id="fileName-code"
 									placeholder="**.*">
 							</div>
 						</div>
-						<div class="form-group col-sm-6" id="lineGroup">
-							<label for="lineNum" class="col-sm-2 control-label">行数</label>
+						<div class="form-group col-sm-6" id="lineGroup-code">
+							<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="lineNum"
+								<input type="text" class="form-control" id="lineNum-code"
 									placeholder="">
 							</div>
 						</div>
 					</div>
 
-					<div class="form-group" id="discripGroup">
-						<label for="discription" class="col-sm-1 control-label">描述</label>
+					<div class="form-group" id="discripGroup-code">
+						<label for="discription-code" class="col-sm-1 control-label">描述</label>
 						<div class="col-sm-11">
-							<textarea class="form-control" rows="1" id="discription"></textarea>
+							<textarea class="form-control" rows="1" id="discription-code"></textarea>
 						</div>
 					</div>
 				</form>
-				<button class="btn btn-success" id="add">添加</button>
+				<button class="btn btn-success" id="add-code">添加</button>
 			</div>
-			<div class="docBlock">
+			<div id="docBlock">
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
 					<table class="table">
@@ -227,39 +227,39 @@
 
 				<form action="">
 					<div class="row">
-						<div class="form-group col-sm-4" id="fileGroup">
-							<label for="fileName" class="col-sm-4 control-label">文件名</label>
+						<div class="form-group col-sm-4" id="fileGroup-file">
+							<label for="fileName-file" class="col-sm-4 control-label">文件名</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="fileName"
+								<input type="text" class="form-control" id="fileName-file"
 									placeholder="**.*">
 							</div>
 						</div>
-						<div class="form-group col-sm-4" id="pageGroup">
-							<label for="pageNum" class="col-sm-3 control-label">页码</label>
+						<div class="form-group col-sm-4" id="pageGroup-file">
+							<label for="pageNum-file" class="col-sm-3 control-label">页码</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="pageNum"
+								<input type="text" class="form-control" id="pageNum-file"
 									placeholder="">
 							</div>
 						</div>
-						<div class="form-group col-sm-4" id="lineGroup">
-							<label for="lineNum" class="col-sm-3 control-label">行数</label>
+						<div class="form-group col-sm-4" id="lineGroup-file">
+							<label for="lineNum-file" class="col-sm-3 control-label">行数</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="lineNum"
+								<input type="text" class="form-control" id="lineNum-file"
 									placeholder="">
 							</div>
 						</div>
 
 					</div>
 
-					<div class="form-group" id="discripGroup">
-						<label for="discription" class="col-sm-1 control-label">描述</label>
+					<div class="form-group" id="discripGroup-file">
+						<label for="discription-file" class="col-sm-1 control-label">描述</label>
 						<div class="col-sm-11">
-							<textarea class="form-control" rows="1" id="discription"></textarea>
+							<textarea class="form-control" rows="1" id="discription-file"></textarea>
 						</div>
 					</div>
 
 				</form>
-				<button class="btn btn-success" id="add">添加</button>
+				<button class="btn btn-success" id="add-file">添加</button>
 
 			</div>
 			<div class="row" style="padding-top: 20px">
