@@ -12,11 +12,12 @@ public class ReportDataImpl implements ReportDataService{
 
 	public int createReport(List<ReportPO> pos)throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		int flag = 0;
+		int flag = -1;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		
 		for(int i =0;i<pos.size();i++){
+			
 			String sql = "INSERT INTO report (tname, uname,filename, page,location,description,state,origin) VALUES (?, ?, ?, ?, ?, ?,?,? )";
 
 			pStatement = connection.prepareStatement(sql);
@@ -28,8 +29,17 @@ public class ReportDataImpl implements ReportDataService{
 			pStatement.setString(6, pos.get(i).getDescription());
 			pStatement.setInt(7, 1);
 			pStatement.setInt(8, 1);
-			int j = pStatement.executeUpdate();
-			if (j == 0) {
+			
+			try{
+				int j = pStatement.executeUpdate();
+				if (j == 1) {
+					flag = 0;
+				}
+				else{
+					flag = 2;
+				}
+			}
+			catch (Exception SQLIntegrityConstraintViolationException) {
 				flag = 1;
 			}
 		}

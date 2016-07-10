@@ -17,6 +17,7 @@ public class ReportBlImpl implements ReportBlService{
 			
 	public int createReport(List<ReportVO> vos) {
 		// TODO Auto-generated method stub
+		int flag = -1;
 		List<ReportPO> pos  = new ArrayList<ReportPO>();
 		for(int i =0;i<vos.size();i++){
 			ReportPO po = new ReportPO(vos.get(i).getTaskName(), vos.get(i).getUserName(), vos.get(i).getFileName(),vos.get(i).getPage(),
@@ -24,7 +25,7 @@ public class ReportBlImpl implements ReportBlService{
 			pos.add(po);
 		}
 		try {
-			reportDataService.createReport(pos);
+			flag  = reportDataService.createReport(pos);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,7 +33,7 @@ public class ReportBlImpl implements ReportBlService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return flag;
 	}
 
 	public int setCompleteTime(String taskName, String reviewerName ,double time) {

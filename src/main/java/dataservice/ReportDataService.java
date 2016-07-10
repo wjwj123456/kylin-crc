@@ -18,7 +18,7 @@ public interface ReportDataService {
 	 * ldk
 	 * 设置完成一份评审报告的时间
 	 * @param time
-	 * @return 0:设置成功       1：设置失败
+	 * @return 0:设置成功        1：字段重复    2:失败
 	 */
 	public int setCompleteTime(String taskName, String reviewerName ,double time)throws ClassNotFoundException, SQLException;
 }
