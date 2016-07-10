@@ -1,5 +1,6 @@
 package dataservice;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import po.ReportPO;
@@ -11,7 +12,7 @@ public interface ReportDataService {
 	 * @param vos
 	 * @return 0: 创建成功        1：失败
 	 */
-	public int createReport(List<ReportPO> pos);
+	public int createReport(List<ReportPO> pos)throws ClassNotFoundException, SQLException;
 	
 	/**
 	 * ldk
@@ -19,5 +20,5 @@ public interface ReportDataService {
 	 * @param time
 	 * @return 0:设置成功       1：设置失败
 	 */
-	public int setCompleteTime(double time);
+	public int setCompleteTime(double time)throws ClassNotFoundException, SQLException;
 }
