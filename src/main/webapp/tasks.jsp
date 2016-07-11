@@ -165,7 +165,7 @@
 			<button class="btn btn-success" id="join">参加评审</button>
 			<hr>
 			<h2 id="deadline">截止时间</h2>
-			<strong><%=taskVO.getDeadline() %></strong>
+			<strong><%=taskVO.getDeadline()%></strong>
 			<hr>
 			<h2 id="review">评审</h2>
 			<p id="preWord">开始评审前，请确认</p>
@@ -264,9 +264,7 @@
 									placeholder="">
 							</div>
 						</div>
-
 					</div>
-
 					<div class="form-group" id="discripGroup-file">
 						<label for="discription-file" class="col-sm-1 control-label">描述</label>
 						<div class="col-sm-11">
@@ -299,6 +297,7 @@
 							<th>行数</th>
 							<th>描述</th>
 							<th>评审人</th>
+							<th width=20px></th>
 						</tr>
 						<%
 							for (int i = 0; i < 10; i++) {
@@ -309,6 +308,7 @@
 							<td>1212</td>
 							<td>1212</td>
 							<td>1212</td>
+							<td><button class="btn btn-warning">拆分</button></td>
 						</tr>
 						<%
 							}
@@ -322,6 +322,7 @@
 							<th>行数</th>
 							<th>描述</th>
 							<th>评审人</th>
+							<th width=20px></th>
 						</tr>
 					</table>
 				</div>
@@ -365,23 +366,53 @@
 							<h2 class="text-left text-primary">选择保留项</h2>
 						</div>
 						<div class="modal-body" style="height: 250px; overflow: auto">
-							<table class="table" id="choose-code">
-								<tr>
-									<th>文件名</th>
-									<th>行数</th>
-									<th>描述</th>
-									<th>评审人</th>
-								</tr>
-							</table>
-							<table class="table" id="choose-file">
-								<tr>
-									<th>文件名</th>
-									<th>页码</th>
-									<th>行数</th>
-									<th>描述</th>
-									<th>评审人</th>
-								</tr>
-							</table>
+							<div id="codeDiv">
+								<table class="table" id="choose-code">
+									<tr>
+										<th>文件名</th>
+										<th>行数</th>
+										<th>描述</th>
+										<th>评审人</th>
+									</tr>
+								</table>
+								<form action="">
+									<div class="row">
+										<div class="form-group col-sm-6" id="fileGroup-code">
+											<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="fileName-code"
+													placeholder="**.*">
+											</div>
+										</div>
+										<div class="form-group col-sm-6" id="lineGroup-code">
+											<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="lineNum-code"
+													placeholder="">
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group" id="discripGroup-code">
+										<label for="discription-code" class="col-sm-1 control-label">描述</label>
+										<div class="col-sm-11">
+											<textarea class="form-control" rows="1" id="discription-code"></textarea>
+										</div>
+									</div>
+								</form>
+								<button class="btn btn-success" id="add-code">添加</button>
+							</div>
+							<div id="fileDiv">
+								<table class="table" id="choose-file">
+									<tr>
+										<th>文件名</th>
+										<th>页码</th>
+										<th>行数</th>
+										<th>描述</th>
+										<th>评审人</th>
+									</tr>
+								</table>
+							</div>
 
 						</div>
 						<div class="modal-footer">

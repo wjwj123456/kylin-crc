@@ -55,6 +55,8 @@ function initCodeChoose(){
 $('#merge').on('click',function(){
 	codeMerge();
 });
+
+
 function initFileChoode() {
 	$('#choose-file').find('tr').not(':first').on('click',function(){
 		var temp=$(this).clone();
