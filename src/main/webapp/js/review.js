@@ -186,3 +186,21 @@ function isReportOK(){
 	}
 	return reportOK;
 }
+
+/**
+ * commit report 
+ * @returns
+ */
+function commitReport() {
+	jQuery.ajax({
+		url: '/crc/ReportServlet',
+		type: 'post',
+		data: '',
+		success: function(data) {
+			if (data == 0) {
+				alert('提交成功')
+			}
+		}
+	});
+}
+

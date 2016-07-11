@@ -100,4 +100,13 @@
     <servlet-name>ReportServlet</servlet-name>
     <url-pattern>/ReportServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>TaskFilter</display-name>
+    <filter-name>TaskFilter</filter-name>
+    <filter-class>filter.TaskFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>TaskFilter</filter-name>
+    <url-pattern>/tasks.jsp</url-pattern>
+  </filter-mapping>
 </web-app>
