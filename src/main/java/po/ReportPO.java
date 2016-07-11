@@ -1,13 +1,15 @@
 package po;
 
+import vo.ReportVO;
+
 public class ReportPO {
 
-	String taskName;
-	String userName;
-	String fileName;
-	int page;
-	int location;
-	String description;
+	private String taskName;
+	private String userName;
+	private String fileName;
+	private int page;
+	private int location;
+	private String description;
 	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description) {
 		super();
 		this.taskName = taskName;
@@ -54,6 +56,14 @@ public class ReportPO {
 		this.description = description;
 	}
 	
+	public ReportPO(ReportVO vo){
+		this.taskName=vo.getTaskName();
+		this.userName=vo.getUserName();
+		this.description=vo.getDescription();
+		this.location=vo.getLocation();
+		this.fileName=vo.getFileName();
+		this.page=vo.getPage();
+	}
 
 	
 	

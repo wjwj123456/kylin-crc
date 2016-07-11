@@ -1,12 +1,16 @@
 package vo;
 
-public class ReportVO {
-	String taskName;
-	String userName;
-	String fileName;
-	int page;
-	int location;
-	String description;
+import java.io.Serializable;
+
+import po.ReportPO;
+
+public class ReportVO  implements Serializable{
+	private String taskName;
+	private String userName;
+	private String fileName;
+	private int page;
+	private int location;
+	private String description;
 	
 	
 	
@@ -55,5 +59,12 @@ public class ReportVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	public ReportVO(ReportPO po){
+		this.taskName=po.getTaskName();
+		this.userName=po.getUserName();
+		this.description=po.getDescription();
+		this.location=po.getLocation();
+		this.fileName=po.getFileName();
+		this.page=po.getPage();
+	}
 }

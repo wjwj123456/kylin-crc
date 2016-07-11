@@ -1,17 +1,18 @@
 package vo;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TaskVO {
-	String userName;
-	String taskName;
-	Type type;
-	String project;
-	String describe;
-	Date deadline;
-	int state;
+public class TaskVO implements Serializable{
 	
+	private String userName;
+	private String taskName;
+	private Type type;
+	private String project;
+	private String describe;
+	private Date deadline;
+	private int state;
 	
 	public TaskVO(String userName, String taskName) {
 		super();

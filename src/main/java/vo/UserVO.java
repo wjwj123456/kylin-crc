@@ -1,12 +1,14 @@
 package vo;
 
+import java.io.Serializable;
+
 /**
  * Created by lpt on 16-7-8.
  */
-public class UserVO {
-	String  name;
-	String email;
-	String password;
+public class UserVO  implements Serializable{
+	private String  name;
+	private String email;
+	private String password;
 	public UserVO( String name, String email, String password) {
 		super();
 		this.name = name;

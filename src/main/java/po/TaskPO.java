@@ -5,13 +5,14 @@ import java.util.Date;
 import vo.Type;
 
 public class TaskPO {
-	String userName;
-	String taskName;
-	Type type;
-	String project;
-	String describe;
-	Date deadline;
-	int state;
+
+	private String userName;
+	private String taskName;
+	private Type type;
+	private String project;
+	private String describe;
+	private Date deadline;
+	private int state;
 
 	public TaskPO(String userName, String taskName, Type type, String project, String describe, Date deadline,
 			int state) {

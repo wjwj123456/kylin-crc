@@ -1,3 +1,6 @@
+<%@page import="tools.Cast"%>
+<%@page import="vo.TaskVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -86,12 +89,32 @@
 			<hr>
 			<h2 id="message">消息</h2>
 			<table class="table" id="messageTable">
-				<tr>
-					<th>发信人</th>
-					<th>项目名</th>
-					<th>操作</th>
-					<th width=10px></th>
-				</tr>
+				<thead>
+					<tr>
+						<th>发信人</th>
+						<th>项目名</th>
+						<th width=50px>操作</th>
+						<th width=10px></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						List<TaskVO> messages = Cast.cast(session.getAttribute("invitationList"));
+					%>
+					<%
+						for (TaskVO vo : messages) {
+					%>
+					<tr>
+						<td><%=vo.getUserName()%></td>
+						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
+						<td><button class="btn btn-success">接收邀请</button></td>
+						<td><button type="button" class="close" aria-hidden="true"
+								id="delete">x</button></td>
+					</tr>
+					<%
+						}
+					%>
+				</tbody>
 			</table>
 			<hr>
 			<h2 id="runningReview">进行中评审</h2>
@@ -102,13 +125,22 @@
 					<th>deadline</th>
 					<th>操作</th>
 				</tr>
+				<%
+					List<TaskVO> running = Cast.cast(session.getAttribute("runningTask"));
+				%>
+				<%
+					for (TaskVO vo : running) {
+				%>
 				<tr>
-					<td>haha</td>
-					<td>haha2</td>
-					<td>haha3</td>
+					<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
+					<td><%=vo.getDescribe()%></td>
+					<td><%=vo.getDeadline()%></td>
 					<td><button class="btn btn-success" data-toggle="modal"
-							data-target="#inviteModal">邀请</button></td>
+							data-target="#inviteModal" onclick="initInvite(this)">邀请</button></td>
 				</tr>
+				<%
+					}
+				%>
 			</table>
 			<hr>
 			<h2 id="joiningReview">参与中评审</h2>
@@ -132,11 +164,20 @@
 					<th>描述</th>
 					<th>deadline</th>
 				</tr>
+				<%
+					List<TaskVO> history = Cast.cast(session.getAttribute("historyTask"));
+				%>
+				<%
+					for (TaskVO vo : history) {
+				%>
 				<tr>
-					<td>haha</td>
-					<td>haha</td>
-					<td>haha</td>
+					<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
+					<td><%=vo.getDescribe()%></td>
+					<td><%=vo.getDeadline()%></td>
 				</tr>
+				<%
+					}
+				%>
 			</table>
 			<hr>
 			<h2 id="perAnalyze">个人分析</h2>
@@ -180,8 +221,8 @@
 						</div>
 						<button type="button" class="btn btn-success" id="search">搜索</button>
 					</div>
-					<div class="col-md-6">
-						<p>待邀请</p>
+					<div class="col-md-4">
+						<p>可邀请</p>
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="toInvite">
@@ -200,11 +241,22 @@
 							</table>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<p>已邀请</p>
+					<div class="col-md-4">
+						<p>将邀请</p>
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="invited">
+								<tr>
+									<th>用户名</th>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<p>已参加</p>
+						<div style="height: 250px; overflow: auto">
+
+							<table class="table" id="agreed">
 								<tr>
 									<th>用户名</th>
 								</tr>
