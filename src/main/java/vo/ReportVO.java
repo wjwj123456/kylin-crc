@@ -9,6 +9,7 @@ public class ReportVO {
 	String description;
 	
 	
+	
 	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description) {
 		super();
 		this.taskName = taskName;
