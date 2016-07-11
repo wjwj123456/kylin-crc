@@ -17,6 +17,9 @@
 	rel="stylesheet">
 <title>CRC Task</title>
 </head>
+<script type="text/javascript">
+username = '<%=session.getAttribute("username")%>';
+</script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
 	<div class="container">
@@ -46,8 +49,11 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<%
+			
+				<%	
+					
 					if (session.getAttribute("username") != null) {
+					
 				%>
 				<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
 				<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -377,30 +383,30 @@
 								</table>
 								<form action="">
 									<div class="row">
-										<div class="form-group col-sm-6" id="fileGroup-code">
-											<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
+										<div class="form-group col-sm-6" id="fileGroup-choosecode">
+											<label for="fileName-choosecode" class="col-sm-2 control-label">文件名</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="fileName-code"
+												<input type="text" class="form-control" id="fileName-choosecode"
 													placeholder="**.*">
 											</div>
 										</div>
-										<div class="form-group col-sm-6" id="lineGroup-code">
-											<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
+										<div class="form-group col-sm-6" id="lineGroup-choosecode">
+											<label for="lineNum-choosecode" class="col-sm-2 control-label">行数</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="lineNum-code"
+												<input type="text" class="form-control" id="lineNum-choosecode"
 													placeholder="">
 											</div>
 										</div>
 									</div>
 
-									<div class="form-group" id="discripGroup-code">
-										<label for="discription-code" class="col-sm-1 control-label">描述</label>
+									<div class="form-group" id="discripGroup-choosecode">
+										<label for="discription-choosecode" class="col-sm-1 control-label">描述</label>
 										<div class="col-sm-11">
-											<textarea class="form-control" rows="1" id="discription-code"></textarea>
+											<textarea class="form-control" rows="1" id="discription-choosecode"></textarea>
 										</div>
 									</div>
 								</form>
-								<button class="btn btn-success" id="add-code">添加</button>
+								<button class="btn btn-success" id="add-choosecode">添加</button>
 							</div>
 							<div id="fileDiv">
 								<table class="table" id="choose-file">
@@ -412,6 +418,39 @@
 										<th>评审人</th>
 									</tr>
 								</table>
+								<form action="">
+									<div class="row">
+										<div class="form-group col-sm-4" id="fileGroup-choosefile">
+											<label for="fileName-choosefile" class="col-sm-4 control-label">文件名</label>
+											<div class="col-sm-8">
+												<input type="text" class="form-control" id="fileName-choosefile"
+													placeholder="**.*">
+											</div>
+										</div>
+										<div class="form-group col-sm-4" id="pageGroup-choosefile">
+											<label for="pageNum-choosefile" class="col-sm-3 control-label">页码</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="pageNum-choosefile"
+													placeholder="">
+											</div>
+										</div>
+										<div class="form-group col-sm-4" id="lineGroup-choosefile">
+											<label for="lineNum-choosefile" class="col-sm-3 control-label">行数</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="lineNum-choosefile"
+													placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="form-group" id="discripGroup-choosefile">
+										<label for="discription-choosefile" class="col-sm-1 control-label">描述</label>
+										<div class="col-sm-11">
+											<textarea class="form-control" rows="1" id="discription-choosefile"></textarea>
+										</div>
+									</div>
+
+								</form>
+								<button class="btn btn-success" id="add-choosefile">添加</button>
 							</div>
 
 						</div>

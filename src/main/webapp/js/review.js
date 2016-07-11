@@ -1,5 +1,6 @@
 var itemOK = true;
 var reportOK = true;
+var username;
 $('#startReview').on('click',function(){
 	$('#preWord').hide();
 	$(this).hide();
@@ -13,6 +14,28 @@ $('#add-code').on('click',function(){
 	}
 	
 });
+$('#add-choosecode').on('click',function(){
+	if(ischooseCodeItemOK()){
+		$('#merged-code').append("<tr> <td>" +$('#fileName-choosecode').val()+
+				"</td> <td>" +$('#lineNum-choosecode').val()+
+				"</td> <td>" +$('#discription-choosecode').val()+
+				"</td><td>"+username+
+				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
+		$('#chooseModal').modal('hide');
+		var inputs = $('#toMerge-code').find('input');
+		var length = inputs.length;
+		var j = 0;
+		for( i = 0;i<length;i++){
+			if($(inputs[i]).prop('checked')==true){
+				$($('#toMerge-code').find('tr')[j+1]).remove();
+				j--;
+				length--;
+			}
+			j++;
+		}
+	}
+	
+});
 $('#add-file').on('click',function(){
 	if(isFileItemOK()){
 		$('#docStart').after("<tr> <td>" +$('#fileName-file').val()+
@@ -20,6 +43,29 @@ $('#add-file').on('click',function(){
 				"</td> <td>" +$('#lineNum-file').val()+
 				"</td> <td>" +$('#discription-file').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
+	}
+	
+});
+$('#add-choosefile').on('click',function(){
+	if(ischooseFileItemOK()){
+		$('#docStart').after("<tr> <td>" +$('#fileName-choosefile').val()+
+				"</td> <td>" +$('#pageNum-choosefile').val()+
+				"</td> <td>" +$('#lineNum-choosefile').val()+
+				"</td> <td>" +$('#discription-choosefile').val()+
+				"</td><td>"+username+
+				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
+		$('#chooseModal').modal('hide');
+		var inputs = $('#toMerge-code').find('input');
+		var length = inputs.length;
+		var j = 0;
+		for( i = 0;i<length;i++){
+			if($(inputs[i]).prop('checked')==true){
+				$($('#toMerge-code').find('tr')[j+1]).remove();
+				j--;
+				length--;
+			}
+			j++;
+		}
 	}
 	
 });
@@ -34,14 +80,10 @@ function initCodeChoose(){
 		$(temp).append($("<td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td>"));
 		$('#merged-code').append($(temp));
 		$('#chooseModal').modal('hide');
-		$('#choose-code').empty();
-		$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
 		var inputs = $('#toMerge-code').find('input');
 		var length = inputs.length;
 		var j = 0;
 		for( i = 0;i<length;i++){
-			
-			alert($(inputs[i]).prop('checked'))
 			if($(inputs[i]).prop('checked')==true){
 				$($('#toMerge-code').find('tr')[j+1]).remove();
 				j--;
@@ -53,7 +95,10 @@ function initCodeChoose(){
 	});
 }
 $('#merge').on('click',function(){
+	$('#choose-code').empty();
+	$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
 	codeMerge();
+	
 });
 
 
@@ -155,6 +200,29 @@ function isCodeItemOK(){
 	}
 	return itemOK;
 }
+function ischooseCodeItemOK(){
+	itemOK=true;
+	if($('#fileName-choosecode').val()==""){
+		$('#fileGroup-choosecode').addClass('has-error');
+		itemOK=false;
+	}else {
+		$('#fileGroup-choosecode').removeClass('has-error');
+	}
+	if($('#lineNum-choosecode').val()==""){
+		$('#lineGroup-choosecode').addClass('has-error');
+		itemOK=false;
+	}else {
+		$('#lineGroup-choosecode').removeClass('has-error');
+	}
+	if($('#discription-choosecode').val()==""){
+		$('#discripGroup-choosecode').addClass('has-error');
+		itemOK=false;
+	}else {
+		$('#discripGroup-choosecode').removeClass('has-error');
+	}
+
+	return itemOK;
+}
 
 /**
  * judge whether an item already existed in report table
@@ -198,6 +266,34 @@ function isFileItemOK(){
 		itemOK=false;
 	}else {
 		$('#pageGroup-file').removeClass('has-error');
+	}
+	return itemOK;
+}
+function ischooseFileItemOK(){
+	itemOK=true;
+	if($('#fileName-choosefile').val()==""){
+		$('#fileGroup-choosefile').addClass('has-error');
+		itemOK=false;
+	}else {
+		$('#fileGroup-choosefile').removeClass('has-error');
+	}
+	if($('#lineNum-choosefile').val()==""){
+		$('#lineGroup-choosefile').addClass('has-error');
+		itemOK=false;
+	}else {
+		$('#lineGroup-choosefile').removeClass('has-error');
+	}
+	if($('#discription-choosefile').val()==""){
+		$('#discripGroup-choosefile').addClass('has-error');
+		itemOK=false;
+	}else {
+		$('#discripGroup-choosefile').removeClass('has-error');
+	}
+	if($('#pageNum-choosefile').val()==""){
+		$('#pageGroup-choosefile').addClass('has-error');
+		itemOK=false;
+	}else {
+		$('#pageGroup-choosefile').removeClass('has-error');
 	}
 	return itemOK;
 }
