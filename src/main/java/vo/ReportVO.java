@@ -1,14 +1,16 @@
 package vo;
 
+import java.io.Serializable;
+
 import po.ReportPO;
 
-public class ReportVO {
-	String taskName;
-	String userName;
-	String fileName;
-	int page;
-	int location;
-	String description;
+public class ReportVO  implements Serializable{
+	private String taskName;
+	private String userName;
+	private String fileName;
+	private int page;
+	private int location;
+	private String description;
 	
 	
 	

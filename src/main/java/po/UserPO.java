@@ -4,9 +4,9 @@ package po;
  * Created by lpt on 16-7-8.
  */
 public class UserPO {
-	String  name;
-	String email;
-	String password;
+	private String  name;
+	private String email;
+	private String password;
 	public UserPO(String name, String email, String password) {
 		super();
 		this.name = name;

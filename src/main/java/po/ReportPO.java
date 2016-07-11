@@ -4,12 +4,12 @@ import vo.ReportVO;
 
 public class ReportPO {
 
-	String taskName;
-	String userName;
-	String fileName;
-	int page;
-	int location;
-	String description;
+	private String taskName;
+	private String userName;
+	private String fileName;
+	private int page;
+	private int location;
+	private String description;
 	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description) {
 		super();
 		this.taskName = taskName;
