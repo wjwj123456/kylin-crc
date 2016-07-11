@@ -153,8 +153,23 @@ function isCodeItemOK(){
 	}
 	return itemOK;
 }
+
+/**
+ * judge whether an item already existed in report table
+ * @returns
+ */
 function codeUnique() {
-	var items=$('#codeTable').find('tr');
+	var items = $('#codeTable').find('tr').filter(function() {
+		var fileName = $(this).find('td:first');
+		
+		if ($(fileName).text() == $('#fileName-code').val().trim() 
+				&& $(fileName).next().text() == $('#lineNum-code').val().trim()
+				&& $(fileName).next().next().text() == $('#discription-code').val().trim()) {
+			return $(this);
+		}
+	});
+	
+	return items.length == 0;
 }
 function isFileItemOK(){
 	itemOK=true;
