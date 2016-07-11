@@ -1,6 +1,5 @@
 package data;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,17 +9,17 @@ import po.ReportPO;
 
 public class ReportDataImpl implements ReportDataService {
 
+	private PreparedStatement pStatement = null;
+
 	public int createReport(List<ReportPO> pos) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		int flag = -1;
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
 
 		for (int i = 0; i < pos.size(); i++) {
 
 			String sql = "INSERT INTO report (tname, uname,filename, page,location,description,state,origin) VALUES (?, ?, ?, ?, ?, ?,?,? )";
 
-			pStatement = connection.prepareStatement(sql);
+			pStatement = DBManager.getPreparedStatement(sql);
 			pStatement.setString(1, pos.get(i).getTaskName());
 			pStatement.setString(2, pos.get(i).getUserName());
 			pStatement.setString(3, pos.get(i).getFileName());
@@ -42,7 +41,7 @@ public class ReportDataImpl implements ReportDataService {
 			}
 		}
 
-		DBManager.stopAll(null, pStatement, connection);
+		DBManager.closeConnection();
 		return flag;
 	}
 
@@ -50,18 +49,16 @@ public class ReportDataImpl implements ReportDataService {
 			throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		int flag = -1;
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
 
 		String sql = "UPDATE review SET  time = ? WHERE tname = '" + taskName + "' and uname = '" + reviewerName + "'";
-		pStatement = connection.prepareStatement(sql);
+		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setDouble(1, time);
 		int i = pStatement.executeUpdate();
 		if (i == 1)
 			flag = 0;
 		else
 			flag = 1;
-		DBManager.stopAll(null, pStatement, connection);
+		DBManager.closeConnection();
 		return flag;
 
 	}

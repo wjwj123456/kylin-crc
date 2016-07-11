@@ -1,6 +1,5 @@
 package data;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +12,6 @@ import vo.Type;
 
 public class InviteDataImpl implements InviteDataService {
 
-	private Connection connection;
 	private PreparedStatement pStatement;
 
 	/**
@@ -24,19 +22,16 @@ public class InviteDataImpl implements InviteDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		connection = DBManager.connect();
 		String sql = "SELECT * FROM review WHERE uname = '" + reviewerName + "' and isAgree = 0";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
-
+		ResultSet rSet = DBManager.getResultSet(sql);
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
 		}
 
 		for (int i = 0; i < list.size(); i++) {
-			pStatement = connection.prepareStatement("SELECT * FROM task WHERE tname = '" + list.get(i) + "'");
-			rSet = pStatement.executeQuery();
+
+			rSet = DBManager.getResultSet("SELECT * FROM task WHERE tname = '" + list.get(i) + "'");
 			while (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 						rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
@@ -44,7 +39,7 @@ public class InviteDataImpl implements InviteDataService {
 			}
 		}
 
-		DBManager.stopAll(rSet, pStatement, connection);
+		DBManager.closeConnection();
 		return poList;
 	}
 
@@ -53,10 +48,10 @@ public class InviteDataImpl implements InviteDataService {
 	 */
 	public int deleteInvitationInfo(String userName, String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		connection = DBManager.connect();
+
 		int flag = -1;
 		String sql = "DELETE   FROM review WHERE uname = '" + userName + "' and tname = '" + taskName + "'";
-		pStatement = connection.prepareStatement(sql);
+		pStatement = DBManager.getPreparedStatement(sql);
 		int i = pStatement.executeUpdate();
 
 		if (i == 1)
@@ -64,7 +59,7 @@ public class InviteDataImpl implements InviteDataService {
 		else
 			flag = 1;
 
-		DBManager.stopAll(null, pStatement, connection);
+		DBManager.closeConnection();
 		return flag;
 	}
 
@@ -76,10 +71,9 @@ public class InviteDataImpl implements InviteDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		connection = DBManager.connect();
 		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 0";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+
+		ResultSet rSet = DBManager.getResultSet(sql);
 
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
@@ -87,7 +81,7 @@ public class InviteDataImpl implements InviteDataService {
 			poList.add(po);
 		}
 
-		DBManager.stopAll(rSet, pStatement, connection);
+		DBManager.closeConnection();
 		return poList;
 	}
 
@@ -98,10 +92,8 @@ public class InviteDataImpl implements InviteDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		connection = DBManager.connect();
 		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 1";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+		ResultSet rSet = DBManager.getResultSet(sql);
 
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
@@ -109,7 +101,7 @@ public class InviteDataImpl implements InviteDataService {
 			poList.add(po);
 		}
 
-		DBManager.stopAll(rSet, pStatement, connection);
+		DBManager.closeConnection();
 		return poList;
 	}
 
@@ -118,29 +110,31 @@ public class InviteDataImpl implements InviteDataService {
 	 */
 	public List<String> getAgreeUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		connection = DBManager.connect();
+
 		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 1";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+
+		ResultSet rSet = DBManager.getResultSet(sql);
 
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
 		}
+		DBManager.closeConnection();
 		return list;
 	}
 
 	public List<String> getDisagreeUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		connection = DBManager.connect();
+
 		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 0";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+
+		ResultSet rSet = DBManager.getResultSet(sql);
 
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
 		}
+		DBManager.closeConnection();
 		return list;
 	}
 

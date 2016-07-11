@@ -1,6 +1,5 @@
 package data;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,9 @@ import vo.Type;
  */
 public class ReviewDataImpl implements ReviewDataService {
 
+	private ResultSet rSet = null;
+	private PreparedStatement pStatement = null;
+
 	/**
 	 * save review infomation to database
 	 *
@@ -36,11 +38,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	public int saveReviewInfo(TaskPO po) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		int flag = 0;
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+
 		String sql = "INSERT INTO task (uname, tname,type, project,discribe,deadline,state) VALUES (?, ?, ?, ?, ?, ?,? )";
 		Timestamp tt = new Timestamp(po.getDeadline().getTime());
-		pStatement = connection.prepareStatement(sql);
+		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, po.getUserName());
 		pStatement.setString(2, po.getTaskName());
 		pStatement.setString(3, String.valueOf(po.getType()));
@@ -52,7 +53,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		if (i == 0) {
 			flag = 1;
 		}
-		DBManager.stopAll(null, pStatement, connection);
+		DBManager.closeConnection();
 		return flag;
 	}
 
@@ -72,11 +73,8 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
 		String sql = "SELECT * FROM task WHERE uname = '" + userName + "'" + "order by " + "'deadline'" + "DESC";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
@@ -84,7 +82,7 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		}
 
-		DBManager.stopAll(rSet, pStatement, connection);
+		DBManager.closeConnection();
 		return poList;
 
 	}
@@ -107,18 +105,15 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		List<UserPO> poList = new ArrayList<UserPO>();
 
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
 		String sql = "SELECT * FROM user WHERE uname like '%" + keyword + "%'";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			UserPO po = new UserPO(rSet.getString(1), rSet.getString(2), rSet.getString(3));
 			poList.add(po);
 
 		}
 
-		DBManager.stopAll(rSet, pStatement, connection);
+		DBManager.closeConnection();
 		return poList;
 	}
 
@@ -138,17 +133,17 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		// TODO Auto-generated method stub
 		int flag = 0;
-		Connection connection = DBManager.connect();
+
 		PreparedStatement pStatement = null;
 		String sql = "UPDATE review SET isAgree = ? WHERE uname = '" + userName + "'and tname='" + taskName + "'";
-		pStatement = connection.prepareStatement(sql);
+		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setInt(1, 1);
 		int i = pStatement.executeUpdate();
 		if (i == 1)
 			flag = 0;
 		else
 			flag = 3;
-		DBManager.stopAll(null, pStatement, connection);
+		DBManager.closeConnection();
 		return flag;
 	}
 
@@ -167,14 +162,12 @@ public class ReviewDataImpl implements ReviewDataService {
 	public int saveInvitation(String[] userName, String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		int flag = 0;
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
 
 		try {
 			for (int i = 0; i < userName.length; i++) {
 				String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
 
-				pStatement = connection.prepareStatement(sql);
+				pStatement = DBManager.getPreparedStatement(sql);
 				pStatement.setString(1, taskName);
 				pStatement.setString(2, userName[i]);
 				pStatement.setInt(3, 0);
@@ -187,7 +180,7 @@ public class ReviewDataImpl implements ReviewDataService {
 			flag = 1;
 		}
 
-		DBManager.stopAll(null, pStatement, connection);
+		DBManager.closeConnection();
 		return flag;
 	}
 
@@ -205,11 +198,9 @@ public class ReviewDataImpl implements ReviewDataService {
 	public List<TaskPO> getTaskList() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+
 		String sql = "SELECT * FROM task ";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
@@ -217,7 +208,7 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		}
 
-		DBManager.stopAll(rSet, pStatement, connection);
+		DBManager.closeConnection();
 		return poList;
 	}
 
@@ -234,16 +225,13 @@ public class ReviewDataImpl implements ReviewDataService {
 	public TaskPO getTaskPOByTaskName(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
 		String sql = "SELECT * FROM task WHERE tname = '" + taskName + "'";
-		pStatement = connection.prepareStatement(sql);
-		ResultSet rSet = pStatement.executeQuery();
+		rSet = DBManager.getResultSet(sql);
 
 		if (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
-			DBManager.stopAll(rSet, pStatement, connection);
+			DBManager.closeConnection();
 			return po;
 		} else
 			return new TaskPO();
