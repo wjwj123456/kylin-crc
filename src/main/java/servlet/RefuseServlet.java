@@ -2,27 +2,26 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bl.ReviewBlImpl;
+import bl.InviteBlImpl;
 
 /**
- * Servlet implementation class InviteServlet
+ * Servlet implementation class RefuseServlet
  * 
- * invite one or several reviewers
+ * refuse an invitation from others
  */
-public class InviteServlet extends HttpServlet {
+public class RefuseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public InviteServlet() {
+	public RefuseServlet() {
 		super();
 	}
 
@@ -33,12 +32,12 @@ public class InviteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String taskName = request.getParameter("taskName");
-		String users = request.getParameter("users");
-		int userNumber = Integer.parseInt(request.getParameter("userNumber"));
 
-		ReviewBlImpl review = new ReviewBlImpl();
-		int result = review.saveInvitation(getUsers(userNumber, users), taskName);
+		String userName = (String) request.getSession().getAttribute("username");
+		String taskName = request.getParameter("taskName");
+
+		InviteBlImpl invite = new InviteBlImpl();
+		int result = invite.deleteInvitationInfo(userName, taskName);
 
 		PrintWriter out = response.getWriter();
 		out.print(result);
@@ -51,21 +50,5 @@ public class InviteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
-	}
-
-	/**
-	 * parse usernames from data in json into String[]
-	 * 
-	 * @return usernames invited
-	 */
-	private String[] getUsers(int userNumber, String users) {
-		StringTokenizer tokenizer = new StringTokenizer(users);
-		String[] result = new String[userNumber];
-
-		for (int i = 0; i < userNumber; i++) {
-			result[i] = tokenizer.nextToken();
-		}
-
-		return result;
 	}
 }

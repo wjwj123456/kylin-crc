@@ -84,6 +84,15 @@ function displayUser(users) {
  * @returns
  */
 function refuse() {
-	
+	jQuery.ajax({
+		url: '/crc/RefuseServlet',
+		style: 'post',
+		data: 'taskName=',
+		success: function(data) {
+			if (data == 0) {
+				alert('拒绝')
+			}
+		}
+	});
 }
 
