@@ -165,7 +165,7 @@
 			<button class="btn btn-success" id="join">参加评审</button>
 			<hr>
 			<h2 id="deadline">截止时间</h2>
-			<strong>XXXX-XX-XX XX:XX</strong>
+			<strong><%=taskVO.getDeadline() %></strong>
 			<hr>
 			<h2 id="review">评审</h2>
 			<p id="preWord">开始评审前，请确认</p>

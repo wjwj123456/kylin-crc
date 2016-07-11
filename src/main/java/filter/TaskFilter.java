@@ -52,7 +52,6 @@ public class TaskFilter implements Filter {
 		session.setAttribute("agree_" + taskName, invite.getAgreeUser(taskName));
 		// 未接受邀请
 		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
-		System.out.println(task);
 		chain.doFilter(request, response);
 	}
 
