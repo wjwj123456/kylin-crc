@@ -154,7 +154,7 @@ function isCodeItemOK(){
 	return itemOK;
 }
 function codeUnique() {
-	var items=$('#codeTable').find();
+	var items=$('#codeTable').find('tr');
 }
 function isFileItemOK(){
 	itemOK=true;
