@@ -173,8 +173,8 @@
 			<div id="codeBlock">
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-					<table class="table">
-						<tr id="start">
+					<table class="table" id="codeTable">
+						<tr id="codeStart">
 							<th width=120px>文件名</th>
 							<th width=50px>行数</th>
 							<th>描述</th>
@@ -221,8 +221,8 @@
 			<div id="docBlock">
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-					<table class="table">
-						<tr id="start">
+					<table class="table" id="docTable">
+						<tr id="docStart">
 							<th width=120px>文件名</th>
 							<th width=50px>页码</th>
 							<th width=50px>行数</th>

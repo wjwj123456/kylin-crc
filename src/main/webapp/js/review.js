@@ -6,7 +6,7 @@ $('#startReview').on('click',function(){
 });
 $('#add-code').on('click',function(){
 	if(isCodeItemOK()){
-		$('#start').after("<tr> <td>" +$('#fileName-code').val()+
+		$('#codeStart').after("<tr> <td>" +$('#fileName-code').val()+
 				"</td> <td>" +$('#lineNum-code').val()+
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
@@ -15,7 +15,7 @@ $('#add-code').on('click',function(){
 });
 $('#add-file').on('click',function(){
 	if(isFileItemOK()){
-		$('#start').after("<tr> <td>" +$('#fileName-file').val()+
+		$('#docStart').after("<tr> <td>" +$('#fileName-file').val()+
 				"</td> <td>" +$('#pageNum-file').val()+
 				"</td> <td>" +$('#lineNum-file').val()+
 				"</td> <td>" +$('#discription-file').val()+
@@ -146,7 +146,15 @@ function isCodeItemOK(){
 	}else {
 		$('#discripGroup-code').removeClass('has-error');
 	}
+	if(itemOK){
+		if(!codeUnique()){
+			itemOK=false;
+		}
+	}
 	return itemOK;
+}
+function codeUnique() {
+	var items=$('#codeTable').find();
 }
 function isFileItemOK(){
 	itemOK=true;
