@@ -19,21 +19,18 @@ import vo.Type;
 import vo.UserVO;
 
 /**
- * TODO: ����������
+
  *
  * @author lpt14
- * @since 2016��7��8��
- * @see
  */
 public class ReviewBlImpl implements ReviewBlService {
 
 	ReviewDataService reviewDataService = new ReviewDataImpl();
 
 	/**
-	 * TODO:������������
 	 *
 	 * @author lpt14
-	 * @since 2016��7��8��
+
 	 * @param vo
 	 * @see blservice.ReviewBlService#saveReviewInfo(vo.TaskVO)
 	 *
@@ -57,10 +54,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author lpt14
-	 * @since 2016��7��8��
+
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#geTaskList(java.lang.String)
@@ -88,10 +85,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author ldk14
-	 * @since 2016��7��9��
+
 	 * @param keyword
 	 * @return
 	 * @throws ClassNotFoundException
@@ -118,56 +115,43 @@ public class ReviewBlImpl implements ReviewBlService {
 		return result;
 	}
 
-	/**
-	 * TODO:������������
-	 *
-	 * @author lpt14
-	 * @since 2016��7��9��
-	 * @param userName
-	 * @return
-	 * @see blservice.ReviewBlService#saveReviewer(java.lang.String[])
-	 *
-	 */
-	public int saveReviewer(String[] userName) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	/**
-	 * TODO:������������
+	 *
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#saveInvitation(java.lang.String[])
 	 *
 	 */
 	public int saveInvitation(String[] userName, String taskName) {
-		// TODO Auto-generated method stub
 		int flag = 0;
 		try {
 			flag = reviewDataService.saveInvitation(userName, taskName);
+
 			TaskVO task = getTaskVOByTaskName(taskName);
-			// UserVO user = ;
-			// String url = "localhost:8080/tasks.jsp?taskName=" + taskName;
-			// flag &= SendMail.sendMail(user.getEmail(), to, userName,
-			// taskName, url);
+			UserBlImpl userBl = new UserBlImpl();
+			UserVO user = userBl.getUserVOByName(task.getUserName());
+			String url = "localhost:8080/tasks.jsp?taskName=" + taskName;
+			String[] userEmails = new String[userName.length];
+
+			for (int i = 0; i < userName.length; i++) {
+				userEmails[i] = userBl.getUserVOByName(userName[i]).getEmail();
+			}
+			flag |= SendMail.sendMail(user.getEmail(), userEmails, user.getName(), taskName, url);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return flag;
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#saveAcceptReviewer(java.lang.String)
@@ -189,10 +173,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
+
 	 * @return
 	 * @see blservice.ReviewBlService#getTaskList()
 	 *

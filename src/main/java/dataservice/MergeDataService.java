@@ -42,9 +42,12 @@ public interface MergeDataService {
 		  * @param reportList      
 		  * @return void
 		  * @author      lpt14
+		 * @throws SQLException 
+		 * @throws ClassNotFoundException 
 		  */
-		public void saveMergeReport(List<ReportPO> reportList);
+		public void saveMergeReport(List<ReportPO> reportList,String taskName) throws SQLException, ClassNotFoundException;
 		
-	
+		
+		public void saveAddedMergeReport(List<ReportPO> reportList,String taskName) throws SQLException, ClassNotFoundException;
 
 }

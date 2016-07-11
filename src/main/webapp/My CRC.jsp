@@ -226,18 +226,14 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="toInvite">
-								<tr>
-									<th>用户名</th>
-								</tr>
-								<%
-									for (int i = 0; i < 10; i++) {
-								%>
-								<tr>
-									<td><%=i%></td>
-								</tr>
-								<%
-									}
-								%>
+								<thead>
+									<tr>
+										<th>用户名</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -246,9 +242,13 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="invited">
-								<tr>
-									<th>用户名</th>
-								</tr>
+								<thead>
+									<tr>
+										<th>用户名</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -257,9 +257,14 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="agreed">
-								<tr>
-									<th>用户名</th>
-								</tr>
+								<thead>
+									<tr>
+										<th>用户名</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
 							</table>
 						</div>
 					</div>

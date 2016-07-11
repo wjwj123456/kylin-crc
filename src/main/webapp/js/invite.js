@@ -4,9 +4,6 @@
 var taskName;
 
 $(function() {
-	$('#toInvite').find('tr').on('click', function() {
-		addInvite($(this));
-	});
 	$('#searchName').bind('input propertychange', function() {
 		if ($(this).val().trim() != '') {			
 			searchUser($(this).val().trim());
@@ -32,7 +29,10 @@ function loadAgreedReviewer(taskName) {
 		type: 'post',
 		data: 'type=agree' + '&taskName=' + taskName,
 		success: function(data) {
-			alert(data);
+			var users = jQuery.parseJSON(data)[0].users;
+			for (var i = 0; i < users.length; i++) {
+				$('#agreed').find('tbody').append('<tr><td>' + users[i] + '</td></tr>');
+			}
 		}		
 	});
 }
@@ -85,14 +85,21 @@ function isUnique(obj) {
 }
 
 /**
- * display the result of searching
+ * display the result of searching in left table
  * 
  * @param users
  * @returns
  */
 function displayUser(users) {
-//	console.log(users)
-//	$('#searchName').val(users[0].name)
+	$('#toInvite').find('tbody').empty();
+	
+	for (var i = 0; i < users.length; i++) {
+		$('#toInvite').find('tbody').append('<tr><td>' + users[i].name + '</td></tr>');
+	}
+	
+	$('#toInvite').find('tbody>tr').on('click', function() {
+		addInvite($(this));
+	});
 }
 
 /**
