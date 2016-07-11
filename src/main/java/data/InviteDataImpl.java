@@ -11,35 +11,29 @@ import dataservice.InviteDataService;
 import po.TaskPO;
 import vo.Type;
 
-public class InviteDataImpl implements InviteDataService{
-
-
-	
-
-
+public class InviteDataImpl implements InviteDataService {
 
 	/**
-	 * ldk
-	 * 查找邀请信息
+	 * ldk14 get the invitation info
 	 */
-	
+
 	public List<TaskPO> getInvitationInfo(String reviewerName) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
-		
+
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "SELECT * FROM review WHERE uname = '" + reviewerName + "' and isAgree = 0" ;
+		String sql = "SELECT * FROM review WHERE uname = '" + reviewerName + "' and isAgree = 0";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
-		
+
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
 		}
-		
-		for(int i =0 ;i<list.size();i++){
-			pStatement = connection.prepareStatement("SELECT * FROM task WHERE tname = '" + list.get(i)+ "'");
+
+		for (int i = 0; i < list.size(); i++) {
+			pStatement = connection.prepareStatement("SELECT * FROM task WHERE tname = '" + list.get(i) + "'");
 			rSet = pStatement.executeQuery();
 			while (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
@@ -53,19 +47,18 @@ public class InviteDataImpl implements InviteDataService{
 	}
 
 	/**
-	 * ldk
-	 * 0:删除成功　１：失败
+	 * ldk14 0:delete success 1：delete fail
 	 */
 	public int deleteInvitationInfo(String userName, String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		int flag = -1;
-		String sql = "DELETE   FROM review WHERE uname = '" + userName + "' and tname = '" +taskName+"'";
+		String sql = "DELETE   FROM review WHERE uname = '" + userName + "' and tname = '" + taskName + "'";
 		pStatement = connection.prepareStatement(sql);
 		int i = pStatement.executeUpdate();
-		
-		if(i==1)
+
+		if (i == 1)
 			flag = 0;
 		else
 			flag = 1;
@@ -74,19 +67,17 @@ public class InviteDataImpl implements InviteDataService{
 		return flag;
 	}
 
-	
 	/**
-	 * ldk
-	 * 查找所有创建正在进行的任务的信息
+	 * ldk14 get all tasks on doing
 	 */
-	
+
 	public List<TaskPO> getAllDoingTask(String createrName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
-		
+
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 0" ;
+		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 0";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
 
@@ -95,24 +86,21 @@ public class InviteDataImpl implements InviteDataService{
 					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
 			poList.add(po);
 		}
-		
 
 		DBManager.stopAll(rSet, pStatement, connection);
 		return poList;
 	}
-	
-	
+
 	/**
-	 * ldk
-	 * 查找所有创建已经完成的任务的信息
+	 * ldk14 get all completed tasks
 	 */
 	public List<TaskPO> getAllCompleteTask(String createrName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
-		
+
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 1" ;
+		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 1";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
 
@@ -121,24 +109,22 @@ public class InviteDataImpl implements InviteDataService{
 					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
 			poList.add(po);
 		}
-		
 
 		DBManager.stopAll(rSet, pStatement, connection);
 		return poList;
 	}
-	
+
 	/**
-	 * ldk
-	 * 返回同意的用户名
+	 * ldk14 get user name who has agreed the invitation
 	 */
 	public List<String> getAgreeUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 1" ;
+		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 1";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
-		
+
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
@@ -150,17 +136,15 @@ public class InviteDataImpl implements InviteDataService{
 		// TODO Auto-generated method stub
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 0" ;
+		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 0";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
-		
+
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
 		}
 		return list;
 	}
-
-
 
 }

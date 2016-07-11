@@ -31,6 +31,7 @@ function invite() {
 		users += $(temp[i]).text().trim() + ' ';
 	}
 	
+	// TODO taskName
 	jQuery.ajax({
 		url: '/crc/InviteServlet',
 		type: 'post',
@@ -74,9 +75,8 @@ function isUnique(obj) {
  * @returns
  */
 function displayUser(users) {
-	for (var i = 0; i < users.length; i++) {
-		$('#toInvite').prepend('<tr><td>' + users[i].name  + '</td></tr>');		
-	}
+//	console.log(users)
+//	$('#searchName').val(users[0].name)
 }
 
 /**

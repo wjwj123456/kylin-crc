@@ -226,22 +226,18 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="toInvite">
-								<thead>
-									<tr>
-										<th>用户名</th>
-									</tr>
-								</thead>
-								<tbody>
-									<%
-										for (int i = 0; i < 10; i++) {
-									%>
-									<tr>
-										<td><%=i%></td>
-									</tr>
-									<%
-										}
-									%>
-								</tbody>
+								<tr>
+									<th>用户名</th>
+								</tr>
+								<%
+									for (int i = 0; i < 10; i++) {
+								%>
+								<tr>
+									<td><%=i%></td>
+								</tr>
+								<%
+									}
+								%>
 							</table>
 						</div>
 					</div>

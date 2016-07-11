@@ -4,23 +4,45 @@
  */
 package dataservice;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import po.ReportPO;
 
 /**
-* TODO: （类描述）
+* merge report
 *
 * @author lpt14
 * @since 2016年7月10日
 * @see
 */
 public interface MergeDataService {
-	
-		public boolean canMerge(String userName,String taskName);
-
-		public List<ReportPO> mergeReport(String userNme,String taskName);
-		 
+		/**
+		 * judge is it the first one submitted
+		 * @param userName
+		 * @param taskName
+		 * @return boolean
+		 * @author      lpt14
+		 * @throws SQLException 
+		 * @throws ClassNotFoundException 
+		 */
+		public boolean canMerge(String taskName) throws SQLException, ClassNotFoundException;
+		/**
+		 * give ui the list to merge
+		 * @param userNme
+		 * @param taskName    
+		 * @return List<ReportPO>   
+		 * @author      lpt14
+		 * @throws SQLException 
+		 * @throws ClassNotFoundException 
+		 */
+		public List<ReportPO> mergeReport(String taskName) throws SQLException, ClassNotFoundException;
+		 /**
+		  * save merge record
+		  * @param reportList      
+		  * @return void
+		  * @author      lpt14
+		  */
 		public void saveMergeReport(List<ReportPO> reportList);
 		
 	

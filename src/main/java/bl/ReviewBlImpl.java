@@ -1,7 +1,7 @@
-  /**
- * @author       lpt14
- * @version      V1.0
- */
+/**
+* @author       lpt14
+* @version      V1.0
+*/
 package bl;
 
 import java.sql.SQLException;
@@ -17,32 +17,32 @@ import vo.TaskVO;
 import vo.UserVO;
 
 /**
-* TODO: （类描述）
-*
-* @author lpt14
-* @since 2016年7月8日
-* @see
-*/
+ * TODO: （类描述）
+ *
+ * @author lpt14
+ * @since 2016年7月8日
+ * @see
+ */
 public class ReviewBlImpl implements ReviewBlService {
-	
-	ReviewDataService reviewDataService=new ReviewDataImpl();
-	
+
+	ReviewDataService reviewDataService = new ReviewDataImpl();
 
 	/**
-	* TODO:（方法描述）
-	*
-	* @author lpt14
-	* @since 2016年7月8日
-	* @param vo
-	* @see blservice.ReviewBlService#saveReviewInfo(vo.TaskVO)
-	*
-	*/
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月8日
+	 * @param vo
+	 * @see blservice.ReviewBlService#saveReviewInfo(vo.TaskVO)
+	 *
+	 */
 	public int saveReviewInfo(TaskVO vo) {
 		// TODO Auto-generated method stub
-		TaskPO po=new TaskPO(vo.getUserName(), vo.getTaskName(), vo.getType(), vo.getProject(), vo.getDescribe(), vo.getDeadline(), vo.getState());
-		int flag=0;
+		TaskPO po = new TaskPO(vo.getUserName(), vo.getTaskName(), vo.getType(), vo.getProject(), vo.getDescribe(),
+				vo.getDeadline(), vo.getState());
+		int flag = 0;
 		try {
-			flag=reviewDataService.saveReviewInfo(po);
+			flag = reviewDataService.saveReviewInfo(po);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,22 +51,22 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 		return flag;
-	
+
 	}
 
 	/**
-	* TODO:（方法描述）
-	*
-	* @author lpt14
-	* @since 2016年7月8日
-	* @param userName
-	* @return
-	* @see blservice.ReviewBlService#geTaskList(java.lang.String)
-	*
-	*/
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月8日
+	 * @param userName
+	 * @return
+	 * @see blservice.ReviewBlService#geTaskList(java.lang.String)
+	 *
+	 */
 	public List<TaskVO> geTaskList(String userName) {
 		// TODO Auto-generated method stub
-		List<TaskVO> result=new ArrayList<TaskVO>();
+		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = null;
 		try {
 			list = reviewDataService.getTaskList(userName);
@@ -77,27 +77,28 @@ public class ReviewBlImpl implements ReviewBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(TaskPO po:list){
-			TaskVO vo=new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(), po.getDeadline(), po.getState());
-		result.add(vo);
+		for (TaskPO po : list) {
+			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
+					po.getDeadline(), po.getState());
+			result.add(vo);
 		}
 		return result;
 	}
 
 	/**
-	* TODO:（方法描述）
-	*
-	* @author ldk14
-	* @since 2016年7月9日
-	* @param keyword
-	* @return
-	 * @throws ClassNotFoundException 
-	* @see blservice.ReviewBlService#searchUserByKeyword(java.lang.String)
-	*
-	*/
-	public List<UserVO> searchUserByKeyword(String keyword)  {
+	 * TODO:（方法描述）
+	 *
+	 * @author ldk14
+	 * @since 2016年7月9日
+	 * @param keyword
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @see blservice.ReviewBlService#searchUserByKeyword(java.lang.String)
+	 *
+	 */
+	public List<UserVO> searchUserByKeyword(String keyword) {
 		// TODO Auto-generated method stub
-		List<UserVO> result=new ArrayList<UserVO>();
+		List<UserVO> result = new ArrayList<UserVO>();
 		List<UserPO> list = new ArrayList<UserPO>();
 		try {
 			list = reviewDataService.searchUserByKeyword(keyword);
@@ -108,43 +109,43 @@ public class ReviewBlImpl implements ReviewBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(UserPO po:list){
-			UserVO vo=new UserVO(po.getName(), po.getEmail(), po.getPassword());
-		result.add(vo);
+		for (UserPO po : list) {
+			UserVO vo = new UserVO(po.getName(), po.getEmail(), po.getPassword());
+			result.add(vo);
 		}
 		return result;
 	}
 
 	/**
-	* TODO:（方法描述）
-	*
-	* @author lpt14
-	* @since 2016年7月9日
-	* @param userName
-	* @return
-	* @see blservice.ReviewBlService#saveReviewer(java.lang.String[])
-	*
-	*/
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月9日
+	 * @param userName
+	 * @return
+	 * @see blservice.ReviewBlService#saveReviewer(java.lang.String[])
+	 *
+	 */
 	public int saveReviewer(String[] userName) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	/**
-	* TODO:（方法描述）
-	*
-	* @author lpt14
-	* @since 2016年7月9日
-	* @param userName
-	* @return
-	* @see blservice.ReviewBlService#saveInvitation(java.lang.String[])
-	*
-	*/
-	public int saveInvitation(String[] userName,String taskName) {
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月9日
+	 * @param userName
+	 * @return
+	 * @see blservice.ReviewBlService#saveInvitation(java.lang.String[])
+	 *
+	 */
+	public int saveInvitation(String[] userName, String taskName) {
 		// TODO Auto-generated method stub
-		int flag=0;
+		int flag = 0;
 		try {
-			flag= reviewDataService.saveInvitation(userName, taskName);
+			flag = reviewDataService.saveInvitation(userName, taskName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,20 +157,20 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	* TODO:（方法描述）
-	*
-	* @author lpt14
-	* @since 2016年7月9日
-	* @param userName
-	* @return
-	* @see blservice.ReviewBlService#saveAcceptReviewer(java.lang.String)
-	*
-	*/
-	public int saveAcceptReviewer(String userName,String taskName) {
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月9日
+	 * @param userName
+	 * @return
+	 * @see blservice.ReviewBlService#saveAcceptReviewer(java.lang.String)
+	 *
+	 */
+	public int saveAcceptReviewer(String userName, String taskName) {
 		// TODO Auto-generated method stub
-		int flag=0;
+		int flag = 0;
 		try {
-			flag=reviewDataService.saveAcceptReviewer(userName, taskName);
+			flag = reviewDataService.saveAcceptReviewer(userName, taskName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -177,23 +178,23 @@ public class ReviewBlImpl implements ReviewBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	return flag;
+		return flag;
 	}
 
 	/**
-	* TODO:（方法描述）
-	*
-	* @author lpt14
-	* @since 2016年7月9日
-	* @return
-	* @see blservice.ReviewBlService#getTaskList()
-	*
-	*/
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月9日
+	 * @return
+	 * @see blservice.ReviewBlService#getTaskList()
+	 *
+	 */
 	public List<TaskVO> getTaskList() {
 		// TODO Auto-generated method stub
-		List<TaskPO> list=new ArrayList<TaskPO>();
+		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
-			 list=reviewDataService.getTaskList();
+			list = reviewDataService.getTaskList();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -201,14 +202,32 @@ public class ReviewBlImpl implements ReviewBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	List<TaskVO> voList=new ArrayList<TaskVO>();
-	for(TaskPO po:list){
-		voList.add(new TaskVO(po.getUserName(), po.getTaskName()));
-		
+		List<TaskVO> voList = new ArrayList<TaskVO>();
+		for (TaskPO po : list) {
+			voList.add(new TaskVO(po.getUserName(), po.getTaskName()));
+
+		}
+
+		return voList;
+
 	}
-	
-	return voList;
-	
+
+	public TaskVO getTaskVOByTaskName(String taskName) {
+		// TODO Auto-generated method stub
+		try {
+			TaskVO vo = new TaskVO(reviewDataService.getTaskPOByTaskName(taskName).getUserName(),
+					reviewDataService.getTaskPOByTaskName(taskName).getTaskName());
+			return vo;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }
