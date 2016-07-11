@@ -1,3 +1,6 @@
+<%@page import="vo.Type"%>
+<%@page import="tools.Cast"%>
+<%@page import="vo.TaskVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -140,16 +143,29 @@
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
+		<%
+			TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));
+		%>
 		<div class="col-md-10 bs-docs-section">
-			<h2 id="title">XXX</h2>
+			<h2 id="title"><%=taskVO.getTaskName()%></h2>
 			<hr>
 			<h2 id="message">说明</h2>
-			<p>类型：XX评审</p>
-			<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+			<%
+				if (taskVO.getType() == Type.code) {
+			%>
+			<p>类型：代码评审</p>
+			<%
+				} else {
+			%>
+			<p>类型：文档评审</p>
+			<%
+				}
+			%>
+			<p><%=taskVO.getDescribe()%></p>
 			<button class="btn btn-success" id="join">参加评审</button>
 			<hr>
 			<h2 id="deadline">截止时间</h2>
-			<strong>XXXX-XX-XX XX:XX</strong>
+			<strong><%=taskVO.getDeadline() %></strong>
 			<hr>
 			<h2 id="review">评审</h2>
 			<p id="preWord">开始评审前，请确认</p>
@@ -157,8 +173,8 @@
 			<div id="codeBlock">
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-					<table class="table">
-						<tr id="start">
+					<table class="table" id="codeTable">
+						<tr id="codeStart">
 							<th width=120px>文件名</th>
 							<th width=50px>行数</th>
 							<th>描述</th>
@@ -205,8 +221,8 @@
 			<div id="docBlock">
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-					<table class="table">
-						<tr id="start">
+					<table class="table" id="docTable">
+						<tr id="docStart">
 							<th width=120px>文件名</th>
 							<th width=50px>页码</th>
 							<th width=50px>行数</th>
@@ -264,7 +280,7 @@
 			</div>
 			<div class="row" style="padding-top: 20px; text-align: right;">
 				<div class="col-sm-5"></div>
-				<div class="form-group col-sm-5" id="timeGroup" >
+				<div class="form-group col-sm-5" id="timeGroup">
 					<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="timeCost"

@@ -31,31 +31,31 @@ public class SendMail {
 	public static int sendMail(String from, String[] to, String userName, String taskName, String url) {
 		String host = "localhost";
 
-		// 获取系统属性对象
+		// 鑾峰彇绯荤粺灞炴�у璞�
 		Properties properties = System.getProperties();
-		// 设置邮件服务器
+		// 璁剧疆閭欢鏈嶅姟鍣�
 		properties.setProperty("mail.smtp.host", host);
 
-		// 获取默认Session对象
+		// 鑾峰彇榛樿Session瀵硅薄
 		Session mailSession = Session.getDefaultInstance(properties);
 		try {
-			// 创建一个默认的MimeMessage对象。
+			// 鍒涘缓涓�涓粯璁ょ殑MimeMessage瀵硅薄銆�
 			MimeMessage message = new MimeMessage(mailSession);
-			// 设置 From: 头部的header字段
+			// 璁剧疆 From: 澶撮儴鐨刪eader瀛楁
 			message.setFrom(new InternetAddress(from));
 			for (String receiver : to) {
-				// 设置 To: 头部的header字段
+				// 璁剧疆 To: 澶撮儴鐨刪eader瀛楁
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 			}
-			// 设置 Subject: header字段
+			// 璁剧疆 Subject: header瀛楁
 			message.setSubject("Invitation from " + userName);
 			StringBuilder text = new StringBuilder();
 			text.append("Hi!\n").append("this is an invitation from ").append(userName).append("\n");
 			text.append("Please use the following link to join in\n");
 			text.append(url);
-			// 现在设置的实际消息
+			// 鐜板湪璁剧疆鐨勫疄闄呮秷鎭�
 			message.setText(text.toString());
-			// 发送消息
+			// 鍙戦�佹秷鎭�
 			Transport.send(message);
 
 		} catch (MessagingException e) {

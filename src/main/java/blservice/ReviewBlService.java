@@ -19,7 +19,7 @@ public interface ReviewBlService {
 	 * save all user who has been invited
 	 * 
 	 * @param userName
-	 * @return int 0 -- success 1-- fail
+	 * @return int 0 -- success 1-- conflict 2: fail
 	 * @author lpt14
 	 */
 	public int saveInvitation(String[] userName, String taskName);
