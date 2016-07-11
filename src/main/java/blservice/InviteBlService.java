@@ -17,12 +17,12 @@ public interface InviteBlService {
 	 * ldk
 	 * 
 	 * @param vo
-	 * @return 0:ɾ���ɹ� 1��ɾ��ʧ��
+	 * @return 0:delete success 1��delete fail
 	 */
 	public int deleteInvitationInfo(String userName, String taskName);
 
 	/**
-	 * ldk �õ������ߴ��������������ڽ��е�����
+	 * ldk get all tasks on doing
 	 * 
 	 * @param createrName
 	 * @return TaskVOs
@@ -30,7 +30,7 @@ public interface InviteBlService {
 	public List<TaskVO> getAllDoingTask(String createrName);
 
 	/**
-	 * ldk �õ������ߴ���������������ɵ�����
+	 * ldk get all completed tasks
 	 * 
 	 * @param createrName
 	 * @return TaskVOs

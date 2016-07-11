@@ -62,7 +62,7 @@
     <url-pattern>/SearchServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description>register or sign up</description>
     <display-name>RegisterServlet</display-name>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>servlet.RegisterServlet</servlet-class>
@@ -81,7 +81,7 @@
     <url-pattern>/My CRC.jsp</url-pattern>
   </filter-mapping>
   <servlet>
-    <description></description>
+    <description>refuse invitation from others</description>
     <display-name>RefuseServlet</display-name>
     <servlet-name>RefuseServlet</servlet-name>
     <servlet-class>servlet.RefuseServlet</servlet-class>
@@ -91,7 +91,7 @@
     <url-pattern>/RefuseServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description>commit report</description>
     <display-name>ReportServlet</display-name>
     <servlet-name>ReportServlet</servlet-name>
     <servlet-class>servlet.ReportServlet</servlet-class>
