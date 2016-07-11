@@ -54,6 +54,7 @@
 				<li><a href="#basicInfo">基本信息</a></li>
 				<li><a href="#message">消息</a></li>
 				<li><a href="#runningReview">进行中评审</a></li>
+				<li><a href="#joiningReview">参与中评审</a></li>
 				<li><a href="#hisReview">历史评审</a></li>
 				<li><a href="#perAnalyze">个人分析</a></li>
 			</ul>
@@ -89,6 +90,7 @@
 					<th>发信人</th>
 					<th>项目名</th>
 					<th>操作</th>
+					<th width=10px></th>
 				</tr>
 			</table>
 			<hr>
@@ -105,13 +107,21 @@
 					<td>haha</td>
 					<td>haha</td>
 					<td><button class="btn btn-success" data-toggle="modal"
-							data-target="#inviteModal">查看</button></td>
+							data-target="#inviteModal">邀请</button></td>
+				</tr>
+			</table>
+			<hr>
+			<h2 id="joiningReview">参与中评审</h2>
+			<table class="table">
+				<tr>
+					<th>评审名</th>
+					<th>描述</th>
+					<th>deadline</th>
 				</tr>
 				<tr>
 					<td>haha</td>
 					<td>haha</td>
 					<td>haha</td>
-					<td><button class="btn btn-success">查看</button></td>
 				</tr>
 			</table>
 			<hr>
@@ -121,19 +131,11 @@
 					<th>评审名</th>
 					<th>描述</th>
 					<th>deadline</th>
-					<th>操作</th>
 				</tr>
 				<tr>
 					<td>haha</td>
 					<td>haha</td>
 					<td>haha</td>
-					<td><button class="btn btn-success">查看</button></td>
-				</tr>
-				<tr>
-					<td>haha</td>
-					<td>haha</td>
-					<td>haha</td>
-					<td><button class="btn btn-success">查看</button></td>
 				</tr>
 			</table>
 			<hr>
@@ -207,7 +209,7 @@
 									<th>用户名</th>
 								</tr>
 							</table>
-						</div>	
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -262,12 +262,13 @@
 				<button class="btn btn-success" id="add-file">添加</button>
 
 			</div>
-			<div class="row" style="padding-top: 20px">
-				<div class="form-group col-sm-7" id="timeGroup">
-					<label for="timeCost" class="col-sm-2 control-label">评审时间</label>
-					<div class="col-sm-10">
+			<div class="row" style="padding-top: 20px; text-align: right;">
+				<div class="col-sm-5"></div>
+				<div class="form-group col-sm-5" id="timeGroup" >
+					<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
+					<div class="col-sm-8">
 						<input type="text" class="form-control" id="timeCost"
-							placeholder="分钟">
+							placeholder="小时">
 					</div>
 				</div>
 				<button class="btn btn-success" id="confirmReport">确认评审结果</button>
@@ -287,7 +288,7 @@
 							for (int i = 0; i < 10; i++) {
 						%>
 						<tr>
-							<td><input type="checkbox" checked="true"><%=i%></td>
+							<td><input type="checkbox"><%=i%></td>
 							<td>121</td>
 							<td>1212</td>
 							<td>1212</td>
@@ -335,6 +336,9 @@
 						</tr>
 					</table>
 				</div>
+				<div class="row" style="text-align: right;">
+					<button class="btn btn-success" id="confirmMerge">确认合并</button>
+				</div>
 			</div>
 			<div id="chooseModal" class="modal fade">
 				<div class="modal-dialog" style="width: 800px;">
@@ -353,12 +357,20 @@
 									<th>评审人</th>
 								</tr>
 							</table>
+							<table class="table" id="choose-file">
+								<tr>
+									<th>文件名</th>
+									<th>页码</th>
+									<th>行数</th>
+									<th>描述</th>
+									<th>评审人</th>
+								</tr>
+							</table>
 
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary" id="confirmInvite">确认邀请</button>
 						</div>
 					</div>
 				</div>
