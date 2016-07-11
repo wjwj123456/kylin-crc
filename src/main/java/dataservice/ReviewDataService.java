@@ -42,4 +42,15 @@ public interface ReviewDataService {
 	 */
 	public int saveAcceptReviewer(String userName, String taskName) throws SQLException, ClassNotFoundException;
 
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author ldk14
+	 * @since 2016年7月11日
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#getTaskList()
+	 */
+	public TaskPO getTaskPOByTaskName(String taskName) throws SQLException, ClassNotFoundException;
 }
