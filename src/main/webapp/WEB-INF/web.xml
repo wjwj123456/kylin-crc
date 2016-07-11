@@ -71,4 +71,23 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>CRCFilter</display-name>
+    <filter-name>CRCFilter</filter-name>
+    <filter-class>filter.CRCFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CRCFilter</filter-name>
+    <url-pattern>/My CRC.jsp</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RefuseServlet</display-name>
+    <servlet-name>RefuseServlet</servlet-name>
+    <servlet-class>servlet.RefuseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RefuseServlet</servlet-name>
+    <url-pattern>/RefuseServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
