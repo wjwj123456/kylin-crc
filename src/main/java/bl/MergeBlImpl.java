@@ -61,8 +61,9 @@ public class MergeBlImpl implements MergeBlService{
 	public List<ReportVO> mergeReport(String taskName) {
 		// TODO Auto-generated method stub
 		List<ReportVO> voList=new ArrayList<ReportVO>();
+		List<ReportPO> poList=null;
 		try {
-			List<ReportPO> poList=mergeDataService.mergeReport(taskName);
+			poList=mergeDataService.mergeReport(taskName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +71,10 @@ public class MergeBlImpl implements MergeBlService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		for(ReportPO po: poList){
+			voList.add(new ReportVO(po));
+		}
+		return voList;
 	}
 
 	/**
@@ -83,7 +87,7 @@ public class MergeBlImpl implements MergeBlService{
 	*
 	*/
 	public void saveMergeReport(List<ReportVO> reportList) {
-		// TODO Auto-generated method stub
+		return;
 		
 	}
 
