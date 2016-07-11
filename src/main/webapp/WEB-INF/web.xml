@@ -109,4 +109,14 @@
     <filter-name>TaskFilter</filter-name>
     <url-pattern>/tasks.jsp</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TaskServlet</display-name>
+    <servlet-name>TaskServlet</servlet-name>
+    <servlet-class>servlet.TaskServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TaskServlet</servlet-name>
+    <url-pattern>/TaskServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

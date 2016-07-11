@@ -14,11 +14,28 @@ $(function() {
 	});
 	$('button[data-target="#inviteModal"]').on('click', function() {
 		taskName = $(this).parent().parent().children().first().text().trim();
+		loadAgreedReviewer(taskName);
 	});
 	$('#confirmInvite').on('click', function() {
 		invite();
 	});
 });
+
+/**
+ * load agreed reviewers of a task
+ * @param taskName
+ * @returns
+ */
+function loadAgreedReviewer(taskName) {
+	jQuery.ajax({
+		url: '/crc/TaskServlet',
+		type: 'post',
+		data: 'type=agree' + '&taskName=' + taskName,
+		success: function(data) {
+			alert(data);
+		}		
+	});
+}
 
 /**
  * invite 
@@ -31,7 +48,6 @@ function invite() {
 		users += $(temp[i]).text().trim() + ' ';
 	}
 	
-	// TODO taskName
 	jQuery.ajax({
 		url: '/crc/InviteServlet',
 		type: 'post',
