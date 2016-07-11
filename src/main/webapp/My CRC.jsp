@@ -104,8 +104,8 @@
 				</tr>
 				<tr>
 					<td>haha</td>
-					<td>haha</td>
-					<td>haha</td>
+					<td>haha2</td>
+					<td>haha3</td>
 					<td><button class="btn btn-success" data-toggle="modal"
 							data-target="#inviteModal">邀请</button></td>
 				</tr>

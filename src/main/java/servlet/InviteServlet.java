@@ -32,7 +32,8 @@ public class InviteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UFT-8");
+		System.out.println(request.getQueryString());
+		request.setCharacterEncoding("UTF-8");
 		String taskName = request.getParameter("taskName");
 		String users = request.getParameter("users");
 		int userNumber = Integer.parseInt(request.getParameter("userNumber"));

@@ -12,6 +12,9 @@ $(function() {
 			searchUser($(this).val().trim());
 		}
 	});
+	$('button[data-target="#inviteModal"]').on('click', function() {
+		taskName = $(this).parent().parent().children().first().text().trim();
+	});
 	$('#confirmInvite').on('click', function() {
 		invite();
 	});
@@ -32,7 +35,7 @@ function invite() {
 	jQuery.ajax({
 		url: '/crc/InviteServlet',
 		type: 'post',
-		data: 'taskName=' + '&userNumber=' + temp.length +'&users=' + users,
+		data: 'taskName=' + taskName + '&userNumber=' + temp.length +'&users=' + users,
 		success: function(data) {
 			if (data == 0) {
 				alert('已发出邀请')
