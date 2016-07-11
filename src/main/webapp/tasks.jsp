@@ -287,7 +287,7 @@
 							for (int i = 0; i < 10; i++) {
 						%>
 						<tr>
-							<td><input type="checkbox" checked="true"><%=i%></td>
+							<td><input type="checkbox"><%=i%></td>
 							<td>121</td>
 							<td>1212</td>
 							<td>1212</td>
@@ -348,6 +348,15 @@
 							<table class="table" id="choose-code">
 								<tr>
 									<th>文件名</th>
+									<th>行数</th>
+									<th>描述</th>
+									<th>评审人</th>
+								</tr>
+							</table>
+							<table class="table" id="choose-file">
+								<tr>
+									<th>文件名</th>
+									<th>页码</th>
 									<th>行数</th>
 									<th>描述</th>
 									<th>评审人</th>
