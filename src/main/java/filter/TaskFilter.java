@@ -11,6 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import bl.InviteBlImpl;
+import bl.ReviewBlImpl;
+import vo.TaskVO;
+
 /**
  * Servlet Filter implementation class TaskFilter
  */
@@ -38,6 +42,16 @@ public class TaskFilter implements Filter {
 
 		req.setCharacterEncoding("UTF-8");
 		String taskName = req.getParameter("taskName");
+
+		ReviewBlImpl review = new ReviewBlImpl();
+		TaskVO task = review.getTaskVOByTaskName(taskName);
+		session.setAttribute("taskVO", task);
+
+		InviteBlImpl invite = new InviteBlImpl();
+		// 接受邀请的评审者
+		session.setAttribute("agree_" + task.getTaskName(), invite.getAgreeUser(task.getTaskName()));
+		// 未接受邀请
+		session.setAttribute("disagree_" + task.getTaskName(), invite.getDisagreeUser(task.getTaskName()));
 
 		chain.doFilter(request, response);
 	}

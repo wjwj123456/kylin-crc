@@ -28,7 +28,7 @@ public class SendMail {
 	 * 
 	 * @return 0 --- success 1 --- failure
 	 */
-	public int sendMail(String from, String[] to, String userName, String taskName, String url) {
+	public static int sendMail(String from, String[] to, String userName, String taskName, String url) {
 		String host = "localhost";
 
 		// 获取系统属性对象
