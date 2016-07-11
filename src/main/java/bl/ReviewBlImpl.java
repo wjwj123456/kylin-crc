@@ -148,8 +148,8 @@ public class ReviewBlImpl implements ReviewBlService {
 		int flag = 0;
 		try {
 			flag = reviewDataService.saveInvitation(userName, taskName);
-			// TaskVO task = new ReviewBlImpl().getTaskVOByTaskName(taskName);
-			// UserVO user = null;
+			TaskVO task = getTaskVOByTaskName(taskName);
+			// UserVO user = ;
 			// String url = "localhost:8080/tasks.jsp?taskName=" + taskName;
 			// flag &= SendMail.sendMail(user.getEmail(), to, userName,
 			// taskName, url);
