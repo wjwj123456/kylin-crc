@@ -58,13 +58,6 @@ public class CRCFilter implements Filter {
 		List<TaskVO> historyTask = invite.getAllCompleteTask(userName);
 		session.setAttribute("historyTask", historyTask);
 
-		for (TaskVO task : runningTask) {
-			// 接受邀请的评审者
-			session.setAttribute("agree_" + task.getTaskName(), invite.getAgreeUser(task.getTaskName()));
-			// 未接受邀请
-			session.setAttribute("disagree_" + task.getTaskName(), invite.getDisagreeUser(task.getTaskName()));
-		}
-
 		chain.doFilter(request, response);
 	}
 

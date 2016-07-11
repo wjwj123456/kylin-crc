@@ -17,10 +17,10 @@ import vo.TaskVO;
 import vo.UserVO;
 
 /**
- * TODO: £¨ÀàÃèÊö£©
+ * TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author lpt14
- * @since 2016Äê7ÔÂ8ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½8ï¿½ï¿½
  * @see
  */
 public class ReviewBlImpl implements ReviewBlService {
@@ -28,10 +28,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	ReviewDataService reviewDataService = new ReviewDataImpl();
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ8ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½8ï¿½ï¿½
 	 * @param vo
 	 * @see blservice.ReviewBlService#saveReviewInfo(vo.TaskVO)
 	 *
@@ -55,10 +55,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ8ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½8ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#geTaskList(java.lang.String)
@@ -86,10 +86,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @param keyword
 	 * @return
 	 * @throws ClassNotFoundException
@@ -117,10 +117,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#saveReviewer(java.lang.String[])
@@ -132,10 +132,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#saveInvitation(java.lang.String[])
@@ -146,6 +146,7 @@ public class ReviewBlImpl implements ReviewBlService {
 		int flag = 0;
 		try {
 			flag = reviewDataService.saveInvitation(userName, taskName);
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -157,10 +158,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#saveAcceptReviewer(java.lang.String)
@@ -182,10 +183,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @return
 	 * @see blservice.ReviewBlService#getTaskList()
 	 *
