@@ -6,6 +6,7 @@ package bl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import blservice.ReviewBlService;
@@ -14,6 +15,7 @@ import dataservice.ReviewDataService;
 import po.TaskPO;
 import po.UserPO;
 import vo.TaskVO;
+import vo.Type;
 import vo.UserVO;
 
 /**
@@ -146,7 +148,11 @@ public class ReviewBlImpl implements ReviewBlService {
 		int flag = 0;
 		try {
 			flag = reviewDataService.saveInvitation(userName, taskName);
-
+			// TaskVO task = new ReviewBlImpl().getTaskVOByTaskName(taskName);
+			// UserVO user = null;
+			// String url = "localhost:8080/tasks.jsp?taskName=" + taskName;
+			// flag &= SendMail.sendMail(user.getEmail(), to, userName,
+			// taskName, url);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -215,20 +221,36 @@ public class ReviewBlImpl implements ReviewBlService {
 
 	public TaskVO getTaskVOByTaskName(String taskName) {
 		// TODO Auto-generated method stub
+
+		String userName = "";
+		String tName = "";
+		vo.Type type = Type.code;
+		String project = "";
+		String describe = "";
+		Date deadline = new Date();
+		int state = -1;
+
 		try {
-			TaskVO vo = new TaskVO(reviewDataService.getTaskPOByTaskName(taskName).getUserName(),
-					reviewDataService.getTaskPOByTaskName(taskName).getTaskName());
-			return vo;
+			TaskPO po = reviewDataService.getTaskPOByTaskName(taskName);
+			userName = po.getUserName();
+			tName = po.getTaskName();
+			type = po.getType();
+			project = po.getProject();
+			describe = po.getDescribe();
+			deadline = po.getDeadline();
+			state = po.getState();
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
 
+		TaskVO vo = new TaskVO(userName, tName, type, project, describe, deadline, state);
+		return vo;
 	}
 
 }

@@ -155,7 +155,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	/**
 	 * TODO:（方法描述）
 	 *
-	 * @author lpt14
+	 * @author ldk14
 	 * @since 2016年7月9日
 	 * @param userName
 	 * @return
@@ -170,17 +170,21 @@ public class ReviewDataImpl implements ReviewDataService {
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 
-		for (int i = 0; i < userName.length; i++) {
-			String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
+		try {
+			for (int i = 0; i < userName.length; i++) {
+				String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
 
-			pStatement = connection.prepareStatement(sql);
-			pStatement.setString(1, taskName);
-			pStatement.setString(2, userName[i]);
-			pStatement.setInt(3, 0);
-			int j = pStatement.executeUpdate();
-			if (j == 0) {
-				flag = 1;
+				pStatement = connection.prepareStatement(sql);
+				pStatement.setString(1, taskName);
+				pStatement.setString(2, userName[i]);
+				pStatement.setInt(3, 0);
+				int j = pStatement.executeUpdate();
+				if (j == 0) {
+					flag = 2;
+				}
 			}
+		} catch (Exception SQLIntegrityConstraintViolationException) {
+			flag = 1;
 		}
 
 		DBManager.stopAll(null, pStatement, connection);
@@ -236,10 +240,13 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
 
-		TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)), rSet.getString(4),
-				rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+		if (rSet.next()) {
+			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+			DBManager.stopAll(rSet, pStatement, connection);
+			return po;
+		} else
+			return new TaskPO();
 
-		DBManager.stopAll(rSet, pStatement, connection);
-		return po;
 	}
 }
