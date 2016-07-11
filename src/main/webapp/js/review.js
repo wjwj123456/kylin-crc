@@ -40,8 +40,6 @@ function initCodeChoose(){
 		var length = inputs.length;
 		var j = 0;
 		for( i = 0;i<length;i++){
-			
-			alert($(inputs[i]).prop('checked'))
 			if($(inputs[i]).prop('checked')==true){
 				$($('#toMerge-code').find('tr')[j+1]).remove();
 				j--;
@@ -67,8 +65,6 @@ function initFileChoode() {
 		var length = inputs.length;
 		var j = 0;
 		for( i = 0;i<length;i++){
-			
-			alert($(inputs[i]).prop('checked'))
 			if($(inputs[i]).prop('checked')==true){
 				$($('#toMerge-file').find('tr')[j+1]).remove();
 				j--;

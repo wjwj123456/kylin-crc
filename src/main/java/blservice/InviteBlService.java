@@ -1,52 +1,53 @@
 package blservice;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import vo.TaskVO;
 
 public interface InviteBlService {
 	/**
-	 *    ldk
+	 * ldk
+	 * 
 	 * @param reviewerName
 	 * @return TaskVOs
 	 */
 	public List<TaskVO> getInvitationInfo(String reviewerName);
-	
-	
+
 	/**
-	 *    ldk
+	 * ldk
+	 * 
 	 * @param vo
-	 * @return 0:É¾³ý³É¹¦   1£ºÉ¾³ýÊ§°Ü
+	 * @return 0:É¾ï¿½ï¿½ï¿½É¹ï¿½ 1ï¿½ï¿½É¾ï¿½ï¿½Ê§ï¿½ï¿½
 	 */
-	public int deleteInvitationInfo(String userName,String taskName); 
-	
+	public int deleteInvitationInfo(String userName, String taskName);
+
 	/**
-	 *    ldk
-	 *    µÃµ½·¢ÆðÕß´´½¨¹ýµÃËùÓÐÕýÔÚ½øÐÐµÄÈÎÎñ
+	 * ldk ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
+	 * 
 	 * @param createrName
 	 * @return TaskVOs
 	 */
 	public List<TaskVO> getAllDoingTask(String createrName);
-	
+
 	/**
-	 *    ldk
-	 *    µÃµ½·¢ÆðÕß´´½¨¹ýµÃËùÓÐÒÑÍê³ÉµÄÈÎÎñ
+	 * ldk ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½
+	 * 
 	 * @param createrName
 	 * @return TaskVOs
 	 */
 	public List<TaskVO> getAllCompleteTask(String createrName);
-	
+
 	/**
-	 *    ldk
+	 * ldk
+	 * 
 	 * @param taskName
 	 * @return List<String>
 	 */
 	public List<String> getAgreeUser(String taskName);
-	
-	
+
 	/**
-	 *    ldk
+	 * ldk
+	 * 
 	 * @param taskName
 	 * @return List<String>
 	 */
