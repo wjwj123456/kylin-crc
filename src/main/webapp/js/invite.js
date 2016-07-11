@@ -1,3 +1,8 @@
+
+// store the task to operate thanks to 
+// user can only operate a task at one time
+var taskName;
+
 $(function() {
 	$('#toInvite').find('tr').on('click', function() {
 		addInvite($(this));
@@ -7,6 +12,12 @@ $(function() {
 			searchUser($(this).val().trim());
 		}
 	});
+	$('button[data-target="#inviteModal"]').on('click', function() {
+		taskName = $(this).parent().parent().children().first().text().trim();
+	});
+	$('#confirmInvite').on('click', function() {
+		invite();
+	});
 });
 
 /**
@@ -14,52 +25,31 @@ $(function() {
  * @returns
  */
 function invite() {
+	var temp = $('#invited').find('td');
+	var users = '';
+	for (var i = 0; i < temp.length; i++) {
+		users += $(temp[i]).text().trim() + ' ';
+	}
 	
+	// TODO taskName
 	jQuery.ajax({
 		url: '/crc/InviteServlet',
 		type: 'post',
-		data: '',
+		data: 'taskName=' + taskName + '&userNumber=' + temp.length +'&users=' + users,
 		success: function(data) {
-			
+			if (data == 0) {
+				alert('已发出邀请')
+			}
 		}
 	});
 }
-
-$(function() {
-	var subjects = ['PHP', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON'];
-	$('#searchName').typeahead({source: subjects})
-	alert(1)
-	// 初始化typeahead
-//$('#searchName').typeahead({
-//		source : function(query, process) {
-//			// query是输入值
-//			jQuery.getJSON('/crc/SearchServlet', {
-//				"query" : query
-//			}, function(data) {
-//				process(data);
-//			});
-//		},
-//		source: function(query, process) {
-//	         return ["Deluxe Bicycle", "Super Deluxe Trampoline", "Super Duper Scooter"];
-//	    },
-//		updater : function(item) {
-//			return item.replace(/<a(.+?)<\/a>/, ""); // 这里一定要return，否则选中不显示
-//		},
-//		afterSelect : function(item) {
-			// 选择项之后的时间，item是当前选中的项
-//			alert(item);
-//		},
-//		items : 8, // 显示8条
-//		delay : 500 // 延迟时间
-//	});
-});
 
 /**
  * add a user into invite list
  */
 function addInvite(obj) {
 	if (isUnique(obj))
-		$('#invited').prepend(obj.clone());
+		$('#invited').append(obj.clone());
 }
 
 /**
@@ -79,7 +69,7 @@ function isUnique(obj) {
 }
 
 /**
- * display the user name after searching
+ * display the result of searching
  * 
  * @param users
  * @returns
@@ -88,3 +78,12 @@ function displayUser(users) {
 //	console.log(users)
 //	$('#searchName').val(users[0].name)
 }
+
+/**
+ * refuse invitation from others
+ * @returns
+ */
+function refuse() {
+	
+}
+
