@@ -17,21 +17,18 @@ import vo.TaskVO;
 import vo.UserVO;
 
 /**
- * TODO: ����������
+
  *
  * @author lpt14
- * @since 2016��7��8��
- * @see
  */
 public class ReviewBlImpl implements ReviewBlService {
 
 	ReviewDataService reviewDataService = new ReviewDataImpl();
 
 	/**
-	 * TODO:������������
 	 *
 	 * @author lpt14
-	 * @since 2016��7��8��
+
 	 * @param vo
 	 * @see blservice.ReviewBlService#saveReviewInfo(vo.TaskVO)
 	 *
@@ -55,10 +52,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author lpt14
-	 * @since 2016��7��8��
+
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#geTaskList(java.lang.String)
@@ -86,10 +83,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author ldk14
-	 * @since 2016��7��9��
+
 	 * @param keyword
 	 * @return
 	 * @throws ClassNotFoundException
@@ -116,26 +113,11 @@ public class ReviewBlImpl implements ReviewBlService {
 		return result;
 	}
 
-	/**
-	 * TODO:������������
-	 *
-	 * @author lpt14
-	 * @since 2016��7��9��
-	 * @param userName
-	 * @return
-	 * @see blservice.ReviewBlService#saveReviewer(java.lang.String[])
-	 *
-	 */
-	public int saveReviewer(String[] userName) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	/**
-	 * TODO:������������
+	 *
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#saveInvitation(java.lang.String[])
@@ -158,10 +140,9 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
 	 * @param userName
 	 * @return
 	 * @see blservice.ReviewBlService#saveAcceptReviewer(java.lang.String)
@@ -183,10 +164,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:������������
+
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
+
 	 * @return
 	 * @see blservice.ReviewBlService#getTaskList()
 	 *

@@ -27,5 +27,9 @@ public static Date stringToDate(String date){
 	}
 	return date2;
 }
-
+public static String dateToString(Date date){
+	SimpleDateFormat dFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	String result=dFormat.format(date);
+	return result;
+}
 }

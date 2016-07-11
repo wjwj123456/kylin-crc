@@ -20,7 +20,9 @@ import vo.ReportVO;
 public interface MergeBlService {
 	public boolean canMerge(String taskName) ;
 	public List<ReportVO> mergeReport(String taskName);
-	public void saveMergeReport(List<ReportVO> reportList);
+	public void saveMergeReport(List<ReportVO> reportList,String taskName);
+	public void saveAddedMergeReport(List<ReportVO> reportList, String taskName);
+		
 	
 	
 }
