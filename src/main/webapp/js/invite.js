@@ -95,4 +95,9 @@ function refuse() {
 		}
 	});
 }
+var theTaskName;
+function initInvite(obj) {
+	theTaskName = $(obj).parent().parent().find('a').text();
+	alert(theTaskName);
+}
 
