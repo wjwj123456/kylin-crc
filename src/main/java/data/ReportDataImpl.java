@@ -8,16 +8,16 @@ import java.util.List;
 import dataservice.ReportDataService;
 import po.ReportPO;
 
-public class ReportDataImpl implements ReportDataService{
+public class ReportDataImpl implements ReportDataService {
 
-	public int createReport(List<ReportPO> pos)throws ClassNotFoundException, SQLException {
+	public int createReport(List<ReportPO> pos) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		int flag = -1;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		
-		for(int i =0;i<pos.size();i++){
-			
+
+		for (int i = 0; i < pos.size(); i++) {
+
 			String sql = "INSERT INTO report (tname, uname,filename, page,location,description,state,origin) VALUES (?, ?, ?, ?, ?, ?,?,? )";
 
 			pStatement = connection.prepareStatement(sql);
@@ -27,19 +27,17 @@ public class ReportDataImpl implements ReportDataService{
 			pStatement.setInt(4, pos.get(i).getPage());
 			pStatement.setInt(5, pos.get(i).getLocation());
 			pStatement.setString(6, pos.get(i).getDescription());
-			pStatement.setInt(7, 1);
-			pStatement.setInt(8, 1);
-			
-			try{
+			pStatement.setInt(7, 0);
+			pStatement.setInt(8, 0);
+
+			try {
 				int j = pStatement.executeUpdate();
 				if (j == 1) {
 					flag = 0;
-				}
-				else{
+				} else {
 					flag = 2;
 				}
-			}
-			catch (Exception SQLIntegrityConstraintViolationException) {
+			} catch (Exception SQLIntegrityConstraintViolationException) {
 				flag = 1;
 			}
 		}
@@ -48,19 +46,20 @@ public class ReportDataImpl implements ReportDataService{
 		return flag;
 	}
 
-	public int setCompleteTime(String taskName, String reviewerName ,double time) throws ClassNotFoundException, SQLException{
+	public int setCompleteTime(String taskName, String reviewerName, double time)
+			throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		int flag = -1;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		
-		String sql = "UPDATE review SET  time = ? WHERE tname = '"+taskName+"' and uname = '"+reviewerName+"'";
+
+		String sql = "UPDATE review SET  time = ? WHERE tname = '" + taskName + "' and uname = '" + reviewerName + "'";
 		pStatement = connection.prepareStatement(sql);
 		pStatement.setDouble(1, time);
 		int i = pStatement.executeUpdate();
-		if(i==1)	
+		if (i == 1)
 			flag = 0;
-		else	
+		else
 			flag = 1;
 		DBManager.stopAll(null, pStatement, connection);
 		return flag;
