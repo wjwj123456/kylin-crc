@@ -6,6 +6,8 @@ package dataservice;
 
 import java.util.List;
 
+import po.ReportPO;
+
 /**
 * TODO: £®¿‡√Ë ˆ£©
 *
@@ -15,13 +17,11 @@ import java.util.List;
 */
 public interface MergeDataService {
 	
-//		public boolean canMerge(String userName,String taskName);
-		
-//		public List<ReportPO> mergeReport(String userNme,String taskName);
-		
-		
-		
-		
+		public boolean canMerge(String userName,String taskName);
+
+		public List<ReportPO> mergeReport(String userNme,String taskName);
+		 
+		public void saveMergeReport(List<ReportPO> reportList);
 		
 	
 
