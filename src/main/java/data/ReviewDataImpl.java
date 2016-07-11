@@ -174,18 +174,20 @@ public class ReviewDataImpl implements ReviewDataService {
 		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
 
-		pStatement = connection.prepareStatement(sql);
 		for (int i = 0; i < userName.length; i++) {
+			String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
+
+			pStatement = connection.prepareStatement(sql);
 			pStatement.setString(1, taskName);
 			pStatement.setString(2, userName[i]);
 			pStatement.setInt(3, 0);
+			int j = pStatement.executeUpdate();
+			if (j == 0) {
+				flag = 1;
+			}
 		}
-		int i = pStatement.executeUpdate();
-		if (i == 0) {
-			flag = 1;
-		}
+
 		DBManager.stopAll(null, pStatement, connection);
 		return flag;
 	}
