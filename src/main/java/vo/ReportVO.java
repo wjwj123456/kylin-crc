@@ -1,5 +1,7 @@
 package vo;
 
+import po.ReportPO;
+
 public class ReportVO {
 	String taskName;
 	String userName;
@@ -18,6 +20,17 @@ public class ReportVO {
 		this.location = location;
 		this.description = description;
 	}
+	
+	public ReportVO(ReportPO po) {
+		super();
+		this.taskName = po.getTaskName();
+		this.userName = po.getUserName();
+		this.fileName = po.getFileName();
+		this.page = po.getPage();
+		this.location = po.getLocation();
+		this.description = po.getDescription();
+	}
+	
 	public String getTaskName() {
 		return taskName;
 	}
