@@ -1,3 +1,6 @@
+<%@page import="vo.Type"%>
+<%@page import="tools.Cast"%>
+<%@page import="vo.TaskVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -140,12 +143,25 @@
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
+		<%
+			TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));
+		%>
 		<div class="col-md-10 bs-docs-section">
-			<h2 id="title">XXX</h2>
+			<h2 id="title"><%=taskVO.getTaskName()%></h2>
 			<hr>
 			<h2 id="message">说明</h2>
-			<p>类型：XX评审</p>
-			<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+			<%
+				if (taskVO.getType() == Type.code) {
+			%>
+			<p>类型：代码评审</p>
+			<%
+				} else {
+			%>
+			<p>类型：文档评审</p>
+			<%
+				}
+			%>
+			<p><%=taskVO.getDescribe()%></p>
 			<button class="btn btn-success" id="join">参加评审</button>
 			<hr>
 			<h2 id="deadline">截止时间</h2>
@@ -264,7 +280,7 @@
 			</div>
 			<div class="row" style="padding-top: 20px; text-align: right;">
 				<div class="col-sm-5"></div>
-				<div class="form-group col-sm-5" id="timeGroup" >
+				<div class="form-group col-sm-5" id="timeGroup">
 					<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="timeCost"

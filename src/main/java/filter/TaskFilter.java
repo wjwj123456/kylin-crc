@@ -49,10 +49,10 @@ public class TaskFilter implements Filter {
 
 		InviteBlImpl invite = new InviteBlImpl();
 		// 接受邀请的评审者
-		session.setAttribute("agree_" + task.getTaskName(), invite.getAgreeUser(task.getTaskName()));
+		session.setAttribute("agree_" + taskName, invite.getAgreeUser(taskName));
 		// 未接受邀请
-		session.setAttribute("disagree_" + task.getTaskName(), invite.getDisagreeUser(task.getTaskName()));
-
+		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
+		System.out.println(task);
 		chain.doFilter(request, response);
 	}
 
