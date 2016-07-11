@@ -1,6 +1,5 @@
 package bl;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +10,17 @@ import dataservice.InviteDataService;
 import po.TaskPO;
 import vo.TaskVO;
 
-public class InviteBlImpl implements InviteBlService{
+public class InviteBlImpl implements InviteBlService {
 
-	private  InviteDataService inviteDataService = new InviteDataImpl() ;
-	
+	private InviteDataService inviteDataService = new InviteDataImpl();
+
 	/**
-	 * ldk
-	 * 查找邀请信息
+	 * ldk 查找邀请信息
 	 */
-	
+
 	public List<TaskVO> getInvitationInfo(String reviewerName) {
 		// TODO Auto-generated method stub
-		List<TaskVO> result=new ArrayList<TaskVO>();
+		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = inviteDataService.getInvitationInfo(reviewerName);
@@ -33,20 +31,20 @@ public class InviteBlImpl implements InviteBlService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(TaskPO po:list){
-			TaskVO vo=new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(), po.getDeadline(), po.getState());
-		result.add(vo);
+		for (TaskPO po : list) {
+			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
+					po.getDeadline(), po.getState());
+			result.add(vo);
 		}
 		return result;
 	}
 
 	/**
-	 * ldk
-	 * 0:删除成功　１：失败
+	 * ldk 0: delete success 1:delete fail
 	 */
 	public int deleteInvitationInfo(String userName, String taskName) {
 		// TODO Auto-generated method stub
-		int flag =-1;
+		int flag = -1;
 		try {
 			flag = inviteDataService.deleteInvitationInfo(userName, taskName);
 		} catch (ClassNotFoundException e) {
@@ -59,9 +57,9 @@ public class InviteBlImpl implements InviteBlService{
 		return flag;
 	}
 
-	public List<TaskVO> getAllDoingTask(String createrName)  {
+	public List<TaskVO> getAllDoingTask(String createrName) {
 		// TODO Auto-generated method stub
-		List<TaskVO> result=new ArrayList<TaskVO>();
+		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = inviteDataService.getAllDoingTask(createrName);
@@ -72,18 +70,17 @@ public class InviteBlImpl implements InviteBlService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(TaskPO po:list){
-			TaskVO vo=new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(), po.getDeadline(), po.getState());
-		result.add(vo);
+		for (TaskPO po : list) {
+			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
+					po.getDeadline(), po.getState());
+			result.add(vo);
 		}
 		return result;
 	}
-	
-	
-	
+
 	public List<TaskVO> getAllCompleteTask(String createrName) {
 		// TODO Auto-generated method stub
-		List<TaskVO> result=new ArrayList<TaskVO>();
+		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = inviteDataService.getAllCompleteTask(createrName);
@@ -94,16 +91,14 @@ public class InviteBlImpl implements InviteBlService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(TaskPO po:list){
-			TaskVO vo=new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(), po.getDeadline(), po.getState());
-		result.add(vo);
+		for (TaskPO po : list) {
+			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
+					po.getDeadline(), po.getState());
+			result.add(vo);
 		}
 		return result;
 	}
-	
-	
-	
-	
+
 	public List<String> getAgreeUser(String taskName) {
 		// TODO Auto-generated method stub
 		List<String> nameList = new ArrayList<String>();
@@ -133,7 +128,5 @@ public class InviteBlImpl implements InviteBlService{
 		}
 		return nameList;
 	}
-
-
 
 }
