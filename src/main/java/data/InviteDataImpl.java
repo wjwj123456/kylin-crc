@@ -74,4 +74,93 @@ public class InviteDataImpl implements InviteDataService{
 		return flag;
 	}
 
+	
+	/**
+	 * ldk
+	 * 查找所有创建正在进行的任务的信息
+	 */
+	
+	public List<TaskPO> getAllDoingTask(String createrName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+		
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 0" ;
+		pStatement = connection.prepareStatement(sql);
+		ResultSet rSet = pStatement.executeQuery();
+
+		while (rSet.next()) {
+			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+			poList.add(po);
+		}
+		
+
+		DBManager.stopAll(rSet, pStatement, connection);
+		return poList;
+	}
+	
+	
+	/**
+	 * ldk
+	 * 查找所有创建已经完成的任务的信息
+	 */
+	public List<TaskPO> getAllCompleteTask(String createrName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+		
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 1" ;
+		pStatement = connection.prepareStatement(sql);
+		ResultSet rSet = pStatement.executeQuery();
+
+		while (rSet.next()) {
+			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+			poList.add(po);
+		}
+		
+
+		DBManager.stopAll(rSet, pStatement, connection);
+		return poList;
+	}
+	
+	/**
+	 * ldk
+	 * 返回同意的用户名
+	 */
+	public List<String> getAgreeUser(String taskName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 1" ;
+		pStatement = connection.prepareStatement(sql);
+		ResultSet rSet = pStatement.executeQuery();
+		
+		List<String> list = new ArrayList<String>();
+		while (rSet.next()) {
+			list.add(rSet.getString(1));
+		}
+		return list;
+	}
+
+	public List<String> getDisagreeUser(String taskName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 0" ;
+		pStatement = connection.prepareStatement(sql);
+		ResultSet rSet = pStatement.executeQuery();
+		
+		List<String> list = new ArrayList<String>();
+		while (rSet.next()) {
+			list.add(rSet.getString(1));
+		}
+		return list;
+	}
+
+
+
 }

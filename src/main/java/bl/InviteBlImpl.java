@@ -59,4 +59,81 @@ public class InviteBlImpl implements InviteBlService{
 		return flag;
 	}
 
+	public List<TaskVO> getAllDoingTask(String createrName)  {
+		// TODO Auto-generated method stub
+		List<TaskVO> result=new ArrayList<TaskVO>();
+		List<TaskPO> list = new ArrayList<TaskPO>();
+		try {
+			list = inviteDataService.getAllDoingTask(createrName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(TaskPO po:list){
+			TaskVO vo=new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(), po.getDeadline(), po.getState());
+		result.add(vo);
+		}
+		return result;
+	}
+	
+	
+	
+	public List<TaskVO> getAllCompleteTask(String createrName) {
+		// TODO Auto-generated method stub
+		List<TaskVO> result=new ArrayList<TaskVO>();
+		List<TaskPO> list = new ArrayList<TaskPO>();
+		try {
+			list = inviteDataService.getAllCompleteTask(createrName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(TaskPO po:list){
+			TaskVO vo=new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(), po.getDeadline(), po.getState());
+		result.add(vo);
+		}
+		return result;
+	}
+	
+	
+	
+	
+	public List<String> getAgreeUser(String taskName) {
+		// TODO Auto-generated method stub
+		List<String> nameList = new ArrayList<String>();
+		try {
+			nameList = inviteDataService.getAgreeUser(taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nameList;
+	}
+
+	public List<String> getDisagreeUser(String taskName) {
+		// TODO Auto-generated method stub
+		List<String> nameList = new ArrayList<String>();
+		try {
+			nameList = inviteDataService.getAgreeUser(taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nameList;
+	}
+
+
+
 }
