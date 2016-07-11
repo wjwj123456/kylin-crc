@@ -13,6 +13,9 @@ import vo.Type;
 
 public class InviteDataImpl implements InviteDataService {
 
+	private Connection connection;
+	private PreparedStatement pStatement;
+
 	/**
 	 * ldk14 get the invitation info
 	 */
@@ -21,8 +24,7 @@ public class InviteDataImpl implements InviteDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+		connection = DBManager.connect();
 		String sql = "SELECT * FROM review WHERE uname = '" + reviewerName + "' and isAgree = 0";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
@@ -51,8 +53,7 @@ public class InviteDataImpl implements InviteDataService {
 	 */
 	public int deleteInvitationInfo(String userName, String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+		connection = DBManager.connect();
 		int flag = -1;
 		String sql = "DELETE   FROM review WHERE uname = '" + userName + "' and tname = '" + taskName + "'";
 		pStatement = connection.prepareStatement(sql);
@@ -75,8 +76,7 @@ public class InviteDataImpl implements InviteDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+		connection = DBManager.connect();
 		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 0";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
@@ -98,8 +98,7 @@ public class InviteDataImpl implements InviteDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+		connection = DBManager.connect();
 		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 1";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
@@ -119,8 +118,7 @@ public class InviteDataImpl implements InviteDataService {
 	 */
 	public List<String> getAgreeUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+		connection = DBManager.connect();
 		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 1";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
@@ -134,8 +132,7 @@ public class InviteDataImpl implements InviteDataService {
 
 	public List<String> getDisagreeUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+		connection = DBManager.connect();
 		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 0";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();

@@ -86,9 +86,50 @@ public class MergeBlImpl implements MergeBlService{
 	* @see blservice.MergeBlService#saveMergeReport(java.util.List)
 	*
 	*/
-	public void saveMergeReport(List<ReportVO> reportList) {
+	public void saveMergeReport(List<ReportVO> reportList,String taskName) {
+		List<ReportPO> list=new ArrayList<ReportPO>();
+		for(ReportVO vo:reportList){
+			list.add(new ReportPO(vo));
+		}
+		try {
+			mergeDataService.saveMergeReport(list,taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return;
 		
+	}
+
+	/**
+	* TODO:（方法描述）
+	*
+	* @author lpt14
+	* @since 2016年7月11日
+	* @param reportList
+	* @param taskName
+	* @see blservice.MergeBlService#saveAddedMergeReport(java.util.List, java.lang.String)
+	*
+	*/
+	public void saveAddedMergeReport(List<ReportVO> reportList, String taskName) {
+		// TODO Auto-generated method stub
+		List<ReportPO> list=new ArrayList<ReportPO>();
+		for(ReportVO vo:reportList){
+			list.add(new ReportPO(vo));
+		}
+		try {
+			mergeDataService.saveAddedMergeReport(list,taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return;
 	}
 
 }
