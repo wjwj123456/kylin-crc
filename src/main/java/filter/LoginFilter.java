@@ -1,6 +1,7 @@
 package filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class LoginFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public LoginFilter() {
-    }
+	/**
+	 * Default constructor.
+	 */
+	public LoginFilter() {
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -29,13 +30,14 @@ public class LoginFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		
+
 		if (req.getSession().getAttribute("username") == null) {
 			req.getRequestDispatcher("index.jsp").forward(request, response);
 		}
-		
+
 		chain.doFilter(request, response);
 	}
 

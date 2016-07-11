@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +27,7 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getQueryString());
 		request.setCharacterEncoding("UTF-8");
 		
 		String userName = request.getParameter("userName");
@@ -36,14 +36,9 @@ public class RegisterServlet extends HttpServlet {
 		
 		LoginBLImpl login = new LoginBLImpl();
 		try {
-			int result = login.createAccount(userName, email, password);
-			String[] temp = new String[]{"success", "exists", "unknown error"};
-			
 			PrintWriter out = response.getWriter();
-			out.print(temp[result]);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+			out.print(login.createAccount(userName, email, password));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

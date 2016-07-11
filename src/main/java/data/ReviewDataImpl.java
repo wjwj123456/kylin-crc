@@ -204,7 +204,6 @@ public class ReviewDataImpl implements ReviewDataService {
 	public List<TaskPO> getTaskList() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
-		int flag = -1;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		String sql = "SELECT * FROM task ";

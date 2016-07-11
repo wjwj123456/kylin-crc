@@ -173,8 +173,8 @@
 
 					<div class="row form-group">
 						<div class="col-md-8">
-							<input size="40" type="text" class="form-control" id="searchName"
-								placeholder="用户名关键字">
+							<input size="40" type="text" class="form-control typeahead"
+								id="searchName" placeholder="用户名关键字">
 						</div>
 						<button type="button" class="btn btn-success" id="search">搜索</button>
 					</div>
@@ -190,7 +190,7 @@
 									for (int i = 0; i < 10; i++) {
 								%>
 								<tr>
-									<td>12</td>
+									<td><%=i %></td>
 								</tr>
 								<%
 									}
@@ -203,9 +203,11 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="invited">
-
+								<tr>
+									<th>用户名</th>
+								</tr>
 							</table>
-						</div>
+						</div>	
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -216,7 +218,9 @@
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		
+	</script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -227,6 +231,7 @@
 	<script src="js/login.js"></script>
 	<script src="js/search.js"></script>
 	<script src="js/invite.js"></script>
+	<script src="js/typeHead.js"></script>
 </body>
 
 </html>
