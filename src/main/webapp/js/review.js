@@ -7,7 +7,7 @@ $('#startReview').on('click',function(){
 	$('#preWord').hide();
 	$(this).hide();
 });
-$('#add-code').on('click',function(){
+$('#add-code').on('click', function(){
 	if(isCodeItemOK()){
 		$('#codeStart').append("<tr> <td>" +$('#fileName-code').val()+
 				"</td> <td>" +$('#lineNum-code').val()+
@@ -320,7 +320,12 @@ function isReportOK(){
  * commit report 
  * @returns
  */
-function commitReport() {
+function commitReport(type) {
+	var data = new Array();
+	if (type == 'code') {
+		getCodeData();
+	}
+	
 	jQuery.ajax({
 		url: '/crc/ReportServlet',
 		type: 'post',
@@ -331,5 +336,24 @@ function commitReport() {
 			}
 		}
 	});
+}
+
+function getCodeData() {
+	var data = new Array();
+	var temp = $('#codeTable>tbody').find('tr');
+	
+	for (var i = 0; i < temp.length; i++) {
+		var report = new Object();
+		report.fileName = $(temp[i]).find('td')[0].text();
+		report.page = 0;
+		report.location = $(temp[i]).find('td')[1].text();
+		report.description = $(temp[i]).find('td')[2].text();
+		
+		console.log(report);
+	}
+}
+
+function getFileData() {
+	
 }
 
