@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.omg.PortableInterceptor.SUCCESSFUL;
 
 import bl.InviteBlImpl;
 import bl.MergeBlImpl;
@@ -34,7 +35,7 @@ public class MergeBlTest {
 	 */
 	@Test
 	public void testCanMerge() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -42,7 +43,7 @@ public class MergeBlTest {
 	 */
 	@Test
 	public void testMergeReport() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -50,17 +51,18 @@ public class MergeBlTest {
 	 */
 	@Test
 	public void testSaveMergeReport() {
-		List<ReportVO> vos = new ArrayList<ReportVO>(); 
-		ReportVO vo1 = new ReportVO("task1", "aoliao", "Hello.java", 0, 6, "Óï·¨´íÎó");
-		ReportVO vo2 = new ReportVO("task1", "cr", "Hello.java", 0, 5, "Óï·¨´íÎó");
-		ReportVO vo3 = new ReportVO("task1", "iii", "Hello.java", 0, 6, "yus");
-		ReportVO vo4 = new ReportVO("task1", "iiii", "Hello.java", 0, 6, "yus");
+//		List<ReportVO> vos = new ArrayList<ReportVO>(); 
+//		ReportVO vo1 = new ReportVO("task1", "aoliao", "Hello.java", 0, 6, "Óï·¨´íÎó");
+//		ReportVO vo2 = new ReportVO("task1", "cr", "Hello.java", 0, 5, "Óï·¨´íÎó");
+//		ReportVO vo3 = new ReportVO("task1", "iii", "Hello.java", 0, 6, "yus");
+//		ReportVO vo4 = new ReportVO("task1", "iiii", "Hello.java", 0, 6, "yus");
+//		
+//		vos.add(vo1);
+//		vos.add(vo2);
+//		vos.add(vo3);
+//		vos.add(vo4);
+//		mergeBlService.saveMergeReport(vos, "task1");
 		
-		vos.add(vo1);
-		vos.add(vo2);
-		vos.add(vo3);
-		vos.add(vo4);
-		mergeBlService.saveAddedMergeReport(vos, "task1");
 	}
 
 	/**
@@ -69,15 +71,15 @@ public class MergeBlTest {
 	@Test
 	public void testSaveAddedMergeReport() {
 		List<ReportVO> vos = new ArrayList<ReportVO>(); 
-		ReportVO vo1 = new ReportVO("task1", "aoliao", "Hello.java", 0, 6, "Óï·¨´íÎó");
-		ReportVO vo2 = new ReportVO("task1", "cr", "Hello.java", 0, 5, "Óï·¨´íÎó");
-		ReportVO vo3 = new ReportVO("task1", "iii", "Hello.java", 0, 6, "yus");
-		ReportVO vo4 = new ReportVO("task1", "iiii", "Hello.java", 0, 6, "yus");
-		
-		vos.add(vo1);
-		vos.add(vo2);
-		vos.add(vo3);
-		vos.add(vo4);
-		mergeBlService.saveAddedMergeReport(vos, "task1");
+//		ReportVO vo1 = new ReportVO("task1", "aoliao", "Hello.java", 0, 6, "Óï·¨´íÎó");
+//		ReportVO vo2 = new ReportVO("task1", "cr", "Hello.java", 0, 5, "Óï·¨´íÎó");
+//		ReportVO vo3 = new ReportVO("task1", "iii", "Hello.java", 0, 6, "yus");
+//		ReportVO vo4 = new ReportVO("task1", "iiii", "Hello.java", 0, 6, "yus");
+//		
+//		vos.add(vo1);
+//		vos.add(vo2);
+//		vos.add(vo3);
+//		vos.add(vo4);
+//		mergeBlService.saveAddedMergeReport(vos, "task1");
 	}
 }
