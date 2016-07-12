@@ -15,3 +15,5 @@ lib
 
 *.class
 /crc.iml
+
+bin/
