@@ -39,14 +39,10 @@ public class CreateTaskServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String userName = (String) request.getSession().getAttribute("username");
-		String taskName = request.getParameter("taskName");
-		String type = request.getParameter("type");
-		String describe = request.getParameter("describe");
+		String taskName = new String(request.getParameter("taskName").getBytes("iso-8859-1"), "utf-8");
+		String type = new String(request.getParameter("type").getBytes("iso-8859-1"), "utf-8");
+		String describe = new String(request.getParameter("describe").getBytes("iso-8859-1"), "utf-8");
 		String date = request.getParameter("deadline");
-
-		System.out.println("doGet");
-		System.out.println(taskName);
-		System.out.println(type);
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date deadline = null;
