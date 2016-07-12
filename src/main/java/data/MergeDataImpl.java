@@ -244,7 +244,6 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
 			pStatement.executeUpdate();
-
 		}
 		DBManager.stopAll(null, pStatement, connection);
 	}
