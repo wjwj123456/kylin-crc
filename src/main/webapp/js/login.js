@@ -133,7 +133,7 @@ function register() {
 				} else if (data == '2') {
 					alert('未知错误')
 				} else if (data == '0') {
-					alert('创建成功')
+					location.reload(true)
 				}
 			}
 		});
