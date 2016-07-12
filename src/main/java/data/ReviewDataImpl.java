@@ -175,12 +175,13 @@ public class ReviewDataImpl implements ReviewDataService {
 				if (j == 0) {
 					flag = 2;
 				}
+				DBManager.closeConnection();
 			}
+
 		} catch (Exception SQLIntegrityConstraintViolationException) {
 			flag = 1;
 		}
 
-		DBManager.closeConnection();
 		return flag;
 	}
 

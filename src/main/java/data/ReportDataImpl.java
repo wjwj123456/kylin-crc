@@ -39,9 +39,9 @@ public class ReportDataImpl implements ReportDataService {
 			} catch (Exception SQLIntegrityConstraintViolationException) {
 				flag = 1;
 			}
+			DBManager.closeConnection();
 		}
 
-		DBManager.closeConnection();
 		return flag;
 	}
 

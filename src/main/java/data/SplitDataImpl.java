@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import dataservice.SplitDataService;
 import po.ReportPO;
 
+/**
+ * 
+ * @author MAC
+ *
+ */
 public class SplitDataImpl implements SplitDataService {
 	private ResultSet rSet = null;
 	private PreparedStatement pStatement = null;
@@ -73,6 +78,7 @@ public class SplitDataImpl implements SplitDataService {
 		pStatement.setInt(4, po.getPage());
 		pStatement.setInt(5, po.getLocation());
 		pStatement.setString(6, po.getDescription());
+		DBManager.closeConnection();
 		rSet = DBManager.getResultSet(sql);
 		int i = -1;
 		int number = 0;
