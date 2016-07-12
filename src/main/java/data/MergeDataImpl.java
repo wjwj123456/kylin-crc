@@ -112,7 +112,7 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(5, po.getPage());
 			pStatement.setInt(6, po.getLocation());
 			pStatement.setString(7, po.getDescription());
-
+			DBManager.closeConnection();
 		}
 
 		for (ReportPO po : reportList) {
@@ -120,9 +120,9 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement = DBManager.getPreparedStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
-
+			DBManager.closeConnection();
 		}
-		DBManager.closeConnection();
+
 	}
 
 	/**
@@ -144,6 +144,7 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.setInt(4, po.getPage());
 		pStatement.setInt(5, po.getLocation());
 		pStatement.setString(6, po.getDescription());
+		DBManager.closeConnection();
 		rSet = DBManager.getResultSet(sql);
 		int i = -1;
 		int number = 0;
@@ -212,6 +213,7 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.setInt(7, 0);
 		pStatement.setInt(8, 1);
 		pStatement.executeUpdate();
+		DBManager.closeConnection();
 
 		for (ReportPO po : reportList) {
 			String sql = "UPDATE report SET state = ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
@@ -224,7 +226,7 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(6, po.getLocation());
 			pStatement.setString(7, po.getDescription());
 			pStatement.executeUpdate();
-
+			DBManager.closeConnection();
 		}
 
 		for (ReportPO po : reportList) {
@@ -233,9 +235,9 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
 			pStatement.executeUpdate();
-
+			DBManager.closeConnection();
 		}
-		DBManager.closeConnection();
+
 	}
 
 }
