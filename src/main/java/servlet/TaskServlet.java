@@ -62,7 +62,7 @@ public class TaskServlet extends HttpServlet {
 		jsonObject.put("users", users);
 
 		JSONArray array = new JSONArray();
-		array.put(array);
+		array.put(jsonObject);
 
 		PrintWriter out = response.getWriter();
 		out.print(array);

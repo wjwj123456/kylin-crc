@@ -107,9 +107,8 @@
 					<tr>
 						<td><%=vo.getUserName()%></td>
 						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-						<td><button class="btn btn-success">接收邀请</button></td>
-						<td><button type="button" class="close" aria-hidden="true"
-								id="delete">x</button></td>
+						<td><button class="btn btn-success">接受邀请</button></td>
+						<td><button type="button" class="close" aria-hidden="true">x</button></td>
 					</tr>
 					<%
 						}
@@ -226,18 +225,14 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="toInvite">
-								<tr>
-									<th>用户名</th>
-								</tr>
-								<%
-									for (int i = 0; i < 10; i++) {
-								%>
-								<tr>
-									<td><%=i%></td>
-								</tr>
-								<%
-									}
-								%>
+								<thead>
+									<tr>
+										<th>用户名</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -246,9 +241,13 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="invited">
-								<tr>
-									<th>用户名</th>
-								</tr>
+								<thead>
+									<tr>
+										<th>用户名</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -257,9 +256,14 @@
 						<div style="height: 250px; overflow: auto">
 
 							<table class="table" id="agreed">
-								<tr>
-									<th>用户名</th>
-								</tr>
+								<thead>
+									<tr>
+										<th>用户名</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
 							</table>
 						</div>
 					</div>

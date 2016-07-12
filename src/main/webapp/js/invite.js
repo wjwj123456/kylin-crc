@@ -4,9 +4,6 @@
 var taskName;
 
 $(function() {
-	$('#toInvite').find('tr').on('click', function() {
-		addInvite($(this));
-	});
 	$('#searchName').bind('input propertychange', function() {
 		if ($(this).val().trim() != '') {			
 			searchUser($(this).val().trim());
@@ -16,6 +13,12 @@ $(function() {
 		taskName = $(this).parent().parent().children().first().text().trim();
 		loadAgreedReviewer(taskName);
 	});
+	$('button:contains("接受邀请")').on('click', function() {
+		accept($(this))
+	});
+	$('button:contains("x")').on('click', function() {
+		$(this).parents('tr').remove();
+	});
 	$('#confirmInvite').on('click', function() {
 		invite();
 	});
@@ -24,7 +27,6 @@ $(function() {
 /**
  * load agreed reviewers of a task
  * @param taskName
- * @returns
  */
 function loadAgreedReviewer(taskName) {
 	jQuery.ajax({
@@ -32,14 +34,16 @@ function loadAgreedReviewer(taskName) {
 		type: 'post',
 		data: 'type=agree' + '&taskName=' + taskName,
 		success: function(data) {
-			alert(data);
+			var users = jQuery.parseJSON(data)[0].users;
+			for (var i = 0; i < users.length; i++) {
+				$('#agreed').find('tbody').append('<tr><td>' + users[i] + '</td></tr>');
+			}
 		}		
 	});
 }
 
 /**
  * invite 
- * @returns
  */
 function invite() {
 	var temp = $('#invited').find('td');
@@ -85,25 +89,48 @@ function isUnique(obj) {
 }
 
 /**
- * display the result of searching
+ * display the result of searching in left table
  * 
  * @param users
- * @returns
  */
 function displayUser(users) {
-//	console.log(users)
-//	$('#searchName').val(users[0].name)
+	$('#toInvite').find('tbody').empty();
+	
+	for (var i = 0; i < users.length; i++) {
+		$('#toInvite').find('tbody').append('<tr><td>' + users[i].name + '</td></tr>');
+	}
+	
+	$('#toInvite').find('tbody>tr').on('click', function() {
+		addInvite($(this));
+	});
+}
+
+/**
+ * accept invitation from others
+ */
+function accept(taskButton) {
+	var name = $(taskButton).parent().prev().find('a').text();
+	jQuery.ajax({
+		url: '/crc/RefuseServlet',
+		style: 'post',
+		data: 'type=accept&taskName=' + name,
+		success: function(data) {
+			if (data == 0) {				
+				$(taskButton).text('已加入')
+				$(taskButton).removeClass('btn-success')
+			}
+		}
+	});
 }
 
 /**
  * refuse invitation from others
- * @returns
  */
 function refuse() {
 	jQuery.ajax({
 		url: '/crc/RefuseServlet',
 		style: 'post',
-		data: 'taskName=',
+		data: 'type=refuse&taskName=' + taskName,
 		success: function(data) {
 			if (data == 0) {
 				alert('拒绝')
@@ -111,6 +138,7 @@ function refuse() {
 		}
 	});
 }
+
 var theTaskName;
 function initInvite(obj) {
 	theTaskName = $(obj).parent().parent().find('a').text();
