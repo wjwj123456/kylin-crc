@@ -91,8 +91,8 @@
 					<h1 class="text-center text-primary">注册</h1>
 				</div>
 				<div class="modal-body" style="height: 300px">
-					<form action="/register" class="form col-md-12 center-block"
-						 method="get">
+					
+						
 						<div class="form-group">
 							<input type="text" name='username' class="form-control input-lg"
 								placeholder="用户名">
@@ -110,7 +110,7 @@
 							<span><a data-toggle="modal" data-target="#loginModal"
 								data-dismiss="modal" href="" class="pull-right">已有账号，点此登陆</a></span>
 						</div>
-					</form>
+					
 				</div>
 			</div>
 		</div>
