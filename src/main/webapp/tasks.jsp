@@ -218,13 +218,7 @@ username = '<%=session.getAttribute("username")%>';
 							</tr>
 						</thead>
 						<tbody id="codeStart">
-							<tr>
-								<td>文件名</td>
-								<td>行数</td>
-								<td>描述</td>
-								<td><button type="button" class="close" aria-hidden="true"
-										id="delete" onclick="deleteItem(this)">x</button></td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
@@ -270,14 +264,7 @@ username = '<%=session.getAttribute("username")%>';
 							</tr>
 						</thead>
 						<tbody id="docStart">
-							<tr>
-								<td>文件名</td>
-								<td>页码</td>
-								<td>行数</td>
-								<td>描述</td>
-								<td><button type="button" class="close" aria-hidden="true"
-										id="delete" onclick="deleteItem(this)">x</button></td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
@@ -326,7 +313,7 @@ username = '<%=session.getAttribute("username")%>';
 							placeholder="小时">
 					</div>
 				</div>
-				<button class="btn btn-success" id="confirmReport" onclick="commitReport(taskType,'<%=taskVO.getTaskName()%>')">确认评审结果</button>
+				<button class="btn btn-success" id="confirmReport" onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
 			</div>
 			<div id="mergeBlock">
 				<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>
