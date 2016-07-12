@@ -21,15 +21,14 @@
 </head>
 <script type="text/javascript">
 username = '<%=session.getAttribute("username")%>';
-<%
-TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));
-%>
-<%if(taskVO.getType()==Type.code){%>
-taskType = 'code';
-<%}else{%>
-taskType = 'file';
+<%TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));%>
+	
+<%if (taskVO.getType() == Type.code) {%>
+	taskType = 'code';
+<%} else {%>
+	taskType = 'file';
 <%}%>
-
+	
 </script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
@@ -180,20 +179,28 @@ taskType = 'file';
 					<button class="btn btn-success" id="join">参加评审</button>
 				</div>
 				<div class="col-md-2">
-				<%List<String> joiners =Cast.cast(session.getAttribute("agree_" + taskVO.getTaskName()));  %>
+					<%
+						List<String> joiners = Cast.cast(session.getAttribute("agree_" + taskVO.getTaskName()));
+					%>
 					<table class="table">
 						<tr>
 							<th>参与人</th>
 						</tr>
-						<%for(String s :joiners){ %>
-						<tr><td><%=s %></td></tr>
-						<% }%>
+						<%
+							for (String s : joiners) {
+						%>
+						<tr>
+							<td><%=s%></td>
+						</tr>
+						<%
+							}
+						%>
 					</table>
 				</div>
 			</div>
 			<hr>
 			<h2 id="deadline">截止时间</h2>
-			<strong><%=Tools.dateToString(taskVO.getDeadline()) %></strong>
+			<strong><%=Tools.dateToString(taskVO.getDeadline())%></strong>
 			<hr>
 			<h2 id="review">评审</h2>
 			<p id="preWord">开始评审前，请确认</p>
@@ -512,6 +519,13 @@ taskType = 'file';
 									<tr>
 										<th width=10px></th>
 										<th>文件名</th>
+										<%
+											if (taskVO.getType() == Type.document) {
+										%>
+										<th>页码</th>
+										<%
+											}
+										%>
 										<th>行数</th>
 										<th>描述</th>
 										<th>评审人</th>
@@ -530,7 +544,6 @@ taskType = 'file';
 					</div>
 				</div>
 			</div>
-
 			<hr>
 			<h2 id="report">评审报告</h2>
 			<hr>
