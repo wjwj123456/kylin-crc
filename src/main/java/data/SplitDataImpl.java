@@ -49,16 +49,31 @@ public class SplitDataImpl implements SplitDataService {
 
 	public boolean splitFaults(ArrayList<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException {
 		int id = getID(po);
-		ArrayList<ReportPO> included = getIncludedfaultsByFaultkey(po);
-		if (pos.size() == included.size()) {
-
-			String sql = "DELETE FROM merge WHERE final_id = " + id;
-			PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
-			pStatement.executeUpdate(sql);
-
+		Connection connection = DBManager.connect();
+		Statement statement = connection.createStatement();
+		for(ReportPO reportPO: pos) {
+			int id0 = getID(reportPO);
+			String sql1 = "UPDATE report SET state = 0 WHERE id = " + id0;
+			statement.executeUpdate(sql1);
+			
+			String sql2 = "DELETE FROM merge WHERE final_id = "+ id + " AND included_id = " + id0;
+			statement.executeUpdate(sql2);		
 		}
-		DBManager.closeConnection();
-		return false;
+		
+		ResultSet rSet = null;
+		if(po.getOrigin() != 0) {
+			String sql3 = "SELECT * FROM merge WHERE final_id = "+ id;
+			rSet = statement.executeQuery(sql3);
+			if(!rSet.next()) {
+				String sql4 = "DELETE FROM report WHERE id = " + id;
+				statement.executeUpdate(sql4);
+			}
+		}
+		
+		
+		
+		DBManager.stopAll(rSet, statement, connection);
+		return true;
 	}
 
 	/**
