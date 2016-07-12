@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bl.InviteBlImpl;
+import bl.ReviewBlImpl;
 
 /**
  * Servlet implementation class RefuseServlet
@@ -32,12 +33,18 @@ public class RefuseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
+		String type = request.getParameter("type");
 		String userName = (String) request.getSession().getAttribute("username");
 		String taskName = request.getParameter("taskName");
 
-		InviteBlImpl invite = new InviteBlImpl();
-		int result = invite.deleteInvitationInfo(userName, taskName);
+		int result = 0;
+		if (type.equals("accept")) {
+			ReviewBlImpl review = new ReviewBlImpl();
+			result = review.saveAcceptReviewer(userName, taskName);
+		} else {
+			InviteBlImpl invite = new InviteBlImpl();
+			result = invite.deleteInvitationInfo(userName, taskName);
+		}
 
 		PrintWriter out = response.getWriter();
 		out.print(result);

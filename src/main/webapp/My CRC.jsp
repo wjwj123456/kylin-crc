@@ -107,9 +107,8 @@
 					<tr>
 						<td><%=vo.getUserName()%></td>
 						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-						<td><button class="btn btn-success">接收邀请</button></td>
-						<td><button type="button" class="close" aria-hidden="true"
-								id="delete">x</button></td>
+						<td><button class="btn btn-success">接受邀请</button></td>
+						<td><button type="button" class="close" aria-hidden="true">x</button></td>
 					</tr>
 					<%
 						}
