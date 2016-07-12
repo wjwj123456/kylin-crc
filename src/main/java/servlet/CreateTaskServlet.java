@@ -22,26 +22,28 @@ import vo.Type;
  */
 public class CreateTaskServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreateTaskServlet() {
-        super();
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public CreateTaskServlet() {
+		super();
+	}
 
 	/**
 	 * 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String userName = (String) request.getSession().getAttribute("username");
-		String taskName = request.getParameter("taskName");
-		String type = request.getParameter("type");
-		String describe = request.getParameter("describe");
+		String taskName = new String(request.getParameter("taskName").getBytes("iso-8859-1"), "utf-8");
+		String type = new String(request.getParameter("type").getBytes("iso-8859-1"), "utf-8");
+		String describe = new String(request.getParameter("describe").getBytes("iso-8859-1"), "utf-8");
 		String date = request.getParameter("deadline");
-		
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date deadline = null;
 		try {
@@ -49,20 +51,20 @@ public class CreateTaskServlet extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		ReviewBlImpl review = new ReviewBlImpl();
-		review.saveReviewInfo(
-				new TaskVO(userName, taskName, Type.getType(type), 
-						"", describe, deadline, 0));
-		
+		review.saveReviewInfo(new TaskVO(userName, taskName, Type.getType(type), "", describe, deadline, 0));
+
 		PrintWriter out = response.getWriter();
 		out.print("success");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

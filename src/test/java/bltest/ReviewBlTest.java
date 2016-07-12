@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import bl.ReviewBlImpl;
+import tools.Tools;
+import vo.TaskVO;
+import vo.Type;
 
 public class ReviewBlTest {
 	@Before
@@ -16,11 +19,10 @@ public class ReviewBlTest {
 
 	@Test
 	public void testSaveReviewInfo() {
-		// TaskVO vo = new TaskVO("crc", "crc1", Type.code, "¹¤³Ì", "ÎÞ",
+		// TaskVO vo = new TaskVO("crc", "crc1", Type.code, "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½",
 		// Tools.stringToDate("2016-08-08 12:12:12"), 0);
-		// TaskVO vo2 = new TaskVO("crc", "crc3", Type.code, "¹¤³Ì", "ÎÞ",
-		// Tools.stringToDate("2016-08-08 12:12:12"), 0);
-		// assertEquals(0, reviewBlImpl.saveReviewInfo(vo2));
+		TaskVO vo2 = new TaskVO("crc", "crc3", Type.code, "å·¥ç¨‹", "å·¥ç¨‹", Tools.stringToDate("2016-08-08 12:12:12"), 0);
+		assertEquals(0, reviewBlImpl.saveReviewInfo(vo2));
 
 	}
 
