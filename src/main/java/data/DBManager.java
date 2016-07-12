@@ -16,7 +16,8 @@ public class DBManager {
 		String username = "ykk2";
 		String password = "123qwe";
 
-		Connection connection = DriverManager.getConnection(url + "?characterEncoding=utf-8", username, password);
+		Connection connection = DriverManager.getConnection(url + "?useUnicode=true&characterEncoding=UTF-8", username,
+				password);
 		return connection;
 	}
 
@@ -40,7 +41,7 @@ public class DBManager {
 			String url = "jdbc:mysql://115.28.33.208:3306/crc";
 			String username = "ykk2";
 			String password = "123qwe";
-			conn = DriverManager.getConnection(url + "?characterEncoding=utf-8", username, password);
+			conn = DriverManager.getConnection(url + "?useUnicode=true&characterEncoding=UTF-8", username, password);
 			pstmt = conn.prepareStatement(sql);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
