@@ -1,6 +1,18 @@
 var itemOK = true;
 var reportOK = true;
 var username;
+var taskType;
+$(function(){
+	if(taskType=='code'){
+		$('#toMerge-file').hide();
+		$('#merged-file').hide();
+		$('#fileDiv').hide();
+	}else {
+		$('#toMerge-code').hide();
+		$('#merged-code').hide();
+		$('#codeDiv').hide();
+	}
+});
 $('#startReview').on('click',function(){
 	$('#preWord').hide();
 	$(this).hide();
