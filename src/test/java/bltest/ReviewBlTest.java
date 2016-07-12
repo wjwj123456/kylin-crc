@@ -75,4 +75,18 @@ public class ReviewBlTest {
 
 		assertEquals("task2", reviewBlImpl.getTaskVOByTaskName("task2").getTaskName());
 	}
+
+	@Test
+	public void testGetJoinedDoingTasksByUserName() {
+
+		assertEquals(1, reviewBlImpl.getJoinedDoingTasksByUserName("smile").size());
+
+	}
+
+	@Test
+	public void testGetJoinedEndTasksByUserName() {
+
+		assertEquals(0, reviewBlImpl.getJoinedEndTasksByUserName("smile").size());
+
+	}
 }

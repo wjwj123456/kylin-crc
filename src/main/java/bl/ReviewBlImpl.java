@@ -240,12 +240,44 @@ public class ReviewBlImpl implements ReviewBlService {
 	@Override
 	public List<TaskVO> getJoinedDoingTasksByUserName(String userName) {
 		// TODO Auto-generated method stub
-		return null;
+		List<TaskVO> result = new ArrayList<TaskVO>();
+		List<TaskPO> list = null;
+		try {
+			list = reviewDataService.getJoinedDoingTasksByUserName(userName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (TaskPO po : list) {
+			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
+					po.getDeadline(), po.getState());
+			result.add(vo);
+		}
+		return result;
 	}
 
 	@Override
 	public List<TaskVO> getJoinedEndTasksByUserName(String userName) {
 		// TODO Auto-generated method stub
-		return null;
+		List<TaskVO> result = new ArrayList<TaskVO>();
+		List<TaskPO> list = null;
+		try {
+			list = reviewDataService.getJoinedEndTasksByUserName(userName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (TaskPO po : list) {
+			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
+					po.getDeadline(), po.getState());
+			result.add(vo);
+		}
+		return result;
 	}
 }
