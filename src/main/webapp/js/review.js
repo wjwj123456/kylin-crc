@@ -111,8 +111,8 @@ function initCodeChoose(){
 $('#merge').on('click',function(){
 	$('#choose-code').empty();
 	$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
-	codeMerge();
-	
+	codeMerge();	
+	commitMerge();
 });
 
 
@@ -149,7 +149,7 @@ function codeMerge() {
 			var temp=$($('#toMerge-code').find('tr')[i+1]).clone();
 			var temptr=$("<tr></tr>");
 			var length = $(temp).children().length;
-			for(j=1;j<length;j++){
+			for(j=1;j<length-1;j++){
 				var temptd=$(temp).children().eq(1);
 				temptr.append($(temptd));
 			}

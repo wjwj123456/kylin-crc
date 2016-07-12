@@ -132,13 +132,13 @@ public class ReviewBlImpl implements ReviewBlService {
 			TaskVO task = getTaskVOByTaskName(taskName);
 			UserBlImpl userBl = new UserBlImpl();
 			UserVO user = userBl.getUserVOByName(task.getUserName());
-			String url = "localhost:8080/tasks.jsp?taskName=" + taskName;
+			String url = "localhost:8080/crc/tasks.jsp?taskName=" + taskName;
 			String[] userEmails = new String[userName.length];
 
 			for (int i = 0; i < userName.length; i++) {
 				userEmails[i] = userBl.getUserVOByName(userName[i]).getEmail();
 			}
-			flag |= SendMail.sendMail(user.getEmail(), userEmails, user.getName(), taskName, url);
+			SendMail.sendMail(user.getEmail(), userEmails, user.getName(), taskName, url);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
