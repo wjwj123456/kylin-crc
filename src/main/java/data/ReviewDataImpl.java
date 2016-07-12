@@ -167,6 +167,7 @@ public class ReviewDataImpl implements ReviewDataService {
 				String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
 
 				pStatement = DBManager.getPreparedStatement(sql);
+				pStatement.setString(1, taskName);
 				pStatement.setString(2, userName[i]);
 				pStatement.setInt(3, 0);
 				int j = pStatement.executeUpdate();
