@@ -1,6 +1,8 @@
 var itemOK = true;
 var reportOK = true;
 var username;
+var taskType;
+
 $('#startReview').on('click',function(){
 	$('#preWord').hide();
 	$(this).hide();

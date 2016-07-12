@@ -21,6 +21,15 @@
 </head>
 <script type="text/javascript">
 username = '<%=session.getAttribute("username")%>';
+<%
+TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));
+%>
+<%if(taskVO.getType()==Type.code){%>
+taskType = 'code';
+<%}else{%>
+taskType = 'file';
+<%}%>
+
 </script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
@@ -149,9 +158,7 @@ username = '<%=session.getAttribute("username")%>';
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
-		<%
-			TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));
-		%>
+
 		<div class="col-md-10 bs-docs-section">
 			<h2 id="title"><%=taskVO.getTaskName()%></h2>
 			<hr>
