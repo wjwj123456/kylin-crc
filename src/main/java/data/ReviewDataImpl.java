@@ -77,7 +77,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
 			poList.add(po);
 
 		}
@@ -204,7 +204,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
 			poList.add(po);
 
 		}
@@ -238,4 +238,58 @@ public class ReviewDataImpl implements ReviewDataService {
 			return new TaskPO();
 
 	}
+
+	@Override
+	public List<TaskPO> getJoinedDoingTasksByUserName(String userName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<String>();
+		list = getJoinedTaskNamesByUserName(userName);
+
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+		for (int i = 0; i < list.size(); i++) {
+			String sql = "SELECT * FROM task WHERE tname = '" + list.get(i) + "' and state = 0 ";
+			rSet = DBManager.getResultSet(sql);
+			if (rSet.next()) {
+				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+				poList.add(po);
+			}
+			DBManager.closeConnection();
+		}
+		return poList;
+	}
+
+	@Override
+	public List<TaskPO> getJoinedEndTasksByUserName(String userName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<String>();
+		list = getJoinedTaskNamesByUserName(userName);
+
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+		for (int i = 0; i < list.size(); i++) {
+			String sql = "SELECT * FROM task WHERE tname = '" + list.get(i) + "' and state = 1 ";
+			rSet = DBManager.getResultSet(sql);
+			if (rSet.next()) {
+				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+				poList.add(po);
+			}
+			DBManager.closeConnection();
+		}
+		return poList;
+	}
+
+	public List<String> getJoinedTaskNamesByUserName(String userName) throws SQLException, ClassNotFoundException {
+		List<String> list = new ArrayList<String>();
+
+		String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and isAgree = 1 ";
+		rSet = DBManager.getResultSet(sql);
+		while (rSet.next()) {
+			list.add(rSet.getString(1));
+		}
+
+		DBManager.closeConnection();
+		return list;
+	}
+
 }

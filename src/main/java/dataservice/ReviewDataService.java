@@ -53,4 +53,28 @@ public interface ReviewDataService {
 	 * @see dataservice.ReviewDataService#getTaskList()
 	 */
 	public TaskPO getTaskPOByTaskName(String taskName) throws SQLException, ClassNotFoundException;
+
+	/**
+	 * TODO:（方法描述） get all tasks that a user has joined
+	 * 
+	 * @author ldk14
+	 * @since 2016年7月12日
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#getTaskList()
+	 */
+	public List<TaskPO> getJoinedDoingTasksByUserName(String userName) throws SQLException, ClassNotFoundException;
+
+	/**
+	 * TODO:（方法描述） get all tasks that a user has joined
+	 * 
+	 * @author ldk14
+	 * @since 2016年7月12日
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#getTaskList()
+	 */
+	public List<TaskPO> getJoinedEndTasksByUserName(String userName) throws SQLException, ClassNotFoundException;
 }

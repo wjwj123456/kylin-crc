@@ -45,4 +45,28 @@ public interface ReviewBlService {
 	 */
 	public TaskVO getTaskVOByTaskName(String taskName);
 
+	/**
+	 * TODO:（方法描述） get all tasks that a user has joined
+	 * 
+	 * @author ldk14
+	 * @since 2016年7月12日
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#getTaskList()
+	 */
+	public List<TaskVO> getJoinedDoingTasksByUserName(String userName);
+
+	/**
+	 * TODO:（方法描述） get all tasks that a user has joined
+	 * 
+	 * @author ldk14
+	 * @since 2016年7月12日
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#getTaskList()
+	 */
+	public List<TaskVO> getJoinedEndTasksByUserName(String userName);
+
 }

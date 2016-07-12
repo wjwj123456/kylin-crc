@@ -236,4 +236,16 @@ public class ReviewBlImpl implements ReviewBlService {
 		TaskVO vo = new TaskVO(userName, tName, type, project, describe, deadline, state);
 		return vo;
 	}
+
+	@Override
+	public List<TaskVO> getJoinedDoingTasksByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TaskVO> getJoinedEndTasksByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
