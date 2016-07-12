@@ -81,11 +81,7 @@ $('#add-choosefile').on('click',function(){
 	}
 	
 });
-$('#confirmReport').on('click',function(){
-	if(isReportOK()){
-		commitReport(taskType);
-	}
-});
+
 $('#toMerge-code').find('button').on('click',function(){
 	$('#divideModal').modal('show');
 });
@@ -330,22 +326,26 @@ function isReportOK(){
  * commit report 
  * @returns
  */
-function commitReport(type) {
-	var data;
-	if (type == 'code') {
-		data = getCodeData();
-	}
-	
-	jQuery.ajax({
-		url: '/crc/ReportServlet',
-		type: 'post',
-		data: 'data=' + data,
-		success: function(data) {
-			if (data == 0) {
-				alert('提交成功')
-			}
+function commitReport(taskName, taskType) {
+	if(isReportOK()){
+		var data;
+		if (taskType == 'code') {
+			data = getCodeData();
+		} else {
+			data = getFileData(); 
 		}
-	});
+		alert(12)
+		jQuery.ajax({
+			url: '/crc/ReportServlet',
+			type: 'post',
+			data: 'taskName=' + taskName + '&data=' + data,
+			success: function(data) {
+				if (data == 0) {
+					alert('提交成功')
+				}
+			}
+		});
+	}
 }
 
 function getCodeData() {
@@ -360,6 +360,8 @@ function getCodeData() {
 		report.page = 0;
 		report.location = $(td[1]).text();
 		report.description = $(td[2]).text();
+		report.state = 0;
+		report.origin = 0;
 		
 		data.push(report)
 	}
@@ -368,6 +370,23 @@ function getCodeData() {
 }
 
 function getFileData() {
+	var data = new Array();
+	var temp = $('#fileTable>tbody').find('tr');
 	
+	for (var i = 0; i < temp.length; i++) {
+		var td = $(temp[i]).find('td');
+		
+		var report = new Object();
+		report.fileName = $(td[0]).text();
+		report.page = $(td[1]).text();
+		report.location = $(td[2]).text();
+		report.description = $(td[3]).text();
+		report.state = 0;
+		report.origin = 0;
+		
+		data.push(report)	
+	}
+	
+	return JSON.stringify(data);
 }
 
