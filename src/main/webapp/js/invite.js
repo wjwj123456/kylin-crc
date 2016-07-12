@@ -16,8 +16,8 @@ $(function() {
 	$('button:contains("接受邀请")').on('click', function() {
 		accept($(this))
 	});
-	$('button:contains("x")').on('click', function() {
-		$(this).parents('tr').remove();
+	$('#messageTable').find('button:contains("x")').on('click', function() {
+		refuse($(this).parent().parent());
 	});
 	$('#confirmInvite').on('click', function() {
 		invite();
@@ -127,17 +127,21 @@ function accept(taskButton) {
 /**
  * refuse invitation from others
  */
-function refuse() {
+function refuse(taskItem) {
+	var name = $($(taskItem).find('td')[1]).text().trim();
+	
 	jQuery.ajax({
 		url: '/crc/RefuseServlet',
 		style: 'post',
-		data: 'type=refuse&taskName=' + taskName,
+		data: 'type=refuse&taskName=' + name,
 		success: function(data) {
 			if (data == 0) {
 				alert('拒绝')
 			}
 		}
 	});
+	
+	$(taskItem).remove();
 }
 
 var theTaskName;
