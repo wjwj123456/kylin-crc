@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import bl.InviteBlImpl;
+import tools.Encode;
 
 /**
  * Servlet implementation class TaskServlet
@@ -53,7 +54,7 @@ public class TaskServlet extends HttpServlet {
 	}
 
 	private void handleAgree(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String taskName = request.getParameter("taskName");
+		String taskName = Encode.transfer(request.getParameter("taskName"));
 
 		InviteBlImpl invite = new InviteBlImpl();
 		List<String> users = invite.getAgreeUser(taskName);

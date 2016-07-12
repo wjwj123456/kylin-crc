@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bl.ReviewBlImpl;
+import tools.Encode;
 
 /**
  * Servlet implementation class InviteServlet
@@ -33,8 +34,8 @@ public class InviteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String taskName = request.getParameter("taskName");
-		String users = request.getParameter("users");
+		String taskName = Encode.transfer(request.getParameter("taskName"));
+		String users = Encode.transfer(request.getParameter("users"));
 		int userNumber = Integer.parseInt(request.getParameter("userNumber"));
 
 		ReviewBlImpl review = new ReviewBlImpl();

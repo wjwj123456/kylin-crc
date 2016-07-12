@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bl.LoginBLImpl;
+import tools.Encode;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -31,9 +32,9 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String userName = request.getParameter("userName");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String userName = Encode.transfer(request.getParameter("userName"));
+		String email = Encode.transfer(request.getParameter("email"));
+		String password = Encode.transfer(request.getParameter("password"));
 
 		LoginBLImpl login = new LoginBLImpl();
 		try {

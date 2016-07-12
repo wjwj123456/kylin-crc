@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import bl.ReportBlImpl;
+import tools.Encode;
 import vo.ReportVO;
 
 /**
@@ -39,9 +40,9 @@ public class ReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String taskName = request.getParameter("taskName");
+		String taskName = Encode.transfer(request.getParameter("taskName"));
 		String userName = (String) request.getSession().getAttribute("username");
-		String data = request.getParameter("data");
+		String data = Encode.transfer(request.getParameter("data"));
 
 		List<ReportVO> reportList = new ArrayList<ReportVO>();
 		JSONArray jsonArray = new JSONArray(data);

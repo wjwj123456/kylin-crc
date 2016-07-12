@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bl.InviteBlImpl;
 import bl.ReviewBlImpl;
+import tools.Encode;
 
 /**
  * Servlet implementation class RefuseServlet
@@ -33,9 +34,9 @@ public class RefuseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String type = request.getParameter("type");
+		String type = Encode.transfer(request.getParameter("type"));
 		String userName = (String) request.getSession().getAttribute("username");
-		String taskName = request.getParameter("taskName");
+		String taskName = Encode.transfer(request.getParameter("taskName"));
 
 		int result = 0;
 		if (type.equals("accept")) {

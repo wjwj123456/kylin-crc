@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bl.ReviewBlImpl;
+import tools.Encode;
 import vo.TaskVO;
 import vo.Type;
 
@@ -39,9 +40,9 @@ public class CreateTaskServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String userName = (String) request.getSession().getAttribute("username");
-		String taskName = new String(request.getParameter("taskName").getBytes("iso-8859-1"), "utf-8");
-		String type = new String(request.getParameter("type").getBytes("iso-8859-1"), "utf-8");
-		String describe = new String(request.getParameter("describe").getBytes("iso-8859-1"), "utf-8");
+		String taskName = Encode.transfer(request.getParameter("taskName"));
+		String type = Encode.transfer(request.getParameter("type"));
+		String describe = Encode.transfer(request.getParameter("describe"));
 		String date = request.getParameter("deadline");
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

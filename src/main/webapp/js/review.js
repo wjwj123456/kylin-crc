@@ -195,7 +195,7 @@ function isCodeItemOK(){
 	}else {
 		$('#fileGroup-code').removeClass('has-error');
 	}
-	if($('#lineNum-code').val()==""){
+	if($('#lineNum-code').val()=="" && !isNaN(Number($('#lineNum-code').val()))){
 		$('#lineGroup-code').addClass('has-error');
 		itemOK=false;
 	}else {
