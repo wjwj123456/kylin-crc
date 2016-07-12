@@ -358,7 +358,6 @@ function getCodeData() {
 		report.page = 0;
 		report.location = $(temp[i]).find('td')[1].text();
 		report.description = $(temp[i]).find('td')[2].text();
-		
 		console.log(report);
 	}
 }
