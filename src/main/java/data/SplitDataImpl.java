@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import dataservice.SplitDataService;
 import po.ReportPO;
 
+/**
+ * 
+ * @author MAC
+ *
+ */
 public class SplitDataImpl implements SplitDataService {
 	private ResultSet rSet = null;
 	private PreparedStatement pStatement = null;
