@@ -1,3 +1,5 @@
+<%@page import="tools.Tools"%>
+<%@page import="java.util.List"%>
 <%@page import="vo.Type"%>
 <%@page import="tools.Cast"%>
 <%@page import="vo.TaskVO"%>
@@ -17,6 +19,9 @@
 	rel="stylesheet">
 <title>CRC Task</title>
 </head>
+<script type="text/javascript">
+username = '<%=session.getAttribute("username")%>';
+</script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
 	<div class="container">
@@ -46,6 +51,7 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
@@ -150,22 +156,37 @@
 			<h2 id="title"><%=taskVO.getTaskName()%></h2>
 			<hr>
 			<h2 id="message">说明</h2>
-			<%
-				if (taskVO.getType() == Type.code) {
-			%>
-			<p>类型：代码评审</p>
-			<%
-				} else {
-			%>
-			<p>类型：文档评审</p>
-			<%
-				}
-			%>
-			<p><%=taskVO.getDescribe()%></p>
-			<button class="btn btn-success" id="join">参加评审</button>
+			<div class="row">
+				<div class="col-md-10">
+					<%
+						if (taskVO.getType() == Type.code) {
+					%>
+					<p>类型：代码评审</p>
+					<%
+						} else {
+					%>
+					<p>类型：文档评审</p>
+					<%
+						}
+					%>
+					<p><%=taskVO.getDescribe()%></p>
+					<button class="btn btn-success" id="join">参加评审</button>
+				</div>
+				<div class="col-md-2">
+				<%List<String> joiners =Cast.cast(session.getAttribute("agree_" + taskVO.getTaskName()));  %>
+					<table class="table">
+						<tr>
+							<th>参与人</th>
+						</tr>
+						<%for(String s :joiners){ %>
+						<tr><td><%=s %></td></tr>
+						<% }%>
+					</table>
+				</div>
+			</div>
 			<hr>
 			<h2 id="deadline">截止时间</h2>
-			<strong><%=taskVO.getDeadline() %></strong>
+			<strong><%=Tools.dateToString(taskVO.getDeadline()) %></strong>
 			<hr>
 			<h2 id="review">评审</h2>
 			<p id="preWord">开始评审前，请确认</p>
@@ -174,20 +195,23 @@
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
 					<table class="table" id="codeTable">
-						<tr id="codeStart">
-							<th width=120px>文件名</th>
-							<th width=50px>行数</th>
-							<th>描述</th>
-							<th width=10px></th>
-						</tr>
-
-						<tr>
-							<td>文件名</td>
-							<td>行数</td>
-							<td>描述</td>
-							<td><button type="button" class="close" aria-hidden="true"
-									id="delete" onclick="deleteItem(this)">x</button></td>
-						</tr>
+						<thead>
+							<tr>
+								<th width=120px>文件名</th>
+								<th width=50px>行数</th>
+								<th>描述</th>
+								<th width=10px></th>
+							</tr>
+						</thead>
+						<tbody id="codeStart">
+							<tr>
+								<td>文件名</td>
+								<td>行数</td>
+								<td>描述</td>
+								<td><button type="button" class="close" aria-hidden="true"
+										id="delete" onclick="deleteItem(this)">x</button></td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 
@@ -222,22 +246,25 @@
 				<div
 					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
 					<table class="table" id="docTable">
-						<tr id="docStart">
-							<th width=120px>文件名</th>
-							<th width=50px>页码</th>
-							<th width=50px>行数</th>
-							<th>描述</th>
-							<th width=10px></th>
-						</tr>
-
-						<tr>
-							<td>文件名</td>
-							<td>页码</td>
-							<td>行数</td>
-							<td>描述</td>
-							<td><button type="button" class="close" aria-hidden="true"
-									id="delete" onclick="deleteItem(this)">x</button></td>
-						</tr>
+						<thead>
+							<tr>
+								<th width=120px>文件名</th>
+								<th width=50px>页码</th>
+								<th width=50px>行数</th>
+								<th>描述</th>
+								<th width=10px></th>
+							</tr>
+						</thead>
+						<tbody id="docStart">
+							<tr>
+								<td>文件名</td>
+								<td>页码</td>
+								<td>行数</td>
+								<td>描述</td>
+								<td><button type="button" class="close" aria-hidden="true"
+										id="delete" onclick="deleteItem(this)">x</button></td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 
@@ -264,9 +291,7 @@
 									placeholder="">
 							</div>
 						</div>
-
 					</div>
-
 					<div class="form-group" id="discripGroup-file">
 						<label for="discription-file" class="col-sm-1 control-label">描述</label>
 						<div class="col-sm-11">
@@ -299,6 +324,7 @@
 							<th>行数</th>
 							<th>描述</th>
 							<th>评审人</th>
+							<th width=20px></th>
 						</tr>
 						<%
 							for (int i = 0; i < 10; i++) {
@@ -309,6 +335,7 @@
 							<td>1212</td>
 							<td>1212</td>
 							<td>1212</td>
+							<td><button class="btn btn-warning">拆分</button></td>
 						</tr>
 						<%
 							}
@@ -322,6 +349,7 @@
 							<th>行数</th>
 							<th>描述</th>
 							<th>评审人</th>
+							<th width=20px></th>
 						</tr>
 					</table>
 				</div>
@@ -365,28 +393,132 @@
 							<h2 class="text-left text-primary">选择保留项</h2>
 						</div>
 						<div class="modal-body" style="height: 250px; overflow: auto">
-							<table class="table" id="choose-code">
-								<tr>
-									<th>文件名</th>
-									<th>行数</th>
-									<th>描述</th>
-									<th>评审人</th>
-								</tr>
-							</table>
-							<table class="table" id="choose-file">
-								<tr>
-									<th>文件名</th>
-									<th>页码</th>
-									<th>行数</th>
-									<th>描述</th>
-									<th>评审人</th>
-								</tr>
-							</table>
+							<div id="codeDiv">
+								<table class="table" id="choose-code">
+									<tr>
+										<th>文件名</th>
+										<th>行数</th>
+										<th>描述</th>
+										<th>评审人</th>
+									</tr>
+								</table>
+								<form action="">
+									<div class="row">
+										<div class="form-group col-sm-6" id="fileGroup-choosecode">
+											<label for="fileName-choosecode"
+												class="col-sm-2 control-label">文件名</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control"
+													id="fileName-choosecode" placeholder="**.*">
+											</div>
+										</div>
+										<div class="form-group col-sm-6" id="lineGroup-choosecode">
+											<label for="lineNum-choosecode"
+												class="col-sm-2 control-label">行数</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control"
+													id="lineNum-choosecode" placeholder="">
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group" id="discripGroup-choosecode">
+										<label for="discription-choosecode"
+											class="col-sm-1 control-label">描述</label>
+										<div class="col-sm-11">
+											<textarea class="form-control" rows="1"
+												id="discription-choosecode"></textarea>
+										</div>
+									</div>
+								</form>
+								<button class="btn btn-success" id="add-choosecode">添加</button>
+							</div>
+							<div id="fileDiv">
+								<table class="table" id="choose-file">
+									<tr>
+										<th>文件名</th>
+										<th>页码</th>
+										<th>行数</th>
+										<th>描述</th>
+										<th>评审人</th>
+									</tr>
+								</table>
+								<form action="">
+									<div class="row">
+										<div class="form-group col-sm-4" id="fileGroup-choosefile">
+											<label for="fileName-choosefile"
+												class="col-sm-4 control-label">文件名</label>
+											<div class="col-sm-8">
+												<input type="text" class="form-control"
+													id="fileName-choosefile" placeholder="**.*">
+											</div>
+										</div>
+										<div class="form-group col-sm-4" id="pageGroup-choosefile">
+											<label for="pageNum-choosefile"
+												class="col-sm-3 control-label">页码</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													id="pageNum-choosefile" placeholder="">
+											</div>
+										</div>
+										<div class="form-group col-sm-4" id="lineGroup-choosefile">
+											<label for="lineNum-choosefile"
+												class="col-sm-3 control-label">行数</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													id="lineNum-choosefile" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="form-group" id="discripGroup-choosefile">
+										<label for="discription-choosefile"
+											class="col-sm-1 control-label">描述</label>
+										<div class="col-sm-11">
+											<textarea class="form-control" rows="1"
+												id="discription-choosefile"></textarea>
+										</div>
+									</div>
+
+								</form>
+								<button class="btn btn-success" id="add-choosefile">添加</button>
+							</div>
 
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="divideModal" class="modal fade">
+				<div class="modal-dialog" style="width: 800px;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">x</button>
+							<h2 class="text-left text-primary">选择保留项</h2>
+						</div>
+						<div class="modal-body" style="height: 250px; overflow: auto">
+							<table class="table" id="divideTable">
+								<thead>
+									<tr>
+										<th width=10px></th>
+										<th>文件名</th>
+										<th>行数</th>
+										<th>描述</th>
+										<th>评审人</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal" id="confirmDivide">确认</button>
 						</div>
 					</div>
 				</div>

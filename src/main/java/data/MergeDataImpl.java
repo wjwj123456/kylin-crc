@@ -4,9 +4,11 @@
 */
 package data;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +23,6 @@ import po.ReportPO;
  * @see
  */
 public class MergeDataImpl implements MergeDataService {
-
-	private ResultSet rSet = null;
-	private PreparedStatement pStatement = null;
 
 	/**
 	 * TODO:£®∑Ω∑®√Ë ˆ£©
@@ -43,9 +42,11 @@ public class MergeDataImpl implements MergeDataService {
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		double time = 0;
-
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
 		String sql = "SELECT time FROM review WHERE tname = '" + taskName + "'";
-		rSet = DBManager.getResultSet(sql);
+		pStatement = connection.prepareStatement(sql);
+		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {
 			time = rSet.getDouble("time");
 			if (time != 0) {
@@ -53,7 +54,7 @@ public class MergeDataImpl implements MergeDataService {
 				break;
 			}
 		}
-		DBManager.closeConnection();
+		DBManager.stopAll(rSet, pStatement, connection);
 		return flag;
 	}
 
@@ -74,14 +75,17 @@ public class MergeDataImpl implements MergeDataService {
 	public List<ReportPO> mergeReport(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<ReportPO> list = new ArrayList<ReportPO>();
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
 		String sql = "SELECT * FROM report WHERE tname = '" + taskName + "'";
-		rSet = DBManager.getResultSet(sql);
+		pStatement = connection.prepareStatement(sql);
+		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {
 			ReportPO po = new ReportPO(taskName, rSet.getString("uname"), rSet.getString("filename"),
 					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("describe"));
 			list.add(po);
 		}
-		DBManager.closeConnection();
+		DBManager.stopAll(rSet, pStatement, connection);
 
 		return list;
 	}
@@ -100,11 +104,13 @@ public class MergeDataImpl implements MergeDataService {
 	public void saveMergeReport(List<ReportPO> reportList, String taskName)
 			throws SQLException, ClassNotFoundException {
 
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
 		ReportPO finalPO = reportList.get(0);
 		reportList.remove(0);
 		for (ReportPO po : reportList) {
 			String sql = "UPDATE report SET state = ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
-			pStatement = DBManager.getPreparedStatement(sql);
+			pStatement = connection.prepareStatement(sql);
 			pStatement.setInt(1, 1);
 			pStatement.setString(2, taskName);
 			pStatement.setString(3, po.getUserName());
@@ -112,17 +118,17 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(5, po.getPage());
 			pStatement.setInt(6, po.getLocation());
 			pStatement.setString(7, po.getDescription());
-			DBManager.closeConnection();
+			pStatement.executeUpdate();
 		}
 
 		for (ReportPO po : reportList) {
 			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
-			pStatement = DBManager.getPreparedStatement(sql1);
+			pStatement = connection.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
-			DBManager.closeConnection();
+			pStatement.executeUpdate();
 		}
-
+		DBManager.stopAll(null, pStatement, connection);
 	}
 
 	/**
@@ -135,24 +141,23 @@ public class MergeDataImpl implements MergeDataService {
 	 * @throws ClassNotFoundException
 	 */
 	private int getID(ReportPO po) throws ClassNotFoundException, SQLException {
-
+		Connection connection = DBManager.connect();
 		String sql = "SELECT id FROM report WHERE uname = ? AND tname = ? AND filename = ? AND page = ? AND location = ? AND description = ?";
-		pStatement = DBManager.getPreparedStatement(sql);
+		PreparedStatement pStatement = connection.prepareStatement(sql);
 		pStatement.setString(1, po.getUserName());
 		pStatement.setString(2, po.getTaskName());
 		pStatement.setString(3, po.getFileName());
 		pStatement.setInt(4, po.getPage());
 		pStatement.setInt(5, po.getLocation());
 		pStatement.setString(6, po.getDescription());
-		DBManager.closeConnection();
-		rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = pStatement.executeQuery();
 		int i = -1;
 		int number = 0;
 		while (rSet.next()) {
 			i = rSet.getInt("id");
 			number++;
 		}
-		DBManager.closeConnection();
+		DBManager.stopAll(rSet, pStatement, connection);
 		if (number == 0)
 			return -1;
 		else {
@@ -171,15 +176,18 @@ public class MergeDataImpl implements MergeDataService {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
+	@SuppressWarnings("unused")
 	private ReportPO getFault(int id) throws ClassNotFoundException, SQLException {
-
+		Connection connection = DBManager.connect();
 		String sql = "SELECT * FROM report WHERE id = " + id;
-		rSet = DBManager.getResultSet(sql);
+		Statement statement = connection.createStatement();
+		ResultSet rSet = statement.executeQuery(sql);
+
 		rSet.next();
 		ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
 				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"));
 
-		DBManager.closeConnection();
+		DBManager.stopAll(rSet, statement, connection);
 		return po;
 	}
 
@@ -199,11 +207,12 @@ public class MergeDataImpl implements MergeDataService {
 	public void saveAddedMergeReport(List<ReportPO> reportList, String taskName)
 			throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
 		ReportPO finalPO = reportList.get(0);
 		reportList.remove(0);
 		String sql2 = "INSERT INTO report (tname,uname,filename,page,location,description,state,origin) VALUES (?,?,?,?,?,?,?,?)";
-		pStatement = DBManager.getPreparedStatement(sql2);
+		pStatement = connection.prepareStatement(sql2);
 		pStatement.setString(1, finalPO.getTaskName());
 		pStatement.setString(2, finalPO.getUserName());
 		pStatement.setString(3, finalPO.getFileName());
@@ -213,11 +222,10 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.setInt(7, 0);
 		pStatement.setInt(8, 1);
 		pStatement.executeUpdate();
-		DBManager.closeConnection();
 
 		for (ReportPO po : reportList) {
 			String sql = "UPDATE report SET state = ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
-			pStatement = DBManager.getPreparedStatement(sql);
+			pStatement = connection.prepareStatement(sql);
 			pStatement.setInt(1, 1);
 			pStatement.setString(2, taskName);
 			pStatement.setString(3, po.getUserName());
@@ -226,18 +234,17 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(6, po.getLocation());
 			pStatement.setString(7, po.getDescription());
 			pStatement.executeUpdate();
-			DBManager.closeConnection();
 		}
 
 		for (ReportPO po : reportList) {
 			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
-			pStatement = DBManager.getPreparedStatement(sql1);
+			pStatement = connection.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
 			pStatement.executeUpdate();
-			DBManager.closeConnection();
-		}
 
+		}
+		DBManager.stopAll(null, pStatement, connection);
 	}
 
 }
