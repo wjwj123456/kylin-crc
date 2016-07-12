@@ -51,13 +51,14 @@ function invite() {
 	for (var i = 0; i < temp.length; i++) {
 		users += $(temp[i]).text().trim() + ' ';
 	}
-	
+
 	jQuery.ajax({
 		url: '/crc/InviteServlet',
 		type: 'post',
 		data: 'taskName=' + taskName + '&userNumber=' + temp.length +'&users=' + users,
 		success: function(data) {
-			if (data == 0) {
+			if (data != 2) {
+				$('#inviteModal').modal('hide')
 				alert('已发出邀请')
 			}
 		}
@@ -142,6 +143,5 @@ function refuse() {
 var theTaskName;
 function initInvite(obj) {
 	theTaskName = $(obj).parent().parent().find('a').text();
-	alert(theTaskName);
 }
 

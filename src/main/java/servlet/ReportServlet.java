@@ -42,7 +42,7 @@ public class ReportServlet extends HttpServlet {
 		String userName = (String) request.getSession().getAttribute("username");
 		String data = request.getParameter("data");
 
-		List<ReportVO> reportList = new ArrayList<>();
+		List<ReportVO> reportList = new ArrayList<ReportVO>();
 		JSONArray jsonArray = new JSONArray(data);
 
 		System.out.println(data);
