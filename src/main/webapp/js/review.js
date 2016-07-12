@@ -170,7 +170,7 @@ function fileMerge() {
 			var temp=$($('#toMerge-file').find('tr')[i+1]).clone();
 			var temptr=$("<tr></tr>");
 			var length = $(temp).children().length;
-			for(j=1;j<length;j++){
+			for(j=1;j<length-1;j++){
 				var temptd=$(temp).children().eq(1);
 				temptr.append($(temptd));
 			}
