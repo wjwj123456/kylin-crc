@@ -83,7 +83,7 @@ $('#add-choosefile').on('click',function(){
 });
 $('#confirmReport').on('click',function(){
 	if(isReportOK()){
-		
+		commitReport(taskType);
 	}
 });
 $('#toMerge-code').find('button').on('click',function(){
