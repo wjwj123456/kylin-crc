@@ -24,7 +24,7 @@ $('#add-code').on('click', function(){
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
 	}
-	
+	commitReport('code')
 });
 $('#add-choosecode').on('click',function(){
 	if(ischooseCodeItemOK()){
@@ -331,15 +331,15 @@ function isReportOK(){
  * @returns
  */
 function commitReport(type) {
-	var data = new Array();
+	var data;
 	if (type == 'code') {
-		getCodeData();
+		data = getCodeData();
 	}
 	
 	jQuery.ajax({
 		url: '/crc/ReportServlet',
 		type: 'post',
-		data: '',
+		data: 'data=' + data,
 		success: function(data) {
 			if (data == 0) {
 				alert('提交成功')
@@ -353,13 +353,17 @@ function getCodeData() {
 	var temp = $('#codeTable>tbody').find('tr');
 	
 	for (var i = 0; i < temp.length; i++) {
+		var td = $(temp[i]).find('td');
+		
 		var report = new Object();
-		report.fileName = $(temp[i]).find('td')[0].text();
+		report.fileName = $(td[0]).text();
 		report.page = 0;
-		report.location = $(temp[i]).find('td')[1].text();
-		report.description = $(temp[i]).find('td')[2].text();
-		console.log(report);
+		report.location = $(td[1]).text();
+		report.description = $(td[2]).text();	
+		data.push(report)
 	}
+	
+	return JSON.stringify(data)
 }
 
 function getFileData() {

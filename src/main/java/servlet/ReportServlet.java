@@ -1,14 +1,11 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import bl.ReportBlImpl;
 
 /**
  * Servlet implementation class ReportServlet
@@ -32,12 +29,12 @@ public class ReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		System.out.println(request.getParameter("data"));
+		// ReportBlImpl report = new ReportBlImpl();
+		// int result = report.createReport(null);
 
-		ReportBlImpl report = new ReportBlImpl();
-		int result = report.createReport(null);
-
-		PrintWriter out = response.getWriter();
-		out.print(result);
+		// PrintWriter out = response.getWriter();
+		// out.print(result);
 	}
 
 	/**
