@@ -90,20 +90,24 @@
 						aria-hidden="true">x</button>
 					<h1 class="text-center text-primary">注册</h1>
 				</div>
-				<div class="modal-body" style="height: 300px">
+				<div class="modal-body" style="height: 370px">
 					
 						
-						<div class="form-group">
-							<input type="text" name='username' class="form-control input-lg"
+						<div class="form-group" id="regUserGroup">
+							<input type="text" name='username' class="form-control input-lg" id="regUsername"
 								placeholder="用户名">
 						</div>
-						<div class="form-group">
+						<div class="form-group"id="regPassGroup">
 							<input type="password" name="password"
-								class="form-control input-lg" placeholder="登录密码">
+								class="form-control input-lg" id="regPassword" placeholder="登录密码">
 						</div>
-						<div class="form-group">
+						<div class="form-group" id="regConfirmGroup">
+							<input type="password" name="confirmPassword"
+								class="form-control input-lg" id="regConfirm" placeholder="确认密码">
+						</div>
+						<div class="form-group" id="regMailGroup">
 							<input type="text" name="mail"
-								class="form-control input-lg" placeholder="邮箱">
+								class="form-control input-lg" id="regMail" placeholder="邮箱">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-primary btn-lg btn-block" onclick="register()" id="registNow">立刻注册</button>
