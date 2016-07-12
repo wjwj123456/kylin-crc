@@ -7,7 +7,7 @@ $('#startReview').on('click',function(){
 });
 $('#add-code').on('click',function(){
 	if(isCodeItemOK()){
-		$('#codeStart').after("<tr> <td>" +$('#fileName-code').val()+
+		$('#codeStart').append("<tr> <td>" +$('#fileName-code').val()+
 				"</td> <td>" +$('#lineNum-code').val()+
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
@@ -38,7 +38,7 @@ $('#add-choosecode').on('click',function(){
 });
 $('#add-file').on('click',function(){
 	if(isFileItemOK()){
-		$('#docStart').after("<tr> <td>" +$('#fileName-file').val()+
+		$('#docStart').append("<tr> <td>" +$('#fileName-file').val()+
 				"</td> <td>" +$('#pageNum-file').val()+
 				"</td> <td>" +$('#lineNum-file').val()+
 				"</td> <td>" +$('#discription-file').val()+
@@ -73,6 +73,12 @@ $('#confirmReport').on('click',function(){
 	if(isReportOK()){
 		
 	}
+});
+$('#toMerge-code').find('button').on('click',function(){
+	$('#divideModal').modal('show');
+});
+$('#toMerge-file').find('button').on('click',function(){
+	$('#divideModal').modal('show');
 });
 function initCodeChoose(){
 	$('#choose-code').find('tr').not(':first').on('click',function(){
