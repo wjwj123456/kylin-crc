@@ -24,8 +24,8 @@ $('#add-code').on('click', function(){
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
 	}
-	commitReport('code')
 });
+
 $('#add-choosecode').on('click',function(){
 	if(ischooseCodeItemOK()){
 		$('#merged-code').append("<tr> <td>" +$('#fileName-choosecode').val()+
@@ -334,7 +334,7 @@ function commitReport(taskName, taskType) {
 		} else {
 			data = getFileData(); 
 		}
-		alert(12)
+		
 		jQuery.ajax({
 			url: '/crc/ReportServlet',
 			type: 'post',

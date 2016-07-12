@@ -45,11 +45,13 @@ public class ReportServlet extends HttpServlet {
 		List<ReportVO> reportList = new ArrayList<>();
 		JSONArray jsonArray = new JSONArray(data);
 
+		System.out.println(data);
+		System.out.println(jsonArray);
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 			reportList.add(new ReportVO(taskName, userName, jsonObject.getString("fileName"), jsonObject.getInt("page"),
-					jsonObject.getInt("location"), jsonObject.getString("description"), jsonObject.getInt("state"),
-					jsonObject.getInt("origin")));
+					Integer.parseInt(jsonObject.getString("location")), jsonObject.getString("description"),
+					jsonObject.getInt("state"), jsonObject.getInt("origin")));
 		}
 
 		ReportBlImpl report = new ReportBlImpl();
