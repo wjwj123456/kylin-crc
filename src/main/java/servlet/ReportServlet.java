@@ -2,13 +2,19 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import bl.ReportBlImpl;
+import vo.ReportVO;
 
 /**
  * Servlet implementation class ReportServlet
@@ -32,9 +38,22 @@ public class ReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String taskName = request.getParameter("taskName");
+		String userName = (String) request.getSession().getAttribute("username");
+		String data = request.getParameter("data");
+
+		List<ReportVO> reportList = new ArrayList<>();
+		JSONArray jsonArray = new JSONArray(data);
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			reportList.add(new ReportVO(taskName, userName, jsonObject.getString("fileName"), jsonObject.getInt("page"),
+					jsonObject.getInt("location"), jsonObject.getString("description"), jsonObject.getInt("state"),
+					jsonObject.getInt("origin")));
+		}
 
 		ReportBlImpl report = new ReportBlImpl();
-		int result = report.createReport(null);
+		int result = report.createReport(reportList);
 
 		PrintWriter out = response.getWriter();
 		out.print(result);

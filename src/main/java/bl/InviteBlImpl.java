@@ -118,7 +118,7 @@ public class InviteBlImpl implements InviteBlService {
 		// TODO Auto-generated method stub
 		List<String> nameList = new ArrayList<String>();
 		try {
-			nameList = inviteDataService.getAgreeUser(taskName);
+			nameList = inviteDataService.getDisagreeUser(taskName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -24,7 +24,7 @@ $('#add-code').on('click', function(){
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
 	}
-	
+	commitReport('code')
 });
 $('#add-choosecode').on('click',function(){
 	if(ischooseCodeItemOK()){
@@ -81,11 +81,7 @@ $('#add-choosefile').on('click',function(){
 	}
 	
 });
-$('#confirmReport').on('click',function(){
-	if(isReportOK()){
-		
-	}
-});
+
 $('#toMerge-code').find('button').on('click',function(){
 	$('#divideModal').modal('show');
 });
@@ -330,22 +326,26 @@ function isReportOK(){
  * commit report 
  * @returns
  */
-function commitReport(type) {
-	var data = new Array();
-	if (type == 'code') {
-		getCodeData();
-	}
-	
-	jQuery.ajax({
-		url: '/crc/ReportServlet',
-		type: 'post',
-		data: '',
-		success: function(data) {
-			if (data == 0) {
-				alert('提交成功')
-			}
+function commitReport(taskName, taskType) {
+	if(isReportOK()){
+		var data;
+		if (taskType == 'code') {
+			data = getCodeData();
+		} else {
+			data = getFileData(); 
 		}
-	});
+		alert(12)
+		jQuery.ajax({
+			url: '/crc/ReportServlet',
+			type: 'post',
+			data: 'taskName=' + taskName + '&data=' + data,
+			success: function(data) {
+				if (data == 0) {
+					alert('提交成功')
+				}
+			}
+		});
+	}
 }
 
 function getCodeData() {
@@ -353,17 +353,40 @@ function getCodeData() {
 	var temp = $('#codeTable>tbody').find('tr');
 	
 	for (var i = 0; i < temp.length; i++) {
-		var report = new Object();
-		report.fileName = $(temp[i]).find('td')[0].text();
-		report.page = 0;
-		report.location = $(temp[i]).find('td')[1].text();
-		report.description = $(temp[i]).find('td')[2].text();
+		var td = $(temp[i]).find('td');
 		
-		console.log(report);
+		var report = new Object();
+		report.fileName = $(td[0]).text();
+		report.page = 0;
+		report.location = $(td[1]).text();
+		report.description = $(td[2]).text();
+		report.state = 0;
+		report.origin = 0;
+		
+		data.push(report)
 	}
+	
+	return JSON.stringify(data)
 }
 
 function getFileData() {
+	var data = new Array();
+	var temp = $('#fileTable>tbody').find('tr');
 	
+	for (var i = 0; i < temp.length; i++) {
+		var td = $(temp[i]).find('td');
+		
+		var report = new Object();
+		report.fileName = $(td[0]).text();
+		report.page = $(td[1]).text();
+		report.location = $(td[2]).text();
+		report.description = $(td[3]).text();
+		report.state = 0;
+		report.origin = 0;
+		
+		data.push(report)	
+	}
+	
+	return JSON.stringify(data);
 }
 

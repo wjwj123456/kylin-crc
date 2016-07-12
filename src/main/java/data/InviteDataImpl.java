@@ -13,6 +13,7 @@ import vo.Type;
 public class InviteDataImpl implements InviteDataService {
 
 	private PreparedStatement pStatement;
+	private ResultSet rSet = null;
 
 	/**
 	 * ldk14 get the invitation info
@@ -23,7 +24,7 @@ public class InviteDataImpl implements InviteDataService {
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
 		String sql = "SELECT * FROM review WHERE uname = '" + reviewerName + "' and isAgree = 0";
-		ResultSet rSet = DBManager.getResultSet(sql);
+		rSet = DBManager.getResultSet(sql);
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
@@ -73,7 +74,7 @@ public class InviteDataImpl implements InviteDataService {
 
 		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 0";
 
-		ResultSet rSet = DBManager.getResultSet(sql);
+		rSet = DBManager.getResultSet(sql);
 
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
@@ -93,7 +94,7 @@ public class InviteDataImpl implements InviteDataService {
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
 		String sql = "SELECT * FROM task WHERE uname = '" + createrName + "' and state = 1";
-		ResultSet rSet = DBManager.getResultSet(sql);
+		rSet = DBManager.getResultSet(sql);
 
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
@@ -113,7 +114,7 @@ public class InviteDataImpl implements InviteDataService {
 
 		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 1";
 
-		ResultSet rSet = DBManager.getResultSet(sql);
+		rSet = DBManager.getResultSet(sql);
 
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
@@ -128,7 +129,7 @@ public class InviteDataImpl implements InviteDataService {
 
 		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 0";
 
-		ResultSet rSet = DBManager.getResultSet(sql);
+		rSet = DBManager.getResultSet(sql);
 
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
