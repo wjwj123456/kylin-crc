@@ -1,6 +1,5 @@
 package bl;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,21 +10,22 @@ import dataservice.ReportDataService;
 import po.ReportPO;
 import vo.ReportVO;
 
-public class ReportBlImpl implements ReportBlService{
+public class ReportBlImpl implements ReportBlService {
 
-	private ReportDataService reportDataService= new ReportDataImpl() ;
-			
+	private ReportDataService reportDataService = new ReportDataImpl();
+
 	public int createReport(List<ReportVO> vos) {
 		// TODO Auto-generated method stub
 		int flag = -1;
-		List<ReportPO> pos  = new ArrayList<ReportPO>();
-		for(int i =0;i<vos.size();i++){
-			ReportPO po = new ReportPO(vos.get(i).getTaskName(), vos.get(i).getUserName(), vos.get(i).getFileName(),vos.get(i).getPage(),
-					vos.get(i).getLocation(), vos.get(i).getDescription());
+		List<ReportPO> pos = new ArrayList<ReportPO>();
+		for (int i = 0; i < vos.size(); i++) {
+			ReportPO po = new ReportPO(vos.get(i).getTaskName(), vos.get(i).getUserName(), vos.get(i).getFileName(),
+					vos.get(i).getPage(), vos.get(i).getLocation(), vos.get(i).getDescription(), vos.get(i).getState(),
+					vos.get(i).getOrigin());
 			pos.add(po);
 		}
 		try {
-			flag  = reportDataService.createReport(pos);
+			flag = reportDataService.createReport(pos);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,7 +36,7 @@ public class ReportBlImpl implements ReportBlService{
 		return flag;
 	}
 
-	public int setCompleteTime(String taskName, String reviewerName ,double time) {
+	public int setCompleteTime(String taskName, String reviewerName, double time) {
 		// TODO Auto-generated method stub
 		int flag = -1;
 		try {

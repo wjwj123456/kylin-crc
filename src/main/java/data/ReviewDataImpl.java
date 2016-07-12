@@ -133,11 +133,11 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		// TODO Auto-generated method stub
 		int flag = 0;
-
-		PreparedStatement pStatement = null;
+		System.out.println("adasd");
 		String sql = "UPDATE review SET isAgree = ? WHERE uname = '" + userName + "'and tname='" + taskName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setInt(1, 1);
+
 		int i = pStatement.executeUpdate();
 		if (i == 1)
 			flag = 0;
@@ -162,13 +162,11 @@ public class ReviewDataImpl implements ReviewDataService {
 	public int saveInvitation(String[] userName, String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		int flag = 0;
-
 		try {
 			for (int i = 0; i < userName.length; i++) {
 				String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
 
 				pStatement = DBManager.getPreparedStatement(sql);
-				pStatement.setString(1, taskName);
 				pStatement.setString(2, userName[i]);
 				pStatement.setInt(3, 0);
 				int j = pStatement.executeUpdate();
@@ -176,6 +174,7 @@ public class ReviewDataImpl implements ReviewDataService {
 					flag = 2;
 				}
 				DBManager.closeConnection();
+				pStatement.setString(1, taskName);
 			}
 
 		} catch (Exception SQLIntegrityConstraintViolationException) {
