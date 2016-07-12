@@ -129,16 +129,17 @@ public class ReviewBlImpl implements ReviewBlService {
 		try {
 			flag = reviewDataService.saveInvitation(userName, taskName);
 
-			TaskVO task = getTaskVOByTaskName(taskName);
-			UserBlImpl userBl = new UserBlImpl();
-			UserVO user = userBl.getUserVOByName(task.getUserName());
-			String url = "localhost:8080/crc/tasks.jsp?taskName=" + taskName;
-			String[] userEmails = new String[userName.length];
-
-			for (int i = 0; i < userName.length; i++) {
-				userEmails[i] = userBl.getUserVOByName(userName[i]).getEmail();
-			}
-			SendMail.sendMail(user.getEmail(), userEmails, user.getName(), taskName, url);
+			// TaskVO task = getTaskVOByTaskName(taskName);
+			// UserBlImpl userBl = new UserBlImpl();
+			// UserVO user = userBl.getUserVOByName(task.getUserName());
+			// String url = "localhost:8080/crc/tasks.jsp?taskName=" + taskName;
+			// String[] userEmails = new String[userName.length];
+			//
+			// for (int i = 0; i < userName.length; i++) {
+			// userEmails[i] = userBl.getUserVOByName(userName[i]).getEmail();
+			// }
+			// SendMail.sendMail(user.getEmail(), userEmails, user.getName(),
+			// taskName, url);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
