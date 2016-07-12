@@ -1,8 +1,10 @@
 package data;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import dataservice.SplitDataService;
@@ -14,14 +16,12 @@ import po.ReportPO;
  *
  */
 public class SplitDataImpl implements SplitDataService {
-	private ResultSet rSet = null;
-	private PreparedStatement pStatement = null;
 
 	public ArrayList<ReportPO> getFaultsByTaskname(String taskname) throws ClassNotFoundException, SQLException {
 		ArrayList<ReportPO> result = new ArrayList<ReportPO>();
 
 		String sql = "SELECT * FROM report WHERE tname = '" + taskname + "' ORDER BY page, location";
-		rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
 					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"));
@@ -34,14 +34,16 @@ public class SplitDataImpl implements SplitDataService {
 	public ArrayList<ReportPO> getIncludedfaultsByFaultkey(ReportPO po) throws ClassNotFoundException, SQLException {
 		ArrayList<ReportPO> result = new ArrayList<ReportPO>();
 		int id = getID(po);
+		Connection connection = DBManager.connect();
+		Statement statement = connection.createStatement();
 		String sql = "SELECT included_id FROM merge WHERE final_id = " + id;
-		rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = statement.executeQuery(sql);
 		while (rSet.next()) {
 			int included_id = rSet.getInt("included_id");
 			ReportPO included_po = getFault(included_id);
 			result.add(included_po);
 		}
-		DBManager.closeConnection();
+		DBManager.stopAll(rSet, statement, connection);
 		return result;
 	}
 
@@ -51,7 +53,7 @@ public class SplitDataImpl implements SplitDataService {
 		if (pos.size() == included.size()) {
 
 			String sql = "DELETE FROM merge WHERE final_id = " + id;
-			pStatement = DBManager.getPreparedStatement(sql);
+			PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
 			pStatement.executeUpdate(sql);
 
 		}
@@ -69,24 +71,23 @@ public class SplitDataImpl implements SplitDataService {
 	 * @throws ClassNotFoundException
 	 */
 	private int getID(ReportPO po) throws ClassNotFoundException, SQLException {
-
+		Connection connection = DBManager.connect();
 		String sql = "SELECT id FROM report WHERE uname = ? AND tname = ? AND filename = ? AND page = ? AND location = ? AND description = ?";
-		pStatement = DBManager.getPreparedStatement(sql);
+		PreparedStatement pStatement = connection.prepareStatement(sql);
 		pStatement.setString(1, po.getUserName());
 		pStatement.setString(2, po.getTaskName());
 		pStatement.setString(3, po.getFileName());
 		pStatement.setInt(4, po.getPage());
 		pStatement.setInt(5, po.getLocation());
 		pStatement.setString(6, po.getDescription());
-		DBManager.closeConnection();
-		rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = pStatement.executeQuery();
 		int i = -1;
 		int number = 0;
 		while (rSet.next()) {
 			i = rSet.getInt("id");
 			number++;
 		}
-		DBManager.closeConnection();
+		DBManager.stopAll(rSet, pStatement, connection);
 		if (number == 0)
 			return -1;
 		else {
@@ -108,7 +109,7 @@ public class SplitDataImpl implements SplitDataService {
 	private ReportPO getFault(int id) throws ClassNotFoundException, SQLException {
 
 		String sql = "SELECT * FROM report WHERE id = " + id;
-		rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = DBManager.getResultSet(sql);
 
 		rSet.next();
 		ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
@@ -129,7 +130,7 @@ public class SplitDataImpl implements SplitDataService {
 	private int getState(int id) throws ClassNotFoundException, SQLException {
 
 		String sql = "SELECT state FROM report WHERE id = " + id;
-		rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = DBManager.getResultSet(sql);
 
 		rSet.next();
 		int state = rSet.getInt("state");
@@ -148,7 +149,7 @@ public class SplitDataImpl implements SplitDataService {
 	private void setState(int id, int newState) throws ClassNotFoundException, SQLException {
 
 		String sql = "UPDATE report SET  state = ? WHERE id = ?";
-		pStatement = DBManager.getPreparedStatement(sql);
+		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
 
 		pStatement.setInt(1, newState);
 		pStatement.setInt(2, id);
@@ -168,7 +169,7 @@ public class SplitDataImpl implements SplitDataService {
 
 		String sql = "SELECT origin FROM report WHERE id = " + id;
 
-		rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = DBManager.getResultSet(sql);
 
 		rSet.next();
 		int origin = rSet.getInt("origin");
