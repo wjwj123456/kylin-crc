@@ -16,7 +16,7 @@ public class UserBlTest {
 
 	@Test
 	public void testGetUserPOByName() {
-		assertEquals("aoliao", userBlImpl.getUserVOByName("aoliao"));
+		assertEquals("aoliao", userBlImpl.getUserVOByName("aoliao").getName());
 	}
 
 }
