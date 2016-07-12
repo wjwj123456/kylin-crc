@@ -25,7 +25,7 @@ import po.ReportPO;
 public class MergeDataImpl implements MergeDataService {
 
 	/**
-	 * TODO:（方法描述）
+	 * if it can merge return true
 	 *
 	 * @author lpt14
 	 * @since 2016年7月11日
@@ -82,7 +82,8 @@ public class MergeDataImpl implements MergeDataService {
 		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {
 			ReportPO po = new ReportPO(taskName, rSet.getString("uname"), rSet.getString("filename"),
-					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("describe"));
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("describe"), rSet.getInt("state"),
+					rSet.getInt("origin"));
 			list.add(po);
 		}
 		DBManager.stopAll(rSet, pStatement, connection);
@@ -185,7 +186,8 @@ public class MergeDataImpl implements MergeDataService {
 
 		rSet.next();
 		ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
-				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"));
+				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("state"),
+				rSet.getInt("origin"));
 
 		DBManager.stopAll(rSet, statement, connection);
 		return po;
