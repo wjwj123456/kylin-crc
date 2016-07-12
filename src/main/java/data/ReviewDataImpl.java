@@ -231,7 +231,7 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		if (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
 			DBManager.closeConnection();
 			return po;
 		} else
