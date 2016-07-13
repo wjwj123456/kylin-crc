@@ -1,15 +1,19 @@
 package data;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.ReportDataService;
 import po.ReportPO;
+import vo.Type;
 
 public class ReportDataImpl implements ReportDataService {
 
 	private PreparedStatement pStatement = null;
+	private ResultSet rSet = null;
 
 	public int createReport(List<ReportPO> pos) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
@@ -61,6 +65,36 @@ public class ReportDataImpl implements ReportDataService {
 		DBManager.closeConnection();
 		return flag;
 
+	}
+
+	@Override
+	public List<ReportPO> getAllReportsByTaskName(String taskName) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		String sql = "SELECT type FROM task where tname = '" + taskName + "'";
+		rSet = DBManager.getResultSet(sql);
+		Type type = Type.code;
+		if (rSet.next())
+			type = Type.valueOf(rSet.getString(1));
+
+		DBManager.closeConnection();
+		if (type == Type.code) {
+			sql = "SELECT * FROM report WHERE tname = '" + taskName
+					+ "' and state = 1 GROUP BY filename ORDER BY location";
+		} else {
+			sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state = 1 ORDER BY page, location";
+		}
+
+		List<ReportPO> result = new ArrayList<ReportPO>();
+
+		rSet = DBManager.getResultSet(sql);
+		while (rSet.next()) {
+			ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("state"),
+					rSet.getInt("origin"));
+			result.add(po);
+		}
+		DBManager.closeConnection();
+		return result;
 	}
 
 }

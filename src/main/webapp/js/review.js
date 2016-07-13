@@ -340,9 +340,10 @@ function commitReport(taskName, taskType) {
 			type: 'post',
 			data: 'taskName=' + taskName + '&data=' + data,
 			success: function(data) {
-				if (data == 0) {
-					alert('提交成功')
-				}
+				console.log(data)
+//				if (data == 0) {
+//					alert('提交成功')
+//				}
 			}
 		});
 	}

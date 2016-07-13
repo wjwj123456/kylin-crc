@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import bl.InviteBlImpl;
 import bl.ReviewBlImpl;
+import tools.Encode;
 import vo.TaskVO;
 
 /**
@@ -41,7 +42,7 @@ public class TaskFilter implements Filter {
 		HttpSession session = req.getSession();
 
 		req.setCharacterEncoding("UTF-8");
-		String taskName = req.getParameter("taskName");
+		String taskName = Encode.transfer(req.getParameter("taskName"));
 
 		ReviewBlImpl review = new ReviewBlImpl();
 		TaskVO task = review.getTaskVOByTaskName(taskName);

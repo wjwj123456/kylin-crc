@@ -51,4 +51,26 @@ public class ReportBlImpl implements ReportBlService {
 		return flag;
 	}
 
+	@Override
+	public List<ReportVO> getAllReportsByTaskName(String taskName) {
+		// TODO Auto-generated method stub
+		List<ReportVO> result = new ArrayList<ReportVO>();
+		List<ReportPO> list = null;
+		try {
+			list = reportDataService.getAllReportsByTaskName(taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (ReportPO po : list) {
+			ReportVO vo = new ReportVO(po.getTaskName(), po.getUserName(), po.getFileName(), po.getPage(),
+					po.getLocation(), po.getDescription(), po.getState(), po.getOrigin());
+			result.add(vo);
+		}
+		return result;
+	}
+
 }
