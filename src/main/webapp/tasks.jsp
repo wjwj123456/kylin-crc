@@ -177,8 +177,10 @@ username = '<%=session.getAttribute("username")%>';
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
-					<div id="joinBlock">
-						<button class="btn btn-success" id="join">参加评审</button>
+					<div id="preJoinBlock">
+						<div id="joinBlock">
+							<button class="btn btn-success" id="join">参加评审</button>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-2">
@@ -498,7 +500,7 @@ username = '<%=session.getAttribute("username")%>';
 					</div>
 				</div>
 			</div>
-			<div class="overBlock">
+			<div id="overBlock">
 				<p>评审已截止，您可以查看评审报告</p>
 			</div>
 			<div id="divideModal" class="modal fade">
