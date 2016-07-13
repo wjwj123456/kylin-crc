@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import bl.ReportBlImpl;
-import tools.Encode;
 import vo.ReportVO;
 
 /**
@@ -47,22 +45,9 @@ public class ReportServlet extends HttpServlet {
 			handleStore(request, response);
 		} else if (type.equals("delete")) {
 			handleDelete(request, response);
+		} else if (type.equals("commit")) {
+			handleCommit(request, response);
 		}
-		String taskName = Encode.transfer(request.getParameter("taskName"));
-		String userName = (String) request.getSession().getAttribute("username");
-		String data = Encode.transfer(request.getParameter("data"));
-
-		JSONArray jsonArray = new JSONArray();
-
-		JSONObject jsonObject = new JSONObject();
-		// jsonObject.put("result", createReport(taskName, userName, data));
-		// jsonObject.put("reportList", new
-		// ReportBlImpl().getAllReportsByTaskName(taskName));
-
-		jsonArray.put(jsonObject);
-
-		PrintWriter out = response.getWriter();
-		out.print(jsonArray);
 	}
 
 	/**
@@ -87,11 +72,10 @@ public class ReportServlet extends HttpServlet {
 		List<ReportVO> reportList = new ArrayList<ReportVO>();
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
-		reportList.add(new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
-				(String) request.getSession().getAttribute("username"),
-				Encode.transfer(jsonObject.getString("fileName")), jsonObject.getInt("page"),
-				jsonObject.getInt("location"), Encode.transfer(jsonObject.getString("description")),
-				jsonObject.getInt("state"), jsonObject.getInt("origin")));
+		reportList.add(
+				new ReportVO(jsonObject.getString("taskName"), (String) request.getSession().getAttribute("username"),
+						jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
+						jsonObject.getString("describe"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
 
 		ReportBlImpl report = new ReportBlImpl();
 
@@ -103,40 +87,36 @@ public class ReportServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 * @param reponse
+	 * @throws IOException
 	 */
-	private void handleDelete(HttpServletRequest request, HttpServletResponse reponse) {
+	private void handleDelete(HttpServletRequest request, HttpServletResponse reponse) throws IOException {
+		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
+		ReportBlImpl report = new ReportBlImpl();
+		int result = report.deleteReport(
+				new ReportVO(jsonObject.getString("taskName"), (String) request.getSession().getAttribute("username"),
+						jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
+						jsonObject.getString("describe"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
+
+		PrintWriter out = reponse.getWriter();
+		out.print(result);
 	}
 
 	/**
-	 * 参与者提交报告，生成原始报告
+	 * 提交报告
 	 * 
-	 * @param taskName
-	 *            任务名
-	 * @param userName
-	 *            用户民
-	 * @param data
-	 *            报告数据，json格式
-	 * @return
+	 * @param request
+	 * @param response
 	 * @throws IOException
-	 * @throws JSONException
-	 * @throws NumberFormatException
 	 */
-	private int createReport(String taskName, String userName, String data)
-			throws NumberFormatException, JSONException, IOException {
-		List<ReportVO> reportList = new ArrayList<ReportVO>();
-		JSONArray jsonArray = new JSONArray(data);
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			reportList.add(new ReportVO(taskName, userName, Encode.transfer(jsonObject.getString("fileName")),
-					jsonObject.getInt("page"), Integer.parseInt(jsonObject.getString("location")),
-					Encode.transfer(jsonObject.getString("description")), jsonObject.getInt("state"),
-					jsonObject.getInt("origin")));
-		}
-
+	private void handleCommit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String taskName = request.getParameter("taskName");
+		String userName = (String) request.getSession().getAttribute("username");
+		double time = Double.parseDouble(request.getParameter("time"));
 		ReportBlImpl report = new ReportBlImpl();
+		int result = report.setCompleteTime(taskName, userName, time);
 
-		return report.createReport(reportList);
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 }

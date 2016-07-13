@@ -194,9 +194,9 @@ function deleteItem(obj){
 	var data = $(obj).parent().parent().find('td');
 	
 	if (data.length == 4) { // 删除代码记录
-		deleteCode(data);
+		deleteCode(data, obj);
 	} else { // 删除文档记录
-		deleteFile(data);
+		deleteFile(data, obj);
 	}
 }
 
@@ -394,7 +394,7 @@ function store(data) {
 /**
  * 每删除一条记录，即从数据库删除一条记录
  */
-function deleteCode(data) {
+function deleteCode(data, obj) {
 	var report = new Object({
 		taskName: taskName,
 		fileName: $(data[0]).text().trim(),
@@ -405,13 +405,13 @@ function deleteCode(data) {
 		origin: 0
 	});
 	
-	deleteCodeAndFile(report);
+	deleteCodeAndFile(report, obj);
 }
 
 /**
  * 每删除一条记录，即从数据库删除一条记录
  */
-function deleteFile(data) {
+function deleteFile(data, obj) {
 	var report = new Object({
 		taskName: taskName,
 		fileName: $(data[0]).text().trim(),
@@ -422,20 +422,20 @@ function deleteFile(data) {
 		origin: 0
 	});
 	
-	deleteCodeAndFile(report);	
+	deleteCodeAndFile(report, obj);	
 }
 
 /**
  * 删除一条记录
  * @param data 记录数据
  */
-function deleteCodeAndFile(data) {
+function deleteCodeAndFile(data, obj) {
 	jQuery.ajax({
 		url: '/crc/ReportServlet',
 		type: 'post',
 		data: 'type=delete' + '&data=' + JSON.stringify(data),
 		success: function(data) {
-			
+			$(obj).parent().parent().remove();
 		},
 		error: function() {
 			alert('出错了，更改无法保存')
@@ -452,7 +452,7 @@ function commitReport() {
 		jQuery.ajax({
 			url: '/crc/ReportServlet',
 			type: 'post',
-			data: 'type=commit' + '&data=' + $('#timeCost').val().trim(),
+			data: 'type=commit&taskName=' + taskName + '&time=' + $('#timeCost').val().trim(),
 			success: function(data) {
 				console.log(data)
 //				if (data == 0) {
