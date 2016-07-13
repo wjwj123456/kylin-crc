@@ -332,7 +332,8 @@ function storeCode() {
 		type: 'post',
 		data: 'fileName=' + $('#fileName-code').val().trim() 
 			+ '&page=0' + '&location=' + $('#lineNum-code').val().trim()
-			+ '&describe=' + $('#discription-code').val().trim(),
+			+ '&describe=' + $('#discription-code').val().trim()
+			+ '&state=0&origin=0',
 		success: function(data) {
 			
 		},
@@ -346,7 +347,21 @@ function storeCode() {
  * 每添加一条记录，即向数据库中添加一条记录
  */
 function storeFile() {
-	
+	jQuery.ajax({
+		url: '/crc/ReportServlet',
+		type: 'post',
+		data: 'fileName=' + $('#fileName-code').val().trim() 
+			+ '&page=' + $('#pageNum-file').val().trim()
+			+ '&location=' + $('#lineNum-code').val().trim()
+			+ '&describe=' + $('#discription-code').val().trim()
+			+ '&state=0&origin=0',
+		success: function(data) {
+			
+		},
+		error: function() {
+			alert('出错了，更改无法保存')
+		}
+	})
 }
 
 /**
