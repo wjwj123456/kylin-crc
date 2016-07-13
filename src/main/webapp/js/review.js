@@ -3,7 +3,6 @@ var reportOK = true;
 var username;
 var taskType;
 $(function(){
-	alert(taskType)
 	if(taskType=='code'){
 		$('#docBlock').hide();
 		$('#toMerge-file').hide();

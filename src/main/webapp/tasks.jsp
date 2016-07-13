@@ -336,9 +336,10 @@ username = '<%=session.getAttribute("username")%>';
 								<th>评审人</th>
 								<th width=20px></th>
 							</tr>
-							<%List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_"+ taskVO.getTaskName())) ;%>
+							<%List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_"+ taskVO.getTaskName()));%>
 							<%
 								for (ReportVO reportVO : toMergeVOs) {
+									
 							%>
 							<tr>
 								<td><input type="checkbox"></td>
