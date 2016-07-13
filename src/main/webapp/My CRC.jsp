@@ -50,7 +50,7 @@
 		</div>
 	</div>
 	</nav>
-	<div class="container">
+	<div class="container" id="waitArea">
 		<div id="suspensionNavigation" class="col-md-2" role="complementary">
 			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
 			<ul class="nav bs-docs-sidenav">
