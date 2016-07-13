@@ -74,7 +74,7 @@ public class ReportDataImpl implements ReportDataService {
 		rSet = DBManager.getResultSet(sql);
 		Type type = Type.code;
 		if (rSet.next())
-			type = Type.valueOf(rSet.getString(3));
+			type = Type.valueOf(rSet.getString(1));
 
 		DBManager.closeConnection();
 		if (type == Type.code) {
