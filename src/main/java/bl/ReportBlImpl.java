@@ -91,5 +91,9 @@ public class ReportBlImpl implements ReportBlService {
 		}
 		return result;
 	}
+	
+	public List<ReportVO> getMergeReport(String taskname) {
+		return null;
+	}
 
 }
