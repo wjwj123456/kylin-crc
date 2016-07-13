@@ -81,7 +81,7 @@ public class ReportDataImpl implements ReportDataService {
 			sql = "SELECT * FROM report WHERE tname = '" + taskName
 					+ "' and state = 1 GROUP BY filename ORDER BY location";
 		} else {
-			sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state = 1 ORDER BY page, location";
+			sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state = 0 ORDER BY page, location";
 		}
 
 		List<ReportPO> result = new ArrayList<ReportPO>();

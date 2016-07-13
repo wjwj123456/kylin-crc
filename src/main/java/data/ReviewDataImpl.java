@@ -10,6 +10,7 @@ import java.util.List;
 import dataservice.ReviewDataService;
 import po.TaskPO;
 import po.UserPO;
+import vo.State;
 import vo.Type;
 
 /**
@@ -134,9 +135,9 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		int flag = 0;
 		System.out.println("adasd");
-		String sql = "UPDATE review SET isAgree = ? WHERE uname = '" + userName + "'and tname='" + taskName + "'";
+		String sql = "UPDATE review SET state  = ? WHERE uname = '" + userName + "'and tname='" + taskName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
-		pStatement.setInt(1, 1);
+		pStatement.setString(1, State.agree.toString());
 
 		int i = pStatement.executeUpdate();
 		if (i == 1)
@@ -282,7 +283,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	public List<String> getJoinedTaskNamesByUserName(String userName) throws SQLException, ClassNotFoundException {
 		List<String> list = new ArrayList<String>();
 
-		String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and isAgree = 1 ";
+		String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and state <> 'refuse' ";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
