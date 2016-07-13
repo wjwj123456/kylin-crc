@@ -12,10 +12,9 @@ public class ReportPO {
 	private String description;
 	private int state;
 	private int origin;
-	private int confirm;
 
 	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description,
-			int state, int origin, int confirm) {
+			int state, int origin) {
 		super();
 		this.taskName = taskName;
 		this.userName = userName;
@@ -25,7 +24,6 @@ public class ReportPO {
 		this.description = description;
 		this.state = state;
 		this.origin = origin;
-		this.confirm = confirm;
 	}
 
 	public String getTaskName() {
@@ -91,14 +89,6 @@ public class ReportPO {
 	public void setOrigin(int origin) {
 		this.origin = origin;
 	}
-	
-	public void setConfirm(int confirm) {
-		this.confirm = confirm;
-	}
-	
-	public int getConfirm() {
-		return confirm;
-	}
 
 	public ReportPO(ReportVO vo) {
 		this.taskName = vo.getTaskName();
@@ -109,7 +99,16 @@ public class ReportPO {
 		this.page = vo.getPage();
 		this.state = vo.getState();
 		this.origin = vo.getOrigin();
-		this.confirm = vo.getConfirm();
+	}
+
+	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description) {
+		super();
+		this.taskName = taskName;
+		this.userName = userName;
+		this.fileName = fileName;
+		this.page = page;
+		this.location = location;
+		this.description = description;
 	}
 
 }

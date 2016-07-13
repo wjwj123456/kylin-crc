@@ -17,10 +17,9 @@ public class ReportVO implements Serializable {
 	private String description;
 	private int state;
 	private int origin;
-	private int confirm;
 	
 	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description,
-			int state, int origin, int confirm) {
+			int state, int origin) {
 		super();
 		this.taskName = taskName;
 		this.userName = userName;
@@ -30,7 +29,6 @@ public class ReportVO implements Serializable {
 		this.description = description;
 		this.state = state;
 		this.origin = origin;
-		this.setConfirm(confirm);
 	}
 
 	public String getTaskName() {
@@ -106,7 +104,6 @@ public class ReportVO implements Serializable {
 		this.page = po.getPage();
 		this.state = po.getState();
 		this.origin = po.getOrigin();
-		this.confirm = po.getConfirm();
 	}
 
 	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description) {
@@ -118,13 +115,4 @@ public class ReportVO implements Serializable {
 		this.location = location;
 		this.description = description;
 	}
-
-	public int getConfirm() {
-		return confirm;
-	}
-
-	public void setConfirm(int confirm) {
-		this.confirm = confirm;
-	}
-
 }
