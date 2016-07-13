@@ -1,3 +1,4 @@
+<%@page import="vo.ReportVO"%>
 <%@page import="tools.Tools"%>
 <%@page import="java.util.List"%>
 <%@page import="vo.Type"%>
@@ -21,8 +22,7 @@
 <title>CRC Task</title>
 </head>
 <script type="text/javascript">
-username = '<%=session.getAttribute("username")%>
-	';
+username = '<%=session.getAttribute("username")%>';
 <%TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));%>
 	
 <%if (taskVO.getType() == Type.code) {%>
@@ -325,7 +325,7 @@ username = '<%=session.getAttribute("username")%>
 					</div>
 				</div>
 				<div id="mergeBlock">
-					<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>
+					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
 					<div class="row" style="height: 400px; overflow: auto;">
 						<table class="table" id="toMerge-code">
 							<tr>
@@ -336,15 +336,16 @@ username = '<%=session.getAttribute("username")%>
 								<th>评审人</th>
 								<th width=20px></th>
 							</tr>
+							<%List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_"+ taskVO.getTaskName())) ;%>
 							<%
-								for (int i = 0; i < 10; i++) {
+								for (ReportVO reportVO : toMergeVOs) {
 							%>
 							<tr>
-								<td><input type="checkbox"><%=i%></td>
-								<td>121</td>
-								<td>1212</td>
-								<td>1212</td>
-								<td>1212</td>
+								<td><input type="checkbox"></td>
+								<td><%=reportVO.getFileName() %></td>
+								<td><%=reportVO.getLocation() %></td>
+								<td><%=reportVO.getDescription() %></td>
+								<td><%=reportVO.getUserName() %></td>
 								<td><button class="btn btn-warning">拆分</button></td>
 							</tr>
 							<%
