@@ -17,19 +17,6 @@ public class ReportVO implements Serializable {
 	private String description;
 	private int state;
 	private int origin;
-	
-	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description,
-			int state, int origin) {
-		super();
-		this.taskName = taskName;
-		this.userName = userName;
-		this.fileName = fileName;
-		this.page = page;
-		this.location = location;
-		this.description = description;
-		this.state = state;
-		this.origin = origin;
-	}
 
 	public String getTaskName() {
 		return taskName;
@@ -106,6 +93,18 @@ public class ReportVO implements Serializable {
 		this.origin = po.getOrigin();
 	}
 
+	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description, int state, int origin) {
+		super();
+		this.taskName = taskName;
+		this.userName = userName;
+		this.fileName = fileName;
+		this.page = page;
+		this.location = location;
+		this.description = description;
+		this.state = state;
+		this.origin = origin;
+	}
+	
 	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description) {
 		super();
 		this.taskName = taskName;
