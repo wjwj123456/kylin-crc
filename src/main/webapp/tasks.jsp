@@ -30,6 +30,7 @@ username = '<%=session.getAttribute("username")%>';
 <%}%>
 	
 </script>
+	<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
 	<div class="container">
@@ -218,7 +219,7 @@ username = '<%=session.getAttribute("username")%>';
 							</tr>
 						</thead>
 						<tbody id="codeStart">
-							
+
 						</tbody>
 					</table>
 				</div>
@@ -264,7 +265,7 @@ username = '<%=session.getAttribute("username")%>';
 							</tr>
 						</thead>
 						<tbody id="docStart">
-							
+
 						</tbody>
 					</table>
 				</div>
@@ -313,7 +314,8 @@ username = '<%=session.getAttribute("username")%>';
 							placeholder="小时">
 					</div>
 				</div>
-				<button class="btn btn-success" id="confirmReport" onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
+				<button class="btn btn-success" id="confirmReport"
+					onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
 			</div>
 			<div id="mergeBlock">
 				<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>
@@ -533,6 +535,61 @@ username = '<%=session.getAttribute("username")%>';
 			</div>
 			<hr>
 			<h2 id="report">评审报告</h2>
+			<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
+			<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('resultGraph'));
+			var option = {
+				    title: {
+				        text: '总体评审效率'
+				    },
+				    tooltip: {
+				        trigger: 'axis',
+				        formatter: function (params) {
+				            params = params[0];
+				            
+				            return params.dataIndex;
+				        },
+				        axisPointer: {
+				            animation: false
+				        }
+				    },
+				    xAxis: {
+				    	name: '合并次数',
+				    	type : 'category',
+			            boundaryGap : false,
+			            data : ['周一','周二','周三','周四','周五','周六','周日']
+				    },
+				    yAxis: {
+				    	name: '效率',
+				        type: 'value',
+				        boundaryGap: [0, '100%'],
+				        splitLine: {
+				            show: false
+				        }
+				    },
+				    series: [{
+				        name: '模拟数据',
+				        type: 'line',
+				        showSymbol: false,
+				        hoverAnimation: false,
+				        data: [1,2,3,4,5,6,7,8,9]
+				    }]
+				};
+			myChart.setOption(option);
+			</script>
+			<div class="col-md-5">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>评审人</th>
+							<th>预估缺陷总数</th>
+							<th>找出缺陷数</th>
+							<th>评审效率</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 			<hr>
 		</div>
 	</div>
