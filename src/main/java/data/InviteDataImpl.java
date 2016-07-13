@@ -23,7 +23,7 @@ public class InviteDataImpl implements InviteDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM review WHERE uname = '" + reviewerName + "' and isAgree = 0";
+		String sql = "SELECT * FROM review WHERE uname = '" + reviewerName + "' and state = 'refuse'";
 		rSet = DBManager.getResultSet(sql);
 		List<String> list = new ArrayList<String>();
 		while (rSet.next()) {
@@ -112,7 +112,7 @@ public class InviteDataImpl implements InviteDataService {
 	public List<String> getAgreeUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 
-		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 1";
+		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and state <> 'refuse'";
 
 		rSet = DBManager.getResultSet(sql);
 
@@ -127,7 +127,7 @@ public class InviteDataImpl implements InviteDataService {
 	public List<String> getDisagreeUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 
-		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and isAgree = 0";
+		String sql = "SELECT uname FROM review WHERE tname = '" + taskName + "' and state = 'refuse'";
 
 		rSet = DBManager.getResultSet(sql);
 
