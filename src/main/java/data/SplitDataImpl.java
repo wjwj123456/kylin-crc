@@ -24,7 +24,8 @@ public class SplitDataImpl implements SplitDataService {
 		ResultSet rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
-					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"),rSet.getInt("state"),rSet.getInt("origin"), rSet.getInt("confirm"));
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("state"),
+					rSet.getInt("origin"));
 			result.add(po);
 		}
 		DBManager.closeConnection();
@@ -51,27 +52,25 @@ public class SplitDataImpl implements SplitDataService {
 		int id = getID(po);
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
-		for(ReportPO reportPO: pos) {
+		for (ReportPO reportPO : pos) {
 			int id0 = getID(reportPO);
 			String sql1 = "UPDATE report SET state = 0 WHERE id = " + id0;
 			statement.executeUpdate(sql1);
-			
-			String sql2 = "DELETE FROM merge WHERE final_id = "+ id + " AND included_id = " + id0;
-			statement.executeUpdate(sql2);		
+
+			String sql2 = "DELETE FROM merge WHERE final_id = " + id + " AND included_id = " + id0;
+			statement.executeUpdate(sql2);
 		}
-		
+
 		ResultSet rSet = null;
-		if(po.getOrigin() != 0) {
-			String sql3 = "SELECT * FROM merge WHERE final_id = "+ id;
+		if (po.getOrigin() != 0) {
+			String sql3 = "SELECT * FROM merge WHERE final_id = " + id;
 			rSet = statement.executeQuery(sql3);
-			if(!rSet.next()) {
+			if (!rSet.next()) {
 				String sql4 = "DELETE FROM report WHERE id = " + id;
 				statement.executeUpdate(sql4);
 			}
 		}
-		
-		
-		
+
 		DBManager.stopAll(rSet, statement, connection);
 		return true;
 	}
@@ -128,7 +127,8 @@ public class SplitDataImpl implements SplitDataService {
 
 		rSet.next();
 		ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
-				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"),rSet.getInt("state"),rSet.getInt("origin"), rSet.getInt("confirm"));
+				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("state"),
+				rSet.getInt("origin"));
 
 		DBManager.closeConnection();
 		return po;
