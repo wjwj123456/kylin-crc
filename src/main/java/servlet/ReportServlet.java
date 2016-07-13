@@ -44,23 +44,16 @@ public class ReportServlet extends HttpServlet {
 		String userName = (String) request.getSession().getAttribute("username");
 		String data = Encode.transfer(request.getParameter("data"));
 
-		List<ReportVO> reportList = new ArrayList<ReportVO>();
-		JSONArray jsonArray = new JSONArray(data);
+		JSONArray jsonArray = new JSONArray();
 
-		System.out.println(data);
-		System.out.println(jsonArray);
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			reportList.add(new ReportVO(taskName, userName, jsonObject.getString("fileName"), jsonObject.getInt("page"),
-					Integer.parseInt(jsonObject.getString("location")), jsonObject.getString("description"),
-					jsonObject.getInt("state"), jsonObject.getInt("origin")));
-		}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", createReport(taskName, userName, data));
+		jsonObject.put("reportList", new ReportBlImpl().getAllReportsByTaskName(taskName));
 
-		ReportBlImpl report = new ReportBlImpl();
-		int result = report.createReport(reportList);
+		jsonArray.put(jsonObject);
 
 		PrintWriter out = response.getWriter();
-		out.print(result);
+		out.print(jsonArray);
 	}
 
 	/**
@@ -70,5 +63,32 @@ public class ReportServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	/**
+	 * 参与者提交报告，生成原始报告
+	 * 
+	 * @param taskName
+	 *            任务名
+	 * @param userName
+	 *            用户民
+	 * @param data
+	 *            报告数据，json格式
+	 * @return
+	 */
+	private int createReport(String taskName, String userName, String data) {
+		List<ReportVO> reportList = new ArrayList<ReportVO>();
+		JSONArray jsonArray = new JSONArray(data);
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			reportList.add(new ReportVO(taskName, userName, jsonObject.getString("fileName"), jsonObject.getInt("page"),
+					Integer.parseInt(jsonObject.getString("location")), jsonObject.getString("description"),
+					jsonObject.getInt("state"), jsonObject.getInt("origin")));
+		}
+
+		ReportBlImpl report = new ReportBlImpl();
+
+		return report.createReport(reportList);
 	}
 }
