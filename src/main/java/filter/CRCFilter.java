@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import bl.InviteBlImpl;
+import bl.ReviewBlImpl;
 import vo.TaskVO;
 
 /**
@@ -24,14 +25,12 @@ public class CRCFilter implements Filter {
 	 * Default constructor.
 	 */
 	public CRCFilter() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -50,13 +49,21 @@ public class CRCFilter implements Filter {
 		List<TaskVO> invitationList = invite.getInvitationInfo(userName);
 		session.setAttribute("invitationList", invitationList);
 
-		// 正在进行中的任务
+		// 正在进行中的任务(发起者)
 		List<TaskVO> runningTask = invite.getAllDoingTask(userName);
 		session.setAttribute("runningTask", runningTask);
 
-		// 历史任务
+		// 历史任务(发起者)
 		List<TaskVO> historyTask = invite.getAllCompleteTask(userName);
 		session.setAttribute("historyTask", historyTask);
+
+		// 正在进行中的任务(参与者)
+		List<TaskVO> participantTask = new ReviewBlImpl().getJoinedDoingTasksByUserName(userName);
+		session.setAttribute("participantTask", participantTask);
+
+		// 历史任务(参与者)
+		List<TaskVO> historyTask_participant = new ReviewBlImpl().getJoinedEndTasksByUserName(userName);
+		session.setAttribute("historyTask_participant", historyTask_participant);
 
 		chain.doFilter(request, response);
 	}
