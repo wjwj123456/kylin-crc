@@ -49,6 +49,24 @@ public class ReportDataImpl implements ReportDataService {
 		return flag;
 	}
 
+	@Override
+	public int deleteReport(ReportPO po) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		int flag = -1;
+
+		String sql = "DELETE * FROM report  WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
+				+ "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage() + "' and location = '"
+				+ po.getLocation() + "' and state = 0";
+		pStatement = DBManager.getPreparedStatement(sql);
+		int i = pStatement.executeUpdate();
+		if (i == 1)
+			flag = 0;
+		else
+			flag = 1;
+		DBManager.closeConnection();
+		return flag;
+	}
+
 	public int setCompleteTime(String taskName, String reviewerName, double time)
 			throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub

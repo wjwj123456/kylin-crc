@@ -16,6 +16,14 @@ public interface ReportBlService {
 	public int createReport(List<ReportVO> vos);
 
 	/**
+	 * ldk
+	 * 
+	 * @param vo
+	 * @return 0 :delete success 1: delete fail
+	 */
+	public int deleteReport(ReportVO vo);
+
+	/**
 	 * ldk 设置完成一份评审报告的时间
 	 * 
 	 * @param time
