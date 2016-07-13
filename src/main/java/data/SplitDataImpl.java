@@ -24,7 +24,7 @@ public class SplitDataImpl implements SplitDataService {
 		ResultSet rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
-					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"),rSet.getInt("state"),rSet.getInt("origin"));
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"),rSet.getInt("state"),rSet.getInt("origin"), rSet.getInt("confirm"));
 			result.add(po);
 		}
 		DBManager.closeConnection();
@@ -128,7 +128,7 @@ public class SplitDataImpl implements SplitDataService {
 
 		rSet.next();
 		ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
-				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"),rSet.getInt("state"),rSet.getInt("origin"));
+				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"),rSet.getInt("state"),rSet.getInt("origin"), rSet.getInt("confirm"));
 
 		DBManager.closeConnection();
 		return po;
