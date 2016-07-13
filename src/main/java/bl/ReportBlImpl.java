@@ -36,6 +36,25 @@ public class ReportBlImpl implements ReportBlService {
 		return flag;
 	}
 
+	@Override
+	public int deleteReport(ReportVO vo) {
+		// TODO Auto-generated method stub
+		int flag = -1;
+		ReportPO po = new ReportPO(vo.getTaskName(), vo.getUserName(), vo.getFileName(), vo.getPage(), vo.getLocation(),
+				vo.getDescription(), vo.getState(), vo.getOrigin());
+
+		try {
+			flag = reportDataService.deleteReport(po);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 	public int setCompleteTime(String taskName, String reviewerName, double time) {
 		// TODO Auto-generated method stub
 		int flag = -1;

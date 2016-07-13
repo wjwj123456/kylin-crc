@@ -9,10 +9,18 @@ public interface ReportDataService {
 	/**
 	 * ldk
 	 * 
-	 * @param vos
+	 * @param pos
 	 * @return 0: 创建成功 1：失败
 	 */
 	public int createReport(List<ReportPO> pos) throws ClassNotFoundException, SQLException;
+
+	/**
+	 * ldk
+	 * 
+	 * @param po
+	 * @return 0 :delete success 1: delete fail
+	 */
+	public int deleteReport(ReportPO po) throws ClassNotFoundException, SQLException;
 
 	/**
 	 * ldk 设置完成一份评审报告的时间
