@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import bl.ReportBlImpl;
@@ -75,16 +76,21 @@ public class ReportServlet extends HttpServlet {
 	 * @param data
 	 *            报告数据，json格式
 	 * @return
+	 * @throws IOException
+	 * @throws JSONException
+	 * @throws NumberFormatException
 	 */
-	private int createReport(String taskName, String userName, String data) {
+	private int createReport(String taskName, String userName, String data)
+			throws NumberFormatException, JSONException, IOException {
 		List<ReportVO> reportList = new ArrayList<ReportVO>();
 		JSONArray jsonArray = new JSONArray(data);
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			reportList.add(new ReportVO(taskName, userName, jsonObject.getString("fileName"), jsonObject.getInt("page"),
-					Integer.parseInt(jsonObject.getString("location")), jsonObject.getString("description"),
-					jsonObject.getInt("state"), jsonObject.getInt("origin")));
+			reportList.add(new ReportVO(taskName, userName, Encode.transfer(jsonObject.getString("fileName")),
+					jsonObject.getInt("page"), Integer.parseInt(jsonObject.getString("location")),
+					Encode.transfer(jsonObject.getString("description")), jsonObject.getInt("state"),
+					jsonObject.getInt("origin")));
 		}
 
 		ReportBlImpl report = new ReportBlImpl();
