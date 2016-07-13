@@ -23,6 +23,7 @@
 </head>
 <script type="text/javascript">
 username = '<%=session.getAttribute("username")%>';
+taskName = '<%=request.getParameter("taskName")%>';
 <%TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));%>
 	
 <%if (taskVO.getType() == Type.code) {%>
@@ -321,7 +322,7 @@ username = '<%=session.getAttribute("username")%>';
 							</div>
 						</div>
 						<button class="btn btn-success" id="confirmReport"
-							onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
+							onclick="commitReport()">确认评审结果</button>
 					</div>
 				</div>
 				<div id="mergeBlock">
