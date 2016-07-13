@@ -204,295 +204,301 @@ username = '<%=session.getAttribute("username")%>';
 			<strong><%=Tools.dateToString(taskVO.getDeadline())%></strong>
 			<hr>
 			<h2 id="review">评审</h2>
-			<p id="preWord">开始评审前，请确认</p>
-			<button class="btn btn-success" id="startReview">开始评审</button>
-			<div id="codeBlock">
-				<div
-					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-					<table class="table" id="codeTable">
-						<thead>
+			<div id="reviewBlock">
+
+				<p id="preWord">开始评审前，请确认</p>
+				<button class="btn btn-success" id="startReview">开始评审</button>
+				<div id="codeBlock">
+					<div
+						style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
+						<table class="table" id="codeTable">
+							<thead>
+								<tr>
+									<th width=120px>文件名</th>
+									<th width=50px>行数</th>
+									<th>描述</th>
+									<th width=10px></th>
+								</tr>
+							</thead>
+							<tbody id="codeStart">
+
+							</tbody>
+						</table>
+					</div>
+
+					<form action="">
+						<div class="row">
+							<div class="form-group col-sm-6" id="fileGroup-code">
+								<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="fileName-code"
+										placeholder="**.*">
+								</div>
+							</div>
+							<div class="form-group col-sm-6" id="lineGroup-code">
+								<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="lineNum-code"
+										placeholder="">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" id="discripGroup-code">
+							<label for="discription-code" class="col-sm-1 control-label">描述</label>
+							<div class="col-sm-11">
+								<textarea class="form-control" rows="1" id="discription-code"></textarea>
+							</div>
+						</div>
+					</form>
+					<button class="btn btn-success" id="add-code">添加</button>
+				</div>
+				<div id="docBlock">
+					<div
+						style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
+						<table class="table" id="docTable">
+							<thead>
+								<tr>
+									<th width=120px>文件名</th>
+									<th width=50px>页码</th>
+									<th width=50px>行数</th>
+									<th>描述</th>
+									<th width=10px></th>
+								</tr>
+							</thead>
+							<tbody id="docStart">
+
+							</tbody>
+						</table>
+					</div>
+
+					<form action="">
+						<div class="row">
+							<div class="form-group col-sm-4" id="fileGroup-file">
+								<label for="fileName-file" class="col-sm-4 control-label">文件名</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="fileName-file"
+										placeholder="**.*">
+								</div>
+							</div>
+							<div class="form-group col-sm-4" id="pageGroup-file">
+								<label for="pageNum-file" class="col-sm-3 control-label">页码</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="pageNum-file"
+										placeholder="">
+								</div>
+							</div>
+							<div class="form-group col-sm-4" id="lineGroup-file">
+								<label for="lineNum-file" class="col-sm-3 control-label">行数</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="lineNum-file"
+										placeholder="">
+								</div>
+							</div>
+						</div>
+						<div class="form-group" id="discripGroup-file">
+							<label for="discription-file" class="col-sm-1 control-label">描述</label>
+							<div class="col-sm-11">
+								<textarea class="form-control" rows="1" id="discription-file"></textarea>
+							</div>
+						</div>
+
+					</form>
+					<button class="btn btn-success" id="add-file">添加</button>
+
+				</div>
+				<div class="row" style="padding-top: 20px; text-align: right;">
+					<div class="col-sm-5"></div>
+					<div class="form-group col-sm-5" id="timeGroup">
+						<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="timeCost"
+								placeholder="小时">
+						</div>
+					</div>
+					<button class="btn btn-success" id="confirmReport"
+						onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
+				</div>
+				<div id="mergeBlock">
+					<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>
+					<div class="row" style="height: 400px; overflow: auto;">
+						<table class="table" id="toMerge-code">
 							<tr>
-								<th width=120px>文件名</th>
-								<th width=50px>行数</th>
-								<th>描述</th>
 								<th width=10px></th>
+								<th>文件名</th>
+								<th>行数</th>
+								<th>描述</th>
+								<th>评审人</th>
+								<th width=20px></th>
 							</tr>
-						</thead>
-						<tbody id="codeStart">
-
-						</tbody>
-					</table>
-				</div>
-
-				<form action="">
-					<div class="row">
-						<div class="form-group col-sm-6" id="fileGroup-code">
-							<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="fileName-code"
-									placeholder="**.*">
-							</div>
-						</div>
-						<div class="form-group col-sm-6" id="lineGroup-code">
-							<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="lineNum-code"
-									placeholder="">
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group" id="discripGroup-code">
-						<label for="discription-code" class="col-sm-1 control-label">描述</label>
-						<div class="col-sm-11">
-							<textarea class="form-control" rows="1" id="discription-code"></textarea>
-						</div>
-					</div>
-				</form>
-				<button class="btn btn-success" id="add-code">添加</button>
-			</div>
-			<div id="docBlock">
-				<div
-					style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-					<table class="table" id="docTable">
-						<thead>
+							<%
+								for (int i = 0; i < 10; i++) {
+							%>
 							<tr>
-								<th width=120px>文件名</th>
-								<th width=50px>页码</th>
-								<th width=50px>行数</th>
-								<th>描述</th>
-								<th width=10px></th>
+								<td><input type="checkbox"><%=i%></td>
+								<td>121</td>
+								<td>1212</td>
+								<td>1212</td>
+								<td>1212</td>
+								<td><button class="btn btn-warning">拆分</button></td>
 							</tr>
-						</thead>
-						<tbody id="docStart">
+							<%
+								}
+							%>
+						</table>
+						<table class="table" id="toMerge-file">
+							<tr>
+								<th></th>
+								<th>文件名</th>
+								<th>页码</th>
+								<th>行数</th>
+								<th>描述</th>
+								<th>评审人</th>
+								<th width=20px></th>
+							</tr>
+						</table>
+					</div>
 
-						</tbody>
-					</table>
+					<div class="row" style="text-align: center; padding-bottom: 20px">
+						<button class="btn btn-success" id="merge">合并</button>
+					</div>
+					<div class="row" style="height: 400px; overflow: auto;">
+						<table class="table" id="merged-code">
+							<tr>
+
+								<th>文件名</th>
+								<th>行数</th>
+								<th>描述</th>
+								<th>评审人</th>
+								<th></th>
+							</tr>
+						</table>
+						<table class="table" id="merged-file">
+							<tr>
+
+								<th>文件名</th>
+								<th>页码</th>
+								<th>行数</th>
+								<th>描述</th>
+								<th>评审人</th>
+								<th></th>
+							</tr>
+						</table>
+					</div>
+					<div class="row" style="text-align: right;">
+						<button class="btn btn-success" id="confirmMerge">确认合并</button>
+					</div>
 				</div>
+				<div id="chooseModal" class="modal fade">
+					<div class="modal-dialog" style="width: 800px;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">x</button>
+								<h2 class="text-left text-primary">选择保留项</h2>
+							</div>
+							<div class="modal-body" style="height: 250px; overflow: auto">
+								<div id="codeDiv">
+									<table class="table" id="choose-code">
+										<tr>
+											<th>文件名</th>
+											<th>行数</th>
+											<th>描述</th>
+											<th>评审人</th>
+										</tr>
+									</table>
+									<form action="">
+										<div class="row">
+											<div class="form-group col-sm-6" id="fileGroup-choosecode">
+												<label for="fileName-choosecode"
+													class="col-sm-2 control-label">文件名</label>
+												<div class="col-sm-10">
+													<input type="text" class="form-control"
+														id="fileName-choosecode" placeholder="**.*">
+												</div>
+											</div>
+											<div class="form-group col-sm-6" id="lineGroup-choosecode">
+												<label for="lineNum-choosecode"
+													class="col-sm-2 control-label">行数</label>
+												<div class="col-sm-10">
+													<input type="text" class="form-control"
+														id="lineNum-choosecode" placeholder="">
+												</div>
+											</div>
+										</div>
 
-				<form action="">
-					<div class="row">
-						<div class="form-group col-sm-4" id="fileGroup-file">
-							<label for="fileName-file" class="col-sm-4 control-label">文件名</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="fileName-file"
-									placeholder="**.*">
+										<div class="form-group" id="discripGroup-choosecode">
+											<label for="discription-choosecode"
+												class="col-sm-1 control-label">描述</label>
+											<div class="col-sm-11">
+												<textarea class="form-control" rows="1"
+													id="discription-choosecode"></textarea>
+											</div>
+										</div>
+									</form>
+									<button class="btn btn-success" id="add-choosecode">添加</button>
+								</div>
+								<div id="fileDiv">
+									<table class="table" id="choose-file">
+										<tr>
+											<th>文件名</th>
+											<th>页码</th>
+											<th>行数</th>
+											<th>描述</th>
+											<th>评审人</th>
+										</tr>
+									</table>
+									<form action="">
+										<div class="row">
+											<div class="form-group col-sm-4" id="fileGroup-choosefile">
+												<label for="fileName-choosefile"
+													class="col-sm-4 control-label">文件名</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control"
+														id="fileName-choosefile" placeholder="**.*">
+												</div>
+											</div>
+											<div class="form-group col-sm-4" id="pageGroup-choosefile">
+												<label for="pageNum-choosefile"
+													class="col-sm-3 control-label">页码</label>
+												<div class="col-sm-9">
+													<input type="text" class="form-control"
+														id="pageNum-choosefile" placeholder="">
+												</div>
+											</div>
+											<div class="form-group col-sm-4" id="lineGroup-choosefile">
+												<label for="lineNum-choosefile"
+													class="col-sm-3 control-label">行数</label>
+												<div class="col-sm-9">
+													<input type="text" class="form-control"
+														id="lineNum-choosefile" placeholder="">
+												</div>
+											</div>
+										</div>
+										<div class="form-group" id="discripGroup-choosefile">
+											<label for="discription-choosefile"
+												class="col-sm-1 control-label">描述</label>
+											<div class="col-sm-11">
+												<textarea class="form-control" rows="1"
+													id="discription-choosefile"></textarea>
+											</div>
+										</div>
+
+									</form>
+									<button class="btn btn-success" id="add-choosefile">添加</button>
+								</div>
+
 							</div>
-						</div>
-						<div class="form-group col-sm-4" id="pageGroup-file">
-							<label for="pageNum-file" class="col-sm-3 control-label">页码</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="pageNum-file"
-									placeholder="">
-							</div>
-						</div>
-						<div class="form-group col-sm-4" id="lineGroup-file">
-							<label for="lineNum-file" class="col-sm-3 control-label">行数</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="lineNum-file"
-									placeholder="">
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">取消</button>
 							</div>
 						</div>
 					</div>
-					<div class="form-group" id="discripGroup-file">
-						<label for="discription-file" class="col-sm-1 control-label">描述</label>
-						<div class="col-sm-11">
-							<textarea class="form-control" rows="1" id="discription-file"></textarea>
-						</div>
-					</div>
-
-				</form>
-				<button class="btn btn-success" id="add-file">添加</button>
-
+				</div>
 			</div>
-			<div class="row" style="padding-top: 20px; text-align: right;">
-				<div class="col-sm-5"></div>
-				<div class="form-group col-sm-5" id="timeGroup">
-					<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="timeCost"
-							placeholder="小时">
-					</div>
-				</div>
-				<button class="btn btn-success" id="confirmReport"
-					onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
-			</div>
-			<div id="mergeBlock">
-				<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>
-				<div class="row" style="height: 400px; overflow: auto;">
-					<table class="table" id="toMerge-code">
-						<tr>
-							<th width=10px></th>
-							<th>文件名</th>
-							<th>行数</th>
-							<th>描述</th>
-							<th>评审人</th>
-							<th width=20px></th>
-						</tr>
-						<%
-							for (int i = 0; i < 10; i++) {
-						%>
-						<tr>
-							<td><input type="checkbox"><%=i%></td>
-							<td>121</td>
-							<td>1212</td>
-							<td>1212</td>
-							<td>1212</td>
-							<td><button class="btn btn-warning">拆分</button></td>
-						</tr>
-						<%
-							}
-						%>
-					</table>
-					<table class="table" id="toMerge-file">
-						<tr>
-							<th></th>
-							<th>文件名</th>
-							<th>页码</th>
-							<th>行数</th>
-							<th>描述</th>
-							<th>评审人</th>
-							<th width=20px></th>
-						</tr>
-					</table>
-				</div>
-
-				<div class="row" style="text-align: center; padding-bottom: 20px">
-					<button class="btn btn-success" id="merge">合并</button>
-				</div>
-				<div class="row" style="height: 400px; overflow: auto;">
-					<table class="table" id="merged-code">
-						<tr>
-
-							<th>文件名</th>
-							<th>行数</th>
-							<th>描述</th>
-							<th>评审人</th>
-							<th></th>
-						</tr>
-					</table>
-					<table class="table" id="merged-file">
-						<tr>
-
-							<th>文件名</th>
-							<th>页码</th>
-							<th>行数</th>
-							<th>描述</th>
-							<th>评审人</th>
-							<th></th>
-						</tr>
-					</table>
-				</div>
-				<div class="row" style="text-align: right;">
-					<button class="btn btn-success" id="confirmMerge">确认合并</button>
-				</div>
-			</div>
-			<div id="chooseModal" class="modal fade">
-				<div class="modal-dialog" style="width: 800px;">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">x</button>
-							<h2 class="text-left text-primary">选择保留项</h2>
-						</div>
-						<div class="modal-body" style="height: 250px; overflow: auto">
-							<div id="codeDiv">
-								<table class="table" id="choose-code">
-									<tr>
-										<th>文件名</th>
-										<th>行数</th>
-										<th>描述</th>
-										<th>评审人</th>
-									</tr>
-								</table>
-								<form action="">
-									<div class="row">
-										<div class="form-group col-sm-6" id="fileGroup-choosecode">
-											<label for="fileName-choosecode"
-												class="col-sm-2 control-label">文件名</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control"
-													id="fileName-choosecode" placeholder="**.*">
-											</div>
-										</div>
-										<div class="form-group col-sm-6" id="lineGroup-choosecode">
-											<label for="lineNum-choosecode"
-												class="col-sm-2 control-label">行数</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control"
-													id="lineNum-choosecode" placeholder="">
-											</div>
-										</div>
-									</div>
-
-									<div class="form-group" id="discripGroup-choosecode">
-										<label for="discription-choosecode"
-											class="col-sm-1 control-label">描述</label>
-										<div class="col-sm-11">
-											<textarea class="form-control" rows="1"
-												id="discription-choosecode"></textarea>
-										</div>
-									</div>
-								</form>
-								<button class="btn btn-success" id="add-choosecode">添加</button>
-							</div>
-							<div id="fileDiv">
-								<table class="table" id="choose-file">
-									<tr>
-										<th>文件名</th>
-										<th>页码</th>
-										<th>行数</th>
-										<th>描述</th>
-										<th>评审人</th>
-									</tr>
-								</table>
-								<form action="">
-									<div class="row">
-										<div class="form-group col-sm-4" id="fileGroup-choosefile">
-											<label for="fileName-choosefile"
-												class="col-sm-4 control-label">文件名</label>
-											<div class="col-sm-8">
-												<input type="text" class="form-control"
-													id="fileName-choosefile" placeholder="**.*">
-											</div>
-										</div>
-										<div class="form-group col-sm-4" id="pageGroup-choosefile">
-											<label for="pageNum-choosefile"
-												class="col-sm-3 control-label">页码</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control"
-													id="pageNum-choosefile" placeholder="">
-											</div>
-										</div>
-										<div class="form-group col-sm-4" id="lineGroup-choosefile">
-											<label for="lineNum-choosefile"
-												class="col-sm-3 control-label">行数</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control"
-													id="lineNum-choosefile" placeholder="">
-											</div>
-										</div>
-									</div>
-									<div class="form-group" id="discripGroup-choosefile">
-										<label for="discription-choosefile"
-											class="col-sm-1 control-label">描述</label>
-										<div class="col-sm-11">
-											<textarea class="form-control" rows="1"
-												id="discription-choosefile"></textarea>
-										</div>
-									</div>
-
-								</form>
-								<button class="btn btn-success" id="add-choosefile">添加</button>
-							</div>
-
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
-						</div>
-					</div>
-				</div>
+			<div class="overBlock">
+				<p>评审已截止，您可以查看评审报告</p>
 			</div>
 			<div id="divideModal" class="modal fade">
 				<div class="modal-dialog" style="width: 800px;">
@@ -609,6 +615,7 @@ username = '<%=session.getAttribute("username")%>';
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/review.js"></script>
+	<script src="js/stateControl.js"></script>
 </body>
 
 </html>
