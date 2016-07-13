@@ -22,6 +22,8 @@ $('#add-code').on('click', function(){
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
 	}
+	
+	storeCode();
 });
 
 $('#add-choosecode').on('click',function(){
@@ -55,6 +57,7 @@ $('#add-file').on('click',function(){
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
 	}
 	
+	storeFile();
 });
 $('#add-choosefile').on('click',function(){
 	if(ischooseFileItemOK()){
@@ -318,6 +321,61 @@ function isReportOK(){
 		$('#timeGroup').removeClass('has-error');
 	}
 	return reportOK;
+}
+
+/**
+ * 每添加一条记录，就向数据库中存储一条记录
+ */
+function storeCode() {
+	jQuery.ajax({
+		url: '/crc/ReportServlet',
+		type: 'post',
+		data: 'fileName=' + $('#fileName-code').val().trim() 
+			+ '&page=0' + '&location=' + $('#lineNum-code').val().trim()
+			+ '&describe=' + $('#discription-code').val().trim()
+			+ '&state=0&origin=0',
+		success: function(data) {
+			
+		},
+		error: function() {
+			alert('出错了，更改无法保存')
+		}
+	})
+}
+
+/**
+ * 每添加一条记录，即向数据库中添加一条记录
+ */
+function storeFile() {
+	jQuery.ajax({
+		url: '/crc/ReportServlet',
+		type: 'post',
+		data: 'fileName=' + $('#fileName-code').val().trim() 
+			+ '&page=' + $('#pageNum-file').val().trim()
+			+ '&location=' + $('#lineNum-code').val().trim()
+			+ '&describe=' + $('#discription-code').val().trim()
+			+ '&state=0&origin=0',
+		success: function(data) {
+			
+		},
+		error: function() {
+			alert('出错了，更改无法保存')
+		}
+	})
+}
+
+/**
+ * 每删除一条记录，即从数据库删除一条记录
+ */
+function deleteCode() {
+	
+}
+
+/**
+ * 每删除一条记录，即从数据库删除一条记录
+ */
+function deleteFile() {
+	
 }
 
 /**
