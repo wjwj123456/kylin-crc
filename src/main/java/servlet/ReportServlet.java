@@ -41,6 +41,13 @@ public class ReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String type = request.getParameter("type");
+
+		if (type.equals("store")) {
+			handleStore(request, response);
+		} else if (type.equals("delete")) {
+			handleDelete(request, response);
+		}
 		String taskName = Encode.transfer(request.getParameter("taskName"));
 		String userName = (String) request.getSession().getAttribute("username");
 		String data = Encode.transfer(request.getParameter("data"));
@@ -48,8 +55,9 @@ public class ReportServlet extends HttpServlet {
 		JSONArray jsonArray = new JSONArray();
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", createReport(taskName, userName, data));
-		jsonObject.put("reportList", new ReportBlImpl().getAllReportsByTaskName(taskName));
+		// jsonObject.put("result", createReport(taskName, userName, data));
+		// jsonObject.put("reportList", new
+		// ReportBlImpl().getAllReportsByTaskName(taskName));
 
 		jsonArray.put(jsonObject);
 
@@ -64,6 +72,29 @@ public class ReportServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	/**
+	 * 向数据库中写入记录
+	 * 
+	 * @param request
+	 * @param reponse
+	 */
+	private void handleStore(HttpServletRequest request, HttpServletResponse reponse) {
+		{"taskName":"crc3","fileName":"1","page":0,"location":"1","describe":"1描述","state":0,"origin":0}
+
+		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
+		
+	}
+
+	/**
+	 * 从数据库中删除记录
+	 * 
+	 * @param request
+	 * @param reponse
+	 */
+	private void handleDelete(HttpServletRequest request, HttpServletResponse reponse) {
+
 	}
 
 	/**

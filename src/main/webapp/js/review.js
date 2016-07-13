@@ -2,6 +2,7 @@ var itemOK = true;
 var reportOK = true;
 var username;
 var taskType;
+var taskName;
 $(function(){
 	if(taskType=='code'){
 		$('#docBlock').hide();
@@ -185,9 +186,20 @@ function fileMerge() {
 	$('#chooseModal').modal('show');
 }
 
+/**
+ * 删除表格中记录前需删除数据库中的记录，否则无法删除
+ * @param obj
+ */
 function deleteItem(obj){
-	$(obj).parent().parent().remove();
+	var data = $(obj).parent().parent().find('td');
+	
+	if (data.length == 4) { // 删除代码记录
+		deleteCode(data);
+	} else { // 删除文档记录
+		deleteFile(data);
+	}
 }
+
 function isCodeItemOK(){
 	itemOK=true;
 	if($('#fileName-code').val()==""){
@@ -196,7 +208,7 @@ function isCodeItemOK(){
 	}else {
 		$('#fileGroup-code').removeClass('has-error');
 	}
-	if($('#lineNum-code').val()=="" && !isNaN(Number($('#lineNum-code').val()))){
+	if($('#lineNum-code').val()=="" && !isNaN(Number($('#lineNum-code').val().trim()))){
 		$('#lineGroup-code').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -215,6 +227,7 @@ function isCodeItemOK(){
 	}
 	return itemOK;
 }
+
 function ischooseCodeItemOK(){
 	itemOK=true;
 	if($('#fileName-choosecode').val()==""){
@@ -256,6 +269,7 @@ function codeUnique() {
 	
 	return items.length == 0;
 }
+
 function isFileItemOK(){
 	itemOK=true;
 	if($('#fileName-file').val()==""){
@@ -264,7 +278,7 @@ function isFileItemOK(){
 	}else {
 		$('#fileGroup-file').removeClass('has-error');
 	}
-	if($('#lineNum-file').val()==""){
+	if($('#lineNum-file').val()=="" && !isNaN(Number($('#lineNum-file').val().trim()))){
 		$('#lineGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -276,7 +290,7 @@ function isFileItemOK(){
 	}else {
 		$('#discripGroup-file').removeClass('has-error');
 	}
-	if($('#pageNum-file').val()==""){
+	if($('#pageNum-file').val()=="" && !isNaN(Number($('#pageNum-file').val().trim()))){
 		$('#pageGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -284,6 +298,7 @@ function isFileItemOK(){
 	}
 	return itemOK;
 }
+
 function ischooseFileItemOK(){
 	itemOK=true;
 	if($('#fileName-choosefile').val()==""){
@@ -312,9 +327,10 @@ function ischooseFileItemOK(){
 	}
 	return itemOK;
 }
+
 function isReportOK(){
 	reportOK=true;
-	if($('#timeCost').val()==""){
+	if($('#timeCost').val()=="" && !isNaN(Number($('#timeCost').val().trim()))){
 		$('#timeGroup').addClass('has-error');
 		reportOK=false;
 	}else {
@@ -327,34 +343,97 @@ function isReportOK(){
  * 每添加一条记录，就向数据库中存储一条记录
  */
 function storeCode() {
-	jQuery.ajax({
-		url: '/crc/ReportServlet',
-		type: 'post',
-		data: 'fileName=' + $('#fileName-code').val().trim() 
-			+ '&page=0' + '&location=' + $('#lineNum-code').val().trim()
-			+ '&describe=' + $('#discription-code').val().trim()
-			+ '&state=0&origin=0',
-		success: function(data) {
-			
-		},
-		error: function() {
-			alert('出错了，更改无法保存')
-		}
-	})
+	var report = new Object({
+		taskName: taskName,
+		fileName: $('#fileName-code').val().trim(),
+		page: 0,
+		location: Number($('#lineNum-code').val().trim()),
+		describe: $('#discription-code').val().trim(),
+		state: 0,
+		origin: 0
+	});
+	
+	store(report);
 }
 
 /**
  * 每添加一条记录，即向数据库中添加一条记录
  */
 function storeFile() {
+	var report = new Object({
+		taskName: taskName,
+		fileName: $('#fileName-file').val().trim(),
+		page: Number($('#pageNum-file').val().trim()),
+		location: Number($('#lineNum-file').val().trim()),
+		describe: $('#discription-file').val().trim(),
+		state: 0,
+		origin: 0
+	});
+	
+	store(report);
+}
+
+/**
+ * 存储一条记录
+ * @param data 记录数据 
+ */
+function store(data) {
 	jQuery.ajax({
 		url: '/crc/ReportServlet',
 		type: 'post',
-		data: 'fileName=' + $('#fileName-code').val().trim() 
-			+ '&page=' + $('#pageNum-file').val().trim()
-			+ '&location=' + $('#lineNum-code').val().trim()
-			+ '&describe=' + $('#discription-code').val().trim()
-			+ '&state=0&origin=0',
+		data: 'type=store' + '&data=' + JSON.stringify(data),
+		success: function(data) {
+			alert(data)
+		},
+		error: function() {
+			alert('出错了，更改无法保存')
+		}
+	})	
+}
+
+/**
+ * 每删除一条记录，即从数据库删除一条记录
+ */
+function deleteCode(data) {
+	var report = new Object({
+		taskName: taskName,
+		fileName: $(data[0]).text().trim(),
+		page: 0,
+		location: Number($(data[1]).text().trim()),
+		description: $(data[2]).text().trim(),
+		state: 0,
+		origin: 0
+	});
+	
+	deleteCodeAndFile(report);
+}
+
+/**
+ * 每删除一条记录，即从数据库删除一条记录
+ */
+function deleteFile(data) {
+	var report = new Object({
+		taskName: taskName,
+		fileName: $(data[0]).text().trim(),
+		page: Number($(data[1]).text().trim()),
+		location: Number($(data[2]).text().trim()),
+		description: $(data[3]).text().trim(),
+		state: 0,
+		origin: 0
+	});
+	
+	deleteCodeAndFile(report);	
+}
+
+/**
+ * 删除一条记录
+ * @param data 记录数据
+ */
+function deleteCodeAndFile(data) {
+	jQuery.ajax({
+		url: '/crc/ReportServlet',
+		type: 'post',
+		data: 'type=delete' + '&data=' + JSON.stringify(data),
 		success: function(data) {
 			
 		},
@@ -365,36 +444,15 @@ function storeFile() {
 }
 
 /**
- * 每删除一条记录，即从数据库删除一条记录
- */
-function deleteCode() {
-	
-}
-
-/**
- * 每删除一条记录，即从数据库删除一条记录
- */
-function deleteFile() {
-	
-}
-
-/**
  * commit report 
  * @returns
  */
-function commitReport(taskName, taskType) {
+function commitReport() {
 	if(isReportOK()){
-		var data;
-		if (taskType == 'code') {
-			data = getCodeData();
-		} else {
-			data = getFileData(); 
-		}
-		
 		jQuery.ajax({
 			url: '/crc/ReportServlet',
 			type: 'post',
-			data: 'taskName=' + taskName + '&data=' + data,
+			data: 'type=commit' + '&data=' + $('#timeCost').val().trim(),
 			success: function(data) {
 				console.log(data)
 //				if (data == 0) {
