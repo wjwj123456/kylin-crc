@@ -11,6 +11,7 @@ $(function() {
 	});
 	$('button[data-target="#inviteModal"]').on('click', function() {
 		taskName = $(this).parent().parent().children().first().text().trim();
+		$('#invited').find('tbody').empty();
 		loadAgreedReviewer(taskName);
 	});
 	$('button:contains("接受邀请")').on('click', function() {
@@ -51,15 +52,16 @@ function invite() {
 	for (var i = 0; i < temp.length; i++) {
 		users += $(temp[i]).text().trim() + ' ';
 	}
-
+	
+	run_waitMe();
+	$('#inviteModal').modal('hide')
 	jQuery.ajax({
 		url: '/crc/InviteServlet',
 		type: 'post',
 		data: 'taskName=' + taskName + '&userNumber=' + temp.length +'&users=' + users,
 		success: function(data) {
 			if (data != 2) {
-				$('#inviteModal').modal('hide')
-				alert('已发出邀请')
+				$('#waitArea').waitMe("hide");
 			}
 		}
 	});
