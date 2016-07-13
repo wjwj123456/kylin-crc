@@ -13,6 +13,7 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/datetimepicker.css" rel="stylesheet">
+<link rel="stylesheet" href="css/waitMe.min.css">
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap-datetimepicker.js"></script>
@@ -53,15 +54,21 @@
 						<li><a href="#about">git地址</a></li>
 					</ul></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right" >
-				<%if(session.getAttribute("username")!=null){%>
-					<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
-					<li><a id="login" style="cursor: pointer;">登出</a></li>
-				<%}else{%>
+			<ul class="nav navbar-nav navbar-right">
+				<%
+					if (session.getAttribute("username") != null) {
+				%>
+				<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
+				<li><a id="login" style="cursor: pointer;">登出</a></li>
+				<%
+					} else {
+				%>
 				<%--username--%>
-				
+
 				<li><a id="login" style="cursor: pointer;">登录</a></li>
-				<%} %>
+				<%
+					}
+				%>
 			</ul>
 		</div>
 	</div>
@@ -72,24 +79,25 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					<h1 class="text-center text-primary" >登录</h1>
+					<h1 class="text-center text-primary">登录</h1>
 				</div>
 				<div class="modal-body" style="height: 250px">
-					
-						<div class="form-group " id="usergroup">
-							<input type="text" name='username' class="form-control input-lg" id="username"
-								placeholder="用户名">
-						</div>
-						<div class="form-group" id="passgroup">
-							<input type="password" name="password" id="password"
-								class="form-control input-lg" placeholder="登录密码">
-						</div>
-						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block" onclick="login()" id="loginNow">立刻登录</button>
-							<span><a data-toggle="modal" data-target="#signUpModal"
-								data-dismiss="modal" href="" class="pull-right">注册</a></span>
 
-						</div>
+					<div class="form-group " id="usergroup">
+						<input type="text" name='username' class="form-control input-lg"
+							id="username" placeholder="用户名">
+					</div>
+					<div class="form-group" id="passgroup">
+						<input type="password" name="password" id="password"
+							class="form-control input-lg" placeholder="登录密码">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-lg btn-block" onclick="login()"
+							id="loginNow">立刻登录</button>
+						<span><a data-toggle="modal" data-target="#signUpModal"
+							data-dismiss="modal" href="" class="pull-right">注册</a></span>
+
+					</div>
 				</div>
 			</div>
 		</div>
@@ -105,7 +113,7 @@
 				</div>
 				<div class="modal-body" style="height: 300px">
 					<form action="/register" class="form col-md-12 center-block"
-						 method="get">
+						method="get">
 						<div class="form-group">
 							<input type="text" name='username' class="form-control input-lg"
 								placeholder="用户名">
@@ -115,11 +123,12 @@
 								class="form-control input-lg" placeholder="登录密码">
 						</div>
 						<div class="form-group">
-							<input type="text" name="mail"
-								class="form-control input-lg" placeholder="邮箱">
+							<input type="text" name="mail" class="form-control input-lg"
+								placeholder="邮箱">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block" onclick="register()" id="registNow">立刻注册</button>
+							<button class="btn btn-primary btn-lg btn-block"
+								onclick="register()" id="registNow">立刻注册</button>
 							<span><a data-toggle="modal" data-target="#loginModal"
 								data-dismiss="modal" href="" class="pull-right">已有账号，点此登陆</a></span>
 						</div>
@@ -128,7 +137,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container" id="waitArea">
 		<div class="jumbotron">
 			<h2>新任务</h2>
 			<p>创建你的新任务</p>
@@ -160,9 +169,10 @@
 				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
 				<div class="col-sm-10">
 					<div class="input-append date form_datetime">
-						<input size="16" type="text" value="" readonly name="deadline" id="deadline">
-						<span class="add-on"><i class="icon-remove"></i></span> <span
-							class="add-on"><i class="icon-calendar"></i></span>
+						<input size="16" type="text" value="" readonly name="deadline"
+							id="deadline"> <span class="add-on"><i
+							class="icon-remove"></i></span> <span class="add-on"><i
+							class="icon-calendar"></i></span>
 					</div>
 				</div>
 			</div>
@@ -189,6 +199,9 @@
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/newTask.js"></script>
+	<script src='js/waitFunction.js'></script>
+	<script src='js/waitMe.min.js'></script>
+
 </body>
 
 </html>

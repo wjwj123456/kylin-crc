@@ -1,7 +1,7 @@
 var isOK = false;
-
 $('#createTask').on('click', function() {
 	isOK=true;
+	run_waitMe();
 	checkOK();
 	if (isOK) {
 		createNewTask();
