@@ -39,4 +39,13 @@ public interface ReportDataService {
 	 * @throws SQLException
 	 */
 	public List<ReportPO> getAllReportsByTaskName(String taskName) throws ClassNotFoundException, SQLException;
+	
+	/**
+	 * get merged report
+	 * @param taskname
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public List<ReportPO> getMergeReport(String taskname) throws ClassNotFoundException, SQLException;
 }

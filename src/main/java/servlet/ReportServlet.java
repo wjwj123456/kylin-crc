@@ -79,12 +79,23 @@ public class ReportServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 * @param reponse
+	 * @throws IOException
+	 * @throws JSONException
 	 */
-	private void handleStore(HttpServletRequest request, HttpServletResponse reponse) {
-		{"taskName":"crc3","fileName":"1","page":0,"location":"1","describe":"1描述","state":0,"origin":0}
-
+	private void handleStore(HttpServletRequest request, HttpServletResponse reponse)
+			throws JSONException, IOException {
+		List<ReportVO> reportList = new ArrayList<ReportVO>();
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
-		
+
+		reportList.add(new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+				(String) request.getSession().getAttribute("username"),
+				Encode.transfer(jsonObject.getString("fileName")), jsonObject.getInt("page"),
+				jsonObject.getInt("location"), Encode.transfer(jsonObject.getString("description")),
+				jsonObject.getInt("state"), jsonObject.getInt("origin")));
+
+		ReportBlImpl report = new ReportBlImpl();
+
+		report.createReport(reportList);
 	}
 
 	/**

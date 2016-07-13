@@ -8,5 +8,13 @@ public interface AssessmentBlService {
 	 * @param taskName
 	 * @return
 	 */
-	public double[] getHistoryAssessmentValues(String taskName);
+	public int[] getHistoryAssessmentValues(String taskName);
+
+	/**
+	 * ldk get the history finded fault counts
+	 * 
+	 * @param taskName
+	 * @return
+	 */
+	public int[] getHistoryFaultValues(String taskName);
 }

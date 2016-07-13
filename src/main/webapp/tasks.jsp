@@ -17,6 +17,7 @@
 	rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="css/waitMe.min.css">
 <title>CRC Task</title>
 </head>
 <script type="text/javascript">
@@ -31,7 +32,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 <%}%>
 	
 </script>
-	<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
+<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
 	<div class="container">
@@ -146,7 +147,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 	</div>
 
 
-	<div class="container">
+	<div class="container" id="waitArea">
 		<div id="suspensionNavigation" class="col-md-2" role="complementary">
 			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
 			<ul class="nav bs-docs-sidenav">
@@ -547,45 +548,46 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<h2 id="report">评审报告</h2>
 			<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
 			<script type="text/javascript">
-			var myChart = echarts.init(document.getElementById('resultGraph'));
-			var option = {
-				    title: {
-				        text: '总体评审效率'
-				    },
-				    tooltip: {
-				        trigger: 'axis',
-				        formatter: function (params) {
-				            params = params[0];
-				            
-				            return params.dataIndex;
-				        },
-				        axisPointer: {
-				            animation: false
-				        }
-				    },
-				    xAxis: {
-				    	name: '合并次数',
-				    	type : 'category',
-			            boundaryGap : false,
-			            data : ['周一','周二','周三','周四','周五','周六','周日']
-				    },
-				    yAxis: {
-				    	name: '效率',
-				        type: 'value',
-				        boundaryGap: [0, '100%'],
-				        splitLine: {
-				            show: false
-				        }
-				    },
-				    series: [{
-				        name: '模拟数据',
-				        type: 'line',
-				        showSymbol: false,
-				        hoverAnimation: false,
-				        data: [1,2,3,4,5,6,7,8,9]
-				    }]
+				var myChart = echarts.init(document
+						.getElementById('resultGraph'));
+				var option = {
+					title : {
+						text : '总体评审效率'
+					},
+					tooltip : {
+						trigger : 'axis',
+						formatter : function(params) {
+							params = params[0];
+
+							return params.dataIndex;
+						},
+						axisPointer : {
+							animation : false
+						}
+					},
+					xAxis : {
+						name : '合并次数',
+						type : 'category',
+						boundaryGap : false,
+						data : [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
+					},
+					yAxis : {
+						name : '效率',
+						type : 'value',
+						boundaryGap : [ 0, '100%' ],
+						splitLine : {
+							show : false
+						}
+					},
+					series : [ {
+						name : '模拟数据',
+						type : 'line',
+						showSymbol : false,
+						hoverAnimation : false,
+						data : [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+					} ]
 				};
-			myChart.setOption(option);
+				myChart.setOption(option);
 			</script>
 			<div class="col-md-5">
 				<table class="table">
@@ -620,6 +622,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script src="js/login.js"></script>
 	<script src="js/review.js"></script>
 	<script src="js/stateControl.js"></script>
+	<script src='js/waitFunction.js'></script>
+	<script src='js/waitMe.min.js'></script>
 </body>
 
 </html>
