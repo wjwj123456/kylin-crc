@@ -208,116 +208,119 @@ username = '<%=session.getAttribute("username")%>';
 
 				<p id="preWord">开始评审前，请确认</p>
 				<button class="btn btn-success" id="startReview">开始评审</button>
-				<div id="codeBlock">
-					<div
-						style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-						<table class="table" id="codeTable">
-							<thead>
-								<tr>
-									<th width=120px>文件名</th>
-									<th width=50px>行数</th>
-									<th>描述</th>
-									<th width=10px></th>
-								</tr>
-							</thead>
-							<tbody id="codeStart">
+				<div id="commitBlock">
 
-							</tbody>
-						</table>
+					<div id="codeBlock">
+						<div
+							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
+							<table class="table" id="codeTable">
+								<thead>
+									<tr>
+										<th width=120px>文件名</th>
+										<th width=50px>行数</th>
+										<th>描述</th>
+										<th width=10px></th>
+									</tr>
+								</thead>
+								<tbody id="codeStart">
+
+								</tbody>
+							</table>
+						</div>
+
+						<form action="">
+							<div class="row">
+								<div class="form-group col-sm-6" id="fileGroup-code">
+									<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="fileName-code"
+											placeholder="**.*">
+									</div>
+								</div>
+								<div class="form-group col-sm-6" id="lineGroup-code">
+									<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="lineNum-code"
+											placeholder="">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group" id="discripGroup-code">
+								<label for="discription-code" class="col-sm-1 control-label">描述</label>
+								<div class="col-sm-11">
+									<textarea class="form-control" rows="1" id="discription-code"></textarea>
+								</div>
+							</div>
+						</form>
+						<button class="btn btn-success" id="add-code">添加</button>
 					</div>
+					<div id="docBlock">
+						<div
+							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
+							<table class="table" id="docTable">
+								<thead>
+									<tr>
+										<th width=120px>文件名</th>
+										<th width=50px>页码</th>
+										<th width=50px>行数</th>
+										<th>描述</th>
+										<th width=10px></th>
+									</tr>
+								</thead>
+								<tbody id="docStart">
 
-					<form action="">
-						<div class="row">
-							<div class="form-group col-sm-6" id="fileGroup-code">
-								<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="fileName-code"
-										placeholder="**.*">
-								</div>
-							</div>
-							<div class="form-group col-sm-6" id="lineGroup-code">
-								<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="lineNum-code"
-										placeholder="">
-								</div>
-							</div>
+								</tbody>
+							</table>
 						</div>
 
-						<div class="form-group" id="discripGroup-code">
-							<label for="discription-code" class="col-sm-1 control-label">描述</label>
-							<div class="col-sm-11">
-								<textarea class="form-control" rows="1" id="discription-code"></textarea>
+						<form action="">
+							<div class="row">
+								<div class="form-group col-sm-4" id="fileGroup-file">
+									<label for="fileName-file" class="col-sm-4 control-label">文件名</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="fileName-file"
+											placeholder="**.*">
+									</div>
+								</div>
+								<div class="form-group col-sm-4" id="pageGroup-file">
+									<label for="pageNum-file" class="col-sm-3 control-label">页码</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="pageNum-file"
+											placeholder="">
+									</div>
+								</div>
+								<div class="form-group col-sm-4" id="lineGroup-file">
+									<label for="lineNum-file" class="col-sm-3 control-label">行数</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="lineNum-file"
+											placeholder="">
+									</div>
+								</div>
 							</div>
-						</div>
-					</form>
-					<button class="btn btn-success" id="add-code">添加</button>
-				</div>
-				<div id="docBlock">
-					<div
-						style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
-						<table class="table" id="docTable">
-							<thead>
-								<tr>
-									<th width=120px>文件名</th>
-									<th width=50px>页码</th>
-									<th width=50px>行数</th>
-									<th>描述</th>
-									<th width=10px></th>
-								</tr>
-							</thead>
-							<tbody id="docStart">
+							<div class="form-group" id="discripGroup-file">
+								<label for="discription-file" class="col-sm-1 control-label">描述</label>
+								<div class="col-sm-11">
+									<textarea class="form-control" rows="1" id="discription-file"></textarea>
+								</div>
+							</div>
 
-							</tbody>
-						</table>
+						</form>
+						<button class="btn btn-success" id="add-file">添加</button>
+
 					</div>
-
-					<form action="">
-						<div class="row">
-							<div class="form-group col-sm-4" id="fileGroup-file">
-								<label for="fileName-file" class="col-sm-4 control-label">文件名</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="fileName-file"
-										placeholder="**.*">
-								</div>
-							</div>
-							<div class="form-group col-sm-4" id="pageGroup-file">
-								<label for="pageNum-file" class="col-sm-3 control-label">页码</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="pageNum-file"
-										placeholder="">
-								</div>
-							</div>
-							<div class="form-group col-sm-4" id="lineGroup-file">
-								<label for="lineNum-file" class="col-sm-3 control-label">行数</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="lineNum-file"
-										placeholder="">
-								</div>
+					<div class="row" style="padding-top: 20px; text-align: right;">
+						<div class="col-sm-5"></div>
+						<div class="form-group col-sm-5" id="timeGroup">
+							<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="timeCost"
+									placeholder="小时">
 							</div>
 						</div>
-						<div class="form-group" id="discripGroup-file">
-							<label for="discription-file" class="col-sm-1 control-label">描述</label>
-							<div class="col-sm-11">
-								<textarea class="form-control" rows="1" id="discription-file"></textarea>
-							</div>
-						</div>
-
-					</form>
-					<button class="btn btn-success" id="add-file">添加</button>
-
-				</div>
-				<div class="row" style="padding-top: 20px; text-align: right;">
-					<div class="col-sm-5"></div>
-					<div class="form-group col-sm-5" id="timeGroup">
-						<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="timeCost"
-								placeholder="小时">
-						</div>
+						<button class="btn btn-success" id="confirmReport"
+							onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
 					</div>
-					<button class="btn btn-success" id="confirmReport"
-						onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
 				</div>
 				<div id="mergeBlock">
 					<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>

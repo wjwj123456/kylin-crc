@@ -8,5 +8,7 @@ var merged = 3;
 var currentUserDisp;
 var cuerrentTaskDisp;
 $(function(){
-	$('#')
+	$('#reviewBlock').attr('display',currentUserDisp[0]);
+	$('#overBlock').attr('display',currentUserDisp[1]);
+	$()
 });
