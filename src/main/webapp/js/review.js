@@ -4,18 +4,16 @@ var username;
 var taskType;
 $(function(){
 	if(taskType=='code'){
+		$('#docBlock').hide();
 		$('#toMerge-file').hide();
 		$('#merged-file').hide();
 		$('#fileDiv').hide();
 	}else {
+		$('#codeBlock').hide();
 		$('#toMerge-code').hide();
 		$('#merged-code').hide();
 		$('#codeDiv').hide();
 	}
-});
-$('#startReview').on('click',function(){
-	$('#preWord').hide();
-	$(this).hide();
 });
 $('#add-code').on('click', function(){
 	if(isCodeItemOK()){

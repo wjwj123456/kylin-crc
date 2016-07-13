@@ -5,10 +5,12 @@ var unJoin = 0;
 var joined = 1;
 var committed = 2;
 var merged = 3;
-var currentUserDisp;
-var cuerrentTaskDisp;
+var currentUserDisp = userDisp[2];
+var currentTaskDisp = taskDisp[0];
 $(function(){
-	$('#reviewBlock').attr('display',currentUserDisp[0]);
-	$('#overBlock').attr('display',currentUserDisp[1]);
-	$()
+	$('#reviewBlock').css('display',currentTaskDisp[0]);
+	$('#overBlock').css('display',currentTaskDisp[1]);
+	$('#joinBlock').css('display',currentUserDisp[0]);
+	$('#commitBlock').css('display',currentUserDisp[1]);
+	$('#mergeBlock').css('display',currentUserDisp[2]);
 });
