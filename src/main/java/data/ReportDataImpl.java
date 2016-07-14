@@ -147,4 +147,16 @@ public class ReportDataImpl implements ReportDataService {
 		return false;
 	}
 
+	@Override
+	public boolean recoverReport(ReportPO po) throws ClassNotFoundException, SQLException {
+		Connection connection = DBManager.connect();
+		String sql = "UPDATE report SET state = 0 WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
+		+ "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage() + "' and location = '"
+		+ po.getLocation() + "'";
+		Statement statement = connection.createStatement();
+		int i = statement.executeUpdate(sql);
+		if(i==1) return true;
+		return false;
+	}
+
 }

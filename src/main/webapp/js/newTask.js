@@ -6,6 +6,7 @@ $('#createTask').on('click', function() {
 	if (isOK) {
 		createNewTask();
 	}
+	stopWait()
 });
 
 function createNewTask() {

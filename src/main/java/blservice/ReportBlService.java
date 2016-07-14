@@ -48,4 +48,13 @@ public interface ReportBlService {
 	 * @throws SQLException
 	 */
 	public List<ReportVO> getAllReportsByTaskName(String taskName);
+	
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public boolean recoverReport(ReportVO vo) throws ClassNotFoundException, SQLException;
 }

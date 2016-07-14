@@ -19,6 +19,10 @@
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<style type="text/css">
+.drop{ text-decoration:line-through; }
+
+</style>
 <title>CRC Task</title>
 </head>
 <script type="text/javascript">
@@ -346,7 +350,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
-								<tr>
+								<tr class="drop">
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getLocation()%></td>

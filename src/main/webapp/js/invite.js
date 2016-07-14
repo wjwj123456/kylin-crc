@@ -61,7 +61,7 @@ function invite() {
 		data: 'taskName=' + taskName + '&userNumber=' + temp.length +'&users=' + users,
 		success: function(data) {
 			if (data != 2) {
-				$('#waitArea').waitMe("hide");
+				stopWait();
 			}
 		}
 	});

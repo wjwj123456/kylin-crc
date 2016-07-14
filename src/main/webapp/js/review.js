@@ -22,8 +22,10 @@ $('#add-code').on('click', function(){
 				"</td> <td>" +$('#lineNum-code').val()+
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
+		run_waitMe();
+		storeCode();
+		stopWait();
 	}
-	storeCode();
 });
 
 $('#add-choosecode').on('click',function(){
@@ -37,8 +39,9 @@ $('#add-choosecode').on('click',function(){
 			state: 0,
 			origin: 1
 		});
-		
+		run_waitMe();
 		storeCodeMerge(report);
+		stopWait()
 	}
 	
 });
@@ -49,9 +52,11 @@ $('#add-file').on('click',function(){
 				"</td> <td>" +$('#lineNum-file').val()+
 				"</td> <td>" +$('#discription-file').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
+		run_waitMe();
+		storeFile();
+		stopWait();
 	}
 	
-	storeFile();
 });
 $('#add-choosefile').on('click',function(){
 	if(ischooseFileItemOK()) {
@@ -64,8 +69,9 @@ $('#add-choosefile').on('click',function(){
 			state: 0,
 			origin: 1
 		});
-	
+		run_waitMe();
 		storeFileMerge(report);
+		stopWait();
 	}
 });
 
@@ -95,7 +101,9 @@ function initCodeChoose(){
 $('#merge').on('click',function(){
 	$('#choose-code').empty();
 	$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
+	run_waitMe();
 	codeMerge();
+	stopWait();
 });
 
 
@@ -439,6 +447,11 @@ function commitReport() {
 
 // merge 操作相关
 {
+	/**
+	 * 每合并一次记录，写入数据库
+	 * @param report
+	 * @returns
+	 */
 	function storeCodeMerge(report) {
 		var data = new Array();
 		data.push(report);
@@ -464,24 +477,43 @@ function commitReport() {
 			data: 'type=saveMerge&taskName=' + taskName + '&data=' + JSON.stringify(data),
 			success: function(data) {
 				afterCodeMerge(report);
+			},
+			error: function() {
+				alert('出错了，更改无法生效')
 			}
 		});
 	}
 	
 	function storeFileMerge() {
-		$('#chooseModal').modal('hide');
-		$('#choose-file').empty();
-		$('#choose-file').append($("<tr><th>文件名</th><th>页码</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
-		var inputs = $('#toMerge-file').find('input');
-		var length = inputs.length;
-		var j = 0;
-		for( i = 0;i<length;i++){
-			if($(inputs[i]).prop('checked')==true){
-				$($('#toMerge-file tbody').find('tr')[j]).remove();
-				j--;
-			}
-			j++;
+		var data = new Array();
+		data.push(report);
+		
+		var temp = $('#choose-file').find('tr').not(':first');
+		for (var i = 0; i < temp.length; i++) {
+			var td = $(temp[i]).find('td');
+			var obj = new Object({
+				taskName: taskName,
+				fileName: $(td[0]).text(),
+				page: Number($(td[1]).text()),
+				location: Number($(td[2]).text()),
+				description: $(td[3]).text(),
+				state: 0,
+				origin: 1
+			});
+			data.push(obj);
 		}
+		
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=saveMerge&taskName=' + taskName + '&data=' + JSON.stringify(data),
+			success: function(data) {
+				afterFileMerge(report);
+			},
+			error: function() {
+				alert('出错了，更改无法生效')
+			}
+		});
 	}
 	
 	/**
@@ -531,6 +563,43 @@ function commitReport() {
 			j++;
 		}
 		$('#chooseModal').modal('hide');
+	}
+}
+
+// 删除合并条目相关操作
+{
+	/**
+	 * 删除代码条目
+	 * @param obj
+	 * @returns
+	 */
+	function deleteCodeMerge(obj) {
+		var temp = $(obj).parent().parent().find('td');
+		var report = new Object({
+			taskName: taskName,
+			fileName: $(temp[0]).text(),
+			page: 0,
+			location: $(temp[1]).text(),
+			description: $(temp[2]).text(),
+			state: 1,
+			origin: 0
+		});
+		concole.log(JSON.stringify(report))
+//		jQuery.ajax({
+//			url: '/crc/MergeServlet',
+//			type: 'post',
+//			data: 'type=deleteMerge&data=' + JSON.stringify(report),
+//			success: function(data) {
+//				
+//			},
+//			error: function() {
+//				alert('出错了，更改无法生效')
+//			}
+//		})
+	}
+	
+	function deleteFileMerge(obj) {
+		
 	}
 }
 
