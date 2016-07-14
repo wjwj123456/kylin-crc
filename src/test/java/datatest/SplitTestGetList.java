@@ -10,11 +10,12 @@ public class SplitTestGetList {
 
 	public static void main(String[] args) {
 		SplitDataImpl splitDataImpl = new SplitDataImpl();
-		ReportPO po1 = new ReportPO("task1", "aoliao", "Hello.java", 0, 6, "�﷨����", 0, 1);
+		ReportPO po1 = new ReportPO("task1", "aoliao", "Hello.java", 0, 10, "语法错误1", 0, 1);
 		try {
 			ArrayList<ReportPO> pos = splitDataImpl.getIncludedfaultsByFaultkey(po1);
-			for(ReportPO po: pos) {
-				System.out.println(po.getTaskName() + po.getUserName() + po.getPage() + po.getLocation() + po.getDescription());
+			for (ReportPO po : pos) {
+				System.out.println(
+						po.getTaskName() + po.getUserName() + po.getPage() + po.getLocation() + po.getDescription());
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

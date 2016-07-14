@@ -129,4 +129,14 @@
     <servlet-name>MergeServlet</servlet-name>
     <url-pattern>/MergeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SplitServlet</display-name>
+    <servlet-name>SplitServlet</servlet-name>
+    <servlet-class>servlet.SplitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SplitServlet</servlet-name>
+    <url-pattern>/SplitServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

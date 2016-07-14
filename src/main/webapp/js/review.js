@@ -601,10 +601,63 @@ function commitReport() {
 // 拆分相关操作
 {
 	$('#toMerge-code').find('button').on('click',function(){
-		$('#divideModal').modal('show');
+		var temp = $(this).parent().parent().find('td');
+		var report = new Object({
+			taskName: taskName,
+			fileName: $(temp[1]).text(),
+			page: 0,
+			location: Number($(temp[2]).text()),
+			description: $(temp[3]).text(),
+			state: 0,
+			origin: 0
+		});
+		
+		getData(report, 'code');
 	});
 	$('#toMerge-file').find('button').on('click',function(){
-		$('#divideModal').modal('show');
+		var temp = $(this).parent().parent().find('td');
+		var report = new Object({
+			taskName: taskName,
+			fileName: $(temp[1]).text(),
+			page: Number($(temp[2]).text()),
+			location: Number($(temp[3]).text()),
+			description: $(temp[4]).text(),
+			state: 0,
+			origin: 0
+		});
+		
+		getData(report, 'file');
 	});
 	
+	/**
+	 * 加载指定条目的组成数据，并在表格中显示
+	 * @param report
+	 * @returns
+	 */
+	function getData(report, type) {
+		jQuery.ajax({
+			url: '/crc/SplitServlet',
+			type: 'post',
+			data: 'type=getData' + '&data=' + JSON.stringify(report),
+			success: function(data) {
+				console.log(data)
+				if (type == 'code') {
+					
+				} else {
+					
+				}
+			},
+			error: function() {
+				alert('出错了')
+			}
+		})
+	}
+	
+	function displayCode(data) {
+		
+	}
+	
+	function displayFile(data) {
+		
+	}
 }
