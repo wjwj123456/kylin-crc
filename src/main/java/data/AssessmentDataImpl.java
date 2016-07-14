@@ -21,7 +21,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	public int getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<String> nameList = new ArrayList<String>();
-		nameList = getReviewerCounts(vos);
+		nameList = getReviewerNames(vos);
 
 		int[][] matrix = new int[vos.size()][nameList.size()];
 
@@ -60,12 +60,13 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		return (int) (crc.getMhCH() + crc.getMtCH());
 	}
 
-	public List<String> getReviewerCounts(List<ReportVO> vos) throws SQLException, ClassNotFoundException {
+	public List<String> getReviewerNames(List<ReportVO> vos) throws SQLException, ClassNotFoundException {
 
 		List<String> nameList = new ArrayList<String>();
 		for (ReportVO vo : vos) {
 			String sql = "SELECT included_id FROM merge where final_id = " + mergeDataImpl.getID(new ReportPO(vo));
 			rSet = DBManager.getResultSet(sql);
+
 			while (rSet.next()) {
 				String name = getUNameById(rSet.getInt(1));
 				if (!nameList.contains(name))
