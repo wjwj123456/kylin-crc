@@ -88,7 +88,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		return nameList;
 	}
 
-	private String getUNameById(int id) throws SQLException, ClassNotFoundException {
+	public String getUNameById(int id) throws SQLException, ClassNotFoundException {
 		String name = "";
 		String sql = "SELECT uname FROM report where id = " + id;
 		Connection connection = DBManager.connect();
