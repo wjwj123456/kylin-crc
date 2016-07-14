@@ -36,4 +36,13 @@ public interface SplitBlService {
 	 * @throws ClassNotFoundException 
 	 */
 	public boolean split(ArrayList<ReportVO> vos, ReportVO vo) throws ClassNotFoundException, SQLException;
+	
+	/**
+	 * 
+	 * @param taskname
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public ArrayList<ReportVO> getCanSplitedReports(String taskname) throws ClassNotFoundException, SQLException;
 }
