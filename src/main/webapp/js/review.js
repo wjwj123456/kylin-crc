@@ -69,13 +69,6 @@ $('#add-choosefile').on('click',function(){
 	}
 });
 
-$('#toMerge-code').find('button').on('click',function(){
-	$('#divideModal').modal('show');
-});
-$('#toMerge-file').find('button').on('click',function(){
-	$('#divideModal').modal('show');
-});
-
 function initCodeChoose(){
 	$('#choose-code').find('tr').not(':first').on('click',function(){
 		var temp=$(this).find('td');
@@ -559,20 +552,7 @@ function commitReport() {
 			origin: 0
 		});
 		
-		var data = new Array();
-		data.push(report);
-
-		jQuery.ajax({
-			url: '/crc/MergeServlet',
-			type: 'post',
-			data: 'type=deleteMerge&data=' + JSON.stringify(data),
-			success: function(data) {
-				$(obj).parent().parent().remove();
-			},
-			error: function() {
-				alert('出错了，更改无法生效')
-			}
-		})
+		deleteMerge(report, obj);
 	}
 	
 	/**
@@ -592,6 +572,15 @@ function commitReport() {
 			origin: 0
 		});
 		
+		deleteMerge(report, obj);
+	}
+	
+	/**
+	 * 删除条目
+	 * @param report
+	 * @returns
+	 */
+	function deleteMerge(report, obj) {
 		var data = new Array();
 		data.push(report);
 
@@ -600,11 +589,22 @@ function commitReport() {
 			type: 'post',
 			data: 'type=deleteMerge&data=' + JSON.stringify(data),
 			success: function(data) {
-				$(obj).parent().parent().remove();
+				$(obj).parent().parent().addClass("drop");
 			},
 			error: function() {
 				alert('出错了，更改无法生效')
 			}
 		})
 	}
+}
+
+// 拆分相关操作
+{
+	$('#toMerge-code').find('button').on('click',function(){
+		$('#divideModal').modal('show');
+	});
+	$('#toMerge-file').find('button').on('click',function(){
+		$('#divideModal').modal('show');
+	});
+	
 }
