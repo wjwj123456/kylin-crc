@@ -107,11 +107,17 @@ public class ReviewDataImpl implements ReviewDataService {
 		List<UserPO> poList = new ArrayList<UserPO>();
 
 		String sql = "SELECT * FROM user WHERE uname like '%" + keyword + "%'";
-		rSet = DBManager.getResultSet(sql);
-		while (rSet.next()) {
-			UserPO po = new UserPO(rSet.getString(1), rSet.getString(2), rSet.getString(3));
-			poList.add(po);
+		try {
+			rSet = DBManager.getResultSet(sql);
 
+			while (rSet.next()) {
+				UserPO po = new UserPO(rSet.getString(1), rSet.getString(2), rSet.getString(3));
+				poList.add(po);
+
+			}
+		} catch (Exception SQLException) {
+			// TODO: handle exception
+			System.out.println("user not found");
 		}
 
 		DBManager.closeConnection();
