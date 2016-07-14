@@ -75,6 +75,7 @@ public class MergeBlImpl implements MergeBlService {
 		for (ReportPO po : poList) {
 			voList.add(new ReportVO(po));
 		}
+
 		return voList;
 	}
 
