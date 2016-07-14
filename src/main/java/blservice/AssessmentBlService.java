@@ -1,5 +1,9 @@
 package blservice;
 
+import java.util.List;
+
+import vo.AssessmentVO;
+
 public interface AssessmentBlService {
 
 	/**
@@ -17,4 +21,12 @@ public interface AssessmentBlService {
 	 * @return
 	 */
 	public int[] getHistoryFaultValues(String taskName);
+
+	/**
+	 * ldk get all ananlyse of reviwers' reports
+	 * 
+	 * @param taskName
+	 * @return
+	 */
+	public List<AssessmentVO> getAllAssessments(String taskName);
 }
