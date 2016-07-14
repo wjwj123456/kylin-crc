@@ -16,15 +16,35 @@ public class AssessmentBlImpl implements AssessmentBlService {
 	@Override
 	public int[] getHistoryAssessmentValues(String taskName) {
 		// TODO Auto-generated method stub
-
-		return null;
+		int[] i = new int[1];
+		try {
+			return assessmentDataService.getHistoryValues(taskName)[1];
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		}
 	}
 
 	@Override
 	public int[] getHistoryFaultValues(String taskName) {
 		// TODO Auto-generated method stub
-
-		return null;
+		int[] i = new int[1];
+		try {
+			return assessmentDataService.getHistoryValues(taskName)[0];
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		}
 	}
 
 	public int getAssessmentValue(String taskName) {
