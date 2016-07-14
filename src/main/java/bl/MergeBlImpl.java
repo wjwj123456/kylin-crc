@@ -64,7 +64,7 @@ public class MergeBlImpl implements MergeBlService {
 		SplitBlService splitBlService = new SplitBlImpl();
 		// TODO Auto-generated method stub
 		List<ReportVO> voList = new ArrayList<ReportVO>();
-		List<ReportPO> poList = null;
+		List<ReportPO> poList = new ArrayList<ReportPO>();
 		try {
 			poList = mergeDataService.mergeReport(taskName);
 		} catch (ClassNotFoundException e) {
