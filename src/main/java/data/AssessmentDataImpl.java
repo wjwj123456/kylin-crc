@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.AssessmentDataService;
+import po.AssessmentPO;
 import po.ReportPO;
 import tools.CrcModule;
 import vo.ReportVO;
 
 public class AssessmentDataImpl implements AssessmentDataService {
+
 	private CrcModule crc = null;
 	private ResultSet rSet = null;
 	private MergeDataImpl mergeDataImpl = new MergeDataImpl();
@@ -20,8 +22,14 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	@Override
 	public int getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
+		int[][] matrix = getMatix(taskName, vos);
+		crc = new CrcModule(matrix);
+		return (int) (crc.getMhCH() + crc.getMtCH());
+	}
+
+	private int[][] getMatix(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
 		List<String> nameList = new ArrayList<String>();
-		nameList = getReviewerNames(vos);
+		nameList = getReviewerNames(taskName);
 
 		int[][] matrix = new int[vos.size()][nameList.size()];
 
@@ -55,30 +63,32 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			i++;
 			DBManager.closeConnection();
 		}
-
-		crc = new CrcModule(matrix);
-		return (int) (crc.getMhCH() + crc.getMtCH());
+		return matrix;
 	}
 
-	public List<String> getReviewerNames(List<ReportVO> vos) throws SQLException, ClassNotFoundException {
+	private List<String> getReviewerNames(String taskName) throws SQLException, ClassNotFoundException {
 
 		List<String> nameList = new ArrayList<String>();
-		for (ReportVO vo : vos) {
-			String sql = "SELECT included_id FROM merge where final_id = " + mergeDataImpl.getID(new ReportPO(vo));
-			rSet = DBManager.getResultSet(sql);
-
-			while (rSet.next()) {
-				String name = getUNameById(rSet.getInt(1));
-				if (!nameList.contains(name))
-					nameList.add(name);
-			}
-			DBManager.closeConnection();
-		}
-
+		// for (ReportVO vo : vos) {
+		// String sql = "SELECT included_id FROM merge where final_id = " +
+		// mergeDataImpl.getID(new ReportPO(vo));
+		// rSet = DBManager.getResultSet(sql);
+		//
+		// while (rSet.next()) {
+		// String name = getUNameById(rSet.getInt(1));
+		// if (!nameList.contains(name))
+		// nameList.add(name);
+		// }
+		// DBManager.closeConnection();
+		// }
+		String sql = "SELECT id,uname FROM history WHERE tname = '" + taskName + "' ORDER BY id";
+		rSet = DBManager.getResultSet(sql);
+		while (rSet.next())
+			nameList.add(rSet.getString(2));
 		return nameList;
 	}
 
-	public String getUNameById(int id) throws SQLException, ClassNotFoundException {
+	private String getUNameById(int id) throws SQLException, ClassNotFoundException {
 		String name = "";
 		String sql = "SELECT uname FROM report where id = " + id;
 		Connection connection = DBManager.connect();
@@ -110,6 +120,28 @@ public class AssessmentDataImpl implements AssessmentDataService {
 
 		DBManager.closeConnection();
 		return values;
+	}
+
+	@Override
+	public List<AssessmentPO> getAllAssessments(String taskName, List<ReportVO> vos)
+			throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<AssessmentPO> pos = new ArrayList<AssessmentPO>();
+
+		int[][] matrix = getMatix(taskName, vos);
+		CrcModule crcM = new CrcModule(matrix);
+		int assessfault = (int) (crcM.getMhCH() + crcM.getMtCH());
+
+		List<String> nameList = getReviewerNames(taskName);
+		for (int i = 0; i < nameList.size(); i++) {
+			int findedfault = 0;
+			for (int j = 0; j < matrix.length; j++) {
+				if (matrix[j][i] == 1)
+					findedfault++;
+			}
+			pos.add(new AssessmentPO(nameList.get(i), assessfault, findedfault));
+		}
+		return pos;
 	}
 
 }

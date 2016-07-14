@@ -604,7 +604,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					xAxis : {
 						name : '合并次数',
 						type : 'category',
-						data : [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
+						data : [ '合并一', '合并二', '合并三', '合并四', '合并五', '合并六', '合并七' ]
 					},
 					yAxis : {
 						name : '效率',

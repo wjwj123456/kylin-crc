@@ -64,7 +64,7 @@ public class MergeBlImpl implements MergeBlService {
 		SplitBlService splitBlService = new SplitBlImpl();
 		// TODO Auto-generated method stub
 		List<ReportVO> voList = new ArrayList<ReportVO>();
-		List<ReportPO> poList = null;
+		List<ReportPO> poList = new ArrayList<ReportPO>();
 		try {
 			poList = mergeDataService.mergeReport(taskName);
 		} catch (ClassNotFoundException e) {
@@ -77,6 +77,7 @@ public class MergeBlImpl implements MergeBlService {
 		for (ReportPO po : poList) {
 			voList.add(new ReportVO(po));
 		}
+
 		List<ReportVO> mergeList = new ArrayList<>();
 		try {
 			mergeList = splitBlService.getCanSplitedReports(taskName);
@@ -101,6 +102,13 @@ public class MergeBlImpl implements MergeBlService {
 					e.printStackTrace();
 				}
 			}
+
+			if (vo.getState() == 1) {
+				voList.remove(vo);
+			}
+		}
+		for (ReportVO vo : voList) {
+			System.out.println(vo.toString());
 		}
 		return voList;
 	}
@@ -114,13 +122,14 @@ public class MergeBlImpl implements MergeBlService {
 	 * @see blservice.MergeBlService#saveMergeReport(java.util.List)
 	 *
 	 */
-	public void saveMergeReport(List<ReportVO> reportList, String taskName) {
+	public int saveMergeReport(List<ReportVO> reportList, String taskName) {
+		int flag = 0;
 		List<ReportPO> list = new ArrayList<ReportPO>();
 		for (ReportVO vo : reportList) {
 			list.add(new ReportPO(vo));
 		}
 		try {
-			mergeDataService.saveMergeReport(list, taskName);
+			flag = mergeDataService.saveMergeReport(list, taskName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,7 +137,7 @@ public class MergeBlImpl implements MergeBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return;
+		return flag;
 
 	}
 
@@ -143,14 +152,15 @@ public class MergeBlImpl implements MergeBlService {
 	 *      java.lang.String)
 	 *
 	 */
-	public void saveAddedMergeReport(List<ReportVO> reportList, String taskName) {
+	public int saveAddedMergeReport(List<ReportVO> reportList, String taskName) {
+		int flag = 0;
 		// TODO Auto-generated method stub
 		List<ReportPO> list = new ArrayList<ReportPO>();
 		for (ReportVO vo : reportList) {
 			list.add(new ReportPO(vo));
 		}
 		try {
-			mergeDataService.saveAddedMergeReport(list, taskName);
+			flag = mergeDataService.saveAddedMergeReport(list, taskName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -158,7 +168,7 @@ public class MergeBlImpl implements MergeBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return;
+		return flag;
 	}
 
 	/**
@@ -173,15 +183,16 @@ public class MergeBlImpl implements MergeBlService {
 	 *
 	 */
 	@Override
-	public void saveHistory(String userName, String taskName) {
+	public int saveHistory(String userName, String taskName) {
 		// TODO Auto-generated method stub
+		int flag = 0;
 		AssessmentBlImpl assessmentBlImpl = new AssessmentBlImpl();
 		ReportBlImpl reportBlImpl = new ReportBlImpl();
 		int assessFault = assessmentBlImpl.getAssessmentValue(taskName);
 		int fault = reportBlImpl.getMergeReport(taskName).size();
 		try {
 			try {
-				mergeDataService.saveHistory(userName, taskName, fault, assessFault);
+				flag = mergeDataService.saveHistory(userName, taskName, fault, assessFault);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -190,6 +201,7 @@ public class MergeBlImpl implements MergeBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return flag;
 	}
 
 	/**
@@ -202,11 +214,12 @@ public class MergeBlImpl implements MergeBlService {
 	 *
 	 */
 	@Override
-	public void deleteMergeRecord(ReportVO vo) {
+	public int deleteMergeRecord(ReportVO vo) {
+		int flag = 0;
 		// TODO Auto-generated method stub
 		ReportPO po = new ReportPO(vo);
 		try {
-			mergeDataService.deleteMergeRecord(po);
+			flag = mergeDataService.deleteMergeRecord(po);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -214,6 +227,12 @@ public class MergeBlImpl implements MergeBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return flag;
 	}
 
+	public static void main(String[] args) {
+		MergeBlImpl mergeBlImpl = new MergeBlImpl();
+		mergeBlImpl.mergeReport("oriTest");
+		System.out.println(mergeBlImpl.mergeReport("oriTest"));
+	}
 }
