@@ -93,7 +93,19 @@ public class ReportBlImpl implements ReportBlService {
 	}
 	
 	public List<ReportVO> getMergeReport(String taskname) {
-		return null;
+		List<ReportVO> result = new ArrayList<>();
+		List<ReportPO> list = null;
+		try {
+			list = reportDataService.getMergeReport(taskname);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(ReportPO po: list) {
+			ReportVO vo = new ReportVO(po);
+			result.add(vo);
+		}
+		return result;
 	}
 
 }

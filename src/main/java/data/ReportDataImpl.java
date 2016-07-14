@@ -1,5 +1,6 @@
 package data;
 
+import java.nio.channels.SelectableChannel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -119,16 +120,18 @@ public class ReportDataImpl implements ReportDataService {
 	@Override
 	public List<ReportPO> getMergeReport(String taskname) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
-		String sql1 = "SELECT uname FROM review WHERE tname = ? AND state = merged";
+		String sql1 = "SELECT * FROM report r WHERE r.tname = ? AND r.state = 0 AND r.uname IN (SELECT v.uname FROM review v"
+				+ " WHERE v.tname = r.tname AND v.state = ?)";
 		PreparedStatement pStatement = connection.prepareStatement(sql1);
 		pStatement.setString(1, taskname);
+		pStatement.setString(2, "merged");
 		ResultSet rSet = pStatement.executeQuery();
-		ArrayList<String> unames = new ArrayList<>();
+		ArrayList<ReportPO> reportPOs = new ArrayList<>();
 		while(rSet.next()) {
-			unames.add(rSet.getString("uname"));
+			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"), rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"), rSet.getInt("origin"));
+			reportPOs.add(po);
 		}
-		
-		return null;
+		return reportPOs;
 	}
 
 }
