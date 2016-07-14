@@ -83,7 +83,7 @@ public class MergeDataImpl implements MergeDataService {
 		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {
 			ReportPO po = new ReportPO(taskName, rSet.getString("uname"), rSet.getString("filename"),
-					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("describe"), rSet.getInt("state"),
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("state"),
 					rSet.getInt("origin"));
 			list.add(po);
 		}

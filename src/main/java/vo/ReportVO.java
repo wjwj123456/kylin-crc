@@ -140,4 +140,11 @@ public class ReportVO implements Serializable {
 		this.isMerged = isMerged;
 	}
 
+	@Override
+	public String toString() {
+		return "ReportVO [taskName=" + taskName + ", userName=" + userName + ", fileName=" + fileName + ", page=" + page
+				+ ", location=" + location + ", description=" + description + ", state=" + state + ", origin=" + origin
+				+ ", isMerged=" + isMerged + "]";
+	}
+
 }
