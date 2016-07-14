@@ -49,4 +49,15 @@ public class SplitBlImpl implements SplitBlService{
 		return isSuc;
 	}
 
+	@Override
+	public ArrayList<ReportVO> getCanSplitedReports(String taskname) throws ClassNotFoundException, SQLException {
+		ArrayList<ReportVO> reportVOs = new ArrayList<>();
+		ArrayList<ReportPO> reportPOs = splitDataService.getCanSplitReports(taskname);
+		for(ReportPO po:reportPOs) {
+			ReportVO vo = new ReportVO(po);
+			reportVOs.add(vo);
+		}
+		return reportVOs;
+	}
+
 }

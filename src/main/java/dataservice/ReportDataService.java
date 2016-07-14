@@ -48,4 +48,13 @@ public interface ReportDataService {
 	 * @throws ClassNotFoundException 
 	 */
 	public List<ReportPO> getMergeReport(String taskname) throws ClassNotFoundException, SQLException;
+	
+	/**
+	 * 
+	 * @param po
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public boolean abandonReport(ReportPO po) throws ClassNotFoundException, SQLException;
 }

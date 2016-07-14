@@ -192,4 +192,22 @@ public class SplitDataImpl implements SplitDataService {
 		return origin;
 	}
 
+	@Override
+	public ArrayList<ReportPO> getCanSplitReports(String taskname) throws ClassNotFoundException, SQLException {
+		Connection connection = DBManager.connect();
+		String sql = "SELECT * FROM report WHERE id IN"
+				+ " (SELECT included_id FROM merge WHERE final_id IN (SELECT r.id FROM report r WHERE r.tname = ?))";
+		PreparedStatement pStatement = connection.prepareStatement(sql);
+		pStatement.setString(1, taskname);
+		ResultSet rSet = pStatement.executeQuery();
+		ArrayList<ReportPO> reportPOs = new ArrayList<>();
+		while(rSet.next()) {
+			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), 
+					rSet.getString("filename"), rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"));
+			reportPOs.add(po);
+		}
+		DBManager.stopAll(rSet, pStatement, connection);
+		return reportPOs;
+	}
+
 }

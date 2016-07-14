@@ -36,5 +36,13 @@ public interface SplitDataService {
 	 */
 	public boolean splitFaults(ArrayList<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException;
 	
+	/**
+	 * 
+	 * @param taskname
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public ArrayList<ReportPO> getCanSplitReports(String taskname) throws ClassNotFoundException, SQLException;
 	
 }

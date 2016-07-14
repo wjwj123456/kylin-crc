@@ -12,6 +12,7 @@ public class ReportPO {
 	private String description;
 	private int state;
 	private int origin;
+	private int isMerged;
 
 	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description,
 			int state, int origin) {
@@ -99,6 +100,15 @@ public class ReportPO {
 		this.page = vo.getPage();
 		this.state = vo.getState();
 		this.origin = vo.getOrigin();
+		this.isMerged = vo.getIsMerged();
+	}
+
+	public int getIsMerged() {
+		return isMerged;
+	}
+
+	public void setIsMerged(int isMerged) {
+		this.isMerged = isMerged;
 	}
 
 	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description) {
@@ -109,6 +119,20 @@ public class ReportPO {
 		this.page = page;
 		this.location = location;
 		this.description = description;
+	}
+
+	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description,
+			int state, int origin, int isMerged) {
+		super();
+		this.taskName = taskName;
+		this.userName = userName;
+		this.fileName = fileName;
+		this.page = page;
+		this.location = location;
+		this.description = description;
+		this.state = state;
+		this.origin = origin;
+		this.isMerged = isMerged;
 	}
 
 }
