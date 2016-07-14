@@ -123,6 +123,17 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.executeUpdate();
 		}
 
+		String sql2 = "UPDATE report SET state = ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
+		pStatement = connection.prepareStatement(sql2);
+		pStatement.setInt(1, 0);
+		pStatement.setString(2, taskName);
+		pStatement.setString(3, finalPO.getUserName());
+		pStatement.setString(4, finalPO.getFileName());
+		pStatement.setInt(5, finalPO.getPage());
+		pStatement.setInt(6, finalPO.getLocation());
+		pStatement.setString(7, finalPO.getDescription());
+		pStatement.executeUpdate();
+
 		for (ReportPO po : reportList) {
 			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
 			pStatement = connection.prepareStatement(sql1);
@@ -130,6 +141,7 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(2, getID(po));
 			pStatement.executeUpdate();
 		}
+		updateMerge();
 		DBManager.stopAll(null, pStatement, connection);
 	}
 
@@ -214,6 +226,7 @@ public class MergeDataImpl implements MergeDataService {
 		PreparedStatement pStatement = null;
 		ReportPO finalPO = reportList.get(0);
 		reportList.remove(0);
+
 		String sql2 = "INSERT INTO report (tname,uname,filename,page,location,description,state,origin) VALUES (?,?,?,?,?,?,?,?)";
 		pStatement = connection.prepareStatement(sql2);
 		pStatement.setString(1, finalPO.getTaskName());
@@ -246,6 +259,7 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setInt(2, getID(po));
 			pStatement.executeUpdate();
 		}
+		updateMerge();
 		DBManager.stopAll(null, pStatement, connection);
 	}
 
@@ -319,9 +333,47 @@ public class MergeDataImpl implements MergeDataService {
 		String sql1 = "DELETE * FROM merge  WHERE final_id = '" + getID(po) + "'";
 		pStatement = connection.prepareStatement(sql1);
 		pStatement.executeUpdate();
-
+		updateMerge();
 		DBManager.stopAll(null, pStatement, connection);
 
+	}
+
+	private void updateMerge() throws SQLException, ClassNotFoundException {
+		ResultSet rSet = null;
+		String sql = "SELECT * FROM merge '";
+		rSet = DBManager.getResultSet(sql);
+		List<Integer> ids = new ArrayList<>();
+		List<Integer> finalIds = new ArrayList<>();
+		while (rSet.next()) {
+			finalIds.add(rSet.getInt("1"));
+			ids.add(rSet.getInt("2"));
+		}
+		DBManager.closeConnection();
+
+		for (int i = 0; i < ids.size(); i++) {
+			for (int j = 0; j < finalIds.size(); j++) {
+				if (ids.get(i) == finalIds.get(j)) {
+					finalIds.set(j, finalIds.get(i));
+				}
+			}
+
+		}
+
+		Connection connection = DBManager.connect();
+
+		PreparedStatement pStatement = null;
+
+		String sql2 = "UPDATE merge set	final_id=? where included_id=? '";
+		for (int i = 0; i < ids.size(); i++) {
+			pStatement = connection.prepareStatement(sql2);
+			pStatement.setInt(1, finalIds.get(i));
+			pStatement.setInt(2, ids.get(i));
+			pStatement.executeUpdate();
+		}
+
+		DBManager.closeConnection();
+
+		return;
 	}
 
 }
