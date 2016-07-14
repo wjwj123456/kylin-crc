@@ -165,18 +165,17 @@ public class ReviewDataImpl implements ReviewDataService {
 		int flag = 0;
 		try {
 			for (int i = 0; i < userName.length; i++) {
-				String sql = "INSERT INTO review (tname ,uname, isAgree) VALUES (?, ?, ?)";
+				String sql = "INSERT INTO review (tname ,uname, state) VALUES (?, ?, ?)";
 
 				pStatement = DBManager.getPreparedStatement(sql);
 				pStatement.setString(1, taskName);
 				pStatement.setString(2, userName[i]);
-				pStatement.setInt(3, 0);
+				pStatement.setString(3, State.refuse.toString());
 				int j = pStatement.executeUpdate();
 				if (j == 0) {
 					flag = 2;
 				}
 				DBManager.closeConnection();
-				pStatement.setString(1, taskName);
 			}
 
 		} catch (Exception SQLIntegrityConstraintViolationException) {
