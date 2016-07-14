@@ -23,8 +23,9 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <style type="text/css">
-.drop{ text-decoration:line-through; }
-
+.drop {
+	text-decoration: line-through;
+}
 </style>
 <title>CRC Task</title>
 </head>
@@ -341,13 +342,19 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
-								<tr class="drop">
+								<tr>
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getLocation()%></td>
 									<td><%=reportVO.getDescription()%></td>
 									<td><%=reportVO.getUserName()%></td>
-									<td><button class="btn btn-warning">拆分</button></td>
+									<td><%
+											if (reportVO.getIsMerged() == 1) {
+										%><button
+											class="btn btn-warning">拆分</button>
+										<%
+											}
+										%></td>
 								</tr>
 								<%
 									}
@@ -367,17 +374,25 @@ taskName = '<%=request.getParameter("taskName")%>';
 								</tr>
 							</thead>
 							<tbody>
-							<%
+								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
 								<tr>
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
-									<td><%=reportVO.getPage() %></td>
+									<td><%=reportVO.getPage()%></td>
 									<td><%=reportVO.getLocation()%></td>
 									<td><%=reportVO.getDescription()%></td>
 									<td><%=reportVO.getUserName()%></td>
-									<td><button class="btn btn-warning">拆分</button></td>
+									<td>
+										<%
+											if (reportVO.getIsMerged() == 1) {
+										%><button
+											class="btn btn-warning">拆分</button>
+										<%
+											}
+										%>
+									</td>
 								</tr>
 								<%
 									}
@@ -569,16 +584,24 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<hr>
 			<h2 id="report">评审报告</h2>
 			<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
-			<%int[][] taskHis =Cast.cast(session.getAttribute("taskHis_"+taskVO.getTaskName())) ; %>
+			<%
+				int[][] taskHis = Cast.cast(session.getAttribute("taskHis_" + taskVO.getTaskName()));
+			%>
 			<script type="text/javascript">
 				var data = new Array();
 				var assessmen = new Array();
 				var fault = new Array();
-				<%for(int i = 0;i<taskHis[0].length;i++){ %>
-				data.push(<%=(taskHis[0][i]+0.0)/taskHis[1][i]*100%>);
-				assessmen.push(<%=taskHis[1][i]%>);
-				fault.push(<%=taskHis[0][i]%>);
-				<%}%>
+			<%for (int i = 0; i < taskHis[0].length; i++) {%>
+				data.push(
+			<%=(taskHis[0][i] + 0.0) / taskHis[1][i] * 100%>
+				);
+				assessmen.push(
+			<%=taskHis[1][i]%>
+				);
+				fault.push(
+			<%=taskHis[0][i]%>
+				);
+			<%}%>
 				var myChart = echarts.init(document
 						.getElementById('resultGraph'));
 				var option = {
@@ -590,7 +613,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 						formatter : function(params) {
 							params = params[0];
 
-							return "有效率："+params.data.toFixed(2)+"<br/>找出缺陷数："+fault[params.dataIndex]+"<br/>估计缺陷数："+assessmen[params.dataIndex];
+							return "有效率：" + params.data.toFixed(2)
+									+ "<br/>找出缺陷数：" + fault[params.dataIndex]
+									+ "<br/>估计缺陷数："
+									+ assessmen[params.dataIndex];
 						},
 						axisPointer : {
 							animation : false
@@ -599,7 +625,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 					xAxis : {
 						name : '合并次数',
 						type : 'category',
-						data : [ '合并一', '合并二', '合并三', '合并四', '合并五', '合并六', '合并七' ]
+						data : [ '合并一', '合并二', '合并三', '合并四', '合并五', '合并六',
+								'合并七' ]
 					},
 					yAxis : {
 						name : '效率',
@@ -620,7 +647,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 				myChart.setOption(option);
 			</script>
 			<div class="col-md-5">
-			<%List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_"+taskVO.getTaskName())); %>
+				<%
+					List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_" + taskVO.getTaskName()));
+				%>
 				<table class="table">
 					<thead>
 						<tr>
@@ -631,16 +660,20 @@ taskName = '<%=request.getParameter("taskName")%>';
 						</tr>
 					</thead>
 					<tbody>
-					<% NumberFormat ddf1=NumberFormat.getNumberInstance() ;
-					ddf1.setMaximumFractionDigits(2); 
- 					for(AssessmentVO assessmentVO : userHis){ %>
-					<tr>
-					<td><%=assessmentVO.getReviewerName() %></td>
-					<td><%=assessmentVO.getAssessfaults() %></td>
-					<td><%=assessmentVO.getFindedfaults() %></td>
-					<td><%=ddf1.format((assessmentVO.getFindedfaults()+0.0)/assessmentVO.getAssessfaults()*100)%>%</td>
-					</tr>
-					<%} %>
+						<%
+							NumberFormat ddf1 = NumberFormat.getNumberInstance();
+							ddf1.setMaximumFractionDigits(2);
+							for (AssessmentVO assessmentVO : userHis) {
+						%>
+						<tr>
+							<td><%=assessmentVO.getReviewerName()%></td>
+							<td><%=assessmentVO.getAssessfaults()%></td>
+							<td><%=assessmentVO.getFindedfaults()%></td>
+							<td><%=ddf1.format((assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults() * 100)%>%</td>
+						</tr>
+						<%
+							}
+						%>
 					</tbody>
 				</table>
 			</div>
