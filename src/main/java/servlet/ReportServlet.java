@@ -75,7 +75,7 @@ public class ReportServlet extends HttpServlet {
 		reportList.add(
 				new ReportVO(jsonObject.getString("taskName"), (String) request.getSession().getAttribute("username"),
 						jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
-						jsonObject.getString("describe"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
+						jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
 
 		ReportBlImpl report = new ReportBlImpl();
 
@@ -96,7 +96,7 @@ public class ReportServlet extends HttpServlet {
 		int result = report.deleteReport(
 				new ReportVO(jsonObject.getString("taskName"), (String) request.getSession().getAttribute("username"),
 						jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
-						jsonObject.getString("describe"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
+						jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
 
 		PrintWriter out = reponse.getWriter();
 		out.print(result);

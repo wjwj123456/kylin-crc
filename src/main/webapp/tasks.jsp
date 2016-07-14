@@ -574,7 +574,16 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<hr>
 			<h2 id="report">评审报告</h2>
 			<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
+			<%int[][] taskHis =Cast.cast(session.getAttribute("taskHis_"+taskVO.getTaskName())) ; %>
 			<script type="text/javascript">
+				var data = new Array();
+				var assessmen = new Array();
+				var fault = new Array();
+				<%for(int i = 0;i<taskHis[0].length;i++){ %>
+				data.push(<%=(taskHis[0][i]+0.0)/taskHis[1][i]*100%>);
+				assessmen.push(<%=taskHis[1][i]%>);
+				fault.push(<%=taskHis[0][i]%>);
+				<%}%>
 				var myChart = echarts.init(document
 						.getElementById('resultGraph'));
 				var option = {
@@ -586,7 +595,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 						formatter : function(params) {
 							params = params[0];
 
-							return params.dataIndex;
+							return "有效率："+params.data.toFixed(2)+"<br/>找出缺陷数："+fault[params.dataIndex]+"<br/>估计缺陷数："+assessmen[params.dataIndex];
 						},
 						axisPointer : {
 							animation : false
@@ -595,8 +604,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					xAxis : {
 						name : '合并次数',
 						type : 'category',
-						boundaryGap : false,
-						data : [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
+						data : [ '合并一', '合并二', '合并三', '合并四', '合并五', '合并六', '合并七' ]
 					},
 					yAxis : {
 						name : '效率',
@@ -611,7 +619,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 						type : 'line',
 						showSymbol : false,
 						hoverAnimation : false,
-						data : [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+						data : data
 					} ]
 				};
 				myChart.setOption(option);
