@@ -77,6 +77,7 @@ public class MergeBlImpl implements MergeBlService {
 		for (ReportPO po : poList) {
 			voList.add(new ReportVO(po));
 		}
+
 		List<ReportVO> mergeList = new ArrayList<>();
 		try {
 			mergeList = splitBlService.getCanSplitedReports(taskName);
@@ -105,6 +106,9 @@ public class MergeBlImpl implements MergeBlService {
 			if (vo.getState() == 1) {
 				voList.remove(vo);
 			}
+		}
+		for (ReportVO vo : voList) {
+			System.out.println(vo.toString());
 		}
 		return voList;
 	}
@@ -226,4 +230,9 @@ public class MergeBlImpl implements MergeBlService {
 		return flag;
 	}
 
+	public static void main(String[] args) {
+		MergeBlImpl mergeBlImpl = new MergeBlImpl();
+		mergeBlImpl.mergeReport("oriTest");
+		System.out.println(mergeBlImpl.mergeReport("oriTest"));
+	}
 }
