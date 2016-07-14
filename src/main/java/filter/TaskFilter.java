@@ -13,9 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import bl.AssessmentBlImpl;
 import bl.InviteBlImpl;
+import bl.MergeBlImpl;
 import bl.ReportBlImpl;
 import bl.ReviewBlImpl;
 import blservice.AssessmentBlService;
+import blservice.MergeBlService;
 import blservice.ReportBlService;
 import tools.Encode;
 import vo.TaskVO;
@@ -54,6 +56,7 @@ public class TaskFilter implements Filter {
 
 		InviteBlImpl invite = new InviteBlImpl();
 		// 接受邀请的评审者
+		MergeBlService mergeBl = new MergeBlImpl();
 		ReportBlService reportBl = new ReportBlImpl();
 		AssessmentBlService assessmentBl = new AssessmentBlImpl();
 		int[][] assessmenAndFault = new int[2][];
@@ -63,7 +66,7 @@ public class TaskFilter implements Filter {
 		// 未接受邀请
 		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
 		//待合并项目
-		session.setAttribute("toMerge_" + taskName, reportBl.getAllReportsByTaskName(taskName));
+		session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
 		//历史项目合并数据
 		session.setAttribute("taskHis_"+taskName, assessmenAndFault);
 		chain.doFilter(request, response);
