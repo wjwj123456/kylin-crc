@@ -103,9 +103,8 @@ public class MergeDataImpl implements MergeDataService {
 	 * @see dataservice.MergeDataService#saveMergeReport(java.util.List)
 	 *
 	 */
-	public void saveMergeReport(List<ReportPO> reportList, String taskName)
-			throws SQLException, ClassNotFoundException {
-
+	public int saveMergeReport(List<ReportPO> reportList, String taskName) throws SQLException, ClassNotFoundException {
+		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		ReportPO finalPO = reportList.get(0);
@@ -143,6 +142,7 @@ public class MergeDataImpl implements MergeDataService {
 		}
 		updateMerge();
 		DBManager.stopAll(null, pStatement, connection);
+		return flag;
 	}
 
 	/**
@@ -219,9 +219,10 @@ public class MergeDataImpl implements MergeDataService {
 	 *      java.lang.String)
 	 *
 	 */
-	public void saveAddedMergeReport(List<ReportPO> reportList, String taskName)
+	public int saveAddedMergeReport(List<ReportPO> reportList, String taskName)
 			throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
+		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		ReportPO finalPO = reportList.get(0);
@@ -261,6 +262,7 @@ public class MergeDataImpl implements MergeDataService {
 		}
 		updateMerge();
 		DBManager.stopAll(null, pStatement, connection);
+		return flag;
 	}
 
 	/**
@@ -279,9 +281,10 @@ public class MergeDataImpl implements MergeDataService {
 	 *
 	 */
 	@Override
-	public void saveHistory(String userName, String taskName, int fault, int assessfalut)
+	public int saveHistory(String userName, String taskName, int fault, int assessfalut)
 			throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
+		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		String sql = "INSERT INTO history (tname, uname, fault,assessfault) VALUES (?, ?, ?,?)";
@@ -300,7 +303,7 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.executeQuery();
 		DBManager.closeConnection();
 
-		return;
+		return flag;
 
 	}
 
@@ -316,7 +319,8 @@ public class MergeDataImpl implements MergeDataService {
 	 *
 	 */
 	@Override
-	public void deleteMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException {
+	public int deleteMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException {
+		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		String sql = "UPDATE report SET state = ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
@@ -335,7 +339,7 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.executeUpdate();
 		updateMerge();
 		DBManager.stopAll(null, pStatement, connection);
-
+		return flag;
 	}
 
 	private void updateMerge() throws SQLException, ClassNotFoundException {
