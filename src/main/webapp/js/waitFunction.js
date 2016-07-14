@@ -26,3 +26,7 @@ function run_waitMe(){
 
     });
   }
+function stopWait() {
+	$('#waitArea').waitMe("hide");
+	
+}

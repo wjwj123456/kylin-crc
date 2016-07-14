@@ -22,8 +22,10 @@ $('#add-code').on('click', function(){
 				"</td> <td>" +$('#lineNum-code').val()+
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
+		run_waitMe();
+		storeCode();
+		stopWait();
 	}
-	storeCode();
 });
 
 $('#add-choosecode').on('click',function(){
@@ -37,8 +39,9 @@ $('#add-choosecode').on('click',function(){
 			state: 0,
 			origin: 1
 		});
-		
+		run_waitMe();
 		storeCodeMerge(report);
+		stopWait()
 	}
 	
 });
@@ -49,9 +52,11 @@ $('#add-file').on('click',function(){
 				"</td> <td>" +$('#lineNum-file').val()+
 				"</td> <td>" +$('#discription-file').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
+		run_waitMe();
+		storeFile();
+		stopWait();
 	}
 	
-	storeFile();
 });
 $('#add-choosefile').on('click',function(){
 	if(ischooseFileItemOK()) {
@@ -64,8 +69,9 @@ $('#add-choosefile').on('click',function(){
 			state: 0,
 			origin: 1
 		});
-	
+		run_waitMe();
 		storeFileMerge(report);
+		stopWait();
 	}
 });
 
@@ -95,7 +101,9 @@ function initCodeChoose(){
 $('#merge').on('click',function(){
 	$('#choose-code').empty();
 	$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
+	run_waitMe();
 	codeMerge();
+	stopWait();
 });
 
 

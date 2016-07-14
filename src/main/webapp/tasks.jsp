@@ -350,7 +350,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
-								<tr>
+								<tr class="drop">
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getLocation()%></td>
