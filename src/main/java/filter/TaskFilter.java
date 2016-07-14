@@ -70,7 +70,7 @@ public class TaskFilter implements Filter {
 		//历史项目合并数据
 		session.setAttribute("taskHis_"+taskName, assessmenAndFault);
 		//历史评审人数据
-		session.setAttribute("userHis"+taskName,assessmentBl.getAllAssessments(taskName) );
+		session.setAttribute("userHis_"+taskName,assessmentBl.getAllAssessments(taskName) );
 		chain.doFilter(request, response);
 	}
 

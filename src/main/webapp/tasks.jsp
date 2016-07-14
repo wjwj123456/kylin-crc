@@ -1,3 +1,5 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="vo.AssessmentVO"%>
 <%@page import="vo.ReportVO"%>
 <%@page import="tools.Tools"%>
@@ -629,12 +631,14 @@ taskName = '<%=request.getParameter("taskName")%>';
 						</tr>
 					</thead>
 					<tbody>
-					<%for(AssessmentVO assessmentVO : userHis){ %>
+					<% NumberFormat ddf1=NumberFormat.getNumberInstance() ;
+					ddf1.setMaximumFractionDigits(2); 
+ 					for(AssessmentVO assessmentVO : userHis){ %>
 					<tr>
 					<td><%=assessmentVO.getReviewerName() %></td>
 					<td><%=assessmentVO.getAssessfaults() %></td>
 					<td><%=assessmentVO.getFindedfaults() %></td>
-					<td><%=(assessmentVO.getFindedfaults()+0.0)/assessmentVO.getAssessfaults()%></td>
+					<td><%=ddf1.format((assessmentVO.getFindedfaults()+0.0)/assessmentVO.getAssessfaults()*100)%>%</td>
 					</tr>
 					<%} %>
 					</tbody>
