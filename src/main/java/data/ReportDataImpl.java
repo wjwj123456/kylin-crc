@@ -1,5 +1,6 @@
 package data;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -113,6 +114,21 @@ public class ReportDataImpl implements ReportDataService {
 		}
 		DBManager.closeConnection();
 		return result;
+	}
+
+	@Override
+	public List<ReportPO> getMergeReport(String taskname) throws ClassNotFoundException, SQLException {
+		Connection connection = DBManager.connect();
+		String sql1 = "SELECT uname FROM review WHERE tname = ? AND state = merged";
+		PreparedStatement pStatement = connection.prepareStatement(sql1);
+		pStatement.setString(1, taskname);
+		ResultSet rSet = pStatement.executeQuery();
+		ArrayList<String> unames = new ArrayList<>();
+		while(rSet.next()) {
+			unames.add(rSet.getString("uname"));
+		}
+		
+		return null;
 	}
 
 }

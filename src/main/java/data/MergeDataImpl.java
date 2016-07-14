@@ -141,7 +141,7 @@ public class MergeDataImpl implements MergeDataService {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	private int getID(ReportPO po) throws ClassNotFoundException, SQLException {
+	public int getID(ReportPO po) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
 		String sql = "SELECT id FROM report WHERE uname = ? AND tname = ? AND filename = ? AND page = ? AND location = ? AND description = ?";
 		PreparedStatement pStatement = connection.prepareStatement(sql);

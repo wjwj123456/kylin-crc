@@ -15,6 +15,7 @@
 	rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="css/waitMe.min.css">
 <title>My CRC</title>
 </head>
 <body role="document">
@@ -49,7 +50,7 @@
 		</div>
 	</div>
 	</nav>
-	<div class="container">
+	<div class="container" id="waitArea">
 		<div id="suspensionNavigation" class="col-md-2" role="complementary">
 			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
 			<ul class="nav bs-docs-sidenav">
@@ -231,7 +232,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</div>
@@ -290,6 +291,8 @@
 	<script src="js/search.js"></script>
 	<script src="js/invite.js"></script>
 	<script src="js/typeHead.js"></script>
+	<script src='js/waitFunction.js'></script>
+	<script src='js/waitMe.min.js'></script>
 </body>
 
 </html>

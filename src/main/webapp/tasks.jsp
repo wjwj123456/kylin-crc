@@ -1,3 +1,4 @@
+<%@page import="vo.ReportVO"%>
 <%@page import="tools.Tools"%>
 <%@page import="java.util.List"%>
 <%@page import="vo.Type"%>
@@ -17,10 +18,12 @@
 	rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="css/waitMe.min.css">
 <title>CRC Task</title>
 </head>
 <script type="text/javascript">
 username = '<%=session.getAttribute("username")%>';
+taskName = '<%=request.getParameter("taskName")%>';
 <%TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));%>
 	
 <%if (taskVO.getType() == Type.code) {%>
@@ -30,7 +33,7 @@ username = '<%=session.getAttribute("username")%>';
 <%}%>
 	
 </script>
-	<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
+<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
 	<div class="container">
@@ -145,7 +148,7 @@ username = '<%=session.getAttribute("username")%>';
 	</div>
 
 
-	<div class="container">
+	<div class="container" id="waitArea">
 		<div id="suspensionNavigation" class="col-md-2" role="complementary">
 			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
 			<ul class="nav bs-docs-sidenav">
@@ -319,11 +322,11 @@ username = '<%=session.getAttribute("username")%>';
 							</div>
 						</div>
 						<button class="btn btn-success" id="confirmReport"
-							onclick="commitReport('<%=taskVO.getTaskName()%>', taskType)">确认评审结果</button>
+							onclick="commitReport()">确认评审结果</button>
 					</div>
 				</div>
 				<div id="mergeBlock">
-					<p>请从下方表格中选择要合并的项目，点击“合并”，如要删除条目，请在合并结果中删除</p>
+					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
 					<div class="row" style="height: 400px; overflow: auto;">
 						<table class="table" id="toMerge-code">
 							<tr>
@@ -334,15 +337,17 @@ username = '<%=session.getAttribute("username")%>';
 								<th>评审人</th>
 								<th width=20px></th>
 							</tr>
+							<%List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_"+ taskVO.getTaskName()));%>
 							<%
-								for (int i = 0; i < 10; i++) {
+								for (ReportVO reportVO : toMergeVOs) {
+									
 							%>
 							<tr>
-								<td><input type="checkbox"><%=i%></td>
-								<td>121</td>
-								<td>1212</td>
-								<td>1212</td>
-								<td>1212</td>
+								<td><input type="checkbox"></td>
+								<td><%=reportVO.getFileName() %></td>
+								<td><%=reportVO.getLocation() %></td>
+								<td><%=reportVO.getDescription() %></td>
+								<td><%=reportVO.getUserName() %></td>
 								<td><button class="btn btn-warning">拆分</button></td>
 							</tr>
 							<%
@@ -546,45 +551,46 @@ username = '<%=session.getAttribute("username")%>';
 			<h2 id="report">评审报告</h2>
 			<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
 			<script type="text/javascript">
-			var myChart = echarts.init(document.getElementById('resultGraph'));
-			var option = {
-				    title: {
-				        text: '总体评审效率'
-				    },
-				    tooltip: {
-				        trigger: 'axis',
-				        formatter: function (params) {
-				            params = params[0];
-				            
-				            return params.dataIndex;
-				        },
-				        axisPointer: {
-				            animation: false
-				        }
-				    },
-				    xAxis: {
-				    	name: '合并次数',
-				    	type : 'category',
-			            boundaryGap : false,
-			            data : ['周一','周二','周三','周四','周五','周六','周日']
-				    },
-				    yAxis: {
-				    	name: '效率',
-				        type: 'value',
-				        boundaryGap: [0, '100%'],
-				        splitLine: {
-				            show: false
-				        }
-				    },
-				    series: [{
-				        name: '模拟数据',
-				        type: 'line',
-				        showSymbol: false,
-				        hoverAnimation: false,
-				        data: [1,2,3,4,5,6,7,8,9]
-				    }]
+				var myChart = echarts.init(document
+						.getElementById('resultGraph'));
+				var option = {
+					title : {
+						text : '总体评审效率'
+					},
+					tooltip : {
+						trigger : 'axis',
+						formatter : function(params) {
+							params = params[0];
+
+							return params.dataIndex;
+						},
+						axisPointer : {
+							animation : false
+						}
+					},
+					xAxis : {
+						name : '合并次数',
+						type : 'category',
+						boundaryGap : false,
+						data : [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
+					},
+					yAxis : {
+						name : '效率',
+						type : 'value',
+						boundaryGap : [ 0, '100%' ],
+						splitLine : {
+							show : false
+						}
+					},
+					series : [ {
+						name : '模拟数据',
+						type : 'line',
+						showSymbol : false,
+						hoverAnimation : false,
+						data : [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+					} ]
 				};
-			myChart.setOption(option);
+				myChart.setOption(option);
 			</script>
 			<div class="col-md-5">
 				<table class="table">
@@ -619,6 +625,8 @@ username = '<%=session.getAttribute("username")%>';
 	<script src="js/login.js"></script>
 	<script src="js/review.js"></script>
 	<script src="js/stateControl.js"></script>
+	<script src='js/waitFunction.js'></script>
+	<script src='js/waitMe.min.js'></script>
 </body>
 
 </html>
