@@ -23,7 +23,6 @@ $('#add-code').on('click', function(){
 				"</td> <td>" +$('#discription-code').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
 	}
-	
 	storeCode();
 });
 
@@ -183,7 +182,7 @@ function isCodeItemOK(){
 	}else {
 		$('#fileGroup-code').removeClass('has-error');
 	}
-	if($('#lineNum-code').val()=="" && !isNaN(Number($('#lineNum-code').val().trim()))){
+	if($('#lineNum-code').val()=="" || isNaN($('#lineNum-code').val().trim())){
 		$('#lineGroup-code').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -211,7 +210,7 @@ function ischooseCodeItemOK(){
 	}else {
 		$('#fileGroup-choosecode').removeClass('has-error');
 	}
-	if($('#lineNum-choosecode').val()==""){
+	if($('#lineNum-choosecode').val()=="" || isNaN($('#lineNum-code').val().trim())){
 		$('#lineGroup-choosecode').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -253,7 +252,7 @@ function isFileItemOK(){
 	}else {
 		$('#fileGroup-file').removeClass('has-error');
 	}
-	if($('#lineNum-file').val()=="" && !isNaN(Number($('#lineNum-file').val().trim()))){
+	if($('#lineNum-file').val()==""  || isNaN($('#lineNum-code').val().trim())){
 		$('#lineGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -265,7 +264,7 @@ function isFileItemOK(){
 	}else {
 		$('#discripGroup-file').removeClass('has-error');
 	}
-	if($('#pageNum-file').val()=="" && !isNaN(Number($('#pageNum-file').val().trim()))){
+	if($('#pageNum-file').val()==""  || isNaN($('#lineNum-code').val().trim())){
 		$('#pageGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -282,7 +281,7 @@ function ischooseFileItemOK(){
 	}else {
 		$('#fileGroup-choosefile').removeClass('has-error');
 	}
-	if($('#lineNum-choosefile').val()==""){
+	if($('#lineNum-choosefile').val()==""  || isNaN($('#lineNum-code').val().trim())){
 		$('#lineGroup-choosefile').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -294,7 +293,7 @@ function ischooseFileItemOK(){
 	}else {
 		$('#discripGroup-choosefile').removeClass('has-error');
 	}
-	if($('#pageNum-choosefile').val()==""){
+	if($('#pageNum-choosefile').val()==""  || isNaN($('#lineNum-code').val().trim())){
 		$('#pageGroup-choosefile').addClass('has-error');
 		itemOK=false;
 	}else {
