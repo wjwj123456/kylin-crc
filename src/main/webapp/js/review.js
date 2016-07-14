@@ -584,22 +584,54 @@ function commitReport() {
 			state: 1,
 			origin: 0
 		});
-		concole.log(JSON.stringify(report))
-//		jQuery.ajax({
-//			url: '/crc/MergeServlet',
-//			type: 'post',
-//			data: 'type=deleteMerge&data=' + JSON.stringify(report),
-//			success: function(data) {
-//				
-//			},
-//			error: function() {
-//				alert('出错了，更改无法生效')
-//			}
-//		})
+		
+		var data = new Array();
+		data.push(report);
+
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=deleteMerge&data=' + JSON.stringify(data),
+			success: function(data) {
+				$(obj).parent().parent().remove();
+			},
+			error: function() {
+				alert('出错了，更改无法生效')
+			}
+		})
 	}
 	
+	/**
+	 * 删除文档条目
+	 * @param obj
+	 * @returns
+	 */
 	function deleteFileMerge(obj) {
+		var temp = $(obj).parent().parent().find('td');
+		var report = new Object({
+			taskName: taskName,
+			fileName: $(temp[0]).text(),
+			page: $(temp[1]).text(),
+			location: $(temp[2]).text(),
+			description: $(temp[3]).text(),
+			state: 1,
+			origin: 0
+		});
 		
+		var data = new Array();
+		data.push(report);
+
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=deleteMerge&data=' + JSON.stringify(data),
+			success: function(data) {
+				$(obj).parent().parent().remove();
+			},
+			error: function() {
+				alert('出错了，更改无法生效')
+			}
+		})
 	}
 }
 
