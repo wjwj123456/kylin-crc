@@ -10,7 +10,9 @@ import vo.UserVO;
 public interface ReviewBlService {
 	public int saveReviewInfo(TaskVO vo);
 
-	public List<TaskVO> geTaskList(String userName);
+	public List<TaskVO> getDoingTaskList(String userName);
+
+	public List<TaskVO> getEndTaskList(String userName);
 
 	public List<TaskVO> getTaskList();
 

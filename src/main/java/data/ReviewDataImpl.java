@@ -70,11 +70,43 @@ public class ReviewDataImpl implements ReviewDataService {
 	 * @see dataservice.ReviewDataService#getTaskList(java.lang.String)
 	 *
 	 */
-	public List<TaskPO> getTaskList(String userName) throws SQLException, ClassNotFoundException {
+	public List<TaskPO> getDoingTaskList(String userName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM task WHERE uname = '" + userName + "'" + "order by " + "'deadline'" + "DESC";
+		String sql = "SELECT * FROM task WHERE state = 0 and uname = '" + userName + "'" + "order by " + "'deadline'"
+				+ "DESC";
+		rSet = DBManager.getResultSet(sql);
+		while (rSet.next()) {
+			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+			poList.add(po);
+
+		}
+
+		DBManager.closeConnection();
+		return poList;
+
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月8日
+	 * @param userName
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#getTaskList(java.lang.String)
+	 *
+	 */
+	public List<TaskPO> getEndTaskList(String userName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+
+		String sql = "SELECT * FROM task WHERE state = 1 and uname = '" + userName + "'" + "order by " + "'deadline'"
+				+ "DESC";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),

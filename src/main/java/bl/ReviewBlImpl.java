@@ -64,12 +64,12 @@ public class ReviewBlImpl implements ReviewBlService {
 	 * @see blservice.ReviewBlService#geTaskList(java.lang.String)
 	 *
 	 */
-	public List<TaskVO> geTaskList(String userName) {
+	public List<TaskVO> getDoingTaskList(String userName) {
 		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = null;
 		try {
-			list = reviewDataService.getTaskList(userName);
+			list = reviewDataService.getDoingTaskList(userName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,6 +111,27 @@ public class ReviewBlImpl implements ReviewBlService {
 		}
 		for (UserPO po : list) {
 			UserVO vo = new UserVO(po.getName(), po.getEmail(), po.getPassword());
+			result.add(vo);
+		}
+		return result;
+	}
+
+	public List<TaskVO> getEndTaskList(String userName) {
+		// TODO Auto-generated method stub
+		List<TaskVO> result = new ArrayList<TaskVO>();
+		List<TaskPO> list = null;
+		try {
+			list = reviewDataService.getEndTaskList(userName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (TaskPO po : list) {
+			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
+					po.getDeadline(), po.getState());
 			result.add(vo);
 		}
 		return result;

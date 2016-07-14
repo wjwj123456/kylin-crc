@@ -17,7 +17,9 @@ public interface ReviewDataService {
 	 */
 	public int saveReviewInfo(TaskPO po) throws ClassNotFoundException, SQLException;
 
-	public List<TaskPO> getTaskList(String userName) throws SQLException, ClassNotFoundException;
+	public List<TaskPO> getDoingTaskList(String userName) throws SQLException, ClassNotFoundException;
+
+	public List<TaskPO> getEndTaskList(String userName) throws SQLException, ClassNotFoundException;
 
 	public List<TaskPO> getTaskList() throws ClassNotFoundException, SQLException;
 
