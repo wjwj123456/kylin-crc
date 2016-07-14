@@ -283,10 +283,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ14ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½14ï¿½ï¿½
 	 * @param userName
 	 * @param takName
 	 * @return
