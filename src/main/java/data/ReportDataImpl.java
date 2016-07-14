@@ -97,7 +97,8 @@ public class ReportDataImpl implements ReportDataService {
 
 		DBManager.closeConnection();
 		if (type == Type.code) {
-			sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state = 0  ORDER BY location";
+			sql = "SELECT * FROM report WHERE tname = '" + taskName
+					+ "' and state = 1 GROUP BY filename ORDER BY location";
 		} else {
 			sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state = 0 ORDER BY page, location";
 		}
@@ -125,10 +126,8 @@ public class ReportDataImpl implements ReportDataService {
 		pStatement.setString(2, "merged");
 		ResultSet rSet = pStatement.executeQuery();
 		ArrayList<ReportPO> reportPOs = new ArrayList<>();
-		while (rSet.next()) {
-			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"),
-					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"),
-					rSet.getInt("origin"));
+		while(rSet.next()) {
+			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"), rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"), rSet.getInt("origin"));
 			reportPOs.add(po);
 		}
 		return reportPOs;
