@@ -66,6 +66,7 @@ public class TaskFilter implements Filter {
 		// 未接受邀请
 		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
 		//待合并项目
+		System.out.println(mergeBl.mergeReport(taskName).size());
 		session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
 		//历史项目合并数据
 		session.setAttribute("taskHis_"+taskName, assessmenAndFault);
