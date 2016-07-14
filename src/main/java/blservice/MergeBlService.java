@@ -20,12 +20,12 @@ public interface MergeBlService {
 
 	public List<ReportVO> mergeReport(String taskName);
 
-	public void saveMergeReport(List<ReportVO> reportList, String taskName);
+	public int saveMergeReport(List<ReportVO> reportList, String taskName);
 
-	public void saveAddedMergeReport(List<ReportVO> reportList, String taskName);
+	public int saveAddedMergeReport(List<ReportVO> reportList, String taskName);
 
-	public void deleteMergeRecord(ReportVO vo);
+	public int deleteMergeRecord(ReportVO vo);
 
-	public void saveHistory(String userName, String taskName);
+	public int saveHistory(String userName, String taskName);
 
 }

@@ -50,14 +50,14 @@ public interface MergeDataService {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public void saveMergeReport(List<ReportPO> reportList, String taskName) throws SQLException, ClassNotFoundException;
+	public int saveMergeReport(List<ReportPO> reportList, String taskName) throws SQLException, ClassNotFoundException;
 
-	public void saveAddedMergeReport(List<ReportPO> reportList, String taskName)
+	public int saveAddedMergeReport(List<ReportPO> reportList, String taskName)
 			throws SQLException, ClassNotFoundException;
 
-	public void deleteMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException;
+	public int deleteMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException;
 
-	public void saveHistory(String userName, String taskName, int fault, int assessfalut)
+	public int saveHistory(String userName, String taskName, int fault, int assessfalut)
 			throws SQLException, ClassNotFoundException;
 
 	public int getID(ReportPO po) throws ClassNotFoundException, SQLException;
