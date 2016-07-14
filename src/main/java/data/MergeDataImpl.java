@@ -344,7 +344,7 @@ public class MergeDataImpl implements MergeDataService {
 
 	private void updateMerge() throws SQLException, ClassNotFoundException {
 		ResultSet rSet = null;
-		String sql = "SELECT * FROM merge '";
+		String sql = "SELECT * FROM merge";
 		rSet = DBManager.getResultSet(sql);
 		List<Integer> ids = new ArrayList<>();
 		List<Integer> finalIds = new ArrayList<>();
