@@ -101,6 +101,10 @@ public class MergeBlImpl implements MergeBlService {
 					e.printStackTrace();
 				}
 			}
+
+			if (vo.getState() == 1) {
+				voList.remove(vo);
+			}
 		}
 		return voList;
 	}
