@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import blservice.MergeBlService;
+import blservice.SplitBlService;
 import data.MergeDataImpl;
 import dataservice.MergeDataService;
 import po.ReportPO;
@@ -60,6 +61,7 @@ public class MergeBlImpl implements MergeBlService {
 	 *
 	 */
 	public List<ReportVO> mergeReport(String taskName) {
+		SplitBlService splitBlService = new SplitBlImpl();
 		// TODO Auto-generated method stub
 		List<ReportVO> voList = new ArrayList<ReportVO>();
 		List<ReportPO> poList = null;
@@ -75,7 +77,31 @@ public class MergeBlImpl implements MergeBlService {
 		for (ReportPO po : poList) {
 			voList.add(new ReportVO(po));
 		}
-
+		List<ReportVO> mergeList = new ArrayList<>();
+		try {
+			mergeList = splitBlService.getCanSplitedReports(taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (ReportVO vo : voList) {
+			for (ReportVO vo1 : mergeList) {
+				try {
+					if (mergeDataService.getID(new ReportPO(vo)) == mergeDataService.getID(new ReportPO(vo1))) {
+						vo.setIsMerged(1);
+					}
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		return voList;
 	}
 
