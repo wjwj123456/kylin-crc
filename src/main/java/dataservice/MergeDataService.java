@@ -61,4 +61,5 @@ public interface MergeDataService {
 			throws SQLException, ClassNotFoundException;
 
 	public int getID(ReportPO po) throws ClassNotFoundException, SQLException;
+
 }
