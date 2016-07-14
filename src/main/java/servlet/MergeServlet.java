@@ -40,6 +40,8 @@ public class MergeServlet extends HttpServlet {
 			handleSaveMerge(request, response);
 		} else if (type.equals("deleteMerge")) {
 			handleDeleteMerge(request, response);
+		} else if (type.equals("commitMerge")) {
+			handleCommitMerge(request, response);
 		}
 	}
 
@@ -73,12 +75,23 @@ public class MergeServlet extends HttpServlet {
 	 * @param response
 	 */
 	private void handleDeleteMerge(HttpServletRequest request, HttpServletResponse response) {
-		String taskName = request.getParameter("taskName");
 		String userName = (String) request.getSession().getAttribute("username");
 
 		MergeBlImpl merge = new MergeBlImpl();
-		// merge.saveAddedMergeReport(getData(request.getParameter("data"),
-		// userName), taskName);
+		merge.deleteMergeRecord(getData(request.getParameter("data"), userName).get(0));
+	}
+
+	/**
+	 * 提交合并后的报告
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	private void handleCommitMerge(HttpServletRequest request, HttpServletResponse response) {
+		String userName = (String) request.getSession().getAttribute("username");
+
+		MergeBlImpl merge = new MergeBlImpl();
+		merge.saveHistory(request.getParameter("taskName"), userName);
 	}
 
 	/**
