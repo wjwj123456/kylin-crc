@@ -90,9 +90,11 @@ $('#toMerge-code').find('button').on('click',function(){
 $('#toMerge-file').find('button').on('click',function(){
 	$('#divideModal').modal('show');
 });
+
 function initCodeChoose(){
 	$('#choose-code').find('tr').not(':first').on('click',function(){
 		var temp=$(this).clone();
+		// TODO onclick
 		$(temp).append($("<td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td>"));
 		$('#merged-code').append($(temp));
 		$('#chooseModal').modal('hide');
@@ -463,45 +465,18 @@ function commitReport() {
 	}
 }
 
-function getCodeData() {
-	var data = new Array();
-	var temp = $('#codeTable>tbody').find('tr');
-	
-	for (var i = 0; i < temp.length; i++) {
-		var td = $(temp[i]).find('td');
+// merge 操作相关
+{
+	function storeCodeMerge() {
 		
-		var report = new Object();
-		report.fileName = $(td[0]).text();
-		report.page = 0;
-		report.location = $(td[1]).text();
-		report.description = $(td[2]).text();
-		report.state = 0;
-		report.origin = 0;
-		
-		data.push(report)
 	}
 	
-	return JSON.stringify(data)
-}
-
-function getFileData() {
-	var data = new Array();
-	var temp = $('#fileTable>tbody').find('tr');
-	
-	for (var i = 0; i < temp.length; i++) {
-		var td = $(temp[i]).find('td');
+	function storeFileMerge() {
 		
-		var report = new Object();
-		report.fileName = $(td[0]).text();
-		report.page = $(td[1]).text();
-		report.location = $(td[2]).text();
-		report.description = $(td[3]).text();
-		report.state = 0;
-		report.origin = 0;
-		
-		data.push(report)	
 	}
 	
-	return JSON.stringify(data);
+	function storeMerge() {
+		
+	}
 }
 
