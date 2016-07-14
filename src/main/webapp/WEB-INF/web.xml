@@ -119,4 +119,14 @@
     <servlet-name>TaskServlet</servlet-name>
     <url-pattern>/TaskServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MergeServlet</display-name>
+    <servlet-name>MergeServlet</servlet-name>
+    <servlet-class>servlet.MergeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MergeServlet</servlet-name>
+    <url-pattern>/MergeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
