@@ -540,4 +540,71 @@ function commitReport() {
 		$('#chooseModal').modal('hide');
 	}
 }
+// 删除合并条目相关操作
+{
+	/**
+	 * 删除代码条目
+	 * @param obj
+	 * @returns
+	 */
+	function deleteCodeMerge(obj) {
+		var temp = $(obj).parent().parent().find('td');
+		var report = new Object({
+			taskName: taskName,
+			fileName: $(temp[0]).text(),
+			page: 0,
+			location: $(temp[1]).text(),
+			description: $(temp[2]).text(),
+			state: 1,
+			origin: 0
+		});
+		
+		var data = new Array();
+		data.push(report);
 
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=deleteMerge&data=' + JSON.stringify(data),
+			success: function(data) {
+				$(obj).parent().parent().remove();
+			},
+			error: function() {
+				alert('出错了，更改无法生效')
+			}
+		})
+	}
+	
+	/**
+	 * 删除文档条目
+	 * @param obj
+	 * @returns
+	 */
+	function deleteFileMerge(obj) {
+		var temp = $(obj).parent().parent().find('td');
+		var report = new Object({
+			taskName: taskName,
+			fileName: $(temp[0]).text(),
+			page: $(temp[1]).text(),
+			location: $(temp[2]).text(),
+			description: $(temp[3]).text(),
+			state: 1,
+			origin: 0
+		});
+		
+		var data = new Array();
+		data.push(report);
+
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=deleteMerge&data=' + JSON.stringify(data),
+			success: function(data) {
+				$(obj).parent().parent().remove();
+			},
+			error: function() {
+				alert('出错了，更改无法生效')
+			}
+		})
+	}
+}
