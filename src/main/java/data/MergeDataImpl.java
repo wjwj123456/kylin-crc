@@ -14,6 +14,7 @@ import java.util.List;
 
 import dataservice.MergeDataService;
 import po.ReportPO;
+import vo.State;
 
 /**
  * TODO: £®¿‡√Ë ˆ£©
@@ -276,8 +277,17 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.setInt(3, fault);
 		pStatement.setInt(4, assessfalut);
 		pStatement.executeUpdate();
+
+		String sql1 = "UPDATE review SET state = ? WHERE tname = ? and uname= ? ";
+		PreparedStatement pStatement1 = connection.prepareStatement(sql1);
+		pStatement1.setString(1, String.valueOf(State.merged));
+		pStatement1.setString(2, taskName);
+		pStatement1.setString(3, userName);
+		pStatement.executeQuery();
 		DBManager.closeConnection();
+
 		return;
+
 	}
 
 	/**

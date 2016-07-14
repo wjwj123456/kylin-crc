@@ -5,6 +5,7 @@ import java.util.List;
 
 import po.TaskPO;
 import po.UserPO;
+import vo.State;
 
 public interface ReviewDataService {
 	/**
@@ -77,4 +78,6 @@ public interface ReviewDataService {
 	 * @see dataservice.ReviewDataService#getTaskList()
 	 */
 	public List<TaskPO> getJoinedEndTasksByUserName(String userName) throws SQLException, ClassNotFoundException;
+
+	public State getState(String userName, String taskName) throws SQLException;
 }

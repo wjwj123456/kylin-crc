@@ -14,6 +14,7 @@ import data.ReviewDataImpl;
 import dataservice.ReviewDataService;
 import po.TaskPO;
 import po.UserPO;
+import vo.State;
 import vo.TaskVO;
 import vo.Type;
 import vo.UserVO;
@@ -279,5 +280,30 @@ public class ReviewBlImpl implements ReviewBlService {
 			result.add(vo);
 		}
 		return result;
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月14日
+	 * @param userName
+	 * @param takName
+	 * @return
+	 * @see blservice.ReviewBlService#getState(java.lang.String,
+	 *      java.lang.String)
+	 *
+	 */
+	@Override
+	public State getState(String userName, String taskName) {
+		// TODO Auto-generated method stub
+		State state = null;
+		try {
+			state = reviewDataService.getState(userName, taskName);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return state;
 	}
 }

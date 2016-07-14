@@ -3,6 +3,7 @@ package blservice;
 import java.sql.SQLException;
 import java.util.List;
 
+import vo.State;
 import vo.TaskVO;
 import vo.UserVO;
 
@@ -68,5 +69,7 @@ public interface ReviewBlService {
 	 * @see dataservice.ReviewDataService#getTaskList()
 	 */
 	public List<TaskVO> getJoinedEndTasksByUserName(String userName);
+
+	public State getState(String userName, String taskName);
 
 }

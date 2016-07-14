@@ -293,4 +293,32 @@ public class ReviewDataImpl implements ReviewDataService {
 		return list;
 	}
 
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月14日
+	 * @param userName
+	 * @param taskName
+	 * @return
+	 * @throws SQLException
+	 * @see dataservice.ReviewDataService#getState(java.lang.String,
+	 *      java.lang.String)
+	 *
+	 */
+	@Override
+	public State getState(String userName, String taskName) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and tname='" + taskName + "'";
+		rSet = DBManager.getResultSet(sql);
+		State state = null;
+		while (rSet.next()) {
+			state = State.valueOf(rSet.getString("3"));
+		}
+
+		DBManager.closeConnection();
+
+		return state;
+	}
+
 }
