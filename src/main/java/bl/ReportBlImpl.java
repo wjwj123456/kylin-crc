@@ -108,4 +108,10 @@ public class ReportBlImpl implements ReportBlService {
 		return result;
 	}
 
+	@Override
+	public boolean abandonReport(ReportVO vo) throws ClassNotFoundException, SQLException {
+		ReportPO po = new ReportPO(vo);
+		return reportDataService.abandonReport(po);
+	}
+
 }

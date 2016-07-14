@@ -91,4 +91,25 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		return name;
 	}
 
+	@Override
+	public int[][] getHistoryValues(String taskName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<Integer> faults = new ArrayList<Integer>();
+		List<Integer> assessfaults = new ArrayList<Integer>();
+		String sql = "SELECT fault,assessfault FROM history where tname = '" + taskName + "'";
+		rSet = DBManager.getResultSet(sql);
+		while (rSet.next()) {
+			faults.add(rSet.getInt(1));
+			assessfaults.add(rSet.getInt(2));
+		}
+		int[][] values = new int[2][faults.size()];
+		for (int i = 0; i < faults.size(); i++) {
+			values[0][i] = faults.get(i);
+			values[1][i] = assessfaults.get(i);
+		}
+
+		DBManager.closeConnection();
+		return values;
+	}
+
 }

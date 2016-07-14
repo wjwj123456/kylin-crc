@@ -32,6 +32,15 @@ public interface ReportBlService {
 	public int setCompleteTime(String taskName, String reviewerName, double time);
 
 	/**
+	 * 
+	 * @param vo
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public boolean abandonReport(ReportVO vo) throws ClassNotFoundException, SQLException;
+	
+	/**
 	 * ldk get all reports by taskname *
 	 * 
 	 * @return
