@@ -11,9 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import bl.AssessmentBlImpl;
 import bl.InviteBlImpl;
 import bl.ReportBlImpl;
 import bl.ReviewBlImpl;
+import blservice.AssessmentBlService;
 import blservice.ReportBlService;
 import tools.Encode;
 import vo.TaskVO;
@@ -53,11 +55,17 @@ public class TaskFilter implements Filter {
 		InviteBlImpl invite = new InviteBlImpl();
 		// 接受邀请的评审者
 		ReportBlService reportBl = new ReportBlImpl();
+		AssessmentBlService assessmentBl = new AssessmentBlImpl();
+		int[][] assessmenAndFault = new int[2][];
+		assessmenAndFault[0]= assessmentBl.getHistoryFaultValues(taskName);
+		assessmenAndFault[1]= assessmentBl.getHistoryAssessmentValues(taskName);
 		session.setAttribute("agree_" + taskName, invite.getAgreeUser(taskName));
 		// 未接受邀请
 		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
 		//待合并项目
 		session.setAttribute("toMerge_" + taskName, reportBl.getAllReportsByTaskName(taskName));
+		//历史项目合并数据
+		session.setAttribute("taskHis_"+taskName, assessmenAndFault);
 		chain.doFilter(request, response);
 	}
 
