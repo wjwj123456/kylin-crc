@@ -37,22 +37,10 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">CRC在线评审系统</a>
+			<a class="navbar-brand" href="index.jsp">CRC在线评审系统</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="#">首页</a></li>
-				<li><a href="#about">关于</a></li>
-				<li><a href="#about">联系我们</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">帮助<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#introduction">功能介绍</a></li>
-						<li><a href="#details">使用说明</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#about">git地址</a></li>
-					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<%

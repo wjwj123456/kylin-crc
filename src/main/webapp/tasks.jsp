@@ -1,3 +1,4 @@
+<%@page import="vo.AssessmentVO"%>
 <%@page import="vo.ReportVO"%>
 <%@page import="tools.Tools"%>
 <%@page import="java.util.List"%>
@@ -49,22 +50,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">CRC在线评审系统</a>
+			<a class="navbar-brand" href="index.jsp">CRC在线评审系统</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="#">首页</a></li>
-				<li><a href="#about">关于</a></li>
-				<li><a href="#about">联系我们</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">帮助<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#introduction">功能介绍</a></li>
-						<li><a href="#details">使用说明</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#about">git地址</a></li>
-					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 
@@ -629,6 +618,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 				myChart.setOption(option);
 			</script>
 			<div class="col-md-5">
+			<%List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_"+taskVO.getTaskName())); %>
 				<table class="table">
 					<thead>
 						<tr>
@@ -638,7 +628,16 @@ taskName = '<%=request.getParameter("taskName")%>';
 							<th>评审效率</th>
 						</tr>
 					</thead>
-					<tbody></tbody>
+					<tbody>
+					<%for(AssessmentVO assessmentVO : userHis){ %>
+					<tr>
+					<td><%=assessmentVO.getReviewerName() %></td>
+					<td><%=assessmentVO.getAssessfaults() %></td>
+					<td><%=assessmentVO.getFindedfaults() %></td>
+					<td><%=(assessmentVO.getFindedfaults()+0.0)/assessmentVO.getAssessfaults()%></td>
+					</tr>
+					<%} %>
+					</tbody>
 				</table>
 			</div>
 			<hr>
