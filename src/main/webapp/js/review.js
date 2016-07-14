@@ -101,9 +101,8 @@ function initCodeChoose(){
 		var j = 0;
 		for( i = 0;i<length;i++){
 			if($(inputs[i]).prop('checked')==true){
-				$($('#toMerge-code').find('tr')[j+1]).remove();
+				$($('#toMerge-code tbody').find('tr')[j]).remove();
 				j--;
-				length--;
 			}
 			j++;
 		}
@@ -130,12 +129,9 @@ function initFileChoode() {
 		var length = inputs.length;
 		var j = 0;
 		for( i = 0;i<length;i++){
-			
-			alert($(inputs[i]).prop('checked'))
 			if($(inputs[i]).prop('checked')==true){
-				$($('#toMerge-file').find('tr')[j+1]).remove();
+				$($('#toMerge-file tbody').find('tr')[j]).remove();
 				j--;
-				length--;
 			}
 			j++;
 		}

@@ -329,41 +329,65 @@ taskName = '<%=request.getParameter("taskName")%>';
 					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
 					<div class="row" style="height: 400px; overflow: auto;">
 						<table class="table" id="toMerge-code">
-							<tr>
-								<th width=10px></th>
-								<th>文件名</th>
-								<th>行数</th>
-								<th>描述</th>
-								<th>评审人</th>
-								<th width=20px></th>
-							</tr>
-							<%List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_"+ taskVO.getTaskName()));%>
-							<%
-								for (ReportVO reportVO : toMergeVOs) {
-									
-							%>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td><%=reportVO.getFileName() %></td>
-								<td><%=reportVO.getLocation() %></td>
-								<td><%=reportVO.getDescription() %></td>
-								<td><%=reportVO.getUserName() %></td>
-								<td><button class="btn btn-warning">拆分</button></td>
-							</tr>
-							<%
-								}
-							%>
+							<thead>
+								<tr>
+									<th width=10px></th>
+									<th>文件名</th>
+									<th>行数</th>
+									<th>描述</th>
+									<th>评审人</th>
+									<th width=20px></th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
+								%>
+								<%
+									for (ReportVO reportVO : toMergeVOs) {
+								%>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td><%=reportVO.getFileName()%></td>
+									<td><%=reportVO.getLocation()%></td>
+									<td><%=reportVO.getDescription()%></td>
+									<td><%=reportVO.getUserName()%></td>
+									<td><button class="btn btn-warning">拆分</button></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
 						</table>
 						<table class="table" id="toMerge-file">
-							<tr>
-								<th></th>
-								<th>文件名</th>
-								<th>页码</th>
-								<th>行数</th>
-								<th>描述</th>
-								<th>评审人</th>
-								<th width=20px></th>
-							</tr>
+							<thead>
+								<tr>
+									<th></th>
+									<th>文件名</th>
+									<th>页码</th>
+									<th>行数</th>
+									<th>描述</th>
+									<th>评审人</th>
+									<th width=20px></th>
+								</tr>
+							</thead>
+							<tbody>
+							<%
+									for (ReportVO reportVO : toMergeVOs) {
+								%>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td><%=reportVO.getFileName()%></td>
+									<td><%=reportVO.getPage() %></td>
+									<td><%=reportVO.getLocation()%></td>
+									<td><%=reportVO.getDescription()%></td>
+									<td><%=reportVO.getUserName()%></td>
+									<td><button class="btn btn-warning">拆分</button></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
 						</table>
 					</div>
 
