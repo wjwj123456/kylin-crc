@@ -24,6 +24,8 @@ public interface MergeBlService {
 
 	public void saveAddedMergeReport(List<ReportVO> reportList, String taskName);
 
+	public void deleteMergeRecord(ReportVO vo);
+
 	public void saveHistory(String userName, String taskName);
 
 }

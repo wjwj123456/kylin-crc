@@ -248,4 +248,70 @@ public class MergeDataImpl implements MergeDataService {
 		DBManager.stopAll(null, pStatement, connection);
 	}
 
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月14日
+	 * @param userName
+	 * @param taskName
+	 * @param fault
+	 * @param assessfalut
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.MergeDataService#saveHistory(java.lang.String,
+	 *      java.lang.String, int, int)
+	 *
+	 */
+	@Override
+	public void saveHistory(String userName, String taskName, int fault, int assessfalut)
+			throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		String sql = "INSERT INTO history (tname, uname, fault,assessfault) VALUES (?, ?, ?,?)";
+		pStatement = DBManager.getPreparedStatement(sql);
+		pStatement.setString(1, taskName);
+		pStatement.setString(2, userName);
+		pStatement.setInt(3, fault);
+		pStatement.setInt(4, assessfalut);
+		pStatement.executeUpdate();
+		DBManager.closeConnection();
+		return;
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月14日
+	 * @param po
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.MergeDataService#deleteMergeRecord(po.ReportPO)
+	 *
+	 */
+	@Override
+	public void deleteMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException {
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = null;
+		String sql = "UPDATE report SET state = ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
+		pStatement = connection.prepareStatement(sql);
+		pStatement.setInt(1, 1);
+		pStatement.setString(2, po.getTaskName());
+		pStatement.setString(3, po.getUserName());
+		pStatement.setString(4, po.getFileName());
+		pStatement.setInt(5, po.getPage());
+		pStatement.setInt(6, po.getLocation());
+		pStatement.setString(7, po.getDescription());
+		pStatement.executeUpdate();
+
+		String sql1 = "DELETE * FROM merge  WHERE final_id = '" + getID(po) + "'";
+		pStatement = connection.prepareStatement(sql1);
+		pStatement.executeUpdate();
+
+		DBManager.stopAll(null, pStatement, connection);
+
+	}
+
 }

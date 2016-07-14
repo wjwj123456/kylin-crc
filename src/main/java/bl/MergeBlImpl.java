@@ -148,7 +148,45 @@ public class MergeBlImpl implements MergeBlService {
 	@Override
 	public void saveHistory(String userName, String taskName) {
 		// TODO Auto-generated method stub
+		AssessmentBlImpl assessmentBlImpl = new AssessmentBlImpl();
+		ReportBlImpl reportBlImpl = new ReportBlImpl();
+		int assessFault = assessmentBlImpl.getAssessmentValue(taskName);
+		int fault = reportBlImpl.getMergeReport(taskName).size();
+		try {
+			try {
+				mergeDataService.saveHistory(userName, taskName, fault, assessFault);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月14日
+	 * @param vo
+	 * @see blservice.MergeBlService#deleteMergeRecord(vo.ReportVO)
+	 *
+	 */
+	@Override
+	public void deleteMergeRecord(ReportVO vo) {
+		// TODO Auto-generated method stub
+		ReportPO po = new ReportPO(vo);
+		try {
+			mergeDataService.deleteMergeRecord(po);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
