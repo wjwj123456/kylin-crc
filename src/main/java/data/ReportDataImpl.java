@@ -75,11 +75,14 @@ public class ReportDataImpl implements ReportDataService {
 		// TODO Auto-generated method stub
 		int flag = -1;
 
-		String sql = "UPDATE review SET  time = ? and state = ? WHERE tname = '" + taskName + "' and uname = '"
+		String sql = "UPDATE review SET  time = ?, state = ? WHERE tname = '" + taskName + "' and uname = '"
 				+ reviewerName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setDouble(1, time);
 		pStatement.setString(2, String.valueOf(State.commit));
+		System.out.println(taskName);
+		System.out.println(reviewerName);
+		System.out.println(time);
 		int i = pStatement.executeUpdate();
 		if (i == 1)
 			flag = 0;

@@ -77,6 +77,9 @@ public class SplitServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(split);
+		System.out.println(report.getUserName());
+		System.out.println(report.getTaskName());
 
 		PrintWriter out = response.getWriter();
 		out.print(packageData(result));
@@ -111,6 +114,8 @@ public class SplitServlet extends HttpServlet {
 		ReportBlService reportBl = new ReportBlImpl();
 		List<ReportVO> result = reportBl.getAllReportsByTaskName(report.getTaskName());
 
+		System.out.println(result);
+		System.out.println(report.getTaskName());
 		JSONObject object = new JSONObject();
 		object.put("data", result);
 

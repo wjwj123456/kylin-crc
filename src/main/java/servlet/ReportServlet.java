@@ -117,6 +117,9 @@ public class ReportServlet extends HttpServlet {
 		ReportBlImpl report = new ReportBlImpl();
 		int result = report.setCompleteTime(taskName, userName, time);
 
+		System.out.println(taskName);
+		System.out.println(userName);
+		System.out.println(time);
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}

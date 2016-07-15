@@ -690,11 +690,11 @@ function commitReport() {
 				var result = jQuery.parseJSON(data)[0].data;
 				if (type == 'code') {
 					displayCode(result);
+					console.log(result);
 				} else {
 					displayFile(result);
 				}
 				stopWait();
-				
 			},
 			error: function() {
 				alert('出错了')
@@ -720,6 +720,7 @@ function commitReport() {
 			
 			$('#divideTable tbody').append(temp);
 			$('#divideModal').modal('show');
+			
 		}
 	}
 
@@ -757,7 +758,6 @@ function commitReport() {
 					console.log(data);
 					$('#divideTable tbody').empty();
 					stopWait();
-					
 				}
 			})
 			

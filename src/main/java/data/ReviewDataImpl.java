@@ -351,7 +351,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	@Override
 	public State getState(String userName, String taskName) throws SQLException {
 		// TODO Auto-generated method stub
-		String name ="";
+		String name = "";
 		try {
 			name = getTaskPOByTaskName(taskName).getUserName();
 		} catch (ClassNotFoundException e) {
@@ -366,7 +366,7 @@ public class ReviewDataImpl implements ReviewDataService {
 			rSet = DBManager.getResultSet(sql);
 			State state = null;
 			while (rSet.next()) {
-				state = State.valueOf(rSet.getString("3"));
+				state = State.valueOf(rSet.getString(3));
 			}
 
 			DBManager.closeConnection();
