@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import bl.InviteBlImpl;
 import bl.ReviewBlImpl;
+import blservice.ReviewBlService;
 import vo.TaskVO;
 
 /**
@@ -44,21 +45,25 @@ public class CRCFilter implements Filter {
 		String userName = (String) session.getAttribute("username");
 
 		InviteBlImpl invite = new InviteBlImpl();
+		
+		ReviewBlService reviewBl = new ReviewBlImpl();
+		
 
 		// 用户收到的邀请
 		List<TaskVO> invitationList = invite.getInvitationInfo(userName);
 		session.setAttribute("invitationList", invitationList);
 
 		// 正在进行中的任务(发起者)
-		List<TaskVO> runningTask = invite.getAllDoingTask(userName);
+		List<TaskVO> runningTask = reviewBl.getDoingTaskList(userName);
 		session.setAttribute("runningTask", runningTask);
 
 		// 历史任务(发起者)
-		List<TaskVO> historyTask = invite.getAllCompleteTask(userName);
+		List<TaskVO> historyTask = reviewBl.getEndTaskList(userName);
+		historyTask.addAll(reviewBl.getJoinedEndTasksByUserName(userName));
 		session.setAttribute("historyTask", historyTask);
 
 		// 正在进行中的任务(参与者)
-		List<TaskVO> participantTask = new ReviewBlImpl().getJoinedDoingTasksByUserName(userName);
+		List<TaskVO> participantTask = reviewBl.getJoinedDoingTasksByUserName(userName);
 		session.setAttribute("participantTask", participantTask);
 
 		// 历史任务(参与者)

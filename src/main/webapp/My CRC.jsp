@@ -138,11 +138,21 @@
 					<th>描述</th>
 					<th>deadline</th>
 				</tr>
+				
+				<%
+					List<TaskVO> joiningTasks = Cast.cast(session.getAttribute("participantTask"));
+				%>
+				<%
+					for (TaskVO vo : joiningTasks) {
+				%>
 				<tr>
-					<td>haha</td>
-					<td>haha</td>
-					<td>haha</td>
+					<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
+					<td><%=vo.getDescribe()%></td>
+					<td><%=vo.getDeadline()%></td>
 				</tr>
+				<%
+					}
+				%>
 			</table>
 			<hr>
 			<h2 id="hisReview">历史评审</h2>

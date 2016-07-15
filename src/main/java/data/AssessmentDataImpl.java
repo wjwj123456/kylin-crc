@@ -24,7 +24,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		// TODO Auto-generated method stub
 		int[][] matrix = getMatix(taskName, vos);
 		crc = new CrcModule(matrix);
-		return (int) (crc.getMhCH() + crc.getMtCH());
+		return crc.getDefectsNum();
 	}
 
 	private int[][] getMatix(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
@@ -130,7 +130,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 
 		int[][] matrix = getMatix(taskName, vos);
 		CrcModule crcM = new CrcModule(matrix);
-		int assessfault = (int) (crcM.getMhCH() + crcM.getMtCH());
+		int assessfault = crcM.getDefectsNum();
 
 		List<String> nameList = getReviewerNames(taskName);
 		for (int i = 0; i < nameList.size(); i++) {
