@@ -22,9 +22,10 @@ function createNewTask() {
 			if (data == 'success') {
 				top.location = 'My CRC.jsp';
 			}
+			stopWait();
 		}
 	});
-	stopWait();
+	
 }
 function checkOK() {
 	if($('#inputName').val()==""){
