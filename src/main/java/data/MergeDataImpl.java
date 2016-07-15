@@ -121,7 +121,7 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.executeUpdate();
 		}
 
-		String sql2 = "UPDATE report SET state = ?  and merge= ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
+		String sql2 = "UPDATE report SET state = ?, merge= ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
 		pStatement = connection.prepareStatement(sql2);
 		pStatement.setInt(1, 0);
 		pStatement.setInt(2, 1);
