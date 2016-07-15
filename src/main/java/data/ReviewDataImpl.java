@@ -50,9 +50,14 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement.setString(5, po.getDescribe());
 		pStatement.setTimestamp(6, tt);
 		pStatement.setInt(7, po.getState());
-		int i = pStatement.executeUpdate();
-		if (i == 0) {
-			flag = 1;
+		try {
+			int i = pStatement.executeUpdate();
+			if (i == 0) {
+				flag = 1;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("task has exist!");
 		}
 		DBManager.closeConnection();
 		return flag;

@@ -1,17 +1,15 @@
 var isOK = false;
 $('#createTask').on('click', function() {
 	isOK=true;
-	run_waitMe();
 	checkOK();
 	if (isOK) {
 		createNewTask();
 	}
-	stopWait()
 });
 
 function createNewTask() {
 	var type = ($('#type').get(0).selectedIndex == 1) ? 'code' : 'document';
-
+	run_waitMe();
 	jQuery.ajax({
 		url : '/crc/CreateTaskServlet',
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -26,6 +24,7 @@ function createNewTask() {
 			}
 		}
 	});
+	stopWait();
 }
 function checkOK() {
 	if($('#inputName').val()==""){

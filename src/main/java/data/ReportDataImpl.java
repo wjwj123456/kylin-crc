@@ -10,6 +10,7 @@ import java.util.List;
 
 import dataservice.ReportDataService;
 import po.ReportPO;
+import vo.State;
 import vo.Type;
 
 public class ReportDataImpl implements ReportDataService {
@@ -74,9 +75,11 @@ public class ReportDataImpl implements ReportDataService {
 		// TODO Auto-generated method stub
 		int flag = -1;
 
-		String sql = "UPDATE review SET  time = ? WHERE tname = '" + taskName + "' and uname = '" + reviewerName + "'";
+		String sql = "UPDATE review SET  time = ? and state = ? WHERE tname = '" + taskName + "' and uname = '"
+				+ reviewerName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setDouble(1, time);
+		pStatement.setString(2, String.valueOf(State.commit));
 		int i = pStatement.executeUpdate();
 		if (i == 1)
 			flag = 0;
@@ -127,8 +130,10 @@ public class ReportDataImpl implements ReportDataService {
 		pStatement.setString(2, "merged");
 		ResultSet rSet = pStatement.executeQuery();
 		ArrayList<ReportPO> reportPOs = new ArrayList<>();
-		while(rSet.next()) {
-			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"), rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"), rSet.getInt("origin"));
+		while (rSet.next()) {
+			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"),
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"),
+					rSet.getInt("origin"));
 			reportPOs.add(po);
 		}
 		DBManager.stopAll(rSet, pStatement, connection);
@@ -138,24 +143,26 @@ public class ReportDataImpl implements ReportDataService {
 	@Override
 	public boolean abandonReport(ReportPO po) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
-		String sql = "UPDATE report SET state = 2 WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
-		+ "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage() + "' and location = '"
-		+ po.getLocation() + "'";
+		String sql = "UPDATE report SET state = 2 WHERE tname = '" + po.getTaskName() + "' and uname = '"
+				+ po.getUserName() + "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage()
+				+ "' and location = '" + po.getLocation() + "'";
 		Statement statement = connection.createStatement();
 		int i = statement.executeUpdate(sql);
-		if(i==1) return true;
+		if (i == 1)
+			return true;
 		return false;
 	}
 
 	@Override
 	public boolean recoverReport(ReportPO po) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
-		String sql = "UPDATE report SET state = 0 WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
-		+ "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage() + "' and location = '"
-		+ po.getLocation() + "'";
+		String sql = "UPDATE report SET state = 0 WHERE tname = '" + po.getTaskName() + "' and uname = '"
+				+ po.getUserName() + "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage()
+				+ "' and location = '" + po.getLocation() + "'";
 		Statement statement = connection.createStatement();
 		int i = statement.executeUpdate(sql);
-		if(i==1) return true;
+		if (i == 1)
+			return true;
 		return false;
 	}
 

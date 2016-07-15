@@ -32,10 +32,18 @@
 			<a class="navbar-brand" href="index.jsp">CRC在线评审系统</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav navbar-right">
+				<%
+					if (session.getAttribute("username") != null) {
+				%>
+				<li><a id="login" style="cursor: pointer;">登出</a></li>
+				<%
+					}
+				%>
 			</ul>
 
 		</div>
+		
 	</div>
 	</nav>
 	<div class="container" id="waitArea">
