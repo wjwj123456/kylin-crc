@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import bl.ReportBlImpl;
 import bl.SplitBlImpl;
+import blservice.ReportBlService;
 import vo.ReportVO;
 
 /**
@@ -39,6 +42,8 @@ public class SplitServlet extends HttpServlet {
 
 		if (type.equals("getData")) {
 			handleGetData(request, response);
+		} else if (type.equals("split")) {
+			handleSplit(request, response);
 		}
 	}
 
@@ -61,12 +66,10 @@ public class SplitServlet extends HttpServlet {
 	private void handleGetData(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
-		ReportVO report = new ReportVO(jsonObject.getString("taskName"),
-				(String) request.getSession().getAttribute("username"), jsonObject.getString("fileName"),
-				jsonObject.getInt("page"), jsonObject.getInt("location"), jsonObject.getString("description"),
-				jsonObject.getInt("state"), jsonObject.getInt("origin"));
+		ReportVO report = new ReportVO(jsonObject.getString("taskName"), jsonObject.getString("userName"),
+				jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
+				jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin"));
 
-		System.out.println(jsonObject.getString("description"));
 		List<ReportVO> result = new ArrayList<>();
 		SplitBlImpl split = new SplitBlImpl();
 		try {
@@ -74,10 +77,45 @@ public class SplitServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(result);
 
 		PrintWriter out = response.getWriter();
 		out.print(packageData(result));
+	}
+
+	/**
+	 * 处理拆分操作，发送拆分后该任务的所有评审记录
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	private void handleSplit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// 原始条目
+		JSONObject jsonObject = new JSONObject(request.getParameter("origin"));
+		ReportVO report = getData(jsonObject);
+
+		// 拆分条目
+		JSONArray jsonArray = new JSONArray(request.getParameter("data"));
+		ArrayList<ReportVO> reportList = new ArrayList<>();
+		for (int i = 0; i < jsonArray.length(); i++) {
+			reportList.add(getData(jsonArray.getJSONObject(i)));
+		}
+
+		SplitBlImpl split = new SplitBlImpl();
+		try {
+			split.split(reportList, report);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		ReportBlService reportBl = new ReportBlImpl();
+		List<ReportVO> result = reportBl.getAllReportsByTaskName(report.getTaskName());
+
+		JSONObject object = new JSONObject();
+		object.put("data", result);
+
+		PrintWriter out = response.getWriter();
+		out.print(object);
 	}
 
 	/**
@@ -94,5 +132,19 @@ public class SplitServlet extends HttpServlet {
 		result.put(jsonObject);
 
 		return result;
+	}
+
+	/**
+	 * 转换数据，将json格式的数据转换为ReportVO
+	 * 
+	 * @param jsonObject
+	 * @return
+	 */
+	private ReportVO getData(JSONObject jsonObject) {
+		ReportVO report = new ReportVO(jsonObject.getString("taskName"), jsonObject.getString("userName"),
+				jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
+				jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin"));
+
+		return report;
 	}
 }
