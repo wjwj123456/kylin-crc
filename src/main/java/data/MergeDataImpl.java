@@ -135,7 +135,7 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.executeUpdate();
 
 		for (ReportPO po : reportList) {
-			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
+			String sql1 = "REPLACE INTO merge (final_id, included_id) VALUES (?,  ?)";
 			pStatement = connection.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
@@ -256,7 +256,7 @@ public class MergeDataImpl implements MergeDataService {
 		}
 
 		for (ReportPO po : reportList) {
-			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
+			String sql1 = "REPLACE INTO merge (final_id, included_id) VALUES (?,  ?)";
 			pStatement = connection.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
