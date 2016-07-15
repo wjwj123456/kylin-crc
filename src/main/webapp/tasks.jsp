@@ -1,3 +1,6 @@
+<%@page import="vo.State"%>
+<%@page import="bl.ReviewBlImpl"%>
+<%@page import="blservice.ReviewBlService"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="vo.AssessmentVO"%>
@@ -39,6 +42,20 @@ taskName = '<%=request.getParameter("taskName")%>';
 <%} else {%>
 	taskType = 'file';
 <%}%>
+<%	ReviewBlService reviewBl = new ReviewBlImpl(); 
+	State theState = reviewBl.getState((String)session.getAttribute("username"), taskVO.getTaskName());
+	if(theState==State.agree){
+		%>currentUserDisp=userDisp[joined];<%
+	}else if(theState==State.refuse){
+		%>currentUserDisp=userDisp[unJoin];<%
+	}
+	else if(theState==State.commit){
+		%>currentUserDisp=userDisp[committed];<%
+	}
+	else if(theState==State.merged){
+		%>currentUserDisp=userDisp[merged];<%
+	}
+%>
 	
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
