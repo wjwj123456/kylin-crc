@@ -42,6 +42,7 @@ public class CreateTaskServlet extends HttpServlet {
 		String userName = (String) request.getSession().getAttribute("username");
 		String taskName = Encode.transfer(request.getParameter("taskName"));
 		String type = Encode.transfer(request.getParameter("type"));
+
 		String describe = Encode.transfer(request.getParameter("describe"));
 		String date = request.getParameter("deadline");
 
@@ -54,7 +55,7 @@ public class CreateTaskServlet extends HttpServlet {
 		}
 
 		ReviewBlImpl review = new ReviewBlImpl();
-		review.saveReviewInfo(new TaskVO(userName, taskName, Type.getType(type), "", describe, deadline, 0));
+		review.saveReviewInfo(new TaskVO(userName, taskName, Type.valueOf(type), "", describe, deadline, 0));
 
 		PrintWriter out = response.getWriter();
 		out.print("success");
