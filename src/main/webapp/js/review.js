@@ -601,7 +601,7 @@ function commitReport() {
 	function deleteMerge(report, obj) {
 		var data = new Array();
 		data.push(report);
-
+		run_waitMe();
 		jQuery.ajax({
 			url: '/crc/MergeServlet',
 			type: 'post',
@@ -613,6 +613,7 @@ function commitReport() {
 				alert('出错了，更改无法生效')
 			}
 		})
+		stopWait();
 	}
 }
 
@@ -668,12 +669,13 @@ function commitReport() {
 				} else {
 					displayFile(result);
 				}
-				stopWait();
+				
 			},
 			error: function() {
 				alert('出错了')
 			}
 		})
+		stopWait();
 	}
 	
 	/**
@@ -730,9 +732,10 @@ function commitReport() {
 					console.log(data);
 					$('#divideTable tbody').empty();
 					
-					stopWait();
+					
 				}
 			})
+			stopWait();
 		})
 	})
 	
