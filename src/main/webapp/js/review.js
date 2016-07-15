@@ -351,7 +351,7 @@ function store(data) {
 		type: 'post',
 		data: 'type=store' + '&data=' + JSON.stringify(data),
 		success: function(data) {
-			alert(data)
+			
 		},
 		error: function() {
 			alert('出错了，更改无法保存')
@@ -426,9 +426,8 @@ function commitReport() {
 			type: 'post',
 			data: 'type=commit&taskName=' + taskName + '&time=' + $('#timeCost').val().trim(),
 			success: function(data) {
-				console.log(data)
 				if (data == 0) {
-					alert('提交成功')
+					location.reload(true);
 				}
 			}
 		});
