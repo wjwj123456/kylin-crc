@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import bl.MergeBlImpl;
+import tools.Encode;
 import vo.ReportVO;
 
 /**
@@ -60,13 +61,17 @@ public class MergeServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 * @param reponse
+	 * @throws IOException
 	 */
-	private void handleSaveMerge(HttpServletRequest request, HttpServletResponse reponse) {
-		String taskName = request.getParameter("taskName");
+	private void handleSaveMerge(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String taskName = Encode.transfer(request.getParameter("taskName"));
 		String userName = (String) request.getSession().getAttribute("username");
 
 		MergeBlImpl merge = new MergeBlImpl();
-		merge.saveMergeReport(getData(request.getParameter("data"), userName), taskName);
+		int result = merge.saveMergeReport(getData(request.getParameter("data"), userName), taskName);
+
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 
 	/**
@@ -93,7 +98,7 @@ public class MergeServlet extends HttpServlet {
 		String userName = (String) request.getSession().getAttribute("username");
 
 		MergeBlImpl merge = new MergeBlImpl();
-		int result = merge.saveHistory(request.getParameter("taskName"), userName);
+		int result = merge.saveHistory(Encode.transfer(request.getParameter("taskName")), userName);
 
 		PrintWriter out = response.getWriter();
 		out.print(result);

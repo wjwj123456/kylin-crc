@@ -369,13 +369,13 @@ function store(data) {
 		type: 'post',
 		data: 'type=store' + '&data=' + JSON.stringify(data),
 		success: function(data) {
-			
+			stopWait();
 		},
 		error: function() {
 			alert('出错了，更改无法保存')
+			stopWait();
 		}
-	})	
-	stopWait();
+	});
 }
 
 /**
@@ -424,12 +424,13 @@ function deleteCodeAndFile(data, obj) {
 		data: 'type=delete' + '&data=' + JSON.stringify(data),
 		success: function(data) {
 			$(obj).parent().parent().remove();
+			stopWait();
 		},
 		error: function() {
 			alert('出错了，更改无法保存')
 		}
-	})
-	stopWait();
+	});
+	
 }
 
 /**
@@ -447,9 +448,10 @@ function commitReport() {
 				if (data == 0) {
 					location.reload(true);
 				}
+				stopWait();
 			}
 		});
-		stopWait();
+		
 	}
 }
 
@@ -480,9 +482,10 @@ function commitReport() {
 			data: 'type=saveMerge&taskName=' + taskName + '&data=' + JSON.stringify(data),
 			success: function(data) {
 				afterCodeMerge(report);
+				stopWait();
 			}
 		});
-		stopWait();
+		
 	}
 	
 	function storeFileMerge() {
@@ -607,18 +610,20 @@ function commitReport() {
 			data: 'type=deleteMerge&data=' + JSON.stringify(data),
 			success: function(data) {
 				$(obj).parent().parent().addClass("drop");
+				stopWait();
 			},
 			error: function() {
 				alert('出错了，更改无法生效')
 			}
-		})
-		stopWait();
+		});
+		
 	}
 }
 
 // 提交合并报告
 {
 	$('#confirmMerge').on('click', function() {
+		run_waitMe();
 		jQuery.ajax({
 			url: '/crc/MergeServlet',
 			type: 'post',
@@ -627,8 +632,9 @@ function commitReport() {
 				if (data == 0) {
 					location.reload(true)
 				}
+				stopWait();
 			}
-		})
+		});
 	})
 }
 
@@ -684,13 +690,14 @@ function commitReport() {
 				} else {
 					displayFile(result);
 				}
+				stopWait();
 				
 			},
 			error: function() {
 				alert('出错了')
 			}
 		})
-		stopWait();
+		
 	}
 	
 	/**
@@ -746,11 +753,11 @@ function commitReport() {
 				success: function(data) {
 					console.log(data);
 					$('#divideTable tbody').empty();
-					
+					stopWait();
 					
 				}
 			})
-			stopWait();
+			
 		})
 	})
 	
