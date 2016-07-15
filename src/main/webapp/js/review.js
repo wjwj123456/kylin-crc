@@ -619,6 +619,7 @@ function commitReport() {
 // 提交合并报告
 {
 	$('#confirmMerge').on('click', function() {
+		run_waitMe();
 		jQuery.ajax({
 			url: '/crc/MergeServlet',
 			type: 'post',
