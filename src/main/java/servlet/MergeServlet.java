@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,12 +87,16 @@ public class MergeServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 * @param response
+	 * @throws IOException
 	 */
-	private void handleCommitMerge(HttpServletRequest request, HttpServletResponse response) {
+	private void handleCommitMerge(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String userName = (String) request.getSession().getAttribute("username");
 
 		MergeBlImpl merge = new MergeBlImpl();
-		merge.saveHistory(request.getParameter("taskName"), userName);
+		int result = merge.saveHistory(request.getParameter("taskName"), userName);
+
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 
 	/**
