@@ -663,13 +663,19 @@ taskName = '<%=request.getParameter("taskName")%>';
 						<%
 							NumberFormat ddf1 = NumberFormat.getNumberInstance();
 							ddf1.setMaximumFractionDigits(2);
+							double res;
 							for (AssessmentVO assessmentVO : userHis) {
+							if(assessmentVO.getAssessfaults()!=0){
+								res = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults();
+							}else{
+								res = 0;
+							}
 						%>
 						<tr>
 							<td><%=assessmentVO.getReviewerName()%></td>
 							<td><%=assessmentVO.getAssessfaults()%></td>
 							<td><%=assessmentVO.getFindedfaults()%></td>
-							<td><%=ddf1.format((assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults() * 100)%>%</td>
+							<td><%=ddf1.format( res*100)%>%</td>
 						</tr>
 						<%
 							}
