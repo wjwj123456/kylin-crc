@@ -63,6 +63,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			i++;
 			DBManager.closeConnection();
 		}
+
 		return matrix;
 	}
 
@@ -128,18 +129,23 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		// TODO Auto-generated method stub
 		List<AssessmentPO> pos = new ArrayList<AssessmentPO>();
 
-		int[][] matrix = getMatix(taskName, vos);
-		CrcModule crcM = new CrcModule(matrix);
-		int assessfault = crcM.getDefectsNum();
+		List<String> nameList = new ArrayList<String>();
+		nameList = getReviewerNames(taskName);
+		if (nameList.size() > 1) {
+			int[][] matrix = getMatix(taskName, vos);
+			CrcModule crcM = new CrcModule(matrix);
+			int assessfault = crcM.getDefectsNum();
 
-		List<String> nameList = getReviewerNames(taskName);
-		for (int i = 0; i < nameList.size(); i++) {
-			int findedfault = 0;
-			for (int j = 0; j < matrix.length; j++) {
-				if (matrix[j][i] == 1)
-					findedfault++;
+			for (int i = 0; i < nameList.size(); i++) {
+				int findedfault = 0;
+				for (int j = 0; j < matrix.length; j++) {
+					if (matrix[j][i] == 1)
+						findedfault++;
+				}
+				pos.add(new AssessmentPO(nameList.get(i), assessfault, findedfault));
 			}
-			pos.add(new AssessmentPO(nameList.get(i), assessfault, findedfault));
+		} else {
+
 		}
 		return pos;
 	}
