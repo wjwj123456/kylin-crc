@@ -24,9 +24,6 @@
 <title>CRC new Task</title>
 </head>
 <body role="document">
-	<div id="alert-user" class="alert alert-danger hidden" role="alert">
-		<strong>错误：</strong>请输入您用户名
-	</div>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
