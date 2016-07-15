@@ -323,7 +323,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 				</div>
 				<div id="mergeBlock">
 					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
-					<div class="row" style="height: 400px; overflow: auto;">
+					<div class="row" style="min-height:10px; max-height:400px; overflow: auto;">
 						<table class="table" id="toMerge-code">
 							<thead>
 								<tr>
@@ -404,7 +404,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					<div class="row" style="text-align: center; padding-bottom: 20px">
 						<button class="btn btn-success" id="merge">合并</button>
 					</div>
-					<div class="row" style="height: 400px; overflow: auto;">
+					<div class="row" style="min-height:10px; max-height:400px; overflow: auto;">
 						<table class="table" id="merged-code">
 							<tr>
 
