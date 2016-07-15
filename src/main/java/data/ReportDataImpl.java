@@ -10,6 +10,7 @@ import java.util.List;
 
 import dataservice.ReportDataService;
 import po.ReportPO;
+import vo.State;
 import vo.Type;
 
 public class ReportDataImpl implements ReportDataService {
@@ -74,9 +75,11 @@ public class ReportDataImpl implements ReportDataService {
 		// TODO Auto-generated method stub
 		int flag = -1;
 
-		String sql = "UPDATE review SET  time = ? WHERE tname = '" + taskName + "' and uname = '" + reviewerName + "'";
+		String sql = "UPDATE review SET  time = ? and state = ? WHERE tname = '" + taskName + "' and uname = '"
+				+ reviewerName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setDouble(1, time);
+		pStatement.setString(2, String.valueOf(State.commit));
 		int i = pStatement.executeUpdate();
 		if (i == 1)
 			flag = 0;
