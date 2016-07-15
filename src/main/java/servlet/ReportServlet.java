@@ -111,7 +111,7 @@ public class ReportServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void handleCommit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String taskName = request.getParameter("taskName");
+		String taskName = Encode.transfer(request.getParameter("taskName"));
 		String userName = (String) request.getSession().getAttribute("username");
 		double time = Double.parseDouble(request.getParameter("time"));
 		ReportBlImpl report = new ReportBlImpl();

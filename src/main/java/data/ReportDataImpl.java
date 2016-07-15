@@ -127,8 +127,10 @@ public class ReportDataImpl implements ReportDataService {
 		pStatement.setString(2, "merged");
 		ResultSet rSet = pStatement.executeQuery();
 		ArrayList<ReportPO> reportPOs = new ArrayList<>();
-		while(rSet.next()) {
-			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"), rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"), rSet.getInt("origin"));
+		while (rSet.next()) {
+			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"),
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"),
+					rSet.getInt("origin"));
 			reportPOs.add(po);
 		}
 		DBManager.stopAll(rSet, pStatement, connection);
@@ -138,24 +140,26 @@ public class ReportDataImpl implements ReportDataService {
 	@Override
 	public boolean abandonReport(ReportPO po) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
-		String sql = "UPDATE report SET state = 2 WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
-		+ "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage() + "' and location = '"
-		+ po.getLocation() + "'";
+		String sql = "UPDATE report SET state = 2 WHERE tname = '" + po.getTaskName() + "' and uname = '"
+				+ po.getUserName() + "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage()
+				+ "' and location = '" + po.getLocation() + "'";
 		Statement statement = connection.createStatement();
 		int i = statement.executeUpdate(sql);
-		if(i==1) return true;
+		if (i == 1)
+			return true;
 		return false;
 	}
 
 	@Override
 	public boolean recoverReport(ReportPO po) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
-		String sql = "UPDATE report SET state = 0 WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
-		+ "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage() + "' and location = '"
-		+ po.getLocation() + "'";
+		String sql = "UPDATE report SET state = 0 WHERE tname = '" + po.getTaskName() + "' and uname = '"
+				+ po.getUserName() + "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage()
+				+ "' and location = '" + po.getLocation() + "'";
 		Statement statement = connection.createStatement();
 		int i = statement.executeUpdate(sql);
-		if(i==1) return true;
+		if (i == 1)
+			return true;
 		return false;
 	}
 
