@@ -346,16 +346,29 @@ public class ReviewDataImpl implements ReviewDataService {
 	@Override
 	public State getState(String userName, String taskName) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and tname='" + taskName + "'";
-		rSet = DBManager.getResultSet(sql);
-		State state = null;
-		while (rSet.next()) {
-			state = State.valueOf(rSet.getString("3"));
+		String name = null;
+		try {
+			name = getTaskPOByTaskName(taskName).getUserName();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		DBManager.closeConnection();
+		if (userName.equals(name)) {
+			return State.merged;
+		} else {
 
-		return state;
+			String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and tname='" + taskName + "'";
+			rSet = DBManager.getResultSet(sql);
+			State state = null;
+			while (rSet.next()) {
+				state = State.valueOf(rSet.getString("3"));
+			}
+
+			DBManager.closeConnection();
+
+			return state;
+		}
 	}
 
 }
