@@ -616,6 +616,22 @@ function commitReport() {
 	}
 }
 
+// 提交合并报告
+{
+	$('#confirmMerge').on('click', function() {
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=commitMerge&taskName=' + taskName,
+			success: function(data) {
+				if (data == 0) {
+					location.reload(true)
+				}
+			}
+		})
+	})
+}
+
 // 拆分相关操作
 {
 	// 选择被拆分的报告
