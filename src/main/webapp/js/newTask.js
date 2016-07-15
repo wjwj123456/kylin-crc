@@ -10,12 +10,14 @@ $('#createTask').on('click', function() {
 });
 
 function createNewTask() {
+	var type = ($('#type').get(0).selectedIndex == 1) ? 'code' : 'document';
+
 	jQuery.ajax({
 		url : '/crc/CreateTaskServlet',
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		style : 'post',
 		data : 'taskName=' + $('#inputName').val().trim() + '&type='
-				+ $('#type').val() + '&describe='
+				+ type + '&describe='
 				+ $('#discription').val().trim() + '&deadline='
 				+ $('#deadline').val(),
 		success : function(data) {

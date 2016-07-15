@@ -600,10 +600,13 @@ function commitReport() {
 
 // 拆分相关操作
 {
+	// 选择被拆分的报告
+	var report;
 	$('#toMerge-code').find('button').on('click',function(){
 		var temp = $(this).parent().parent().find('td');
-		var report = new Object({
+		report = new Object({
 			taskName: taskName,
+			userName: $(temp[4]).text(),
 			fileName: $(temp[1]).text(),
 			page: 0,
 			location: Number($(temp[2]).text()),
@@ -612,12 +615,13 @@ function commitReport() {
 			origin: 0
 		});
 		
-		getData(report, 'code');
+		getData('code');
 	});
 	$('#toMerge-file').find('button').on('click',function(){
 		var temp = $(this).parent().parent().find('td');
-		var report = new Object({
+		report = new Object({
 			taskName: taskName,
+			userName: $(temp[5]).text(),
 			fileName: $(temp[1]).text(),
 			page: Number($(temp[2]).text()),
 			location: Number($(temp[3]).text()),
@@ -626,26 +630,27 @@ function commitReport() {
 			origin: 0
 		});
 		
-		getData(report, 'file');
+		getData('file');
 	});
 	
 	/**
 	 * 加载指定条目的组成数据，并在表格中显示
-	 * @param report
 	 * @returns
 	 */
-	function getData(report, type) {
+	function getData(type) {
+		run_waitMe();
 		jQuery.ajax({
 			url: '/crc/SplitServlet',
 			type: 'post',
 			data: 'type=getData' + '&data=' + JSON.stringify(report),
 			success: function(data) {
-				console.log(data)
+				var result = jQuery.parseJSON(data)[0].data;
 				if (type == 'code') {
-					
+					displayCode(result);
 				} else {
-					
+					displayFile(result);
 				}
+				stopWait();
 			},
 			error: function() {
 				alert('出错了')
@@ -653,11 +658,104 @@ function commitReport() {
 		})
 	}
 	
+	/**
+	 * 显示可拆分的条目（代码）
+	 * @param data
+	 * @returns
+	 */
 	function displayCode(data) {
-		
+		for (var i = 0; i < data.length; i++) {
+			var temp = '<tr>'
+			+ '<td><input type="checkbox"></td>'
+			+ '<td>' + data[i].fileName + '</td>'
+			+ '<td>' + data[i].location + '</td>'
+			+ '<td>' + data[i].description + '</td>'
+			+ '<td>' + data[i].userName + '</td>'
+			+ '</tr>';
+			
+			$('#divideTable tbody').append(temp);
+			$('#divideModal').modal('show');
+		}
+	}
+
+	/**
+	 * 显示可拆分的条目（文档）
+	 * @param data
+	 * @returns
+	 */
+	function displayFile(data) {
+		for (var i = 0; i < data.length; i++) {
+			var temp = '<tr>'
+			+ '<td><input type="checkbox"></td>'
+			+ '<td>' + data[i].fileName + '</td>'
+			+ '<td>' + data[i].page + '</td>'
+			+ '<td>' + data[i].location + '</td>'
+			+ '<td>' + data[i].description + '</td>'
+			+ '<td>' + data[i].userName + '</td>'
+			+ '</tr>';
+			
+			$('#divideTable tbody').append(temp);
+			$('#divideModal').modal('show');
+		}
 	}
 	
-	function displayFile(data) {
+	$(function() {
+		$('#confirmDivide').on('click', function() {
+			run_waitMe();
+			var data = getDivideItem();
+			
+			jQuery.ajax({
+				url: '/crc/SplitServlet',
+				type: 'post',
+				data: 'type=split' + '&origin=' + JSON.stringify(report) + '&data=' + data,
+				success: function(data) {
+					console.log(data);
+					$('#divideTable tbody').empty();
+					
+					stopWait();
+				}
+			})
+		})
+	})
+	
+	/**
+	 * 获取要拆分的条目
+	 * @returns
+	 */
+	function getDivideItem() {
+		var inputs = $('#divideTable tbody').find('tr');
 		
+		for (var i = 0; i < inputs.length; i++) {
+			if (!$(inputs[i]).find('td:first').prop('checked')) {
+				inputs.splice(i, 1);
+				i--;
+			}
+		}
+
+		var result = new Array();
+		for (var i = 0; i < inputs.prevObject.length; i++) {
+			var temp = $(inputs.prevObject[i]).find('td');
+			var obj = new Object({ // 默认代码拆分
+				taskName: taskName,
+				userName: $(temp[4]).text(),
+				fileName: $(temp[1]).text(),
+				page: 0,
+				location: $(temp[2]).text(),
+				description: $(temp[3]).text(),
+				state: 0,
+				origin: 0
+			});
+			
+			if (temp.length == 6) { // 文档拆分
+				obj.userName = $(temp[5]).text();
+				obj.page = Number($(temp[2]).text());
+				obj.location = $(temp[3]).text();
+				obj.description = $(temp[4]).text();
+			}
+			
+			result.push(obj);
+		}
+		
+		return JSON.stringify(result);
 	}
 }

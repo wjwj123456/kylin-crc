@@ -33,9 +33,10 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-
-		if (req.getSession().getAttribute("username") == null) {
-			req.getRequestDispatcher("index.jsp").forward(request, response);
+		if (!req.getServletPath().equals("/index.jsp")) {
+			if (req.getSession().getAttribute("username") == null) {
+				req.getRequestDispatcher("index.jsp?unsigned=true").forward(request, response);
+			}
 		}
 
 		chain.doFilter(request, response);
