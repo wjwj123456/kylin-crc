@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import bl.MergeBlImpl;
@@ -65,10 +66,12 @@ public class MergeServlet extends HttpServlet {
 	 */
 	private void handleSaveMerge(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String taskName = Encode.transfer(request.getParameter("taskName"));
-		String userName = (String) request.getSession().getAttribute("username");
+		// String userName = (String)
+		// request.getSession().getAttribute("username");
 
 		MergeBlImpl merge = new MergeBlImpl();
-		int result = merge.saveMergeReport(getData(request.getParameter("data"), userName), taskName);
+		System.out.println(taskName);
+		int result = merge.saveMergeReport(getData(request.getParameter("data")), taskName);
 
 		PrintWriter out = response.getWriter();
 		out.print(result);
@@ -79,12 +82,13 @@ public class MergeServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 * @param response
+	 * @throws IOException
+	 * @throws JSONException
 	 */
-	private void handleDeleteMerge(HttpServletRequest request, HttpServletResponse response) {
-		String userName = (String) request.getSession().getAttribute("username");
-
+	private void handleDeleteMerge(HttpServletRequest request, HttpServletResponse response)
+			throws JSONException, IOException {
 		MergeBlImpl merge = new MergeBlImpl();
-		merge.deleteMergeRecord(getData(request.getParameter("data"), userName).get(0));
+		merge.deleteMergeRecord(getData(request.getParameter("data")).get(0));
 	}
 
 	/**
@@ -108,16 +112,19 @@ public class MergeServlet extends HttpServlet {
 	 * 解析json数据，获得报告列表
 	 * 
 	 * @param json
+	 * @throws IOException
+	 * @throws JSONException
 	 */
-	private List<ReportVO> getData(String json, String userName) {
+	private List<ReportVO> getData(String json) throws JSONException, IOException {
 		List<ReportVO> reportList = new ArrayList<ReportVO>();
 
 		JSONArray jsonArray = new JSONArray(json);
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			reportList.add(new ReportVO(jsonObject.getString("taskName"), userName, jsonObject.getString("fileName"),
-					jsonObject.getInt("page"), jsonObject.getInt("location"), jsonObject.getString("description"),
-					jsonObject.getInt("state"), jsonObject.getInt("origin")));
+			reportList.add(new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+					jsonObject.getString("userName"), jsonObject.getString("fileName"), jsonObject.getInt("page"),
+					jsonObject.getInt("location"), jsonObject.getString("description"), jsonObject.getInt("state"),
+					jsonObject.getInt("origin")));
 		}
 
 		return reportList;

@@ -138,6 +138,7 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement = connection.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
+			System.out.println(po.getTaskName());
 			pStatement.executeUpdate();
 		}
 		updateMerge();
@@ -346,8 +347,8 @@ public class MergeDataImpl implements MergeDataService {
 		List<Integer> ids = new ArrayList<>();
 		List<Integer> finalIds = new ArrayList<>();
 		while (rSet.next()) {
-			finalIds.add(rSet.getInt("1"));
-			ids.add(rSet.getInt("2"));
+			finalIds.add(rSet.getInt(1));
+			ids.add(rSet.getInt(2));
 		}
 		DBManager.closeConnection();
 
@@ -364,7 +365,7 @@ public class MergeDataImpl implements MergeDataService {
 
 		PreparedStatement pStatement1 = null;
 
-		String sql2 = "UPDATE merge set	final_id=? where included_id=? '";
+		String sql2 = "UPDATE merge set	final_id=? where included_id=?";
 		for (int i1 = 0; i1 < ids.size(); i1++) {
 			pStatement1 = connection.prepareStatement(sql2);
 			pStatement1.setInt(1, finalIds.get(i1));

@@ -74,6 +74,7 @@ function initCodeChoose(){
 		var temp=$(this).find('td');
 		var report = new Object({
 			taskName: taskName,
+			userName: $(temp[3]).text(),
 			fileName: $(temp[0]).text(),
 			page: 0,
 			location: Number($(temp[1]).text()),
@@ -97,10 +98,11 @@ function initFileChoose() {
 		var temp=$(this).find('td');
 		var report = new Object({
 			taskName: taskName,
-			fileName: temp[0].text(),
-			page: Number(temp[1].text()),
-			location: Number(temp[1].text()),
-			description: temp[2].text(),
+			userName: $(temp[3]).text(),
+			fileName: $(temp[0]).text(),
+			page: Number($(temp[1]).text()),
+			location: Number($(temp[1]).text()),
+			description: $(temp[2]).text(),
 			state: 0,
 			origin: 1
 		})
@@ -466,6 +468,7 @@ function commitReport() {
 			var td = $(temp[i]).find('td');
 			var obj = new Object({
 				taskName: taskName,
+				userName: $(td[3]).text(),
 				fileName: $(td[0]).text(),
 				page: 0,
 				location: Number($(td[1]).text()),
