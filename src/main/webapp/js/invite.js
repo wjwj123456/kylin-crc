@@ -40,9 +40,10 @@ function loadAgreedReviewer(taskName) {
 			for (var i = 0; i < users.length; i++) {
 				$('#agreed').find('tbody').append('<tr><td>' + users[i] + '</td></tr>');
 			}
+			stopWait();
 		}		
 	});
-	stopWait();
+	
 }
 
 /**
@@ -65,9 +66,10 @@ function invite() {
 			if (data != 2) {
 				
 			}
+			stopWait();
 		}
 	});
-	stopWait();
+	
 }
 
 /**
@@ -125,10 +127,12 @@ function accept(taskButton) {
 			if (data == 0) {				
 				$(taskButton).text('已加入')
 				$(taskButton).removeClass('btn-success')
+				
 			}
+			stopWait();
 		}
 	});
-	stopWait();
+	
 }
 
 /**
@@ -145,9 +149,10 @@ function refuse(taskItem) {
 			if (data == 0) {
 				alert('拒绝')
 			}
+			stopWait();
 		}
 	});
-	stopWait();
+
 	$(taskItem).remove();
 }
 
