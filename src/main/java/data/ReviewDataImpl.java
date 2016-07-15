@@ -17,7 +17,7 @@ import vo.Type;
  * review data impl
  *
  * @author lpt14
- * @since 2016Äê7ÔÂ8ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½8ï¿½ï¿½
  * @see
  */
 public class ReviewDataImpl implements ReviewDataService {
@@ -29,7 +29,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	 * save review infomation to database
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ8ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½8ï¿½ï¿½
 	 * @param po
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -64,10 +64,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ8ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½8ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -95,10 +95,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ8ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½8ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -126,11 +126,11 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * - * @author lpt14 + * @author ldk14
 	 * 
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @param keyword
 	 * @return + * @throws SQLException + * @throws ClassNotFoundException
 	 * @throws SQLException
@@ -162,10 +162,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -192,10 +192,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -229,10 +229,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -257,10 +257,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -336,10 +336,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ14ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½14ï¿½ï¿½
 	 * @param userName
 	 * @param taskName
 	 * @return
@@ -351,7 +351,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	@Override
 	public State getState(String userName, String taskName) throws SQLException {
 		// TODO Auto-generated method stub
-		String name = null;
+		String name ="";
 		try {
 			name = getTaskPOByTaskName(taskName).getUserName();
 		} catch (ClassNotFoundException e) {
