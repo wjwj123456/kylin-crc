@@ -22,9 +22,14 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	@Override
 	public int getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		int[][] matrix = getMatix(taskName, vos);
-		crc = new CrcModule(matrix);
-		return crc.getDefectsNum();
+
+		if (vos.size() != 0) {
+			int[][] matrix = getMatix(taskName, vos);
+			crc = new CrcModule(matrix);
+			return crc.getDefectsNum();
+		} else {
+			return 0;
+		}
 	}
 
 	private int[][] getMatix(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
@@ -132,20 +137,28 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		List<String> nameList = new ArrayList<String>();
 		nameList = getReviewerNames(taskName);
 		if (nameList.size() > 1) {
-			int[][] matrix = getMatix(taskName, vos);
-			CrcModule crcM = new CrcModule(matrix);
-			int assessfault = crcM.getDefectsNum();
+			if (vos.size() != 0) {
+				int[][] matrix = getMatix(taskName, vos);
+				CrcModule crcM = new CrcModule(matrix);
+				int assessfault = crcM.getDefectsNum();
 
-			for (int i = 0; i < nameList.size(); i++) {
-				int findedfault = 0;
-				for (int j = 0; j < matrix.length; j++) {
-					if (matrix[j][i] == 1)
-						findedfault++;
+				for (int i = 0; i < nameList.size(); i++) {
+					int findedfault = 0;
+					for (int j = 0; j < matrix.length; j++) {
+						if (matrix[j][i] == 1)
+							findedfault++;
+					}
+					pos.add(new AssessmentPO(nameList.get(i), assessfault, findedfault));
 				}
-				pos.add(new AssessmentPO(nameList.get(i), assessfault, findedfault));
+			} else {
+				for (int i = 0; i < nameList.size(); i++) {
+					pos.add(new AssessmentPO(nameList.get(i), 0, 0));
+				}
 			}
 		} else {
-
+			for (int i = 0; i < nameList.size(); i++) {
+				pos.add(new AssessmentPO(nameList.get(i), 0, 0));
+			}
 		}
 		return pos;
 	}
