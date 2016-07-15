@@ -138,11 +138,12 @@
 					<th>描述</th>
 					<th>deadline</th>
 				</tr>
+				
 				<%
-					List<TaskVO> history = Cast.cast(session.getAttribute("historyTask"));
+					List<TaskVO> joiningTasks = Cast.cast(session.getAttribute("participantTask"));
 				%>
 				<%
-					for (TaskVO vo : history) {
+					for (TaskVO vo : joiningTasks) {
 				%>
 				<tr>
 					<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
