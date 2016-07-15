@@ -236,6 +236,19 @@ function codeUnique() {
 	
 	return items.length == 0;
 }
+function fileUnique() {
+	var items = $('#fileTable').find('tr').filter(function() {
+		var fileName = $(this).find('td:first');
+		
+		if ($(fileName).text() == $('#fileName-file').val().trim() 
+				&& $(fileName).next().text() == $('#lineNum-file').val().trim()
+				&& $(fileName).next().next().text() == $('#discription-file').val().trim()) {
+			return $(this);
+		}
+	});
+	
+	return items.length == 0;
+}
 
 function isFileItemOK(){
 	itemOK=true;
@@ -262,6 +275,11 @@ function isFileItemOK(){
 		itemOK=false;
 	}else {
 		$('#pageGroup-file').removeClass('has-error');
+	}
+	if(itemOK){
+		if(!fileUnique()()){
+			itemOK=false;
+		}
 	}
 	return itemOK;
 }
@@ -582,7 +600,7 @@ function commitReport() {
 	function deleteMerge(report, obj) {
 		var data = new Array();
 		data.push(report);
-
+		run_waitMe();
 		jQuery.ajax({
 			url: '/crc/MergeServlet',
 			type: 'post',
@@ -594,6 +612,7 @@ function commitReport() {
 				alert('出错了，更改无法生效')
 			}
 		})
+		stopWait();
 	}
 }
 
@@ -649,12 +668,13 @@ function commitReport() {
 				} else {
 					displayFile(result);
 				}
-				stopWait();
+				
 			},
 			error: function() {
 				alert('出错了')
 			}
 		})
+		stopWait();
 	}
 	
 	/**
@@ -711,9 +731,10 @@ function commitReport() {
 					console.log(data);
 					$('#divideTable tbody').empty();
 					
-					stopWait();
+					
 				}
 			})
+			stopWait();
 		})
 	})
 	

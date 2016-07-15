@@ -30,6 +30,7 @@ $(function() {
  * @param taskName
  */
 function loadAgreedReviewer(taskName) {
+	run_waitMe();
 	jQuery.ajax({
 		url: '/crc/TaskServlet',
 		type: 'post',
@@ -41,6 +42,7 @@ function loadAgreedReviewer(taskName) {
 			}
 		}		
 	});
+	stopWait();
 }
 
 /**
@@ -61,10 +63,11 @@ function invite() {
 		data: 'taskName=' + taskName + '&userNumber=' + temp.length +'&users=' + users,
 		success: function(data) {
 			if (data != 2) {
-				stopWait();
+				
 			}
 		}
 	});
+	stopWait();
 }
 
 /**
@@ -113,6 +116,7 @@ function displayUser(users) {
  */
 function accept(taskButton) {
 	var name = $(taskButton).parent().prev().find('a').text();
+	run_waitMe();
 	jQuery.ajax({
 		url: '/crc/RefuseServlet',
 		style: 'post',
@@ -124,6 +128,7 @@ function accept(taskButton) {
 			}
 		}
 	});
+	stopWait();
 }
 
 /**
@@ -131,7 +136,7 @@ function accept(taskButton) {
  */
 function refuse(taskItem) {
 	var name = $($(taskItem).find('td')[1]).text().trim();
-	
+	run_waitMe();
 	jQuery.ajax({
 		url: '/crc/RefuseServlet',
 		style: 'post',
@@ -142,7 +147,7 @@ function refuse(taskItem) {
 			}
 		}
 	});
-	
+	stopWait();
 	$(taskItem).remove();
 }
 

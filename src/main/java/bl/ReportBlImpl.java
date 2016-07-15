@@ -74,7 +74,7 @@ public class ReportBlImpl implements ReportBlService {
 	public List<ReportVO> getAllReportsByTaskName(String taskName) {
 		// TODO Auto-generated method stub
 		List<ReportVO> result = new ArrayList<ReportVO>();
-		List<ReportPO> list = null;
+		List<ReportPO> list = new ArrayList<ReportPO>();
 		try {
 			list = reportDataService.getAllReportsByTaskName(taskName);
 		} catch (ClassNotFoundException e) {
@@ -91,17 +91,17 @@ public class ReportBlImpl implements ReportBlService {
 		}
 		return result;
 	}
-	
+
 	public List<ReportVO> getMergeReport(String taskname) {
-		List<ReportVO> result = new ArrayList<>();
-		List<ReportPO> list = null;
+		List<ReportVO> result = new ArrayList<ReportVO>();
+		List<ReportPO> list = new ArrayList<ReportPO>();
 		try {
 			list = reportDataService.getMergeReport(taskname);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(ReportPO po: list) {
+		for (ReportPO po : list) {
 			ReportVO vo = new ReportVO(po);
 			result.add(vo);
 		}

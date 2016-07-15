@@ -67,7 +67,7 @@ public class ReviewBlImpl implements ReviewBlService {
 	public List<TaskVO> getDoingTaskList(String userName) {
 		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
-		List<TaskPO> list = null;
+		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = reviewDataService.getDoingTaskList(userName);
 		} catch (ClassNotFoundException e) {
@@ -119,7 +119,7 @@ public class ReviewBlImpl implements ReviewBlService {
 	public List<TaskVO> getEndTaskList(String userName) {
 		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
-		List<TaskPO> list = null;
+		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = reviewDataService.getEndTaskList(userName);
 		} catch (ClassNotFoundException e) {
@@ -263,7 +263,7 @@ public class ReviewBlImpl implements ReviewBlService {
 	public List<TaskVO> getJoinedDoingTasksByUserName(String userName) {
 		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
-		List<TaskPO> list = null;
+		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = reviewDataService.getJoinedDoingTasksByUserName(userName);
 		} catch (ClassNotFoundException e) {
@@ -285,7 +285,7 @@ public class ReviewBlImpl implements ReviewBlService {
 	public List<TaskVO> getJoinedEndTasksByUserName(String userName) {
 		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
-		List<TaskPO> list = null;
+		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = reviewDataService.getJoinedEndTasksByUserName(userName);
 		} catch (ClassNotFoundException e) {
