@@ -10,7 +10,7 @@ public class SplitTestGetList {
 
 	public static void main(String[] args) {
 		SplitDataImpl splitDataImpl = new SplitDataImpl();
-		ReportPO po1 = new ReportPO("task1", "aoliao", "Hello.java", 0, 10, "è¯­æ³•é”™è¯¯1", 0, 1);
+		ReportPO po1 = new ReportPO("task1", "cr", "Hello.java", 0, 10, "Óï·¨´íÎó1", 0, 1);
 		try {
 			ArrayList<ReportPO> pos = splitDataImpl.getIncludedfaultsByFaultkey(po1);
 			for (ReportPO po : pos) {
