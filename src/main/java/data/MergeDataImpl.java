@@ -14,13 +14,12 @@ import java.util.List;
 
 import dataservice.MergeDataService;
 import po.ReportPO;
-import vo.State;
 
 /**
- * TODO: £¨ÀàÃèÊö£©
+ * TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author lpt14
- * @since 2016Äê7ÔÂ11ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
  * @see
  */
 public class MergeDataImpl implements MergeDataService {
@@ -29,7 +28,7 @@ public class MergeDataImpl implements MergeDataService {
 	 * if it can merge return true
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ11ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
 	 * @param userName
 	 * @param taskName
 	 * @return
@@ -60,10 +59,10 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ11ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
 	 * @param userNme
 	 * @param taskName
 	 * @return
@@ -93,10 +92,10 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ11ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
 	 * @param reportList
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -135,7 +134,7 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.executeUpdate();
 
 		for (ReportPO po : reportList) {
-			String sql1 = "REPLACE INTO merge (final_id, included_id) VALUES (?,  ?)";
+			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
 			pStatement = connection.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
@@ -208,10 +207,10 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ11ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
 	 * @param reportList
 	 * @param taskName
 	 * @throws SQLException
@@ -256,7 +255,7 @@ public class MergeDataImpl implements MergeDataService {
 		}
 
 		for (ReportPO po : reportList) {
-			String sql1 = "REPLACE INTO merge (final_id, included_id) VALUES (?,  ?)";
+			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
 			pStatement = connection.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
@@ -268,10 +267,10 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ14ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½14ï¿½ï¿½
 	 * @param userName
 	 * @param taskName
 	 * @param fault
@@ -299,7 +298,9 @@ public class MergeDataImpl implements MergeDataService {
 
 		String sql1 = "UPDATE review SET state = ? WHERE tname = ? and uname= ? ";
 		PreparedStatement pStatement1 = connection.prepareStatement(sql1);
-		pStatement1.setString(1, String.valueOf(State.merged));
+		System.out.println(userName);
+		System.out.println(taskName);
+		pStatement1.setString(1, "merged");
 		pStatement1.setString(2, taskName);
 		pStatement1.setString(3, userName);
 		pStatement.executeQuery();
@@ -310,10 +311,10 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ14ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½14ï¿½ï¿½
 	 * @param po
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
