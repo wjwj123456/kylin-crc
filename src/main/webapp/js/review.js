@@ -369,7 +369,7 @@ function store(data) {
 		type: 'post',
 		data: 'type=store' + '&data=' + JSON.stringify(data),
 		success: function(data) {
-			alert(data)
+			
 		},
 		error: function() {
 			alert('出错了，更改无法保存')
@@ -444,9 +444,8 @@ function commitReport() {
 			type: 'post',
 			data: 'type=commit&taskName=' + taskName + '&time=' + $('#timeCost').val().trim(),
 			success: function(data) {
-				console.log(data)
 				if (data == 0) {
-					alert('提交成功')
+					location.reload(true);
 				}
 			}
 		});
@@ -615,6 +614,22 @@ function commitReport() {
 		})
 		stopWait();
 	}
+}
+
+// 提交合并报告
+{
+	$('#confirmMerge').on('click', function() {
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=commitMerge&taskName=' + taskName,
+			success: function(data) {
+				if (data == 0) {
+					location.reload(true)
+				}
+			}
+		})
+	})
 }
 
 // 拆分相关操作
