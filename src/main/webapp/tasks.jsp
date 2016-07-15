@@ -42,20 +42,6 @@ taskName = '<%=request.getParameter("taskName")%>';
 <%} else {%>
 	taskType = 'file';
 <%}%>
-<%	ReviewBlService reviewBl = new ReviewBlImpl(); 
-	State theState = reviewBl.getState((String)session.getAttribute("username"), taskVO.getTaskName());
-	if(theState==State.agree){
-		%>currentUserDisp=userDisp[joined];<%
-	}else if(theState==State.refuse){
-		%>currentUserDisp=userDisp[unJoin];<%
-	}
-	else if(theState==State.commit){
-		%>currentUserDisp=userDisp[committed];<%
-	}
-	else if(theState==State.merged){
-		%>currentUserDisp=userDisp[merged];<%
-	}
-%>
 	
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
@@ -340,7 +326,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 				</div>
 				<div id="mergeBlock">
 					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
-					<div class="row" style="min-height:10px; max-height:400px; overflow: auto;">
+					<div class="row"
+						style="min-height: 10px; max-height: 400px; overflow: auto;">
 						<table class="table" id="toMerge-code">
 							<thead>
 								<tr>
@@ -365,13 +352,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<td><%=reportVO.getLocation()%></td>
 									<td><%=reportVO.getDescription()%></td>
 									<td><%=reportVO.getUserName()%></td>
-									<td><%
-											if (reportVO.getIsMerged() == 1) {
-										%><button
-											class="btn btn-warning">拆分</button>
+									<td>
 										<%
-											}
-										%></td>
+											if (reportVO.getIsMerged() == 1) {
+										%><button class="btn btn-warning">拆分</button> <%
+ 	}
+ %>
+									</td>
 								</tr>
 								<%
 									}
@@ -404,11 +391,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<td>
 										<%
 											if (reportVO.getIsMerged() == 1) {
-										%><button
-											class="btn btn-warning">拆分</button>
-										<%
-											}
-										%>
+										%><button class="btn btn-warning">拆分</button> <%
+ 	}
+ %>
 									</td>
 								</tr>
 								<%
@@ -421,7 +406,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 					<div class="row" style="text-align: center; padding-bottom: 20px">
 						<button class="btn btn-success" id="merge">合并</button>
 					</div>
-					<div class="row" style="min-height:10px; max-height:400px; overflow: auto;">
+					<div class="row"
+						style="min-height: 10px; max-height: 400px; overflow: auto;">
 						<table class="table" id="merged-code">
 							<tr>
 
@@ -682,17 +668,17 @@ taskName = '<%=request.getParameter("taskName")%>';
 							ddf1.setMaximumFractionDigits(2);
 							double res;
 							for (AssessmentVO assessmentVO : userHis) {
-							if(assessmentVO.getAssessfaults()!=0){
-								res = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults();
-							}else{
-								res = 0;
-							}
+								if (assessmentVO.getAssessfaults() != 0) {
+									res = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults();
+								} else {
+									res = 0;
+								}
 						%>
 						<tr>
 							<td><%=assessmentVO.getReviewerName()%></td>
 							<td><%=assessmentVO.getAssessfaults()%></td>
 							<td><%=assessmentVO.getFindedfaults()%></td>
-							<td><%=ddf1.format( res*100)%>%</td>
+							<td><%=ddf1.format(res * 100)%>%</td>
 						</tr>
 						<%
 							}
@@ -720,6 +706,21 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script src="js/login.js"></script>
 	<script src="js/review.js"></script>
 	<script src="js/stateControl.js"></script>
+	<script type="text/javascript">
+		
+	<%ReviewBlService reviewBl = new ReviewBlImpl();
+			State theState = reviewBl.getState((String) session.getAttribute("username"), taskVO.getTaskName());
+			if (theState == State.agree) {%>
+		currentUserDisp = userDisp[joined];
+	<%} else if (theState == State.refuse) {%>
+		currentUserDisp = userDisp[unJoin];
+	<%} else if (theState == State.commit) {%>
+		currentUserDisp = userDisp[committed];
+	<%} else {%>
+		currentUserDisp = userDisp[merged];
+	<%}%>
+		
+	</script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 </body>

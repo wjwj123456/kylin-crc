@@ -8,6 +8,7 @@ var merged = 3;
 var currentTaskDisp = taskDisp[0];
 var currentUserDisp;
 $(function(){
+	alert(currentUserDisp);
 	$('#preJoinBlock').css('display',currentTaskDisp[0]);
 	$('#reviewBlock').css('display',currentTaskDisp[0]);
 	$('#overBlock').css('display',currentTaskDisp[1]);
