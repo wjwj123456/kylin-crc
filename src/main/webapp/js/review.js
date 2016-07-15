@@ -236,6 +236,19 @@ function codeUnique() {
 	
 	return items.length == 0;
 }
+function fileUnique() {
+	var items = $('#fileTable').find('tr').filter(function() {
+		var fileName = $(this).find('td:first');
+		
+		if ($(fileName).text() == $('#fileName-file').val().trim() 
+				&& $(fileName).next().text() == $('#lineNum-file').val().trim()
+				&& $(fileName).next().next().text() == $('#discription-file').val().trim()) {
+			return $(this);
+		}
+	});
+	
+	return items.length == 0;
+}
 
 function isFileItemOK(){
 	itemOK=true;
@@ -262,6 +275,11 @@ function isFileItemOK(){
 		itemOK=false;
 	}else {
 		$('#pageGroup-file').removeClass('has-error');
+	}
+	if(itemOK){
+		if(!fileUnique()()){
+			itemOK=false;
+		}
 	}
 	return itemOK;
 }
