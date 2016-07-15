@@ -6,6 +6,7 @@ var joined = 1;
 var committed = 2;
 var merged = 3;
 var currentTaskDisp = taskDisp[0];
+var currentUserDisp;
 $(function(){
 	$('#preJoinBlock').css('display',currentTaskDisp[0]);
 	$('#reviewBlock').css('display',currentTaskDisp[0]);
