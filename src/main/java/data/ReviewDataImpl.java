@@ -358,9 +358,8 @@ public class ReviewDataImpl implements ReviewDataService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		if (userName.equals(name)) {
-			return State.merged;
+			return State.commit;
 		} else {
 
 			String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and tname='" + taskName + "'";
