@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import bl.ReportBlImpl;
+import tools.Encode;
 import vo.ReportVO;
 
 /**
@@ -60,7 +61,7 @@ public class ReportServlet extends HttpServlet {
 	}
 
 	/**
-	 * 向数据库中写入记录
+	 * 鍚戞暟鎹簱涓啓鍏ヨ褰�
 	 * 
 	 * @param request
 	 * @param reponse
@@ -72,10 +73,10 @@ public class ReportServlet extends HttpServlet {
 		List<ReportVO> reportList = new ArrayList<ReportVO>();
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
-		reportList.add(
-				new ReportVO(jsonObject.getString("taskName"), (String) request.getSession().getAttribute("username"),
-						jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
-						jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
+		reportList.add(new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+				(String) request.getSession().getAttribute("username"), jsonObject.getString("fileName"),
+				jsonObject.getInt("page"), jsonObject.getInt("location"), jsonObject.getString("description"),
+				jsonObject.getInt("state"), jsonObject.getInt("origin")));
 
 		ReportBlImpl report = new ReportBlImpl();
 
@@ -83,7 +84,7 @@ public class ReportServlet extends HttpServlet {
 	}
 
 	/**
-	 * 从数据库中删除记录
+	 * 浠庢暟鎹簱涓垹闄よ褰�
 	 * 
 	 * @param request
 	 * @param reponse
@@ -103,7 +104,7 @@ public class ReportServlet extends HttpServlet {
 	}
 
 	/**
-	 * 提交报告
+	 * 鎻愪氦鎶ュ憡
 	 * 
 	 * @param request
 	 * @param response
