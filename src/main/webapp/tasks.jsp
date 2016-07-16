@@ -208,6 +208,14 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<hr>
 			<h2 id="deadline">截止时间</h2>
 			<strong><%=Tools.dateToString(taskVO.getDeadline())%></strong>
+			<script type="text/javascript">
+				time = "<%=Tools.dateToString(taskVO.getDeadline())%>";
+			</script>
+			<div id="fnTimeCountDown" data-end="2018/07/08 18:45:13">
+				<span class="year">00</span>年 <span class="month">00</span>月 <span
+					class="day">00</span>天 <span class="hour">00</span>时 <span
+					class="mini">00</span>分 <span class="sec">00</span>秒 
+			</div>
 			<hr>
 			<h2 id="review">评审</h2>
 			<div id="reviewBlock">
@@ -723,6 +731,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 	</script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
+	<script src='js/countDown.js'></script>
 </body>
 
 </html>

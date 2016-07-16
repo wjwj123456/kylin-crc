@@ -62,6 +62,7 @@ public class TaskFilter implements Filter {
 		int[][] assessmenAndFault = new int[2][];
 		assessmenAndFault[0]= assessmentBl.getHistoryFaultValues(taskName);
 		assessmenAndFault[1]= assessmentBl.getHistoryAssessmentValues(taskName);
+		
 		session.setAttribute("agree_" + taskName, invite.getAgreeUser(taskName));
 		// 未接受邀请
 		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
