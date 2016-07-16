@@ -55,7 +55,7 @@ public class ReportDataImpl implements ReportDataService {
 		// TODO Auto-generated method stub
 		int flag = -1;
 
-		String sql = "DELETE * FROM report  WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
+		String sql = "DELETE FROM report  WHERE tname = '" + po.getTaskName() + "' and uname = '" + po.getUserName()
 				+ "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage() + "' and location = '"
 				+ po.getLocation() + "' and state = 0";
 		pStatement = DBManager.getPreparedStatement(sql);
