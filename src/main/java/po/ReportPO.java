@@ -135,4 +135,11 @@ public class ReportPO {
 		this.isMerged = isMerged;
 	}
 
+	@Override
+	public String toString() {
+		return "ReportPO [taskName=" + taskName + ", userName=" + userName + ", fileName=" + fileName + ", page=" + page
+				+ ", location=" + location + ", description=" + description + ", state=" + state + ", origin=" + origin
+				+ ", isMerged=" + isMerged + "]";
+	}
+
 }

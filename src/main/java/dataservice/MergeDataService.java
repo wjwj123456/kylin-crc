@@ -62,4 +62,6 @@ public interface MergeDataService {
 
 	public int getID(ReportPO po) throws ClassNotFoundException, SQLException;
 
+	public int saveMergeState(String userName, String taskName) throws SQLException;
+
 }

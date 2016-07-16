@@ -149,6 +149,13 @@ public class MergeBlImpl implements MergeBlService {
 	 */
 	@Override
 	public int saveHistory(String userName, String taskName) {
+
+		try {
+			mergeDataService.saveMergeState(userName, taskName);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		int flag = 0;
 		AssessmentBlImpl assessmentBlImpl = new AssessmentBlImpl();
@@ -200,4 +207,18 @@ public class MergeBlImpl implements MergeBlService {
 		mergeBlImpl.mergeReport("oriTest");
 		System.out.println(mergeBlImpl.mergeReport("oriTest"));
 	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月16日
+	 * @param userName
+	 * @param taskName
+	 * @return
+	 * @see blservice.MergeBlService#saveMergeState(java.lang.String,
+	 *      java.lang.String)
+	 *
+	 */
+
 }

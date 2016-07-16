@@ -159,6 +159,7 @@ public class MergeDataImpl implements MergeDataService {
 		Connection connection = DBManager.connect();
 		String sql = "SELECT id FROM report WHERE uname = ? AND tname = ? AND filename = ? AND page = ? AND location = ? AND description = ?";
 		PreparedStatement pStatement = connection.prepareStatement(sql);
+		System.out.println(po.toString());
 		pStatement.setString(1, po.getUserName());
 		pStatement.setString(2, po.getTaskName());
 		pStatement.setString(3, po.getFileName());
@@ -296,16 +297,6 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.setInt(4, assessfalut);
 		pStatement.executeUpdate();
 		DBManager.closeConnection();
-		String sql1 = "UPDATE review SET state = ? WHERE tname = ? and uname= ? ";
-		PreparedStatement pStatement1 = DBManager.getPreparedStatement(sql1);
-		pStatement1.setString(1, "merged");
-		pStatement1.setString(2, taskName);
-		pStatement1.setString(3, userName);
-		System.out.println(taskName);
-		System.out.println(userName);
-		int i = pStatement1.executeUpdate();
-		System.out.println(i);
-		DBManager.closeConnection();
 
 		return flag;
 
@@ -376,6 +367,21 @@ public class MergeDataImpl implements MergeDataService {
 		DBManager.closeConnection();
 
 		return;
+	}
+
+	public int saveMergeState(String userName, String taskName) throws SQLException {
+
+		String sql1 = "UPDATE review SET state = ? WHERE tname = ? and uname= ? ";
+		PreparedStatement pStatement1 = DBManager.getPreparedStatement(sql1);
+		pStatement1.setString(1, "merged");
+		pStatement1.setString(2, taskName);
+		pStatement1.setString(3, userName);
+		System.out.println(taskName);
+		System.out.println(userName);
+		int i = pStatement1.executeUpdate();
+		DBManager.closeConnection();
+		return i;
+
 	}
 
 }
