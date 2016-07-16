@@ -30,6 +30,7 @@ $('#add-choosecode').on('click',function(){
 	if(ischooseCodeItemOK()){
 		var report = new Object({
 			taskName: taskName,
+			userName: $('#user-name').text().trim(),
 			fileName: $('#fileName-choosecode').val().trim(),
 			page: 0,
 			location: Number($('#lineNum-choosecode').val().trim()),
@@ -49,14 +50,14 @@ $('#add-file').on('click',function(){
 				"</td> <td>" +$('#lineNum-file').val()+
 				"</td> <td>" +$('#discription-file').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
-	}
-	
-	storeFile();
+		storeFile();
+	}	
 });
 $('#add-choosefile').on('click',function(){
 	if(ischooseFileItemOK()) {
 		var report = new Object({
 			taskName: taskName,
+			userName: $('#user-name').text().trim(),
 			fileName: $('#fileName-choosefile').val().trim(),
 			page: Number($('#pageNum-choosefile').val().trim()),
 			location: Number($('#lineNum-choosefile').val().trim()),
@@ -267,7 +268,7 @@ function isFileItemOK(){
 	}else {
 		$('#fileGroup-file').removeClass('has-error');
 	}
-	if($('#lineNum-file').val()==""  || isNaN($('#lineNum-code').val().trim())){
+	if($('#lineNum-file').val()==""  || isNaN($('#lineNum-file').val().trim())){
 		$('#lineGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -279,17 +280,18 @@ function isFileItemOK(){
 	}else {
 		$('#discripGroup-file').removeClass('has-error');
 	}
-	if($('#pageNum-file').val()==""  || isNaN($('#lineNum-code').val().trim())){
+	if($('#pageNum-file').val()==""  || isNaN($('#lineNum-file').val().trim())){
 		$('#pageGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
 		$('#pageGroup-file').removeClass('has-error');
 	}
 	if(itemOK){
-		if(!fileUnique()()){
+		if(!fileUnique()){
 			itemOK=false;
 		}
 	}
+
 	return itemOK;
 }
 
@@ -393,6 +395,7 @@ function store(data) {
 function deleteCode(data, obj) {
 	var report = new Object({
 		taskName: taskName,
+		userName: $(data[3]).text().trim(),
 		fileName: $(data[0]).text().trim(),
 		page: 0,
 		location: Number($(data[1]).text().trim()),
@@ -410,6 +413,7 @@ function deleteCode(data, obj) {
 function deleteFile(data, obj) {
 	var report = new Object({
 		taskName: taskName,
+		userName: $(data[4]).text().trim(),
 		fileName: $(data[0]).text().trim(),
 		page: Number($(data[1]).text().trim()),
 		location: Number($(data[2]).text().trim()),
@@ -563,6 +567,7 @@ function commitReport() {
 		$('#chooseModal').modal('hide');
 	}
 }
+
 // 删除合并条目相关操作
 {
 	/**
@@ -574,6 +579,7 @@ function commitReport() {
 		var temp = $(obj).parent().parent().find('td');
 		var report = new Object({
 			taskName: taskName,
+			userName: $(temp[3]).text(),
 			fileName: $(temp[0]).text(),
 			page: 0,
 			location: $(temp[1]).text(),
@@ -594,6 +600,7 @@ function commitReport() {
 		var temp = $(obj).parent().parent().find('td');
 		var report = new Object({
 			taskName: taskName,
+			userName: $(temp[4]).text(),
 			fileName: $(temp[0]).text(),
 			page: $(temp[1]).text(),
 			location: $(temp[2]).text(),
@@ -763,14 +770,69 @@ function commitReport() {
 				data: 'type=split' + '&origin=' + JSON.stringify(report) + '&data=' + data,
 				success: function(data) {
 					var result = jQuery.parseJSON(data);
-					console.log(result.data[0]);
-					console.log(result.data);
-					$('#divideTable tbody').empty();
-					stopWait();
+					
+					afterSplit(result.data);
 				}
 			})
 		})
 	})
+	
+	/**
+	 * 拆分条目后进行的操作，更新“toMerge-code”表中数据
+	 * @param data
+	 * @returns
+	 */
+	function afterSplit(data) {
+		if (data[0].page == 0) {// 代码条目
+			updateCode(data);
+		} else {// 文档条目
+			updateCode(data);
+		}
+		
+		$('#divideTable tbody').empty();
+		stopWait();
+	}
+	
+	/**
+	 * 更新代码条目(toMerge-code)
+	 * @param data
+	 * @returns
+	 */
+	function updateCode(data) {
+		$('#toMerge-code tbody').empty();
+		for (var i = 0; i < data.length; i++) {
+			var temp = '<tr>'
+			+ '<td><input type="checkbox"></td>'
+			+ '<td>' + data[i].fileName + '</td>'
+			+ '<td>' + data[i].location + '</td>'
+			+ '<td>' + data[i].description + '</td>'
+			+ '<td>' + data[i].userName + '</td>'
+			+ '</tr>';
+			
+			$('#toMerge-code tbody').append(temp);
+		}
+	}
+	
+	/**
+	 * 更新文档条目(toMerge-file)
+	 * @param data
+	 * @returns
+	 */
+	function updateFile(data) {
+		$('#toMerge-file tbody').empty();
+		for (var i = 0; i < data.length; i++) {
+			var temp = '<tr>'
+			+ '<td><input type="checkbox"></td>'
+			+ '<td>' + data[i].fileName + '</td>'
+			+ '<td>' + data[i].page + '</td>'
+			+ '<td>' + data[i].location + '</td>'
+			+ '<td>' + data[i].description + '</td>'
+			+ '<td>' + data[i].userName + '</td>'
+			+ '</tr>';
+			
+			$('#toMerge-file tbody').append(temp);
+		}
+	}
 	
 	/**
 	 * 获取要拆分的条目

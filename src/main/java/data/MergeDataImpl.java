@@ -77,7 +77,7 @@ public class MergeDataImpl implements MergeDataService {
 		List<ReportPO> list = new ArrayList<ReportPO>();
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state <>'1'";
+		String sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state <>'1' order by location ";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {
@@ -287,24 +287,24 @@ public class MergeDataImpl implements MergeDataService {
 			throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		int flag = 0;
-		Connection connection = DBManager.connect();
-		PreparedStatement pStatement = null;
+
 		String sql = "INSERT INTO history (tname, uname, fault,assessfault) VALUES (?, ?, ?,?)";
-		pStatement = DBManager.getPreparedStatement(sql);
+		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, taskName);
 		pStatement.setString(2, userName);
 		pStatement.setInt(3, fault);
 		pStatement.setInt(4, assessfalut);
 		pStatement.executeUpdate();
-
+		DBManager.closeConnection();
 		String sql1 = "UPDATE review SET state = ? WHERE tname = ? and uname= ? ";
-		PreparedStatement pStatement1 = connection.prepareStatement(sql1);
-		System.out.println(userName);
-		System.out.println(taskName);
+		PreparedStatement pStatement1 = DBManager.getPreparedStatement(sql1);
 		pStatement1.setString(1, "merged");
 		pStatement1.setString(2, taskName);
 		pStatement1.setString(3, userName);
-		pStatement.executeQuery();
+		System.out.println(taskName);
+		System.out.println(userName);
+		int i = pStatement1.executeUpdate();
+		System.out.println(i);
 		DBManager.closeConnection();
 
 		return flag;
