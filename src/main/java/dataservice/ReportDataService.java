@@ -32,38 +32,30 @@ public interface ReportDataService {
 			throws ClassNotFoundException, SQLException;
 
 	/**
-	 * ldk get all reports by taskname *
-	 * 
-	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 */
-	public List<ReportPO> getAllReportsByTaskName(String taskName) throws ClassNotFoundException, SQLException;
-	
-	/**
 	 * get merged report
+	 * 
 	 * @param taskname
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
 	public List<ReportPO> getMergeReport(String taskname) throws ClassNotFoundException, SQLException;
-	
+
 	/**
 	 * 
 	 * @param po
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
 	public boolean abandonReport(ReportPO po) throws ClassNotFoundException, SQLException;
-	
+
 	/**
 	 * 
 	 * @param po
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
 	public boolean recoverReport(ReportPO po) throws ClassNotFoundException, SQLException;
 }
