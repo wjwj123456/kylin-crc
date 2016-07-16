@@ -499,23 +499,37 @@ function commitReport() {
 				stopWait();
 			}
 		});
-		
 	}
 	
-	function storeFileMerge() {
-		$('#chooseModal').modal('hide');
-		$('#choose-file').empty();
-		$('#choose-file').append($("<tr><th>文件名</th><th>页码</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
-		var inputs = $('#toMerge-file').find('input');
-		var length = inputs.length;
-		var j = 0;
-		for( i = 0;i<length;i++){
-			if($(inputs[i]).prop('checked')==true){
-				$($('#toMerge-file tbody').find('tr')[j]).remove();
-				j--;
-			}
-			j++;
+	function storeFileMerge(report) {
+		var data = new Array();
+		data.push(report);
+		
+		var temp = $('#choose-file').find('tr').not(':first');
+		for (var i = 0; i < temp.length; i++) {
+			var td = $(temp[i]).find('td');
+			var obj = new Object({
+				taskName: taskName,
+				userName: $(td[4]).text(),
+				fileName: $(td[0]).text(),
+				page: Number($(td[1]).text()),
+				location: Number($(td[2]).text()),
+				description: $(td[3]).text(),
+				state: 0,
+				origin: 1
+			});
+			data.push(obj);
 		}
+		run_waitMe();
+		jQuery.ajax({
+			url: '/crc/MergeServlet',
+			type: 'post',
+			data: 'type=saveMerge&taskName=' + taskName + '&data=' + JSON.stringify(data),
+			success: function(data) {
+				afterFileMerge(report);
+				stopWait();
+			}
+		});
 	}
 	
 	/**
