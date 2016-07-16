@@ -90,6 +90,13 @@ function initCodeChoose(){
 $('#merge').on('click',function(){
 	$('#choose-code').empty();
 	$('#choose-file').empty();
+	$('#fileName-choosecode').val('');
+	$('#lineNum-choosecode').val('');
+	$('#discription-choosecode').val('');
+	$('#fileName-choosefile').val('');
+	$('#pageNum-choosefile').val('');
+	$('#lineNum-choosefile').val('');
+	$('#discription-choosefile').val('');
 	if(taskType=='code'){
 		$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
 		codeMerge();
