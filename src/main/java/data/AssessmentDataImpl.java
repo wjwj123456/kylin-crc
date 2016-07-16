@@ -33,6 +33,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	}
 
 	private int[][] getMatix(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
+		System.out.println(vos);
 		List<String> nameList = new ArrayList<String>();
 		nameList = getReviewerNames(taskName);
 

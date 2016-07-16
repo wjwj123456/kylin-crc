@@ -106,11 +106,11 @@ function initFileChoose() {
 		var temp=$(this).find('td');
 		var report = new Object({
 			taskName: taskName,
-			userName: $(temp[3]).text(),
+			userName: $(temp[4]).text(),
 			fileName: $(temp[0]).text(),
 			page: Number($(temp[1]).text()),
-			location: Number($(temp[1]).text()),
-			description: $(temp[2]).text(),
+			location: Number($(temp[2]).text()),
+			description: $(temp[3]).text(),
 			state: 0,
 			origin: 1
 		})
