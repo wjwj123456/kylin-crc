@@ -81,7 +81,7 @@ function initCodeChoose(){
 			location: Number($(temp[1]).text()),
 			description: $(temp[2]).text(),
 			state: 0,
-			origin: 1
+			origin: 0
 		});
 		
 		storeCodeMerge(report);
@@ -112,7 +112,7 @@ function initFileChoose() {
 			location: Number($(temp[2]).text()),
 			description: $(temp[3]).text(),
 			state: 0,
-			origin: 1
+			origin: 0
 		})
 		
 		storeFileMerge(report);
