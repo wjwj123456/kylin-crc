@@ -756,14 +756,69 @@ function commitReport() {
 				data: 'type=split' + '&origin=' + JSON.stringify(report) + '&data=' + data,
 				success: function(data) {
 					var result = jQuery.parseJSON(data);
-					console.log(result.data[0]);
-					console.log(result.data);
-					$('#divideTable tbody').empty();
-					stopWait();
+					
+					afterSplit(result.data);
 				}
 			})
 		})
 	})
+	
+	/**
+	 * 拆分条目后进行的操作，更新“toMerge-code”表中数据
+	 * @param data
+	 * @returns
+	 */
+	function afterSplit(data) {
+		if (data[0].page == 0) {// 代码条目
+			updateCode(data);
+		} else {// 文档条目
+			updateCode(data);
+		}
+		
+		$('#divideTable tbody').empty();
+		stopWait();
+	}
+	
+	/**
+	 * 更新代码条目(toMerge-code)
+	 * @param data
+	 * @returns
+	 */
+	function updateCode(data) {
+		$('#toMerge-code tbody').empty();
+		for (var i = 0; i < data.length; i++) {
+			var temp = '<tr>'
+			+ '<td><input type="checkbox"></td>'
+			+ '<td>' + data[i].fileName + '</td>'
+			+ '<td>' + data[i].location + '</td>'
+			+ '<td>' + data[i].description + '</td>'
+			+ '<td>' + data[i].userName + '</td>'
+			+ '</tr>';
+			
+			$('#toMerge-code tbody').append(temp);
+		}
+	}
+	
+	/**
+	 * 更新文档条目(toMerge-file)
+	 * @param data
+	 * @returns
+	 */
+	function updateFile(data) {
+		$('#toMerge-file tbody').empty();
+		for (var i = 0; i < data.length; i++) {
+			var temp = '<tr>'
+			+ '<td><input type="checkbox"></td>'
+			+ '<td>' + data[i].fileName + '</td>'
+			+ '<td>' + data[i].page + '</td>'
+			+ '<td>' + data[i].location + '</td>'
+			+ '<td>' + data[i].description + '</td>'
+			+ '<td>' + data[i].userName + '</td>'
+			+ '</tr>';
+			
+			$('#toMerge-file tbody').append(temp);
+		}
+	}
 	
 	/**
 	 * 获取要拆分的条目

@@ -94,10 +94,10 @@ public class ReportServlet extends HttpServlet {
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
 		ReportBlImpl report = new ReportBlImpl();
-		int result = report.deleteReport(
-				new ReportVO(jsonObject.getString("taskName"), (String) request.getSession().getAttribute("username"),
-						jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
-						jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin")));
+		int result = report.deleteReport(new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+				(String) request.getSession().getAttribute("username"), jsonObject.getString("fileName"),
+				jsonObject.getInt("page"), jsonObject.getInt("location"), jsonObject.getString("description"),
+				jsonObject.getInt("state"), jsonObject.getInt("origin")));
 
 		PrintWriter out = reponse.getWriter();
 		out.print(result);
