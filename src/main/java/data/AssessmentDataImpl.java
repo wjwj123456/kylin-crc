@@ -36,7 +36,8 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		System.out.println(vos);
 		List<String> nameList = new ArrayList<String>();
 		nameList = getReviewerNames(taskName);
-
+		System.out.println("nameList:");
+		System.out.println(nameList);
 		int[][] matrix = new int[vos.size()][nameList.size()];
 
 		int i = 0;
@@ -63,6 +64,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 				int includedId = rSet.getInt(1);
 				String name = "";
 				name = getUNameById(includedId);
+				System.out.println(name);
 				j = nameList.indexOf(name);
 				matrix[i][j] = 1;
 				while (rSet.next()) {
@@ -94,7 +96,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		// }
 		// DBManager.closeConnection();
 		// }
-		String sql = "SELECT id,uname FROM history WHERE tname = '" + taskName + "' ORDER BY id";
+		String sql = "SELECT id,uname FROM review WHERE tname = '" + taskName + "' ORDER BY id";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next())
 			nameList.add(rSet.getString(2));
@@ -111,6 +113,8 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		while (rs.next()) {
 			name = rs.getString(1);
 		}
+		System.out.println("username");
+		System.out.println(name);
 		DBManager.stopAll(rs, ps, connection);
 		return name;
 	}
