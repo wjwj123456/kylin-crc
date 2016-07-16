@@ -688,9 +688,10 @@ function commitReport() {
 			data: 'type=getData' + '&data=' + JSON.stringify(report),
 			success: function(data) {
 				var result = jQuery.parseJSON(data)[0].data;
+				$('#divideTable tbody').empty();
+				
 				if (type == 'code') {
 					displayCode(result);
-					console.log(result);
 				} else {
 					displayFile(result);
 				}
@@ -720,7 +721,6 @@ function commitReport() {
 			
 			$('#divideTable tbody').append(temp);
 			$('#divideModal').modal('show');
-			
 		}
 	}
 
@@ -755,12 +755,13 @@ function commitReport() {
 				type: 'post',
 				data: 'type=split' + '&origin=' + JSON.stringify(report) + '&data=' + data,
 				success: function(data) {
-					console.log(data);
+					var result = jQuery.parseJSON(data);
+					console.log(result.data[0]);
+					console.log(result.data);
 					$('#divideTable tbody').empty();
 					stopWait();
 				}
 			})
-			
 		})
 	})
 	
