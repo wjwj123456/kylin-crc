@@ -18,7 +18,6 @@ import po.ReportPO;
 public class MergeDataImpl implements MergeDataService {
 
 	public boolean canMerge(String taskName) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		boolean flag = false;
 		double time = 0;
 		Connection connection = DBManager.connect();
@@ -38,7 +37,6 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	public List<ReportPO> mergeReport(String taskName) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		List<ReportPO> list = new ArrayList<ReportPO>();
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
@@ -63,6 +61,20 @@ public class MergeDataImpl implements MergeDataService {
 		PreparedStatement pStatement = null;
 		ReportPO finalPO = reportList.get(0);
 		reportList.remove(0);
+		if (finalPO.getOrigin() == 1) {
+			String sql2 = "INSERT INTO report (tname,uname,filename,page,location,description,state,origin,merge) VALUES (?,?,?,?,?,?,?,?,?)";
+			pStatement = connection.prepareStatement(sql2);
+			pStatement.setString(1, finalPO.getTaskName());
+			pStatement.setString(2, finalPO.getUserName());
+			pStatement.setString(3, finalPO.getFileName());
+			pStatement.setInt(4, finalPO.getPage());
+			pStatement.setInt(5, finalPO.getLocation());
+			pStatement.setString(6, finalPO.getDescription());
+			pStatement.setInt(7, 0);
+			pStatement.setInt(8, 1);
+			pStatement.setInt(9, 1);
+			pStatement.executeUpdate();
+		}
 		for (ReportPO po : reportList) {
 			String sql = "UPDATE report SET state = ? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
 			pStatement = connection.prepareStatement(sql);
@@ -148,7 +160,6 @@ public class MergeDataImpl implements MergeDataService {
 
 	public int saveAddedMergeReport(List<ReportPO> reportList, String taskName)
 			throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		int flag = 0;
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
@@ -180,23 +191,23 @@ public class MergeDataImpl implements MergeDataService {
 			pStatement.setString(7, po.getDescription());
 			pStatement.executeUpdate();
 		}
-
+		DBManager.stopAll(null, pStatement, connection);
+		Connection connection1 = DBManager.connect();
 		for (ReportPO po : reportList) {
 			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
-			pStatement = connection.prepareStatement(sql1);
+			pStatement = connection1.prepareStatement(sql1);
 			pStatement.setInt(1, getID(finalPO));
 			pStatement.setInt(2, getID(po));
 			pStatement.executeUpdate();
 		}
 		updateMerge();
-		DBManager.stopAll(null, pStatement, connection);
+		DBManager.stopAll(null, pStatement, connection1);
 		return flag;
 	}
 
 	@Override
 	public int saveHistory(String userName, String taskName, int fault, int assessfalut)
 			throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		int flag = 0;
 
 		String sql = "INSERT INTO history (tname, uname, fault,assessfault) VALUES (?, ?, ?,?)";
