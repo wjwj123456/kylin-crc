@@ -14,26 +14,9 @@ import dataservice.MergeDataService;
 import po.ReportPO;
 import vo.ReportVO;
 
-/**
- * TODO: （类描述）
- *
- * @author lpt14
- * @since 2016年7月11日
- * @see
- */
 public class MergeBlImpl implements MergeBlService {
 	MergeDataService mergeDataService = new MergeDataImpl();
 
-	/**
-	 * TODO:（方法描述）
-	 *
-	 * @author lpt14
-	 * @since 2016年7月11日
-	 * @param taskName
-	 * @return
-	 * @see blservice.MergeBlService#canMerge(java.lang.String)
-	 *
-	 */
 	public boolean canMerge(String taskName) {
 		// TODO Auto-generated method stub
 		boolean flag = false;
@@ -49,16 +32,6 @@ public class MergeBlImpl implements MergeBlService {
 		return flag;
 	}
 
-	/**
-	 * TODO:（方法描述）
-	 *
-	 * @author lpt14
-	 * @since 2016年7月11日
-	 * @param taskName
-	 * @return
-	 * @see blservice.MergeBlService#mergeReport(java.lang.String)
-	 *
-	 */
 	public List<ReportVO> mergeReport(String taskName) {
 		// TODO Auto-generated method stub
 		List<ReportVO> voList = new ArrayList<ReportVO>();
@@ -78,15 +51,6 @@ public class MergeBlImpl implements MergeBlService {
 		return voList;
 	}
 
-	/**
-	 * TODO:（方法描述）
-	 *
-	 * @author lpt14
-	 * @since 2016年7月11日
-	 * @param reportList
-	 * @see blservice.MergeBlService#saveMergeReport(java.util.List)
-	 *
-	 */
 	public int saveMergeReport(List<ReportVO> reportList, String taskName) {
 		int flag = 0;
 		List<ReportPO> list = new ArrayList<ReportPO>();
@@ -106,17 +70,6 @@ public class MergeBlImpl implements MergeBlService {
 
 	}
 
-	/**
-	 * TODO:（方法描述）
-	 *
-	 * @author lpt14
-	 * @since 2016年7月11日
-	 * @param reportList
-	 * @param taskName
-	 * @see blservice.MergeBlService#saveAddedMergeReport(java.util.List,
-	 *      java.lang.String)
-	 *
-	 */
 	public int saveAddedMergeReport(List<ReportVO> reportList, String taskName) {
 		int flag = 0;
 		// TODO Auto-generated method stub
@@ -136,17 +89,6 @@ public class MergeBlImpl implements MergeBlService {
 		return flag;
 	}
 
-	/**
-	 * TODO:（方法描述）
-	 *
-	 * @author lpt14
-	 * @since 2016年7月13日
-	 * @param userName
-	 * @param taskName
-	 * @see blservice.MergeBlService#saveHistory(java.lang.String,
-	 *      java.lang.String)
-	 *
-	 */
 	@Override
 	public int saveHistory(String userName, String taskName) {
 
@@ -176,15 +118,6 @@ public class MergeBlImpl implements MergeBlService {
 		return flag;
 	}
 
-	/**
-	 * TODO:（方法描述）
-	 *
-	 * @author lpt14
-	 * @since 2016年7月14日
-	 * @param vo
-	 * @see blservice.MergeBlService#deleteMergeRecord(vo.ReportVO)
-	 *
-	 */
 	@Override
 	public int deleteMergeRecord(ReportVO vo) {
 		int flag = 0;
@@ -207,18 +140,5 @@ public class MergeBlImpl implements MergeBlService {
 		mergeBlImpl.mergeReport("oriTest");
 		System.out.println(mergeBlImpl.mergeReport("oriTest"));
 	}
-
-	/**
-	 * TODO:（方法描述）
-	 *
-	 * @author lpt14
-	 * @since 2016年7月16日
-	 * @param userName
-	 * @param taskName
-	 * @return
-	 * @see blservice.MergeBlService#saveMergeState(java.lang.String,
-	 *      java.lang.String)
-	 *
-	 */
 
 }
