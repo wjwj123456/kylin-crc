@@ -77,7 +77,8 @@ public class MergeDataImpl implements MergeDataService {
 		List<ReportPO> list = new ArrayList<ReportPO>();
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
-		String sql = "SELECT * FROM report WHERE tname = '" + taskName + "' and state <>'1' order by location ";
+		String sql = "SELECT * FROM report WHERE tname = '" + taskName
+				+ "' and state <>1 and state<>3 order by location ";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {

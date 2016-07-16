@@ -31,7 +31,7 @@ public class ReportDataImpl implements ReportDataService {
 			pStatement.setInt(4, pos.get(i).getPage());
 			pStatement.setInt(5, pos.get(i).getLocation());
 			pStatement.setString(6, pos.get(i).getDescription());
-			pStatement.setInt(7, 0);
+			pStatement.setInt(7, 3);
 			pStatement.setInt(8, 0);
 
 			try {
@@ -73,6 +73,13 @@ public class ReportDataImpl implements ReportDataService {
 		// TODO Auto-generated method stub
 		int flag = -1;
 
+		String sql1 = "UPDATE report SET  state = ? WHERE tname = '" + taskName + "' and uname = '" + reviewerName
+				+ "'";
+		pStatement = DBManager.getPreparedStatement(sql1);
+		pStatement.setInt(1, 0);
+		int j = pStatement.executeUpdate();
+		DBManager.closeConnection();
+
 		String sql = "UPDATE review SET  time = ?, state = ? WHERE tname = '" + taskName + "' and uname = '"
 				+ reviewerName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
@@ -82,7 +89,7 @@ public class ReportDataImpl implements ReportDataService {
 		System.out.println(reviewerName);
 		System.out.println(time);
 		int i = pStatement.executeUpdate();
-		if (i == 1)
+		if (i == 1 && j == 1)
 			flag = 0;
 		else
 			flag = 1;
