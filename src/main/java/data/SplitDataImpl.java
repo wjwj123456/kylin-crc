@@ -71,6 +71,13 @@ public class SplitDataImpl implements SplitDataService {
 			}
 		}
 
+		String sql5 = "SELECT * FROM merge WHERE final_id = " + id;
+		rSet = statement.executeQuery(sql5);
+		if(!rSet.next()) {
+			String sql6 = "DELETE FROM report WHERE id = " + id;
+			int i = statement.executeUpdate(sql6);
+			if(i==0) return false;
+		}
 		DBManager.stopAll(rSet, statement, connection);
 		return true;
 	}
