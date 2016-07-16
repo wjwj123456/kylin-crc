@@ -159,7 +159,7 @@ function fileMerge() {
 	for(i in list){
 		$('#choose-file').append($(list[i]));
 	}
-	initChoose();
+	initFileChoose();
 	$('#chooseModal').modal('show');
 }
 
