@@ -91,6 +91,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next())
 			nameList.add(rSet.getString(2));
+		DBManager.closeConnection();
 		return nameList;
 	}
 
