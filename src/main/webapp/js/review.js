@@ -50,9 +50,8 @@ $('#add-file').on('click',function(){
 				"</td> <td>" +$('#lineNum-file').val()+
 				"</td> <td>" +$('#discription-file').val()+
 				"</td> <td><button type='button' class='close' aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td> </tr>");
-	}
-	
-	storeFile();
+		storeFile();
+	}	
 });
 $('#add-choosefile').on('click',function(){
 	if(ischooseFileItemOK()) {
@@ -262,7 +261,7 @@ function isFileItemOK(){
 	}else {
 		$('#fileGroup-file').removeClass('has-error');
 	}
-	if($('#lineNum-file').val()==""  || isNaN($('#lineNum-code').val().trim())){
+	if($('#lineNum-file').val()==""  || isNaN($('#lineNum-file').val().trim())){
 		$('#lineGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
@@ -274,17 +273,18 @@ function isFileItemOK(){
 	}else {
 		$('#discripGroup-file').removeClass('has-error');
 	}
-	if($('#pageNum-file').val()==""  || isNaN($('#lineNum-code').val().trim())){
+	if($('#pageNum-file').val()==""  || isNaN($('#lineNum-file').val().trim())){
 		$('#pageGroup-file').addClass('has-error');
 		itemOK=false;
 	}else {
 		$('#pageGroup-file').removeClass('has-error');
 	}
 	if(itemOK){
-		if(!fileUnique()()){
+		if(!fileUnique()){
 			itemOK=false;
 		}
 	}
+
 	return itemOK;
 }
 
