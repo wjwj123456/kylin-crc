@@ -30,6 +30,7 @@ $('#add-choosecode').on('click',function(){
 	if(ischooseCodeItemOK()){
 		var report = new Object({
 			taskName: taskName,
+			userName: $('#user-name').text().trim(),
 			fileName: $('#fileName-choosecode').val().trim(),
 			page: 0,
 			location: Number($('#lineNum-choosecode').val().trim()),
@@ -556,6 +557,7 @@ function commitReport() {
 		$('#chooseModal').modal('hide');
 	}
 }
+
 // 删除合并条目相关操作
 {
 	/**
