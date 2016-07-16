@@ -139,4 +139,13 @@
     <servlet-name>SplitServlet</servlet-name>
     <url-pattern>/SplitServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>ReportFilter</display-name>
+    <filter-name>ReportFilter</filter-name>
+    <filter-class>filter.ReportFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ReportFilter</filter-name>
+    <url-pattern>/report.jsp</url-pattern>
+  </filter-mapping>
 </web-app>

@@ -88,8 +88,15 @@ function initCodeChoose(){
 }
 $('#merge').on('click',function(){
 	$('#choose-code').empty();
-	$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
-	codeMerge();
+	$('#choose-file').empty();
+	if(taskType=='code'){
+		$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
+		codeMerge();
+	}else {
+		$('#choose-file').append($("<tr><th>文件名</th><th>页码</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
+		fileMerge();
+	}
+	
 });
 
 
