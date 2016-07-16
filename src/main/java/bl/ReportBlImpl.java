@@ -13,6 +13,7 @@ import vo.ReportVO;
 public class ReportBlImpl implements ReportBlService {
 
 	private ReportDataService reportDataService = new ReportDataImpl();
+	private MergeBlImpl mergeBlImpl = new MergeBlImpl();
 
 	public int createReport(List<ReportVO> vos) {
 		// TODO Auto-generated method stub
@@ -74,21 +75,7 @@ public class ReportBlImpl implements ReportBlService {
 	public List<ReportVO> getAllReportsByTaskName(String taskName) {
 		// TODO Auto-generated method stub
 		List<ReportVO> result = new ArrayList<ReportVO>();
-		List<ReportPO> list = new ArrayList<ReportPO>();
-		try {
-			list = reportDataService.getAllReportsByTaskName(taskName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for (ReportPO po : list) {
-			ReportVO vo = new ReportVO(po.getTaskName(), po.getUserName(), po.getFileName(), po.getPage(),
-					po.getLocation(), po.getDescription(), po.getState(), po.getOrigin());
-			result.add(vo);
-		}
+		result = mergeBlImpl.mergeReport(taskName);
 		return result;
 	}
 

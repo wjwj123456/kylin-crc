@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import bl.ReportBlImpl;
+import bl.MergeBlImpl;
 import bl.SplitBlImpl;
-import blservice.ReportBlService;
+import tools.Encode;
 import vo.ReportVO;
 
 /**
@@ -66,9 +66,10 @@ public class SplitServlet extends HttpServlet {
 	private void handleGetData(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
-		ReportVO report = new ReportVO(jsonObject.getString("taskName"), jsonObject.getString("userName"),
-				jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
-				jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin"));
+		ReportVO report = new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+				jsonObject.getString("userName"), jsonObject.getString("fileName"), jsonObject.getInt("page"),
+				jsonObject.getInt("location"), jsonObject.getString("description"), jsonObject.getInt("state"),
+				jsonObject.getInt("origin"));
 
 		List<ReportVO> result = new ArrayList<>();
 		SplitBlImpl split = new SplitBlImpl();
@@ -77,10 +78,8 @@ public class SplitServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(split);
-		System.out.println(report.getUserName());
-		System.out.println(report.getTaskName());
 
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(packageData(result));
 	}
@@ -105,20 +104,21 @@ public class SplitServlet extends HttpServlet {
 		}
 
 		SplitBlImpl split = new SplitBlImpl();
-		try {
-			split.split(reportList, report);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		// try {
+		// split.split(reportList, report);
+		// } catch (ClassNotFoundException | SQLException e) {
+		// e.printStackTrace();
+		// }
 
-		ReportBlService reportBl = new ReportBlImpl();
-		List<ReportVO> result = reportBl.getAllReportsByTaskName(report.getTaskName());
+		MergeBlImpl merge = new MergeBlImpl();
+		List<ReportVO> result = merge.mergeReport(report.getTaskName());
 
 		System.out.println(result);
 		System.out.println(report.getTaskName());
 		JSONObject object = new JSONObject();
 		object.put("data", result);
 
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(object);
 	}
@@ -144,11 +144,14 @@ public class SplitServlet extends HttpServlet {
 	 * 
 	 * @param jsonObject
 	 * @return
+	 * @throws IOException
+	 * @throws JSONException
 	 */
-	private ReportVO getData(JSONObject jsonObject) {
-		ReportVO report = new ReportVO(jsonObject.getString("taskName"), jsonObject.getString("userName"),
-				jsonObject.getString("fileName"), jsonObject.getInt("page"), jsonObject.getInt("location"),
-				jsonObject.getString("description"), jsonObject.getInt("state"), jsonObject.getInt("origin"));
+	private ReportVO getData(JSONObject jsonObject) throws JSONException, IOException {
+		ReportVO report = new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+				jsonObject.getString("userName"), jsonObject.getString("fileName"), jsonObject.getInt("page"),
+				jsonObject.getInt("location"), jsonObject.getString("description"), jsonObject.getInt("state"),
+				jsonObject.getInt("origin"));
 
 		return report;
 	}

@@ -102,7 +102,7 @@ public class MergeServlet extends HttpServlet {
 		String userName = (String) request.getSession().getAttribute("username");
 
 		MergeBlImpl merge = new MergeBlImpl();
-		int result = merge.saveHistory(Encode.transfer(request.getParameter("taskName")), userName);
+		int result = merge.saveHistory(userName, Encode.transfer(request.getParameter("taskName")));
 
 		PrintWriter out = response.getWriter();
 		out.print(result);
