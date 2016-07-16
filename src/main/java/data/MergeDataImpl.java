@@ -15,29 +15,8 @@ import java.util.List;
 import dataservice.MergeDataService;
 import po.ReportPO;
 
-/**
- * TODO: ����������
- *
- * @author lpt14
- * @since 2016��7��11��
- * @see
- */
 public class MergeDataImpl implements MergeDataService {
 
-	/**
-	 * if it can merge return true
-	 *
-	 * @author lpt14
-	 * @since 2016��7��11��
-	 * @param userName
-	 * @param taskName
-	 * @return
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 * @see dataservice.MergeDataService#canMerge(java.lang.String,
-	 *      java.lang.String)
-	 *
-	 */
 	public boolean canMerge(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		boolean flag = false;
@@ -58,27 +37,13 @@ public class MergeDataImpl implements MergeDataService {
 		return flag;
 	}
 
-	/**
-	 * TODO:������������
-	 *
-	 * @author lpt14
-	 * @since 2016��7��11��
-	 * @param userNme
-	 * @param taskName
-	 * @return
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 * @see dataservice.MergeDataService#mergeReport(java.lang.String,
-	 *      java.lang.String)
-	 *
-	 */
 	public List<ReportPO> mergeReport(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<ReportPO> list = new ArrayList<ReportPO>();
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		String sql = "SELECT * FROM report WHERE tname = '" + taskName
-				+ "' and state <>1 and state<>3 order by location ";
+				+ "' and state <>1 and state<>3  order by page and location ";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {
@@ -92,17 +57,6 @@ public class MergeDataImpl implements MergeDataService {
 		return list;
 	}
 
-	/**
-	 * TODO:������������
-	 *
-	 * @author lpt14
-	 * @since 2016��7��11��
-	 * @param reportList
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 * @see dataservice.MergeDataService#saveMergeReport(java.util.List)
-	 *
-	 */
 	public int saveMergeReport(List<ReportPO> reportList, String taskName) throws SQLException, ClassNotFoundException {
 		int flag = 0;
 		Connection connection = DBManager.connect();
@@ -147,15 +101,6 @@ public class MergeDataImpl implements MergeDataService {
 		return flag;
 	}
 
-	/**
-	 * get the fault id by ReportPO
-	 * 
-	 * @param po
-	 * @return -1 means the fault is not recorded, -2 means the fault is not
-	 *         unique in the , >=0 means the
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 */
 	public int getID(ReportPO po) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
 		String sql = "SELECT id FROM report WHERE uname = ? AND tname = ? AND filename = ? AND page = ? AND location = ? AND description = ?";
@@ -185,14 +130,6 @@ public class MergeDataImpl implements MergeDataService {
 		}
 	}
 
-	/**
-	 * get fault by id
-	 * 
-	 * @param id
-	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 */
 	@SuppressWarnings("unused")
 	private ReportPO getFault(int id) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
@@ -209,19 +146,6 @@ public class MergeDataImpl implements MergeDataService {
 		return po;
 	}
 
-	/**
-	 * TODO:������������
-	 *
-	 * @author lpt14
-	 * @since 2016��7��11��
-	 * @param reportList
-	 * @param taskName
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 * @see dataservice.MergeDataService#saveAddedMergeReport(java.util.List,
-	 *      java.lang.String)
-	 *
-	 */
 	public int saveAddedMergeReport(List<ReportPO> reportList, String taskName)
 			throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
@@ -269,21 +193,6 @@ public class MergeDataImpl implements MergeDataService {
 		return flag;
 	}
 
-	/**
-	 * TODO:������������
-	 *
-	 * @author lpt14
-	 * @since 2016��7��14��
-	 * @param userName
-	 * @param taskName
-	 * @param fault
-	 * @param assessfalut
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 * @see dataservice.MergeDataService#saveHistory(java.lang.String,
-	 *      java.lang.String, int, int)
-	 *
-	 */
 	@Override
 	public int saveHistory(String userName, String taskName, int fault, int assessfalut)
 			throws SQLException, ClassNotFoundException {
@@ -303,17 +212,6 @@ public class MergeDataImpl implements MergeDataService {
 
 	}
 
-	/**
-	 * TODO:������������
-	 *
-	 * @author lpt14
-	 * @since 2016��7��14��
-	 * @param po
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 * @see dataservice.MergeDataService#deleteMergeRecord(po.ReportPO)
-	 *
-	 */
 	@Override
 	public int deleteMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException {
 		int flag = 0;
