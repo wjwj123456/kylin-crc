@@ -58,6 +58,7 @@ $('#add-choosefile').on('click',function(){
 	if(ischooseFileItemOK()) {
 		var report = new Object({
 			taskName: taskName,
+			userName: $('#user-name').text().trim(),
 			fileName: $('#fileName-choosefile').val().trim(),
 			page: Number($('#pageNum-choosefile').val().trim()),
 			location: Number($('#lineNum-choosefile').val().trim()),
@@ -387,6 +388,7 @@ function store(data) {
 function deleteCode(data, obj) {
 	var report = new Object({
 		taskName: taskName,
+		userName: $(data[3]).text().trim(),
 		fileName: $(data[0]).text().trim(),
 		page: 0,
 		location: Number($(data[1]).text().trim()),
@@ -404,6 +406,7 @@ function deleteCode(data, obj) {
 function deleteFile(data, obj) {
 	var report = new Object({
 		taskName: taskName,
+		userName: $(data[4]).text().trim(),
 		fileName: $(data[0]).text().trim(),
 		page: Number($(data[1]).text().trim()),
 		location: Number($(data[2]).text().trim()),
@@ -569,6 +572,7 @@ function commitReport() {
 		var temp = $(obj).parent().parent().find('td');
 		var report = new Object({
 			taskName: taskName,
+			userName: $(temp[3]).text(),
 			fileName: $(temp[0]).text(),
 			page: 0,
 			location: $(temp[1]).text(),
@@ -589,6 +593,7 @@ function commitReport() {
 		var temp = $(obj).parent().parent().find('td');
 		var report = new Object({
 			taskName: taskName,
+			userName: $(temp[4]).text(),
 			fileName: $(temp[0]).text(),
 			page: $(temp[1]).text(),
 			location: $(temp[2]).text(),
