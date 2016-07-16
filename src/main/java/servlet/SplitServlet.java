@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,11 +105,11 @@ public class SplitServlet extends HttpServlet {
 		}
 
 		SplitBlImpl split = new SplitBlImpl();
-		// try {
-		// split.split(reportList, report);
-		// } catch (ClassNotFoundException | SQLException e) {
-		// e.printStackTrace();
-		// }
+		try {
+			split.split(reportList, report);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 
 		MergeBlImpl merge = new MergeBlImpl();
 		List<ReportVO> result = merge.mergeReport(report.getTaskName());
