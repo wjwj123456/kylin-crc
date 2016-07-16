@@ -26,7 +26,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		if (vos.size() != 0) {
 			int[][] matrix = getMatix(taskName, vos);
 			crc = new CrcModule(matrix);
-			return crc.getDefectsNum();
+			return (int) crc.getMhCH();
 		} else {
 			return 0;
 		}
@@ -157,7 +157,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			if (vos.size() != 0) {
 				int[][] matrix = getMatix(taskName, vos);
 				CrcModule crcM = new CrcModule(matrix);
-				int assessfault = crcM.getDefectsNum();
+				int assessfault = (int) crcM.getMhCH();
 
 				for (int i = 0; i < nameList.size(); i++) {
 					int findedfault = 0;
