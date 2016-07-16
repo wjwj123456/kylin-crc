@@ -1,3 +1,4 @@
+<%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
 <%@page import="bl.ReviewBlImpl"%>
 <%@page import="blservice.ReviewBlService"%>
@@ -28,6 +29,9 @@
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
+}
+.hideBlock{
+	display: none;
 }
 </style>
 <title>CRC Task</title>
@@ -156,7 +160,6 @@ taskName = '<%=request.getParameter("taskName")%>';
 				<li><a href="#message">说明</a></li>
 				<li><a href="#deadline">截止时间</a></li>
 				<li><a href="#review">评审</a></li>
-				<li><a href="#report">评审报告</a></li>
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
@@ -179,7 +182,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
-					<div id="preJoinBlock">
+					<a href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName")) %>">
+					<button class="btn btn-success" >查看已生成报告</button>
+					</a>
+					<div id="preJoinBlock" class="hideBlock">
 						<div id="joinBlock">
 							<button class="btn btn-success" id="join">参加评审</button>
 						</div>
@@ -218,8 +224,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 			</div>
 			<hr>
 			<h2 id="review">评审</h2>
-			<div id="reviewBlock">
-				<div id="commitBlock">
+			<div id="reviewBlock" class="hideBlock">
+				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
 						<div
 							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
@@ -332,7 +338,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							onclick="commitReport()">确认评审结果</button>
 					</div>
 				</div>
-				<div id="mergeBlock">
+				<div id="mergeBlock" class="hideBlock">
 					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
 					<div class="row"
 						style="min-height: 10px; max-height: 400px; overflow: auto;">
@@ -550,7 +556,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					</div>
 				</div>
 			</div>
-			<div id="overBlock">
+			<div id="overBlock" class="hideBlock">
 				<p>评审已截止，您可以查看评审报告</p>
 			</div>
 			<div id="divideModal" class="modal fade">
@@ -559,7 +565,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">x</button>
-							<h2 class="text-left text-primary">选择保留项</h2>
+							<h2 class="text-left text-primary">选择拆分项</h2>
 						</div>
 						<div class="modal-body" style="height: 250px; overflow: auto">
 							<table class="table" id="divideTable">

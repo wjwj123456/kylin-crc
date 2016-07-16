@@ -50,7 +50,12 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		i = 0;
 		j = 0;
 		for (ReportVO vo : vos) {
+
+			j = nameList.indexOf(vo.getUserName());
+			matrix[i][j] = 1;
+
 			int id = mergeDataImpl.getID(new ReportPO(vo));
+
 			String sql = "SELECT included_id FROM merge where final_id = " + id;
 			rSet = DBManager.getResultSet(sql);
 			if (!rSet.next()) {
