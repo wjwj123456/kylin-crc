@@ -1,3 +1,4 @@
+<%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
 <%@page import="bl.ReviewBlImpl"%>
 <%@page import="blservice.ReviewBlService"%>
@@ -12,6 +13,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%
+	response.setContentType("text/html;charset=utf-8");
+	request.setCharacterEncoding("utf-8");
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -32,15 +37,10 @@
 <script type="text/javascript">
 username = '<%=session.getAttribute("username")%>';
 taskName = '<%=request.getParameter("taskName")%>';
-<%TaskVO taskVO = Cast.cast(session.getAttribute("taskVO"));%>
-	
-<%if (taskVO.getType() == Type.code) {%>
-	taskType = 'code';
-<%} else {%>
-	taskType = 'file';
-<%}%>
+<%String taskName = Encode.transfer((String)request.getParameter("taskName")) ;%>
 	
 </script>
+	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
@@ -108,10 +108,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 		</div>
 	</div>
 	<div class="container" id="waitArea">
-		<h2 id="report">评审报告</h2>
-		<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
 		<%
-			int[][] taskHis = Cast.cast(session.getAttribute("taskHis_" + taskVO.getTaskName()));
+			int[][] taskHis = Cast.cast(session.getAttribute("taskHis_" + taskName));
 		%>
 		<script type="text/javascript">
 			var data = new Array();
@@ -128,87 +126,110 @@ taskName = '<%=request.getParameter("taskName")%>';
 		<%=taskHis[0][i]%>
 			);
 		<%}%>
-			var myChart = echarts.init(document.getElementById('resultGraph'));
-			var option = {
-				title : {
-					text : '总体评审效率'
-				},
-				tooltip : {
-					trigger : 'axis',
-					formatter : function(params) {
-						params = params[0];
-
-						return "有效率：" + params.data.toFixed(2) + "<br/>找出缺陷数："
-								+ fault[params.dataIndex] + "<br/>估计缺陷数："
-								+ assessmen[params.dataIndex];
-					},
-					axisPointer : {
-						animation : false
-					}
-				},
-				xAxis : {
-					name : '合并次数',
-					type : 'category',
-					data : [ '合并一', '合并二', '合并三', '合并四', '合并五', '合并六', '合并七' ]
-				},
-				yAxis : {
-					name : '效率',
-					type : 'value',
-					boundaryGap : [ 0, '100%' ],
-					splitLine : {
-						show : false
-					}
-				},
-				series : [ {
-					name : '模拟数据',
-					type : 'line',
-					showSymbol : false,
-					hoverAnimation : false,
-					data : data
-				} ]
-			};
-			myChart.setOption(option);
+		$(function(){
+			if(assessmen.length==0){
+				$('#reportZone').hide();
+				$('#noReportZone').show();
+			}else {
+				$('#reportZone').show();
+				$('#noReportZone').hide();
+			}
+		});
+		
 		</script>
-		<div class="col-md-5">
-			<%
-				List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_" + taskVO.getTaskName()));
-			%>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>评审人</th>
-						<th>预估缺陷总数</th>
-						<th>找出缺陷数</th>
-						<th>评审效率</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						NumberFormat ddf1 = NumberFormat.getNumberInstance();
-						ddf1.setMaximumFractionDigits(2);
-						double res;
-						for (AssessmentVO assessmentVO : userHis) {
-							if (assessmentVO.getAssessfaults() != 0) {
-								res = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults();
-							} else {
-								res = 0;
-							}
-					%>
-					<tr>
-						<td><%=assessmentVO.getReviewerName()%></td>
-						<td><%=assessmentVO.getAssessfaults()%></td>
-						<td><%=assessmentVO.getFindedfaults()%></td>
-						<td><%=ddf1.format(res * 100)%>%</td>
-					</tr>
-					<%
+		<div id="reportZone">
+			<h2 id="report">评审报告</h2>
+			<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
+
+			<script type="text/javascript">
+				var myChart = echarts.init(document
+						.getElementById('resultGraph'));
+				var option = {
+					title : {
+						text : '总体评审效率'
+					},
+					tooltip : {
+						trigger : 'axis',
+						formatter : function(params) {
+							params = params[0];
+
+							return "有效率：" + params.data.toFixed(2)
+									+ "<br/>找出缺陷数：" + fault[params.dataIndex]
+									+ "<br/>估计缺陷数："
+									+ assessmen[params.dataIndex];
+						},
+						axisPointer : {
+							animation : false
 						}
-					%>
-				</tbody>
-			</table>
+					},
+					xAxis : {
+						name : '合并次数',
+						type : 'category',
+						data : [ '合并一', '合并二', '合并三', '合并四', '合并五', '合并六',
+								'合并七' ]
+					},
+					yAxis : {
+						name : '效率',
+						type : 'value',
+						boundaryGap : [ 0, '100%' ],
+						splitLine : {
+							show : false
+						}
+					},
+					series : [ {
+						name : '模拟数据',
+						type : 'line',
+						showSymbol : false,
+						hoverAnimation : false,
+						data : data
+					} ]
+				};
+				myChart.setOption(option);
+			</script>
+			<div class="col-md-5">
+				<%
+					List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_" + taskName));
+				%>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>评审人</th>
+							<th>预估缺陷总数</th>
+							<th>找出缺陷数</th>
+							<th>评审效率</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							NumberFormat ddf1 = NumberFormat.getNumberInstance();
+							ddf1.setMaximumFractionDigits(2);
+							double res;
+							for (AssessmentVO assessmentVO : userHis) {
+								if (assessmentVO.getAssessfaults() != 0) {
+									res = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults();
+								} else {
+									res = 0;
+								}
+						%>
+						<tr>
+							<td><%=assessmentVO.getReviewerName()%></td>
+							<td><%=assessmentVO.getAssessfaults()%></td>
+							<td><%=assessmentVO.getFindedfaults()%></td>
+							<td><%=ddf1.format(res * 100)%>%</td>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+			</div>
+			<hr>
 		</div>
-		<hr>
+		<div id="noReportZone">
+		<p>暂无可显示的报告数据</p>
+		</div>
 	</div>
-	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>

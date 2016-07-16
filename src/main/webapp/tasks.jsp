@@ -1,3 +1,4 @@
+<%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
 <%@page import="bl.ReviewBlImpl"%>
 <%@page import="blservice.ReviewBlService"%>
@@ -156,7 +157,6 @@ taskName = '<%=request.getParameter("taskName")%>';
 				<li><a href="#message">说明</a></li>
 				<li><a href="#deadline">截止时间</a></li>
 				<li><a href="#review">评审</a></li>
-				<li><a href="#report">评审报告</a></li>
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
@@ -179,6 +179,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
+					<a href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName")) %>">
+					<button class="btn btn-success" >查看已生成报告</button>
+					</a>
 					<div id="preJoinBlock">
 						<div id="joinBlock">
 							<button class="btn btn-success" id="join">参加评审</button>
