@@ -243,6 +243,9 @@ function codeUnique() {
 			return $(this);
 		}
 	});
+	if(!(items.length == 0)){
+		alert("重复项目");
+	}
 	
 	return items.length == 0;
 }
@@ -251,12 +254,15 @@ function fileUnique() {
 		var fileName = $(this).find('td:first');
 		
 		if ($(fileName).text() == $('#fileName-file').val().trim() 
-				&& $(fileName).next().text() == $('#lineNum-file').val().trim()
-				&& $(fileName).next().next().text() == $('#discription-file').val().trim()) {
+				&& $(fileName).next().text() == $('#pageNum-code').val().trim()
+				&& $(fileName).next().text().next() == $('#lineNum-file').val().trim()
+				&& $(fileName).next().next().text().next() == $('#discription-file').val().trim()) {
 			return $(this);
 		}
 	});
-	
+	if(!(items.length == 0)){
+		alert("重复项目");
+	}
 	return items.length == 0;
 }
 
