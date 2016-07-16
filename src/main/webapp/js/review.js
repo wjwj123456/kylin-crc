@@ -797,8 +797,8 @@ function commitReport() {
 				data: 'type=split' + '&origin=' + JSON.stringify(report) + '&data=' + data,
 				success: function(data) {
 					var result = jQuery.parseJSON(data);
-//					afterSplit(result.data);
-					location.reload(true)
+					afterSplit(result.data);
+//					location.reload(true)
 				}
 			})
 		})
@@ -866,18 +866,17 @@ function commitReport() {
 	 * @returns
 	 */
 	function getDivideItem() {
-		var inputs = $('#divideTable tbody').find('tr');
-		
+		var inputs = $('#divideTable tbody').find('input');
+		var checked = new Array();
 		for (var i = 0; i < inputs.length; i++) {
-			if (!$(inputs[i]).find('td:first').prop('checked')) {
-				inputs.splice(i, 1);
-				i--;
+			if ($(inputs[i]).prop('checked')) {
+				checked.push($(inputs[i]))
 			}
 		}
 
 		var result = new Array();
-		for (var i = 0; i < inputs.prevObject.length; i++) {
-			var temp = $(inputs.prevObject[i]).find('td');
+		for (var i = 0; i < checked.length; i++) {
+			var temp = $(checked[i]).parent().parent().find('td');
 			var obj = new Object({ // 默认代码拆分
 				taskName: taskName,
 				userName: $(temp[4]).text(),
