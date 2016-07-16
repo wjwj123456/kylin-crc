@@ -15,7 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import bl.MergeBlImpl;
+import bl.ReportBlImpl;
 import bl.SplitBlImpl;
 import tools.Encode;
 import vo.ReportVO;
@@ -111,10 +111,11 @@ public class SplitServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		MergeBlImpl merge = new MergeBlImpl();
-		List<ReportVO> result = merge.mergeReport(report.getTaskName());
+		ReportBlImpl reportBl = new ReportBlImpl();
+		List<ReportVO> result = reportBl.getAllReportsByTaskName(report.getTaskName());
 
-		System.out.println(result);
+		System.out.println(reportList);
+		System.out.println(result.size());
 		System.out.println(report.getTaskName());
 		JSONObject object = new JSONObject();
 		object.put("data", result);
