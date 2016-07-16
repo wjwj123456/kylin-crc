@@ -562,7 +562,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">x</button>
-							<h2 class="text-left text-primary">选择保留项</h2>
+							<h2 class="text-left text-primary">选择拆分项</h2>
 						</div>
 						<div class="modal-body" style="height: 250px; overflow: auto">
 							<table class="table" id="divideTable">
