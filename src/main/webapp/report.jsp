@@ -234,8 +234,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script
-		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/review.js"></script>
 	<script src="js/stateControl.js"></script>
