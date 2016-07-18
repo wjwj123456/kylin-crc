@@ -12,7 +12,7 @@ public interface AssessmentBlService {
 	 * @param taskName
 	 * @return
 	 */
-	public int[] getHistoryAssessmentValues(String taskName);
+	public int[] getHistoryAssessmentValues_Mt(String taskName);
 
 	/**
 	 * ldk get the history finded fault counts
@@ -20,7 +20,7 @@ public interface AssessmentBlService {
 	 * @param taskName
 	 * @return
 	 */
-	public int[] getHistoryFaultValues(String taskName);
+	public int[] getHistoryFaultValues_Mt(String taskName);
 
 	/**
 	 * ldk get all ananlyse of reviwers' reports
@@ -28,5 +28,5 @@ public interface AssessmentBlService {
 	 * @param taskName
 	 * @return
 	 */
-	public List<AssessmentVO> getAllAssessments(String taskName);
+	public List<AssessmentVO> getAllAssessments_Mt(String taskName);
 }

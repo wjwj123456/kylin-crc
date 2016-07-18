@@ -20,13 +20,13 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	private MergeDataImpl mergeDataImpl = new MergeDataImpl();
 
 	@Override
-	public int getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
+	public int getAssessmentValue_Mt(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 
 		if (vos.size() != 0) {
 			int[][] matrix = getMatix(taskName, vos);
 			crc = new CrcModule(matrix);
-			return (int) crc.getMhCH();
+			return (int) crc.getMtCH();
 		} else {
 			return 0;
 		}
@@ -125,7 +125,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	}
 
 	@Override
-	public int[][] getHistoryValues(String taskName) throws SQLException, ClassNotFoundException {
+	public int[][] getHistoryValues_Mt(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<Integer> faults = new ArrayList<Integer>();
 		List<Integer> assessfaults = new ArrayList<Integer>();
@@ -146,7 +146,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	}
 
 	@Override
-	public List<AssessmentPO> getAllAssessments(String taskName, List<ReportVO> vos)
+	public List<AssessmentPO> getAllAssessments_Mt(String taskName, List<ReportVO> vos)
 			throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<AssessmentPO> pos = new ArrayList<AssessmentPO>();
@@ -157,7 +157,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			if (vos.size() != 0) {
 				int[][] matrix = getMatix(taskName, vos);
 				CrcModule crcM = new CrcModule(matrix);
-				int assessfault = (int) crcM.getMhCH();
+				int assessfault = (int) crcM.getMtCH();
 
 				for (int i = 0; i < nameList.size(); i++) {
 					int findedfault = 0;

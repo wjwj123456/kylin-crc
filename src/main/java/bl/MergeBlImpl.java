@@ -102,7 +102,7 @@ public class MergeBlImpl implements MergeBlService {
 		int flag = 0;
 		AssessmentBlImpl assessmentBlImpl = new AssessmentBlImpl();
 		ReportBlImpl reportBlImpl = new ReportBlImpl();
-		int assessFault = assessmentBlImpl.getAssessmentValue(taskName);
+		int assessFault = assessmentBlImpl.getAssessmentValue_Mt(taskName);
 		int fault = reportBlImpl.getMergeReport(taskName).size();
 		try {
 			try {
