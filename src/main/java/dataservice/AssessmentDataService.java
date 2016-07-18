@@ -15,7 +15,7 @@ public interface AssessmentDataService {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public int getAssessmentValue_Mt(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException;
+	public int[] getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException;
 
 	/**
 	 * ldk
@@ -25,7 +25,7 @@ public interface AssessmentDataService {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public int[][] getHistoryValues_Mt(String taskName) throws SQLException, ClassNotFoundException;
+	public int[][] getHistoryValues(String taskName) throws SQLException, ClassNotFoundException;
 
 	/**
 	 * ldk get all ananlyse of reviwers' reports
@@ -33,6 +33,7 @@ public interface AssessmentDataService {
 	 * @param taskName
 	 * @return
 	 */
-	public List<AssessmentPO> getAllAssessments_Mt(String taskName, List<ReportVO> vos)
+	public List<AssessmentPO> getAllAssessments(String taskName, List<ReportVO> vos)
 			throws SQLException, ClassNotFoundException;
+
 }

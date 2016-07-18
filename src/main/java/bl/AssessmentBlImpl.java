@@ -21,7 +21,7 @@ public class AssessmentBlImpl implements AssessmentBlService {
 		// TODO Auto-generated method stub
 		int[] i = new int[1];
 		try {
-			return assessmentDataService.getHistoryValues_Mt(taskName)[1];
+			return assessmentDataService.getHistoryValues(taskName)[1];
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,11 +34,11 @@ public class AssessmentBlImpl implements AssessmentBlService {
 	}
 
 	@Override
-	public int[] getHistoryFaultValues_Mt(String taskName) {
+	public int[] getHistoryAssessmentValues_Mh(String taskName) {
 		// TODO Auto-generated method stub
 		int[] i = new int[1];
 		try {
-			return assessmentDataService.getHistoryValues_Mt(taskName)[0];
+			return assessmentDataService.getHistoryValues(taskName)[2];
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,11 +50,27 @@ public class AssessmentBlImpl implements AssessmentBlService {
 		}
 	}
 
-	public int getAssessmentValue_Mt(String taskName) {
-		List<ReportVO> list = reportBlImpl.getMergeReport(taskName);
-		int counts = 0;
+	@Override
+	public int[] getHistoryFaultValues(String taskName) {
+		// TODO Auto-generated method stub
+		int[] i = new int[1];
 		try {
-			counts = assessmentDataService.getAssessmentValue_Mt(taskName, list);
+			return assessmentDataService.getHistoryValues(taskName)[0];
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		}
+	}
+
+	public int[] getAssessmentValue(String taskName, List<ReportVO> vos) {
+		int[] counts = { 0, 0 };
+		try {
+			counts = assessmentDataService.getAssessmentValue(taskName, vos);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,13 +82,13 @@ public class AssessmentBlImpl implements AssessmentBlService {
 	}
 
 	@Override
-	public List<AssessmentVO> getAllAssessments_Mt(String taskName) {
+	public List<AssessmentVO> getAllAssessments(String taskName) {
 		// TODO Auto-generated method stub
 		List<ReportVO> vos = reportBlImpl.getMergeReport(taskName);
 		List<AssessmentVO> aVos = new ArrayList<AssessmentVO>();
 		List<AssessmentPO> pos = new ArrayList<AssessmentPO>();
 		try {
-			pos = assessmentDataService.getAllAssessments_Mt(taskName, vos);
+			pos = assessmentDataService.getAllAssessments(taskName, vos);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,4 +101,5 @@ public class AssessmentBlImpl implements AssessmentBlService {
 
 		return aVos;
 	}
+
 }
