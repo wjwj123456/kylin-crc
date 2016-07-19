@@ -17,3 +17,18 @@ function searchUser(keyword) {
 	});
 }
 
+/**
+ * search task by keyword 
+ * @param keyword
+ * @returns
+ */
+function searchTask(keyword) {
+	jQuery.ajax({
+		url: '/crc/SearchServlet',
+		type: 'post',
+		data: 'type=searchTask&keyword=' + keyword,
+		success: function(data) {
+			
+		}
+	});
+}
