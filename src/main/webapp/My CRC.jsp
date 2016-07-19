@@ -33,6 +33,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审</a></li>
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
@@ -53,9 +54,6 @@
 
 				<li><a href="#basicInfo">基本信息</a></li>
 				<li><a href="#message">消息</a></li>
-				<li><a href="#runningReview">进行中评审</a></li>
-				<li><a href="#joiningReview">参与中评审</a></li>
-				<li><a href="#hisReview">历史评审</a></li>
 				<li><a href="#perAnalyze">个人分析</a></li>
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
@@ -113,79 +111,6 @@
 				</tbody>
 			</table>
 			<hr>
-			<h2 id="runningReview">进行中评审</h2>
-			<table class="table">
-				<tr>
-					<th>评审名</th>
-					<th>描述</th>
-					<th>deadline</th>
-					<th>操作</th>
-				</tr>
-				<%
-					List<TaskVO> running = Cast.cast(session.getAttribute("runningTask"));
-				%>
-				<%
-					for (TaskVO vo : running) {
-				%>
-				<tr>
-					<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-					<td><%=vo.getDescribe()%></td>
-					<td><%=vo.getDeadline()%></td>
-					<td><button class="btn btn-success" data-toggle="modal"
-							data-target="#inviteModal" onclick="initInvite(this)">邀请</button></td>
-				</tr>
-				<%
-					}
-				%>
-			</table>
-			<hr>
-			<h2 id="joiningReview">参与中评审</h2>
-			<table class="table">
-				<tr>
-					<th>评审名</th>
-					<th>描述</th>
-					<th>deadline</th>
-				</tr>
-				
-				<%
-					List<TaskVO> joiningTasks = Cast.cast(session.getAttribute("participantTask"));
-				%>
-				<%
-					for (TaskVO vo : joiningTasks) {
-				%>
-				<tr>
-					<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-					<td><%=vo.getDescribe()%></td>
-					<td><%=vo.getDeadline()%></td>
-				</tr>
-				<%
-					}
-				%>
-			</table>
-			<hr>
-			<h2 id="hisReview">历史评审</h2>
-			<table class="table">
-				<tr>
-					<th>评审名</th>
-					<th>描述</th>
-					<th>deadline</th>
-				</tr>
-				<%
-					List<TaskVO> history = Cast.cast(session.getAttribute("historyTask"));
-				%>
-				<%
-					for (TaskVO vo : history) {
-				%>
-				<tr>
-					<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-					<td><%=vo.getDescribe()%></td>
-					<td><%=vo.getDeadline()%></td>
-				</tr>
-				<%
-					}
-				%>
-			</table>
-			<hr>
 			<h2 id="perAnalyze">个人分析</h2>
 			<table class="table">
 				<tr>
@@ -210,79 +135,7 @@
 			<hr>
 		</div>
 	</div>
-	<div id="inviteModal" class="modal fade">
-		<div class="modal-dialog" style="width: 800px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">x</button>
-					<h2 class="text-left text-primary">邀请评审者</h2>
-				</div>
-				<div class="modal-body" style="height: 450px; overflow: auto">
-
-					<div class="row form-group">
-						<div class="col-md-8">
-							<input size="40" type="text" class="form-control typeahead"
-								id="searchName" placeholder="用户名关键字">
-						</div>
-						<button type="button" class="btn btn-success" id="search">搜索</button>
-					</div>
-					<div class="col-md-4">
-						<p>可邀请</p>
-						<div style="height: 250px; overflow: auto">
-
-							<table class="table" id="toInvite">
-								<thead>
-									<tr>
-										<th>用户名</th>
-									</tr>
-								</thead>
-								<tbody>
-
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<p>将邀请</p>
-						<div style="height: 250px; overflow: auto">
-
-							<table class="table" id="invited">
-								<thead>
-									<tr>
-										<th>用户名</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<p>已参加</p>
-						<div style="height: 250px; overflow: auto">
-
-							<table class="table" id="agreed">
-								<thead>
-									<tr>
-										<th>用户名</th>
-									</tr>
-								</thead>
-								<tbody>
-
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">取消
-					</button>
-					<button type="button" class="btn btn-primary" id="confirmInvite">确认邀请</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<script type="text/javascript">
 		
 	</script>

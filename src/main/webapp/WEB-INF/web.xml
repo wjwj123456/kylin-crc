@@ -148,6 +148,15 @@
     <filter-name>ReportFilter</filter-name>
     <url-pattern>/report.jsp</url-pattern>
   </filter-mapping>
+  <filter>
+    <display-name>myTasksFilter</display-name>
+    <filter-name>myTasksFilter</filter-name>
+    <filter-class>filter.myTasksFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>myTasksFilter</filter-name>
+    <url-pattern>/myTasks.jsp</url-pattern>
+  </filter-mapping>
   <servlet>
     <description></description>
     <display-name>CommandServlet</display-name>

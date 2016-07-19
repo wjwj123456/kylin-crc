@@ -53,22 +53,6 @@ public class CRCFilter implements Filter {
 		List<TaskVO> invitationList = invite.getInvitationInfo(userName);
 		session.setAttribute("invitationList", invitationList);
 
-		// 正在进行中的任务(发起者)
-		List<TaskVO> runningTask = reviewBl.getDoingTaskList(userName);
-		session.setAttribute("runningTask", runningTask);
-
-		// 历史任务(发起者)
-		List<TaskVO> historyTask = reviewBl.getEndTaskList(userName);
-		historyTask.addAll(reviewBl.getJoinedEndTasksByUserName(userName));
-		session.setAttribute("historyTask", historyTask);
-
-		// 正在进行中的任务(参与者)
-		List<TaskVO> participantTask = reviewBl.getJoinedDoingTasksByUserName(userName);
-		session.setAttribute("participantTask", participantTask);
-
-		// 历史任务(参与者)
-		List<TaskVO> historyTask_participant = new ReviewBlImpl().getJoinedEndTasksByUserName(userName);
-		session.setAttribute("historyTask_participant", historyTask_participant);
 
 		chain.doFilter(request, response);
 	}
