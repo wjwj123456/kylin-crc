@@ -23,8 +23,8 @@ public class DeleteMergeCommand implements Command {
 	}
 
 	@Override
-	public void execute() {
-		mergeBl.deleteMergeRecord(report);
+	public int execute() {
+		return mergeBl.deleteMergeRecord(report);
 	}
 
 	@Override

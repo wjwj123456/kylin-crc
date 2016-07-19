@@ -25,12 +25,12 @@ public class ReportCommand implements Command {
 	}
 
 	@Override
-	public void execute() {
+	public int execute() {
 		List<ReportVO> reportList = new ArrayList<ReportVO>();
 
 		reportList.add(report);
 
-		reportBl.createReport(reportList);
+		return reportBl.createReport(reportList);
 	}
 
 	@Override

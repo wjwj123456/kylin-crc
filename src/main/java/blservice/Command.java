@@ -10,7 +10,7 @@ public interface Command {
 	/**
 	 * execute commond
 	 */
-	public void execute();
+	public int execute();
 
 	/**
 	 * undo command

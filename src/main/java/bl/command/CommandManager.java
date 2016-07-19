@@ -11,21 +11,20 @@ import blservice.Command;
  * @author song
  */
 public class CommandManager {
-	private List<Command> undoList = new ArrayList<>();
-	private List<Command> redoList = new ArrayList<>();
+	private static List<Command> undoList = new ArrayList<>();
+	private static List<Command> redoList = new ArrayList<>();
 
 	// steps of undo command
-	private int undoCount;
+	private static final int undoCount = 10;
 
-	public CommandManager() {
-		undoCount = 20;
+	private CommandManager() {
 	}
 
 	/**
 	 * execute command
 	 */
-	public void executeCommand(Command cmd) {
-		cmd.execute();
+	public static int executeCommand(Command cmd) {
+		int result = cmd.execute();
 
 		undoList.add(cmd);
 
@@ -36,12 +35,14 @@ public class CommandManager {
 
 		// 执行新操作后清空redoList
 		redoList.clear();
+
+		return result;
 	}
 
 	/**
 	 * undo command
 	 */
-	public void undo() {
+	public static void undo() {
 		if (undoList.size() <= 0) {
 			return;
 		}
@@ -56,7 +57,7 @@ public class CommandManager {
 	/**
 	 * redo command
 	 */
-	public void redo() {
+	public static void redo() {
 		if (redoList.size() <= 0) {
 			return;
 		}

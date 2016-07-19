@@ -26,8 +26,8 @@ public class DeleteCommand implements Command {
 	}
 
 	@Override
-	public void execute() {
-		reportBl.deleteReport(report);
+	public int execute() {
+		return reportBl.deleteReport(report);
 	}
 
 	@Override

@@ -32,12 +32,17 @@ public class SplitCommand implements Command {
 	}
 
 	@Override
-	public void execute() {
+	public int execute() {
+		int result = 0;
 		try {
-			splitBl.split(reportList, report);
+			boolean flag = splitBl.split(reportList, report);
+
+			result = flag ? 0 : 1;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+
+		return result;
 	}
 
 	@Override

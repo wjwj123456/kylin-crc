@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +16,8 @@ import org.json.JSONObject;
 
 import bl.ReportBlImpl;
 import bl.SplitBlImpl;
+import bl.command.CommandManager;
+import bl.command.SplitCommand;
 import tools.Encode;
 import vo.ReportVO;
 
@@ -103,20 +104,11 @@ public class SplitServlet extends HttpServlet {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			reportList.add(getData(jsonArray.getJSONObject(i)));
 		}
-
-		SplitBlImpl split = new SplitBlImpl();
-		try {
-			split.split(reportList, report);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		CommandManager.executeCommand(new SplitCommand(reportList, report));
 
 		ReportBlImpl reportBl = new ReportBlImpl();
 		List<ReportVO> result = reportBl.getAllReportsByTaskName(report.getTaskName());
 
-		System.out.println(reportList);
-		System.out.println(result.size());
-		System.out.println(report.getTaskName());
 		JSONObject object = new JSONObject();
 		object.put("data", result);
 

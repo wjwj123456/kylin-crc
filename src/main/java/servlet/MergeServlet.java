@@ -15,6 +15,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import bl.MergeBlImpl;
+import bl.command.CommandManager;
+import bl.command.DeleteMergeCommand;
+import bl.command.MergeCommand;
 import tools.Encode;
 import vo.ReportVO;
 
@@ -66,12 +69,12 @@ public class MergeServlet extends HttpServlet {
 	 */
 	private void handleSaveMerge(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String taskName = Encode.transfer(request.getParameter("taskName"));
-		// String userName = (String)
-		// request.getSession().getAttribute("username");
 
-		MergeBlImpl merge = new MergeBlImpl();
-		System.out.println(taskName);
-		int result = merge.saveMergeReport(getData(request.getParameter("data")), taskName);
+		int result = CommandManager.executeCommand(new MergeCommand(getData(request.getParameter("data")), taskName));
+		// MergeBlImpl merge = new MergeBlImpl();
+		// int result =
+		// merge.saveMergeReport(getData(request.getParameter("data")),
+		// taskName);
 
 		PrintWriter out = response.getWriter();
 		out.print(result);
@@ -87,8 +90,14 @@ public class MergeServlet extends HttpServlet {
 	 */
 	private void handleDeleteMerge(HttpServletRequest request, HttpServletResponse response)
 			throws JSONException, IOException {
-		MergeBlImpl merge = new MergeBlImpl();
-		merge.deleteMergeRecord(getData(request.getParameter("data")).get(0));
+		// MergeBlImpl merge = new MergeBlImpl();
+		// merge.deleteMergeRecord(getData(request.getParameter("data")).get(0));
+
+		int result = CommandManager
+				.executeCommand(new DeleteMergeCommand(getData(request.getParameter("data")).get(0)));
+
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 
 	/**

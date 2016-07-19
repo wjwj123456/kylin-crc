@@ -35,8 +35,8 @@ public class MergeCommand implements Command {
 	}
 
 	@Override
-	public void execute() {
-		merge.saveMergeReport(reportList, taskName);
+	public int execute() {
+		return merge.saveMergeReport(reportList, taskName);
 	}
 
 	@Override
