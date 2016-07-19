@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import vo.Language;
 import vo.Sex;
+import vo.UserInfoVO;
 
 /**
  * TODO: 锛堢被鎻忚堪锛�
@@ -41,6 +42,18 @@ public class UserInfoPO {
 		this.languages = languages;
 	}
 
+	public UserInfoPO(UserInfoVO vo) {
+		this.userName = vo.getUserName();
+		this.trueName = vo.getTrueName();
+		this.sex = vo.getSex();
+		this.job = vo.getJob();
+		this.province = vo.getProvince();
+		this.city = vo.getCity();
+		this.description = vo.getDescription();
+		this.picture = vo.getPicture();
+		this.languages = vo.getLanguages();
+	}
+	
 	@Override
 	public String toString() {
 		return "UserInfoPO [userName=" + userName + ", trueName=" + trueName + ", sex=" + sex + ", job=" + job
