@@ -17,7 +17,7 @@ public class UserInfoDataImpl implements UserInfoDataService {
 	public boolean update(UserInfoPO po) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
 		String sql = "UPDATE inform SET name = ?, sex = ?, job = ?,"
-				+ " province = ?, city = ?, description = ? WHERE uname = ?";
+				+ " province = ?, city = ?, description = ?, picture = ? WHERE uname = ?";
 		PreparedStatement pStatement = connection.prepareStatement(sql);
 		pStatement.setString(1, po.getTrueName());
 		pStatement.setString(2, po.getSex().toString());
@@ -25,7 +25,8 @@ public class UserInfoDataImpl implements UserInfoDataService {
 		pStatement.setString(4, po.getProvince());
 		pStatement.setString(5, po.getCity());
 		pStatement.setString(6, po.getDescription());
-		pStatement.setString(7, po.getUserName());
+		pStatement.setString(7, po.getPicture());
+		pStatement.setString(8, po.getUserName());
 		int i = pStatement.executeUpdate();
 		
 		String sql2 = "DELETE FROM user_language WHERE uname = ?";
@@ -66,7 +67,8 @@ public class UserInfoDataImpl implements UserInfoDataService {
 		pStatement.setString(1, username);
 		ResultSet rSet = pStatement.executeQuery();
 		if(rSet.next()) {
-			result = new UserInfoPO(username, rSet.getString("name"), Sex.valueOf(rSet.getString("sex")), rSet.getString("job"), rSet.getString("province"), rSet.getString("city"), rSet.getString("description"), null);
+			result = new UserInfoPO(username, rSet.getString("name"), Sex.valueOf(rSet.getString("sex")), rSet.getString("job"), rSet.getString("province"), 
+					rSet.getString("city"), rSet.getString("description"), rSet.getString("picture"), null);
 		}
 		else return null;
 		String sql2 = "SELECT * FROM user_language WHERE uname = ?";
