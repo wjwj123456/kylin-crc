@@ -37,10 +37,10 @@
 <script type="text/javascript">
 username = '<%=session.getAttribute("username")%>';
 taskName = '<%=request.getParameter("taskName")%>';
-<%String taskName = Encode.transfer((String)request.getParameter("taskName")) ;%>
+<%String taskName = Encode.transfer((String) request.getParameter("taskName"));%>
 	
 </script>
-	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
@@ -78,37 +78,56 @@ taskName = '<%=request.getParameter("taskName")%>';
 		</div>
 	</div>
 	</nav>
-	<div class="container" id="waitArea">
+	<div class="container" style="text-align: center;" id="waitArea">
 		<%
 			int[][] taskHis = Cast.cast(session.getAttribute("taskHis_" + taskName));
 		%>
 		<script type="text/javascript">
-			var data = new Array();
-			var assessmen = new Array();
+			var dataMt = new Array();
+			var dataMh = new Array();
+			var assessmenMt = new Array();
+			var assessmenMh = new Array();
 			var fault = new Array();
+			var res1;
+			var res2;
 		<%for (int i = 0; i < taskHis[0].length; i++) {%>
-			data.push(
-		<%=(taskHis[0][i] + 0.0) / taskHis[1][i] * 100%>
-			);
-			assessmen.push(
+			<%if(taskHis[1][i]==0){%>
+				res1=0;
+			<%}else{%>
+				res1 = <%=(taskHis[0][i] + 0.0) / taskHis[1][i] * 100%>;
+				res1 = res1.toFixed(2);
+			<%}%>
+			<%if(taskHis[2][i]==0){%>
+				res2=0;
+			<%}else{%>
+				res2 = <%=(taskHis[0][i] + 0.0) / taskHis[2][i] * 100%>;
+				res2 = res2.toFixed(2);
+			<%}%>
+			dataMt.push(res1);
+			dataMh.push(res2);
+			assessmenMt.push(
 		<%=taskHis[1][i]%>
+			);
+			assessmenMh.push(
+		<%=taskHis[2][i]%>
 			);
 			fault.push(
 		<%=taskHis[0][i]%>
 			);
 		<%}%>
-		$(function(){
-			if(assessmen.length==0){
-				$('#reportZone').hide();
-				$('#noReportZone').show();
-			}else {
-				$('#reportZone').show();
-				$('#noReportZone').hide();
-			}
-		});
-		
+			$(function() {
+				if (fault.length == 0) {
+					$('#reportZone').hide();
+					$('#noReportZone').show();
+				} else {
+					$('#reportZone').show();
+					$('#noReportZone').hide();
+				}
+			});
 		</script>
-		<h2 id="report">评审报告</h2>
+		<h1 id="report">评审报告</h1>
+		<hr>
+		<hr>
 		<div id="reportZone">
 			<div class="row" id="resultGraph" style="height: 400px"></div>
 			<script type="text/javascript">
@@ -120,17 +139,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 					},
 					tooltip : {
 						trigger : 'axis',
-						formatter : function(params) {
-							params = params[0];
-
-							return "有效率：" + params.data.toFixed(2)
-									+ "<br/>找出缺陷数：" + fault[params.dataIndex]
-									+ "<br/>估计缺陷数："
-									+ assessmen[params.dataIndex];
-						},
+						
 						axisPointer : {
-							animation : false
+							animation : true
 						}
+					},
+					legend : {
+						data : [ 'mt效率', 'mh效率', '总体缺陷发现', 'mt估值', 'mh估值' ]
 					},
 					xAxis : {
 						name : '合并次数',
@@ -138,55 +153,98 @@ taskName = '<%=request.getParameter("taskName")%>';
 						data : [ '合并一', '合并二', '合并三', '合并四', '合并五', '合并六',
 								'合并七' ]
 					},
-					yAxis : {
-						name : '效率',
+					yAxis : [ {
+						name : '数量',
 						type : 'value',
-						boundaryGap : [ 0, '100%' ],
 						splitLine : {
 							show : false
 						}
-					},
+					}, {
+						name : '效率',
+						type : 'value',
+						splitLine : {
+							show : false
+						}
+					} ],
 					series : [ {
-						name : '模拟数据',
+						name : '总体缺陷发现',
+						type : 'bar',
+						barWidth : '15%',
+						barCategoryGap : '5%',
+						data : fault
+					}, {
+						name : 'mt估值',
+						type : 'bar',
+						barWidth : '15%',
+						barCategoryGap : '5%',
+						data : assessmenMt
+					}, {
+						name : 'mh估值',
+						type : 'bar',
+						barWidth : '15%',
+						barCategoryGap : '5%',
+						data : assessmenMh
+					}, {
+						name : 'mt效率',
 						type : 'line',
-						showSymbol : false,
-						hoverAnimation : false,
-						data : data
+						yAxisIndex : 1,
+						data : dataMt
+					}, {
+						name : 'mh效率',
+						type : 'line',
+						yAxisIndex : 1,
+						data : dataMh
 					} ]
 				};
 				myChart.setOption(option);
 			</script>
-			<h2>最新预估缺陷值：XXXX</h2>
+			<%
+				List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_" + taskName));
+			%>
+			<h2>
+				最新Mt预估缺陷值：<%=userHis.get(0).getAssessfaults_mt()%></h2>
+			<h2>
+				最新Mh预估缺陷值：<%=userHis.get(0).getAssessfaults_mh()%></h2>
 			<div class="row">
-				<%
-					List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_" + taskName));
-				%>
+
 				<table class="table">
 					<thead>
 						<tr>
 							<th>评审人</th>
-							<th>预估缺陷总数</th>
-							<th>找出缺陷数</th>
-							<th>评审效率</th>
+							<th>发现缺陷数</th>
+							<th>独特缺陷发现数</th>
+							<th>mt评审效率</th>
+							<th>mh评审效率</th>
+							<th>花费时间</th>
+							<th>每小时缺陷发现数</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
 							NumberFormat ddf1 = NumberFormat.getNumberInstance();
 							ddf1.setMaximumFractionDigits(2);
-							double res;
+							double resMt;
+							double resMh;
 							for (AssessmentVO assessmentVO : userHis) {
-								if (assessmentVO.getAssessfaults() != 0) {
-									res = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults();
+								if (assessmentVO.getAssessfaults_mt() != 0) {
+									resMt = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults_mt();
 								} else {
-									res = 0;
+									resMt = 0;
+								}
+								if (assessmentVO.getAssessfaults_mh() != 0) {
+									resMh = (assessmentVO.getFindedfaults() + 0.0) / assessmentVO.getAssessfaults_mh();
+								} else {
+									resMh = 0;
 								}
 						%>
 						<tr>
 							<td><%=assessmentVO.getReviewerName()%></td>
-							<td><%=assessmentVO.getAssessfaults()%></td>
 							<td><%=assessmentVO.getFindedfaults()%></td>
-							<td><%=ddf1.format(res * 100)%>%</td>
+							<td><%=assessmentVO.getUniquefaults()%></td>
+							<td><%=ddf1.format(resMt * 100)%>%</td>
+							<td><%=ddf1.format(resMh * 100)%>%</td>
+							<td><%=assessmentVO.getTime()%></td>
+							<td><%=assessmentVO.getFaultsperhour()%></td>
 						</tr>
 						<%
 							}
@@ -197,7 +255,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<hr>
 		</div>
 		<div id="noReportZone">
-		<p>暂无可显示的报告数据</p>
+			<p>暂无可显示的报告数据</p>
 		</div>
 	</div>
 
@@ -205,10 +263,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script
+		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/review.js"></script>
-	<script src="js/stateControl.js"></script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script src='js/countDown.js'></script>

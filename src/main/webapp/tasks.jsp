@@ -30,7 +30,8 @@
 .drop {
 	text-decoration: line-through;
 }
-.hideBlock{
+
+.hideBlock {
 	display: none;
 }
 </style>
@@ -46,7 +47,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 <%} else {%>
 	taskType = 'file';
 <%}%>
-	
+<%ReviewBlService reviewBl = new ReviewBlImpl();
+			State theState = reviewBl.getState((String) session.getAttribute("username"), taskVO.getTaskName());%>
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
@@ -163,6 +165,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 			</ul>
 			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
 		</div>
+		<div style="position: fixed; width: 90px; height: 90px; top: 300px;">
+		</div>
 
 		<div class="col-md-10 bs-docs-section">
 			<h2 id="title"><%=taskVO.getTaskName()%></h2>
@@ -182,8 +186,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
-					<a href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName")) %>">
-					<button class="btn btn-success" >查看已生成报告</button>
+					<a
+						href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName"))%>">
+						<button class="btn btn-success">查看已生成报告</button>
 					</a>
 					<div id="preJoinBlock" class="hideBlock">
 						<div id="joinBlock">
@@ -220,10 +225,27 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<div id="fnTimeCountDown" data-end="2018/07/08 18:45:13">
 				<span class="year">00</span>年 <span class="month">00</span>月 <span
 					class="day">00</span>天 <span class="hour">00</span>时 <span
-					class="mini">00</span>分 <span class="sec">00</span>秒 
+					class="mini">00</span>分 <span class="sec">00</span>秒
 			</div>
 			<hr>
 			<h2 id="review">评审</h2>
+			<%
+				if (theState == State.agree || theState == State.commit) {
+			%>
+
+			<div class="row">
+				<button type="button" class="btn btn-default btn-sm" id="undo">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					Undo
+				</button>
+				<button type="button" class="btn btn-default btn-sm" id="redo">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					Redo
+				</button>
+			</div>
+			<%
+				}
+			%>
 			<div id="reviewBlock" class="hideBlock">
 				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
@@ -369,7 +391,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<td>
 										<%
 											if (reportVO.getIsMerged() == 1) {
-										%><button class="btn btn-warning">拆分</button> <%
+										%><button class="btn btn-warning btn-sm">拆分</button> <%
  	}
  %>
 									</td>
@@ -405,7 +427,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<td>
 										<%
 											if (reportVO.getIsMerged() == 1) {
-										%><button class="btn btn-warning">拆分</button> <%
+										%><button class="btn btn-warning btn-sm">拆分</button> <%
  	}
  %>
 									</td>
@@ -599,7 +621,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 				</div>
 			</div>
 			<hr>
-			
+
 		</div>
 	</div>
 
@@ -621,9 +643,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script src="js/stateControl.js"></script>
 	<script type="text/javascript">
 		
-	<%ReviewBlService reviewBl = new ReviewBlImpl();
-			State theState = reviewBl.getState((String) session.getAttribute("username"), taskVO.getTaskName());
-			if (theState == State.agree) {%>
+	<%if (theState == State.agree) {%>
 		currentUserDisp = userDisp[joined];
 	<%} else if (theState == State.refuse) {%>
 		currentUserDisp = userDisp[unJoin];
