@@ -3,7 +3,7 @@ package bl;
 import java.sql.SQLException;
 
 import blservice.UserInfoBlService;
-import data.UserDataImpl;
+import data.UserInfoDataImpl;
 import dataservice.UserInfoDataService;
 import po.UserInfoPO;
 import vo.UserInfoVO;
@@ -13,23 +13,44 @@ public class UserInfoBlImpl implements UserInfoBlService{
 	private UserInfoDataService userInfo;
 	
 	public UserInfoBlImpl() {
-		this.userInfo = (UserInfoDataService) new UserDataImpl();
+		this.userInfo = new UserInfoDataImpl();
 	}
 	
 	@Override
-	public boolean update(UserInfoVO vo) throws ClassNotFoundException, SQLException {
+	public boolean update(UserInfoVO vo) {
 		UserInfoPO po = new UserInfoPO(vo);
-		return userInfo.update(po);
+		try {
+			return userInfo.update(po);
+		} catch (ClassNotFoundException e) {
+			
+		} catch (SQLException e) {
+		
+		}
+		return false;
 	}
 
 	@Override
-	public boolean add(String username) throws ClassNotFoundException, SQLException {
-		return userInfo.add(username);
+	public boolean add(String username) {
+		try {
+			return userInfo.add(username);
+		} catch (ClassNotFoundException e) {
+			
+		} catch (SQLException e) {
+			
+		}
+		return false;
 	}
 
 	@Override
-	public UserInfoVO get(String username) throws ClassNotFoundException, SQLException {
-		UserInfoPO po = userInfo.get(username);
+	public UserInfoVO get(String username) {
+		UserInfoPO po = null;
+		try {
+			po = userInfo.get(username);
+		} catch (ClassNotFoundException e) {
+		
+		} catch (SQLException e) {
+			
+		}
 		UserInfoVO vo = new UserInfoVO(po);
 		return vo;
 	}

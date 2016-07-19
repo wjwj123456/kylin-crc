@@ -10,26 +10,20 @@ public interface UserInfoBlService {
 	 * 
 	 * @param vo
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
 	 */
-	public boolean update(UserInfoVO vo) throws ClassNotFoundException, SQLException;
+	public boolean update(UserInfoVO vo);
 	
 	/**
 	 * 
 	 * @param username
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
 	 */
-	public boolean add(String username) throws ClassNotFoundException, SQLException;
+	public boolean add(String username);
 	
 	/**
 	 * 
 	 * @param vo
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
 	 */
-	public UserInfoVO get(String vo) throws ClassNotFoundException, SQLException;
+	public UserInfoVO get(String vo);
 }
