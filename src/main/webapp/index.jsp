@@ -7,68 +7,52 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/theme.css" rel="stylesheet">
+<link href="css/cover.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <title>CRC Index</title>
 </head>
-<body role="document">
+<body>
 	<div id="userAlert" class="alert alert-danger hidden" role="alert">
-		请先登陆再进行操作
-	</div>
+		请先登陆再进行操作</div>
 	<script type="text/javascript">
-var unsigned = <%=request.getParameter("unsigned")%>;
-if(unsigned){
-	document.getElementById("userAlert").className="alert alert-warning";
-}
-</script>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">CRC在线评审系统</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="#">首页</a></li>
-				<li><a href="#about">关于</a></li>
-				<li><a href="#about">联系我们</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">帮助<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#introduction">功能介绍</a></li>
-						<li><a href="#details">使用说明</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#about">git地址</a></li>
-					</ul></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<%
-					if (session.getAttribute("username") != null) {
-				%>
-				<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
-				<li><a id="login" style="cursor: pointer;">登出</a></li>
-				<%
-					} else {
-				%>
-				<%--username--%>
+		var unsigned =
+	<%=request.getParameter("unsigned")%>
+		;
+		if (unsigned) {
+			document.getElementById("userAlert").className = "alert alert-warning";
+		}
+	</script>
+	<div class="site-wrapper">
 
-				<li><a id="login" style="cursor: pointer;">登录</a></li>
-				<%
-					}
-				%>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div id="loginModal" class="modal fade">
+		<div class="site-wrapper-inner">
+
+			<div class="cover-container">
+
+				<div class="masthead clearfix">
+					<div class="inner">
+						<h3 class="masthead-brand">CRC Review System</h3>
+						<nav>
+						<ul class="nav masthead-nav">
+							<%
+								if (session.getAttribute("username") != null) {
+							%>
+							<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
+							<li><a id="login" style="cursor: pointer;">登出</a></li>
+							<%
+								} else {
+							%>
+							<%--username--%>
+
+							<li><a id="login" style="cursor: pointer;">登录</a></li>
+							<%
+								}
+							%>
+						</ul>
+						</nav>
+					</div>
+				</div>
+				<div id="loginModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -136,17 +120,26 @@ if(unsigned){
 			</div>
 		</div>
 	</div>
-	<div class="jumbotron">
-		<div class="container">
-			<div class="col-md-4">
-				<h1>欢迎</h1>
-			</div>
-			<div class="col-md-8">
-				<ul>
-					<li><a href="newTask.jsp">新建评审</a></li>
-				</ul>
-			</div>
+				<div class="inner cover">
+					<h1 class="cover-heading">CRC Review System.</h1>
+					<p class="lead">Cover is a one-page template for building
+						simple and beautiful home pages. Download, edit the text, and add
+						your own fullscreen background photo to make it your own.</p>
+					<p class="lead">
+						<a href="#" class="btn btn-lg btn-default">Learn more</a>
+					</p>
+				</div>
 
+				<div class="mastfoot">
+					<div class="inner">
+						<p>
+							Cover template for <a href="http://getbootstrap.com/">Bootstrap</a>,
+							by <a href="https://twitter.com/mdo">@mdo</a>.
+						</p>
+					</div>
+				</div>
+
+			</div>
 
 		</div>
 

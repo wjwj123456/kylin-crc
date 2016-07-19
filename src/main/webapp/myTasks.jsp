@@ -77,11 +77,31 @@
 		<h2 id="runningReview">进行中评审</h2>
 		<div class="row container">
 			<div class="well well-lg">
-				<h2>代码合并评审 <button class="btn btn-default">+</button></h2>
+				<h2>代码合并评审 <button class="btn btn-default"><span class="glyphicon glyphicon-hand-up"></span> Check</button></h2>
 				<p>ReportPO [taskName=合并与拆分测试, userName=lq, fileName=h, page=0,
 					location=300, description=ad, state=0, origin=0, isMerged=0]
 					</p>
 				<p><strong>截止时间：XXXX/XX/XX XX:XX:XX</strong></p>
+				<p>参与者：XXXXXXXXXXX <button class="btn btn-success" data-toggle="modal"
+						data-target="#inviteModal" onclick="initInvite(this)">邀请</button></p>
+			</div>
+			<div class="well well-lg">
+				<h2>代码合并评审 <button class="btn btn-default"><span class="glyphicon glyphicon-hand-up"></span> Check</button></h2>
+				<p>ReportPO [taskName=合并与拆分测试, userName=lq, fileName=h, page=0,
+					location=300, description=ad, state=0, origin=0, isMerged=0]
+					</p>
+				<p><strong>截止时间：XXXX/XX/XX XX:XX:XX</strong></p>
+				<p>参与者：XXXXXXXXXXX <button class="btn btn-success" data-toggle="modal"
+						data-target="#inviteModal" onclick="initInvite(this)">邀请</button></p>
+			</div>
+			<div class="well well-lg">
+				<h2>代码合并评审 <button class="btn btn-default"><span class="glyphicon glyphicon-hand-up"></span> Check</button></h2>
+				<p>ReportPO [taskName=合并与拆分测试, userName=lq, fileName=h, page=0,
+					location=300, description=ad, state=0, origin=0, isMerged=0]
+					</p>
+				<p><strong>截止时间：XXXX/XX/XX XX:XX:XX</strong></p>
+				<p>参与者：XXXXXXXXXXX <button class="btn btn-success" data-toggle="modal"
+						data-target="#inviteModal" onclick="initInvite(this)">邀请</button></p>
 			</div>
 		</div>
 		<table class="table">

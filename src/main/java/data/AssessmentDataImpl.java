@@ -55,29 +55,24 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		for (ReportVO vo : vos) {
 
 			j = nameList.indexOf(vo.getUserName());
+			System.out.println(vo.getUserName());
 			matrix[i][j] = 1;
 
 			int id = mergeDataImpl.getID(new ReportPO(vo));
 
-			String sql = "SELECT included_id FROM merge where final_id = " + id;
+			String sql = "SELECT uname FROM merge where final_id = " + id;
 			rSet = DBManager.getResultSet(sql);
 			if (!rSet.next()) {
-				if (id > 0) {
-					String name = "";
-					name = getUNameById(id);
-					j = nameList.indexOf(name);
-					matrix[i][j] = 1;
-				}
+
 			} else {
-				int includedId = rSet.getInt(1);
 				String name = "";
-				name = getUNameById(includedId);
+				name = rSet.getString(1);
 				System.out.println(name);
 				j = nameList.indexOf(name);
 				matrix[i][j] = 1;
 				while (rSet.next()) {
-					includedId = rSet.getInt(1);
-					name = getUNameById(includedId);
+					name = rSet.getString(1);
+					System.out.println(name);
 					j = nameList.indexOf(name);
 					matrix[i][j] = 1;
 				}
