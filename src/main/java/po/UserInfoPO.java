@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import vo.Language;
 import vo.Sex;
-import vo.UserInfoVO;
 
 /**
  * TODO: 锛堢被鎻忚堪锛�
@@ -29,7 +28,7 @@ public class UserInfoPO {
 	private Language[] languages;
 
 	public UserInfoPO(String userName, String trueName, Sex sex, String job, String province, String city,
-			String description, Language[] languages) {
+			String description, String picture, Language[] languages) {
 		super();
 		this.userName = userName;
 		this.trueName = trueName;
@@ -38,25 +37,15 @@ public class UserInfoPO {
 		this.province = province;
 		this.city = city;
 		this.description = description;
+		this.picture = picture;
 		this.languages = languages;
-	}
-
-	public UserInfoPO(UserInfoVO vo) {
-		this.userName = vo.getUserName();
-		this.trueName = vo.getTrueName();
-		this.sex = vo.getSex();
-		this.job = vo.getJob();
-		this.province = vo.getProvince();
-		this.city = vo.getCity();
-		this.description = vo.getDescription();
-		this.languages = vo.getLanguages();
 	}
 
 	@Override
 	public String toString() {
 		return "UserInfoPO [userName=" + userName + ", trueName=" + trueName + ", sex=" + sex + ", job=" + job
-				+ ", province=" + province + ", city=" + city + ", description=" + description + ", languages="
-				+ Arrays.toString(languages) + "]";
+				+ ", province=" + province + ", city=" + city + ", description=" + description + ", picture=" + picture
+				+ ", languages=" + Arrays.toString(languages) + "]";
 	}
 
 	public String getUserName() {
@@ -115,6 +104,14 @@ public class UserInfoPO {
 		this.description = description;
 	}
 
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	public Language[] getLanguages() {
 		return languages;
 	}
@@ -122,5 +119,4 @@ public class UserInfoPO {
 	public void setLanguages(Language[] languages) {
 		this.languages = languages;
 	}
-
 }

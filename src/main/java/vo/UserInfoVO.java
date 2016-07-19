@@ -6,8 +6,6 @@ package vo;
 
 import java.util.Arrays;
 
-import po.UserInfoPO;
-
 /**
  * TODO: 锛堢被鎻忚堪锛�
  *
@@ -23,11 +21,11 @@ public class UserInfoVO {
 	private String province;
 	private String city;
 	private String description;
-
+	private String picture;
 	private Language[] languages;
 
 	public UserInfoVO(String userName, String trueName, Sex sex, String job, String province, String city,
-			String description, Language[] languages) {
+			String description, String picture, Language[] languages) {
 		super();
 		this.userName = userName;
 		this.trueName = trueName;
@@ -36,25 +34,15 @@ public class UserInfoVO {
 		this.province = province;
 		this.city = city;
 		this.description = description;
+		this.picture = picture;
 		this.languages = languages;
-	}
-	
-	public UserInfoVO(UserInfoPO po) {
-		this.userName = po.getUserName();
-		this.trueName = po.getTrueName();
-		this.sex = po.getSex();
-		this.job = po.getJob();
-		this.province = po.getProvince();
-		this.city = po.getCity();
-		this.description = po.getDescription();
-		this.languages = po.getLanguages();
 	}
 
 	@Override
 	public String toString() {
-		return "UserInfoPO [userName=" + userName + ", trueName=" + trueName + ", sex=" + sex + ", job=" + job
-				+ ", province=" + province + ", city=" + city + ", description=" + description + ", languages="
-				+ Arrays.toString(languages) + "]";
+		return "UserInfoVO [userName=" + userName + ", trueName=" + trueName + ", sex=" + sex + ", job=" + job
+				+ ", province=" + province + ", city=" + city + ", description=" + description + ", picture=" + picture
+				+ ", languages=" + Arrays.toString(languages) + "]";
 	}
 
 	public String getUserName() {
@@ -113,6 +101,14 @@ public class UserInfoVO {
 		this.description = description;
 	}
 
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	public Language[] getLanguages() {
 		return languages;
 	}
@@ -120,4 +116,5 @@ public class UserInfoVO {
 	public void setLanguages(Language[] languages) {
 		this.languages = languages;
 	}
+
 }
