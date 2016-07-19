@@ -126,11 +126,9 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
 	 *
 	 * - * @author lpt14 + * @author ldk14
 	 * 
-	 * @since 2016��7��9��
 	 * @param keyword
 	 * @return + * @throws SQLException + * @throws ClassNotFoundException
 	 * @throws SQLException
@@ -162,10 +160,8 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -192,7 +188,6 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
 	 *
 	 * @author ldk14
 	 * @since 2016��7��9��
@@ -229,10 +224,8 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
 	 *
 	 * @author lpt14
-	 * @since 2016��7��9��
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -257,10 +250,8 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
 	 *
 	 * @author ldk14
-	 * @since 2016��7��9��
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
