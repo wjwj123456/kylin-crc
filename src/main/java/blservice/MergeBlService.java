@@ -9,10 +9,10 @@ import java.util.List;
 import vo.ReportVO;
 
 /**
- * TODO: £¨ÀàÃèÊö£©
+ * TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author lpt14
- * @since 2016Äê7ÔÂ11ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
  * @see
  */
 public interface MergeBlService {
@@ -25,6 +25,8 @@ public interface MergeBlService {
 	public int saveAddedMergeReport(List<ReportVO> reportList, String taskName);
 
 	public int deleteMergeRecord(ReportVO vo);
+
+	public int recoverMergeRecord(ReportVO vo);
 
 	public int saveHistory(String userName, String taskName);
 

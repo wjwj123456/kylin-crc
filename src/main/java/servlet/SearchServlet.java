@@ -42,6 +42,8 @@ public class SearchServlet extends HttpServlet {
 
 		if (type.equals("searchUser")) {
 			searchUser(request, response);
+		} else if (type.equals("searchTask")) {
+			searchTask(request, response);
 		}
 	}
 
@@ -77,5 +79,15 @@ public class SearchServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(jsonArray);
+	}
+
+	/**
+	 * search task by keyword
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	private void searchTask(HttpServletRequest request, HttpServletResponse response) {
+
 	}
 }

@@ -157,4 +157,14 @@
     <filter-name>myTasksFilter</filter-name>
     <url-pattern>/myTasks.jsp</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CommandServlet</display-name>
+    <servlet-name>CommandServlet</servlet-name>
+    <servlet-class>servlet.CommandServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommandServlet</servlet-name>
+    <url-pattern>/CommandServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

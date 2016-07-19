@@ -6,11 +6,13 @@ package vo;
 
 import java.util.Arrays;
 
+import po.UserInfoPO;
+
 /**
- * TODO: （类描述）
+ * TODO: 锛堢被鎻忚堪锛�
  *
  * @author lpt14
- * @since 2016年7月19日
+ * @since 2016骞�7鏈�19鏃�
  * @see
  */
 public class UserInfoVO {
@@ -35,6 +37,17 @@ public class UserInfoVO {
 		this.city = city;
 		this.description = description;
 		this.languages = languages;
+	}
+	
+	public UserInfoVO(UserInfoPO po) {
+		this.userName = po.getUserName();
+		this.trueName = po.getTrueName();
+		this.sex = po.getSex();
+		this.job = po.getJob();
+		this.province = po.getProvince();
+		this.city = po.getCity();
+		this.description = po.getDescription();
+		this.languages = po.getLanguages();
 	}
 
 	@Override

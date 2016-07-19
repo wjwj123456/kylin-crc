@@ -264,11 +264,12 @@ public class MergeDataImpl implements MergeDataService {
 
 		PreparedStatement pStatement1 = null;
 
-		String sql2 = "UPDATE merge set	final_id=? where included_id=?";
+		String sql2 = "UPDATE merge set	final_id=?, uname=? where included_id=?";
 		for (int i1 = 0; i1 < ids.size(); i1++) {
 			pStatement1 = connection.prepareStatement(sql2);
 			pStatement1.setInt(1, finalIds.get(i1));
-			pStatement1.setInt(2, ids.get(i1));
+			pStatement1.setString(2, getUNameById(ids.get(i1)));
+			pStatement1.setInt(3, ids.get(i1));
 			pStatement1.executeUpdate();
 		}
 
@@ -292,4 +293,28 @@ public class MergeDataImpl implements MergeDataService {
 
 	}
 
+	@Override
+	public int recoverMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException {
+		int flag = 0;
+		Connection connection = DBManager.connect();
+		String sql = "UPDATE report SET state = 0 WHERE tname = '" + po.getTaskName() + "' and uname = '"
+				+ po.getUserName() + "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage()
+				+ "' and location = '" + po.getLocation() + "'";
+		Statement statement = connection.createStatement();
+		flag = statement.executeUpdate(sql);
+		return flag;
+	}
+
+	public String getUNameById(int id) throws SQLException, ClassNotFoundException {
+		String name = "";
+		String sql = "SELECT uname FROM report where id = " + id;
+		Connection connection = DBManager.connect();
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			name = rs.getString(1);
+		}
+		DBManager.stopAll(rs, ps, connection);
+		return name;
+	}
 }
