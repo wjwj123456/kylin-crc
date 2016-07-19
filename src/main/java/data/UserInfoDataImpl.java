@@ -27,6 +27,20 @@ public class UserInfoDataImpl implements UserInfoDataService {
 		pStatement.setString(6, po.getDescription());
 		pStatement.setString(7, po.getUserName());
 		int i = pStatement.executeUpdate();
+		
+		String sql2 = "DELETE FROM user_language WHERE uname = ?";
+		pStatement = connection.prepareStatement(sql2);
+		pStatement.setString(1, po.getUserName());
+		pStatement.executeUpdate();
+		
+		String username = po.getUserName();
+		for(Language language: po.getLanguages()) {
+			String sql3 = "INSERT INTO user_language(uname, language) VALUES(?, ?)";
+			pStatement = connection.prepareStatement(sql3);
+			pStatement.setString(1, username);
+			pStatement.setString(2, language.toString());
+			pStatement.executeUpdate();
+		}
 		DBManager.stopAll(null, pStatement, connection);
 		if(i==1) return true;
 		else return false;
