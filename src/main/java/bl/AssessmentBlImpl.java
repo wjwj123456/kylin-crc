@@ -17,11 +17,28 @@ public class AssessmentBlImpl implements AssessmentBlService {
 	private ReportBlImpl reportBlImpl = new ReportBlImpl();
 
 	@Override
-	public int[] getHistoryAssessmentValues(String taskName) {
+	public int[] getHistoryAssessmentValues_Mt(String taskName) {
 		// TODO Auto-generated method stub
 		int[] i = new int[1];
 		try {
 			return assessmentDataService.getHistoryValues(taskName)[1];
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return i;
+		}
+	}
+
+	@Override
+	public int[] getHistoryAssessmentValues_Mh(String taskName) {
+		// TODO Auto-generated method stub
+		int[] i = new int[1];
+		try {
+			return assessmentDataService.getHistoryValues(taskName)[2];
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,11 +67,10 @@ public class AssessmentBlImpl implements AssessmentBlService {
 		}
 	}
 
-	public int getAssessmentValue(String taskName) {
-		List<ReportVO> list = reportBlImpl.getMergeReport(taskName);
-		int counts = 0;
+	public int[] getAssessmentValue(String taskName, List<ReportVO> vos) {
+		int[] counts = { 0, 0 };
 		try {
-			counts = assessmentDataService.getAssessmentValue(taskName, list);
+			counts = assessmentDataService.getAssessmentValue(taskName, vos);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,4 +101,5 @@ public class AssessmentBlImpl implements AssessmentBlService {
 
 		return aVos;
 	}
+
 }

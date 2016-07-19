@@ -205,16 +205,17 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	@Override
-	public int saveHistory(String userName, String taskName, int fault, int assessfalut)
+	public int saveHistory(String userName, String taskName, int fault, int assessfalut_mt, int assessfalut_mh)
 			throws SQLException, ClassNotFoundException {
 		int flag = 0;
 
-		String sql = "INSERT INTO history (tname, uname, fault,assessfault) VALUES (?, ?, ?,?)";
+		String sql = "INSERT INTO history (tname, uname, fault,assessfault_mt,assessfalut_mh) VALUES (?, ?, ?,?,?)";
 		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, taskName);
 		pStatement.setString(2, userName);
 		pStatement.setInt(3, fault);
-		pStatement.setInt(4, assessfalut);
+		pStatement.setInt(4, assessfalut_mt);
+		pStatement.setInt(5, assessfalut_mh);
 		pStatement.executeUpdate();
 		DBManager.closeConnection();
 

@@ -790,15 +790,15 @@ function commitReport() {
 		$('#confirmDivide').on('click', function() {
 			run_waitMe();
 			var data = getDivideItem();
-			
+			console.log(data);
 			jQuery.ajax({
 				url: '/crc/SplitServlet',
 				type: 'post',
 				data: 'type=split' + '&origin=' + JSON.stringify(report) + '&data=' + data,
 				success: function(data) {
 					var result = jQuery.parseJSON(data);
-					
 					afterSplit(result.data);
+//					location.reload(true)
 				}
 			})
 		})
@@ -813,7 +813,7 @@ function commitReport() {
 		if (data[0].page == 0) {// 代码条目
 			updateCode(data);
 		} else {// 文档条目
-			updateCode(data);
+			updateFile(data);
 		}
 		
 		$('#divideTable tbody').empty();
@@ -866,18 +866,17 @@ function commitReport() {
 	 * @returns
 	 */
 	function getDivideItem() {
-		var inputs = $('#divideTable tbody').find('tr');
-		
+		var inputs = $('#divideTable tbody').find('input');
+		var checked = new Array();
 		for (var i = 0; i < inputs.length; i++) {
-			if (!$(inputs[i]).find('td:first').prop('checked')) {
-				inputs.splice(i, 1);
-				i--;
+			if ($(inputs[i]).prop('checked')) {
+				checked.push($(inputs[i]))
 			}
 		}
 
 		var result = new Array();
-		for (var i = 0; i < inputs.prevObject.length; i++) {
-			var temp = $(inputs.prevObject[i]).find('td');
+		for (var i = 0; i < checked.length; i++) {
+			var temp = $(checked[i]).parent().parent().find('td');
 			var obj = new Object({ // 默认代码拆分
 				taskName: taskName,
 				userName: $(temp[4]).text(),
@@ -889,7 +888,7 @@ function commitReport() {
 				origin: 0
 			});
 			
-			if (temp.length == 6) { // 文档拆分
+			if (temp.length % 6 == 0) { // 文档拆分
 				obj.userName = $(temp[5]).text();
 				obj.page = Number($(temp[2]).text());
 				obj.location = $(temp[3]).text();

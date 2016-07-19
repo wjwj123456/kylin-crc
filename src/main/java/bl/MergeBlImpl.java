@@ -102,11 +102,12 @@ public class MergeBlImpl implements MergeBlService {
 		int flag = 0;
 		AssessmentBlImpl assessmentBlImpl = new AssessmentBlImpl();
 		ReportBlImpl reportBlImpl = new ReportBlImpl();
-		int assessFault = assessmentBlImpl.getAssessmentValue(taskName);
-		int fault = reportBlImpl.getMergeReport(taskName).size();
+		List<ReportVO> vos = reportBlImpl.getMergeReport(taskName);
+		int[] assessFault = assessmentBlImpl.getAssessmentValue(taskName, vos);
+		int fault = vos.size();
 		try {
 			try {
-				flag = mergeDataService.saveHistory(userName, taskName, fault, assessFault);
+				flag = mergeDataService.saveHistory(userName, taskName, fault, assessFault[0], assessFault[1]);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -20,15 +20,18 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	private MergeDataImpl mergeDataImpl = new MergeDataImpl();
 
 	@Override
-	public int getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
+	public int[] getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-
+		int[] assess = { 0, 0 };
 		if (vos.size() != 0) {
+
 			int[][] matrix = getMatix(taskName, vos);
 			crc = new CrcModule(matrix);
-			return crc.getDefectsNum();
+			assess[0] = (int) crc.getMtCH();
+			assess[1] = (int) crc.getMhCH();
+			return assess;
 		} else {
-			return 0;
+			return assess;
 		}
 	}
 
@@ -118,8 +121,6 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		while (rs.next()) {
 			name = rs.getString(1);
 		}
-		System.out.println("username");
-		System.out.println(name);
 		DBManager.stopAll(rs, ps, connection);
 		return name;
 	}
@@ -128,20 +129,23 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	public int[][] getHistoryValues(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		List<Integer> faults = new ArrayList<Integer>();
-		List<Integer> assessfaults = new ArrayList<Integer>();
-		String sql = "SELECT fault,assessfault FROM history where tname = '" + taskName + "'";
+		List<Integer> assessfaults_mt = new ArrayList<Integer>();
+		List<Integer> assessfaults_mh = new ArrayList<Integer>();
+		String sql = "SELECT fault,assessfault_mt,assessfault_mh FROM history where tname = '" + taskName + "'";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			faults.add(rSet.getInt(1));
-			assessfaults.add(rSet.getInt(2));
+			assessfaults_mt.add(rSet.getInt(2));
+			assessfaults_mh.add(rSet.getInt(3));
 		}
-		int[][] values = new int[2][faults.size()];
+		DBManager.closeConnection();
+		int[][] values = new int[3][faults.size()];
 		for (int i = 0; i < faults.size(); i++) {
 			values[0][i] = faults.get(i);
-			values[1][i] = assessfaults.get(i);
+			values[1][i] = assessfaults_mt.get(i);
+			values[2][i] = assessfaults_mh.get(i);
 		}
 
-		DBManager.closeConnection();
 		return values;
 	}
 
@@ -157,7 +161,8 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			if (vos.size() != 0) {
 				int[][] matrix = getMatix(taskName, vos);
 				CrcModule crcM = new CrcModule(matrix);
-				int assessfault = crcM.getDefectsNum();
+				int assessfault_mt = (int) crcM.getMtCH();
+				int assessfault_mh = (int) crcM.getMhCH();
 
 				for (int i = 0; i < nameList.size(); i++) {
 					int findedfault = 0;
@@ -165,16 +170,16 @@ public class AssessmentDataImpl implements AssessmentDataService {
 						if (matrix[j][i] == 1)
 							findedfault++;
 					}
-					pos.add(new AssessmentPO(nameList.get(i), assessfault, findedfault));
+					pos.add(new AssessmentPO(nameList.get(i), assessfault_mt, assessfault_mh, findedfault));
 				}
 			} else {
 				for (int i = 0; i < nameList.size(); i++) {
-					pos.add(new AssessmentPO(nameList.get(i), 0, 0));
+					pos.add(new AssessmentPO(nameList.get(i), 0, 0, 0));
 				}
 			}
 		} else {
 			for (int i = 0; i < nameList.size(); i++) {
-				pos.add(new AssessmentPO(nameList.get(i), 0, 0));
+				pos.add(new AssessmentPO(nameList.get(i), 0, 0, 0));
 			}
 		}
 		return pos;

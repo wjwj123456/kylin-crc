@@ -52,6 +52,7 @@ public class SplitDataImpl implements SplitDataService {
 		int id = getID(po);
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
+		System.out.println(pos);
 		for (ReportPO reportPO : pos) {
 			int id0 = getID(reportPO);
 			String sql1 = "UPDATE report SET state = 0 WHERE id = " + id0;
@@ -71,6 +72,20 @@ public class SplitDataImpl implements SplitDataService {
 			}
 		}
 
+		String sql5 = "SELECT * FROM merge WHERE final_id = " + id;
+		rSet = statement.executeQuery(sql5);
+		if (!rSet.next()) {
+			int origin = getOrigin(id);
+			if (origin == 0) {
+				String sql7 = "UPDATE report SET merge = 0 WHERE id = " + id;
+				statement.executeUpdate(sql7);
+			} else {
+				String sql6 = "DELETE FROM report WHERE id = " + id;
+				int i = statement.executeUpdate(sql6);
+				if (i == 0)
+					return false;
+			}
+		}
 		DBManager.stopAll(rSet, statement, connection);
 		return true;
 	}
@@ -201,9 +216,9 @@ public class SplitDataImpl implements SplitDataService {
 		pStatement.setString(1, taskname);
 		ResultSet rSet = pStatement.executeQuery();
 		ArrayList<ReportPO> reportPOs = new ArrayList<>();
-		while(rSet.next()) {
-			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), 
-					rSet.getString("filename"), rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"));
+		while (rSet.next()) {
+			ReportPO po = new ReportPO(taskname, rSet.getString("uname"), rSet.getString("filename"),
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"));
 			reportPOs.add(po);
 		}
 		DBManager.stopAll(rSet, pStatement, connection);

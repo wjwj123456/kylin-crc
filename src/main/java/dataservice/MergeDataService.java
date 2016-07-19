@@ -57,7 +57,7 @@ public interface MergeDataService {
 
 	public int deleteMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException;
 
-	public int saveHistory(String userName, String taskName, int fault, int assessfalut)
+	public int saveHistory(String userName, String taskName, int fault, int assessfalut_mt, int assessfalut_mh)
 			throws SQLException, ClassNotFoundException;
 
 	public int getID(ReportPO po) throws ClassNotFoundException, SQLException;

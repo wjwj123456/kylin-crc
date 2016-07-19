@@ -15,7 +15,7 @@ public interface AssessmentDataService {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public int getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException;
+	public int[] getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException;
 
 	/**
 	 * ldk
@@ -35,4 +35,5 @@ public interface AssessmentDataService {
 	 */
 	public List<AssessmentPO> getAllAssessments(String taskName, List<ReportVO> vos)
 			throws SQLException, ClassNotFoundException;
+
 }
