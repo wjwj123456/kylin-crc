@@ -59,19 +59,12 @@ public class TaskFilter implements Filter {
 		MergeBlService mergeBl = new MergeBlImpl();
 		ReportBlService reportBl = new ReportBlImpl();
 		AssessmentBlService assessmentBl = new AssessmentBlImpl();
-		int[][] assessmenAndFault = new int[2][];
-		assessmenAndFault[0]= assessmentBl.getHistoryFaultValues(taskName);
-		assessmenAndFault[1]= assessmentBl.getHistoryAssessmentValues(taskName);
 		
 		session.setAttribute("agree_" + taskName, invite.getAgreeUser(taskName));
 		// 未接受邀请
 		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
 		//待合并项目
 		session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
-		//历史项目合并数据
-		session.setAttribute("taskHis_"+taskName, assessmenAndFault);
-		//历史评审人数据
-		session.setAttribute("userHis_"+taskName,assessmentBl.getAllAssessments(taskName) );
 		chain.doFilter(request, response);
 	}
 

@@ -38,7 +38,8 @@ public class ReportFilter implements Filter {
 		AssessmentBlService assessmentBl = new AssessmentBlImpl();
 		int[][] assessmenAndFault = new int[2][];
 		assessmenAndFault[0]= assessmentBl.getHistoryFaultValues(taskName);
-		assessmenAndFault[1]= assessmentBl.getHistoryAssessmentValues(taskName);
+		assessmenAndFault[1]= assessmentBl.getHistoryAssessmentValues_Mh(taskName);
+		System.out.println(assessmenAndFault[0].length);
 		//历史项目合并数据
 		session.setAttribute("taskHis_"+taskName, assessmenAndFault);
 		//历史评审人数据

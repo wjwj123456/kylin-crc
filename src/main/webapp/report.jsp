@@ -78,35 +78,6 @@ taskName = '<%=request.getParameter("taskName")%>';
 		</div>
 	</div>
 	</nav>
-	<div id="loginModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">x</button>
-					<h1 class="text-center text-primary">登录</h1>
-				</div>
-				<div class="modal-body" style="height: 250px">
-
-					<div class="form-group " id="usergroup">
-						<input type="text" name='username' class="form-control input-lg"
-							id="username" placeholder="用户名">
-					</div>
-					<div class="form-group" id="passgroup">
-						<input type="password" name="password" id="password"
-							class="form-control input-lg" placeholder="登录密码">
-					</div>
-					<div class="form-group">
-						<button class="btn btn-primary btn-lg btn-block" onclick="login()"
-							id="loginNow">立刻登录</button>
-						<span><a data-toggle="modal" data-target="#signUpModal"
-							data-dismiss="modal" href="" class="pull-right">注册</a></span>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="container" id="waitArea">
 		<%
 			int[][] taskHis = Cast.cast(session.getAttribute("taskHis_" + taskName));
@@ -137,10 +108,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 		});
 		
 		</script>
+		<h2 id="report">评审报告</h2>
 		<div id="reportZone">
-			<h2 id="report">评审报告</h2>
-			<div class="col-md-7" id="resultGraph" style="height: 300px"></div>
-
+			<div class="row" id="resultGraph" style="height: 400px"></div>
 			<script type="text/javascript">
 				var myChart = echarts.init(document
 						.getElementById('resultGraph'));
@@ -186,7 +156,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 				};
 				myChart.setOption(option);
 			</script>
-			<div class="col-md-5">
+			<h2>最新预估缺陷值：XXXX</h2>
+			<div class="row">
 				<%
 					List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_" + taskName));
 				%>
