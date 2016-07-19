@@ -3,7 +3,7 @@ package bl;
 import java.sql.SQLException;
 
 import blservice.UserInfoBlService;
-import data.UserDataImpl;
+import data.UserInfoDataImpl;
 import dataservice.UserInfoDataService;
 import po.UserInfoPO;
 import vo.UserInfoVO;
@@ -13,7 +13,7 @@ public class UserInfoBlImpl implements UserInfoBlService{
 	private UserInfoDataService userInfo;
 	
 	public UserInfoBlImpl() {
-		this.userInfo = (UserInfoDataService) new UserDataImpl();
+		this.userInfo = new UserInfoDataImpl();
 	}
 	
 	@Override
