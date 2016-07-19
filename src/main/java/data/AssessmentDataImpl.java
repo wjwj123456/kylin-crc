@@ -164,22 +164,44 @@ public class AssessmentDataImpl implements AssessmentDataService {
 				int assessfault_mt = (int) crcM.getMtCH();
 				int assessfault_mh = (int) crcM.getMhCH();
 
-				for (int i = 0; i < nameList.size(); i++) {
+				int col = nameList.size();
+				for (int i = 0; i < col; i++) {
+					String userName = nameList.get(i);
 					int findedfault = 0;
+					int uniquefault = 0;
+					double time = 0.0;
+					int faultperhour = 0;
+					int flag = 0;
 					for (int j = 0; j < matrix.length; j++) {
-						if (matrix[j][i] == 1)
+						if (matrix[j][i] == 1) {
 							findedfault++;
+							for (int k = 0; k < col; k++) {
+								if (matrix[j][k] == 1)
+									flag++;
+							}
+							if (flag == 1)
+								uniquefault++;
+							flag = 0;
+						}
 					}
-					pos.add(new AssessmentPO(nameList.get(i), assessfault_mt, assessfault_mh, findedfault));
+					String sql = "SELECT time FROM review where tname = '" + taskName + "' and uname = '" + userName
+							+ "'";
+					ResultSet rSet = DBManager.getResultSet(sql);
+					if (rSet.next())
+						time = rSet.getDouble(1);
+					DBManager.closeConnection();
+					faultperhour = (int) ((double) findedfault / time);
+					pos.add(new AssessmentPO(userName, assessfault_mt, assessfault_mh, findedfault, uniquefault, time,
+							faultperhour));
 				}
 			} else {
 				for (int i = 0; i < nameList.size(); i++) {
-					pos.add(new AssessmentPO(nameList.get(i), 0, 0, 0));
+					pos.add(new AssessmentPO(nameList.get(i), 0, 0, 0, 0, 0.0, 0));
 				}
 			}
 		} else {
 			for (int i = 0; i < nameList.size(); i++) {
-				pos.add(new AssessmentPO(nameList.get(i), 0, 0, 0));
+				pos.add(new AssessmentPO(nameList.get(i), 0, 0, 0, 0, 0.0, 0));
 			}
 		}
 		return pos;

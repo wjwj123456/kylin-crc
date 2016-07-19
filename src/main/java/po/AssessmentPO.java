@@ -5,13 +5,44 @@ public class AssessmentPO {
 	private int assessfaults_mt;
 	private int assessfaults_mh;
 	private int findedfaults;
+	private int uniquefaults;
+	private double time;
+	private int faultsperhour;
 
-	public AssessmentPO(String reviewerName, int assessfaults_mt, int assessfaults_mh, int findedfaults) {
+	public AssessmentPO(String reviewerName, int assessfaults_mt, int assessfaults_mh, int findedfaults,
+			int uniquefaults, double time, int faultsperhour) {
 		super();
 		this.reviewerName = reviewerName;
 		this.assessfaults_mt = assessfaults_mt;
 		this.assessfaults_mh = assessfaults_mh;
 		this.findedfaults = findedfaults;
+		this.uniquefaults = uniquefaults;
+		this.time = time;
+		this.faultsperhour = faultsperhour;
+	}
+
+	public int getUniquefaults() {
+		return uniquefaults;
+	}
+
+	public void setUniquefaults(int uniquefaults) {
+		this.uniquefaults = uniquefaults;
+	}
+
+	public double getTime() {
+		return time;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+
+	public int getFaultsperhour() {
+		return faultsperhour;
+	}
+
+	public void setFaultsperhour(int faultsperhour) {
+		this.faultsperhour = faultsperhour;
 	}
 
 	public String getReviewerName() {

@@ -51,7 +51,6 @@ public class MergeDataImpl implements MergeDataService {
 			list.add(po);
 		}
 		DBManager.stopAll(rSet, pStatement, connection);
-
 		return list;
 	}
 
@@ -237,7 +236,6 @@ public class MergeDataImpl implements MergeDataService {
 	}
 
 	private void updateMerge() throws SQLException, ClassNotFoundException {
-
 		String sql3 = "DELETE FROM merge  WHERE final_id=included_id  ";
 		PreparedStatement pStatement = DBManager.getPreparedStatement(sql3);
 		int i = pStatement.executeUpdate();
@@ -260,7 +258,6 @@ public class MergeDataImpl implements MergeDataService {
 					finalIds.set(j, finalIds.get(i1));
 				}
 			}
-
 		}
 
 		Connection connection = DBManager.connect();
