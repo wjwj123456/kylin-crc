@@ -8,12 +8,13 @@ import java.util.Arrays;
 
 import vo.Language;
 import vo.Sex;
+import vo.UserInfoVO;
 
 /**
- * TODO: （类描述）
+ * TODO: 锛堢被鎻忚堪锛�
  *
  * @author lpt14
- * @since 2016年7月19日
+ * @since 2016骞�7鏈�19鏃�
  * @see
  */
 public class UserInfoPO {
@@ -38,6 +39,17 @@ public class UserInfoPO {
 		this.city = city;
 		this.description = description;
 		this.languages = languages;
+	}
+	
+	public UserInfoPO(UserInfoVO vo) {
+		this.userName = vo.getUserName();
+		this.trueName = vo.getTrueName();
+		this.sex = vo.getSex();
+		this.job = vo.getJob();
+		this.province = vo.getProvince();
+		this.city = vo.getCity();
+		this.description = vo.getDescription();
+		this.languages = vo.getLanguages();
 	}
 
 	@Override
