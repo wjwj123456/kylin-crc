@@ -292,4 +292,15 @@ public class MergeDataImpl implements MergeDataService {
 
 	}
 
+	@Override
+	public int recoverMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException {
+		int flag = 0;
+		Connection connection = DBManager.connect();
+		String sql = "UPDATE report SET state = 0 WHERE tname = '" + po.getTaskName() + "' and uname = '"
+				+ po.getUserName() + "' and filename = '" + po.getFileName() + "' and page = '" + po.getPage()
+				+ "' and location = '" + po.getLocation() + "'";
+		Statement statement = connection.createStatement();
+		flag = statement.executeUpdate(sql);
+		return flag;
+	}
 }

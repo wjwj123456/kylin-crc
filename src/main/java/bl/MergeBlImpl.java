@@ -142,4 +142,32 @@ public class MergeBlImpl implements MergeBlService {
 		System.out.println(mergeBlImpl.mergeReport("oriTest"));
 	}
 
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月19日
+	 * @param vo
+	 * @return
+	 * @see blservice.MergeBlService#recoverMergeRecord(vo.ReportVO)
+	 *
+	 */
+	@Override
+	public int recoverMergeRecord(ReportVO vo) {
+		// TODO Auto-generated method stub
+		int flag = 0;
+		// TODO Auto-generated method stub
+		ReportPO po = new ReportPO(vo);
+		try {
+			flag = mergeDataService.recoverMergeRecord(po);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 }

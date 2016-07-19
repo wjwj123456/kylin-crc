@@ -13,7 +13,7 @@ import po.ReportPO;
  * merge report
  *
  * @author lpt14
- * @since 2016Äê7ÔÂ10ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½10ï¿½ï¿½
  * @see
  */
 public interface MergeDataService {
@@ -63,5 +63,19 @@ public interface MergeDataService {
 	public int getID(ReportPO po) throws ClassNotFoundException, SQLException;
 
 	public int saveMergeState(String userName, String taskName) throws SQLException;
+
+	/**
+	 * @param @param
+	 *            po
+	 * @param @return
+	 * @param @throws
+	 *            SQLException
+	 * @param @throws
+	 *            ClassNotFoundException
+	 * @return int
+	 * @throws @author
+	 *             lpt14
+	 */
+	public int recoverMergeRecord(ReportPO po) throws SQLException, ClassNotFoundException;
 
 }
