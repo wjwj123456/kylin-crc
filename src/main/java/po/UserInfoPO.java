@@ -25,7 +25,7 @@ public class UserInfoPO {
 	private String province;
 	private String city;
 	private String description;
-
+	private String picture;
 	private Language[] languages;
 
 	public UserInfoPO(String userName, String trueName, Sex sex, String job, String province, String city,
@@ -40,7 +40,7 @@ public class UserInfoPO {
 		this.description = description;
 		this.languages = languages;
 	}
-	
+
 	public UserInfoPO(UserInfoVO vo) {
 		this.userName = vo.getUserName();
 		this.trueName = vo.getTrueName();
