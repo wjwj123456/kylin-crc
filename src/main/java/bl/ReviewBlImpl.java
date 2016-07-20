@@ -310,16 +310,39 @@ public class ReviewBlImpl implements ReviewBlService {
 	 * @param userName
 	 * @param takName
 	 * @return
-	 * @see blservice.ReviewBlService#getState(java.lang.String,
+	 * @see blservice.ReviewBlService#getUserState(java.lang.String,
 	 *      java.lang.String)
 	 *
 	 */
 	@Override
-	public State getState(String userName, String taskName) {
+	public State getUserState(String userName, String taskName) {
 		// TODO Auto-generated method stub
 		State state = null;
 		try {
-			state = reviewDataService.getState(userName, taskName);
+			state = reviewDataService.getUserState(userName, taskName);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return state;
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月20日
+	 * @param taskName
+	 * @return
+	 * @see blservice.ReviewBlService#getTaskState(java.lang.String)
+	 *
+	 */
+	@Override
+	public State getTaskState(String taskName) {
+		// TODO Auto-generated method stub
+		State state = null;
+		try {
+			state = reviewDataService.getTaskState(taskName);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

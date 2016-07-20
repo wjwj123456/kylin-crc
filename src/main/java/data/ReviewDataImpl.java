@@ -335,12 +335,12 @@ public class ReviewDataImpl implements ReviewDataService {
 	 * @param taskName
 	 * @return
 	 * @throws SQLException
-	 * @see dataservice.ReviewDataService#getState(java.lang.String,
+	 * @see dataservice.ReviewDataService#getUserState(java.lang.String,
 	 *      java.lang.String)
 	 *
 	 */
 	@Override
-	public State getState(String userName, String taskName) throws SQLException {
+	public State getUserState(String userName, String taskName) throws SQLException {
 		String name = "";
 		try {
 			name = getTaskPOByTaskName(taskName).getUserName();
@@ -361,6 +361,37 @@ public class ReviewDataImpl implements ReviewDataService {
 
 			return state;
 		}
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月20日
+	 * @param taskName
+	 * @return
+	 * @throws SQLException
+	 * @see dataservice.ReviewDataService#getTaskState(java.lang.String)
+	 *
+	 */
+	@Override
+	public State getTaskState(String taskName) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM task WHERE taskName = '" + taskName + "'";
+		rSet = DBManager.getResultSet(sql);
+		State state = null;
+		int flag = 0;
+		while (rSet.next()) {
+			flag = rSet.getInt(7);
+		}
+		if (flag == 0) {
+			state = State.work;
+		} else {
+			state = State.finish;
+		}
+		DBManager.closeConnection();
+
+		return state;
 	}
 
 }
