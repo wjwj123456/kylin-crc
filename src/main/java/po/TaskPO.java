@@ -2,6 +2,7 @@ package po;
 
 import java.util.Date;
 
+import vo.Language;
 import vo.Type;
 
 public class TaskPO {
@@ -13,9 +14,10 @@ public class TaskPO {
 	private String describe;
 	private Date deadline;
 	private int state;
+	private Language language;
 
 	public TaskPO(String userName, String taskName, Type type, String project, String describe, Date deadline,
-			int state) {
+			int state, Language language) {
 		super();
 		this.userName = userName;
 		this.taskName = taskName;
@@ -24,6 +26,7 @@ public class TaskPO {
 		this.describe = describe;
 		this.deadline = deadline;
 		this.state = state;
+		this.language = language;
 	}
 
 	public TaskPO(String userName, String taskName) {
@@ -93,4 +96,11 @@ public class TaskPO {
 		this.state = state;
 	}
 
+	public Language getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
 }

@@ -3,6 +3,7 @@ package blservice;
 import java.sql.SQLException;
 import java.util.List;
 
+import vo.Language;
 import vo.State;
 import vo.TaskVO;
 import vo.UserVO;
@@ -17,6 +18,8 @@ public interface ReviewBlService {
 	public List<TaskVO> getTaskList();
 
 	public List<UserVO> searchUserByKeyword(String keyword) throws ClassNotFoundException;
+
+	public List<TaskVO> searchTasksByKeyword(String keyword, Language language);
 
 	/**
 	 * save all user who has been invited
