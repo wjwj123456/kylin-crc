@@ -94,16 +94,22 @@
 
 		</div>
 		<div class="col-md-10">
-			<ul id="myTab" class="nav nav-tabs">
+			<ul id="myTab" class="nav nav-tabs" style="font-size: 150%;text-align: center;">
 				<li class="active"><a href="#my" data-toggle="tab"> 我发布的评审</a></li>
 				<li><a href="#join" data-toggle="tab">我参与的评审</a></li>
 				<li><a href="#his" data-toggle="tab">历史评审</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane fade in active" id="my">
-					<h2 id="runningReview">我发布的评审</h2>
 					<%
 						List<TaskVO> running = Cast.cast(session.getAttribute("runningTask"));
+					%>
+					<%
+						if (running.size() == 0) {
+					%>
+					<h2>暂无</h2>
+					<%
+						} else {
 					%>
 					<%
 						for (TaskVO vo : running) {
@@ -130,13 +136,24 @@
 					<%
 						}
 					%>
+					<%
+						}
+					%>
+
+
 					<hr>
 				</div>
-				<div class="tab-pane fade in active" id="join">
-					<h2 id="joiningReview">我参与的评审</h2>
+				<div class="tab-pane fade " id="join">
 
 					<%
 						List<TaskVO> joiningTasks = Cast.cast(session.getAttribute("participantTask"));
+					%>
+					<%
+						if (joiningTasks.size() == 0) {
+					%>
+					<h2>暂无</h2>
+					<%
+						} else {
 					%>
 					<%
 						for (TaskVO vo : joiningTasks) {
@@ -163,12 +180,22 @@
 					<%
 						}
 					%>
+					<%
+						}
+					%>
+
 					<hr>
 				</div>
-				<div class="tab-pane fade in active" id="his">
-					<h2 id="hisReview">历史评审</h2>
+				<div class="tab-pane fade " id="his">
 					<%
 						List<TaskVO> history = Cast.cast(session.getAttribute("historyTask"));
+					%>
+					<%
+						if (history.size() == 0) {
+					%>
+					<h2>暂无</h2>
+					<%
+						} else {
 					%>
 					<%
 						for (TaskVO vo : history) {
@@ -195,6 +222,10 @@
 					<%
 						}
 					%>
+					<%
+						}
+					%>
+
 					<hr>
 				</div>
 
