@@ -209,7 +209,7 @@ public class MergeDataImpl implements MergeDataService {
 			throws SQLException, ClassNotFoundException {
 		int flag = 0;
 
-		String sql = "INSERT INTO history (tname, uname, fault,assessfault_mt,assessfalut_mh) VALUES (?, ?, ?,?,?)";
+		String sql = "INSERT INTO history (tname, uname, fault,assessfault_mt,assessfault_mh) VALUES (?, ?, ?,?,?)";
 		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, taskName);
 		pStatement.setString(2, userName);

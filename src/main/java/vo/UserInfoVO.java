@@ -6,6 +6,8 @@ package vo;
 
 import java.util.Arrays;
 
+import po.UserInfoPO;
+
 /**
  * @author lpt14
  * @see
@@ -33,6 +35,18 @@ public class UserInfoVO {
 		this.description = description;
 		this.picture = picture;
 		this.languages = languages;
+	}
+	
+	public UserInfoVO(UserInfoPO po) {
+		this.userName = po.getUserName();
+		this.trueName = po.getTrueName();
+		this.sex = po.getSex();
+		this.job = po.getJob();
+		this.province = po.getProvince();
+		this.city = po.getCity();
+		this.description = po.getDescription();
+		this.picture = po.getPicture();
+		this.languages = po.getLanguages();
 	}
 
 	@Override

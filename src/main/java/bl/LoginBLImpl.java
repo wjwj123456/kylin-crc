@@ -16,7 +16,7 @@ public class LoginBLImpl implements LoginBlService{
 	}
 	public int createAccount(String userName, String email, String password) throws ClassNotFoundException, SQLException {
 		int i = loginDataService.createAccount(userName, email, password);
-		System.out.println("imingyan");
+//		System.out.println("imingyan");
 		if(i == 0) {
 			UserInfoBlService userInfoBlService = new UserInfoBlImpl();
 			userInfoBlService.add(userName);
@@ -33,3 +33,5 @@ public class LoginBLImpl implements LoginBlService{
 	}
 
 }
+
+

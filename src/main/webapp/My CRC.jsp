@@ -16,6 +16,11 @@
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<style type="text/css">
+.myrow {
+	padding-bottom: 10px;
+}
+</style>
 <title>My CRC</title>
 </head>
 <body role="document">
@@ -44,44 +49,26 @@
 			</ul>
 
 		</div>
-		
+
 	</div>
 	</nav>
 	<div class="container" id="waitArea">
-		<div id="suspensionNavigation" class="col-md-2" role="complementary">
-			<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
-			<ul class="nav bs-docs-sidenav">
+		<div id="suspensionNavigation" class="col-md-2" role="complementary"
+			style="text-align: center; padding-top: 80px">
+			<div class="myrow">
+				<img alt="" src="img/glyphicons-halflings.png" width="50px"
+					height="50px">
+			</div>
+			<div class="myrow"><%=session.getAttribute("username")%><a
+					href="describe.jsp"><button class="close" style="float: none;">
+						<span class="glyphicon glyphicon-edit"></span>
+					</button></a>
+			</div>
 
-				<li><a href="#basicInfo">基本信息</a></li>
-				<li><a href="#message">消息</a></li>
-				<li><a href="#perAnalyze">个人分析</a></li>
-			</ul>
-			<a class="back-to-top" href="#top"> 返回顶部 </a> </nav>
+			<a href="newTask.jsp"><button class="btn btn-success">新评审</button></a>
+
 		</div>
 		<div class="col-md-10 bs-docs-section">
-
-			<h2 id="basicInfo">基本信息</h2>
-			<table class="table">
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-			</table>
-			<hr>
 			<h2 id="message">消息</h2>
 			<table class="table" id="messageTable">
 				<thead>
@@ -111,7 +98,29 @@
 				</tbody>
 			</table>
 			<hr>
-			<h2 id="perAnalyze">个人分析</h2>
+			<h2 id="basicInfo">个人资料</h2>
+			<table class="table">
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+			</table>
+			<hr>
+			<h2 id="perAnalyze">个人成就</h2>
 			<table class="table">
 				<tr>
 					<th>haha</th>
@@ -135,7 +144,7 @@
 			<hr>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
 		
 	</script>
