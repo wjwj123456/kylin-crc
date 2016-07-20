@@ -5,6 +5,7 @@ import java.util.List;
 
 import po.TaskPO;
 import po.UserPO;
+import vo.Language;
 import vo.State;
 
 public interface ReviewDataService {
@@ -24,6 +25,9 @@ public interface ReviewDataService {
 	public List<TaskPO> getTaskList() throws ClassNotFoundException, SQLException;
 
 	public List<UserPO> searchUserByKeyword(String keyword) throws SQLException, ClassNotFoundException;
+
+	public List<TaskPO> searchTasksByKeyword(String keyword, Language language)
+			throws SQLException, ClassNotFoundException;
 
 	/**
 	 * save all user who has been invited
@@ -46,10 +50,10 @@ public interface ReviewDataService {
 	public int saveAcceptReviewer(String userName, String taskName) throws SQLException, ClassNotFoundException;
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ11ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -58,10 +62,10 @@ public interface ReviewDataService {
 	public TaskPO getTaskPOByTaskName(String taskName) throws SQLException, ClassNotFoundException;
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£© get all tasks that a user has joined
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ get all tasks that a user has joined
 	 * 
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ12ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½12ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -70,10 +74,10 @@ public interface ReviewDataService {
 	public List<TaskPO> getJoinedDoingTasksByUserName(String userName) throws SQLException, ClassNotFoundException;
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£© get all tasks that a user has joined
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ get all tasks that a user has joined
 	 * 
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ12ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½12ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -81,5 +85,7 @@ public interface ReviewDataService {
 	 */
 	public List<TaskPO> getJoinedEndTasksByUserName(String userName) throws SQLException, ClassNotFoundException;
 
-	public State getState(String userName, String taskName) throws SQLException;
+	public State getUserState(String userName, String taskName) throws SQLException;
+
+	public State getTaskState(String taskName) throws SQLException;
 }

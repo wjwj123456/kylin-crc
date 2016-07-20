@@ -48,7 +48,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 	taskType = 'file';
 <%}%>
 <%ReviewBlService reviewBl = new ReviewBlImpl();
-			State theState = reviewBl.getState((String) session.getAttribute("username"), taskVO.getTaskName());%>
+			State theState = reviewBl.getUserState((String) session.getAttribute("username"), taskVO.getTaskName());%>
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
@@ -255,7 +255,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<thead>
 									<tr>
 										<th width=120px>文件名</th>
-										<th width=50px>行数</th>
+										<th width=50px>位置</th>
 										<th>描述</th>
 										<th width=10px></th>
 									</tr>
@@ -266,7 +266,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							</table>
 						</div>
 
-						<form action="">
+						<form>
 							<div class="row">
 								<div class="form-group col-sm-6" id="fileGroup-code">
 									<label for="fileName-code" class="col-sm-2 control-label">文件名</label>
@@ -276,22 +276,25 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</div>
 								</div>
 								<div class="form-group col-sm-6" id="lineGroup-code">
-									<label for="lineNum-code" class="col-sm-2 control-label">行数</label>
+									<label for="lineNum-code" class="col-sm-2 control-label">位置</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="lineNum-code"
 											placeholder="">
 									</div>
 								</div>
 							</div>
-
-							<div class="form-group" id="discripGroup-code">
-								<label for="discription-code" class="col-sm-1 control-label">描述</label>
-								<div class="col-sm-11">
-									<textarea class="form-control" rows="1" id="discription-code"></textarea>
-								</div>
-							</div>
 						</form>
-						<button class="btn btn-success" id="add-code">添加</button>
+
+						<div class="form-group" id="discripGroup-code"
+							style="padding-bottom: 30px;">
+							<label for="discription-code" class="col-sm-1 control-label">描述</label>
+							<div class="col-sm-11">
+								<textarea class="form-control" rows="1" id="discription-code"></textarea>
+								<button class="btn btn-success" id="add-code"
+									style="margin-left: 20px; float: right;">添加</button>
+							</div>
+						</div>
+
 					</div>
 					<div id="docBlock">
 						<div
@@ -301,7 +304,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<tr>
 										<th width=120px>文件名</th>
 										<th width=50px>页码</th>
-										<th width=50px>行数</th>
+										<th width=50px>位置</th>
 										<th>描述</th>
 										<th width=10px></th>
 									</tr>
@@ -312,7 +315,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							</table>
 						</div>
 
-						<form action="">
+						<form>
 							<div class="row">
 								<div class="form-group col-sm-4" id="fileGroup-file">
 									<label for="fileName-file" class="col-sm-4 control-label">文件名</label>
@@ -329,22 +332,24 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</div>
 								</div>
 								<div class="form-group col-sm-4" id="lineGroup-file">
-									<label for="lineNum-file" class="col-sm-3 control-label">行数</label>
+									<label for="lineNum-file" class="col-sm-3 control-label">位置</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" id="lineNum-file"
 											placeholder="">
 									</div>
 								</div>
 							</div>
-							<div class="form-group" id="discripGroup-file">
-								<label for="discription-file" class="col-sm-1 control-label">描述</label>
-								<div class="col-sm-11">
-									<textarea class="form-control" rows="1" id="discription-file"></textarea>
-								</div>
-							</div>
-
 						</form>
-						<button class="btn btn-success" id="add-file">添加</button>
+						<div class="form-group" id="discripGroup-file"
+							style="padding-bottom: 30px;">
+							<label for="discription-file" class="col-sm-1 control-label">描述</label>
+							<div class="col-sm-11 form-inline">
+								<textarea class="form-control" rows="1" id="discription-file"
+									style="width: 80%"></textarea>
+								<button class="btn btn-success" id="add-file"
+									style="margin-left: 20px; float: right;">添加</button>
+							</div>
+						</div>
 
 					</div>
 					<div class="row" style="padding-top: 20px; text-align: right;">
@@ -369,7 +374,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<tr>
 									<th width=10px></th>
 									<th>文件名</th>
-									<th>行数</th>
+									<th>位置</th>
 									<th>描述</th>
 									<th>评审人</th>
 									<th width=20px></th>
@@ -407,7 +412,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<th></th>
 									<th>文件名</th>
 									<th>页码</th>
-									<th>行数</th>
+									<th>位置</th>
 									<th>描述</th>
 									<th>评审人</th>
 									<th width=20px></th>
@@ -448,7 +453,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							<tr>
 
 								<th>文件名</th>
-								<th>行数</th>
+								<th>位置</th>
 								<th>描述</th>
 								<th>评审人</th>
 								<th></th>
@@ -459,7 +464,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 
 								<th>文件名</th>
 								<th>页码</th>
-								<th>行数</th>
+								<th>位置</th>
 								<th>描述</th>
 								<th>评审人</th>
 								<th></th>
@@ -483,7 +488,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<table class="table" id="choose-code">
 										<tr>
 											<th>文件名</th>
-											<th>行数</th>
+											<th>位置</th>
 											<th>描述</th>
 											<th>评审人</th>
 										</tr>
@@ -500,31 +505,34 @@ taskName = '<%=request.getParameter("taskName")%>';
 											</div>
 											<div class="form-group col-sm-6" id="lineGroup-choosecode">
 												<label for="lineNum-choosecode"
-													class="col-sm-2 control-label">行数</label>
+													class="col-sm-2 control-label">位置</label>
 												<div class="col-sm-10">
 													<input type="text" class="form-control"
 														id="lineNum-choosecode" placeholder="">
 												</div>
 											</div>
 										</div>
-
-										<div class="form-group" id="discripGroup-choosecode">
-											<label for="discription-choosecode"
-												class="col-sm-1 control-label">描述</label>
-											<div class="col-sm-11">
-												<textarea class="form-control" rows="1"
-													id="discription-choosecode"></textarea>
-											</div>
-										</div>
 									</form>
-									<button class="btn btn-success" id="add-choosecode">添加</button>
+
+									<div class="form-group" id="discripGroup-choosecode"
+										style="padding-bottom: 30px;">
+										<label for="discription-choosecode"
+											class="col-sm-1 control-label">描述</label>
+										<div class="col-sm-11">
+											<textarea class="form-control" rows="1"
+												id="discription-choosecode"></textarea>
+											<button class="btn btn-success" id="add-choosecode"
+												style="margin-left: 20px; float: right;">添加</button>
+										</div>
+									</div>
+
 								</div>
 								<div id="fileDiv">
 									<table class="table" id="choose-file">
 										<tr>
 											<th>文件名</th>
 											<th>页码</th>
-											<th>行数</th>
+											<th>位置</th>
 											<th>描述</th>
 											<th>评审人</th>
 										</tr>
@@ -549,24 +557,27 @@ taskName = '<%=request.getParameter("taskName")%>';
 											</div>
 											<div class="form-group col-sm-4" id="lineGroup-choosefile">
 												<label for="lineNum-choosefile"
-													class="col-sm-3 control-label">行数</label>
+													class="col-sm-3 control-label">位置</label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control"
 														id="lineNum-choosefile" placeholder="">
 												</div>
 											</div>
 										</div>
-										<div class="form-group" id="discripGroup-choosefile">
-											<label for="discription-choosefile"
-												class="col-sm-1 control-label">描述</label>
-											<div class="col-sm-11">
-												<textarea class="form-control" rows="1"
-													id="discription-choosefile"></textarea>
-											</div>
-										</div>
-
 									</form>
-									<button class="btn btn-success" id="add-choosefile">添加</button>
+									<div class="form-group" id="discripGroup-choosefile"
+										style="padding-bottom: 30px;">
+										<label for="discription-choosefile"
+											class="col-sm-1 control-label">描述</label>
+										<div class="col-sm-11">
+											<textarea class="form-control" rows="1"
+												id="discription-choosefile"></textarea>
+											<button class="btn btn-success" id="add-choosefile"
+												style="margin-left: 20px; float: right;">添加</button>
+										</div>
+									</div>
+
+
 								</div>
 
 							</div>
@@ -602,7 +613,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 										<%
 											}
 										%>
-										<th>行数</th>
+										<th>位置</th>
 										<th>描述</th>
 										<th>评审人</th>
 									</tr>

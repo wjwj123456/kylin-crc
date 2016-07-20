@@ -3,6 +3,7 @@ package blservice;
 import java.sql.SQLException;
 import java.util.List;
 
+import vo.Language;
 import vo.State;
 import vo.TaskVO;
 import vo.UserVO;
@@ -17,6 +18,8 @@ public interface ReviewBlService {
 	public List<TaskVO> getTaskList();
 
 	public List<UserVO> searchUserByKeyword(String keyword) throws ClassNotFoundException;
+
+	public List<TaskVO> searchTasksByKeyword(String keyword, Language language);
 
 	/**
 	 * save all user who has been invited
@@ -37,10 +40,10 @@ public interface ReviewBlService {
 	public int saveAcceptReviewer(String userName, String taskName);
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ9ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½9ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -49,10 +52,10 @@ public interface ReviewBlService {
 	public TaskVO getTaskVOByTaskName(String taskName);
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£© get all tasks that a user has joined
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ get all tasks that a user has joined
 	 * 
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ12ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½12ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -61,10 +64,10 @@ public interface ReviewBlService {
 	public List<TaskVO> getJoinedDoingTasksByUserName(String userName);
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£© get all tasks that a user has joined
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ get all tasks that a user has joined
 	 * 
 	 * @author ldk14
-	 * @since 2016Äê7ÔÂ12ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½12ï¿½ï¿½
 	 * @return
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -72,6 +75,8 @@ public interface ReviewBlService {
 	 */
 	public List<TaskVO> getJoinedEndTasksByUserName(String userName);
 
-	public State getState(String userName, String taskName);
+	public State getUserState(String userName, String taskName);
+
+	public State getTaskState(String taskName);
 
 }

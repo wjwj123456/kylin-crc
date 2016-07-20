@@ -13,16 +13,6 @@
 <title>CRC Index</title>
 </head>
 <body>
-	<div id="userAlert" class="alert alert-danger hidden" role="alert">
-		请先登陆再进行操作</div>
-	<script type="text/javascript">
-		var unsigned =
-	<%=request.getParameter("unsigned")%>
-		;
-		if (unsigned) {
-			document.getElementById("userAlert").className = "alert alert-warning";
-		}
-	</script>
 	<div class="site-wrapper">
 
 		<div class="site-wrapper-inner">
@@ -53,73 +43,78 @@
 					</div>
 				</div>
 				<div id="loginModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">x</button>
-					<h1 class="text-center text-primary">登录</h1>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">x</button>
+								<h1 class="text-center text-primary">登录</h1>
+							</div>
+							<div class="modal-body" style="height: 250px">
+
+								<div class="form-group " id="usergroup">
+									<input type="text" name='username'
+										class="form-control input-lg" id="username" placeholder="用户名">
+								</div>
+								<div class="form-group" id="passgroup">
+									<input type="password" name="password" id="password"
+										class="form-control input-lg" placeholder="登录密码">
+								</div>
+								<div class="form-group">
+									<button class="btn btn-primary btn-lg btn-block"
+										onclick="login()" id="loginNow">立刻登录</button>
+									<span><a data-toggle="modal" data-target="#signUpModal"
+										data-dismiss="modal" href="" class="pull-right"
+										style="color: #555">注册</a></span>
+
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="modal-body" style="height: 250px">
 
-					<div class="form-group " id="usergroup">
-						<input type="text" name='username' class="form-control input-lg"
-							id="username" placeholder="用户名">
-					</div>
-					<div class="form-group" id="passgroup">
-						<input type="password" name="password" id="password"
-							class="form-control input-lg" placeholder="登录密码">
-					</div>
-					<div class="form-group">
-						<button class="btn btn-primary btn-lg btn-block" onclick="login()"
-							id="loginNow">立刻登录</button>
-						<span><a data-toggle="modal" data-target="#signUpModal"
-							data-dismiss="modal" href="" class="pull-right" style="color: #555">注册</a></span>
+				<div id="signUpModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">x</button>
+								<h1 class="text-center text-primary">注册</h1>
+							</div>
+							<div class="modal-body" style="height: 370px">
 
+
+								<div class="form-group" id="regUserGroup">
+									<input type="text" name='username'
+										class="form-control input-lg" id="regUsername"
+										placeholder="用户名">
+								</div>
+								<div class="form-group" id="regPassGroup">
+									<input type="password" name="password"
+										class="form-control input-lg" id="regPassword"
+										placeholder="登录密码">
+								</div>
+								<div class="form-group" id="regConfirmGroup">
+									<input type="password" name="confirmPassword"
+										class="form-control input-lg" id="regConfirm"
+										placeholder="确认密码">
+								</div>
+								<div class="form-group" id="regMailGroup">
+									<input type="text" name="mail" class="form-control input-lg"
+										id="regMail" placeholder="邮箱">
+								</div>
+								<div class="form-group">
+									<button class="btn btn-primary btn-lg btn-block"
+										onclick="register()" id="registNow">立刻注册</button>
+									<span><a data-toggle="modal" data-target="#loginModal"
+										data-dismiss="modal" href="" class="pull-right"
+										style="color: #555">已有账号，点此登陆</a></span>
+								</div>
+
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="signUpModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">x</button>
-					<h1 class="text-center text-primary">注册</h1>
-				</div>
-				<div class="modal-body" style="height: 370px">
-
-
-					<div class="form-group" id="regUserGroup">
-						<input type="text" name='username' class="form-control input-lg"
-							id="regUsername" placeholder="用户名">
-					</div>
-					<div class="form-group" id="regPassGroup">
-						<input type="password" name="password"
-							class="form-control input-lg" id="regPassword" placeholder="登录密码">
-					</div>
-					<div class="form-group" id="regConfirmGroup">
-						<input type="password" name="confirmPassword"
-							class="form-control input-lg" id="regConfirm" placeholder="确认密码">
-					</div>
-					<div class="form-group" id="regMailGroup">
-						<input type="text" name="mail" class="form-control input-lg"
-							id="regMail" placeholder="邮箱">
-					</div>
-					<div class="form-group">
-						<button class="btn btn-primary btn-lg btn-block"
-							onclick="register()" id="registNow">立刻注册</button>
-						<span><a data-toggle="modal" data-target="#loginModal"
-							data-dismiss="modal" href="" class="pull-right" style="color: #555">已有账号，点此登陆</a></span>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
 				<div class="inner cover">
 					<h1 class="cover-heading">CRC Review System.</h1>
 					<p class="lead">Cover is a one-page template for building
@@ -138,7 +133,16 @@
 						</p>
 					</div>
 				</div>
-
+				<div id="userAlert" class="alert alert-danger hidden" role="alert">
+					请先登陆再进行操作</div>
+				<script type="text/javascript">
+					var unsigned =
+				<%=request.getParameter("unsigned")%>
+					;
+					if (unsigned) {
+						document.getElementById("userAlert").className = "alert alert-warning";
+					}
+				</script>
 			</div>
 
 		</div>

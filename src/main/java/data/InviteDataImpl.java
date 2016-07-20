@@ -8,6 +8,7 @@ import java.util.List;
 
 import dataservice.InviteDataService;
 import po.TaskPO;
+import vo.Language;
 import vo.Type;
 
 public class InviteDataImpl implements InviteDataService {
@@ -35,7 +36,8 @@ public class InviteDataImpl implements InviteDataService {
 			rSet = DBManager.getResultSet("SELECT * FROM task WHERE tname = '" + list.get(i) + "'");
 			while (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-						rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+						Language.valueOf(rSet.getString(8)));
 				poList.add(po);
 			}
 		}
@@ -78,7 +80,8 @@ public class InviteDataImpl implements InviteDataService {
 
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+					Language.valueOf(rSet.getString(8)));
 			poList.add(po);
 		}
 
@@ -98,7 +101,8 @@ public class InviteDataImpl implements InviteDataService {
 
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getDate(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+					Language.valueOf(rSet.getString(8)));
 			poList.add(po);
 		}
 

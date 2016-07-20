@@ -25,5 +25,6 @@ function confirm() {
  * @returns
  */
 function getData() {
-	
+	var name = $('#id').val().trim();
+	var sex = 
 }

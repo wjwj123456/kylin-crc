@@ -32,9 +32,7 @@ public class InviteBlImpl implements InviteBlService {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
-			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
-					po.getDeadline(), po.getState());
-			result.add(vo);
+			result.add(new TaskVO(po));
 		}
 		return result;
 	}
@@ -71,9 +69,7 @@ public class InviteBlImpl implements InviteBlService {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
-			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
-					po.getDeadline(), po.getState());
-			result.add(vo);
+			result.add(new TaskVO(po));
 		}
 		return result;
 	}
@@ -92,9 +88,7 @@ public class InviteBlImpl implements InviteBlService {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
-			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
-					po.getDeadline(), po.getState());
-			result.add(vo);
+			result.add(new TaskVO(po));
 		}
 		return result;
 	}

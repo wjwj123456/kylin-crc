@@ -15,6 +15,7 @@ $(function(){
 		$('#merged-code').hide();
 		$('#codeDiv').hide();
 	}
+	
 });
 $('#add-code').on('click', function(){
 	if(isCodeItemOK()){

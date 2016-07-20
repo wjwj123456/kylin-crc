@@ -158,6 +158,6 @@ function refuse(taskItem) {
 
 var theTaskName;
 function initInvite(obj) {
-	theTaskName = $(obj).parent().parent().find('a').text();
+	theTaskName = $(obj).parent().parent().find('h2').attr('title');
 }
 
