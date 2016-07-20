@@ -7,10 +7,7 @@ package vo;
 import java.util.Arrays;
 
 /**
- * TODO: 锛堢被鎻忚堪锛�
- *
  * @author lpt14
- * @since 2016骞�7鏈�19鏃�
  * @see
  */
 public class UserInfoVO {
