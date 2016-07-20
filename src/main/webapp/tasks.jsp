@@ -668,6 +668,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script src='js/countDown.js'></script>
+	<script src='js/command.js'></script>
 </body>
 
 </html>
