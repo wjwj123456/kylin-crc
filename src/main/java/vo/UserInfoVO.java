@@ -4,6 +4,7 @@
 */
 package vo;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import po.UserInfoPO;
@@ -15,7 +16,9 @@ import po.UserInfoPO;
  * @since 2016骞�7鏈�19鏃�
  * @see
  */
-public class UserInfoVO {
+public class UserInfoVO implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private String userName;
 	private String trueName;
 	private Sex sex;
@@ -39,7 +42,7 @@ public class UserInfoVO {
 		this.picture = picture;
 		this.languages = languages;
 	}
-	
+
 	public UserInfoVO(UserInfoPO po) {
 		this.userName = po.getUserName();
 		this.trueName = po.getTrueName();

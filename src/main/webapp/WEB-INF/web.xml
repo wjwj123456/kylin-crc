@@ -167,4 +167,23 @@
     <servlet-name>CommandServlet</servlet-name>
     <url-pattern>/CommandServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>AccountFilter</display-name>
+    <filter-name>AccountFilter</filter-name>
+    <filter-class>filter.AccountFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AccountFilter</filter-name>
+    <url-pattern>/describe.jsp</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AccountServlet</display-name>
+    <servlet-name>AccountServlet</servlet-name>
+    <servlet-class>servlet.AccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountServlet</servlet-name>
+    <url-pattern>/AccountServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

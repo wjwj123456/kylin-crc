@@ -77,7 +77,7 @@
 			<div class="form-group row">
 				<label for="name" class="col-sm-2 control-label">姓名</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="name">
+					<input type="text" class="form-control" id="name" value="${userInfo.userName}">
 				</div>
 			</div>
 			<div class="form-group">
@@ -101,19 +101,19 @@
 			<div class="form-group row">
 				<label for="job" class="col-sm-2 control-label">职业</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="job">
+					<input type="text" class="form-control" id="job" value="${userInfo.job}">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="describe" class="col-sm-2 control-label">个人描述</label>
 				<div class="col-sm-9">
 					<textarea type="text" class="form-control" id="describe"  rows="3"
-						></textarea>
+						>${userInfo.description}</textarea>
 				</div>
 			</div>
 		</form>
 		<div class="row" style="text-align: right;">
-		<button class="btn btn-success">确认提交</button>
+		<button class="btn btn-success" id="confirm">确认提交</button>
 		</div>
 	</div>
 	<script>
@@ -132,6 +132,7 @@
 	<script src="js/login.js"></script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
+	<script src="js/account.js"></script>
 </body>
 
 </html>
