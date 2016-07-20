@@ -144,7 +144,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group hide "  id="languageBlock">
 				<label for="language" class="col-sm-2 control-label">代码语言</label>
 				<div class="col-sm-10">
 					<select class="form-control" id="language">
