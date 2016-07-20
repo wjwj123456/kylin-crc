@@ -1,7 +1,5 @@
 package blservice;
 
-import java.sql.SQLException;
-
 import vo.UserInfoVO;
 
 public interface UserInfoBlService {
@@ -22,8 +20,8 @@ public interface UserInfoBlService {
 	
 	/**
 	 * 
-	 * @param vo
+	 * @param username
 	 * @return
 	 */
-	public UserInfoVO get(String vo);
+	public UserInfoVO get(String username);
 }
