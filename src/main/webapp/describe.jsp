@@ -29,6 +29,14 @@
 .drop {
 	text-decoration: line-through;
 }
+
+.no-border {
+	border: 1px solid transparent !important;
+}
+
+.no-part-border {
+	border-right: 1px solid transparent !important;
+}
 </style>
 <title>资料填写</title>
 </head>
@@ -90,12 +98,43 @@
 					</label>
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="area" class="col-sm-2 control-label">擅长领域</label>
+				<div class=" col-sm-8">
+					<table class="table">
+						<tr >
+							<td class="no-border no-part-border"><input type="checkbox"> C</td>
+							<td class="no-border no-part-border"><input type="checkbox"> Java</td>
+							<td class="no-border no-part-border"><input type="checkbox"> Objective_C</td>
+							<td class="no-border no-part-border"><input type="checkbox"> C++</td>
+							<td class="no-border no-part-border"><input type="checkbox"> C#</td>
+							<td class="no-border no-part-border"><input type="checkbox"> JavaScript</td>
+						</tr>
+						<tr>
+							<td class="no-border no-part-border"><input type="checkbox"> Pointnet</td>
+							<td class="no-border no-part-border"><input type="checkbox"> Ruby</td>
+							<td class="no-border no-part-border"><input type="checkbox"> PHP</td>
+							<td class="no-border no-part-border"><input type="checkbox"> Swift</td>
+							<td class="no-border no-part-border"><input type="checkbox"> D</td>
+							<td class="no-border no-part-border"><input type="checkbox"> R</td>
+						</tr>
+						<tr>
+							<td class="no-border no-part-border"><input type="checkbox"> MATLAB</td>
+							<td class="no-border no-part-border"><input type="checkbox"> Perl</td>
+							<td class="no-border no-part-border"><input type="checkbox"> python</td>
+							<td class="no-border no-part-border"><input type="checkbox"> other</td>
+							<td class="no-border no-part-border"><input type="checkbox"> Groovy</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 			<div class="form-group row">
 				<label for="city" class="col-sm-2 control-label">城市</label>
 				<div class="col-sm-5 form-inline" id="city">
 					<select class="province cxselect form-control" data-value="江苏省"
-						data-first-title="选择省"></select> <select class="city cxselect form-control"
-						data-value="南京市" data-first-title="选择市"></select>
+						data-first-title="选择省"></select> <select
+						class="city cxselect form-control" data-value="南京市"
+						data-first-title="选择市"></select>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -107,19 +146,18 @@
 			<div class="form-group row">
 				<label for="describe" class="col-sm-2 control-label">个人描述</label>
 				<div class="col-sm-9">
-					<textarea type="text" class="form-control" id="describe"  rows="3"
-						></textarea>
+					<textarea type="text" class="form-control" id="describe" rows="3"></textarea>
 				</div>
 			</div>
 		</form>
 		<div class="row" style="text-align: right;">
-		<button class="btn btn-success">确认提交</button>
+			<button class="btn btn-success">确认提交</button>
 		</div>
 	</div>
 	<script>
 		$.cxSelect.defaults.url = 'js/cityData.min.json';
 		$('#city').cxSelect({
-			selects : [ 'province', 'city'],
+			selects : [ 'province', 'city' ],
 			nodata : 'none'
 		});
 	</script>

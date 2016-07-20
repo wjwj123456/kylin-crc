@@ -48,7 +48,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 	taskType = 'file';
 <%}%>
 <%ReviewBlService reviewBl = new ReviewBlImpl();
-			State theState = reviewBl.getState((String) session.getAttribute("username"), taskVO.getTaskName());%>
+			State theState = reviewBl.getUserState((String) session.getAttribute("username"), taskVO.getTaskName());%>
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
