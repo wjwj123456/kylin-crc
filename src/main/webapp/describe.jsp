@@ -122,8 +122,9 @@
 							<td class="no-border no-part-border"><input type="checkbox"> MATLAB</td>
 							<td class="no-border no-part-border"><input type="checkbox"> Perl</td>
 							<td class="no-border no-part-border"><input type="checkbox"> python</td>
-							<td class="no-border no-part-border"><input type="checkbox"> other</td>
 							<td class="no-border no-part-border"><input type="checkbox"> Groovy</td>
+							<td class="no-border no-part-border"><input type="checkbox"> other</td>
+							
 						</tr>
 					</table>
 				</div>
