@@ -15,6 +15,17 @@ public interface ReportDataService {
 	public int createReport(List<ReportPO> pos) throws ClassNotFoundException, SQLException;
 
 	/**
+	 * 
+	 * 
+	 * @param taskname
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public List<ReportPO> getTempReport(String taskName, String reviewerName)
+			throws ClassNotFoundException, SQLException;
+
+	/**
 	 * ldk
 	 * 
 	 * @param po

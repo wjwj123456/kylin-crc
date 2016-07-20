@@ -68,6 +68,24 @@ public class ReportDataImpl implements ReportDataService {
 		return flag;
 	}
 
+	@Override
+	public List<ReportPO> getTempReport(String taskName, String reviewerName)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		String sql1 = "SELECT * FROM report  WHERE state = 3 and tname = '" + taskName + "' and uname = '"
+				+ reviewerName + "'";
+		ResultSet rSet = DBManager.getResultSet(sql1);
+		List<ReportPO> reportPOs = new ArrayList<>();
+		while (rSet.next()) {
+			ReportPO po = new ReportPO(taskName, rSet.getString("uname"), rSet.getString("filename"),
+					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"),
+					rSet.getInt("origin"));
+			reportPOs.add(po);
+		}
+		DBManager.closeConnection();
+		return reportPOs;
+	}
+
 	public int setCompleteTime(String taskName, String reviewerName, double time)
 			throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
