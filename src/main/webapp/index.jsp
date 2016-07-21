@@ -19,11 +19,11 @@
 
 			<div class="cover-container">
 
-				<div class="masthead clearfix">
+				<div class="masthead clearfix"  style="margin-left: -292px;">
 					<div class="inner">
 						<h3 class="masthead-brand">CRC Review System</h3>
-						<nav>
-						<ul class="nav masthead-nav">
+						<nav >
+						<ul class="nav masthead-nav" style="margin-right: -560px;">
 							<%
 								if (session.getAttribute("username") != null) {
 							%>
@@ -115,15 +115,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="inner cover">
-					<h1 class="cover-heading">CRC Review System.</h1>
+				<div class="inner cover"  style="padding-top: -20px; ">
+					<h1 class="cover-heading">Let's Start Review.</h1>
 
 					<form>
 						<div class=row>
 							<div class="col-md-10  col-md-offest-2" style="padding-left: 98px; padding-top: 27px;padding-right: 0px;">
 
 								<input
-									style="position: relative; vertical-align: top; background-color: transparent;"
+									style="position: relative; vertical-align: top; background-color: transparent; color:white"
 									name="term" placeholder="Search review..." required=""
 									class="store-search typeahead form-control tt-input"
 									type="text">

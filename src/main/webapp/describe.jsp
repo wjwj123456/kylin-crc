@@ -133,33 +133,33 @@ var sex ="${userInfo.sex}";
 								Objective_C</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="cpp">
 								C++</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="Ruby">
-								C#</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="csharp">
+								C#</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="JavaScript">
 								JavaScript</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox" value="JavaScript">
-								Pointnet</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="pointnet">
+								Pointnet</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="Ruby">
 								Ruby</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="PHP">
 								PHP</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="Swift">
 								Swift</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="Groovy">
+							<td class="no-border no-part-border"><input type="checkbox" value="D">
 								D</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="MATLAB">
+							<td class="no-border no-part-border"><input type="checkbox" value="R">
 								R</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox" value="D">
+							<td class="no-border no-part-border"><input type="checkbox" value="MATLAB">
 								MATLAB</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="R">
-								Perl</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="Perl">
-								python</td>
+								Perl</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="python">
+								python</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="Groovy">
 								Groovy</td>
 							<td class="no-border no-part-border"><input type="checkbox" value="other">
 								other</td>

@@ -51,8 +51,6 @@ public class UserInfoBlImpl implements UserInfoBlService {
 		} catch (SQLException e) {
 
 		}
-		System.out.println(po);
-		System.out.println(po.getUserName());
 		UserInfoVO vo = new UserInfoVO(po);
 		return vo;
 	}

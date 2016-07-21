@@ -36,11 +36,8 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	}
 
 	private int[][] getMatix(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
-		System.out.println(vos);
 		List<String> nameList = new ArrayList<String>();
 		nameList = getReviewerNames(taskName);
-		System.out.println("nameList:");
-		System.out.println(nameList);
 		int[][] matrix = new int[vos.size()][nameList.size()];
 
 		int i = 0;
@@ -55,7 +52,6 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		for (ReportVO vo : vos) {
 
 			j = nameList.indexOf(vo.getUserName());
-			System.out.println(vo.getUserName());
 			matrix[i][j] = 1;
 
 			int id = mergeDataImpl.getID(new ReportPO(vo));
@@ -67,12 +63,10 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			} else {
 				String name = "";
 				name = rSet.getString(1);
-				System.out.println(name);
 				j = nameList.indexOf(name);
 				matrix[i][j] = 1;
 				while (rSet.next()) {
 					name = rSet.getString(1);
-					System.out.println(name);
 					j = nameList.indexOf(name);
 					matrix[i][j] = 1;
 				}

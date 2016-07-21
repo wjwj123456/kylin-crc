@@ -21,6 +21,8 @@
 	padding-bottom: 10px;
 }
 </style>
+
+
 <title>我的消息</title>
 </head>
 <body role="document">
