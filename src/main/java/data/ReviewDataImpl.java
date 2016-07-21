@@ -179,7 +179,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM review WHERE tname like '%" + keyword + "%' and language = '" + language.toString()
+		String sql = "SELECT * FROM task WHERE tname like '%" + keyword + "%' and language = '" + language.toString()
 				+ "'";
 		try {
 			rSet = DBManager.getResultSet(sql);
