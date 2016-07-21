@@ -219,7 +219,7 @@ var sex ="${userInfo.sex}";
 		initFileInput('fileinput', '/file');
 	</script>
 	<script type="text/javascript">
-	var num = ${messangNum};</script>
+	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 </body>
 

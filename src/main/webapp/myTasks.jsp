@@ -119,7 +119,7 @@
 						<h2 title="<%=vo.getTaskName()%>">
 							<%=vo.getTaskName()%>
 							<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-								<button class="btn btn-default">
+								<button class="btn btn-default" style="float: right;">
 									<span class="glyphicon glyphicon-hand-up"></span> Check
 								</button>
 							</a>
@@ -321,7 +321,7 @@
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script type="text/javascript">
-	var num = ${messangNum};</script>
+	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 </body>
 

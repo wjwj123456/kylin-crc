@@ -273,7 +273,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script src='js/waitMe.min.js'></script>
 	<script src='js/countDown.js'></script>
 	<script type="text/javascript">
-	var num = ${messangNum};</script>
+	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 </body>
 

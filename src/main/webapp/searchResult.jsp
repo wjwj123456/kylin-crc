@@ -20,8 +20,20 @@
 .myrow {
 	padding-bottom: 10px;
 }
+
+.item {
+	cursor: pointer;
+}
+
+.item>p {
+	padding: 4px;
+}
+
+.item:hover {
+	background: rgb(220, 220, 220);
+}
 </style>
-<title>我的消息</title>
+<title>My CRC</title>
 </head>
 <body role="document">
 	<nav class="navbar navbar-inverse">
@@ -41,12 +53,13 @@
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+				<li class="dropdown" id="mesSpan"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
-						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
 						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -54,6 +67,7 @@
 				<%
 					}
 				%>
+
 			</ul>
 
 		</div>
@@ -61,49 +75,100 @@
 	</div>
 	</nav>
 	<div class="container" id="waitArea">
-		<div id="suspensionNavigation" class="col-md-2" role="complementary"
-			style="text-align: center; padding-top: 80px">
+		<div id="suspensionNavigation" class="col-md-3" role="complementary"
+			style="padding-top: 80px; padding-right: 50px;">
 			<div class="myrow">
-				<img alt="" src="img/glyphicons-halflings.png" width="50px"
-					height="50px">
+				<h3>languages</h3>
 			</div>
-			<div class="myrow"><%=session.getAttribute("username")%><a
-					href="describe.jsp"><button class="close" style="float: none;">
-						<span class="glyphicon glyphicon-edit"></span>
-					</button></a>
+			<hr>
+			<div>
+				<div class="item">
+					<p>
+						c++<span style="float: right;">haha</span>
+					</p>
+				</div>
+				<div class="item">
+					<p>
+						java<span style="float: right;">haha</span>
+					</p>
+				</div>
+				<div class="item">
+					<p>
+						c#<span style="float: right;">haha</span>
+					</p>
+				</div>
+				<div class="item">
+					<p>
+						Ruby<span style="float: right;">haha</span>
+					</p>
+				</div>
 			</div>
-
-			<a href="newTask.jsp"><button class="btn btn-success">新评审</button></a>
 
 		</div>
-		<div class="col-md-10 bs-docs-section">
-			<h2 id="message">消息</h2>
-			<table class="table" id="messageTable">
-				<thead>
-					<tr>
-						<th>发信人</th>
-						<th>项目名</th>
-						<th width=50px>操作</th>
-						<th width=10px></th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						List<TaskVO> messages = Cast.cast(session.getAttribute("invitationList"));
-					%>
-					<%
-						for (TaskVO vo : messages) {
-					%>
-					<tr>
-						<td><%=vo.getUserName()%></td>
-						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-						<td><button class="btn btn-success">接受邀请</button></td>
-						<td><button type="button" class="close" aria-hidden="true">x</button></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
+		<div class="col-md-9 bs-docs-section">
+			<div class=row>
+				<div class="col-md-10 "
+					style="padding-left: 98px; padding-top: 27px; padding-right: 0px;">
+
+					<input
+						style="position: relative; vertical-align: top; background-color: transparent;"
+						name="term" placeholder="Search review..." required=""
+						class="store-search typeahead form-control tt-input" type="text">
+
+				</div>
+				<div class="col-md-2 col-md-offest-0" style="padding-top: 26px;">
+					<button type="submit" class="btn-primary btn"
+						style="height: 36px; margin-left: -71px;">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</button>
+				</div>
+
+
+
+
+			</div>
+			<h2 id="basicInfo">个人资料</h2>
+			<table class="table">
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+			</table>
+			<hr>
+			<h2 id="perAnalyze">个人成就</h2>
+			<table class="table">
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
+				<tr>
+					<th>haha</th>
+					<td>haha</td>
+					<th>haha</th>
+					<td>haha</td>
+				</tr>
 			</table>
 			<hr>
 		</div>
@@ -120,10 +185,15 @@
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
+	<script src="js/search.js"></script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script type="text/javascript">
-	var num = ${messageNum};</script>
+		var num = $
+		{
+			messageNum
+		};
+	</script>
 	<script src='js/mesSpan.js'></script>
 </body>
 
