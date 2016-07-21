@@ -104,7 +104,7 @@
 			</div>
 			<div class="form-group row">
 				<label for="fileinput" class="col-sm-2 control-label">头像</label>
-				<div class="col-sm-8">
+				<div class="col-sm-4">
 					<input id="fileinput" type="file">
 				</div>
 			</div>
