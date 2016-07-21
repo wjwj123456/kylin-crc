@@ -159,9 +159,9 @@
 			<div class="form-group row">
 				<label for="city" class="col-sm-2 control-label">城市</label>
 				<div class="col-sm-5 form-inline" id="city">
-					<select class="province cxselect form-control" data-value="江苏省" id="province"
+					<select class="province cxselect form-control" data-value="江苏省" 
 						data-first-title="选择省"></select> <select
-						class="city cxselect form-control" data-value="南京市" id="city"
+						class="city cxselect form-control" data-value="南京市" 
 						data-first-title="选择市"></select>
 				</div>
 			</div>

@@ -43,15 +43,6 @@ public class CRCFilter implements Filter {
 		HttpSession session = req.getSession();
 
 		String userName = (String) session.getAttribute("username");
-
-		InviteBlImpl invite = new InviteBlImpl();
-		
-		ReviewBlService reviewBl = new ReviewBlImpl();
-		
-
-		// 用户收到的邀请
-		List<TaskVO> invitationList = invite.getInvitationInfo(userName);
-		session.setAttribute("invitationList", invitationList);
 		chain.doFilter(request, response);
 	}
 

@@ -186,4 +186,13 @@
     <servlet-name>AccountServlet</servlet-name>
     <url-pattern>/AccountServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>MessageFilter</display-name>
+    <filter-name>MessageFilter</filter-name>
+    <filter-class>filter.MessageFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MessageFilter</filter-name>
+    <url-pattern>/message.jsp</url-pattern>
+  </filter-mapping>
 </web-app>

@@ -38,7 +38,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 <span class="badge">4</span></a></li>
+				<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 <span class="badge" style="background-color: #ff3333">1</span></a></li>
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
@@ -69,35 +69,6 @@
 
 		</div>
 		<div class="col-md-10 bs-docs-section">
-			<h2 id="message">消息</h2>
-			<table class="table" id="messageTable">
-				<thead>
-					<tr>
-						<th>发信人</th>
-						<th>项目名</th>
-						<th width=50px>操作</th>
-						<th width=10px></th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						List<TaskVO> messages = Cast.cast(session.getAttribute("invitationList"));
-					%>
-					<%
-						for (TaskVO vo : messages) {
-					%>
-					<tr>
-						<td><%=vo.getUserName()%></td>
-						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-						<td><button class="btn btn-success">接受邀请</button></td>
-						<td><button type="button" class="close" aria-hidden="true">x</button></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
-			<hr>
 			<h2 id="basicInfo">个人资料</h2>
 			<table class="table">
 				<tr>
