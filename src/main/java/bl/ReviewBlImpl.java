@@ -14,6 +14,7 @@ import data.ReviewDataImpl;
 import dataservice.ReviewDataService;
 import po.TaskPO;
 import po.UserPO;
+import vo.Language;
 import vo.State;
 import vo.TaskVO;
 import vo.Type;
@@ -39,7 +40,7 @@ public class ReviewBlImpl implements ReviewBlService {
 	public int saveReviewInfo(TaskVO vo) {
 		// TODO Auto-generated method stub
 		TaskPO po = new TaskPO(vo.getUserName(), vo.getTaskName(), vo.getType(), vo.getProject(), vo.getDescribe(),
-				vo.getDeadline(), vo.getState());
+				vo.getDeadline(), vo.getState(), vo.getLanguage());
 		int flag = 0;
 		try {
 			flag = reviewDataService.saveReviewInfo(po);
@@ -78,8 +79,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
-			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
-					po.getDeadline(), po.getState());
+			TaskVO vo = new TaskVO(po);
 			result.add(vo);
 		}
 		return result;
@@ -116,6 +116,26 @@ public class ReviewBlImpl implements ReviewBlService {
 		return result;
 	}
 
+	@Override
+	public List<TaskVO> searchTasksByKeyword(String keyword, Language language) {
+		// TODO Auto-generated method stub
+		List<TaskVO> result = new ArrayList<TaskVO>();
+		List<TaskPO> list = new ArrayList<TaskPO>();
+		try {
+			list = reviewDataService.searchTasksByKeyword(keyword, language);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (TaskPO po : list) {
+			result.add(new TaskVO(po));
+		}
+		return result;
+	}
+
 	public List<TaskVO> getEndTaskList(String userName) {
 		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
@@ -130,8 +150,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
-			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
-					po.getDeadline(), po.getState());
+			TaskVO vo = new TaskVO(po);
 			result.add(vo);
 		}
 		return result;
@@ -234,6 +253,7 @@ public class ReviewBlImpl implements ReviewBlService {
 		String describe = "";
 		Date deadline = new Date();
 		int state = -1;
+		Language language = Language.c;
 
 		try {
 			TaskPO po = reviewDataService.getTaskPOByTaskName(taskName);
@@ -244,6 +264,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			describe = po.getDescribe();
 			deadline = po.getDeadline();
 			state = po.getState();
+			language = po.getLanguage();
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -254,7 +275,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 
-		TaskVO vo = new TaskVO(userName, tName, type, project, describe, deadline, state);
+		TaskVO vo = new TaskVO(userName, tName, type, project, describe, deadline, state, language);
 		return vo;
 	}
 
@@ -273,9 +294,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
-			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
-					po.getDeadline(), po.getState());
-			result.add(vo);
+			result.add(new TaskVO(po));
 		}
 		return result;
 	}
@@ -295,18 +314,16 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
-			TaskVO vo = new TaskVO(po.getUserName(), po.getTaskName(), po.getType(), po.getProject(), po.getDescribe(),
-					po.getDeadline(), po.getState());
-			result.add(vo);
+			result.add(new TaskVO(po));
 		}
 		return result;
 	}
 
 	/**
-	 * TODO:������������
+	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 *
 	 * @author lpt14
-	 * @since 2016��7��14��
+	 * @since 2016锟斤拷7锟斤拷14锟斤拷
 	 * @param userName
 	 * @param takName
 	 * @return
@@ -328,10 +345,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:（方法描述）
+	 * TODO:锛堟柟娉曟弿杩帮級
 	 *
 	 * @author lpt14
-	 * @since 2016年7月20日
+	 * @since 2016骞�7鏈�20鏃�
 	 * @param taskName
 	 * @return
 	 * @see blservice.ReviewBlService#getTaskState(java.lang.String)
@@ -349,4 +366,5 @@ public class ReviewBlImpl implements ReviewBlService {
 		}
 		return state;
 	}
+
 }

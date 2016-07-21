@@ -94,101 +94,144 @@
 
 		</div>
 		<div class="col-md-10">
+			<ul id="myTab" class="nav nav-tabs" style="font-size: 150%;text-align: center;">
+				<li class="active"><a href="#my" data-toggle="tab"> 我发布的评审</a></li>
+				<li><a href="#join" data-toggle="tab">我参与的评审</a></li>
+				<li><a href="#his" data-toggle="tab">历史评审</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="my">
+					<%
+						List<TaskVO> running = Cast.cast(session.getAttribute("runningTask"));
+					%>
+					<%
+						if (running.size() == 0) {
+					%>
+					<h2>暂无</h2>
+					<%
+						} else {
+					%>
+					<%
+						for (TaskVO vo : running) {
+					%>
+					<div class="well well-lg">
+						<h2 title="<%=vo.getTaskName()%>">
+							<%=vo.getTaskName()%>
+							<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
+								<button class="btn btn-default">
+									<span class="glyphicon glyphicon-hand-up"></span> Check
+								</button>
+							</a>
+						</h2>
+						<p><%=vo.getDescribe()%></p>
+						<p>
+							<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
+						</p>
+						<p>
+							参与者：XXXXXXXXXXX
+							<button class="btn btn-success" data-toggle="modal"
+								data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+						</p>
+					</div>
+					<%
+						}
+					%>
+					<%
+						}
+					%>
 
-			<h2 id="runningReview">我发布的评审</h2>
-			<div class="row">
-				
+
+					<hr>
+				</div>
+				<div class="tab-pane fade " id="join">
+
+					<%
+						List<TaskVO> joiningTasks = Cast.cast(session.getAttribute("participantTask"));
+					%>
+					<%
+						if (joiningTasks.size() == 0) {
+					%>
+					<h2>暂无</h2>
+					<%
+						} else {
+					%>
+					<%
+						for (TaskVO vo : joiningTasks) {
+					%>
+					<div class="well well-lg">
+						<h2 title="<%=vo.getTaskName()%>">
+							<%=vo.getTaskName()%>
+							<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
+								<button class="btn btn-default">
+									<span class="glyphicon glyphicon-hand-up"></span> Check
+								</button>
+							</a>
+						</h2>
+						<p><%=vo.getDescribe()%></p>
+						<p>
+							<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
+						</p>
+						<p>
+							参与者：XXXXXXXXXXX
+							<button class="btn btn-success" data-toggle="modal"
+								data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+						</p>
+					</div>
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+
+					<hr>
+				</div>
+				<div class="tab-pane fade " id="his">
+					<%
+						List<TaskVO> history = Cast.cast(session.getAttribute("historyTask"));
+					%>
+					<%
+						if (history.size() == 0) {
+					%>
+					<h2>暂无</h2>
+					<%
+						} else {
+					%>
+					<%
+						for (TaskVO vo : history) {
+					%>
+					<div class="well well-lg">
+						<h2 title="<%=vo.getTaskName()%>">
+							<%=vo.getTaskName()%>
+							<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
+								<button class="btn btn-default">
+									<span class="glyphicon glyphicon-hand-up"></span> Check
+								</button>
+							</a>
+						</h2>
+						<p><%=vo.getDescribe()%></p>
+						<p>
+							<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
+						</p>
+						<p>
+							参与者：XXXXXXXXXXX
+							<button class="btn btn-success" data-toggle="modal"
+								data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+						</p>
+					</div>
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+
+					<hr>
+				</div>
+
+
+
 			</div>
-				<%
-					List<TaskVO> running = Cast.cast(session.getAttribute("runningTask"));
-				%>
-				<%
-					for (TaskVO vo : running) {
-				%>
-				<div class="well well-lg">
-					<h2>
-						<%=vo.getTaskName() %>
-						<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-						<button class="btn btn-default">
-							<span class="glyphicon glyphicon-hand-up"></span> Check
-						</button>
-						</a>
-					</h2>
-					<p><%=vo.getDescribe() %></p>
-					<p>
-						<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
-					</p>
-					<p>
-						参与者：XXXXXXXXXXX
-						<button class="btn btn-success" data-toggle="modal"
-							data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-					</p>
-				</div>
-				<%
-					}
-				%>
-			<hr>
-			<h2 id="joiningReview">我参与的评审</h2>
-			
-				<%
-					List<TaskVO> joiningTasks = Cast.cast(session.getAttribute("participantTask"));
-				%>
-				<%
-					for (TaskVO vo : joiningTasks) {
-				%>
-				<div class="well well-lg">
-					<h2>
-						<%=vo.getTaskName() %>
-						<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-						<button class="btn btn-default">
-							<span class="glyphicon glyphicon-hand-up"></span> Check
-						</button>
-						</a>
-					</h2>
-					<p><%=vo.getDescribe() %></p>
-					<p>
-						<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
-					</p>
-					<p>
-						参与者：XXXXXXXXXXX
-						<button class="btn btn-success" data-toggle="modal"
-							data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-					</p>
-				</div>
-				<%
-					}
-				%>
-			<hr>
-			<h2 id="hisReview">历史评审</h2>
-				<%
-					List<TaskVO> history = Cast.cast(session.getAttribute("historyTask"));
-				%>
-				<%
-					for (TaskVO vo : history) {
-				%>
-				<div class="well well-lg">
-					<h2>
-						<%=vo.getTaskName() %>
-						<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-						<button class="btn btn-default">
-							<span class="glyphicon glyphicon-hand-up"></span> Check
-						</button>
-						</a>
-					</h2>
-					<p><%=vo.getDescribe() %></p>
-					<p>
-						<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
-					</p>
-					<p>
-						参与者：XXXXXXXXXXX
-						<button class="btn btn-success" data-toggle="modal"
-							data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-					</p>
-				</div>
-				<%
-					}
-				%>
-			<hr>
 			<div id="inviteModal" class="modal fade">
 				<div class="modal-dialog" style="width: 800px;">
 					<div class="modal-content">

@@ -139,8 +139,33 @@
 				<label for="type" class="col-sm-2 control-label">评审类型</label>
 				<div class="col-sm-10">
 					<select class="form-control" id="type">
-						<option>文档评审</option>
-						<option>代码评审</option>
+						<option id="doc">文档评审</option>
+						<option id="code">代码评审</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group hide "  id="languageBlock">
+				<label for="language" class="col-sm-2 control-label">代码语言</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="language">
+						<option>C</option>
+						<option>Java</option>
+						<option>Objective_C</option>
+						<option>C++</option>
+						<option>C#</option>
+						<option>JavaScript</option>
+						<option>Pointnet</option>
+						<option>Ruby</option>
+						<option>PHP</option>
+						<option>Swift</option>
+						<option> D</option>
+						<option>R</option>
+						<option>MATLAB</option>
+						<option>Perl</option>
+						<option>python</option>
+						<option>Groovy</option>
+						<option>other</option>
+						
 					</select>
 				</div>
 			</div>

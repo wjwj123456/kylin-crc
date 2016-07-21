@@ -72,6 +72,23 @@ public class ReportBlImpl implements ReportBlService {
 	}
 
 	@Override
+	public List<ReportVO> getTempReport(String taskName, String reviewerName) {
+		List<ReportVO> result = new ArrayList<ReportVO>();
+		List<ReportPO> list = new ArrayList<ReportPO>();
+		try {
+			list = reportDataService.getTempReport(taskName, reviewerName);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (ReportPO po : list) {
+			ReportVO vo = new ReportVO(po);
+			result.add(vo);
+		}
+		return result;
+	}
+
+	@Override
 	public List<ReportVO> getAllReportsByTaskName(String taskName) {
 		// TODO Auto-generated method stub
 		List<ReportVO> result = new ArrayList<ReportVO>();

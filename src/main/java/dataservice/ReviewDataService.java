@@ -5,6 +5,7 @@ import java.util.List;
 
 import po.TaskPO;
 import po.UserPO;
+import vo.Language;
 import vo.State;
 
 public interface ReviewDataService {
@@ -24,6 +25,9 @@ public interface ReviewDataService {
 	public List<TaskPO> getTaskList() throws ClassNotFoundException, SQLException;
 
 	public List<UserPO> searchUserByKeyword(String keyword) throws SQLException, ClassNotFoundException;
+
+	public List<TaskPO> searchTasksByKeyword(String keyword, Language language)
+			throws SQLException, ClassNotFoundException;
 
 	/**
 	 * save all user who has been invited

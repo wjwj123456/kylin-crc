@@ -8,23 +8,23 @@ import dataservice.UserInfoDataService;
 import po.UserInfoPO;
 import vo.UserInfoVO;
 
-public class UserInfoBlImpl implements UserInfoBlService{
+public class UserInfoBlImpl implements UserInfoBlService {
 
 	private UserInfoDataService userInfo;
-	
+
 	public UserInfoBlImpl() {
 		this.userInfo = new UserInfoDataImpl();
 	}
-	
+
 	@Override
 	public boolean update(UserInfoVO vo) {
 		UserInfoPO po = new UserInfoPO(vo);
 		try {
 			return userInfo.update(po);
 		} catch (ClassNotFoundException e) {
-			
+
 		} catch (SQLException e) {
-		
+
 		}
 		return false;
 	}
@@ -34,9 +34,9 @@ public class UserInfoBlImpl implements UserInfoBlService{
 		try {
 			return userInfo.add(username);
 		} catch (ClassNotFoundException e) {
-			
+
 		} catch (SQLException e) {
-			
+
 		}
 		return false;
 	}
@@ -47,10 +47,12 @@ public class UserInfoBlImpl implements UserInfoBlService{
 		try {
 			po = userInfo.get(username);
 		} catch (ClassNotFoundException e) {
-		
+
 		} catch (SQLException e) {
-			
+
 		}
+		System.out.println(po);
+		System.out.println(po.getUserName());
 		UserInfoVO vo = new UserInfoVO(po);
 		return vo;
 	}

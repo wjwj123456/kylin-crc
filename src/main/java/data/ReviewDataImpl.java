@@ -10,6 +10,7 @@ import java.util.List;
 import dataservice.ReviewDataService;
 import po.TaskPO;
 import po.UserPO;
+import vo.Language;
 import vo.State;
 import vo.Type;
 
@@ -17,7 +18,7 @@ import vo.Type;
  * review data impl
  *
  * @author lpt14
- * @since 2016��7��8��
+ * @since 2016锟斤拷7锟斤拷8锟斤拷
  * @see
  */
 public class ReviewDataImpl implements ReviewDataService {
@@ -29,7 +30,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	 * save review infomation to database
 	 *
 	 * @author lpt14
-	 * @since 2016��7��8��
+	 * @since 2016锟斤拷7锟斤拷8锟斤拷
 	 * @param po
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -64,10 +65,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
+	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 *
 	 * @author lpt14
-	 * @since 2016��7��8��
+	 * @since 2016锟斤拷7锟斤拷8锟斤拷
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -84,7 +85,8 @@ public class ReviewDataImpl implements ReviewDataService {
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+					Language.valueOf(rSet.getString(8)));
 			poList.add(po);
 
 		}
@@ -95,10 +97,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
+	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 *
 	 * @author lpt14
-	 * @since 2016��7��8��
+	 * @since 2016锟斤拷7锟斤拷8锟斤拷
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -115,7 +117,8 @@ public class ReviewDataImpl implements ReviewDataService {
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+					Language.valueOf(rSet.getString(8)));
 			poList.add(po);
 
 		}
@@ -161,6 +164,44 @@ public class ReviewDataImpl implements ReviewDataService {
 
 	/**
 	 *
+	 * * @author ldk14
+	 * 
+	 * @param keyword,language
+	 * @return + * @throws SQLException + * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#searchUserByKeyword(java.lang.String)
+	 *
+	 */
+	@Override
+	public List<TaskPO> searchTasksByKeyword(String keyword, Language language)
+			throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+
+		String sql = "SELECT * FROM review WHERE tname like '%" + keyword + "%' and language = '" + language.toString()
+				+ "'";
+		try {
+			rSet = DBManager.getResultSet(sql);
+
+			while (rSet.next()) {
+				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
+						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+						Language.valueOf(rSet.getString(8)));
+				poList.add(po);
+
+			}
+		} catch (Exception SQLException) {
+			// TODO: handle exception
+			System.out.println("user not found");
+		}
+
+		DBManager.closeConnection();
+		return poList;
+	}
+
+	/**
+	 *
 	 * @author lpt14
 	 * @param userName
 	 * @return
@@ -189,7 +230,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	/**
 	 *
 	 * @author ldk14
-	 * @since 2016��7��9��
+	 * @since 2016锟斤拷7锟斤拷9锟斤拷
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -239,7 +280,8 @@ public class ReviewDataImpl implements ReviewDataService {
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+					Language.valueOf(rSet.getString(8)));
 			poList.add(po);
 
 		}
@@ -264,7 +306,8 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		if (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+					Language.valueOf(rSet.getString(8)));
 			DBManager.closeConnection();
 			return po;
 		} else
@@ -284,7 +327,8 @@ public class ReviewDataImpl implements ReviewDataService {
 			rSet = DBManager.getResultSet(sql);
 			if (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+						Language.valueOf(rSet.getString(8)));
 				poList.add(po);
 			}
 			DBManager.closeConnection();
@@ -304,7 +348,8 @@ public class ReviewDataImpl implements ReviewDataService {
 			rSet = DBManager.getResultSet(sql);
 			if (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
-						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7));
+						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
+						Language.valueOf(rSet.getString(8)));
 				poList.add(po);
 			}
 			DBManager.closeConnection();
@@ -326,10 +371,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:������������
+	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 *
 	 * @author lpt14
-	 * @since 2016��7��14��
+	 * @since 2016锟斤拷7锟斤拷14锟斤拷
 	 * @param userName
 	 * @param taskName
 	 * @return
@@ -363,10 +408,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:（方法描述）
+	 * TODO:锛堟柟娉曟弿杩帮級
 	 *
 	 * @author lpt14
-	 * @since 2016年7月20日
+	 * @since 2016骞�7鏈�20鏃�
 	 * @param taskName
 	 * @return
 	 * @throws SQLException
