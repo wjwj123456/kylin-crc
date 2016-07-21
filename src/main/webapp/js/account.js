@@ -15,6 +15,7 @@ function confirm() {
 		data: 'type=update' + '&data=' + getData(),
 		success: function(data) {
 			stopWait();
+			top.location='My CRC.jsp';
 		}
 	});
 }
