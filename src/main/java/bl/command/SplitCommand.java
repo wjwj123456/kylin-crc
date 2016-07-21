@@ -2,6 +2,7 @@ package bl.command;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import bl.MergeBlImpl;
 import bl.SplitBlImpl;
@@ -17,15 +18,37 @@ import vo.ReportVO;
  */
 public class SplitCommand implements Command {
 
+	/**
+	 * 要拆分的条目
+	 */
 	private ArrayList<ReportVO> reportList;
+
+	/**
+	 * 被拆分的条目
+	 */
 	private ReportVO report;
+
+	/**
+	 * 备份所有要拆分条目的直接子节点
+	 */
+	private List<ReportVO> reportBackUp[];
 
 	private SplitBlService splitBl;
 	private MergeBlService mergeBl;
 
+	@SuppressWarnings("unchecked")
 	public SplitCommand(ArrayList<ReportVO> vos, ReportVO vo) {
 		this.reportList = vos;
 		this.report = vo;
+
+		reportBackUp = new ArrayList[vos.size()];
+		try {
+			for (int i = 0; i < vos.size(); i++) {
+				reportBackUp[i] = splitBl.choose(vos.get(i));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 
 		splitBl = new SplitBlImpl();
 		mergeBl = new MergeBlImpl();

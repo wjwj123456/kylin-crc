@@ -2,6 +2,7 @@ package dataservice;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import po.ReportPO;
 
@@ -45,4 +46,14 @@ public interface SplitDataService {
 	 */
 	public ArrayList<ReportPO> getCanSplitReports(String taskname) throws ClassNotFoundException, SQLException;
 	
+	
+	/**
+	 * 
+	 * @param pos
+	 * @param po
+	 * @return	0 means success, 1 means failures
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException;
 }

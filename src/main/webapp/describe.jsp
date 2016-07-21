@@ -25,6 +25,7 @@
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<link rel="stylesheet" href="css/fileinput.min.css">
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -85,46 +86,72 @@
 			<div class="form-group row">
 				<label for="name" class="col-sm-2 control-label">姓名</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="name" value="${userInfo.userName}">
+					<input type="text" class="form-control" id="name"
+						value="${userInfo.userName}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="sex" class="col-sm-2 control-label">性别</label>
 				<div class=" col-sm-4 radio">
 					<label> <input type="radio" name="optionsRadios"
-						id="optionsRadios1" value="option1" checked> 男
+						id="optionsRadios1" value="male" > 男
 					</label> <label> <input type="radio" name="optionsRadios"
-						id="optionsRadios1" value="option1" checked> 女
+						id="optionsRadios1" value="female"> 女
+					</label> <label> <input type="radio" name="optionsRadios"
+						id="optionsRadios1" value="secret" checked> 保密
 					</label>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="fileinput" class="col-sm-2 control-label">头像</label>
+				<div class="col-sm-8">
+					<input id="fileinput" type="file">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="area" class="col-sm-2 control-label">擅长领域</label>
 				<div class=" col-sm-8">
-					<table class="table">
-						<tr >
-							<td class="no-border no-part-border"><input type="checkbox"> C</td>
-							<td class="no-border no-part-border"><input type="checkbox"> Java</td>
-							<td class="no-border no-part-border"><input type="checkbox"> Objective_C</td>
-							<td class="no-border no-part-border"><input type="checkbox"> C++</td>
-							<td class="no-border no-part-border"><input type="checkbox"> C#</td>
-							<td class="no-border no-part-border"><input type="checkbox"> JavaScript</td>
+					<table class="table" id="goodAt">
+						<tr>
+							<td class="no-border no-part-border"><input type="checkbox" value="c">
+								C</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="java">
+								Java</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="Objective_C">
+								Objective_C</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="cpp">
+								C++</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="Ruby">
+								C#</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="csharp">
+								JavaScript</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox"> Pointnet</td>
-							<td class="no-border no-part-border"><input type="checkbox"> Ruby</td>
-							<td class="no-border no-part-border"><input type="checkbox"> PHP</td>
-							<td class="no-border no-part-border"><input type="checkbox"> Swift</td>
-							<td class="no-border no-part-border"><input type="checkbox"> D</td>
-							<td class="no-border no-part-border"><input type="checkbox"> R</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="JavaScript">
+								Pointnet</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="pointnet">
+								Ruby</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="PHP">
+								PHP</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="Swift">
+								Swift</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="Groovy">
+								D</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="MATLAB">
+								R</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox"> MATLAB</td>
-							<td class="no-border no-part-border"><input type="checkbox"> Perl</td>
-							<td class="no-border no-part-border"><input type="checkbox"> python</td>
-							<td class="no-border no-part-border"><input type="checkbox"> Groovy</td>
-							<td class="no-border no-part-border"><input type="checkbox"> other</td>
-							
+							<td class="no-border no-part-border"><input type="checkbox" value="D">
+								MATLAB</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="R">
+								Perl</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="Perl">
+								python</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="python">
+								Groovy</td>
+							<td class="no-border no-part-border"><input type="checkbox" value="other">
+								other</td>
+
 						</tr>
 					</table>
 				</div>
@@ -132,28 +159,28 @@
 			<div class="form-group row">
 				<label for="city" class="col-sm-2 control-label">城市</label>
 				<div class="col-sm-5 form-inline" id="city">
-					<select class="province cxselect form-control" data-value="江苏省"
+					<select class="province cxselect form-control" data-value="江苏省" 
 						data-first-title="选择省"></select> <select
-						class="city cxselect form-control" data-value="南京市"
+						class="city cxselect form-control" data-value="南京市" 
 						data-first-title="选择市"></select>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="job" class="col-sm-2 control-label">职业</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="job" value="${userInfo.job}">
+					<input type="text" class="form-control" id="job"
+						value="${userInfo.job}">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="describe" class="col-sm-2 control-label">个人描述</label>
 				<div class="col-sm-9">
-					<textarea type="text" class="form-control" id="describe"  rows="3"
-						>${userInfo.description}</textarea>
+					<textarea type="text" class="form-control" id="describe" rows="3">${userInfo.description}</textarea>
 				</div>
 			</div>
 		</form>
 		<div class="row" style="text-align: right;">
-		<button class="btn btn-success" id="confirm">确认提交</button>
+			<button class="btn btn-success" id="confirm">确认提交</button>
 		</div>
 	</div>
 	<script>
@@ -173,6 +200,12 @@
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script src="js/account.js"></script>
+	<script src="js/fileinput.min.js"></script>
+	<script src="js/fileinput_locale_zh.js"></script>
+	<script src="js/fileUpload.js"></script>
+	<script type="text/javascript">
+		initFileInput('fileinput', '/file');
+	</script>
 </body>
 
 </html>

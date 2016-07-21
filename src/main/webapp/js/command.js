@@ -1,10 +1,9 @@
-$(function() {
-	$('#undo').on('click', function() {
-		undoCommand();
-	});
-	$('#redo').on('click', function() {
-		redoCommand();
-	})
+
+$('#undo').on('click', function() {
+	undoCommand();
+});
+$('#redo').on('click', function() {
+	redoCommand();
 })
 
 function undoCommand() {

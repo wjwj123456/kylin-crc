@@ -2,6 +2,7 @@ package bl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import blservice.SplitBlService;
 import data.SplitDataImpl;
@@ -58,6 +59,23 @@ public class SplitBlImpl implements SplitBlService{
 			reportVOs.add(vo);
 		}
 		return reportVOs;
+	}
+
+	@Override
+	public int splitForUndoMerge(List<ReportVO> vos, ReportVO vo) {
+		List<ReportPO> pos = new ArrayList<>();
+		for(ReportVO vo0: vos) {
+			pos.add(new ReportPO(vo0));
+		}
+		int i = 1;
+		try {
+			i = splitDataService.splitForUndoMerge(pos, new ReportPO(vo));
+		} catch (ClassNotFoundException e) {
+			
+		} catch (SQLException e) {
+
+		}
+		return i;
 	}
 
 }

@@ -7,6 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import bl.UserInfoBlImpl;
+import vo.Language;
+import vo.Sex;
+import vo.UserInfoVO;
+
 /**
  * Servlet implementation class AccountServlet
  * 
@@ -28,7 +36,11 @@ public class AccountServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String type = request.getParameter("type");
 
+		if (type.equals("update")) {
+			handleUpdate(request, response);
+		}
 	}
 
 	/**
@@ -38,5 +50,30 @@ public class AccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	/**
+	 * update user information
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	private void handleUpdate(HttpServletRequest request, HttpServletResponse response) {
+		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
+
+		String userName = (String) request.getSession().getAttribute("username");
+		JSONArray array = jsonObject.getJSONArray("language");
+		Language[] language = new Language[array.length()];
+
+		for (int i = 0; i < array.length(); i++) {
+			language[i] = Language.valueOf(array.getString(i));
+		}
+
+		UserInfoVO userInfo = new UserInfoVO(userName, jsonObject.getString("name"),
+				jsonObject.getEnum(Sex.class, "sex"), jsonObject.getString("job"), jsonObject.getString("province"),
+				jsonObject.getString("city"), jsonObject.getString("description"), jsonObject.getString("picture"),
+				language);
+
+		new UserInfoBlImpl().update(userInfo);
 	}
 }
