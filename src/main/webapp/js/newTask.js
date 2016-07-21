@@ -12,7 +12,6 @@ function createNewTask() {
 	run_waitMe();
 	jQuery.ajax({
 		url : '/crc/CreateTaskServlet',
-		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		style : 'post',
 		data : 'taskName=' + $('#inputName').val().trim() + '&type='
 				+ type + '&describe='
