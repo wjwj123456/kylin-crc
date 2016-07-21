@@ -139,7 +139,6 @@ public class MergeBlImpl implements MergeBlService {
 	public static void main(String[] args) {
 		MergeBlImpl mergeBlImpl = new MergeBlImpl();
 		mergeBlImpl.mergeReport("oriTest");
-		System.out.println(mergeBlImpl.mergeReport("oriTest"));
 	}
 
 	/**

@@ -7,17 +7,18 @@ import blservice.UserInfoBlService;
 import data.LoginDataImpl;
 import dataservice.LoginDataService;
 
-public class LoginBLImpl implements LoginBlService{
+public class LoginBLImpl implements LoginBlService {
 
 	private LoginDataService loginDataService;
-	
+
 	public LoginBLImpl() {
 		this.loginDataService = new LoginDataImpl();
 	}
-	public int createAccount(String userName, String email, String password) throws ClassNotFoundException, SQLException {
+
+	public int createAccount(String userName, String email, String password)
+			throws ClassNotFoundException, SQLException {
 		int i = loginDataService.createAccount(userName, email, password);
-//		System.out.println("imingyan");
-		if(i == 0) {
+		if (i == 0) {
 			UserInfoBlService userInfoBlService = new UserInfoBlImpl();
 			userInfoBlService.add(userName);
 		}
@@ -33,5 +34,3 @@ public class LoginBLImpl implements LoginBlService{
 	}
 
 }
-
-
