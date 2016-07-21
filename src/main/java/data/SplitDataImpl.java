@@ -32,7 +32,14 @@ public class SplitDataImpl implements SplitDataService {
 		DBManager.closeConnection();
 		return result;
 	}
-
+	
+	/**
+	 * return all faults that were included in the fault chosen
+	 * @param po
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
 	public ArrayList<ReportPO> getIncludedfaultsByFaultkey(ReportPO po) throws ClassNotFoundException, SQLException {
 		ArrayList<ReportPO> result = new ArrayList<ReportPO>();
 		int id = getID(po);
@@ -49,46 +56,141 @@ public class SplitDataImpl implements SplitDataService {
 		return result;
 	}
 
-	public boolean splitFaults(ArrayList<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException {
-		int id = getID(po);
+	
+	/**
+	 * return all faults that were included in the fault chosen
+	 * @param finalParent
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public boolean splitFaults(ArrayList<ReportPO> splitedPOs, ReportPO finalParent) throws ClassNotFoundException, SQLException {
+		int finalParentID = getID(finalParent);
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
-		System.out.println(pos);
-		for (ReportPO reportPO : pos) {
-			int id0 = getID(reportPO);
-			String sql1 = "UPDATE report SET state = 0 WHERE id = " + id0;
-			statement.executeUpdate(sql1);
-
-			String sql2 = "DELETE FROM merge WHERE final_id = " + id + " AND included_id = " + id0;
-			statement.executeUpdate(sql2);
-		}
-
-		ResultSet rSet = null;
-		if (po.getOrigin() != 0) {
-			String sql3 = "SELECT * FROM merge WHERE final_id = " + id;
-			rSet = statement.executeQuery(sql3);
-			if (!rSet.next()) {
-				String sql4 = "DELETE FROM report WHERE id = " + id;
-				statement.executeUpdate(sql4);
+		for (ReportPO reportPO : splitedPOs) {
+			int splitID0 = getID(reportPO);
+			int parentID0 = getParentID(splitID0, statement);
+			
+			ArrayList<ReportPO> childPOs = getIncludedfaultsByFaultkey(reportPO);
+			for(ReportPO childPO: childPOs) {
+				int childID = getID(childPO);
+				changeParent(splitID0, parentID0, childID, statement);
+				deleteFromMerge(splitID0, childID, statement);
 			}
+			
+			setMerge(splitID0, 0, statement);
+			setState(splitID0, 0, statement);
 		}
 
-		String sql5 = "SELECT * FROM merge WHERE final_id = " + id;
-		rSet = statement.executeQuery(sql5);
-		if (!rSet.next()) {
-			int origin = getOrigin(id);
-			if (origin == 0) {
-				String sql7 = "UPDATE report SET merge = 0 WHERE id = " + id;
-				statement.executeUpdate(sql7);
-			} else {
-				String sql6 = "DELETE FROM report WHERE id = " + id;
-				int i = statement.executeUpdate(sql6);
-				if (i == 0)
-					return false;
-			}
+		int mergeNumber = mergeNumber(finalParentID, statement);
+		if(mergeNumber == 0) {
+			setMerge(finalParentID, 0, statement);
+			int origin = getOrigin(finalParentID);
+			if(origin != 0) setState(finalParentID, 1, statement);
 		}
-		DBManager.stopAll(rSet, statement, connection);
+		
+		DBManager.stopAll(null, statement, connection);
 		return true;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param statement
+	 * @return	-1 means exception, 0 means include nothing, 
+	 * 			else means how many records included except itself
+	 */
+	private int mergeNumber(int id, Statement statement) {
+		int i = -1;
+		String sql = "SELETE * FROM merge WHERE final_id = "  + id;
+		try {
+			ResultSet rSet = statement.executeQuery(sql);
+			i = 0;
+			while(rSet.next()) i++;
+		} catch (SQLException e) {
+			
+		}
+		return i;
+	}
+	
+	private int setState(int id, int newstate, Statement statement) {
+		String sql = "UPDATE report SET state = " + newstate + " WHERE id = " + id;
+		int i = -1;
+		try {
+			i = statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+		}
+		return i;
+	}
+	
+	private int setMerge(int id, int newmerge, Statement statement) {
+		String sql = "UPDATE report SET merge = " + newmerge + " WHERE id = " + id;
+		int i = -1;
+		try {
+			i = statement.executeUpdate(sql);
+		} catch (SQLException e) {
+	
+		}
+		return i;
+	}
+	
+	private int deleteFromMerge(int final_id, int included_id, Statement statement) {
+		int i = -1;
+		String sql = "DELETE FROM merge WHERE final_id = " + final_id 
+				+ " AND included_id = " + included_id;
+		try {
+			i = statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+		}
+		return i;
+		
+	}
+	
+	/**
+	 * 
+	 * @param fromID
+	 * @param toID
+	 * @param childID
+	 * @param statement
+	 * @return	-1 means invalid DB operation, else means how many records has been changed
+	 */
+	private int changeParent(int fromID, int toID, int childID, Statement statement) {
+		String sql = "UPDATE merge SET final_id = " + toID 
+				+ " WHERE final_id = " + fromID + " AND included_id = " + childID;
+		int i = -1;
+		try {
+			i = statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+		}
+		return i;
+	}
+	
+	/**
+	 * 
+	 * @param childID
+	 * @param connection
+	 * @param statement
+	 * @return	-5 means invalid DB query, -4 means not only one record in DB
+	 */
+	private int getParentID(int childID, Statement statement) {
+		int parentID = -5;
+		String sql = "SELECT final_id FROM merge WHERE included_id = " + childID;
+		try {
+			ResultSet resultSet = statement.executeQuery(sql);
+			int number = 0;
+			while(resultSet.next()) {
+				number++;
+				parentID = resultSet.getInt("final_id");
+			}
+			if(number != 1) parentID = -4;
+		} catch (SQLException e) {
+			
+		}
+		return parentID;
 	}
 
 	/**
@@ -169,24 +271,24 @@ public class SplitDataImpl implements SplitDataService {
 		return state;
 	}
 
-	/**
-	 * set fault state
-	 * 
-	 * @param id
-	 * @param newState
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 */
-	private void setState(int id, int newState) throws ClassNotFoundException, SQLException {
-
-		String sql = "UPDATE report SET  state = ? WHERE id = ?";
-		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
-
-		pStatement.setInt(1, newState);
-		pStatement.setInt(2, id);
-		pStatement.executeUpdate();
-		DBManager.closeConnection();
-	}
+//	/**
+//	 * set fault state
+//	 * 
+//	 * @param id
+//	 * @param newState
+//	 * @throws ClassNotFoundException
+//	 * @throws SQLException
+//	 */
+//	private void setState(int id, int newState) throws ClassNotFoundException, SQLException {
+//
+//		String sql = "UPDATE report SET  state = ? WHERE id = ?";
+//		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
+//
+//		pStatement.setInt(1, newState);
+//		pStatement.setInt(2, id);
+//		pStatement.executeUpdate();
+//		DBManager.closeConnection();
+//	}
 
 	/**
 	 * get fault origin by id
