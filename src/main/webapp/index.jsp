@@ -118,35 +118,22 @@
 				<div class="inner cover"  style="padding-top: -20px; ">
 					<h1 class="cover-heading">Let's Start Review.</h1>
 
-					<form>
+					<div>
 						<div class=row>
 							<div class="col-md-10  col-md-offest-2" style="padding-left: 98px; padding-top: 27px;padding-right: 0px;">
-
 								<input
 									style="position: relative; vertical-align: top; background-color: transparent; color:white"
 									name="term" placeholder="Search review..." required=""
-									class="store-search typeahead form-control tt-input"
-									type="text">
-
+									class="store-search form-control tt-input"
+									type="text" id="searchContent">
 							</div>
 							<div class="col-md-2 col-md-offest-0" style="padding-top: 26px;">
-								<button type="submit" class="btn-primary btn"  style="height:36px  ;margin-left: -71px;">
+								<button type="submit" class="btn-primary btn"  style="height:36px;margin-left: -71px;" id="search">
 									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 								</button>
 							</div>
-
-
-
-
 						</div>
-
-
-
-					</form>
-
-
-
-
+					</div>
 				</div>
 
 				<div class="mastfoot">
@@ -180,6 +167,7 @@
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 	<script src="js/login.js"></script>
+	<script src="js/search.js"></script>
 </body>
 
 </html>

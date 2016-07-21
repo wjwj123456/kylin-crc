@@ -13,6 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import bl.ReviewBlImpl;
+import blservice.ReviewBlService;
+import vo.Language;
+import vo.TaskVO;
 import vo.UserVO;
 
 /**
@@ -86,8 +89,25 @@ public class SearchServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 * @param response
+	 * @throws IOException
 	 */
-	private void searchTask(HttpServletRequest request, HttpServletResponse response) {
+	private void searchTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String keyword = request.getParameter("keyword");
 
+		ReviewBlService review = new ReviewBlImpl();
+
+		Language[] languages = Language.values();
+
+		List<TaskVO> taskList;
+		JSONObject jsonObject = new JSONObject();
+		for (int i = 0; i < languages.length; i++) {
+			taskList = review.searchTasksByKeyword(keyword, languages[i]);
+			if (taskList.size() != 0) {
+				jsonObject.put(languages[i].toString(), taskList);
+			}
+		}
+
+		PrintWriter out = response.getWriter();
+		out.print(jsonObject);
 	}
 }
