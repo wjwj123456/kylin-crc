@@ -29,6 +29,19 @@ public class UserInfoPO {
 	private Language[] languages;
 
 	public UserInfoPO(String userName, String trueName, Sex sex, String job, String province, String city,
+			String description, String picture) {
+		super();
+		this.userName = userName;
+		this.trueName = trueName;
+		this.sex = sex;
+		this.job = job;
+		this.province = province;
+		this.city = city;
+		this.description = description;
+		this.picture = picture;
+	}
+
+	public UserInfoPO(String userName, String trueName, Sex sex, String job, String province, String city,
 			String description, String picture, Language[] languages) {
 		super();
 		this.userName = userName;
@@ -53,7 +66,7 @@ public class UserInfoPO {
 		this.picture = vo.getPicture();
 		this.languages = vo.getLanguages();
 	}
-	
+
 	@Override
 	public String toString() {
 		return "UserInfoPO [userName=" + userName + ", trueName=" + trueName + ", sex=" + sex + ", job=" + job

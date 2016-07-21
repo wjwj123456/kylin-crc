@@ -4,6 +4,7 @@
 */
 package dataservice;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import po.UserInfoPO;
@@ -16,5 +17,5 @@ import po.UserInfoPO;
  * @see
  */
 public interface FriendDataService {
-	public List<UserInfoPO> getFriends(String userName);
+	public List<UserInfoPO> getFriends(String userName) throws SQLException, ClassNotFoundException;
 }
