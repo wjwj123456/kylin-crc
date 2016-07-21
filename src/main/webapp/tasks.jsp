@@ -72,14 +72,16 @@ taskName = '<%=request.getParameter("taskName")%>';
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-				<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
-				<li><a id="login" style="cursor: pointer;">登出</a></li>
-				<%
-					} else {
-				%>
-				<%--username--%>
-
-				<li><a id="login" style="cursor: pointer;">登录</a></li>
+					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a id="login" style="cursor: pointer;">登出</a></li>
+					</ul></li>
 				<%
 					}
 				%>
@@ -669,6 +671,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script src='js/waitMe.min.js'></script>
 	<script src='js/countDown.js'></script>
 	<script src='js/command.js'></script>
+	<script type="text/javascript">
+	var num = ${messangNum};</script>
+	<script src='js/mesSpan.js'></script>
 </body>
 
 </html>
