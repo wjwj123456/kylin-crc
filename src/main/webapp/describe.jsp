@@ -1,3 +1,5 @@
+<%@page import="vo.Language"%>
+<%@page import="vo.UserInfoVO"%>
 <%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
 <%@page import="bl.ReviewBlImpl"%>
@@ -44,6 +46,15 @@
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <script src="js/jquery.cxselect.min.js"></script>
+<script type="text/javascript">
+<%UserInfoVO infoVO = Cast.cast(session.getAttribute("userInfo"));%>
+<%Language[] languages = infoVO.getLanguages();%>
+var languages = new Array();
+<%for(Language lg : languages){%>
+languages.push('<%=lg.toString()%>');
+<%}%>
+var sex ="${userInfo.sex}";
+</script>
 <body role="document">
 	<nav class="navbar navbar-inverse">
 	<div class="container">
@@ -94,11 +105,11 @@
 				<label for="sex" class="col-sm-2 control-label">性别</label>
 				<div class=" col-sm-4 radio">
 					<label> <input type="radio" name="optionsRadios"
-						id="optionsRadios1" value="male" > 男
+						id="male" value="male" > 男
 					</label> <label> <input type="radio" name="optionsRadios"
-						id="optionsRadios1" value="female"> 女
+						id="female" value="female"> 女
 					</label> <label> <input type="radio" name="optionsRadios"
-						id="optionsRadios1" value="secret" checked> 保密
+						id="unknown" value="secret" checked> 保密
 					</label>
 				</div>
 			</div>
@@ -159,9 +170,9 @@
 			<div class="form-group row">
 				<label for="city" class="col-sm-2 control-label">城市</label>
 				<div class="col-sm-5 form-inline" id="city">
-					<select class="province cxselect form-control" data-value="江苏省" 
+					<select class="province cxselect form-control" data-value="${userInfo.province}"
 						data-first-title="选择省"></select> <select
-						class="city cxselect form-control" data-value="南京市" 
+						class="city cxselect form-control" data-value="${userInfo.city}" 
 						data-first-title="选择市"></select>
 				</div>
 			</div>
