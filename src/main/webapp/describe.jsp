@@ -94,9 +94,11 @@
 				<label for="sex" class="col-sm-2 control-label">性别</label>
 				<div class=" col-sm-4 radio">
 					<label> <input type="radio" name="optionsRadios"
-						id="optionsRadios1" value="option1" checked> 男
+						id="optionsRadios1" value="male" > 男
 					</label> <label> <input type="radio" name="optionsRadios"
-						id="optionsRadios1" value="option1" checked> 女
+						id="optionsRadios1" value="female"> 女
+					</label> <label> <input type="radio" name="optionsRadios"
+						id="optionsRadios1" value="secret" checked> 保密
 					</label>
 				</div>
 			</div>
@@ -109,45 +111,45 @@
 			<div class="form-group">
 				<label for="area" class="col-sm-2 control-label">擅长领域</label>
 				<div class=" col-sm-8">
-					<table class="table">
+					<table class="table" id="goodAt">
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="c">
 								C</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="java">
 								Java</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="Objective_C">
 								Objective_C</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="cpp">
 								C++</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="Ruby">
 								C#</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="csharp">
 								JavaScript</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="JavaScript">
 								Pointnet</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="pointnet">
 								Ruby</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="PHP">
 								PHP</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="Swift">
 								Swift</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="Groovy">
 								D</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="MATLAB">
 								R</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="D">
 								MATLAB</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="R">
 								Perl</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="Perl">
 								python</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="python">
 								Groovy</td>
-							<td class="no-border no-part-border"><input type="checkbox">
+							<td class="no-border no-part-border"><input type="checkbox" value="other">
 								other</td>
 
 						</tr>
