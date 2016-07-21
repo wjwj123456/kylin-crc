@@ -176,10 +176,9 @@ public class ReviewDataImpl implements ReviewDataService {
 	@Override
 	public List<TaskPO> searchTasksByKeyword(String keyword, Language language)
 			throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM review WHERE tname like '%" + keyword + "%' and language = '" + language.toString()
+		String sql = "SELECT * FROM task WHERE tname like '%" + keyword + "%' and language = '" + language.toString()
 				+ "'";
 		try {
 			rSet = DBManager.getResultSet(sql);
@@ -189,14 +188,13 @@ public class ReviewDataImpl implements ReviewDataService {
 						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
 						Language.valueOf(rSet.getString(8)));
 				poList.add(po);
-
 			}
 		} catch (Exception SQLException) {
-			// TODO: handle exception
 			System.out.println("user not found");
+		} finally {
+			DBManager.closeConnection();
 		}
 
-		DBManager.closeConnection();
 		return poList;
 	}
 

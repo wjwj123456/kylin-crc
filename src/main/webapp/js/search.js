@@ -1,3 +1,11 @@
+$(function() {
+	$('#searchContent').keypress(function(e) {
+		if (e.which == 13) {
+			searchTask($('#searchContent').val().trim())
+		}
+	})
+})
+
 /**
  * search users by keyword
  * @param keyword
@@ -26,9 +34,9 @@ function searchTask(keyword) {
 	jQuery.ajax({
 		url: '/crc/SearchServlet',
 		type: 'post',
-		data: 'type=searchTask&keyword=' + keyword,
+		data: 'type=searchTask&keyword=' + keyword + '&language=""',
 		success: function(data) {
-			
+			console.log(data);
 		}
 	});
 }
