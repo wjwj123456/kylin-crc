@@ -63,8 +63,19 @@ public class SplitBlImpl implements SplitBlService{
 
 	@Override
 	public int splitForUndoMerge(List<ReportVO> vos, ReportVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		List<ReportPO> pos = new ArrayList<>();
+		for(ReportVO vo0: vos) {
+			pos.add(new ReportPO(vo0));
+		}
+		int i = 1;
+		try {
+			i = splitDataService.splitForUndoMerge(pos, new ReportPO(vo));
+		} catch (ClassNotFoundException e) {
+			
+		} catch (SQLException e) {
+
+		}
+		return i;
 	}
 
 }

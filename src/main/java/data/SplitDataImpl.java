@@ -226,9 +226,29 @@ public class SplitDataImpl implements SplitDataService {
 		return reportPOs;
 	}
 
+	/**
+	 * 
+	 * @param pos
+	 * @param po
+	 * @return	0 means success, 1 means failures
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
 	@Override
-	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po) {
-		// TODO Auto-generated method stub
+	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException {
+		Connection connection = DBManager.connect();
+		Statement statement = connection.createStatement();
+		int id = getID(po);
+		for(ReportPO po0: pos) {
+			int id0 = getID(po0);
+			String sql = "DELETE FROM merge WHERE final_id = " + id + " AND included_id = " + id0;
+			int i = statement.executeUpdate(sql);
+			if(i!=1) {
+				DBManager.stopAll(null, statement, connection);
+				return 1;
+			}
+		}
+		DBManager.stopAll(null, statement, connection);
 		return 0;
 	}
 

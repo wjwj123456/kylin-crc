@@ -51,7 +51,9 @@ public interface SplitDataService {
 	 * 
 	 * @param pos
 	 * @param po
-	 * @return
+	 * @return	0 means success, 1 means failures
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po);
+	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException;
 }
