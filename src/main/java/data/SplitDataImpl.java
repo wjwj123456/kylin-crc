@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import dataservice.SplitDataService;
 import po.ReportPO;
@@ -223,6 +224,12 @@ public class SplitDataImpl implements SplitDataService {
 		}
 		DBManager.stopAll(rSet, pStatement, connection);
 		return reportPOs;
+	}
+
+	@Override
+	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
