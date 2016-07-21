@@ -6,7 +6,12 @@ $('#createTask').on('click', function() {
 		createNewTask();
 	}
 });
-
+$('#doc').on('click',function(){
+	$('#languageBlock').addClass('hide');
+});
+$('#code').on('click',function(){
+	$('#languageBlock').removeClass('hide');
+});
 function createNewTask() {
 	var type = ($('#type').get(0).selectedIndex == 1) ? 'code' : 'document';
 	run_waitMe();

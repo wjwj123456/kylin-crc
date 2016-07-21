@@ -24,6 +24,15 @@ public interface ReportBlService {
 	public int deleteReport(ReportVO vo);
 
 	/**
+	 * ldk
+	 * 
+	 * @param taskName
+	 * @param reviewerName
+	 * @return
+	 */
+	public List<ReportVO> getTempReport(String taskName, String reviewerName);
+
+	/**
 	 * ldk 设置完成一份评审报告的时间
 	 * 
 	 * @param time
@@ -35,11 +44,11 @@ public interface ReportBlService {
 	 * 
 	 * @param vo
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
 	public boolean abandonReport(ReportVO vo) throws ClassNotFoundException, SQLException;
-	
+
 	/**
 	 * ldk get all reports by taskname *
 	 * 
@@ -48,13 +57,13 @@ public interface ReportBlService {
 	 * @throws SQLException
 	 */
 	public List<ReportVO> getAllReportsByTaskName(String taskName);
-	
+
 	/**
 	 * 
 	 * @param vo
 	 * @return
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
 	public boolean recoverReport(ReportVO vo) throws ClassNotFoundException, SQLException;
 }
