@@ -60,6 +60,7 @@ public class MergeDataImpl implements MergeDataService {
 		PreparedStatement pStatement = null;
 		ReportPO finalPO = reportList.get(0);
 		reportList.remove(0);
+
 		if (finalPO.getOrigin() == 1) {
 			String sql2 = "INSERT INTO report (tname,uname,filename,page,location,description,state,origin,merge) VALUES (?,?,?,?,?,?,?,?,?)";
 			pStatement = connection.prepareStatement(sql2);
@@ -102,12 +103,13 @@ public class MergeDataImpl implements MergeDataService {
 		for (ReportPO po : reportList) {
 			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
 			pStatement = connection.prepareStatement(sql1);
-			pStatement.setInt(1, getID(finalPO));
-			pStatement.setInt(2, getID(po));
-			System.out.println(po.getTaskName());
+			if (getID(finalPO) != getID(po)) {
+				pStatement.setInt(1, getID(finalPO));
+				pStatement.setInt(2, getID(po));
+			}
 			pStatement.executeUpdate();
 		}
-		updateMerge();
+		// updateMerge();
 		DBManager.stopAll(null, pStatement, connection);
 		return flag;
 	}

@@ -117,12 +117,36 @@
 				</div>
 				<div class="inner cover">
 					<h1 class="cover-heading">CRC Review System.</h1>
-					<p class="lead">Cover is a one-page template for building
-						simple and beautiful home pages. Download, edit the text, and add
-						your own fullscreen background photo to make it your own.</p>
-					<p class="lead">
-						<a href="#" class="btn btn-lg btn-default">Learn more</a>
-					</p>
+
+					<form>
+						<div class=row>
+							<div class="col-md-10  col-md-offest-2" style="padding-left: 98px; padding-top: 27px;padding-right: 0px;">
+
+								<input
+									style="position: relative; vertical-align: top; background-color: transparent;"
+									name="term" placeholder="Search review..." required=""
+									class="store-search typeahead form-control tt-input"
+									type="text">
+
+							</div>
+							<div class="col-md-2 col-md-offest-0" style="padding-top: 26px;">
+								<button type="submit" class="btn-primary btn"  style="height:36px  ;margin-left: -71px;">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								</button>
+							</div>
+
+
+
+
+						</div>
+
+
+
+					</form>
+
+
+
+
 				</div>
 
 				<div class="mastfoot">
