@@ -173,7 +173,6 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		// TODO Auto-generated method stub
 		int flag = 0;
-		System.out.println("adasd");
 		String sql = "UPDATE review SET state  = ? WHERE uname = '" + userName + "'and tname='" + taskName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, State.agree.toString());
