@@ -44,7 +44,6 @@
 <title>资料填写</title>
 </head>
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <script src="js/jquery.cxselect.min.js"></script>
 <script type="text/javascript">
 <%UserInfoVO infoVO = Cast.cast(session.getAttribute("userInfo"));%>
