@@ -38,7 +38,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审</a></li>
+				<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 <span class="badge">4</span></a></li>
 				<%
 					if (session.getAttribute("username") != null) {
 				%>

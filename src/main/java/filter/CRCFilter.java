@@ -52,8 +52,6 @@ public class CRCFilter implements Filter {
 		// 用户收到的邀请
 		List<TaskVO> invitationList = invite.getInvitationInfo(userName);
 		session.setAttribute("invitationList", invitationList);
-
-
 		chain.doFilter(request, response);
 	}
 
