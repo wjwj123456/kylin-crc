@@ -36,7 +36,7 @@
 <title>My CRC</title>
 </head>
 <body role="document">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar" >
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -46,7 +46,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">CRC在线评审系统</a>
+			<a class="navbar-brand" href="index.jsp" style="font-size:130%;">CRC Review System</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -108,7 +108,7 @@
 		<div class="col-md-9 bs-docs-section">
 			<div class=row>
 				<div class="col-md-10 "
-					style="padding-left: 98px; padding-top: 27px; padding-right: 0px;">
+					style="padding-left: 50px; padding-top: 27px; padding-right: 0px;">
 
 					<input
 						style="position: relative; vertical-align: top; background-color: transparent;"
@@ -117,8 +117,7 @@
 
 				</div>
 				<div class="col-md-2 col-md-offest-0" style="padding-top: 26px;">
-					<button type="submit" class="btn-primary btn"
-						style="height: 36px; margin-left: -71px;">
+					<button type="submit" class="btn-primary btn" style="height: 36px;">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</button>
 				</div>
@@ -127,27 +126,61 @@
 
 
 			</div>
-			<h2 id="basicInfo">个人资料</h2>
-			<table class="table">
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-			</table>
+			<h3>We’ve found 4,293,725 repository results</h3>
+			<div class="well well-lg">
+				<h2 title="评审测试">
+					评审测试 <a href="tasks.jsp?taskName=评审测试">
+						<button class="btn btn-default" style="float: right;">
+							<span class="glyphicon glyphicon-hand-up"></span> Check
+						</button>
+					</a>
+				</h2>
+				<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
+				<p>
+					<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
+				</p>
+				<p>
+					参与者：XXXXXXXXXXX
+					<button class="btn btn-success" data-toggle="modal"
+						data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+				</p>
+			</div>
+			<div class="well well-lg">
+				<h2 title="评审测试">
+					评审测试 <a href="tasks.jsp?taskName=评审测试">
+						<button class="btn btn-default" style="float: right;">
+							<span class="glyphicon glyphicon-hand-up"></span> Check
+						</button>
+					</a>
+				</h2>
+				<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
+				<p>
+					<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
+				</p>
+				<p>
+					参与者：XXXXXXXXXXX
+					<button class="btn btn-success" data-toggle="modal"
+						data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+				</p>
+			</div>
+			<div class="well well-lg">
+				<h2 title="评审测试">
+					评审测试 <a href="tasks.jsp?taskName=评审测试">
+						<button class="btn btn-default" style="float: right;">
+							<span class="glyphicon glyphicon-hand-up"></span> Check
+						</button>
+					</a>
+				</h2>
+				<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
+				<p>
+					<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
+				</p>
+				<p>
+					参与者：XXXXXXXXXXX
+					<button class="btn btn-success" data-toggle="modal"
+						data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+				</p>
+			</div>
 			<hr>
 			<h2 id="perAnalyze">个人成就</h2>
 			<table class="table">
@@ -180,7 +213,6 @@
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>

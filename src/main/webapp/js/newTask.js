@@ -6,12 +6,15 @@ $('#createTask').on('click', function() {
 		createNewTask();
 	}
 });
-$('#doc').on('click',function(){
-	$('#languageBlock').addClass('hide');
+$('#type').change(function(){
+	if($(this).children('option:selected').val()=="文档评审"){
+		$('#languageBlock').css('display','none');
+	}else {
+		$('#languageBlock').css('display','block');
+	}
+
 });
-$('#code').on('click',function(){
-	$('#languageBlock').removeClass('hide');
-});
+
 function createNewTask() {
 	var type = ($('#type').get(0).selectedIndex == 1) ? 'code' : 'document';
 	run_waitMe();
