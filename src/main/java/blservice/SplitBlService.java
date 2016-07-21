@@ -2,6 +2,7 @@ package blservice;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import vo.ReportVO;
 
@@ -36,6 +37,15 @@ public interface SplitBlService {
 	 * @throws ClassNotFoundException 
 	 */
 	public boolean split(ArrayList<ReportVO> vos, ReportVO vo) throws ClassNotFoundException, SQLException;
+	
+	
+	/**
+	 * 
+	 * @param vos
+	 * @param vo
+	 * @return	0 means success, 1 means failure
+	 */
+	public int splitForUndoMerge(List<ReportVO> vos, ReportVO vo);
 	
 	/**
 	 * 
