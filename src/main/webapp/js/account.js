@@ -1,8 +1,7 @@
-$(function() {
-	$('#confirm').on('click', function() {
-		confirm();
-	})
-})
+
+$('#confirm').on('click', function() {
+	confirm();
+});
 
 /**
  * 确认更改
@@ -10,10 +9,10 @@ $(function() {
  */
 function confirm() {
 	run_waitMe();
-	jQeury.ajax({
+	jQuery.ajax({
 		url: '/crc/AccountServlet',
 		type: 'post',
-		data: 'type=update' + '&data=' + data,
+		data: 'type=update' + '&data=' + getData(),
 		success: function(data) {
 			stopWait();
 		}
@@ -25,6 +24,22 @@ function confirm() {
  * @returns
  */
 function getData() {
-	var name = $('#id').val().trim();
-	var sex = 
+	var language = $('#goodAt tbody').find('input:checked');
+	var array = new Array();
+	
+	for (var i = 0; i < language.length; i++) {
+		array.push($(language[i]).val())
+	}
+	var userInfo = new Object({
+		name: $('#name').val().trim(),
+		sex: $('.radio').find('input:checked').val(),
+		job: $('#job').val().trim(),
+		province: $($('#city option:selected')[0]).val(),
+		city: $($('#city option:selected')[1]).val(),
+		description: $('#describe').val().trim(),
+		picture: '',
+		language: array,
+	});
+	
+	return JSON.stringify(userInfo);
 }
