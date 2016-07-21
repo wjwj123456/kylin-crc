@@ -1,3 +1,10 @@
+$(function() {
+	$('.radio').find('input[value=' + sex + ']').attr('checked', 'checked');
+	
+	for (var i = 0; i < languages.length; i++) {
+		$('#goodAt tbody').find('input[value=' + languages[i] + ']').attr('checked', 'checked');
+	}
+})
 
 $('#confirm').on('click', function() {
 	confirm();
@@ -35,12 +42,15 @@ function getData() {
 		name: $('#name').val().trim(),
 		sex: $('.radio').find('input:checked').val(),
 		job: $('#job').val().trim(),
-		province: $($('#city option:selected')[0]).val(),
-		city: $($('#city option:selected')[1]).val(),
+		province: "",
+		city: "",
 		description: $('#describe').val().trim(),
 		picture: '',
 		language: array,
 	});
+	
+	userInfo.province = $($('#city option:selected')[0]).val();
+	userInfo.city = $($('#city option:selected')[1]).val();
 	
 	return JSON.stringify(userInfo);
 }

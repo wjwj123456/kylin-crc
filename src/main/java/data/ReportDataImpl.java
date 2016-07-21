@@ -103,9 +103,6 @@ public class ReportDataImpl implements ReportDataService {
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setDouble(1, time);
 		pStatement.setString(2, String.valueOf(State.commit));
-		System.out.println(taskName);
-		System.out.println(reviewerName);
-		System.out.println(time);
 		int i = pStatement.executeUpdate();
 		if (i == 1 && j == 1)
 			flag = 0;

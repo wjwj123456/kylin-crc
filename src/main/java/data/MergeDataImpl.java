@@ -118,7 +118,6 @@ public class MergeDataImpl implements MergeDataService {
 		Connection connection = DBManager.connect();
 		String sql = "SELECT id FROM report WHERE uname = ? AND tname = ? AND filename = ? AND page = ? AND location = ? AND description = ?";
 		PreparedStatement pStatement = connection.prepareStatement(sql);
-		System.out.println(po.toString());
 		pStatement.setString(1, po.getUserName());
 		pStatement.setString(2, po.getTaskName());
 		pStatement.setString(3, po.getFileName());
@@ -287,8 +286,6 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement1.setString(1, "merged");
 		pStatement1.setString(2, taskName);
 		pStatement1.setString(3, userName);
-		System.out.println(taskName);
-		System.out.println(userName);
 		int i = pStatement1.executeUpdate();
 		DBManager.closeConnection();
 		return i;
