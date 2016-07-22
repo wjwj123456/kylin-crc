@@ -1,7 +1,5 @@
 package bl.command;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import bl.MergeBlImpl;
@@ -41,12 +39,8 @@ public class MergeCommand implements Command {
 
 	@Override
 	public void undo() {
-		ArrayList<ReportVO> temp;
-		try {
-			temp = split.choose(reportList.get(0));
-			split.split(temp, reportList.get(0));
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		// ArrayList<ReportVO> temp;
+		// temp = split.choose(reportList.get(0));
+		split.splitForUndoMerge(reportList.subList(1, reportList.size()), reportList.get(0));
 	}
 }
