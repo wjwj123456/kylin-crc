@@ -142,8 +142,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="grant" class="col-sm-2 control-label hidden">评审权限</label>
+			<div class="form-group hidden">
+				<label for="grant" class="col-sm-2 control-label ">评审权限</label>
 				<div class="col-sm-4">
 					<select class="form-control" id="privacy">
 						<option id="public">公有</option>
