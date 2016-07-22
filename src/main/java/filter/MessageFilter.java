@@ -14,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import bl.InviteBlImpl;
 import bl.ReviewBlImpl;
+import bl.UserInfoBlImpl;
 import blservice.ReviewBlService;
+import blservice.UserInfoBlService;
 import vo.TaskVO;
+import vo.UserInfoVO;
 
 /**
  * Servlet Filter implementation class MessageFilter
@@ -49,6 +52,12 @@ public class MessageFilter implements Filter {
 		// 用户收到的邀请
 		List<TaskVO> invitationList = invite.getInvitationInfo(userName);
 		session.setAttribute("invitationList", invitationList);
+		UserInfoBlService userInfo = new UserInfoBlImpl();
+
+		if (userName != null) {
+			UserInfoVO userInfoVO = userInfo.get(userName);
+			session.setAttribute("userInfo", userInfoVO);
+		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}

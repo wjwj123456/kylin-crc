@@ -14,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import bl.InviteBlImpl;
 import bl.ReviewBlImpl;
+import bl.UserInfoBlImpl;
 import blservice.ReviewBlService;
+import blservice.UserInfoBlService;
 import vo.TaskVO;
+import vo.UserInfoVO;
 
 /**
  * Servlet Filter implementation class CRCFilter
@@ -43,6 +46,12 @@ public class CRCFilter implements Filter {
 		HttpSession session = req.getSession();
 
 		String userName = (String) session.getAttribute("username");
+		UserInfoBlService userInfo = new UserInfoBlImpl();
+
+		if (userName != null) {
+			UserInfoVO userInfoVO = userInfo.get(userName);
+			session.setAttribute("userInfo", userInfoVO);
+		}
 		chain.doFilter(request, response);
 	}
 
