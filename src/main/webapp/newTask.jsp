@@ -162,7 +162,7 @@
 			</div>
 			<div class="form-group " id="languageBlock" style="display: none;">
 				<label for="language" class="col-sm-2 control-label">代码语言</label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<select class="form-control" id="language">
 						<option value="c">C</option>
 						<option value="java">Java</option>
