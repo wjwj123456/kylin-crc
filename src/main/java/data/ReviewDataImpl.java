@@ -52,13 +52,15 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement.setTimestamp(6, tt);
 		pStatement.setInt(7, po.getState());
 		try {
-			int i = pStatement.executeUpdate();
-			if (i == 0) {
-				flag = 1;
+			int j = pStatement.executeUpdate();
+			if (j == 1) {
+				flag = 0;
+			} else {
+				flag = 2;
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("task has exist!");
+		} catch (Exception SQLIntegrityConstraintViolationException) {
+			flag = 1;
+			System.out.println("conflict!");
 		}
 		DBManager.closeConnection();
 		return flag;
