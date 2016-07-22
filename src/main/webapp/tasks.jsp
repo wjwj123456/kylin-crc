@@ -48,7 +48,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 	taskType = 'file';
 <%}%>
 <%ReviewBlService reviewBl = new ReviewBlImpl();
-			State theState = reviewBl.getUserState((String) session.getAttribute("username"), taskVO.getTaskName());%>
+			State theState = reviewBl.getUserState((String) session.getAttribute("username"), taskVO.getTaskName());
+			State taskState = reviewBl.getTaskState(taskVO.getTaskName());
+			boolean isOwner = reviewBl.isOwner((String) session.getAttribute("username"), taskVO.getTaskName());%>
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
@@ -665,7 +667,11 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<%} else {%>
 		currentUserDisp = userDisp[merged];
 	<%}%>
-		
+	<%if(taskState==State.ownerfinish||(taskState==State.timefinish&&!isOwner)){%>
+		currentTaskDisp = taskDisp[finished];
+	<%}else{%>
+	currentTaskDisp = taskDisp[running];
+	<%}%>
 	</script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>

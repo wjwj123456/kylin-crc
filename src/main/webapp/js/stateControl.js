@@ -5,7 +5,8 @@ var unJoin = 0;
 var joined = 1;
 var committed = 2;
 var merged = 3;
-var currentTaskDisp = taskDisp[0];
+var running = 0;
+var finished = 1;
 var currentUserDisp;
 $(function(){
 	$('#preJoinBlock').css('display',currentTaskDisp[0]);
