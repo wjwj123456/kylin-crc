@@ -79,4 +79,6 @@ public interface ReviewBlService {
 
 	public State getTaskState(String taskName);
 
+	public boolean isOwner(String userName, String taskName);
+
 }

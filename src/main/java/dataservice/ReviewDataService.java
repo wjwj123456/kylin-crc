@@ -88,4 +88,6 @@ public interface ReviewDataService {
 	public State getUserState(String userName, String taskName) throws SQLException;
 
 	public State getTaskState(String taskName) throws SQLException;
+
+	public boolean isOwner(String userName, String taskName) throws SQLException;
 }

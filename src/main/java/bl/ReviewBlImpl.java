@@ -367,4 +367,28 @@ public class ReviewBlImpl implements ReviewBlService {
 		return state;
 	}
 
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月22日
+	 * @param userName
+	 * @param taskName
+	 * @return
+	 * @see blservice.ReviewBlService#isOwner(java.lang.String,
+	 *      java.lang.String)
+	 *
+	 */
+	@Override
+	public boolean isOwner(String userName, String taskName) {
+		// TODO Auto-generated method stub
+		try {
+			return reviewDataService.isOwner(userName, taskName);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

@@ -390,7 +390,12 @@ public class ReviewDataImpl implements ReviewDataService {
 			e.printStackTrace();
 		}
 		if (userName.equals(name)) {
-			return State.commit;
+			if (getTaskState(taskName).equals(State.ownerfinish)) {
+				return State.merged;
+			} else {
+				return State.commit;
+			}
+
 		} else {
 			String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and tname='" + taskName + "'";
 			rSet = DBManager.getResultSet(sql);
@@ -419,6 +424,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	@Override
 	public State getTaskState(String taskName) throws SQLException {
 		// TODO Auto-generated method stub
+
 		String sql = "SELECT * FROM task WHERE taskName = '" + taskName + "'";
 		rSet = DBManager.getResultSet(sql);
 		State state = null;
@@ -428,12 +434,62 @@ public class ReviewDataImpl implements ReviewDataService {
 		}
 		if (flag == 0) {
 			state = State.work;
+		} else if (flag == 1) {
+			state = State.timefinish;
 		} else {
-			state = State.finish;
+			state = State.ownerfinish;
 		}
 		DBManager.closeConnection();
 
 		return state;
+
 	}
 
+	public int setTaskState(State state, String taskName) throws SQLException {
+		// TODO Auto-generated method stub
+		int flag = 0;
+		String sql = "UPDATE task SET state  = ?  WHERE taskName = '" + taskName + "'";
+		pStatement = DBManager.getPreparedStatement(sql);
+		pStatement.setInt(1, State.getTaskState(state));
+		int i = pStatement.executeUpdate();
+		if (i == 1)
+			flag = 0;
+		else
+			flag = 3;
+		DBManager.closeConnection();
+		return flag;
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月22日
+	 * @param userName
+	 * @param taskName
+	 * @return
+	 * @throws SQLException
+	 * @see dataservice.ReviewDataService#isOwner(java.lang.String,
+	 *      java.lang.String)
+	 *
+	 */
+	@Override
+	public boolean isOwner(String userName, String taskName) throws SQLException {
+		// TODO Auto-generated method stub
+		String name = "";
+		try {
+			name = getTaskPOByTaskName(taskName).getUserName();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (userName.equals(name)) {
+
+			return true;
+
+		} else {
+			return false;
+
+		}
+
+	}
 }

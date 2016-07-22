@@ -24,7 +24,7 @@
 <title>My CRC</title>
 </head>
 <body role="document">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar ">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"

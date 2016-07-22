@@ -139,19 +139,19 @@
 				<div class="mastfoot">
 					<div class="inner">
 						<p>
-							Cover template for <a href="http://getbootstrap.com/">Bootstrap</a>,
-							by <a href="https://twitter.com/mdo">@mdo</a>.
+							Project  for<a href="https://github.com/wjwj123456/kylin-crc.git"> Crc Review</a>,
+							by <a href="https://github.com/wjwj123456/kylin-crc.git">@kylin</a>.
 						</p>
 					</div>
 				</div>
-				<div id="userAlert" class="alert alert-danger hidden" role="alert">
+				<div id="userAlert" class="hidden" role="alert" style="padding-top:50px ;color:#ffcccc" >
 					请先登陆再进行操作</div>
 				<script type="text/javascript">
 					var unsigned =
 				<%=request.getParameter("unsigned")%>
 					;
 					if (unsigned) {
-						document.getElementById("userAlert").className = "alert alert-warning";
+						document.getElementById("userAlert").className = "";
 					}
 				</script>
 			</div>
