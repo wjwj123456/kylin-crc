@@ -209,6 +209,13 @@ public class ReviewBlImpl implements ReviewBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		FriendBlImpl friendBlImpl = new FriendBlImpl();
+		String uname = getTaskVOByTaskName(taskName).getUserName();
+
+		flag = friendBlImpl.addFriend(userName, uname);
+		flag = friendBlImpl.addFriend(uname, userName);
+
 		return flag;
 	}
 

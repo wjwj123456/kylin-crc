@@ -34,4 +34,26 @@ public class FriendDataImpl implements FriendDataService {
 		DBManager.stopAll(rs, ps, connection);
 		return result;
 	}
+
+	@Override
+	public int addFriend(String userName, String friendName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		int flag = -1;
+		String sql = "INSERT INTO friend (userName,friendUserName) VALUES(?,?)";
+		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
+		pStatement.setString(1, userName);
+		pStatement.setString(2, friendName);
+		try {
+			int j = pStatement.executeUpdate();
+			if (j == 1) {
+				flag = 0;
+			} else {
+				flag = 2;
+			}
+		} catch (Exception SQLIntegrityConstraintViolationException) {
+			flag = 1;
+		}
+		DBManager.closeConnection();
+		return flag;
+	}
 }
