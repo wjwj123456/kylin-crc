@@ -1,7 +1,9 @@
-.myButton{
-	display:block;
+.btn{
+
+	margin:0 5px;
+	 display:block;
 	margin-bottom:15px;
-	border:solid 2px #EC6952;
+	border:solid 2px #EC6952; 
 	color:#EC6952;
 	background:#FFF;
 	text-align:center;
@@ -12,4 +14,18 @@
 	-webkit-transition:all .3s ease;
 	-moz-transition:all .3s ease;
 	transition:all .3s ease;
+		display:inline-block;
+		*display:inline;
+		*zoom:1;
+		
+}
+
+.btn:hover{
+	color:#FFF !important;
+	background:#e74c3c;
+}
+
+.btn-success{
+	color:#FFF !important;
+	background:#e74c3c;
 }

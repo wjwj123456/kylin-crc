@@ -69,9 +69,8 @@ public class ReportBlImpl implements ReportBlService {
 			e.printStackTrace();
 		}
 		AchievementBlImpl achievementBlImpl = new AchievementBlImpl();
-		achievementBlImpl.circumulate(reviewerName, "experience", 100);
-		achievementBlImpl.circumulate(reviewerName, "review_count", 1);
-		achievementBlImpl.circumulate(reviewerName, "review_time", time);
+		achievementBlImpl.reviewAccumulate(reviewerName, time);
+
 		return flag;
 	}
 

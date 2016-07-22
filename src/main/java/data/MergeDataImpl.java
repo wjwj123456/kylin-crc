@@ -14,7 +14,6 @@ import java.util.List;
 
 import dataservice.MergeDataService;
 import po.ReportPO;
-import vo.State;
 
 public class MergeDataImpl implements MergeDataService {
 
@@ -210,29 +209,18 @@ public class MergeDataImpl implements MergeDataService {
 	public int saveHistory(String userName, String taskName, int fault, int assessfalut_mt, int assessfalut_mh)
 			throws SQLException, ClassNotFoundException {
 		int flag = 0;
-		String name = "";
-		ReviewDataImpl reviewDataImpl = new ReviewDataImpl();
-		try {
-			name = reviewDataImpl.getTaskPOByTaskName(taskName).getUserName();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		if (userName.equals(name)) {
-			reviewDataImpl.setTaskState(State.ownerfinish, taskName);
-			return flag;
-		} else {
-			String sql = "INSERT INTO history (tname, uname, fault,assessfault_mt,assessfault_mh) VALUES (?, ?, ?,?,?)";
-			PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
-			pStatement.setString(1, taskName);
-			pStatement.setString(2, userName);
-			pStatement.setInt(3, fault);
-			pStatement.setInt(4, assessfalut_mt);
-			pStatement.setInt(5, assessfalut_mh);
-			pStatement.executeUpdate();
-			DBManager.closeConnection();
 
-			return flag;
-		}
+		String sql = "INSERT INTO history (tname, uname, fault,assessfault_mt,assessfault_mh) VALUES (?, ?, ?,?,?)";
+		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
+		pStatement.setString(1, taskName);
+		pStatement.setString(2, userName);
+		pStatement.setInt(3, fault);
+		pStatement.setInt(4, assessfalut_mt);
+		pStatement.setInt(5, assessfalut_mh);
+		pStatement.executeUpdate();
+		DBManager.closeConnection();
+
+		return flag;
 
 	}
 
