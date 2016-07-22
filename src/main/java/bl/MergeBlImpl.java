@@ -13,6 +13,7 @@ import data.MergeDataImpl;
 import dataservice.MergeDataService;
 import po.ReportPO;
 import vo.ReportVO;
+import vo.State;
 
 public class MergeBlImpl implements MergeBlService {
 	MergeDataService mergeDataService = new MergeDataImpl();
@@ -116,6 +117,11 @@ public class MergeBlImpl implements MergeBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		ReviewBlImpl reviewBlImpl = new ReviewBlImpl();
+		if (reviewBlImpl.isOwner(userName, taskName)) {
+			reviewBlImpl.setTaskState(State.ownerfinish, taskName);
+		}
 		return flag;
 	}
 
@@ -142,10 +148,10 @@ public class MergeBlImpl implements MergeBlService {
 	}
 
 	/**
-	 * TODO:（方法描述）
+	 * TODO:锛堟柟娉曟弿杩帮級
 	 *
 	 * @author lpt14
-	 * @since 2016年7月19日
+	 * @since 2016骞�7鏈�19鏃�
 	 * @param vo
 	 * @return
 	 * @see blservice.MergeBlService#recoverMergeRecord(vo.ReportVO)
