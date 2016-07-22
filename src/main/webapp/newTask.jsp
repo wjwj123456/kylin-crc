@@ -143,8 +143,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="grant" class="col-sm-2 control-label">评审权限</label>
-				<div class="col-sm-10">
+				<label for="grant" class="col-sm-2 control-label hidden">评审权限</label>
+				<div class="col-sm-4">
 					<select class="form-control" id="privacy">
 						<option id="public">公有</option>
 						<option id="private">私有</option>
@@ -153,7 +153,7 @@
 			</div>
 			<div class="form-group">
 				<label for="type" class="col-sm-2 control-label">评审类型</label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<select class="form-control" id="type">
 						<option id="doc">文档评审</option>
 						<option id="code">代码评审</option>
@@ -164,23 +164,23 @@
 				<label for="language" class="col-sm-2 control-label">代码语言</label>
 				<div class="col-sm-10">
 					<select class="form-control" id="language">
-						<option>C</option>
-						<option>Java</option>
-						<option>Objective_C</option>
-						<option>C++</option>
-						<option>C#</option>
-						<option>JavaScript</option>
-						<option>Pointnet</option>
-						<option>Ruby</option>
-						<option>PHP</option>
-						<option>Swift</option>
-						<option>D</option>
-						<option>R</option>
-						<option>MATLAB</option>
-						<option>Perl</option>
-						<option>python</option>
-						<option>Groovy</option>
-						<option>other</option>
+						<option value="c">C</option>
+						<option value="java">Java</option>
+						<option value="Objective_C">Objective_C</option>
+						<option value="cpp">C++</option>
+						<option value="csharp">C#</option>
+						<option value="JavaScript">JavaScript</option>
+						<option value="pointnet">Pointnet</option>
+						<option value="Ruby">Ruby</option>
+						<option value="PHP">PHP</option>
+						<option value="Swift">Swift</option>
+						<option value="D">D</option>
+						<option value="R">R</option>
+						<option value="MATLAB">MATLAB</option>
+						<option value="Perl">Perl</option>
+						<option value="python">python</option>
+						<option value="Groovy">Groovy</option>
+						<option value="other">other</option>
 
 					</select>
 				</div>
