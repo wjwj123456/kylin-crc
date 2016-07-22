@@ -1,0 +1,15 @@
+.myButton{
+	display:block;
+	margin-bottom:15px;
+	border:solid 2px #EC6952;
+	color:#EC6952;
+	background:#FFF;
+	text-align:center;
+	-webkit-box-shadow: 3px 3px 0 rgba(0,0,0,.1);
+	-moz-box-shadow: 3px 3px 0 rgba(0,0,0,.1);
+	box-shadow: 3px 3px 0 rgba(0,0,0,.1);
+	border-radius:3px;
+	-webkit-transition:all .3s ease;
+	-moz-transition:all .3s ease;
+	transition:all .3s ease;
+}
