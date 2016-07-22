@@ -12,6 +12,7 @@ import blservice.MergeBlService;
 import data.MergeDataImpl;
 import dataservice.MergeDataService;
 import po.ReportPO;
+import vo.AssessmentVO;
 import vo.ReportVO;
 import vo.State;
 
@@ -92,36 +93,43 @@ public class MergeBlImpl implements MergeBlService {
 
 	@Override
 	public int saveHistory(String userName, String taskName) {
-
-		try {
-			mergeDataService.saveMergeState(userName, taskName);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		// TODO Auto-generated method stub
 		int flag = 0;
+		ReviewBlImpl reviewBlImpl = new ReviewBlImpl();
 		AssessmentBlImpl assessmentBlImpl = new AssessmentBlImpl();
-		ReportBlImpl reportBlImpl = new ReportBlImpl();
-		List<ReportVO> vos = reportBlImpl.getMergeReport(taskName);
-		int[] assessFault = assessmentBlImpl.getAssessmentValue(taskName, vos);
-		int fault = vos.size();
-		try {
+
+		if (reviewBlImpl.isOwner(userName, taskName)) {
+			reviewBlImpl.setTaskState(State.ownerfinish, taskName);
+			List<AssessmentVO> vos = assessmentBlImpl.getAllAssessments(taskName);
+			AchievementBlImpl achievementBlImpl = new AchievementBlImpl();
+			achievementBlImpl.lastReportAccumulate(vos);
+
+		} else {
+
 			try {
-				flag = mergeDataService.saveHistory(userName, taskName, fault, assessFault[0], assessFault[1]);
-			} catch (ClassNotFoundException e) {
+				mergeDataService.saveMergeState(userName, taskName);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			ReportBlImpl reportBlImpl = new ReportBlImpl();
+			List<ReportVO> vos = reportBlImpl.getMergeReport(taskName);
+			int[] assessFault = assessmentBlImpl.getAssessmentValue(taskName, vos);
+			int fault = vos.size();
+			try {
+				try {
+					flag = mergeDataService.saveHistory(userName, taskName, fault, assessFault[0], assessFault[1]);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
-		ReviewBlImpl reviewBlImpl = new ReviewBlImpl();
-		if (reviewBlImpl.isOwner(userName, taskName)) {
-			reviewBlImpl.setTaskState(State.ownerfinish, taskName);
-		}
 		return flag;
 	}
 
