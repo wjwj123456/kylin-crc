@@ -22,6 +22,11 @@ public class LoginBLImpl implements LoginBlService {
 			UserInfoBlService userInfoBlService = new UserInfoBlImpl();
 			userInfoBlService.add(userName);
 		}
+		AchievementBlImpl achievementBlImpl = new AchievementBlImpl();
+		int j = achievementBlImpl.initAchievement(userName);
+		if (j != 0) {
+			i = 1;
+		}
 		return i;
 	}
 
