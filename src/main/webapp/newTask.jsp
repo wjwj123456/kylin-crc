@@ -140,7 +140,7 @@
 			<div class="form-group">
 				<label for="grant" class="col-sm-2 control-label">评审权限</label>
 				<div class="col-sm-10">
-					<select class="form-control" id="type">
+					<select class="form-control" id="privacy">
 						<option id="public">公有</option>
 						<option id="private">私有</option>
 					</select>
