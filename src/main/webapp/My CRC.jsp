@@ -10,9 +10,9 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
+<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
@@ -34,7 +34,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">CRC在线评审系统</a>
+			<a class="navbar-brand" href="index.jsp">CRC Review</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">

@@ -20,9 +20,9 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
+<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">

@@ -16,6 +16,7 @@
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<link rel="stylesheet" href="css/avenir.css">
 <style type="text/css">
 .myrow {
 	padding-bottom: 10px;
@@ -36,7 +37,7 @@
 <title>My CRC</title>
 </head>
 <body role="document">
-	<nav class="navbar" >
+	<nav class="navbar">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -46,7 +47,8 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp" style="font-size:130%;">CRC Review System</a>
+			<a class="navbar-brand" href="index.jsp" style="font-size: 130%;">CRC
+				ReviewSystem</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -74,7 +76,8 @@
 
 	</div>
 	</nav>
-	<div class="container" id="waitArea">
+	<div class="container" id="waitArea"
+		style="background-image: url('img/nav.png') no-repeat">
 		<div id="suspensionNavigation" class="col-md-3" role="complementary"
 			style="padding-top: 80px; padding-right: 50px;">
 			<div class="myrow">
@@ -127,59 +130,47 @@
 
 			</div>
 			<h3>We’ve found 4,293,725 repository results</h3>
-			<div class="well well-lg">
-				<h2 title="评审测试">
-					评审测试 <a href="tasks.jsp?taskName=评审测试">
-						<button class="btn btn-default" style="float: right;">
-							<span class="glyphicon glyphicon-hand-up"></span> Check
-						</button>
-					</a>
-				</h2>
-				<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
-				<p>
-					<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
-				</p>
-				<p>
-					参与者：XXXXXXXXXXX
-					<button class="btn btn-success" data-toggle="modal"
-						data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-				</p>
+			<div class="avn-price-table avn-style14 avn-hover">
+				<div class="row">
+					<div class="col-md-1 header">
+						<p style="margin-left: -11px;">D</p>
+					</div>
+					<div class="col-md-11">
+						<h2 title="评审测试">评审测试</h2>
+						<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
+						<p>
+							<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="well well-lg">
-				<h2 title="评审测试">
-					评审测试 <a href="tasks.jsp?taskName=评审测试">
-						<button class="btn btn-default" style="float: right;">
-							<span class="glyphicon glyphicon-hand-up"></span> Check
-						</button>
-					</a>
-				</h2>
-				<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
-				<p>
-					<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
-				</p>
-				<p>
-					参与者：XXXXXXXXXXX
-					<button class="btn btn-success" data-toggle="modal"
-						data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-				</p>
+			<div class="avn-price-table avn-style14 avn-hover">
+				<div class="row">
+					<div class="col-md-1 header">
+						<p style="margin-left: -11px;">C++</p>
+					</div>
+					<div class="col-md-11">
+						<h2 title="评审测试">评审测试</h2>
+						<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
+						<p>
+							<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="well well-lg">
-				<h2 title="评审测试">
-					评审测试 <a href="tasks.jsp?taskName=评审测试">
-						<button class="btn btn-default" style="float: right;">
-							<span class="glyphicon glyphicon-hand-up"></span> Check
-						</button>
-					</a>
-				</h2>
-				<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
-				<p>
-					<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
-				</p>
-				<p>
-					参与者：XXXXXXXXXXX
-					<button class="btn btn-success" data-toggle="modal"
-						data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-				</p>
+			<div class="avn-price-table avn-style14 avn-hover">
+				<div class="row">
+					<div class="col-md-1 header">
+						<p style="margin-left: -11px;">Java</p>
+					</div>
+					<div class="col-md-11">
+						<h2 title="评审测试">评审测试</h2>
+						<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
+						<p>
+							<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
+						</p>
+					</div>
+				</div>
 			</div>
 			<hr>
 			<h2 id="perAnalyze">个人成就</h2>
@@ -221,10 +212,7 @@
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script type="text/javascript">
-		var num = $
-		{
-			messageNum
-		};
+		var num = ${messageNum};
 	</script>
 	<script src='js/mesSpan.js'></script>
 </body>

@@ -22,9 +22,9 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
+<link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/styles.css">
 <style type="text/css">
@@ -42,7 +42,7 @@
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/jquery.cxselect.min.js"></script>
 <body role="document">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"

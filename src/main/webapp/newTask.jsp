@@ -7,10 +7,11 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/theme.css" rel="stylesheet">
+
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
 <style type="text/css">
@@ -21,6 +22,10 @@
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
     background-color: transparent;
     border-color: #337ab7;
+}
+body{
+	padding-top: 80px;
+  padding-bottom: 0px;
 }
 </style>
 <title>CRC new Task</title>

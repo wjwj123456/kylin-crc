@@ -28,7 +28,7 @@ a.avn-btn{
 =======================================================*/
 .avn-price-table.avn-style14{
 	
-	border:solid 2px #EC6952;
+	border:solid 2px #336699;
 	border-radius:10px;
 	-webkit-box-shadow: 4px 4px 0 rgba(0,0,0,.1);
 	-moz-box-shadow: 4px 4px 0 rgba(0,0,0,.1);
@@ -37,7 +37,7 @@ a.avn-btn{
 	-moz-transition:all .3s ease;
 	transition:all .3s ease;
 	line-height: 1;
-	width: 60%;
+	width: 100%;
 	margin: 0 auto;
 	margin-bottom: 40px;
 }
@@ -49,15 +49,16 @@ a.avn-btn{
 	transform:scale(1.05);
 }
 .avn-price-table.avn-style14 .header{
-	padding:40px 10px;
 	text-align:center;
 	border-radius:7px 0 0 7px;
-	background:#EC6952;
+	background:#336699;
 	color:#FFF;
 	-webkit-box-shadow: 4px 0 0 0 rgba(0,0,0,.1);
 	-moz-box-shadow: 4px 0 0 0 rgba(0,0,0,.1);
 	box-shadow: 4px 0 0 0 rgba(0,0,0,.1);
 	height: 100%;
+	margin-top: 20px;
+	padding-top:5px
 }
 .avn-price-table.avn-style14 .header > .package{
 	text-transform:uppercase;

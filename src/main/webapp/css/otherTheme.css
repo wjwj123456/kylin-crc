@@ -25,4 +25,34 @@ body {
 .inner {
   padding: 30px;
 }
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: transparent;
+    border-color: #337ab7;
+}
+body {
+	background: url("../img/nav.png") no-repeat center 0
+}
+.navbar > .container > .navbar-header>.navbar-brand{
+	font-family:inherit;
+	color:#eee;
+}
+.navbar > .container > .navbar-header>.navbar-brand:hover{
+	color:#fff;
+}
+.dropdown-toggle{
+	color:#eee;
+}
+.dropdown-toggle:hover{
+	color:#fff;
+}
+.dropdown-toggle:focus, .dropdown-toggle:hover{
+	color:#fff;
+}
+.badge{
+	padding: 2px 4px;
 
+}

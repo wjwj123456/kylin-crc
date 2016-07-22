@@ -10,9 +10,9 @@
 <link
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
+	<link href="css/otherTheme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
@@ -26,7 +26,7 @@
 <title>我的消息</title>
 </head>
 <body role="document">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
