@@ -13,6 +13,20 @@ public class AchievementBlImpl implements AchievementBlService {
 
 	private AchievementDataService achievementDataService = new AchievementDataImpl();
 
+	public int initAchievement(String userName) {
+		int flag = -1;
+		try {
+			flag = achievementDataService.initAchievement(userName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 	@Override
 	public AchievementVO getAchievement(String userName) {
 		// TODO Auto-generated method stub

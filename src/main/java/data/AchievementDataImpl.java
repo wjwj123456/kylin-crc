@@ -13,6 +13,27 @@ public class AchievementDataImpl implements AchievementDataService {
 	private ResultSet rSet = null;
 
 	@Override
+	public int initAchievement(String userName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		int flag = -1;
+		String sql = "INSERT INTO achievement (uname, experience, review_time,review_count,efficiency_count) VALUES (?, ?, ?,?,?)";
+		pStatement = DBManager.getPreparedStatement(sql);
+		pStatement.setString(1, userName);
+		pStatement.setInt(2, 0);
+		pStatement.setDouble(3, 0.0);
+		pStatement.setInt(4, 0);
+		pStatement.setInt(5, 0);
+		int i = pStatement.executeUpdate();
+		if (i == 1) {
+			flag = 0;
+		} else {
+			flag = 2;
+		}
+		DBManager.closeConnection();
+		return flag;
+	}
+
+	@Override
 	public AchievementPO getAchievement(String userName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM achievement WHERE uname = '" + userName + "'";
