@@ -28,6 +28,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/fileinput.min.css">
+
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
