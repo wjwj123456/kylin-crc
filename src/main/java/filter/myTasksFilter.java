@@ -14,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import bl.InviteBlImpl;
 import bl.ReviewBlImpl;
+import bl.UserInfoBlImpl;
 import blservice.ReviewBlService;
+import blservice.UserInfoBlService;
 import vo.TaskVO;
+import vo.UserInfoVO;
 
 /**
  * Servlet Filter implementation class myTasksFilter
@@ -70,6 +73,13 @@ public class myTasksFilter implements Filter {
 		// 历史任务(参与者)
 		List<TaskVO> historyTask_participant = new ReviewBlImpl().getJoinedEndTasksByUserName(userName);
 		session.setAttribute("historyTask_participant", historyTask_participant);
+		
+		UserInfoBlService userInfo = new UserInfoBlImpl();
+
+		if (userName != null) {
+			UserInfoVO userInfoVO = userInfo.get(userName);
+			session.setAttribute("userInfo", userInfoVO);
+		}
 	
 		chain.doFilter(request, response);
 	}

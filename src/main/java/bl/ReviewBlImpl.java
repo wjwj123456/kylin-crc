@@ -344,7 +344,7 @@ public class ReviewBlImpl implements ReviewBlService {
 		State state = null;
 		try {
 			state = reviewDataService.getUserState(userName, taskName);
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -367,11 +367,22 @@ public class ReviewBlImpl implements ReviewBlService {
 		State state = null;
 		try {
 			state = reviewDataService.getTaskState(taskName);
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return state;
+	}
+
+	public int setTaskState(State state, String taskName) {
+		int flag = -1;
+		try {
+			flag = reviewDataService.setTaskState(state, taskName);
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	/**
@@ -391,7 +402,7 @@ public class ReviewBlImpl implements ReviewBlService {
 		// TODO Auto-generated method stub
 		try {
 			return reviewDataService.isOwner(userName, taskName);
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

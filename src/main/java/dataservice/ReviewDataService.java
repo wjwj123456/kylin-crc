@@ -85,9 +85,11 @@ public interface ReviewDataService {
 	 */
 	public List<TaskPO> getJoinedEndTasksByUserName(String userName) throws SQLException, ClassNotFoundException;
 
-	public State getUserState(String userName, String taskName) throws SQLException;
+	public State getUserState(String userName, String taskName) throws SQLException, ClassNotFoundException;
 
-	public State getTaskState(String taskName) throws SQLException;
+	public State getTaskState(String taskName) throws SQLException, ClassNotFoundException;
 
-	public boolean isOwner(String userName, String taskName) throws SQLException;
+	public int setTaskState(State state, String taskName) throws SQLException, ClassNotFoundException;
+
+	public boolean isOwner(String userName, String taskName) throws SQLException, ClassNotFoundException;
 }
