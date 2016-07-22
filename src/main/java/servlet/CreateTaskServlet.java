@@ -74,7 +74,7 @@ public class CreateTaskServlet extends HttpServlet {
 		ReviewBlImpl review = new ReviewBlImpl();
 		review.saveReviewInfo(new TaskVO(userName, Encode.transfer(jsonObject.getString("taskName")),
 				Type.valueOf(jsonObject.getString("type")), "", Encode.transfer(jsonObject.getString("describe")),
-				deadline, 0, Language.transfer(jsonObject.getString("language"))));
+				deadline, 0, Language.valueOf(jsonObject.getString("language"))));
 
 		System.out.println("。。。。。" + jsonObject.getString("language") + ".....");
 		System.out.println("create");

@@ -26,7 +26,7 @@ function createNewTask() {
 		data: 'type=createNewTask' + '&data=' + getData(), 
 		success: function(data) {
 			if (data == 'success') {
-//				top.location = 'My CRC.jsp';
+				top.location = 'My CRC.jsp';
 			}
 			stopWait();
 		}
