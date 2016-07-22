@@ -25,8 +25,10 @@ function createNewTask() {
 		style: 'post',
 		data: 'type=createNewTask' + '&data=' + getData(), 
 		success: function(data) {
-			if (data == 'success') {
+			if (data == 0) {
 				top.location = 'My CRC.jsp';
+			} else if (data == 1) {
+				alert("项目已存在")
 			}
 			stopWait();
 		}
