@@ -41,7 +41,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		int flag = 0;
 
-		String sql = "INSERT INTO task (uname, tname,type, project,discribe,deadline,state) VALUES (?, ?, ?, ?, ?, ?,? )";
+		String sql = "INSERT INTO task (uname, tname,type, project,discribe,deadline,state,language) VALUES (?, ?, ?, ?, ?, ?,?,? )";
 		Timestamp tt = new Timestamp(po.getDeadline().getTime());
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, po.getUserName());
@@ -51,14 +51,17 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement.setString(5, po.getDescribe());
 		pStatement.setTimestamp(6, tt);
 		pStatement.setInt(7, po.getState());
+		pStatement.setString(8, po.getLanguage().toString());
 		try {
-			int i = pStatement.executeUpdate();
-			if (i == 0) {
-				flag = 1;
+			int j = pStatement.executeUpdate();
+			if (j == 1) {
+				flag = 0;
+			} else {
+				flag = 2;
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("task has exist!");
+		} catch (Exception SQLIntegrityConstraintViolationException) {
+			flag = 1;
+			System.out.println("conflict!");
 		}
 		DBManager.closeConnection();
 		return flag;

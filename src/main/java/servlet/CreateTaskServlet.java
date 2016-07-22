@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import bl.ReviewBlImpl;
 import tools.Encode;
+import vo.Language;
 import vo.TaskVO;
 import vo.Type;
 
@@ -38,13 +41,27 @@ public class CreateTaskServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String userName = (String) request.getSession().getAttribute("username");
-		String taskName = Encode.transfer(request.getParameter("taskName"));
-		String type = Encode.transfer(request.getParameter("type"));
+		String type = request.getParameter("type");
 
-		String describe = Encode.transfer(request.getParameter("describe"));
-		String date = request.getParameter("deadline");
+		if (type.equals("createNewTask")) {
+			createNewTask(request, response);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+	private void createNewTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String userName = (String) request.getSession().getAttribute("username");
+
+		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
+		String date = jsonObject.getString("deadline");
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date deadline = null;
@@ -55,18 +72,11 @@ public class CreateTaskServlet extends HttpServlet {
 		}
 
 		ReviewBlImpl review = new ReviewBlImpl();
-		review.saveReviewInfo(new TaskVO(userName, taskName, Type.valueOf(type), "", describe, deadline, 0));
+		int result = review.saveReviewInfo(new TaskVO(userName, Encode.transfer(jsonObject.getString("taskName")),
+				Type.valueOf(jsonObject.getString("type")), "", Encode.transfer(jsonObject.getString("describe")),
+				deadline, 0, Language.valueOf(jsonObject.getString("language"))));
 
 		PrintWriter out = response.getWriter();
-		out.print("success");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
+		out.print(result);
 	}
 }

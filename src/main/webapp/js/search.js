@@ -4,6 +4,9 @@ $(function() {
 			searchTask($('#searchContent').val().trim())
 		}
 	})
+	$('#search').on('click', function() {
+		searchTask($('#searchContent').val().trim())
+	})
 })
 
 /**
@@ -31,12 +34,14 @@ function searchUser(keyword) {
  * @returns
  */
 function searchTask(keyword) {
+	run_waitMe();
 	jQuery.ajax({
 		url: '/crc/SearchServlet',
 		type: 'post',
 		data: 'type=searchTask&keyword=' + keyword + '&language=""',
 		success: function(data) {
-			console.log(data);
+			top.location = 'searchResult.jsp'
+			stopWait();
 		}
 	});
 }

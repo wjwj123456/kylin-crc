@@ -10,9 +10,10 @@
 <link href="css/cover.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="css/waitMe.min.css">
 <title>CRC Index</title>
 </head>
-<body>
+<body id="waitArea">
 	<div class="site-wrapper">
 
 		<div class="site-wrapper-inner">
@@ -120,7 +121,7 @@
 
 					<div>
 						<div class=row>
-							<div class="col-md-10  col-md-offest-2" style="padding-left: 98px; padding-top: 27px;padding-right: 0px;">
+							<div class="col-md-10 col-md-offest-2" style="padding-left: 98px; padding-top: 27px;padding-right: 0px;">
 								<input
 									style="position: relative; vertical-align: top; background-color: transparent; color:white"
 									name="term" placeholder="Search review..." required=""
@@ -166,6 +167,8 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script src='js/waitFunction.js'></script>
+	<script src='js/waitMe.min.js'></script>
 	<script src="js/login.js"></script>
 	<script src="js/search.js"></script>
 </body>

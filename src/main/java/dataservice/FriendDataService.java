@@ -10,12 +10,22 @@ import java.util.List;
 import po.UserInfoPO;
 
 /**
- * TODO: （类描述）
+ * TODO: 锛堢被鎻忚堪锛�
  *
  * @author lpt14
- * @since 2016年7月19日
+ * @since 2016骞�7鏈�19鏃�
  * @see
  */
 public interface FriendDataService {
 	public List<UserInfoPO> getFriends(String userName) throws SQLException, ClassNotFoundException;
+
+	/**
+	 * 
+	 * @param userName
+	 * @param friendName
+	 * @return0 o:success 1:conflict 2:fails
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public int addFriend(String userName, String friendName) throws SQLException, ClassNotFoundException;
 }

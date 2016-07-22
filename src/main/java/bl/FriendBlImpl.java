@@ -15,20 +15,20 @@ import po.UserInfoPO;
 import vo.UserInfoVO;
 
 /**
- * TODO: （类描述）
+ * TODO: 锛堢被鎻忚堪锛�
  *
  * @author lpt14
- * @since 2016年7月21日
+ * @since 2016骞�7鏈�21鏃�
  * @see
  */
 public class FriendBlImpl implements FriendBlService {
 	FriendDataService friendDataService = new FriendDataImpl();
 
 	/**
-	 * TODO:（方法描述）
+	 * TODO:锛堟柟娉曟弿杩帮級
 	 *
 	 * @author lpt14
-	 * @since 2016年7月21日
+	 * @since 2016骞�7鏈�21鏃�
 	 * @param userName
 	 * @return
 	 * @see blservice.FriendBlService#getFriends(java.lang.String)
@@ -54,4 +54,26 @@ public class FriendBlImpl implements FriendBlService {
 		return list2;
 	}
 
+	/**
+	 * 
+	 * @param userName
+	 * @param friendName
+	 * @return0 o:success 1:conflict 2:fail
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+
+	public int addFriend(String userName, String friendName) {
+		int flag = -1;
+		try {
+			flag = friendDataService.addFriend(userName, friendName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
 }
