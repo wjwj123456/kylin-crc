@@ -212,7 +212,7 @@
 	<script type="text/javascript">
 		$(function() {
 			$('#datetimepicker1').datetimepicker({
-				format: 'YYYY/MM/DD HH:mm',
+				format: 'YYYY-MM-DD HH:mm',
 				minDate: new Date(),
 				locale: 'zh-cn'
 			});
