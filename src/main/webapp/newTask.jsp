@@ -10,16 +10,9 @@
 <link href="css/theme.css" rel="stylesheet">
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
-<link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
-<link href="css/datetimepicker.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap-datetimepicker.js"></script>
-<script src="js/application.js"></script>
-<script src="js/holder.js"></script>
-
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
 
 <title>CRC new Task</title>
 </head>
@@ -43,12 +36,13 @@
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+				<li class="dropdown" id="mesSpan"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
-						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
 						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -137,6 +131,17 @@
 						placeholder="关于***项目的n号评审">
 				</div>
 			</div>
+			<div class="form-group" id="deadGroup">
+				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
+				<div class="col-sm-4">
+					<div class='input-group date' id='datetimepicker1'>
+						<input type='text' class="form-control" id="deadline"/> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+			</div>
 			<div class="form-group">
 				<label for="grant" class="col-sm-2 control-label">评审权限</label>
 				<div class="col-sm-10">
@@ -155,7 +160,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group "  id="languageBlock" style="display: none;">
+			<div class="form-group " id="languageBlock" style="display: none;">
 				<label for="language" class="col-sm-2 control-label">代码语言</label>
 				<div class="col-sm-10">
 					<select class="form-control" id="language">
@@ -169,14 +174,14 @@
 						<option>Ruby</option>
 						<option>PHP</option>
 						<option>Swift</option>
-						<option> D</option>
+						<option>D</option>
 						<option>R</option>
 						<option>MATLAB</option>
 						<option>Perl</option>
 						<option>python</option>
 						<option>Groovy</option>
 						<option>other</option>
-						
+
 					</select>
 				</div>
 			</div>
@@ -186,31 +191,11 @@
 					<textarea class="form-control" rows="3" id="discription"></textarea>
 				</div>
 			</div>
-			<div class="form-group" id="deadGroup">
-				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
-				<div class="col-sm-10">
-					<div class="input-append date form_datetime">
-						<input size="16" type="text" value="" readonly name="deadline"
-							id="deadline"> <span class="add-on"><i
-							class="icon-remove"></i></span> <span class="add-on"><i
-							class="icon-calendar"></i></span>
-					</div>
-				</div>
-			</div>
 		</form>
 		<div class="form-group" style="text-align: right;">
 			<button class="btn btn-success " id="createTask">确认创建</button>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$(".form_datetime").datetimepicker({
-			format : "yyyy-MM-dd hh:ii",
-			autoclose : true,
-			todayBtn : true,
-			startDate : "2013-02-14 10:00",
-			minuteStep : 10
-		});
-	</script>
 
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
@@ -218,12 +203,24 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+		<script src='js/moment-with-locales.js'></script>
+	<script src='js/bootstrap-datetimepicker.js'></script>
 	<script src="js/login.js"></script>
 	<script src="js/newTask.js"></script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script type="text/javascript">
-	var num = ${messageNum};</script>
+		$(function() {
+			$('#datetimepicker1').datetimepicker({
+				format: 'YYYY/MM/DD HH:mm',
+				minDate: new Date(),
+				locale: 'zh-cn'
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		var num = ${messageNum};
+	</script>
 	<script src='js/mesSpan.js'></script>
 </body>
 
