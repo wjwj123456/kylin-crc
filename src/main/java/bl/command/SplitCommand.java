@@ -14,6 +14,8 @@ import vo.ReportVO;
 /**
  * split one report which was merged by several reports into some reports
  * 
+ * 符号说明： X <-- Y 将Y合并到X X <-\- Y 从X中拆分Y list 要拆分的条目 list[] 要拆分条目的直接子节点 vo 被拆分的条目
+ * 
  * @author song
  */
 public class SplitCommand implements Command {
@@ -70,7 +72,24 @@ public class SplitCommand implements Command {
 
 	@Override
 	public void undo() {
-		reportList.add(0, report);
-		mergeBl.saveMergeReport(reportList, report.getTaskName());
+		List<ReportVO> temp = new ArrayList<>();
+		for (int i = 0; i < reportBackUp.length; i++) {
+			temp.clear();
+			temp.add(reportList.get(i));
+			temp.addAll(reportBackUp[i]);
+			// 1. list <-- list[]
+			mergeBl.saveMergeReport(temp, report.getTaskName());
+			// 2. vo <-\- list[]
+			try {
+				splitBl.split((ArrayList<ReportVO>) reportBackUp[i], report);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		// 3. vo <-- list
+		temp.clear();
+		temp.add(report);
+		temp.addAll(reportList);
+		mergeBl.saveMergeReport(temp, report.getTaskName());
 	}
 }
