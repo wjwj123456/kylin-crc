@@ -8,7 +8,7 @@ public interface FileBlService {
 	 * 
 	 * @param taskName
 	 * @param paths
-	 * @return
+	 * @return	0 means success, 1 means failure
 	 */
 	public int add(String taskName, List<String> paths);
 
