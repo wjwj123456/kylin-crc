@@ -1,5 +1,17 @@
-.btn{
 
+
+.btn:hover{
+	color:#FFF !important;
+	background:#e74c3c;
+}
+
+.btn.btn-success{
+	color:#FFF !important;
+	background:#e74c3c;
+	border:#e74c3c;
+}
+
+.btn{
 	margin:0 5px;
 	 display:block;
 	margin-bottom:15px;
@@ -18,14 +30,4 @@
 		*display:inline;
 		*zoom:1;
 		
-}
-
-.btn:hover{
-	color:#FFF !important;
-	background:#e74c3c;
-}
-
-.btn-success{
-	color:#FFF !important;
-	background:#e74c3c;
 }

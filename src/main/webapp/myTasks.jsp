@@ -27,8 +27,10 @@
 <link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/styles.css">
+
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/avenir.css">
+
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
