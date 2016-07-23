@@ -56,3 +56,6 @@ body {
 	padding: 2px 4px;
 
 }
+.row-eq-height{
+	display: flex;
+}

@@ -23,15 +23,11 @@
     background-color: transparent;
     border-color: #337ab7;
 }
-body{
-	padding-top: 80px;
-  padding-bottom: 0px;
-}
 </style>
 <title>CRC new Task</title>
 </head>
 <body role="document">
-	<nav class="navbar navbar-fixed-top">
+	<nav class="navbar">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
