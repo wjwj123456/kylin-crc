@@ -27,7 +27,7 @@
 <link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/style.css">
+
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -38,6 +38,7 @@
 	padding-bottom: 10px;
 }
 </style>
+<link rel="stylesheet" href="css/style.css">
 <title>我的评审</title>
 </head>
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
