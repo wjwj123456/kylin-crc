@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/avenir.css">
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -63,12 +64,13 @@
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+				<li class="dropdown" id="mesSpan"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
-						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
 						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -97,7 +99,8 @@
 
 		</div>
 		<div class="col-md-10">
-			<ul id="myTab" class="nav nav-tabs" style="font-size: 150%;text-align: center;">
+			<ul id="myTab" class="nav nav-tabs"
+				style="font-size: 150%; text-align: center;">
 				<li class="active"><a href="#my" data-toggle="tab"> 我发布的评审</a></li>
 				<li><a href="#join" data-toggle="tab">我参与的评审</a></li>
 				<li><a href="#his" data-toggle="tab">历史评审</a></li>
@@ -142,7 +145,20 @@
 					<%
 						}
 					%>
-
+					<div class="avn-price-table avn-style14 avn-hover">
+						<div class="row">
+							<div class="col-md-1 header">
+								<p style="margin-left: -11px;">5天</p>
+							</div>
+							<div class="col-md-11">
+								<h2 title="评审测试">评审测试</h2>
+								<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
+								<p>
+									<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
+								</p>
+							</div>
+						</div>
+					</div>
 
 					<hr>
 				</div>
@@ -323,7 +339,11 @@
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script type="text/javascript">
-	var num = ${messageNum};</script>
+		var num = $
+		{
+			messageNum
+		};
+	</script>
 	<script src='js/mesSpan.js'></script>
 </body>
 
