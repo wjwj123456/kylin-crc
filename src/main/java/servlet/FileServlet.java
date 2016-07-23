@@ -1,7 +1,10 @@
 package servlet;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,17 +19,17 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
- * Servlet implementation class ImageServlet
+ * Servlet implementation class FileServlet
  * 
- * store portrait of user
+ * handle upload and download of file
  */
-public class ImageServlet extends HttpServlet {
+public class FileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ImageServlet() {
+	public FileServlet() {
 		super();
 	}
 
@@ -36,7 +39,13 @@ public class ImageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		storeFile(request, response);
+		String type = request.getParameter("type");
+
+		if (type.equals("upload")) {
+			handleUpload(request, response);
+		} else if (type.equals("download")) {
+			handleDownload(request, response);
+		}
 	}
 
 	/**
@@ -48,7 +57,13 @@ public class ImageServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void storeFile(HttpServletRequest request, HttpServletResponse response) {
+	/**
+	 * upload files
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	private void handleUpload(HttpServletRequest request, HttpServletResponse response) {
 		int maxFileSize = 5000 * 1024;
 		int maxMemSize = 5000 * 1024;
 		ServletContext context = request.getServletContext();
@@ -69,20 +84,67 @@ public class ImageServlet extends HttpServlet {
 				// 处理上传的文件
 				Iterator<FileItem> i = fileItems.iterator();
 				while (i.hasNext()) {
-					FileItem fi = (FileItem) i.next();
-					if (!fi.isFormField()) {
+					FileItem fileItem = (FileItem) i.next();
+					if (!fileItem.isFormField()) {
 						// 获取上传文件的参数
 						// String fieldName = fi.getFieldName();
-						String fileName = fi.getName();
+						String fileName = fileItem.getName();
 						// boolean isInMemory = fi.isInMemory();
 						// long sizeInBytes = fi.getSize();
 						// 写入文件
 						File file = new File(filePath, fileName);
-						fi.write(file);
+						fileItem.write(file);
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * download files of task from server
+	 * 
+	 * @param requset
+	 * @param response
+	 * @throws IOException
+	 */
+	private void handleDownload(HttpServletRequest requset, HttpServletResponse response) throws IOException {
+		response.reset();
+		response.setContentType("application/x-download");
+
+		String file_download = "/song/home/program/crc/data/1.png";
+		String file_display = "1.png";
+		file_display = URLEncoder.encode(file_display, "UTF-8");
+		response.addHeader("Content-Disposition", "attachment;filename=" + file_display);
+
+		OutputStream outputStream = null;
+		FileInputStream inputStream = null;
+		try {
+			outputStream = response.getOutputStream();
+			inputStream = new FileInputStream(file_download);
+
+			byte[] b = new byte[1024];
+			int i = 0;
+
+			while ((i = inputStream.read(b)) > 0) {
+				outputStream.write(b, 0, i);
+			}
+			outputStream.flush();
+			// 要加以下两句话，否则会报错
+			// java.lang.IllegalStateException: getOutputStream() has already
+			// been called for //this response
+			// out.clear();
+			// out = pageContext.pushBody();
+		} catch (Exception e) {
+			System.out.println("Error!");
+			e.printStackTrace();
+		} finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+			if (outputStream != null) {
+				outputStream.close();
 			}
 		}
 	}
