@@ -205,11 +205,21 @@
     <servlet-name>ImageServlet</servlet-name>
     <url-pattern>/ImageServlet</url-pattern>
   </servlet-mapping>
-  <context-param> 
-    <description>文件上传地址</description> 
-    <param-name>file-upload</param-name> 
+  <context-param>
+    <description>文件上传地址</description>
+    <param-name>file-upload</param-name>
     <param-value>
 		/home/song/program/crc/data
-     </param-value> 
-	</context-param>
+     </param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>FileServlet</display-name>
+    <servlet-name>FileServlet</servlet-name>
+    <servlet-class>servlet.FileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileServlet</servlet-name>
+    <url-pattern>/FileServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

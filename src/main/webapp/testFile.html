@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form action="/crc/ImageServlet" method="post"
+		enctype="multipart/form-data">
+		<input type="file"><br /> <input type="submit">
+	</form>
+	<h3>File Upload:</h3>
+	Select a file to upload:
+	<br />
+	<form action="/crc/FileServlet?type=upload" method="post"
+		enctype="multipart/form-data">
+		<input type="file" name="file" size="50" /> <br /> <input
+			type="submit" value="Upload File" />
+	</form>
+	<a href="/crc/FileServlet?type=download">
+		点击下载
+	</a>
+</body>
+</html>
