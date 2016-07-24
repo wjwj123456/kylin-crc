@@ -180,7 +180,6 @@ select {
 /* ======= Header ======= */
 .header {
   color: #fff;
-  width: 100%;
   position: relative;
   z-index: 40;
   height: 80px;

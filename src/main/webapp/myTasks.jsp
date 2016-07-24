@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="tools.Tools"%>
 <%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
@@ -26,8 +27,9 @@
 	rel="stylesheet">
 <link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
-<link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/avenir2.css">
+
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -63,12 +65,13 @@
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+				<li class="dropdown" id="mesSpan"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
-						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
 						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -93,18 +96,19 @@
 					</button></a>
 			</div>
 
-			<a href="newTask.jsp"><button class="btn btn-success">新评审</button></a>
+			<a href="newTask.jsp"><button class="btn ">新评审</button></a>
 
 		</div>
 		<div class="col-md-10">
-			<ul id="myTab" class="nav nav-tabs" style="font-size: 150%;text-align: center;">
+			<ul id="myTab" class="nav nav-tabs"
+				style="font-size: 150%; text-align: center;">
 				<li class="active"><a href="#my" data-toggle="tab"> 我发布的评审</a></li>
 				<li><a href="#join" data-toggle="tab">我参与的评审</a></li>
 				<li><a href="#his" data-toggle="tab">历史评审</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane fade in active" id="my">
-					<%
+					<%	Date now = new Date();
 						List<TaskVO> running = Cast.cast(session.getAttribute("runningTask"));
 					%>
 					<%
@@ -117,24 +121,32 @@
 					<%
 						for (TaskVO vo : running) {
 					%>
-					<div class="well well-lg">
-						<h2 title="<%=vo.getTaskName()%>">
-							<%=vo.getTaskName()%>
-							<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-								<button class="btn btn-default" style="float: right;">
-									<span class="glyphicon glyphicon-hand-up"></span> Check
-								</button>
-							</a>
-						</h2>
-						<p><%=vo.getDescribe()%></p>
-						<p>
-							<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
-						</p>
-						<p>
-							参与者：XXXXXXXXXXX
-							<button class="btn btn-success" data-toggle="modal"
-								data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-						</p>
+					<div class="avn-price-table avn-style14 avn-hover"">
+						<div class="row row-eq-height">
+							<div class="col-md-2">
+								<div class="header">
+									<h4 class="package">剩余</h4>
+									<div class="price">
+										<span class="amount"><%=(int)((vo.getDeadline().getTime()-now.getTime())/86400000)%></span> <span class="currency">天</span>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-10">
+								<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
+								<h2 title="<%=vo.getTaskName() %>" style="cursor: pointer;"><%=vo.getTaskName() %> <button class="close" style="float: none;"><span class="glyphicon glyphicon-hand-left"> </span></button></h2>
+								</a>
+								<p><%=vo.getDescribe() %></p>
+								<p>
+									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
+								</p>
+								<p>
+									参与者：XXXXXXXXXXX
+									<button class="btn" data-toggle="modal"
+										data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+								</p>
+							</div>
+						</div>
 					</div>
 					<%
 						}
@@ -142,7 +154,7 @@
 					<%
 						}
 					%>
-
+					
 
 					<hr>
 				</div>
@@ -161,24 +173,32 @@
 					<%
 						for (TaskVO vo : joiningTasks) {
 					%>
-					<div class="well well-lg">
-						<h2 title="<%=vo.getTaskName()%>">
-							<%=vo.getTaskName()%>
-							<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon-hand-up"></span> Check
-								</button>
-							</a>
-						</h2>
-						<p><%=vo.getDescribe()%></p>
-						<p>
-							<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
-						</p>
-						<p>
-							参与者：XXXXXXXXXXX
-							<button class="btn btn-success" data-toggle="modal"
-								data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-						</p>
+					<div class="avn-price-table avn-style14 avn-hover"">
+						<div class="row row-eq-height">
+							<div class="col-md-2">
+								<div class="header">
+									<h4 class="package">剩余</h4>
+									<div class="price">
+										<span class="amount"><%=(int)((vo.getDeadline().getTime()-now.getTime())/86400000)%></span> <span class="currency">天</span>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-10">
+								<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
+								<h2 title="<%=vo.getTaskName() %>" style="cursor: pointer;"><%=vo.getTaskName() %> <button class="close" style="float: none;"><span class="glyphicon glyphicon-hand-left"> </span></button></h2>
+								</a>
+								<p><%=vo.getDescribe() %></p>
+								<p>
+									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
+								</p>
+								<p>
+									参与者：XXXXXXXXXXX
+									<button class="btn" data-toggle="modal"
+										data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+								</p>
+							</div>
+						</div>
 					</div>
 					<%
 						}
@@ -203,24 +223,32 @@
 					<%
 						for (TaskVO vo : history) {
 					%>
-					<div class="well well-lg">
-						<h2 title="<%=vo.getTaskName()%>">
-							<%=vo.getTaskName()%>
-							<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon-hand-up"></span> Check
-								</button>
-							</a>
-						</h2>
-						<p><%=vo.getDescribe()%></p>
-						<p>
-							<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
-						</p>
-						<p>
-							参与者：XXXXXXXXXXX
-							<button class="btn btn-success" data-toggle="modal"
-								data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-						</p>
+					<div class="avn-price-table avn-style14 avn-hover"">
+						<div class="row row-eq-height">
+							<div class="col-md-2">
+								<div class="header">
+									
+									<div class="price">
+										<span class="amount">已结束</span>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-10">
+								<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
+								<h2 title="<%=vo.getTaskName() %>" style="cursor: pointer;"><%=vo.getTaskName() %> <button class="close" style="float: none;"><span class="glyphicon glyphicon-hand-left"> </span></button></h2>
+								</a>
+								<p><%=vo.getDescribe() %></p>
+								<p>
+									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
+								</p>
+								<p>
+									参与者：XXXXXXXXXXX
+									<button class="btn" data-toggle="modal"
+										data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+								</p>
+							</div>
+						</div>
 					</div>
 					<%
 						}
@@ -323,7 +351,11 @@
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script type="text/javascript">
-	var num = ${messageNum};</script>
+		var num = $
+		{
+			messageNum
+		};
+	</script>
 	<script src='js/mesSpan.js'></script>
 </body>
 

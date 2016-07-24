@@ -26,6 +26,8 @@
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<link rel="stylesheet" href="css/style.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -54,7 +56,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar ">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -74,12 +76,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+				<li class="dropdown" id="mesSpan"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
-						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
 						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -163,7 +166,6 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<ul class="nav bs-docs-sidenav">
 
 				<li><a href="#title">评审名</a></li>
-				<li><a href="#message">说明</a></li>
 				<li><a href="#deadline">截止时间</a></li>
 				<li><a href="#review">评审</a></li>
 			</ul>
@@ -173,9 +175,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 		</div>
 
 		<div class="col-md-10 bs-docs-section">
-			<h2 id="title"><%=taskVO.getTaskName()%></h2>
-			<hr>
-			<h2 id="message">说明</h2>
+			<h2 id="title"><%=taskVO.getTaskName()%>
+				<div style="float: right;" id="fnTimeCountDown"
+					data-end="2018/07/08 18:45:13">
+					<span class="day">00</span>天 <span class="hour">00</span>时 <span
+						class="mini">00</span>分 <span class="sec">00</span>秒
+				</div>
+			</h2>
 			<div class="row">
 				<div class="col-md-10">
 					<%
@@ -192,11 +198,11 @@ taskName = '<%=request.getParameter("taskName")%>';
 					<p><%=taskVO.getDescribe()%></p>
 					<a
 						href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName"))%>">
-						<button class="btn btn-success">查看已生成报告</button>
+						<button class="btn ">查看已生成报告</button>
 					</a>
 					<div id="preJoinBlock" class="hideBlock">
 						<div id="joinBlock">
-							<button class="btn btn-success" id="join">参加评审</button>
+							<button class="btn " id="join">参加评审</button>
 						</div>
 					</div>
 				</div>
@@ -226,27 +232,26 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<script type="text/javascript">
 				time = "<%=Tools.dateToString(taskVO.getDeadline())%>";
 			</script>
-			<div id="fnTimeCountDown" data-end="2018/07/08 18:45:13">
-				<span class="year">00</span>年 <span class="month">00</span>月 <span
-					class="day">00</span>天 <span class="hour">00</span>时 <span
-					class="mini">00</span>分 <span class="sec">00</span>秒
-			</div>
 			<hr>
-			<h2 id="review">评审</h2>
+			<h2 id="review">
+				评审
+				<div style="float: right;">
+
+					<button type="button" class="btn  btn-sm" id="undo">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						Undo
+					</button>
+					<button type="button" class="btn  btn-sm" id="redo">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						Redo
+					</button>
+				</div>
+			</h2>
 			<%
 				if (theState == State.agree || theState == State.commit) {
 			%>
 
-			<div class="row">
-				<button type="button" class="btn btn-default btn-sm" id="undo">
-					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					Undo
-				</button>
-				<button type="button" class="btn btn-default btn-sm" id="redo">
-					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					Redo
-				</button>
-			</div>
+			<div class="row"></div>
 			<%
 				}
 			%>
@@ -254,7 +259,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
 						<div
-							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
+							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
 							<table class="table" id="codeTable">
 								<thead>
 									<tr>
@@ -265,7 +270,6 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</tr>
 								</thead>
 								<tbody id="codeStart">
-
 								</tbody>
 							</table>
 						</div>
@@ -292,9 +296,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 						<div class="form-group" id="discripGroup-code"
 							style="padding-bottom: 30px;">
 							<label for="discription-code" class="col-sm-1 control-label">描述</label>
-							<div class="col-sm-11">
-								<textarea class="form-control" rows="1" id="discription-code"></textarea>
-								<button class="btn btn-success" id="add-code"
+							<div class="col-sm-11 form-inline">
+								<textarea class="form-control" rows="1" id="discription-code"
+									style="width: 80%"></textarea>
+								<button class="btn " id="add-code"
 									style="margin-left: 20px; float: right;">添加</button>
 							</div>
 						</div>
@@ -302,7 +307,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					</div>
 					<div id="docBlock">
 						<div
-							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 2%; margin-bottom: 20px">
+							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
 							<table class="table" id="docTable">
 								<thead>
 									<tr>
@@ -350,13 +355,14 @@ taskName = '<%=request.getParameter("taskName")%>';
 							<div class="col-sm-11 form-inline">
 								<textarea class="form-control" rows="1" id="discription-file"
 									style="width: 80%"></textarea>
-								<button class="btn btn-success" id="add-file"
+								<button class="btn " id="add-file"
 									style="margin-left: 20px; float: right;">添加</button>
 							</div>
 						</div>
 
 					</div>
-					<div class="row" style="padding-top: 20px; text-align: right;">
+					<div class="row"
+						style="margin-top: 50px; padding-top: 20px; text-align: right; background-color: #eee; border-radius: 10px">
 						<div class="col-sm-5"></div>
 						<div class="form-group col-sm-5" id="timeGroup">
 							<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
@@ -364,16 +370,20 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<input type="text" class="form-control" id="timeCost"
 									placeholder="小时">
 							</div>
+
 						</div>
-						<button class="btn btn-success" id="confirmReport"
-							onclick="commitReport()">确认评审结果</button>
+						<div class="col-sm-2">
+							<button class="btn" id="confirmReport" onclick="commitReport()">提交报告</button>
+						</div>
+
 					</div>
 				</div>
 				<div id="mergeBlock" class="hideBlock">
 					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
 					<div class="row"
 						style="min-height: 10px; max-height: 400px; overflow: auto;">
-						<table class="table" id="toMerge-code">
+						<table class="table table-hover table-expandable"
+							id="toMerge-code">
 							<thead>
 								<tr>
 									<th width=10px></th>
@@ -385,6 +395,26 @@ taskName = '<%=request.getParameter("taskName")%>';
 								</tr>
 							</thead>
 							<tbody>
+								<tr onclick="$('.collapse').collapse('toggle');">
+									<td><input type="checkbox"></td>
+									<td>asdad</td>
+									<td>asdasd</td>
+									<td>asda</td>
+									<td>asdasd</td>
+									<td></td>
+								</tr>
+								<tr class="collapse fade">
+									<td colspan="6">
+										<h4>Additional information</h4>
+										<ul>
+											<li><a href="http://en.wikipedia.org/wiki/Usa">USA
+													on Wikipedia</a></li>
+											<li><a href="http://nationalatlas.gov/">National
+													Atlas of the United States</a></li>
+											<li><a href="http://www.htmleaf.com/">jQuery之家</a></li>
+										</ul>
+									</td>
+								</tr>
 								<%
 									List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
 								%>
@@ -449,7 +479,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					</div>
 
 					<div class="row" style="text-align: center; padding-bottom: 20px">
-						<button class="btn btn-success" id="merge">合并</button>
+						<button class="btn " id="merge">合并</button>
 					</div>
 					<div class="row"
 						style="min-height: 10px; max-height: 400px; overflow: auto;">
@@ -476,7 +506,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 						</table>
 					</div>
 					<div class="row" style="text-align: right;">
-						<button class="btn btn-success" id="confirmMerge">确认合并</button>
+						<button class="btn " id="confirmMerge">确认合并</button>
 					</div>
 				</div>
 				<div id="chooseModal" class="modal fade">
@@ -525,7 +555,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 										<div class="col-sm-11">
 											<textarea class="form-control" rows="1"
 												id="discription-choosecode"></textarea>
-											<button class="btn btn-success" id="add-choosecode"
+											<button class="btn " id="add-choosecode"
 												style="margin-left: 20px; float: right;">添加</button>
 										</div>
 									</div>
@@ -576,7 +606,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 										<div class="col-sm-11">
 											<textarea class="form-control" rows="1"
 												id="discription-choosefile"></textarea>
-											<button class="btn btn-success" id="add-choosefile"
+											<button class="btn " id="add-choosefile"
 												style="margin-left: 20px; float: right;">添加</button>
 										</div>
 									</div>
@@ -586,8 +616,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">取消</button>
+								<button type="button" class="btn " data-dismiss="modal">取消</button>
 							</div>
 						</div>
 					</div>
@@ -627,8 +656,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							</table>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
+							<button type="button" class="btn " data-dismiss="modal">取消</button>
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal" id="confirmDivide">确认</button>
 						</div>
@@ -646,7 +674,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 
 
 
-	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
@@ -667,9 +695,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<%} else {%>
 		currentUserDisp = userDisp[merged];
 	<%}%>
-	<%if(taskState==State.ownerfinish||(taskState==State.timefinish&&!isOwner)){%>
-		currentTaskDisp = taskDisp[finished];
-	<%}else{%>
+	<%if (taskState == State.ownerfinish || (taskState == State.timefinish && !isOwner)) {%>
+	currentTaskDisp = taskDisp[finished];
+	<%} else {%>
 	currentTaskDisp = taskDisp[running];
 	<%}%>
 	</script>
