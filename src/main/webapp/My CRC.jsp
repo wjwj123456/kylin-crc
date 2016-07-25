@@ -105,9 +105,22 @@ var sex ="${userInfo.sex}";
 		<div class="col-md-9 bs-docs-section">
 			<h2 id="perAnalyze">个人成就</h2>
 			<div>
-				<img alt="" src="img/achievement1.png"><img alt=""
-					src="img/achievement2.png"><img alt=""
-					src="img/achievement3.png">
+				<img alt="" src="img/achievement1/achievement12.png"  style="width:150px">	</br>
+				<label class="text-center">>  优秀评审达到5次</label>
+				
+			
+			</div>
+			<div>
+				<img alt="" src="img/achievement1/achievement22.png"  style="width:150px">
+				<img alt="" src="img/achievement1/achievement32.png"  style="width:150px">
+				<img alt="" src="img/achievement1/achievement42.png"  style="width:150px">
+				<img alt="" src="img/achievement1/achievement52.png"  style="width: 150px">
+				<img alt="" src="img/achievement1/achievement62.png"  style="width:150px">
+				<img alt="" src="img/achievement1/achievement72.png"  style="width:150px">
+				<img alt=""
+					src="img/achievement2.png" style="width:230px">
+					<img alt=""
+					src="img/achievement3.png" style="width:200px">
 			</div>
 			<hr>
 		</div>
