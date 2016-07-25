@@ -70,10 +70,8 @@ public class SplitBlImpl implements SplitBlService{
 		int i = 1;
 		try {
 			i = splitDataService.splitForUndoMerge(pos, new ReportPO(vo));
-		} catch (ClassNotFoundException e) {
-			
-		} catch (SQLException e) {
-
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
 		}
 		return i;
 	}

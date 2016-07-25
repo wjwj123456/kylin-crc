@@ -172,7 +172,6 @@ public class SplitDataImpl implements SplitDataService {
 	/**
 	 * 
 	 * @param childID
-	 * @param connection
 	 * @param statement
 	 * @return	-5 means invalid DB query, -4 means not only one record in DB
 	 */
@@ -343,6 +342,9 @@ public class SplitDataImpl implements SplitDataService {
 		int id = getID(po);
 		for(ReportPO po0: pos) {
 			int id0 = getID(po0);
+			if (id0 == id) {
+				continue;
+			}
 			String sql = "DELETE FROM merge WHERE final_id = " + id + " AND included_id = " + id0;
 			int i = statement.executeUpdate(sql);
 			if(i!=1) {
@@ -364,6 +366,13 @@ public class SplitDataImpl implements SplitDataService {
 					return 3;
 				}
 			}
+		}
+
+		int i = mergeNumber(id, statement);
+		System.out.println(i);
+		if (i == 0) {
+			System.out.println("lll");
+			setMerge(id, 0, statement);
 		}
 		DBManager.stopAll(null, statement, connection);
 		return 0;
