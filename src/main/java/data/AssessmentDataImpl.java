@@ -93,7 +93,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		// }
 		// DBManager.closeConnection();
 		// }
-		String sql = "SELECT id,uname FROM review WHERE state = merged and tname = '" + taskName + "' ORDER BY id";
+		String sql = "SELECT id,uname FROM review WHERE state = 'merged' and tname = '" + taskName + "' ORDER BY id";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next())
 			nameList.add(rSet.getString(2));
