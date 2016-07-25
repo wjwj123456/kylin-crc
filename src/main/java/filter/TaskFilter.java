@@ -2,12 +2,7 @@ package filter;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -48,7 +43,7 @@ public class TaskFilter implements Filter {
 		HttpSession session = req.getSession();
 
 		req.setCharacterEncoding("UTF-8");
-		String taskName = Encode.transfer(req.getParameter("taskName"));
+		String taskName = req.getParameter("taskName");
 
 		ReviewBlImpl review = new ReviewBlImpl();
 		TaskVO task = review.getTaskVOByTaskName(taskName);
