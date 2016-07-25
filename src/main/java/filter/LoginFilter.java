@@ -39,14 +39,7 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		Enumeration<String> temp =  req.getHeaderNames();
 
-		while (temp.hasMoreElements()) {
-			System.out.println(temp.nextElement());
-		}
-
-		System.out.println(req.getHeader("accept-encoding"));
-		System.out.println("LoginFilter.doFilter");
 		if (!req.getServletPath().equals("/index.jsp")) {
 			if (req.getSession().getAttribute("username") == null) {
 				req.getRequestDispatcher("index.jsp?unsigned=true").forward(request, response);

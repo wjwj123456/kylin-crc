@@ -103,7 +103,18 @@ public class ReportDataImpl implements ReportDataService {
 				+ reviewerName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setDouble(1, time);
-		pStatement.setString(2, String.valueOf(State.commit));
+
+		String sql2 = "SELECT uname FROM review WHERE tname = '" + taskName + "' and state = " + State.merged.toString()
+				+ "'";
+		Connection connection = DBManager.connect();
+		PreparedStatement preparedStatement = connection.prepareStatement(sql2);
+		ResultSet resultset = preparedStatement.executeQuery();
+		if (resultset.next()) {
+			pStatement.setString(2, String.valueOf(State.commit));
+		} else {
+			pStatement.setString(2, String.valueOf(State.merged));
+		}
+
 		int i = pStatement.executeUpdate();
 		if (i == 1 && j == 1)
 			flag = 0;
