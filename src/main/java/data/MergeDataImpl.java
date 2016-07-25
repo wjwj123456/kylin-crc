@@ -107,6 +107,11 @@ public class MergeDataImpl implements MergeDataService {
 				pStatement.setInt(1, getID(finalPO));
 				pStatement.setInt(2, getID(po));
 			}
+			System.out.println(po.toString());
+			System.out.println(finalPO.toString());
+			System.out.println(getID(finalPO));
+			System.out.println(getID(po));
+			System.out.println("MergeDataImpl.saveMergeReport");
 			pStatement.executeUpdate();
 		}
 		// updateMerge();

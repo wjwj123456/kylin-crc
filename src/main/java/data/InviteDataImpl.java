@@ -124,9 +124,6 @@ public class InviteDataImpl implements InviteDataService {
 		while (rSet.next()) {
 			list.add(rSet.getString(1));
 		}
-		System.out.println("InviteDataImpl.getAgreeUser");
-		System.out.println(taskName);
-		System.out.println(list);
 		DBManager.closeConnection();
 		return list;
 	}
