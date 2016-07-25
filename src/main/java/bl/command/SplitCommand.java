@@ -43,6 +43,9 @@ public class SplitCommand implements Command {
 		this.reportList = vos;
 		this.report = vo;
 
+		splitBl = new SplitBlImpl();
+		mergeBl = new MergeBlImpl();
+
 		reportBackUp = new ArrayList[vos.size()];
 		try {
 			for (int i = 0; i < vos.size(); i++) {
@@ -51,9 +54,6 @@ public class SplitCommand implements Command {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-
-		splitBl = new SplitBlImpl();
-		mergeBl = new MergeBlImpl();
 	}
 
 	@Override

@@ -502,6 +502,7 @@ function commitReport() {
 			data.push(obj);
 		}
 		run_waitMe();
+		console.log(JSON.stringify(data));
 		jQuery.ajax({
 			url: '/crc/MergeServlet',
 			type: 'post',
@@ -686,6 +687,7 @@ function commitReport() {
 	// 选择被拆分的报告
 	var report;
 	$('#toMerge-code').find('button').on('click',function(){
+		$(this).parent().parent().next().append($('#devideTable'));
 		var temp = $(this).parent().parent().find('td');
 		report = new Object({
 			taskName: taskName,
@@ -699,8 +701,10 @@ function commitReport() {
 		});
 		
 		getData('code');
+		handleCollapse(this);
 	});
 	$('#toMerge-file').find('button').on('click',function(){
+		$(this).parent().parent().next().append($('#devideTable'));
 		var temp = $(this).parent().parent().find('td');
 		report = new Object({
 			taskName: taskName,
@@ -714,7 +718,19 @@ function commitReport() {
 		});
 		
 		getData('file');
+		handleCollapse(this);
 	});
+	/**
+	 * 处理下拉栏
+	 */
+	function handleCollapse(obj) {
+		if($(obj).parent().parent().next().hasClass('in')){
+			$(obj).parent().parent().next().collapse('hide');
+		}else {
+			$(obj).parent().parent().parent().find('.in').collapse('hide');
+			$(obj).parent().parent().next().collapse('show');
+		}
+	}
 	
 	/**
 	 * 加载指定条目的组成数据，并在表格中显示
@@ -797,7 +813,7 @@ function commitReport() {
 				success: function(data) {
 					var result = jQuery.parseJSON(data);
 					afterSplit(result.data);
-//					location.reload(true)
+					location.reload(true)
 				}
 			})
 		})

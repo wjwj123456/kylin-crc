@@ -68,17 +68,19 @@ public class SplitDataImpl implements SplitDataService {
 		int finalParentID = getID(finalParent);
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
+		
 		for (ReportPO reportPO : splitedPOs) {
 			int splitID0 = getID(reportPO);
 			int parentID0 = getParentID(splitID0, statement);
-			
 			ArrayList<ReportPO> childPOs = getIncludedfaultsByFaultkey(reportPO);
+			
 			for(ReportPO childPO: childPOs) {
-				int childID = getID(childPO);
+				int childID = getID(childPO);				
 				changeParent(splitID0, parentID0, childID, statement);
 				deleteFromMerge(splitID0, childID, statement);
 			}
 			
+			deleteFromMerge(parentID0, splitID0, statement);
 			setMerge(splitID0, 0, statement);
 			setState(splitID0, 0, statement);
 		}
@@ -103,7 +105,7 @@ public class SplitDataImpl implements SplitDataService {
 	 */
 	private int mergeNumber(int id, Statement statement) {
 		int i = -1;
-		String sql = "SELETE * FROM merge WHERE final_id = "  + id;
+		String sql = "SELECT * FROM merge WHERE final_id = "  + id;
 		try {
 			ResultSet rSet = statement.executeQuery(sql);
 			i = 0;
@@ -172,7 +174,6 @@ public class SplitDataImpl implements SplitDataService {
 	/**
 	 * 
 	 * @param childID
-	 * @param connection
 	 * @param statement
 	 * @return	-5 means invalid DB query, -4 means not only one record in DB
 	 */
@@ -343,12 +344,37 @@ public class SplitDataImpl implements SplitDataService {
 		int id = getID(po);
 		for(ReportPO po0: pos) {
 			int id0 = getID(po0);
+			if (id0 == id) {
+				continue;
+			}
 			String sql = "DELETE FROM merge WHERE final_id = " + id + " AND included_id = " + id0;
 			int i = statement.executeUpdate(sql);
 			if(i!=1) {
 				DBManager.stopAll(null, statement, connection);
 				return 1;
 			}
+			sql = "UPDATE report SET state = 0 WHERE id = " + id0;
+			i = statement.executeUpdate(sql);
+			if(i!=1) {
+				DBManager.stopAll(null, statement, connection);
+				return 2;
+			}
+			i = mergeNumber(id0, statement);
+			if(i==0) {
+				sql = "UPDATE report SET merge = 0 WHERE id = " + id0;
+				i = statement.executeUpdate(sql);
+				if(i != 1) {
+					DBManager.stopAll(null, statement, connection);
+					return 3;
+				}
+			}
+		}
+
+		int i = mergeNumber(id, statement);
+		System.out.println(i);
+		if (i == 0) {
+			System.out.println("lll");
+			setMerge(id, 0, statement);
 		}
 		DBManager.stopAll(null, statement, connection);
 		return 0;

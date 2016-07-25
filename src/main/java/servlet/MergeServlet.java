@@ -125,7 +125,7 @@ public class MergeServlet extends HttpServlet {
      * @throws JSONException
      */
     private List<ReportVO> getData(String json) throws JSONException, IOException {
-        List<ReportVO> reportList = new ArrayList<ReportVO>();
+        List<ReportVO> reportList = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -135,6 +135,8 @@ public class MergeServlet extends HttpServlet {
                     jsonObject.getInt("location"), jsonObject.getString("description"), jsonObject.getInt("state"),
                     jsonObject.getInt("origin")));
         }
+
+        System.out.println(reportList);
 
         return reportList;
     }
