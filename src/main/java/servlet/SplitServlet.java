@@ -105,6 +105,8 @@ public class SplitServlet extends HttpServlet {
 			reportList.add(getData(jsonArray.getJSONObject(i)));
 		}
 		CommandManager.executeCommand(new SplitCommand(reportList, report));
+		System.out.println(reportList);
+		System.out.println(report.toString());
 
 		ReportBlImpl reportBl = new ReportBlImpl();
 		List<ReportVO> result = reportBl.getAllReportsByTaskName(report.getTaskName());
