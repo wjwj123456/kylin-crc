@@ -813,7 +813,7 @@ function commitReport() {
 				success: function(data) {
 					var result = jQuery.parseJSON(data);
 					afterSplit(result.data);
-//					location.reload(true)
+					location.reload(true)
 				}
 			})
 		})
