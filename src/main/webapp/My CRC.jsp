@@ -78,49 +78,8 @@
 
 		</div>
 		<div class="col-md-10 bs-docs-section">
-			<h2 id="basicInfo">个人资料</h2>
-			<table class="table">
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-			</table>
-			<hr>
 			<h2 id="perAnalyze">个人成就</h2>
-			<table class="table">
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-			</table>
+			<div><img alt="" src="img/achievement1.png"><img alt="" src="img/achievement2.png"><img alt="" src="img/achievement3.png"> </div>
 			<hr>
 		</div>
 	</div>
