@@ -403,7 +403,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<%--<td>asdasd</td>--%>
 									<%--<td></td>--%>
 								<%--</tr>--%>
-								<tr class="collapse fade">
+								<!-- <tr class="collapse fade">
 									<td colspan="6">
 										<h4>Additional information</h4>
 										<ul>
@@ -414,7 +414,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 											<li><a href="http://www.htmleaf.com/">jQuery之家</a></li>
 										</ul>
 									</td>
-								</tr>
+								</tr> -->
 								<%
 									List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
 								%>
