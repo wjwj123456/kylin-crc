@@ -35,7 +35,7 @@ public class InviteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String taskName = request.getParameter("taskName");
-		String users = Encode.transfer(request.getParameter("users"));
+		String users = request.getParameter("users");
 		int userNumber = Integer.parseInt(request.getParameter("userNumber"));
 
 		ReviewBlImpl review = new ReviewBlImpl();

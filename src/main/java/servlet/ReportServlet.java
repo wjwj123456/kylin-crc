@@ -43,12 +43,16 @@ public class ReportServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String type = request.getParameter("type");
 
-		if (type.equals("store")) {
-			handleStore(request, response);
-		} else if (type.equals("delete")) {
-			handleDelete(request, response);
-		} else if (type.equals("commit")) {
-			handleCommit(request, response);
+		switch (type) {
+			case "store":
+				handleStore(request, response);
+				break;
+			case "delete":
+				handleDelete(request, response);
+				break;
+			case "commit":
+				handleCommit(request, response);
+				break;
 		}
 	}
 
@@ -74,7 +78,7 @@ public class ReportServlet extends HttpServlet {
 		// List<ReportVO> reportList = new ArrayList<ReportVO>();
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
-		ReportVO report = new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+		ReportVO report = new ReportVO(jsonObject.getString("taskName"),
 				(String) request.getSession().getAttribute("username"), jsonObject.getString("fileName"),
 				jsonObject.getInt("page"), jsonObject.getInt("location"), jsonObject.getString("description"),
 				jsonObject.getInt("state"), jsonObject.getInt("origin"));
@@ -98,7 +102,7 @@ public class ReportServlet extends HttpServlet {
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
 		// ReportBlImpl report = new ReportBlImpl();
-		ReportVO report = new ReportVO(Encode.transfer(jsonObject.getString("taskName")),
+		ReportVO report = new ReportVO(jsonObject.getString("taskName"),
 				(String) request.getSession().getAttribute("username"), jsonObject.getString("fileName"),
 				jsonObject.getInt("page"), jsonObject.getInt("location"), jsonObject.getString("description"),
 				jsonObject.getInt("state"), jsonObject.getInt("origin"));
@@ -117,7 +121,7 @@ public class ReportServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void handleCommit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String taskName = Encode.transfer(request.getParameter("taskName"));
+		String taskName = request.getParameter("taskName");
 		String userName = (String) request.getSession().getAttribute("username");
 		double time = Double.parseDouble(request.getParameter("time"));
 		ReportBlImpl report = new ReportBlImpl();
