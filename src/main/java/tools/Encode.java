@@ -10,6 +10,7 @@ import java.io.IOException;
  */
 public class Encode {
 	public static String transfer(String source) throws IOException {
-		return new String(source.getBytes("iso-8859-1"), "utf-8");
+		return source;
+//		return new String(source.getBytes("iso-8859-1"), "utf-8");
 	}
 }
