@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.api.x.Result;
+
 import dataservice.SplitDataService;
 import po.ReportPO;
 
@@ -18,6 +20,12 @@ import po.ReportPO;
  */
 public class SplitDataImpl implements SplitDataService {
 
+	private ArrayList<ReportPO> childPOs;
+	
+	public SplitDataImpl() {
+		childPOs = new ArrayList<>();
+	}
+	
 	public ArrayList<ReportPO> getFaultsByTaskname(String taskname) throws ClassNotFoundException, SQLException {
 		ArrayList<ReportPO> result = new ArrayList<ReportPO>();
 
@@ -41,21 +49,37 @@ public class SplitDataImpl implements SplitDataService {
 	 * @throws ClassNotFoundException 
 	 */
 	public ArrayList<ReportPO> getIncludedfaultsByFaultkey(ReportPO po) throws ClassNotFoundException, SQLException {
-		ArrayList<ReportPO> result = new ArrayList<ReportPO>();
-		int id = getID(po);
+		childPOs = new ArrayList<>();
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
-		String sql = "SELECT included_id FROM merge WHERE final_id = " + id;
-		ResultSet rSet = statement.executeQuery(sql);
-		while (rSet.next()) {
-			int included_id = rSet.getInt("included_id");
-			ReportPO included_po = getFault(included_id);
-			result.add(included_po);
-		}
-		DBManager.stopAll(rSet, statement, connection);
-		return result;
+		int id = getID(po);
+		querryADD(id, statement);
+		DBManager.stopAll(null, statement, connection);
+		return childPOs;
 	}
 
+	private ArrayList<Integer> getChildIDs(int id, Statement statement) throws SQLException, ClassNotFoundException {
+		String sql = "SELECT included_id FROM merge WHERE final_id = " + id;
+		ResultSet rSet = statement.executeQuery(sql);
+		ArrayList<Integer> result = new ArrayList<>();
+		while(rSet.next()) {
+			int childID = rSet.getInt("included_id");
+			result.add(childID);
+		}
+		return result;
+	}
+	
+	private void querryADD(int id, Statement statement) throws ClassNotFoundException, SQLException {
+		ArrayList<Integer> query = getChildIDs(id, statement);
+		for (int id0: query) {
+			int origin = getOrigin(id0, statement);
+			if(origin == 0)  {
+				ReportPO po = getFault(id0, statement);
+				childPOs.add(po);
+			}
+			querryADD(id0, statement);
+		}
+	}
 	
 	/**
 	 * return all faults that were included in the fault chosen
@@ -88,7 +112,7 @@ public class SplitDataImpl implements SplitDataService {
 		int mergeNumber = mergeNumber(finalParentID, statement);
 		if(mergeNumber == 0) {
 			setMerge(finalParentID, 0, statement);
-			int origin = getOrigin(finalParentID);
+			int origin = getOrigin(finalParentID, statement);
 			if(origin != 0) setState(finalParentID, 1, statement);
 		}
 		
@@ -239,17 +263,16 @@ public class SplitDataImpl implements SplitDataService {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	private ReportPO getFault(int id) throws ClassNotFoundException, SQLException {
+	private ReportPO getFault(int id, Statement statement) throws ClassNotFoundException, SQLException {
 
 		String sql = "SELECT * FROM report WHERE id = " + id;
-		ResultSet rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = statement.executeQuery(sql);
 
 		rSet.next();
 		ReportPO po = new ReportPO(rSet.getString("tname"), rSet.getString("uname"), rSet.getString("filename"),
 				rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("state"),
 				rSet.getInt("origin"));
 
-		DBManager.closeConnection();
 		return po;
 	}
 
@@ -299,15 +322,15 @@ public class SplitDataImpl implements SplitDataService {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	private int getOrigin(int id) throws ClassNotFoundException, SQLException {
+	private int getOrigin(int id, Statement statement) throws ClassNotFoundException, SQLException {
 
 		String sql = "SELECT origin FROM report WHERE id = " + id;
 
-		ResultSet rSet = DBManager.getResultSet(sql);
+		ResultSet rSet = statement.executeQuery(sql);
 
 		rSet.next();
 		int origin = rSet.getInt("origin");
-		DBManager.closeConnection();
+
 		return origin;
 	}
 
