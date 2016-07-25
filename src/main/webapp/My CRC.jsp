@@ -34,11 +34,12 @@
 <%UserInfoVO infoVO = Cast.cast(session.getAttribute("userInfo"));%>
 <%Language[] languages = infoVO.getLanguages();%>
 var languages = new Array();
-<%for(Language lg : languages){%>
+<%for (Language lg : languages) {%>
 languages.push('<%=lg.toString()%>');
 <%}%>
 var sex ="${userInfo.sex}";
 </script>
+
 <body role="document">
 	<nav class="navbar ">
 	<div class="container">
@@ -57,12 +58,13 @@ var sex ="${userInfo.sex}";
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+				<li class="dropdown" id="mesSpan"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
-						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
 						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -70,7 +72,6 @@ var sex ="${userInfo.sex}";
 				<%
 					}
 				%>
-				
 			</ul>
 
 		</div>
@@ -78,8 +79,8 @@ var sex ="${userInfo.sex}";
 	</div>
 	</nav>
 	<div class="container" id="waitArea">
-		<div id="suspensionNavigation" class="col-md-2" role="complementary"
-			style="text-align: center; padding-top: 80px">
+		<div id="suspensionNavigation" class="col-md-3" role="complementary"
+			style="text-align: center; padding-top: 80px;width: 18%;" >
 			<div class="myrow">
 				<img alt="" src="img/glyphicons-halflings.png" width="50px"
 					height="50px">
@@ -90,19 +91,24 @@ var sex ="${userInfo.sex}";
 					</button></a>
 			</div>
 			<div id="message">
-			<div class="myrow">${userInfo.userName}>
-			</div>
-			
-			
-			
-			
+				<div class="myrow">${userInfo.province} ${userInfo.city}</div>
+				<div class="myrow">${userInfo.job}</div>
+				<div class="myrow">${userInfo.description}</div>
+				<% for (Language lg : languages) {%>
+					<div class="myrow" style="color:#336699">擅长 <%=lg %></div>
+<%}%>
+
 			</div>
 			<a href="newTask.jsp"><button class="btn btn-success">新评审</button></a>
 
 		</div>
-		<div class="col-md-10 bs-docs-section">
+		<div class="col-md-9 bs-docs-section">
 			<h2 id="perAnalyze">个人成就</h2>
-			<div><img alt="" src="img/achievement1.png"><img alt="" src="img/achievement2.png"><img alt="" src="img/achievement3.png"> </div>
+			<div>
+				<img alt="" src="img/achievement1.png"><img alt=""
+					src="img/achievement2.png"><img alt=""
+					src="img/achievement3.png">
+			</div>
 			<hr>
 		</div>
 	</div>
