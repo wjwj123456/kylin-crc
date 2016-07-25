@@ -58,19 +58,26 @@ public class AssessmentDataImpl implements AssessmentDataService {
 
 			String sql = "SELECT uname FROM merge where final_id = " + id;
 			rSet = DBManager.getResultSet(sql);
-			if (!rSet.next()) {
-
-			} else {
-				String name = "";
+			// if (!rSet.next()) {
+			//
+			// } else {
+			// String name = "";
+			// name = rSet.getString(1);
+			// j = nameList.indexOf(name);
+			// matrix[i][j] = 1;
+			// while (rSet.next()) {
+			// name = rSet.getString(1);
+			// j = nameList.indexOf(name);
+			// matrix[i][j] = 1;
+			// }
+			// }
+			String name = "";
+			while (rSet.next()) {
 				name = rSet.getString(1);
 				j = nameList.indexOf(name);
 				matrix[i][j] = 1;
-				while (rSet.next()) {
-					name = rSet.getString(1);
-					j = nameList.indexOf(name);
-					matrix[i][j] = 1;
-				}
 			}
+
 			i++;
 			DBManager.closeConnection();
 		}
