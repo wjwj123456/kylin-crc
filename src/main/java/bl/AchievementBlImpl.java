@@ -88,7 +88,7 @@ public class AchievementBlImpl implements AchievementBlService {
 			double efficiency_mt = (double) vo.getFindedfaults() / (double) vo.getAssessfaults_mt();
 			double efficiency_mh = (double) vo.getFindedfaults() / (double) vo.getAssessfaults_mh();
 
-			if (efficiency_mt > 0.8 && efficiency_mh > 0.8) {
+			if (efficiency_mt > 0.5 && efficiency_mh > 0.5) {
 				circumulate(vo.getReviewerName(), "efficiency_count", 1);
 			}
 

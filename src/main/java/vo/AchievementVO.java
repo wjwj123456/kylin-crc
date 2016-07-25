@@ -272,4 +272,22 @@ public class AchievementVO {
 		this.efficiency_count_500_achi = efficiency_count_500_achi;
 	}
 
+	@Override
+	public String toString() {
+		return "AchievementVO [userName=" + userName + ", experience=" + experience + ", review_time=" + review_time
+				+ ", review_time_20_achi=" + review_time_20_achi + ", review_time_50_achi=" + review_time_50_achi
+				+ ", review_time_100_achi=" + review_time_100_achi + ", review_time_200_achi=" + review_time_200_achi
+				+ ", review_time_500_achi=" + review_time_500_achi + ", review_time_1000_achi=" + review_time_1000_achi
+				+ ", review_time_2000_achi=" + review_time_2000_achi + ", review_count=" + review_count
+				+ ", review_count_5_achi=" + review_count_5_achi + ", review_count_10_achi=" + review_count_10_achi
+				+ ", review_count_20_achi=" + review_count_20_achi + ", review_count_50_achi=" + review_count_50_achi
+				+ ", review_count_100_achi=" + review_count_100_achi + ", review_count_200_achi="
+				+ review_count_200_achi + ", review_count_500_achi=" + review_count_500_achi + ", efficiency_count="
+				+ efficiency_count + ", efficiency_count_5_achi=" + efficiency_count_5_achi
+				+ ", efficiency_count_10_achi=" + efficiency_count_10_achi + ", efficiency_count_20_achi="
+				+ efficiency_count_20_achi + ", efficiency_count_50_achi=" + efficiency_count_50_achi
+				+ ", efficiency_count_100_achi=" + efficiency_count_100_achi + ", efficiency_count_200_achi="
+				+ efficiency_count_200_achi + ", efficiency_count_500_achi=" + efficiency_count_500_achi + "]";
+	}
+
 }
