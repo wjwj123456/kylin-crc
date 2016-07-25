@@ -699,29 +699,35 @@ function commitReport() {
 		if($(obj).parent().parent().next().hasClass('in')){
 			$(obj).parent().parent().next().collapse('hide');
 		}else {
-			$(obj).parent().parent().parent().find('.in').collapse('hide');
-			$(obj).parent().parent().next().collapse('show');
-			$(obj).parent().parent().next().find('td').prepend($('#divideTable'));
-			var temp = $(obj).parent().parent().find('td');
-			report = new Object({
-				taskName: taskName,
-				userName: $(temp[4]).text(),
-				fileName: $(temp[1]).text(),
-				page: 0,
-				location: Number($(temp[2]).text()),
-				description: $(temp[3]).text(),
-				state: 0,
-				origin: 0
-			});	
-			getData('code');
+			if($(obj).parent().parent().next().find('td').has('#divideTable').length!=0){
+				$(obj).parent().parent().next().collapse('show');
+			}else {
+				$(obj).parent().parent().parent().find('.in').collapse('hide');
+				$(obj).parent().parent().next().find('td').prepend($('#divideTable'));
+				var temp = $(obj).parent().parent().find('td');
+				report = new Object({
+					taskName: taskName,
+					userName: $(temp[4]).text(),
+					fileName: $(temp[1]).text(),
+					page: 0,
+					location: Number($(temp[2]).text()),
+					description: $(temp[3]).text(),
+					state: 0,
+					origin: 0
+				});	
+				getData('code',$(obj));
+			}
+			
 		}
 	}
 	function handleCollapse_file(obj) {
 		if($(obj).parent().parent().next().hasClass('in')){
 			$(obj).parent().parent().next().collapse('hide');
 		}else {
+			if($(obj).parent().parent().next().find('td').has('#divideTable').length!=0){
+				$(obj).parent().parent().next().collapse('show');
+			}else {
 			$(obj).parent().parent().parent().find('.in').collapse('hide');
-			$(obj).parent().parent().next().collapse('show');
 			$(obj).parent().parent().next().find('td').prepend($('#divideTable'));
 			var temp = $(obj).parent().parent().find('td');
 			report = new Object({
@@ -734,7 +740,8 @@ function commitReport() {
 				state: 0,
 				origin: 0
 			});		
-			getData('file');
+			getData('file',$(obj));
+			}
 		}
 	}
 	
@@ -742,7 +749,7 @@ function commitReport() {
 	 * 加载指定条目的组成数据，并在表格中显示
 	 * @returns
 	 */
-	function getData(type) {
+	function getData(type,obj) {
 		run_waitMe();
 		jQuery.ajax({
 			url: '/crc/SplitServlet',
@@ -758,6 +765,7 @@ function commitReport() {
 					displayFile(result);
 				}
 				stopWait();
+				$(obj).parent().parent().next().collapse('show');
 			},
 			error: function() {
 				alert('出错了')

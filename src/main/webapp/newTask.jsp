@@ -15,13 +15,14 @@
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
 <style type="text/css">
-.nav > li > a:focus, .nav > li > a:hover {
-    text-decoration: none;
-    background-color: transparent;
+.nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+	background-color: transparent;
 }
-.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-    background-color: transparent;
-    border-color: #337ab7;
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+	background-color: transparent;
+	border-color: #337ab7;
 }
 </style>
 <title>CRC new Task</title>
@@ -133,7 +134,8 @@
 			<h2>新任务</h2>
 			<p>创建你的新任务</p>
 		</div>
-		<form class="form-horizontal" action="/crc/FileServlet">
+		<iframe name="newFrame" style="display: none;"></iframe>
+		<form class="form-horizontal" action="/crc/FileServlet" target="newFrame">
 			<div class="form-group" id="nameGroup">
 				<label for="inputName" class="col-sm-2 control-label">评审名</label>
 				<div class="col-sm-10">
@@ -145,7 +147,7 @@
 				<label for="deadline" class="col-sm-2 control-label">结束时间</label>
 				<div class="col-sm-4">
 					<div class='input-group date' id='datetimepicker1'>
-						<input type='text' class="form-control" id="deadline"/> <span
+						<input type='text' class="form-control" id="deadline" /> <span
 							class="input-group-addon"> <span
 							class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -197,7 +199,8 @@
 			<div class="form-group" id="file">
 				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
 				<div class="col-sm-10">
-					<input type="file" multiple="multiple" id="filein"></textarea>
+					<input type="file" multiple="multiple" id="filein">
+					</textarea>
 				</div>
 			</div>
 			<div class="form-group" id="discripGroup">
@@ -206,19 +209,10 @@
 					<textarea class="form-control" rows="3" id="discription"></textarea>
 				</div>
 			</div>
-			
-		</form>
-		<form class="form-horizontal" action="/crc/FileServlet">
-			<div class="form-group" id="file">
-				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
-				<div class="col-sm-10">
-					<input  type="file" multiple="multiple" id="filein"></textarea>
-				</div>
+			<div class="form-group" style="text-align: right;">
+				<button class="btn btn-success " id="createTask">确认创建</button>
 			</div>
-			</form>
-		<div class="form-group" style="text-align: right;">
-			<button class="btn btn-success " id="createTask">确认创建</button>
-		</div>
+		</form>
 	</div>
 
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -227,7 +221,7 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-		<script src='js/moment-with-locales.js'></script>
+	<script src='js/moment-with-locales.js'></script>
 	<script src='js/bootstrap-datetimepicker.js'></script>
 	<script src="js/login.js"></script>
 	<script src="js/newTask.js"></script>
@@ -236,14 +230,17 @@
 	<script type="text/javascript">
 		$(function() {
 			$('#datetimepicker1').datetimepicker({
-				format: 'YYYY-MM-DD HH:mm',
-				minDate: new Date(),
-				locale: 'zh-cn'
+				format : 'YYYY-MM-DD HH:mm',
+				minDate : new Date(),
+				locale : 'zh-cn'
 			});
 		});
 	</script>
 	<script type="text/javascript">
-		var num = ${messageNum};
+		var num = $
+		{
+			messageNum
+		};
 	</script>
 	<script src='js/mesSpan.js'></script>
 </body>
