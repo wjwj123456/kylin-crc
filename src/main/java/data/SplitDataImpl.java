@@ -349,6 +349,12 @@ public class SplitDataImpl implements SplitDataService {
 				DBManager.stopAll(null, statement, connection);
 				return 1;
 			}
+			sql = "UPDATE report SET state = 0 WHERE id = " + id0;
+			i = statement.executeUpdate(sql);
+			if(i!=1) {
+				DBManager.stopAll(null, statement, connection);
+				return 2;
+			}
 		}
 		DBManager.stopAll(null, statement, connection);
 		return 0;
