@@ -33,6 +33,18 @@ public interface ReportBlService {
 	public List<ReportVO> getTempReport(String taskName, String reviewerName);
 
 	/**
+	 * ldk
+	 * 
+	 * @param taskName
+	 * @param reviewerName
+	 * @param filaName
+	 * @param page
+	 * @param location
+	 * @return
+	 */
+	public int deleteTempReport(ReportVO vo);
+
+	/**
 	 * ldk 设置完成一份评审报告的时间
 	 * 
 	 * @param time

@@ -26,6 +26,15 @@ public interface ReportDataService {
 			throws ClassNotFoundException, SQLException;
 
 	/**
+	 * 
+	 * @param po
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int deleteTempReport(ReportPO po) throws ClassNotFoundException, SQLException;
+
+	/**
 	 * ldk
 	 * 
 	 * @param po
