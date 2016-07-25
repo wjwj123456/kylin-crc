@@ -4,7 +4,7 @@ public class AchievementPO {
 
 	private String userName;
 	private int experience;
-	
+
 	private double review_time;
 	private int review_count;
 	private int efficiency_count;
@@ -56,6 +56,12 @@ public class AchievementPO {
 
 	public void setEfficiency_count(int efficiency_count) {
 		this.efficiency_count = efficiency_count;
+	}
+
+	@Override
+	public String toString() {
+		return "AchievementPO [userName=" + userName + ", experience=" + experience + ", review_time=" + review_time
+				+ ", review_count=" + review_count + ", efficiency_count=" + efficiency_count + "]";
 	}
 
 }
