@@ -180,7 +180,7 @@
 						<option value="cpp">C++</option>
 						<option value="csharp">C#</option>
 						<option value="JavaScript">JavaScript</option>
-						<option value="pointnet">Pointnet</option>
+						<option value="pointnet">.net</option>
 						<option value="Ruby">Ruby</option>
 						<option value="PHP">PHP</option>
 						<option value="Swift">Swift</option>
@@ -191,14 +191,13 @@
 						<option value="python">python</option>
 						<option value="Groovy">Groovy</option>
 						<option value="other">other</option>
-
 					</select>
 				</div>
 			</div>
 			<div class="form-group" id="file">
 				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
 				<div class="col-sm-10">
-					<input  type="file" multiple="multiple" id="filein"></textarea>
+					<input type="file" multiple="multiple" id="filein"></textarea>
 				</div>
 			</div>
 			<div class="form-group" id="discripGroup">
@@ -209,6 +208,14 @@
 			</div>
 			
 		</form>
+		<form class="form-horizontal" action="/crc/FileServlet">
+			<div class="form-group" id="file">
+				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
+				<div class="col-sm-10">
+					<input  type="file" multiple="multiple" id="filein"></textarea>
+				</div>
+			</div>
+			</form>
 		<div class="form-group" style="text-align: right;">
 			<button class="btn btn-success " id="createTask">确认创建</button>
 		</div>

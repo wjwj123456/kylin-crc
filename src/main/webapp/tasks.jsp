@@ -403,18 +403,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<%--<td>asdasd</td>--%>
 									<%--<td></td>--%>
 								<%--</tr>--%>
-								<!-- <tr class="collapse fade">
-									<td colspan="6">
-										<h4>Additional information</h4>
-										<ul>
-											<li><a href="http://en.wikipedia.org/wiki/Usa">USA
-													on Wikipedia</a></li>
-											<li><a href="http://nationalatlas.gov/">National
-													Atlas of the United States</a></li>
-											<li><a href="http://www.htmleaf.com/">jQuery之家</a></li>
-										</ul>
-									</td>
-								</tr> -->
+								
 								<%
 									List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
 								%>
@@ -434,6 +423,10 @@ taskName = '<%=request.getParameter("taskName")%>';
  	}
  %>
 									</td>
+								</tr>
+								<tr class="collapse fade">
+									<td colspan="6"><button type="button" class="btn btn-primary"
+								data-dismiss="modal" id="confirmDivide">确认</button></td>	
 								</tr>
 								<%
 									}
@@ -634,23 +627,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							<h2 class="text-left text-primary">选择拆分项</h2>
 						</div>
 						<div class="modal-body" style="height: 250px; overflow: auto">
-							<table class="table" id="divideTable">
-								<thead>
-									<tr>
-										<th width=10px></th>
-										<th>文件名</th>
-										<%
-											if (taskVO.getType() == Type.document) {
-										%>
-										<th>页码</th>
-										<%
-											}
-										%>
-										<th>位置</th>
-										<th>描述</th>
-										<th>评审人</th>
-									</tr>
-								</thead>
+							<table class="table table-hover" id="divideTable">
 								<tbody>
 								</tbody>
 							</table>

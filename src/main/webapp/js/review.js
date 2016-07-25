@@ -130,10 +130,10 @@ function initFileChoose() {
 //$('#start').before('<div class='form-group'> <label for='inputName' class='col-sm-1 control-label'>文件名</label> <div class='col-sm-5'> <input type='text' class='form-control' id='inputName' placeholder='**.*'> </div> <label for='inputName' class='col-sm-1 control-label'>行数</label> <div class='col-sm-5'> <input type='text' class='form-control' id='inputName' placeholder=''> </div> </div> <div class='form-group'> <label for='inputName' class='col-sm-1 control-label'>描述</label> <div class='col-sm-11'> <textarea class='form-control' rows='1' id='discription'></textarea> </div> </div>');
 function codeMerge() {
 	var list = new Array();
-	var inputs = $('#toMerge-code').find('input');
+	var inputs = $('#toMerge-code').children().children().not('.collapse').find('input');
 	for( i = 0;i<inputs.length;i++){
 		if($(inputs[i]).prop('checked')==true){
-			var temp=$($('#toMerge-code').find('tr')[i+1]).clone();
+			var temp=$($('#toMerge-code').children().children().not('.collapse')[i+1]).clone();
 			var temptr=$("<tr></tr>");
 			var length = $(temp).children().length;
 			for(j=1;j<length-1;j++){
@@ -151,10 +151,10 @@ function codeMerge() {
 }
 function fileMerge() {
 	var list = new Array();
-	var inputs = $('#toMerge-file').find('input');
+	var inputs = $('#toMerge-file').children().children().not('.collapse').find('input');
 	for( i = 0;i<inputs.length;i++){
 		if($(inputs[i]).prop('checked')==true){
-			var temp=$($('#toMerge-file').find('tr')[i+1]).clone();
+			var temp=$($('#toMerge-file').children().children().not('.collapse')[i+1]).clone();
 			var temptr=$("<tr></tr>");
 			var length = $(temp).children().length;
 			for(j=1;j<length-1;j++){
@@ -687,48 +687,54 @@ function commitReport() {
 	// 选择被拆分的报告
 	var report;
 	$('#toMerge-code').find('button').on('click',function(){
-		$(this).parent().parent().next().append($('#devideTable'));
-		var temp = $(this).parent().parent().find('td');
-		report = new Object({
-			taskName: taskName,
-			userName: $(temp[4]).text(),
-			fileName: $(temp[1]).text(),
-			page: 0,
-			location: Number($(temp[2]).text()),
-			description: $(temp[3]).text(),
-			state: 0,
-			origin: 0
-		});
-		
-		getData('code');
-		handleCollapse(this);
+		handleCollapse_code(this);	
 	});
 	$('#toMerge-file').find('button').on('click',function(){
-		$(this).parent().parent().next().append($('#devideTable'));
-		var temp = $(this).parent().parent().find('td');
-		report = new Object({
-			taskName: taskName,
-			userName: $(temp[5]).text(),
-			fileName: $(temp[1]).text(),
-			page: Number($(temp[2]).text()),
-			location: Number($(temp[3]).text()),
-			description: $(temp[4]).text(),
-			state: 0,
-			origin: 0
-		});
-		
-		getData('file');
-		handleCollapse(this);
+		handleCollapse_file(this);
 	});
 	/**
 	 * 处理下拉栏
 	 */
-	function handleCollapse(obj) {
+	function handleCollapse_code(obj) {
 		if($(obj).parent().parent().next().hasClass('in')){
 			$(obj).parent().parent().next().collapse('hide');
 		}else {
 			$(obj).parent().parent().parent().find('.in').collapse('hide');
 			$(obj).parent().parent().next().collapse('show');
+			$(obj).parent().parent().next().find('td').prepend($('#divideTable'));
+			var temp = $(obj).parent().parent().find('td');
+			report = new Object({
+				taskName: taskName,
+				userName: $(temp[4]).text(),
+				fileName: $(temp[1]).text(),
+				page: 0,
+				location: Number($(temp[2]).text()),
+				description: $(temp[3]).text(),
+				state: 0,
+				origin: 0
+			});	
+			getData('code');
+		}
+	}
+	function handleCollapse_file(obj) {
+		if($(obj).parent().parent().next().hasClass('in')){
+			$(obj).parent().parent().next().collapse('hide');
+		}else {
+			$(obj).parent().parent().parent().find('.in').collapse('hide');
+			$(obj).parent().parent().next().collapse('show');
+			$(obj).parent().parent().next().find('td').prepend($('#divideTable'));
+			var temp = $(obj).parent().parent().find('td');
+			report = new Object({
+				taskName: taskName,
+				userName: $(temp[5]).text(),
+				fileName: $(temp[1]).text(),
+				page: Number($(temp[2]).text()),
+				location: Number($(temp[3]).text()),
+				description: $(temp[4]).text(),
+				state: 0,
+				origin: 0
+			});		
+			getData('file');
 		}
 	}
 	
@@ -776,7 +782,7 @@ function commitReport() {
 			+ '</tr>';
 			
 			$('#divideTable tbody').append(temp);
-			$('#divideModal').modal('show');
+			//$('#divideModal').modal('show');
 		}
 	}
 
@@ -797,7 +803,7 @@ function commitReport() {
 			+ '</tr>';
 			
 			$('#divideTable tbody').append(temp);
-			$('#divideModal').modal('show');
+			//$('#divideModal').modal('show');
 		}
 	}
 	
