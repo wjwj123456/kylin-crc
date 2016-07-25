@@ -403,18 +403,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<%--<td>asdasd</td>--%>
 									<%--<td></td>--%>
 								<%--</tr>--%>
-								<!-- <tr class="collapse fade">
-									<td colspan="6">
-										<h4>Additional information</h4>
-										<ul>
-											<li><a href="http://en.wikipedia.org/wiki/Usa">USA
-													on Wikipedia</a></li>
-											<li><a href="http://nationalatlas.gov/">National
-													Atlas of the United States</a></li>
-											<li><a href="http://www.htmleaf.com/">jQuery之家</a></li>
-										</ul>
-									</td>
-								</tr> -->
+								
 								<%
 									List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
 								%>
@@ -434,6 +423,9 @@ taskName = '<%=request.getParameter("taskName")%>';
  	}
  %>
 									</td>
+								</tr>
+								<tr class="collapse fade">
+									
 								</tr>
 								<%
 									}
