@@ -688,6 +688,7 @@ function commitReport() {
 	// 选择被拆分的报告
 	var report;
 	$('#toMerge-code').find('button').on('click',function(){
+		$(this).parent().parent().next().append($('#devideTable'));
 		var temp = $(this).parent().parent().find('td');
 		report = new Object({
 			taskName: taskName,
@@ -703,6 +704,7 @@ function commitReport() {
 		getData('code');
 	});
 	$('#toMerge-file').find('button').on('click',function(){
+		$(this).parent().parent().next().append($('#devideTable'));
 		var temp = $(this).parent().parent().find('td');
 		report = new Object({
 			taskName: taskName,
