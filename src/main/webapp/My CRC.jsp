@@ -1,3 +1,4 @@
+<%@page import="vo.AchievementVO"%>
 <%@page import="tools.Cast"%>
 <%@page import="vo.TaskVO"%>
 <%@page import="java.util.List"%>
@@ -33,11 +34,15 @@
 <script type="text/javascript">
 <%UserInfoVO infoVO = Cast.cast(session.getAttribute("userInfo"));%>
 <%Language[] languages = infoVO.getLanguages();%>
+
+
 var languages = new Array();
 <%for (Language lg : languages) {%>
 languages.push('<%=lg.toString()%>');
 <%}%>
 var sex ="${userInfo.sex}";
+
+<%AchievementVO achievement = Cast.cast(session.getAttribute("achievement"));%>
 </script>
 
 <body role="document">
@@ -104,11 +109,37 @@ var sex ="${userInfo.sex}";
 		</div>
 		<div class="col-md-9 bs-docs-section">
 			<h2 id="perAnalyze">个人成就</h2>
-			<div>
-				<img alt="" src="img/achievement1/achievement12.png"  style="width:150px">	</br>
-				<label class="text-center">>  优秀评审达到5次</label>
-				
-			
+			<div class=col-md-3>
+				<%if(achievement.isEfficiency_count_5_achi()){ %>
+				<img alt="" src="img/achievement1/achievement11.png"  style="width:150px">	<br>
+				<%}else{ %>
+				<img alt="" src="img/achievement1/achievement12.png"  style="width:150px">	<br>
+				<%} %>
+				<label class="text-center">优秀评审达到5次</label>	
+			</div>
+				<div class=col-md-3>
+				<%if(achievement.isEfficiency_count_10_achi()){ %>
+				<img alt="" src="img/achievement1/achievement11.png"  style="width:150px">	<br>
+				<%}else{ %>
+				<img alt="" src="img/achievement1/achievement12.png"  style="width:150px">	<br>
+				<%} %>
+				<label class="text-center">优秀评审达到10次</label>	
+			</div>
+				<div class=col-md-3>
+				<%if(achievement.isEfficiency_count_20_achi()){ %>
+				<img alt="" src="img/achievement1/achievement11.png"  style="width:150px">	<br>
+				<%}else{ %>
+				<img alt="" src="img/achievement1/achievement12.png"  style="width:150px">	<br>
+				<%} %>
+				<label class="text-center">优秀评审达到20次</label>	
+			</div>
+				<div class=col-md-3>
+				<%if(achievement.isEfficiency_count_50_achi()){ %>
+				<img alt="" src="img/achievement1/achievement11.png"  style="width:150px">	<br>
+				<%}else{ %>
+				<img alt="" src="img/achievement1/achievement12.png"  style="width:150px">	<br>
+				<%} %>
+				<label class="text-center">优秀评审达到50次</label>	
 			</div>
 			<div>
 				<img alt="" src="img/achievement1/achievement22.png"  style="width:150px">
