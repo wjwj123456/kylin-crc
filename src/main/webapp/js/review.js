@@ -502,6 +502,7 @@ function commitReport() {
 			data.push(obj);
 		}
 		run_waitMe();
+		console.log(JSON.stringify(data));
 		jQuery.ajax({
 			url: '/crc/MergeServlet',
 			type: 'post',
