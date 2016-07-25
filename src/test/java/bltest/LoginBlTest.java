@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import org.junit.Before;
 import org.junit.Test;
 
+import bl.LoginBLImpl;
 import data.LoginDataImpl;
 
 public class LoginBlTest {
@@ -16,13 +17,14 @@ public class LoginBlTest {
 	}
 
 	private LoginDataImpl loginDataImpl = new LoginDataImpl();
+	LoginBLImpl loginblImpl = new LoginBLImpl();
 
 	@Test
 	public void testCreateAccount() throws ClassNotFoundException, SQLException {
 		// assertEquals(0,loginDataImpl.createAccount("cr", "aaaaaaad", "123"));
 		// assertEquals(1,loginDataImpl.createAccount("crc", "aaaaaaad",
 		// "123"));
-		assertEquals(0, loginDataImpl.createAccount("crccc", "aaaaaaad", "123"));
+		assertEquals(0, loginblImpl.createAccount("crccc", "aaaaaaad", "123"));
 	}
 
 	@Test
