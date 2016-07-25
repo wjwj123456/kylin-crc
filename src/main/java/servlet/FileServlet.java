@@ -113,7 +113,7 @@ public class FileServlet extends HttpServlet {
 		response.reset();
 		response.setContentType("application/x-download");
 
-		String file_download = "/song/home/program/crc/data/1.png";
+		String file_download = "/home/song/program/crc/data/1.png";
 		String file_display = "1.png";
 		file_display = URLEncoder.encode(file_display, "UTF-8");
 		response.addHeader("Content-Disposition", "attachment;filename=" + file_display);
@@ -122,7 +122,7 @@ public class FileServlet extends HttpServlet {
 		FileInputStream inputStream = null;
 		try {
 			outputStream = response.getOutputStream();
-			inputStream = new FileInputStream(file_download);
+			inputStream = new FileInputStream(new File(file_download));
 
 			byte[] b = new byte[1024];
 			int i = 0;
@@ -137,7 +137,6 @@ public class FileServlet extends HttpServlet {
 			// out.clear();
 			// out = pageContext.pushBody();
 		} catch (Exception e) {
-			System.out.println("Error!");
 			e.printStackTrace();
 		} finally {
 			if (inputStream != null) {

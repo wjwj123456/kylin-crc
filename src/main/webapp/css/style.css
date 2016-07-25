@@ -1,8 +1,9 @@
-
-
+.btn:focus{
+	color:#347ABF ;
+}
 .btn:hover{
-	color:#FFF !important;
-	background:#e74c3c;
+	color:#FFF ;
+	background:#347ABF;
 }
 
 .btn.btn-success{
@@ -15,7 +16,7 @@
 	margin:0 5px;
 	 display:block;
 	margin-bottom:15px;
-	border:solid 2px #EC6952; 
+	border:solid 2px #347ABF; 
 	color:#EC6952;
 	background:#FFF;
 	text-align:center;
@@ -29,5 +30,5 @@
 		display:inline-block;
 		*display:inline;
 		*zoom:1;
-		
+	color:#347ABF
 }
