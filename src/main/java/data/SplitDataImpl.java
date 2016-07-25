@@ -68,17 +68,19 @@ public class SplitDataImpl implements SplitDataService {
 		int finalParentID = getID(finalParent);
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
+		
 		for (ReportPO reportPO : splitedPOs) {
 			int splitID0 = getID(reportPO);
 			int parentID0 = getParentID(splitID0, statement);
-			
 			ArrayList<ReportPO> childPOs = getIncludedfaultsByFaultkey(reportPO);
+			
 			for(ReportPO childPO: childPOs) {
-				int childID = getID(childPO);
+				int childID = getID(childPO);				
 				changeParent(splitID0, parentID0, childID, statement);
 				deleteFromMerge(splitID0, childID, statement);
 			}
 			
+			deleteFromMerge(parentID0, splitID0, statement);
 			setMerge(splitID0, 0, statement);
 			setState(splitID0, 0, statement);
 		}
