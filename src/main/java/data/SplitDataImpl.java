@@ -103,7 +103,7 @@ public class SplitDataImpl implements SplitDataService {
 	 */
 	private int mergeNumber(int id, Statement statement) {
 		int i = -1;
-		String sql = "SELETE * FROM merge WHERE final_id = "  + id;
+		String sql = "SELECT * FROM merge WHERE final_id = "  + id;
 		try {
 			ResultSet rSet = statement.executeQuery(sql);
 			i = 0;
