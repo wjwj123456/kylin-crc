@@ -355,6 +355,15 @@ public class SplitDataImpl implements SplitDataService {
 				DBManager.stopAll(null, statement, connection);
 				return 2;
 			}
+			i = mergeNumber(id0, statement);
+			if(i==0) {
+				sql = "UPDATE report SET merge = 0 WHERE id = " + id0;
+				i = statement.executeUpdate(sql);
+				if(i != 1) {
+					DBManager.stopAll(null, statement, connection);
+					return 3;
+				}
+			}
 		}
 		DBManager.stopAll(null, statement, connection);
 		return 0;
