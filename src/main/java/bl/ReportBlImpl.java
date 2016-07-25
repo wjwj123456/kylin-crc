@@ -92,23 +92,6 @@ public class ReportBlImpl implements ReportBlService {
 	}
 
 	@Override
-	public int deleteTempReport(ReportVO vo) {
-		// TODO Auto-generated method stub
-		int flag = -1;
-		ReportPO po2 = new ReportPO(vo);
-		try {
-			flag = reportDataService.deleteTempReport(po2);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return flag;
-	}
-
-	@Override
 	public List<ReportVO> getAllReportsByTaskName(String taskName) {
 		// TODO Auto-generated method stub
 		List<ReportVO> result = new ArrayList<ReportVO>();
