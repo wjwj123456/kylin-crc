@@ -101,11 +101,12 @@ public class MergeDataImpl implements MergeDataService {
 		pStatement.executeUpdate();
 
 		for (ReportPO po : reportList) {
-			String sql1 = "INSERT INTO merge (final_id, included_id) VALUES (?,  ?)";
+			String sql1 = "INSERT INTO merge (final_id, included_id,uname) VALUES (?,  ?,?)";
 			pStatement = connection.prepareStatement(sql1);
 			if (getID(finalPO) != getID(po)) {
 				pStatement.setInt(1, getID(finalPO));
 				pStatement.setInt(2, getID(po));
+				pStatement.setString(3, getUNameById(getID(po)));
 			}
 			pStatement.executeUpdate();
 		}
