@@ -82,6 +82,7 @@ public class FileServlet extends HttpServlet {
             // 设置最大上传的文件大小
             upload.setSizeMax(maxFileSize);
             try {
+                System.out.println(request.getParts());
                 // 解析获取的文件
                 List<FileItem> fileItems = upload.parseRequest(request);
                 System.out.println(fileItems);
