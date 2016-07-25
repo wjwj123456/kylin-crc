@@ -472,9 +472,7 @@ function commitReport() {
 			type: 'post',
 			data: 'type=commit&taskName=' + taskName + '&time=' + $('#timeCost').val().trim(),
 			success: function(data) {
-				if (data == 0) {
-					location.reload(true);
-				}
+				location.reload(true);
 				stopWait();
 			}
 		});
@@ -504,6 +502,7 @@ function commitReport() {
 			data.push(obj);
 		}
 		run_waitMe();
+		console.log(JSON.stringify(data));
 		jQuery.ajax({
 			url: '/crc/MergeServlet',
 			type: 'post',

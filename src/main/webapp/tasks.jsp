@@ -395,14 +395,14 @@ taskName = '<%=request.getParameter("taskName")%>';
 								</tr>
 							</thead>
 							<tbody>
-								<tr onclick="$('.collapse').collapse('toggle');">
-									<td><input type="checkbox"></td>
-									<td>asdad</td>
-									<td>asdasd</td>
-									<td>asda</td>
-									<td>asdasd</td>
-									<td></td>
-								</tr>
+								<%--<tr onclick="$('.collapse').collapse('toggle');">--%>
+									<%--<td><input type="checkbox"></td>--%>
+									<%--<td>asdad</td>--%>
+									<%--<td>asdasd</td>--%>
+									<%--<td>asda</td>--%>
+									<%--<td>asdasd</td>--%>
+									<%--<td></td>--%>
+								<%--</tr>--%>
 								<tr class="collapse fade">
 									<td colspan="6">
 										<h4>Additional information</h4>

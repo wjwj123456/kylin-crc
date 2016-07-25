@@ -1,6 +1,11 @@
 <%@page import="tools.Cast"%>
 <%@page import="vo.TaskVO"%>
 <%@page import="java.util.List"%>
+<%@page import="vo.Language"%>
+<%@page import="vo.UserInfoVO"%>
+<%@page import="tools.Encode"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,7 +27,18 @@
 }
 </style>
 <title>My CRC</title>
+
+
 </head>
+<script type="text/javascript">
+<%UserInfoVO infoVO = Cast.cast(session.getAttribute("userInfo"));%>
+<%Language[] languages = infoVO.getLanguages();%>
+var languages = new Array();
+<%for(Language lg : languages){%>
+languages.push('<%=lg.toString()%>');
+<%}%>
+var sex ="${userInfo.sex}";
+</script>
 <body role="document">
 	<nav class="navbar ">
 	<div class="container">
@@ -73,54 +89,20 @@
 						<span class="glyphicon glyphicon-edit"></span>
 					</button></a>
 			</div>
-
+			<div id="message">
+			<div class="myrow">${userInfo.userName}>
+			</div>
+			
+			
+			
+			
+			</div>
 			<a href="newTask.jsp"><button class="btn btn-success">新评审</button></a>
 
 		</div>
 		<div class="col-md-10 bs-docs-section">
-			<h2 id="basicInfo">个人资料</h2>
-			<table class="table">
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-			</table>
-			<hr>
 			<h2 id="perAnalyze">个人成就</h2>
-			<table class="table">
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-				<tr>
-					<th>haha</th>
-					<td>haha</td>
-					<th>haha</th>
-					<td>haha</td>
-				</tr>
-			</table>
+			<div><img alt="" src="img/achievement1.png"><img alt="" src="img/achievement2.png"><img alt="" src="img/achievement3.png"> </div>
 			<hr>
 		</div>
 	</div>

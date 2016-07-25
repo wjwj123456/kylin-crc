@@ -47,7 +47,7 @@ public class InviteDataImpl implements InviteDataService {
 	}
 
 	/**
-	 * ldk14 0:delete success 1£ºdelete fail
+	 * ldk14 0:delete success 1ï¿½ï¿½delete fail
 	 */
 	public int deleteInvitationInfo(String userName, String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub

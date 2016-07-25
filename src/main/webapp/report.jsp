@@ -44,7 +44,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"

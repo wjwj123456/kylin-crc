@@ -428,7 +428,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	public State getTaskState(String taskName) throws SQLException {
 		// TODO Auto-generated method stub
 
-		String sql = "SELECT * FROM task WHERE taskName = '" + taskName + "'";
+		String sql = "SELECT * FROM task WHERE tname = '" + taskName + "'";
 		rSet = DBManager.getResultSet(sql);
 		State state = null;
 		int flag = 0;
@@ -452,7 +452,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	public int setTaskState(State state, String taskName) throws SQLException {
 		// TODO Auto-generated method stub
 		int flag = 0;
-		String sql = "UPDATE task SET state  = ?  WHERE taskName = '" + taskName + "'";
+		String sql = "UPDATE task SET state  = ?  WHERE tname = '" + taskName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setInt(1, State.getTaskState(state));
 		int i = pStatement.executeUpdate();
