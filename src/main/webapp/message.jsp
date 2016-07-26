@@ -66,7 +66,7 @@
 		<div id="suspensionNavigation" class="col-md-2" role="complementary"
 			style="text-align: center; padding-top: 80px">
 			<div class="myrow">
-				<img alt="" src="img/glyphicons-halflings.png" width="50px"
+				<img alt="" src="${userInfo.picture} " width="50px" class="img-circle"
 					height="50px">
 			</div>
 			<div class="myrow"><%=session.getAttribute("username")%><a

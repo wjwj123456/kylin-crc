@@ -30,3 +30,4 @@ function stopWait() {
 	$('#waitArea').waitMe("hide");
 	
 }
+$(function () { $("[data-toggle='tooltip']").tooltip(); });

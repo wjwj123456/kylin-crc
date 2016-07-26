@@ -1,17 +1,18 @@
 var isOK = false;
-$('#createTask').on('click', function() {
-	isOK=true;
-	checkOK();
-	if (isOK) {
-		createNewTask();
-	}
+$('#createTask').on('click', function () {
+    isOK = true;
+    checkOK();
+    if (isOK) {
+        createNewTask();
+    }
 });
-$('#type').change(function(){
-	if($(this).children('option:selected').val()=="文档评审"){
-		$('#languageBlock').css('display','none');
-	}else {
-		$('#languageBlock').css('display','block');
-	}
+
+$('#type').change(function () {
+    if ($(this).children('option:selected').val() == "文档评审") {
+        $('#languageBlock').css('display', 'none');
+    } else {
+        $('#languageBlock').css('display', 'block');
+    }
 });
 
 /**
@@ -19,21 +20,21 @@ $('#type').change(function(){
  * @returns
  */
 function createNewTask() {
-	run_waitMe();
-	jQuery.ajax({
-		url: '/crc/CreateTaskServlet',
-		style: 'post',
-		data: 'type=createNewTask' + '&data=' + getData(), 
-		success: function(data) {
-			if (data == 0) {
-				$('#createTask').removeClass('btn-success').end().text('创建成功');
-				uploadFile();
-			} else if (data == 1) {
-				alert("项目已存在")
-			}
-			stopWait();
-		}
-	});	
+    run_waitMe();
+    jQuery.ajax({
+        url: '/crc/CreateTaskServlet',
+        style: 'post',
+        data: 'type=createNewTask' + '&data=' + getData(),
+        success: function (data) {
+            if (data == 0) {
+                $('#createTask').removeClass('btn-success').text('创建成功');
+                uploadFile();
+            } else if (data == 1) {
+                alert("项目已存在")
+            }
+            stopWait();
+        }
+    });
 }
 
 /**
@@ -41,50 +42,53 @@ function createNewTask() {
  * @returns
  */
 function getData() {
-	var type = ($('#type').get(0).selectedIndex == 1) ? 'code' : 'document';
-	var power = $('#privacy').get(0).selectedIndex == 0 ? 'PUBLIC' : 'PRIVATE';
-	var task = new Object({
-		taskName: $('#inputName').val().trim(),
-		type: type, 
-		project: '',
-		describe: $('#discription').val().trim(),
-		deadline: $('#deadline').val(),
-		state: 0,
-		power: power
-	});
-	
-	task.language = task.type == '文档评审' ? 'none' : $('#language option:selected').val();
-	
-	console.log(JSON.stringify(task))
-	return JSON.stringify(task);
+    var type = ($('#type').get(0).selectedIndex == 1) ? 'code' : 'document';
+    var power = $('#privacy').get(0).selectedIndex == 0 ? 'PUBLIC' : 'PRIVATE';
+    var task = new Object({
+        taskName: $('#inputName').val().trim(),
+        type: type,
+        project: '',
+        describe: $('#discription').val().trim(),
+        deadline: $('#deadline').val(),
+        state: 0,
+        power: power
+    });
+
+    task.language = task.type == '文档评审' ? 'none' : $('#language option:selected').val();
+
+    console.log(JSON.stringify(task))
+    return JSON.stringify(task);
 }
 
 function checkOK() {
-	if($('#inputName').val()==""){
-		$('#nameGroup').addClass('has-error');
-		isOK=false;
-	}else {
-		$('#nameGroup').removeClass('has-error');
-	}
-	if($('#discription').val()==""){
-		$('#discripGroup').addClass('has-error');
-		isOK=false;
-	}else {
-		$('#discripGroup').removeClass('has-error');
-	}
-	if($('#deadline').val()==""){
-		$('#deadGroup').addClass('has-error');
-		isOK=false;
-	}else {
-		$('#deadGroup').removeClass('has-error');
-	}
+    if ($('#inputName').val() == "") {
+        $('#nameGroup').addClass('has-error');
+        isOK = false;
+    } else {
+        $('#nameGroup').removeClass('has-error');
+    }
+    if ($('#discription').val() == "") {
+        $('#discripGroup').addClass('has-error');
+        isOK = false;
+    } else {
+        $('#discripGroup').removeClass('has-error');
+    }
+    if ($('#deadline').val() == "") {
+        $('#deadGroup').addClass('has-error');
+        isOK = false;
+    } else {
+        $('#deadGroup').removeClass('has-error');
+    }
 }
 
 /**
  * 创建任务成功后，可选择上传文件
  */
 function uploadFile() {
-	$('#inputName').on('input propertychange', function () {
-		$('#form').attr('action', '/crc/FileServlet?type=');
-	});
+    $('#form').fadeIn('slow').attr('action',
+        '/crc/FileServlet?type=upload?taskName=' + $('#inputName').val().trim());
+
+    $('#cancel').on('click', function() {
+        top.location = 'My CRC.jsp';
+    })
 }

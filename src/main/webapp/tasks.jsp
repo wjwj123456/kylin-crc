@@ -1,3 +1,4 @@
+<%@page import="bl.UserInfoBlImpl"%>
 <%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
 <%@page import="bl.ReviewBlImpl"%>
@@ -27,7 +28,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
-	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -196,34 +197,48 @@ taskName = '<%=request.getParameter("taskName")%>';
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
+					<%List<String> taskFile = Cast.cast(session.getAttribute("taskFile")) ; %>
+					<p>评审附件：</p>
+					<ul>
+					<%if(taskFile.size()==0){ %>
+						<li>无</li>
+					<%}else{ %>
+						<%for(String s : taskFile){ %>
+							<li><a href="/crc/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>
+						<%} %>
+					<%} %>
+					</ul>
 					<a
 						href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName"))%>">
 						<button class="btn ">查看已生成报告</button>
 					</a>
+					<div class="row">
+						<p>参与者：</p>
+						<%
+							List<String> joiners = Cast.cast(session.getAttribute("agree_" + taskVO.getTaskName()));
+							UserInfoBlImpl userInfo = new UserInfoBlImpl();
+						%>
+						<%
+							for (String s : joiners) {
+						%>
+
+						<div class="col-md-1" style="text-align: center;">
+							<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
+								src="<%=userInfo.get(s).getPicture()%>" width="40px"
+								class="img-circle scaleable" height="40px">
+							</a>
+
+						</div>
+
+						<%
+							}
+						%>
+					</div>
 					<div id="preJoinBlock" class="hideBlock">
 						<div id="joinBlock">
 							<button class="btn " id="join">参加评审</button>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-2">
-					<%
-						List<String> joiners = Cast.cast(session.getAttribute("agree_" + taskVO.getTaskName()));
-					%>
-					<table class="table">
-						<tr>
-							<th>参与人</th>
-						</tr>
-						<%
-							for (String s : joiners) {
-						%>
-						<tr>
-							<td><%=s%></td>
-						</tr>
-						<%
-							}
-						%>
-					</table>
 				</div>
 			</div>
 			<hr>
@@ -242,8 +257,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 						Undo
 					</button>
 					<button type="button" class="btn  btn-sm" id="redo">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						Redo
+						Redo <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					</button>
 				</div>
 			</h2>
@@ -380,8 +394,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 				</div>
 				<div id="mergeBlock" class="hideBlock">
 					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
-					<div class="row"
-						style="min-height: 10px; max-height: 400px; overflow: auto;">
+					<div class="row" style="">
 						<table class="table table-hover table-expandable"
 							id="toMerge-code">
 							<thead>
@@ -396,14 +409,14 @@ taskName = '<%=request.getParameter("taskName")%>';
 							</thead>
 							<tbody>
 								<%--<tr onclick="$('.collapse').collapse('toggle');">--%>
-									<%--<td><input type="checkbox"></td>--%>
-									<%--<td>asdad</td>--%>
-									<%--<td>asdasd</td>--%>
-									<%--<td>asda</td>--%>
-									<%--<td>asdasd</td>--%>
-									<%--<td></td>--%>
+								<%--<td><input type="checkbox"></td>--%>
+								<%--<td>asdad</td>--%>
+								<%--<td>asdasd</td>--%>
+								<%--<td>asda</td>--%>
+								<%--<td>asdasd</td>--%>
+								<%--<td></td>--%>
 								<%--</tr>--%>
-								
+
 								<%
 									List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
 								%>
@@ -419,14 +432,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<td>
 										<%
 											if (reportVO.getIsMerged() == 1) {
-										%><button class="btn btn-warning btn-sm">拆分</button> <%
+										%><button class="btn btn-sm">拆分</button> <%
  	}
  %>
 									</td>
 								</tr>
 								<tr class="collapse fade">
-									<td colspan="6"><button type="button" class="btn btn-primary"
-								data-dismiss="modal" id="confirmDivide">确认</button></td>	
+									<td colspan="6"></td>
 								</tr>
 								<%
 									}
@@ -459,10 +471,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<td>
 										<%
 											if (reportVO.getIsMerged() == 1) {
-										%><button class="btn btn-warning btn-sm">拆分</button> <%
+										%><button class="btn btn-sm">拆分</button> <%
  	}
  %>
 									</td>
+								</tr>
+								<tr class="collapse fade">
+									<td colspan="6"></td>
 								</tr>
 								<%
 									}
@@ -471,10 +486,11 @@ taskName = '<%=request.getParameter("taskName")%>';
 						</table>
 					</div>
 
-					<div class="row" style="text-align: center; padding-bottom: 20px">
+					<div class="row pull-right" padding-bottom: 20px">
 						<button class="btn " id="merge">合并</button>
+						<button class="btn " id="confirmMerge"  data-toggle="tooltip" title="查看最终报告">确认合并</button>
 					</div>
-					<div class="row"
+					<div class="row hidden"
 						style="min-height: 10px; max-height: 400px; overflow: auto;">
 						<table class="table" id="merged-code">
 							<tr>
@@ -498,9 +514,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							</tr>
 						</table>
 					</div>
-					<div class="row" style="text-align: right;">
-						<button class="btn " id="confirmMerge">确认合并</button>
-					</div>
+					<div class="row" style="text-align: right;"></div>
 				</div>
 				<div id="chooseModal" class="modal fade">
 					<div class="modal-dialog" style="width: 800px;">
@@ -510,7 +524,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									aria-hidden="true">x</button>
 								<h2 class="text-left text-primary">选择保留项</h2>
 							</div>
-							<div class="modal-body" style="height: 250px; overflow: auto">
+							<div class="modal-body" style="height: 300px; overflow: auto">
 								<div id="codeDiv">
 									<table class="table" id="choose-code">
 										<tr>
@@ -545,9 +559,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 										style="padding-bottom: 30px;">
 										<label for="discription-choosecode"
 											class="col-sm-1 control-label">描述</label>
-										<div class="col-sm-11">
+										<div class="col-sm-11 form-inline">
 											<textarea class="form-control" rows="1"
-												id="discription-choosecode"></textarea>
+												id="discription-choosecode" style="width: 80%"></textarea>
 											<button class="btn " id="add-choosecode"
 												style="margin-left: 20px; float: right;">添加</button>
 										</div>
@@ -596,9 +610,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 										style="padding-bottom: 30px;">
 										<label for="discription-choosefile"
 											class="col-sm-1 control-label">描述</label>
-										<div class="col-sm-11">
+										<div class="col-sm-11 form-inline">
 											<textarea class="form-control" rows="1"
-												id="discription-choosefile"></textarea>
+												id="discription-choosefile" style="width: 80%"></textarea>
 											<button class="btn " id="add-choosefile"
 												style="margin-left: 20px; float: right;">添加</button>
 										</div>
@@ -627,15 +641,19 @@ taskName = '<%=request.getParameter("taskName")%>';
 							<h2 class="text-left text-primary">选择拆分项</h2>
 						</div>
 						<div class="modal-body" style="height: 250px; overflow: auto">
-							<table class="table table-hover" id="divideTable">
-								<tbody>
-								</tbody>
-							</table>
+							<div id="divide">
+								<table class="table table-hover" id="divideTable">
+									<tbody>
+									</tbody>
+								</table>
+								<button type="button" class="btn btn-sm" data-dismiss="modal"
+									id="confirmDivide" style="float: right;">确认</button>
+							</div>
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn " data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary"
-								data-dismiss="modal" id="confirmDivide">确认</button>
+
 						</div>
 					</div>
 				</div>

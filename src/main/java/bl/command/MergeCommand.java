@@ -13,44 +13,47 @@ import vo.ReportVO;
 
 /**
  * merge some reports into one report
- * 
- * @author song
  *
+ * @author song
  */
 public class MergeCommand implements Command {
 
-	private List<ReportVO> reportList;
-	private String taskName;
-	private String operator;
+    private List<ReportVO> reportList;
+    private String taskName;
+    private String operator;
 
-	private MergeBlService merge;
+    private MergeBlService merge;
 
-	private SplitBlService split;
+    private SplitBlService split;
 
-	public MergeCommand(List<ReportVO> reportList, String taskName, String operator) {
-		this.reportList = reportList;
-		this.taskName = taskName;
-		this.operator = operator;
+    public MergeCommand(List<ReportVO> reportList, String taskName, String operator) {
+        this.reportList = reportList;
+        this.taskName = taskName;
+        this.operator = operator;
 
-		merge = new MergeBlImpl();
-		split = new SplitBlImpl();
-	}
+        merge = new MergeBlImpl();
+        split = new SplitBlImpl();
+    }
 
-	@Override
-	public int execute() {
-		LockBlService lockBl = new LockBlImpl();
+    @Override
+    public int execute() {
+        LockBlService lockBl = new LockBlImpl();
 
-//		if (lockBl.canWrite(taskName)) {
-//			merge.saveMergeReport(reportList, taskName, operator);
-//    			lockBl.setLock(taskName, )
-//		}
-		return merge.saveMergeReport(reportList, taskName, operator);
-	}
+        if (lockBl.getCurrentUser(taskName).equals("")) {
+            lockBl.setCurrentUser(taskName, operator);
+        }
 
-	@Override
-	public void undo() {
-		// ArrayList<ReportVO> temp;
-		// temp = split.choose(reportList.get(0));
-		split.splitForUndoMerge(reportList.subList(1, reportList.size()), reportList.get(0));
-	}
+        if (lockBl.getCurrentUser(taskName).equals(operator)) {
+            return merge.saveMergeReport(reportList, taskName, operator);
+        } else {
+            return 404;
+        }
+    }
+
+    @Override
+    public void undo() {
+        // ArrayList<ReportVO> temp;
+        // temp = split.choose(reportList.get(0));
+        split.splitForUndoMerge(reportList.subList(1, reportList.size()), reportList.get(0));
+    }
 }

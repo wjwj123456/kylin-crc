@@ -1,3 +1,5 @@
+<%@page import="bl.UserInfoBlImpl"%>
+<%@page import="bl.InviteBlImpl"%>
 <%@page import="java.util.Date"%>
 <%@page import="tools.Tools"%>
 <%@page import="tools.Encode"%>
@@ -87,8 +89,8 @@
 		<div id="suspensionNavigation" class="col-md-2" role="complementary"
 			style="text-align: center; padding-top: 80px">
 			<div class="myrow">
-				<img alt="" src="img/glyphicons-halflings.png" width="50px" class="img-circle"
-					height="50px">
+				<img alt="" src="${userInfo.picture} " width="50px"
+					class="img-circle" height="50px">
 			</div>
 			<div class="myrow"><%=session.getAttribute("username")%><a
 					href="describe.jsp"><button class="close" style="float: none;">
@@ -107,8 +109,13 @@
 				<li><a href="#his" data-toggle="tab">历史评审</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
+				<%
+					InviteBlImpl invite = new InviteBlImpl();
+					UserInfoBlImpl userInfo = new UserInfoBlImpl();
+				%>
 				<div class="tab-pane fade in active" id="my">
-					<%	Date now = new Date();
+					<%
+						Date now = new Date();
 						List<TaskVO> running = Cast.cast(session.getAttribute("runningTask"));
 					%>
 					<%
@@ -120,6 +127,7 @@
 					%>
 					<%
 						for (TaskVO vo : running) {
+								List<String> users = invite.getAgreeUser(vo.getTaskName());
 					%>
 					<div class="avn-price-table avn-style14 avn-hover"">
 						<div class="row row-eq-height">
@@ -127,24 +135,45 @@
 								<div class="header">
 									<h4 class="package">剩余</h4>
 									<div class="price">
-										<span class="amount"><%=(int)((vo.getDeadline().getTime()-now.getTime())/86400000)%></span> <span class="currency">天</span>
+										<span class="amount"><%=(int) ((vo.getDeadline().getTime() - now.getTime()) / 86400000)%></span>
+										<span class="currency">天</span>
 
 									</div>
 								</div>
 							</div>
 							<div class="col-md-10">
 								<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-								<h2 title="<%=vo.getTaskName() %>" style="cursor: pointer;"><%=vo.getTaskName() %> <button class="close" style="float: none;"><span class="glyphicon glyphicon-hand-left"> </span></button></h2>
+									<h2 title="<%=vo.getTaskName()%>" style="cursor: pointer;"><%=vo.getTaskName()%>
+										<button class="close" style="float: none;">
+											<span class="glyphicon glyphicon-hand-left"> </span>
+										</button>
+									</h2>
 								</a>
-								<p><%=vo.getDescribe() %></p>
+								<p><%=vo.getDescribe()%></p>
 								<p>
-									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
+									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
 								</p>
-								<p>
-									参与者：XXXXXXXXXXX
-									<button class="btn" data-toggle="modal"
-										data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-								</p>
+
+								<div>
+									<%
+										for (String s : users) {
+									%>
+									<div class="col-md-1" style="text-align: center;">
+										<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
+											src="<%=userInfo.get(s).getPicture()%>" width="40px"
+											class="img-circle scaleable" height="40px">
+										</a>
+									</div>
+									<%
+										}
+									%>
+									<div class="col-md-1" style="text-align: center;">
+										<button class="btn" data-toggle="modal"
+											data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+									</div>
+								</div>
+
+
 							</div>
 						</div>
 					</div>
@@ -154,7 +183,7 @@
 					<%
 						}
 					%>
-					
+
 
 					<hr>
 				</div>
@@ -172,6 +201,7 @@
 					%>
 					<%
 						for (TaskVO vo : joiningTasks) {
+							List<String> users = invite.getAgreeUser(vo.getTaskName());
 					%>
 					<div class="avn-price-table avn-style14 avn-hover"">
 						<div class="row row-eq-height">
@@ -179,24 +209,42 @@
 								<div class="header">
 									<h4 class="package">剩余</h4>
 									<div class="price">
-										<span class="amount"><%=(int)((vo.getDeadline().getTime()-now.getTime())/86400000)%></span> <span class="currency">天</span>
+										<span class="amount"><%=(int) ((vo.getDeadline().getTime() - now.getTime()) / 86400000)%></span>
+										<span class="currency">天</span>
 
 									</div>
 								</div>
 							</div>
 							<div class="col-md-10">
 								<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-								<h2 title="<%=vo.getTaskName() %>" style="cursor: pointer;"><%=vo.getTaskName() %> <button class="close" style="float: none;"><span class="glyphicon glyphicon-hand-left"> </span></button></h2>
+									<h2 title="<%=vo.getTaskName()%>" style="cursor: pointer;"><%=vo.getTaskName()%>
+										<button class="close" style="float: none;">
+											<span class="glyphicon glyphicon-hand-left"> </span>
+										</button>
+									</h2>
 								</a>
-								<p><%=vo.getDescribe() %></p>
+								<p><%=vo.getDescribe()%></p>
 								<p>
-									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
+									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
 								</p>
-								<p>
-									参与者：XXXXXXXXXXX
-									<button class="btn" data-toggle="modal"
-										data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-								</p>
+								<div>
+									<%
+										for (String s : users) {
+									%>
+									<div class="col-md-1" style="text-align: center;">
+										<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
+											src="<%=userInfo.get(s).getPicture()%>" width="40px"
+											class="img-circle scaleable" height="40px">
+										</a>
+									</div>
+									<%
+										}
+									%>
+									<div class="col-md-1" style="text-align: center;">
+										<button class="btn" data-toggle="modal"
+											data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -222,12 +270,13 @@
 					%>
 					<%
 						for (TaskVO vo : history) {
+							List<String> users = invite.getAgreeUser(vo.getTaskName());
 					%>
 					<div class="avn-price-table avn-style14 avn-hover"">
 						<div class="row row-eq-height">
 							<div class="col-md-2">
 								<div class="header">
-									
+
 									<div class="price">
 										<span class="amount">已结束</span>
 
@@ -236,17 +285,30 @@
 							</div>
 							<div class="col-md-10">
 								<a href="tasks.jsp?taskName=<%=vo.getTaskName()%>">
-								<h2 title="<%=vo.getTaskName() %>" style="cursor: pointer;"><%=vo.getTaskName() %> <button class="close" style="float: none;"><span class="glyphicon glyphicon-hand-left"> </span></button></h2>
+									<h2 title="<%=vo.getTaskName()%>" style="cursor: pointer;"><%=vo.getTaskName()%>
+										<button class="close" style="float: none;">
+											<span class="glyphicon glyphicon-hand-left"> </span>
+										</button>
+									</h2>
 								</a>
-								<p><%=vo.getDescribe() %></p>
+								<p><%=vo.getDescribe()%></p>
 								<p>
-									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline()) %></strong>
+									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
 								</p>
-								<p>
-									参与者：XXXXXXXXXXX
-									<button class="btn" data-toggle="modal"
-										data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-								</p>
+								<div>
+									<%
+										for (String s : users) {
+									%>
+									<div class="col-md-1" style="text-align: center;">
+										<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
+											src="<%=userInfo.get(s).getPicture()%>" width="40px"
+											class="img-circle scaleable" height="40px">
+										</a>
+									</div>
+									<%
+										}
+									%>
+								</div>
 							</div>
 						</div>
 					</div>

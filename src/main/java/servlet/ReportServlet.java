@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bl.LockBlImpl;
+import blservice.LockBlService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -126,6 +128,10 @@ public class ReportServlet extends HttpServlet {
 		double time = Double.parseDouble(request.getParameter("time"));
 		ReportBlImpl report = new ReportBlImpl();
 		int result = report.setCompleteTime(taskName, userName, time);
+
+		// 取消写锁
+		LockBlService lockBl = new LockBlImpl();
+		lockBl.setCurrentUser(taskName, "");
 
 		PrintWriter out = response.getWriter();
 		out.print(result);
