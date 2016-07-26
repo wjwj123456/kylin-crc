@@ -3,6 +3,8 @@ package po;
 import java.util.Date;
 
 import vo.Language;
+import vo.Power;
+import vo.TaskVO;
 import vo.Type;
 
 public class TaskPO {
@@ -15,9 +17,10 @@ public class TaskPO {
 	private Date deadline;
 	private int state;
 	private Language language;
+	private Power power;
 
 	public TaskPO(String userName, String taskName, Type type, String project, String describe, Date deadline,
-			int state, Language language) {
+			int state, Language language, Power power) {
 		super();
 		this.userName = userName;
 		this.taskName = taskName;
@@ -27,6 +30,7 @@ public class TaskPO {
 		this.deadline = deadline;
 		this.state = state;
 		this.language = language;
+		this.power = power;
 	}
 
 	public TaskPO(String userName, String taskName) {
@@ -38,6 +42,23 @@ public class TaskPO {
 	public TaskPO() {
 		super();
 
+	}
+
+	/**
+	 * TODO: @param vo
+	 */
+	public TaskPO(TaskVO vo) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.userName = vo.getUserName();
+		this.taskName = vo.getTaskName();
+		this.type = vo.getType();
+		this.project = vo.getProject();
+		this.describe = vo.getDescribe();
+		this.deadline = vo.getDeadline();
+		this.state = vo.getState();
+		this.language = vo.getLanguage();
+		this.power = vo.getPower();
 	}
 
 	public String getUserName() {
@@ -90,6 +111,14 @@ public class TaskPO {
 
 	public int getState() {
 		return state;
+	}
+
+	public Power getPower() {
+		return power;
+	}
+
+	public void setPower(Power power) {
+		this.power = power;
 	}
 
 	public void setState(int state) {

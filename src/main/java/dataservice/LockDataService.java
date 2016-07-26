@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @see
  */
 public interface LockDataService {
-	public boolean canWrite(String taskName) throws SQLException, ClassNotFoundException;
+	public String getCurrentUser(String taskName) throws SQLException, ClassNotFoundException;
 
-	public int setLock(String taskName, boolean flag) throws SQLException;
+	public int setCurrentUser(String taskName, String userName) throws SQLException;
 }

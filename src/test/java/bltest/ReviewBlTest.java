@@ -8,6 +8,7 @@ import org.junit.Test;
 import bl.ReviewBlImpl;
 import tools.Tools;
 import vo.Language;
+import vo.Power;
 import vo.TaskVO;
 import vo.Type;
 
@@ -23,7 +24,7 @@ public class ReviewBlTest {
 		// TaskVO vo = new TaskVO("crc", "crc1", Type.code, "����", "��",
 		// Tools.stringToDate("2016-08-08 12:12:12"), 0);
 		TaskVO vo2 = new TaskVO("crc", "crc3", Type.code, "工程", "工程", Tools.stringToDate("2016-08-08 12:12:12"), 0,
-				Language.java);
+				Language.java, Power.PRIVATE);
 		assertEquals(0, reviewBlImpl.saveReviewInfo(vo2));
 
 	}

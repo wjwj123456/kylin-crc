@@ -209,7 +209,7 @@
 			</div>
 		</form>
 		<form action="/crc/FileServlet?type=upload" method="post"
-			target="newFrame" enctype="multipart/form-data" id="form" style="">
+			target="newFrame" enctype="multipart/form-data" id="form" style="display: none;">
 			<div class="form-group" id="file">
 				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
 				<div class="col-sm-10">
@@ -219,7 +219,6 @@
 						style="height: 37px; width: 90px;">上传文件 <input type="file" id="theInput"
 						name="file" multiple="multiple" class="btn"
 						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0;" />
-
 					</a>
 					<lable class="showFileName"></lable>
 					<button type="submit" value="Upload File" class="btn">提交文件</button>

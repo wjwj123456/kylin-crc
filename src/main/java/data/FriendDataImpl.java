@@ -24,7 +24,7 @@ public class FriendDataImpl implements FriendDataService {
 	@Override
 	public List<UserInfoPO> getFriends(String userName) throws ClassNotFoundException, SQLException {
 		List<UserInfoPO> result = new ArrayList<>();
-		String sql = "SELECT friendUserName FROM friend where userName = ' " + userName + "'";
+		String sql = "SELECT friendUserName FROM friend where userName = '" + userName + "'";
 		Connection connection = DBManager.connect();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
@@ -55,5 +55,35 @@ public class FriendDataImpl implements FriendDataService {
 		}
 		DBManager.closeConnection();
 		return flag;
+	}
+
+	@Override
+	public List<UserInfoPO> getFriendsByKeywords(String keyword) throws ClassNotFoundException, SQLException {
+		List<UserInfoPO> result = new ArrayList<>();
+		String sql = "SELECT friendUserName FROM friend where userName like '%" + keyword + "%'";
+		Connection connection = DBManager.connect();
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			result.add(userInfoDataImpl.get(rs.getString(1)));
+		}
+		DBManager.stopAll(rs, ps, connection);
+		return result;
+	}
+
+	@Override
+	public int deleteFriend(String userName, String friendName) throws ClassNotFoundException, SQLException {
+		Connection connection = DBManager.connect();
+		String sql = "DELETE FROM friend WHERE userName = ? AND friendUserName = ?";
+		PreparedStatement pStatement = connection.prepareStatement(sql);
+		pStatement.setString(1, userName);
+		pStatement.setString(2, friendName);
+		int i = pStatement.executeUpdate();
+		if (i != 1) return 1;
+		pStatement.setString(1, friendName);
+		pStatement.setString(2, userName);
+		i = pStatement.executeUpdate();
+		if (i != 1) return 2;
+		return 0;
 	}
 }

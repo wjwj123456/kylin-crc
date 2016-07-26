@@ -27,15 +27,15 @@ public class LockBlImpl implements LockBlService {
 	 * @since 2016年7月26日
 	 * @param taskName
 	 * @return
-	 * @see blservice.LockBlService#canWrite(java.lang.String)
+	 * @see blservice.LockBlService#getCurrentUser(java.lang.String)
 	 *
 	 */
 	@Override
-	public boolean canWrite(String taskName) {
+	public String getCurrentUser(String taskName) {
 		// TODO Auto-generated method stub
-
+		String name = null;
 		try {
-			return lockDataService.canWrite(taskName);
+			name = lockDataService.getCurrentUser(taskName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,7 +43,7 @@ public class LockBlImpl implements LockBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return name;
 	}
 
 	/**
@@ -52,21 +52,23 @@ public class LockBlImpl implements LockBlService {
 	 * @author lpt14
 	 * @since 2016年7月26日
 	 * @param taskName
-	 * @param flag
+	 * @param userName
 	 * @return
-	 * @see blservice.LockBlService#setLock(java.lang.String, boolean)
+	 * @see blservice.LockBlService#setCurrentUser(java.lang.String,
+	 *      java.lang.String)
 	 *
 	 */
 	@Override
-	public int setLock(String taskName, boolean flag) {
+	public int setCurrentUser(String taskName, String userName) {
 		// TODO Auto-generated method stub
+		int i = 0;
 		try {
-			return lockDataService.setLock(taskName, flag);
+			i = lockDataService.setCurrentUser(taskName, userName);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return i;
 	}
 
 }

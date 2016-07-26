@@ -11,6 +11,7 @@ import dataservice.ReviewDataService;
 import po.TaskPO;
 import po.UserPO;
 import vo.Language;
+import vo.Power;
 import vo.State;
 import vo.Type;
 
@@ -41,7 +42,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		int flag = 0;
 
-		String sql = "INSERT INTO task (uname, tname,type, project,discribe,deadline,state,language) VALUES (?, ?, ?, ?, ?, ?,?,? )";
+		String sql = "INSERT INTO task (uname, tname,type, project,discribe,deadline,state,language,power) VALUES (?, ?, ?, ?, ?, ?,?,?,? )";
 		Timestamp tt = new Timestamp(po.getDeadline().getTime());
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, po.getUserName());
@@ -52,6 +53,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement.setTimestamp(6, tt);
 		pStatement.setInt(7, po.getState());
 		pStatement.setString(8, po.getLanguage().toString());
+		pStatement.setString(9, String.valueOf(po.getPower()));
 		try {
 			int j = pStatement.executeUpdate();
 			if (j == 1) {
@@ -97,7 +99,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-					Language.valueOf(rSet.getString(8)));
+					Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 			poList.add(po);
 
 		}
@@ -129,7 +131,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-					Language.valueOf(rSet.getString(8)));
+					Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 			poList.add(po);
 
 		}
@@ -197,7 +199,7 @@ public class ReviewDataImpl implements ReviewDataService {
 			while (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-						Language.valueOf(rSet.getString(8)));
+						Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 				poList.add(po);
 			}
 		} catch (Exception SQLException) {
@@ -290,7 +292,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-					Language.valueOf(rSet.getString(8)));
+					Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 			poList.add(po);
 
 		}
@@ -316,7 +318,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		if (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-					Language.valueOf(rSet.getString(8)));
+					Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 			DBManager.closeConnection();
 			return po;
 		} else
@@ -337,7 +339,7 @@ public class ReviewDataImpl implements ReviewDataService {
 			if (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-						Language.valueOf(rSet.getString(8)));
+						Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 				poList.add(po);
 			}
 			DBManager.closeConnection();
@@ -358,7 +360,7 @@ public class ReviewDataImpl implements ReviewDataService {
 			if (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-						Language.valueOf(rSet.getString(8)));
+						Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 				poList.add(po);
 			}
 			DBManager.closeConnection();
