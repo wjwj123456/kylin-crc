@@ -67,6 +67,7 @@ function searchTask(keyword) {
 }
 
 function displayResult(result) {
+    // 显示左侧标签页
     for (var property in result) {
         $('#myTab').append(
             '<li>' +
@@ -75,26 +76,27 @@ function displayResult(result) {
             '</li>');
 
         $('#myTabContent').append(
-            '<div class="tab-pane fade in active" id="' + language[property] + '">' +
-            '<hr></div>'
-        )
+            '<div class="tab-pane fade in active" id="' + property + '"><hr></div>'
+        );
+
+        addTask(property, result[property]);
     }
 }
 
 /**
  * 添加语言对应的任务列表
- * @param language
+ * @param tab
  * @param taskList
  */
-function addTask(language, taskList) {
+function addTask(tab, taskList) {
     for (var i = 0; i < taskList.length; i++) {
-        $('#' + language).append(
+        $('#' + tab).append(
             '<div class="avn-price-table avn-style14 avn-hover">' +
             '<div class="row">' +
-            '<div class="col-md-1 header"><p style="margin-left: -11px;">' + '</p></div>' +
-            '<div class="col-md-11"><h2 title="评审测试">评审测试</h2>' +
-            '<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>' +
-            '<p><strong>截止时间：XXXX/XX/XX XX:XX:XX</strong></p>' +
+            '<div class="col-md-1 header"><p style="margin-left: -11px;">' + language[tab] + '</p></div>' +
+            '<div class="col-md-11"><h2 title="' + taskList[i].taskName + '">' + taskList[i].taskName + '</h2>' +
+            '<p>' + taskList[i].describe + '</p>' +
+            '<p><strong>截止时间：' + taskList[i].deadline + '</strong></p>' +
             '</div></div></div>'
         );
     }

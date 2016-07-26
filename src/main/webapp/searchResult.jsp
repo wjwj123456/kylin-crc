@@ -108,23 +108,23 @@
 			</div>
 			<h3>We’ve found 4,293,725 repository results</h3>
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade in active" id="doc">
-					<div class="avn-price-table avn-style14 avn-hover">
-						<div class="row">
-							<div class="col-md-1 header">
-								<p style="margin-left: -11px;">Java</p>
-							</div>
-							<div class="col-md-11">
-								<h2 title="评审测试">评审测试</h2>
-								<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>
-								<p>
-									<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<hr>
-				</div>
+				<%--<div class="tab-pane fade in active" id="doc">--%>
+					<%--<div class="avn-price-table avn-style14 avn-hover">--%>
+						<%--<div class="row">--%>
+							<%--<div class="col-md-1 header">--%>
+								<%--<p style="margin-left: -11px;">Java</p>--%>
+							<%--</div>--%>
+							<%--<div class="col-md-11">--%>
+								<%--<h2 title="评审测试">评审测试</h2>--%>
+								<%--<p>司法哈高科发挥砂锅饭技术股份卡公司罚款是高科技发生噶发生口角光刻技术飞洒股份杰弗森阿康恢复</p>--%>
+								<%--<p>--%>
+									<%--<strong>截止时间：XXXX/XX/XX XX:XX:XX</strong>--%>
+								<%--</p>--%>
+							<%--</div>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+					<%--<hr>--%>
+				<%--</div>--%>
 			</div>
 		</div>
 	</div>
