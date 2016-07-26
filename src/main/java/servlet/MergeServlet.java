@@ -68,9 +68,10 @@ public class MergeServlet extends HttpServlet {
      * @throws IOException
      */
     private void handleSaveMerge(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userName = (String) request.getSession().getAttribute("username");
         String taskName = request.getParameter("taskName");
 
-        int result = CommandManager.executeCommand(new MergeCommand(getData(request.getParameter("data")), taskName));
+        int result = CommandManager.executeCommand(new MergeCommand(getData(request.getParameter("data")), taskName, userName));
         // MergeBlImpl merge = new MergeBlImpl();
         // int result =
         // merge.saveMergeReport(getData(request.getParameter("data")),
