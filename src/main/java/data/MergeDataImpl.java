@@ -96,7 +96,7 @@ public class MergeDataImpl implements MergeDataService {
 		for (ReportPO po : reportList) {
 			String sql = "UPDATE report SET state = ?,operator=? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
 			pStatement = connection.prepareStatement(sql);
-			pStatement.setInt(1, 4);
+			pStatement.setInt(1, 1);
 			pStatement.setString(2, operator);
 			pStatement.setString(3, taskName);
 			pStatement.setString(4, po.getUserName());
@@ -109,7 +109,7 @@ public class MergeDataImpl implements MergeDataService {
 
 		String sql2 = "UPDATE report SET state = ?, merge= ? ,operator=? WHERE tname = ? and uname= ? and filename=? and page=? and location=? and description=?  ";
 		pStatement = connection.prepareStatement(sql2);
-		pStatement.setInt(1, 3);
+		pStatement.setInt(1, 0);
 		pStatement.setInt(2, 1);
 		pStatement.setString(3, operator);
 		pStatement.setString(4, taskName);
@@ -218,7 +218,6 @@ public class MergeDataImpl implements MergeDataService {
 	public int saveHistory(String userName, String taskName, int fault, int assessfalut_mt, int assessfalut_mh)
 			throws SQLException, ClassNotFoundException {
 		int flag = 0;
-		confirmOperation(userName, taskName);
 		String sql = "INSERT INTO history (tname, uname, fault,assessfault_mt,assessfault_mh) VALUES (?, ?, ?,?,?)";
 		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, taskName);
