@@ -104,8 +104,8 @@ public class ReportDataImpl implements ReportDataService {
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setDouble(1, time);
 
-		String sql2 = "SELECT uname FROM review WHERE tname = '" + taskName + "' and state = " + State.merged.toString()
-				+ "'";
+		String sql2 = "SELECT uname FROM review WHERE tname = '" + taskName + "' and state = '"
+				+ State.merged.toString() + "'";
 		Connection connection = DBManager.connect();
 		PreparedStatement preparedStatement = connection.prepareStatement(sql2);
 		ResultSet resultset = preparedStatement.executeQuery();
