@@ -39,8 +39,7 @@ public class ReviewBlImpl implements ReviewBlService {
 	 */
 	public int saveReviewInfo(TaskVO vo) {
 		// TODO Auto-generated method stub
-		TaskPO po = new TaskPO(vo.getUserName(), vo.getTaskName(), vo.getType(), vo.getProject(), vo.getDescribe(),
-				vo.getDeadline(), vo.getState(), vo.getLanguage());
+		TaskPO po = new TaskPO(vo);
 		int flag = 0;
 		try {
 			flag = reviewDataService.saveReviewInfo(po);
@@ -261,9 +260,9 @@ public class ReviewBlImpl implements ReviewBlService {
 		Date deadline = new Date();
 		int state = -1;
 		Language language = Language.c;
-
+		TaskPO po = null;
 		try {
-			TaskPO po = reviewDataService.getTaskPOByTaskName(taskName);
+			po = reviewDataService.getTaskPOByTaskName(taskName);
 			userName = po.getUserName();
 			tName = po.getTaskName();
 			type = po.getType();
@@ -282,7 +281,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 
-		TaskVO vo = new TaskVO(userName, tName, type, project, describe, deadline, state, language);
+		TaskVO vo = new TaskVO(po);
 		return vo;
 	}
 
@@ -327,10 +326,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	 *
 	 * @author lpt14
-	 * @since 2016锟斤拷7锟斤拷14锟斤拷
+	 * @since 2016閿熸枻鎷�7閿熸枻鎷�14閿熸枻鎷�
 	 * @param userName
 	 * @param takName
 	 * @return
@@ -352,10 +351,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:锛堟柟娉曟弿杩帮級
+	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
 	 *
 	 * @author lpt14
-	 * @since 2016骞�7鏈�20鏃�
+	 * @since 2016楠烇拷7閺堬拷20閺冿拷
 	 * @param taskName
 	 * @return
 	 * @see blservice.ReviewBlService#getTaskState(java.lang.String)
@@ -386,10 +385,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:（方法描述）
+	 * TODO:锛堟柟娉曟弿杩帮級
 	 *
 	 * @author lpt14
-	 * @since 2016年7月22日
+	 * @since 2016骞�7鏈�22鏃�
 	 * @param userName
 	 * @param taskName
 	 * @return

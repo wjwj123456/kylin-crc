@@ -4,6 +4,7 @@ import java.util.Date;
 
 import vo.Language;
 import vo.Power;
+import vo.TaskVO;
 import vo.Type;
 
 public class TaskPO {
@@ -41,6 +42,23 @@ public class TaskPO {
 	public TaskPO() {
 		super();
 
+	}
+
+	/**
+	 * TODO: @param vo
+	 */
+	public TaskPO(TaskVO vo) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.userName = vo.getUserName();
+		this.taskName = vo.getTaskName();
+		this.type = vo.getType();
+		this.project = vo.getProject();
+		this.describe = vo.getDescribe();
+		this.deadline = vo.getDeadline();
+		this.state = vo.getState();
+		this.language = vo.getLanguage();
+		this.power = vo.getPower();
 	}
 
 	public String getUserName() {
