@@ -127,7 +127,8 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		List<Integer> faults = new ArrayList<Integer>();
 		List<Integer> assessfaults_mt = new ArrayList<Integer>();
 		List<Integer> assessfaults_mh = new ArrayList<Integer>();
-		String sql = "SELECT fault,assessfault_mt,assessfault_mh FROM history where tname = '" + taskName + "'";
+		String sql = "SELECT fault,assessfault_mt,assessfault_mh FROM history where tname = '" + taskName
+				+ "' ORDER BY id";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
 			faults.add(rSet.getInt(1));
