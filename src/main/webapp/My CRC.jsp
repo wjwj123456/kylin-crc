@@ -118,7 +118,7 @@ var sex ="${userInfo.sex}";
 		<div class="col-md-9 bs-docs-section">
 			<div>
 				<h2 id="perAnalyze">优秀评审</h2>
-				<div class=col-md-3>
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_5_achi()) {
 					%>
@@ -134,7 +134,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到5次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_10_achi()) {
 					%>
@@ -150,7 +150,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到10次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_20_achi()) {
 					%>
@@ -166,7 +166,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到20次</label>
 				</div>
-				<div class=col-md-3>
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_50_achi()) {
 					%>
@@ -182,7 +182,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到50次</label>
 				</div>
-				<div class=col-md-3>
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_100_achi()) {
 					%>
@@ -198,7 +198,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到100次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_200_achi()) {
 					%>
@@ -214,7 +214,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到200次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_500_achi()) {
 					%>
@@ -230,15 +230,11 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到500次</label>
 				</div>
-
-				<hr>
-
-
 			</div>
-			
+		<div class="row" >	<hr></div>
 			<div>
 				<h2 id="perAnalyze">评审时长</h2>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_20_achi()) {
 					%>
@@ -254,7 +250,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到5次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_50_achi()) {
 					%>
@@ -270,7 +266,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到10次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_100_achi()) {
 					%>
@@ -286,7 +282,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到20次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_200_achi()) {
 					%>
@@ -302,7 +298,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到50次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_500_achi()) {
 					%>
@@ -318,7 +314,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到100次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_1000_achi()) {
 					%>
@@ -334,7 +330,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到200次</label>
 				</div>
-				<div class=col-md-3>
+					<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_2000_achi()) {
 					%>
