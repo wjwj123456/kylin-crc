@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+.nav-tabs > li {
+    float: none;
+    margin-bottom: -1px;
+}
