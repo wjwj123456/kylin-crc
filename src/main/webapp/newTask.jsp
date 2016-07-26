@@ -217,7 +217,7 @@
 					<%--<input type="submit" value="upload">--%>
 					<a href="javascript:;" class="btn fileInput"
 						style="height: 37px; width: 90px;">上传文件 <input type="file" id="theInput"
-						name="file" multiple size="50" class="btn"
+						name="file" multiple="multiple" class="btn"
 						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0;" />
 
 					</a>
@@ -252,12 +252,11 @@
 	</script>
 	<script type="text/javascript">
 		$(".fileInput").on("change", "input[type='file']", function() {
-			var fileCount = $('#theInput').files.length;
 			var filePath = $(this).val();
 			$(".fileerrorTip").html("").hide();
 			var arr = filePath.split('\\');
 			var fileName = arr[arr.length - 1];
-			$(".showFileName").html(fileName+fileCount);
+			$(".showFileName").html(fileName);
 
 		})
 	</script>
