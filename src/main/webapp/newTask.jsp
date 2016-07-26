@@ -156,7 +156,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group hidden">
+			<div class="form-group">
 				<label for="grant" class="col-sm-2 control-label ">评审权限</label>
 				<div class="col-sm-4">
 					<select class="form-control" id="privacy">

@@ -87,7 +87,8 @@ function initCodeChoose() {
 
         storeCodeMerge(report);
     });
-}
+};
+
 $('#merge').on('click', function () {
     $('#choose-code').empty();
     $('#choose-file').empty();
@@ -105,9 +106,7 @@ $('#merge').on('click', function () {
         $('#choose-file').append($("<tr><th>文件名</th><th>页码</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
         fileMerge();
     }
-
 });
-
 
 function initFileChoose() {
     $('#choose-file').find('tr').not(':first').on('click', function () {
