@@ -22,5 +22,5 @@ function searchTask(keyword) {
 	});
 }
 function displayResult(result) {
-	alert(result);
+	alert(result.cpp[0].describe);
 }
