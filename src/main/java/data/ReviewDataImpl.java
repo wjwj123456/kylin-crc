@@ -18,7 +18,7 @@ import vo.Type;
  * review data impl
  *
  * @author lpt14
- * @since 2016锟斤拷7锟斤拷8锟斤拷
+ * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
  * @see
  */
 public class ReviewDataImpl implements ReviewDataService {
@@ -30,7 +30,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	 * save review infomation to database
 	 *
 	 * @author lpt14
-	 * @since 2016锟斤拷7锟斤拷8锟斤拷
+	 * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
 	 * @param po
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -64,14 +64,22 @@ public class ReviewDataImpl implements ReviewDataService {
 			System.out.println("conflict!");
 		}
 		DBManager.closeConnection();
+
+		String sql1 = "INSERT INTO lock (tname, lock) VALUES (?, ? )";
+
+		pStatement = DBManager.getPreparedStatement(sql1);
+		pStatement.setString(1, po.getTaskName());
+		pStatement.setInt(2, 1);
+
+		pStatement.executeUpdate();
 		return flag;
 	}
 
 	/**
-	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	 *
 	 * @author lpt14
-	 * @since 2016锟斤拷7锟斤拷8锟斤拷
+	 * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -100,10 +108,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	 *
 	 * @author lpt14
-	 * @since 2016锟斤拷7锟斤拷8锟斤拷
+	 * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -231,7 +239,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	/**
 	 *
 	 * @author ldk14
-	 * @since 2016锟斤拷7锟斤拷9锟斤拷
+	 * @since 2016閿熸枻鎷�7閿熸枻鎷�9閿熸枻鎷�
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -372,10 +380,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	 *
 	 * @author lpt14
-	 * @since 2016锟斤拷7锟斤拷14锟斤拷
+	 * @since 2016閿熸枻鎷�7閿熸枻鎷�14閿熸枻鎷�
 	 * @param userName
 	 * @param taskName
 	 * @return
@@ -414,10 +422,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:锛堟柟娉曟弿杩帮級
+	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
 	 *
 	 * @author lpt14
-	 * @since 2016骞�7鏈�20鏃�
+	 * @since 2016楠烇拷7閺堬拷20閺冿拷
 	 * @param taskName
 	 * @return
 	 * @throws SQLException
@@ -465,10 +473,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:（方法描述）
+	 * TODO:锛堟柟娉曟弿杩帮級
 	 *
 	 * @author lpt14
-	 * @since 2016年7月22日
+	 * @since 2016骞�7鏈�22鏃�
 	 * @param userName
 	 * @param taskName
 	 * @return
