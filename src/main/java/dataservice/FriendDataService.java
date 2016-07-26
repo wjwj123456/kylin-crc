@@ -28,4 +28,8 @@ public interface FriendDataService {
 	 * @throws ClassNotFoundException
 	 */
 	public int addFriend(String userName, String friendName) throws SQLException, ClassNotFoundException;
+
+	public int deleteFriend(String userName, String friendName) throws ClassNotFoundException, SQLException;
+	
+	public List<UserInfoPO> getFriendsByKeywords(String keyword) throws ClassNotFoundException, SQLException;
 }
