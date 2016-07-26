@@ -12,9 +12,12 @@ public class DBManager {
 	public static Connection connect() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
 
-		String url = "jdbc:mysql://115.159.195.149:3306/crc";
-		String username = "admin";
-		String password = "123456";
+		// String url = "jdbc:mysql://115.159.195.149:3306/crc";
+		// String username = "admin";
+		// String password = "123456";
+		String url = "jdbc:mysql://115.28.33.208:3306/crc";
+		String username = "ykk2";
+		String password = "123qwe";
 
 		Connection connection = DriverManager.getConnection(url + "?useUnicode=true&characterEncoding=UTF-8", username,
 				password);
