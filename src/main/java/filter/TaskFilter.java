@@ -6,11 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import bl.AssessmentBlImpl;
-import bl.InviteBlImpl;
-import bl.MergeBlImpl;
-import bl.ReportBlImpl;
-import bl.ReviewBlImpl;
+import bl.*;
 import blservice.AssessmentBlService;
 import blservice.MergeBlService;
 import blservice.ReportBlService;
@@ -60,6 +56,9 @@ public class TaskFilter implements Filter {
 		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
 		//待合并项目
 		session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
+		// 项目文件
+		session.setAttribute("taskFile", new FileBlImpl().get(taskName));
+		
 		chain.doFilter(request, response);
 	}
 
