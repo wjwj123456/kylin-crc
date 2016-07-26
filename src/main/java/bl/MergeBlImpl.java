@@ -53,14 +53,14 @@ public class MergeBlImpl implements MergeBlService {
 		return voList;
 	}
 
-	public int saveMergeReport(List<ReportVO> reportList, String taskName) {
+	public int saveMergeReport(List<ReportVO> reportList, String taskName, String operator) {
 		int flag = 0;
 		List<ReportPO> list = new ArrayList<ReportPO>();
 		for (ReportVO vo : reportList) {
 			list.add(new ReportPO(vo));
 		}
 		try {
-			flag = mergeDataService.saveMergeReport(list, taskName);
+			flag = mergeDataService.saveMergeReport(list, taskName, operator);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,10 +156,10 @@ public class MergeBlImpl implements MergeBlService {
 	}
 
 	/**
-	 * TODO:锛堟柟娉曟弿杩帮級
+	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
 	 *
 	 * @author lpt14
-	 * @since 2016骞�7鏈�19鏃�
+	 * @since 2016楠烇拷7閺堬拷19閺冿拷
 	 * @param vo
 	 * @return
 	 * @see blservice.MergeBlService#recoverMergeRecord(vo.ReportVO)

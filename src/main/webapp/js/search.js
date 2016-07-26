@@ -1,13 +1,14 @@
 $(function() {
 	$('#searchContent').keypress(function(e) {
 		if (e.which == 13) {
-			searchTask($('#searchContent').val().trim())
+			top.location = 'searchResult.jsp?content=' + $('#searchContent').val().trim();
 		}
-	})
+	});
+
 	$('#search').on('click', function() {
-		searchTask($('#searchContent').val().trim())
+		top.location = 'searchResult.jsp?content=' + $('#searchContent').val().trim();
 	})
-})
+});
 
 /**
  * search users by keyword
