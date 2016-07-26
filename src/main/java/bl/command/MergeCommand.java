@@ -44,10 +44,10 @@ public class MergeCommand implements Command {
         }
 
         if (lockBl.getCurrentUser(taskName).equals(operator)) {
-            merge.saveMergeReport(reportList, taskName, operator);
+            return merge.saveMergeReport(reportList, taskName, operator);
+        } else {
+            return 404;
         }
-
-        return merge.saveMergeReport(reportList, taskName, operator);
     }
 
     @Override
