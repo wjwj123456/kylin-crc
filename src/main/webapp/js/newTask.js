@@ -42,14 +42,15 @@ function createNewTask() {
  */
 function getData() {
 	var type = ($('#type').get(0).selectedIndex == 1) ? 'code' : 'document';
-	
+	var power = $('#privacy').get(0).selectedIndex == 0 ? 'PUBLIC' : 'PRIVATE';
 	var task = new Object({
 		taskName: $('#inputName').val().trim(),
 		type: type, 
 		project: '',
 		describe: $('#discription').val().trim(),
 		deadline: $('#deadline').val(),
-		state: 0
+		state: 0,
+		power: power
 	});
 	
 	task.language = task.type == '文档评审' ? 'none' : $('#language option:selected').val();

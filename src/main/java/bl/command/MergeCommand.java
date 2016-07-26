@@ -2,9 +2,11 @@ package bl.command;
 
 import java.util.List;
 
+import bl.LockBlImpl;
 import bl.MergeBlImpl;
 import bl.SplitBlImpl;
 import blservice.Command;
+import blservice.LockBlService;
 import blservice.MergeBlService;
 import blservice.SplitBlService;
 import vo.ReportVO;
@@ -36,6 +38,12 @@ public class MergeCommand implements Command {
 
 	@Override
 	public int execute() {
+		LockBlService lockBl = new LockBlImpl();
+
+//		if (lockBl.canWrite(taskName)) {
+//			merge.saveMergeReport(reportList, taskName, operator);
+//    			lockBl.setLock(taskName, )
+//		}
 		return merge.saveMergeReport(reportList, taskName, operator);
 	}
 
