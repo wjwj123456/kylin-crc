@@ -58,7 +58,7 @@ public class TaskFilter implements Filter {
 		session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
 		// 项目文件
 		session.setAttribute("taskFile", new FileBlImpl().get(taskName));
-		
+
 		chain.doFilter(request, response);
 	}
 
