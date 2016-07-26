@@ -20,7 +20,7 @@ public interface MergeBlService {
 
 	public List<ReportVO> mergeReport(String taskName);
 
-	public int saveMergeReport(List<ReportVO> reportList, String taskName);
+	public int saveMergeReport(List<ReportVO> reportList, String taskName, String operator);
 
 	public int saveAddedMergeReport(List<ReportVO> reportList, String taskName);
 
