@@ -117,7 +117,7 @@ var sex ="${userInfo.sex}";
 		</div>
 		<div class="col-md-9 bs-docs-section">
 			<div>
-				<h2 id="perAnalyze">个人成就</h2>
+				<h2 id="perAnalyze">优秀评审</h2>
 				<div class=col-md-3>
 					<%
 						if (achievement.isEfficiency_count_5_achi()) {
@@ -224,6 +224,126 @@ var sex ="${userInfo.sex}";
 						} else {
 					%>
 					<img alt="" src="img/achievement1/achievement72.png"
+						style="width: 150px"> <br>
+					<%
+						}
+					%>
+					<label class="text-center">优秀评审达到500次</label>
+				</div>
+
+				<hr>
+
+
+			</div>
+			
+			<div>
+				<h2 id="perAnalyze">评审时长</h2>
+				<div class=col-md-3>
+					<%
+						if (achievement.isReview_time_20_achi()) {
+					%>
+					<img alt="" src="img/achievement2/achievement11.png"
+						style="width: 150px"> <br>
+					<%
+						} else {
+					%>
+					<img alt="" src="img/achievement2/achievement12.png"
+						style="width: 150px"> <br>
+					<%
+						}
+					%>
+					<label class="text-center">优秀评审达到5次</label>
+				</div>
+				<div class=col-md-3>
+					<%
+						if (achievement.isReview_time_50_achi()) {
+					%>
+					<img alt="" src="img/achievement2/achievement21.png"
+						style="width: 150px"> <br>
+					<%
+						} else {
+					%>
+					<img alt="" src="img/achievement2/achievement22.png"
+						style="width: 150px"> <br>
+					<%
+						}
+					%>
+					<label class="text-center">优秀评审达到10次</label>
+				</div>
+				<div class=col-md-3>
+					<%
+						if (achievement.isReview_time_100_achi()) {
+					%>
+					<img alt="" src="img/achievement2/achievement31.png"
+						style="width: 150px"> <br>
+					<%
+						} else {
+					%>
+					<img alt="" src="img/achievement2/achievement32.png"
+						style="width: 150px"> <br>
+					<%
+						}
+					%>
+					<label class="text-center">优秀评审达到20次</label>
+				</div>
+				<div class=col-md-3>
+					<%
+						if (achievement.isReview_time_200_achi()) {
+					%>
+					<img alt="" src="img/achievement2/achievement41.png"
+						style="width: 150px"> <br>
+					<%
+						} else {
+					%>
+					<img alt="" src="img/achievement2/achievement42.png"
+						style="width: 150px"> <br>
+					<%
+						}
+					%>
+					<label class="text-center">优秀评审达到50次</label>
+				</div>
+				<div class=col-md-3>
+					<%
+						if (achievement.isReview_time_500_achi()) {
+					%>
+					<img alt="" src="img/achievement2/achievement51.png"
+						style="width: 150px"> <br>
+					<%
+						} else {
+					%>
+					<img alt="" src="img/achievement2/achievement52.png"
+						style="width: 150px"> <br>
+					<%
+						}
+					%>
+					<label class="text-center">优秀评审达到100次</label>
+				</div>
+				<div class=col-md-3>
+					<%
+						if (achievement.isReview_time_1000_achi()) {
+					%>
+					<img alt="" src="img/achievement2/achievement61.png"
+						style="width: 150px"> <br>
+					<%
+						} else {
+					%>
+					<img alt="" src="img/achievement2/achievement62.png"
+						style="width: 150px"> <br>
+					<%
+						}
+					%>
+					<label class="text-center">优秀评审达到200次</label>
+				</div>
+				<div class=col-md-3>
+					<%
+						if (achievement.isReview_time_2000_achi()) {
+					%>
+					<img alt="" src="img/achievement2/achievement71.png"
+						style="width: 150px"> <br>
+					<%
+						} else {
+					%>
+					<img alt="" src="img/achievement2/achievement72.png"
 						style="width: 150px"> <br>
 					<%
 						}
