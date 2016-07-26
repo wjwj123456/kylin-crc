@@ -213,6 +213,8 @@ public class ReviewBlImpl implements ReviewBlService {
 		FriendBlImpl friendBlImpl = new FriendBlImpl();
 		String uname = getTaskVOByTaskName(taskName).getUserName();
 
+		System.out.println("ReviewBlImpl.saveAcceptReviewer");
+		System.out.println(uname);
 		flag = friendBlImpl.addFriend(userName, uname);
 		flag = friendBlImpl.addFriend(uname, userName);
 

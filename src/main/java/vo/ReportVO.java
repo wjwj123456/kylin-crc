@@ -18,6 +18,15 @@ public class ReportVO implements Serializable {
 	private int state;
 	private int origin;
 	private int isMerged;
+	private String operator;
+
+	public String getOperator() {
+		return operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
 
 	public String getTaskName() {
 		return taskName;
@@ -93,6 +102,7 @@ public class ReportVO implements Serializable {
 		this.state = po.getState();
 		this.origin = po.getOrigin();
 		this.isMerged = po.getIsMerged();
+		this.operator = po.getOperator();
 	}
 
 	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description,
@@ -130,6 +140,21 @@ public class ReportVO implements Serializable {
 		this.state = state;
 		this.origin = origin;
 		this.isMerged = isMerged;
+	}
+
+	public ReportVO(String taskName, String userName, String fileName, int page, int location, String description,
+			int state, int origin, int isMerged, String operator) {
+		super();
+		this.taskName = taskName;
+		this.userName = userName;
+		this.fileName = fileName;
+		this.page = page;
+		this.location = location;
+		this.description = description;
+		this.state = state;
+		this.origin = origin;
+		this.isMerged = isMerged;
+		this.operator = operator;
 	}
 
 	public int getIsMerged() {

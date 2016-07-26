@@ -19,14 +19,16 @@ public class MergeCommand implements Command {
 
 	private List<ReportVO> reportList;
 	private String taskName;
+	private String operator;
 
 	private MergeBlService merge;
 
 	private SplitBlService split;
 
-	public MergeCommand(List<ReportVO> reportList, String taskName) {
+	public MergeCommand(List<ReportVO> reportList, String taskName, String operator) {
 		this.reportList = reportList;
 		this.taskName = taskName;
+		this.operator = operator;
 
 		merge = new MergeBlImpl();
 		split = new SplitBlImpl();
@@ -34,7 +36,7 @@ public class MergeCommand implements Command {
 
 	@Override
 	public int execute() {
-		return merge.saveMergeReport(reportList, taskName);
+		return merge.saveMergeReport(reportList, taskName, operator);
 	}
 
 	@Override

@@ -94,6 +94,7 @@ public class SplitServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void handleSplit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String userName = (String) request.getSession().getAttribute("username");
 		// 原始条目
 		JSONObject jsonObject = new JSONObject(request.getParameter("origin"));
 		ReportVO report = getData(jsonObject);
@@ -104,7 +105,7 @@ public class SplitServlet extends HttpServlet {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			reportList.add(getData(jsonArray.getJSONObject(i)));
 		}
-		CommandManager.executeCommand(new SplitCommand(reportList, report));
+		CommandManager.executeCommand(new SplitCommand(reportList, report, userName));
 		System.out.println(reportList);
 		System.out.println(report.toString());
 

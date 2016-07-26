@@ -31,6 +31,11 @@ public class SplitCommand implements Command {
 	private ReportVO report;
 
 	/**
+	 * 操作发起人
+	 */
+	private String operator;
+
+	/**
 	 * 备份所有要拆分条目的直接子节点
 	 */
 	private List<ReportVO> reportBackUp[];
@@ -39,9 +44,10 @@ public class SplitCommand implements Command {
 	private MergeBlService mergeBl;
 
 	@SuppressWarnings("unchecked")
-	public SplitCommand(ArrayList<ReportVO> vos, ReportVO vo) {
+	public SplitCommand(ArrayList<ReportVO> vos, ReportVO vo, String operator) {
 		this.reportList = vos;
 		this.report = vo;
+		this.operator = operator;
 
 		splitBl = new SplitBlImpl();
 		mergeBl = new MergeBlImpl();
@@ -78,7 +84,7 @@ public class SplitCommand implements Command {
 			temp.add(reportList.get(i));
 			temp.addAll(reportBackUp[i]);
 			// 1. list <-- list[]
-			mergeBl.saveMergeReport(temp, report.getTaskName());
+			mergeBl.saveMergeReport(temp, report.getTaskName(), operator);
 			// 2. vo <-\- list[]
 			try {
 				splitBl.split((ArrayList<ReportVO>) reportBackUp[i], report);
@@ -90,6 +96,6 @@ public class SplitCommand implements Command {
 		temp.clear();
 		temp.add(report);
 		temp.addAll(reportList);
-		mergeBl.saveMergeReport(temp, report.getTaskName());
+		mergeBl.saveMergeReport(temp, report.getTaskName(), operator);
 	}
 }
