@@ -197,6 +197,17 @@ taskName = '<%=request.getParameter("taskName")%>';
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
+					<%List<String> taskFile = Cast.cast(session.getAttribute("taskFile")) ; %>
+					<p>评审附件：</p>
+					<ul>
+					<%if(taskFile.size()==0){ %>
+						<li>无</li>
+					<%}else{ %>
+						<%for(String s : taskFile){ %>
+							<li><a href="/crc/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>
+						<%} %>
+					<%} %>
+					</ul>
 					<a
 						href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName"))%>">
 						<button class="btn ">查看已生成报告</button>
@@ -246,8 +257,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 						Undo
 					</button>
 					<button type="button" class="btn  btn-sm" id="redo">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						Redo
+						Redo <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					</button>
 				</div>
 			</h2>
