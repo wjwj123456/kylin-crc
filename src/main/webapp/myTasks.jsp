@@ -155,7 +155,6 @@
 								</p>
 
 								<div>
-									<p>参与者：</p>
 									<%
 										for (String s : users) {
 									%>
@@ -229,7 +228,6 @@
 									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
 								</p>
 								<div>
-									<p>参与者：</p>
 									<%
 										for (String s : users) {
 									%>
@@ -298,7 +296,6 @@
 									<strong>截止时间：<%=Tools.dateToString(vo.getDeadline())%></strong>
 								</p>
 								<div>
-									<p>参与者：</p>
 									<%
 										for (String s : users) {
 									%>
