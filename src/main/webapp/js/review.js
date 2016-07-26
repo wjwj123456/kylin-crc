@@ -706,7 +706,7 @@ function commitReport() {
                 $(obj).parent().parent().next().collapse('show');
             } else {
                 $(obj).parent().parent().parent().find('.in').collapse('hide');
-                $(obj).parent().parent().next().find('td').prepend($('#divideTable'));
+                $(obj).parent().parent().next().find('td').prepend($('#divide'));
                 var temp = $(obj).parent().parent().find('td');
                 report = new Object({
                     taskName: taskName,
@@ -732,7 +732,7 @@ function commitReport() {
                 $(obj).parent().parent().next().collapse('show');
             } else {
                 $(obj).parent().parent().parent().find('.in').collapse('hide');
-                $(obj).parent().parent().next().find('td').prepend($('#divideTable'));
+                $(obj).parent().parent().next().find('td').prepend($('#divide'));
                 var temp = $(obj).parent().parent().find('td');
                 report = new Object({
                     taskName: taskName,
