@@ -1,16 +1,15 @@
-
 // store the task to operate thanks to 
 // user can only operate a task at one time
 var taskName;
 
 $(function() {
 	$('#searchName').bind('input propertychange', function() {
-		if ($(this).val().trim() != '') {			
+		if ($(this).val().trim() != '') {
 			searchUser($(this).val().trim());
 		}
 	});
 	$('button[data-target="#inviteModal"]').on('click', function() {
-		taskName = $(this).parent().parent().children().first().text().trim();
+		taskName = $(this).parent().parent().parent().find('h2').attr('title');
 		$('#invited').find('tbody').empty();
 		loadAgreedReviewer(taskName);
 	});
@@ -27,27 +26,29 @@ $(function() {
 
 /**
  * load agreed reviewers of a task
+ * 
  * @param taskName
  */
 function loadAgreedReviewer(taskName) {
 	run_waitMe();
 	jQuery.ajax({
-		url: '/crc/TaskServlet',
-		type: 'post',
-		data: 'type=agree' + '&taskName=' + taskName,
-		success: function(data) {
+		url : '/crc/TaskServlet',
+		type : 'post',
+		data : 'type=agree' + '&taskName=' + taskName,
+		success : function(data) {
 			var users = jQuery.parseJSON(data)[0].users;
 			for (var i = 0; i < users.length; i++) {
-				$('#agreed').find('tbody').append('<tr><td>' + users[i] + '</td></tr>');
+				$('#agreed').find('tbody').append(
+						'<tr><td>' + users[i] + '</td></tr>');
 			}
 			stopWait();
-		}		
+		}
 	});
-	
+
 }
 
 /**
- * invite 
+ * invite
  */
 function invite() {
 	var temp = $('#invited').find('td');
@@ -55,21 +56,22 @@ function invite() {
 	for (var i = 0; i < temp.length; i++) {
 		users += $(temp[i]).text().trim() + ' ';
 	}
-	
+
 	run_waitMe();
 	$('#inviteModal').modal('hide')
 	jQuery.ajax({
-		url: '/crc/InviteServlet',
-		type: 'post',
-		data: 'taskName=' + taskName + '&userNumber=' + temp.length +'&users=' + users,
-		success: function(data) {
+		url : '/crc/InviteServlet',
+		type : 'post',
+		data : 'taskName=' + taskName + '&userNumber=' + temp.length
+				+ '&users=' + users,
+		success : function(data) {
 			if (data != 2) {
-				
+
 			}
 			stopWait();
 		}
 	});
-	
+
 }
 
 /**
@@ -103,11 +105,18 @@ function isUnique(obj) {
  */
 function displayUser(users) {
 	$('#toInvite').find('tbody').empty();
-	
+
 	for (var i = 0; i < users.length; i++) {
-		$('#toInvite').find('tbody').append('<tr><td>' + users[i].name + '</td></tr>');
+		$('#toInvite')
+				.find('tbody')
+				.append(
+						'<tr><td>'
+								+ '<img alt=""'
+								+ 'src="sculpture/user.png" width="30px"'
+								+ 'class="img-circle scaleable" height="30px"></td><td>'
+								+ users[i].name + '</td></tr>');
 	}
-	
+
 	$('#toInvite').find('tbody>tr').on('click', function() {
 		addInvite($(this));
 	});
@@ -120,19 +129,19 @@ function accept(taskButton) {
 	var name = $(taskButton).parent().prev().find('a').text();
 	run_waitMe();
 	jQuery.ajax({
-		url: '/crc/RefuseServlet',
-		style: 'post',
-		data: 'type=accept&taskName=' + name,
-		success: function(data) {
-			if (data == 0) {				
+		url : '/crc/RefuseServlet',
+		style : 'post',
+		data : 'type=accept&taskName=' + name,
+		success : function(data) {
+			if (data == 0) {
 				$(taskButton).text('已加入')
 				$(taskButton).removeClass('btn-success')
-				
+
 			}
 			stopWait();
 		}
 	});
-	
+
 }
 
 /**
@@ -142,10 +151,10 @@ function refuse(taskItem) {
 	var name = $($(taskItem).find('td')[1]).text().trim();
 	run_waitMe();
 	jQuery.ajax({
-		url: '/crc/RefuseServlet',
-		style: 'post',
-		data: 'type=refuse&taskName=' + name,
-		success: function(data) {
+		url : '/crc/RefuseServlet',
+		style : 'post',
+		data : 'type=refuse&taskName=' + name,
+		success : function(data) {
 			if (data == 0) {
 				alert('拒绝')
 			}
@@ -160,4 +169,3 @@ var theTaskName;
 function initInvite(obj) {
 	theTaskName = $(obj).parent().parent().find('h2').attr('title');
 }
-
