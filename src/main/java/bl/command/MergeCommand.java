@@ -39,7 +39,7 @@ public class MergeCommand implements Command {
     public int execute() {
         LockBlService lockBl = new LockBlImpl();
 
-        if (lockBl.getCurrentUser(taskName) == null) {
+        if (lockBl.getCurrentUser(taskName).equals("")) {
             lockBl.setCurrentUser(taskName, operator);
         }
 

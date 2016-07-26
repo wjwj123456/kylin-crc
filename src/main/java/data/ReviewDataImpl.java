@@ -67,11 +67,11 @@ public class ReviewDataImpl implements ReviewDataService {
 		}
 		DBManager.closeConnection();
 
-		String sql1 = "INSERT INTO lock (tname, lock) VALUES (?, ? )";
+		String sql1 = "INSERT INTO lock (tname, uname) VALUES (?, ? )";
 
 		pStatement = DBManager.getPreparedStatement(sql1);
 		pStatement.setString(1, po.getTaskName());
-		pStatement.setInt(2, 1);
+		pStatement.setString(2, "");
 
 		pStatement.executeUpdate();
 		return flag;

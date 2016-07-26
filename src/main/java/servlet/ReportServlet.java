@@ -131,7 +131,7 @@ public class ReportServlet extends HttpServlet {
 
 		// 取消写锁
 		LockBlService lockBl = new LockBlImpl();
-		lockBl.setCurrentUser(taskName, null);
+		lockBl.setCurrentUser(taskName, "");
 
 		PrintWriter out = response.getWriter();
 		out.print(result);

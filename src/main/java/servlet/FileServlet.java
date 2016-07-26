@@ -118,8 +118,11 @@ public class FileServlet extends HttpServlet {
         response.reset();
         response.setContentType("application/x-download");
 
-        String file_download = "/home/song/program/crc/data/1.png";
-        String file_display = "1.png";
+        String taskName = request.getParameter("taskName");
+        String fileName = request.getParameter("fileName");
+
+        String file_download = request.getServletContext().getInitParameter("file-upload") + "/" + taskName + "/" + fileName;
+        String file_display = fileName;
         file_display = URLEncoder.encode(file_display, "UTF-8");
         response.addHeader("Content-Disposition", "attachment;filename=" + file_display);
 
@@ -151,17 +154,5 @@ public class FileServlet extends HttpServlet {
                 outputStream.close();
             }
         }
-    }
-
-    /**
-     * 保存文件存储路径
-     *
-     * @param taskName 项目名
-     * @param paths    文件路径
-     */
-    private void storeFile(String taskName, List<String> paths) {
-        FileBlService fileBl = new FileBlImpl();
-
-        fileBl.add(taskName, paths);
     }
 }
