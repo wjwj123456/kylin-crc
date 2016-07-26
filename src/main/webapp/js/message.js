@@ -14,8 +14,7 @@ $('#accept').on('click', function () {
         type: 'post',
         success: function (data) {
             if (data == 0) {
-                $(this).removeClass("btn-success");
-                $(this).text("已参加");
+                $('#accept').removeClass("btn-success").end().text("已参加");
                 stopWait();
             }
         }

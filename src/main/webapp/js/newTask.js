@@ -26,7 +26,8 @@ function createNewTask() {
 		data: 'type=createNewTask' + '&data=' + getData(), 
 		success: function(data) {
 			if (data == 0) {
-				top.location = 'My CRC.jsp';
+				$('#createTask').removeClass('btn-success').end().text('创建成功');
+				uploadFile();
 			} else if (data == 1) {
 				alert("项目已存在")
 			}
@@ -78,6 +79,11 @@ function checkOK() {
 	}
 }
 
-$('#inputName').on('input propertychange', function () {
-	$('#form').attr('action', '/crc/FileServlet?type=');
-});
+/**
+ * 创建任务成功后，可选择上传文件
+ */
+function uploadFile() {
+	$('#inputName').on('input propertychange', function () {
+		$('#form').attr('action', '/crc/FileServlet?type=');
+	});
+}

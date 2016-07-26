@@ -100,10 +100,10 @@ public class SearchServlet extends HttpServlet {
 
 		List<TaskVO> taskList;
 		JSONObject jsonObject = new JSONObject();
-		for (int i = 0; i < languages.length; i++) {
-			taskList = review.searchTasksByKeyword(keyword, languages[i]);
+		for (Language language : languages) {
+			taskList = review.searchTasksByKeyword(keyword, language);
 			if (taskList.size() != 0) {
-				jsonObject.put(languages[i].toString(), taskList);
+				jsonObject.put(language.toString(), taskList);
 			}
 		}
 

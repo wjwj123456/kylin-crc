@@ -204,8 +204,8 @@
 					<%--<input type="submit" value="upload">--%>
 					<form action="/crc/FileServlet?type=upload" method="post"
 						  target="newFrame" enctype="multipart/form-data" id="form">
-						<input type="file" name="file" multiple size="50"/> <br/>
-						<input type="submit" value="Upload File"/>
+						<input type="file" name="file" multiple size="50"/> <br/> <input
+							type="submit" value="Upload File"/>
 					</form>
 				</div>
 			</div>
