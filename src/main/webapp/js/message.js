@@ -26,13 +26,12 @@ $('#accept').on('click', function () {
 $('#read').on('click', function () {
     run_waitMe();
     jQuery.ajax({
-        url: '/crc/RefuseServlet?type=delete',
+        url: '/crc/RefuseServlet',
         type: 'post',
+        data: 'type=delete&' + 'taskName=' + $('#read').parent().prev().prev().children().text(),
         success: function (data) {
-            if (data == 0) {
-                $(this).parent().parent().remove();
-                stopWait();
-            }
+            $(this).parent().parent().remove();
+            stopWait();
         }
     });
 });
