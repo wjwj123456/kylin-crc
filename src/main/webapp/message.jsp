@@ -99,8 +99,8 @@
 					<tr>
 						<td><%=vo.getUserName()%></td>
 						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-						<td><button class="btn btn-success">接受邀请</button></td>
-						<td><button type="button" class="close" aria-hidden="true">x</button></td>
+						<td><button class="btn btn-success" id="accept">接受邀请</button></td>
+						<td><button class="btn btn-danger" id="read">已读</button></td>
 					</tr>
 					<%
 						}
@@ -127,6 +127,7 @@
 	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
+	<script src="js/message.js"></script>
 </body>
 
 </html>
