@@ -44,8 +44,17 @@ var language = new Object({
 
 $(function () {
     searchTask(getUrlParam("content"));
-});
+    
+    $('#search').on('click', function () {
+        searchTask($('#search-content').val().trim())
+    });
 
+    $('#search-content').keypress(function(e) {
+		if (e.which == 13) {
+            searchTask($('#search-content').val().trim());
+		}
+	});
+});
 
 /**
  * search task by keyword
@@ -53,6 +62,10 @@ $(function () {
  * @returns
  */
 function searchTask(keyword) {
+    if (keyword == '') {
+        return;
+    }
+    
     run_waitMe();
     jQuery.ajax({
         url: '/crc/SearchServlet',
@@ -61,26 +74,38 @@ function searchTask(keyword) {
         success: function (data) {
             result = jQuery.parseJSON(data);
             displayResult(result);
+            
             stopWait();
         }
     });
 }
 
 function displayResult(result) {
+    // 清空原有列表
+    $('#myTab').empty();
+    $('#myTabContent').empty();
+
+    var number = 0;
     // 显示左侧标签页
     for (var property in result) {
         $('#myTab').append(
             '<li>' +
             '<a href="#' + property + '" data-toggle="tab">' + language[property] +
             '<span class="badge pull-right">' + result[property].length + '</span>' + '</a>' +
-            '</li>');
+            '</li>'
+        );
 
         $('#myTabContent').append(
             '<div class="tab-pane fade in active" id="' + property + '"><hr></div>'
         );
 
         addTask(property, result[property]);
+
+        number = number + result[property].length;
     }
+
+    // 显示查询结果数目
+    $('#result').text('We have searched ' + number + ' tasks');
 }
 
 /**
@@ -96,7 +121,7 @@ function addTask(tab, taskList) {
             '<div class="col-md-1 header"><p style="margin-left: -11px;">' + language[tab] + '</p></div>' +
             '<div class="col-md-11"><h2 title="' + taskList[i].taskName + '">' + taskList[i].taskName + '</h2>' +
             '<p>' + taskList[i].describe + '</p>' +
-            '<p><strong>截止时间：' + taskList[i].deadline + '</strong></p>' +
+            '<p><strong>截止时间：' + taskList[i].deadline.substr(0, taskList[i].deadline.length - 5) + '</strong></p>' +
             '</div></div></div>'
         );
     }

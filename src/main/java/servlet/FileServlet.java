@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,9 @@ import java.util.List;
  */
 public class FileServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+
+    private final int maxFileSize = 5000 * 1024;
+    private final int maxMemSize = 5000 * 1024;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -64,14 +68,13 @@ public class FileServlet extends HttpServlet {
      * @param response
      */
     private void handleUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int maxFileSize = 5000 * 1024;
-        int maxMemSize = 5000 * 1024;
+        String taskName = request.getParameter("taskName");
         ServletContext context = request.getServletContext();
         String filePath = context.getInitParameter("file-upload");
         // 验证上传内容的类型
         String contentType = request.getContentType();
 
-        if ((contentType.contains("multipart/form-data"))) {
+        if ((contentType.contains("multipart/form-data")) && new File(filePath + "/" + taskName).mkdir()) {
             DiskFileItemFactory factory = new DiskFileItemFactory();
             // 设置内存中存储文件的最大值
             factory.setSizeThreshold(maxMemSize);
@@ -79,22 +82,25 @@ public class FileServlet extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             // 设置最大上传的文件大小
             upload.setSizeMax(maxFileSize);
+
+            FileBlService fileBl = new FileBlImpl();
+            List<String> fileList = new ArrayList<>();
+
             try {
                 // 解析获取的文件
                 List<FileItem> fileItems = upload.parseRequest(request);
                 // 处理上传的文件
                 for (FileItem fileItem : fileItems) {
                     if (!fileItem.isFormField()) {
-                        // 获取上传文件的参数
-                        // String fieldName = fi.getFieldName();
                         String fileName = fileItem.getName();
-                        // boolean isInMemory = fi.isInMemory();
-                        // long sizeInBytes = fi.getSize();
                         // 写入文件
-                        File file = new File(filePath, fileName);
+                        File file = new File(filePath + "/" + taskName, fileName);
                         fileItem.write(file);
+                        fileList.add(fileName);
                     }
                 }
+
+                fileBl.add(taskName, fileList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
