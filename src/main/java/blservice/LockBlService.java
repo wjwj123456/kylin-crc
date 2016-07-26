@@ -12,7 +12,8 @@ package blservice;
  * @see
  */
 public interface LockBlService {
-	public boolean canWrite(String taskName);
 
-	public int setLock(String taskName, boolean flag);
+	public String getCurrentUser(String taskName);
+
+	public int setCurrentUser(String taskName, String userName);
 }

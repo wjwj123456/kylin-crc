@@ -19,6 +19,7 @@ public class TaskVO implements Serializable {
 	private Date deadline;
 	private int state;
 	private Language language;
+	private Power power;
 
 	public TaskVO(String userName, String taskName) {
 		super();
@@ -27,7 +28,7 @@ public class TaskVO implements Serializable {
 	}
 
 	public TaskVO(String userName, String taskName, Type type, String project, String describe, Date deadline,
-			int state, Language language) {
+			int state, Language language, Power power) {
 		super();
 		this.userName = userName;
 		this.taskName = taskName;
@@ -37,6 +38,7 @@ public class TaskVO implements Serializable {
 		this.deadline = deadline;
 		this.state = state;
 		this.language = language;
+		this.power = power;
 	}
 
 	public TaskVO(TaskPO po) {
@@ -49,6 +51,15 @@ public class TaskVO implements Serializable {
 		this.deadline = po.getDeadline();
 		this.state = po.getState();
 		this.language = po.getLanguage();
+		this.power = po.getPower();
+	}
+
+	public Power getPower() {
+		return power;
+	}
+
+	public void setPower(Power power) {
+		this.power = power;
 	}
 
 	public String getUserName() {

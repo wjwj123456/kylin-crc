@@ -3,6 +3,7 @@ package po;
 import java.util.Date;
 
 import vo.Language;
+import vo.Power;
 import vo.Type;
 
 public class TaskPO {
@@ -15,9 +16,10 @@ public class TaskPO {
 	private Date deadline;
 	private int state;
 	private Language language;
+	private Power power;
 
 	public TaskPO(String userName, String taskName, Type type, String project, String describe, Date deadline,
-			int state, Language language) {
+			int state, Language language, Power power) {
 		super();
 		this.userName = userName;
 		this.taskName = taskName;
@@ -27,6 +29,7 @@ public class TaskPO {
 		this.deadline = deadline;
 		this.state = state;
 		this.language = language;
+		this.power = power;
 	}
 
 	public TaskPO(String userName, String taskName) {
@@ -90,6 +93,14 @@ public class TaskPO {
 
 	public int getState() {
 		return state;
+	}
+
+	public Power getPower() {
+		return power;
+	}
+
+	public void setPower(Power power) {
+		this.power = power;
 	}
 
 	public void setState(int state) {

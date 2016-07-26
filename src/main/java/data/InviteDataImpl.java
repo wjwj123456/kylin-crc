@@ -9,6 +9,7 @@ import java.util.List;
 import dataservice.InviteDataService;
 import po.TaskPO;
 import vo.Language;
+import vo.Power;
 import vo.Type;
 
 public class InviteDataImpl implements InviteDataService {
@@ -37,7 +38,7 @@ public class InviteDataImpl implements InviteDataService {
 			while (rSet.next()) {
 				TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 						rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-						Language.valueOf(rSet.getString(8)));
+						Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 				poList.add(po);
 			}
 		}
@@ -81,7 +82,7 @@ public class InviteDataImpl implements InviteDataService {
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-					Language.valueOf(rSet.getString(8)));
+					Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 			poList.add(po);
 		}
 
@@ -102,7 +103,7 @@ public class InviteDataImpl implements InviteDataService {
 		while (rSet.next()) {
 			TaskPO po = new TaskPO(rSet.getString(1), rSet.getString(2), Type.valueOf(rSet.getString(3)),
 					rSet.getString(4), rSet.getString(5), rSet.getTimestamp(6), rSet.getInt(7),
-					Language.valueOf(rSet.getString(8)));
+					Language.valueOf(rSet.getString(8)), Power.valueOf(rSet.getString(9)));
 			poList.add(po);
 		}
 
