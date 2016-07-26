@@ -14,6 +14,7 @@
 <link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" href="css/style.css">
 <style type="text/css">
 .nav>li>a:focus, .nav>li>a:hover {
 	text-decoration: none;
@@ -135,8 +136,8 @@
 			<p>创建你的新任务</p>
 		</div>
 		<iframe name="newFrame" style="display: none;"></iframe>
-		<form class="form-horizontal" action="/crc/FileServlet?type=upload" target="newFrame"
-			  method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" action="/crc/FileServlet?type=upload"
+			target="newFrame" method="post" enctype="multipart/form-data">
 			<div class="form-group" id="nameGroup">
 				<label for="inputName" class="col-sm-2 control-label">评审名</label>
 				<div class="col-sm-10">
@@ -197,18 +198,6 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group" id="file">
-				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
-				<div class="col-sm-10">
-					<%--<input type="file" multiple="multiple" id="filein"><br/>--%>
-					<%--<input type="submit" value="upload">--%>
-					<form action="/crc/FileServlet?type=upload" method="post"
-						  target="newFrame" enctype="multipart/form-data" id="form">
-						<input type="file" name="file" multiple size="50"/> <br/> <input
-							type="submit" value="Upload File"/>
-					</form>
-				</div>
-			</div>
 			<div class="form-group" id="discripGroup">
 				<label for="discription" class="col-sm-2 control-label">评审说明</label>
 				<div class="col-sm-10">
@@ -216,7 +205,26 @@
 				</div>
 			</div>
 			<div class="form-group" style="text-align: right;">
-				<button class="btn btn-success " id="createTask">确认创建</button>
+				<button class="btn" id="createTask">确认创建</button>
+			</div>
+		</form>
+		<form action="/crc/FileServlet?type=upload" method="post"
+			target="newFrame" enctype="multipart/form-data" id="form" style="">
+			<div class="form-group" id="file">
+				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
+				<div class="col-sm-10">
+					<%--<input type="file" multiple="multiple" id="filein"><br/>--%>
+					<%--<input type="submit" value="upload">--%>
+					<a href="javascript:;" class="btn fileInput"
+						style="height: 37px; width: 90px;">上传文件 <input type="file" id="theInput"
+						name="file" multiple size="50" class="btn"
+						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0;" />
+
+					</a>
+					<lable class="showFileName"></lable>
+					<button type="submit" value="Upload File" class="btn">提交文件</button>
+					<button class="btn" id="cancel">取消</button>
+				</div>
 			</div>
 		</form>
 	</div>
@@ -243,10 +251,18 @@
 		});
 	</script>
 	<script type="text/javascript">
-		var num = $
-		{
-			messageNum
-		};
+		$(".fileInput").on("change", "input[type='file']", function() {
+			var fileCount = $('#theInput').files.length;
+			var filePath = $(this).val();
+			$(".fileerrorTip").html("").hide();
+			var arr = filePath.split('\\');
+			var fileName = arr[arr.length - 1];
+			$(".showFileName").html(fileName+fileCount);
+
+		})
+	</script>
+	<script type="text/javascript">
+		var num = ${messageNum};
 	</script>
 	<script src='js/mesSpan.js'></script>
 </body>

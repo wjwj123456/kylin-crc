@@ -227,6 +227,8 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, State.agree.toString());
 
+		System.out.println(userName);
+		System.out.println(taskName);
 		int i = pStatement.executeUpdate();
 		if (i == 1)
 			flag = 0;

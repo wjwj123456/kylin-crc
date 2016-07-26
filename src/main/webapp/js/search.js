@@ -28,21 +28,3 @@ function searchUser(keyword) {
 		}
 	});
 }
-
-/**
- * search task by keyword 
- * @param keyword
- * @returns
- */
-function searchTask(keyword) {
-	run_waitMe();
-	jQuery.ajax({
-		url: '/crc/SearchServlet',
-		type: 'post',
-		data: 'type=searchTask&keyword=' + keyword + '&language=""',
-		success: function(data) {
-			top.location = 'searchResult.jsp'
-			stopWait();
-		}
-	});
-}

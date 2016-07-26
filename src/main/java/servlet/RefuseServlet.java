@@ -38,7 +38,7 @@ public class RefuseServlet extends HttpServlet {
 		String userName = (String) request.getSession().getAttribute("username");
 		String taskName = Encode.transfer(request.getParameter("taskName"));
 
-		int result = 0;
+		int result;
 		if (type.equals("accept")) {
 			ReviewBlImpl review = new ReviewBlImpl();
 			result = review.saveAcceptReviewer(userName, taskName);

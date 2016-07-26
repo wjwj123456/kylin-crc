@@ -10,13 +10,12 @@
 $('#accept').on('click', function () {
     run_waitMe();
     jQuery.ajax({
-        url: '/crc/RefuseServlet?type=accept',
+        url: '/crc/RefuseServlet',
         type: 'post',
-        success: function (data) {
-            if (data == 0) {
-                $('#accept').removeClass("btn-success").end().text("已参加");
-                stopWait();
-            }
+        data: 'type=accept&' + 'taskName=' + $('#accept').parent().prev().children().text(),
+        success: function () {
+            $('#accept').removeClass("btn-success").text("已参加");
+            stopWait();
         }
     });
 });
@@ -29,7 +28,7 @@ $('#read').on('click', function () {
     jQuery.ajax({
         url: '/crc/RefuseServlet?type=delete',
         type: 'post',
-        success: function(data) {
+        success: function (data) {
             if (data == 0) {
                 $(this).parent().parent().remove();
                 stopWait();
