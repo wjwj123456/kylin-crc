@@ -89,22 +89,26 @@ function initCodeChoose(){
 	});
 }
 $('#merge').on('click',function(){
-	$('#choose-code').empty();
-	$('#choose-file').empty();
-	$('#fileName-choosecode').val('');
-	$('#lineNum-choosecode').val('');
-	$('#discription-choosecode').val('');
-	$('#fileName-choosefile').val('');
-	$('#pageNum-choosefile').val('');
-	$('#lineNum-choosefile').val('');
-	$('#discription-choosefile').val('');
-	if(taskType=='code'){
-		$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
-		codeMerge();
+	if($('#mergeBlock').find('table').children().children().not('.collapse').find('input:checkbox:checked').length){
+		$('#choose-code').empty();
+		$('#choose-file').empty();
+		$('#fileName-choosecode').val('');
+		$('#lineNum-choosecode').val('');
+		$('#discription-choosecode').val('');
+		$('#fileName-choosefile').val('');
+		$('#pageNum-choosefile').val('');
+		$('#lineNum-choosefile').val('');
+		$('#discription-choosefile').val('');
+		if(taskType=='code'){
+			$('#choose-code').append($("<tr><th>文件名</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
+			codeMerge();
+		}else {
+			$('#choose-file').append($("<tr><th>文件名</th><th>页码</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
+			fileMerge();
+		}
 	}else {
-		$('#choose-file').append($("<tr><th>文件名</th><th>页码</th><th>行数</th><th>描述</th><th>评审人</th></tr>"));
-		fileMerge();
 	}
+	
 	
 });
 
@@ -549,7 +553,18 @@ function commitReport() {
 	 * 代码合并条目以后的操作，将合并后的条目加入合并列表，删除原始条目
 	 */
 	function afterCodeMerge(report) {
-		$('#merged-code').append(
+		var inputs = $('#toMerge-code').children().children().not('.collapse').find('input');
+		var mark;
+		var j = 0;
+		for( i = 0; i < inputs.length; i++){
+			if($(inputs[i]).prop('checked')==true){
+				mark=$('#toMerge-code tbody').children().not('.collapse')[j+1];
+				$($('#toMerge-code tbody').children().not('.collapse')[j]).remove();
+				j--;
+			}
+			j++;
+		}
+		$(mark).after(
 				'<tr><td>' + report.fileName + '</td>' +
 				'<td>' + report.location + '</td>' + 
 				'<td>' + report.description + '</td>' + 
@@ -557,15 +572,6 @@ function commitReport() {
 				'<td><button type="button" class="close"' +
 				'aria-hidden="true" id="delete" onclick="deleteCodeMerge(this)">' +
 				'x</button></td>');
-		var inputs = $('#toMerge-code').find('input');
-		var j = 0;
-		for( i = 0; i < inputs.length; i++){
-			if($(inputs[i]).prop('checked')==true){
-				$($('#toMerge-code tbody').find('tr')[j]).remove();
-				j--;
-			}
-			j++;
-		}
 		$('#chooseModal').modal('hide');
 	}
 	
@@ -573,7 +579,18 @@ function commitReport() {
 	 * 文档合并条目以后的操作，将合并后的条目加入合并列表，删除原始条目
 	 */
 	function afterFileMerge(report) {
-		$('#merged-file').append(
+		var inputs = $('#toMerge-file').children().children().not('.collapse').find('input');
+		var j = 0;
+		var mark;
+		for( i = 0; i < inputs.length; i++){
+			if($(inputs[i]).prop('checked')==true){
+				mark=$('#toMerge-code tbody').children().not('.collapse')[j+1];
+				$($('#toMerge-file tbody').children().not('.collapse')[j]).remove();
+				j--;
+			}
+			j++;
+		}
+		$(mark).after(
 				'<tr><td>' + report.fileName + '</td>' +
 				'<td>' + report.page + '</td>' +
 				'<td>' + report.location + '</td>' + 
@@ -582,15 +599,6 @@ function commitReport() {
 				'<td><button type="button" class="close"' +
 				'aria-hidden="true" id="delete" onclick="deleteFileMerge(this)">' +
 				'x</button></td>');
-		var inputs = $('#toMerge-file').find('input');
-		var j = 0;
-		for( i = 0; i < inputs.length; i++){
-			if($(inputs[i]).prop('checked')==true){
-				$($('#toMerge-file tbody').find('tr')[j]).remove();
-				j--;
-			}
-			j++;
-		}
 		$('#chooseModal').modal('hide');
 	}
 }
@@ -686,10 +694,10 @@ function commitReport() {
 {
 	// 选择被拆分的报告
 	var report;
-	$('#toMerge-code').find('button').on('click',function(){
+	$('#toMerge-code').children().children().not('.collapse').find('button').on('click',function(){
 		handleCollapse_code(this);	
 	});
-	$('#toMerge-file').find('button').on('click',function(){
+	$('#toMerge-file').children().children().not('.collapse').find('button').on('click',function(){
 		handleCollapse_file(this);
 	});
 	/**
@@ -703,7 +711,7 @@ function commitReport() {
 				$(obj).parent().parent().next().collapse('show');
 			}else {
 				$(obj).parent().parent().parent().find('.in').collapse('hide');
-				$(obj).parent().parent().next().find('td').prepend($('#divideTable'));
+				$(obj).parent().parent().next().find('td').prepend($('#divide'));
 				var temp = $(obj).parent().parent().find('td');
 				report = new Object({
 					taskName: taskName,
