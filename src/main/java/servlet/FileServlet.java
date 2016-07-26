@@ -1,5 +1,7 @@
 package servlet;
 
+import bl.FileBlImpl;
+import blservice.FileBlService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -9,16 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.List;
-import java.util.logging.Level;
-
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 /**
  * Servlet implementation class FileServlet
@@ -70,7 +68,7 @@ public class FileServlet extends HttpServlet {
         int maxMemSize = 5000 * 1024;
         ServletContext context = request.getServletContext();
         String filePath = context.getInitParameter("file-upload");
-        // 验证上传内容了类型
+        // 验证上传内容的类型
         String contentType = request.getContentType();
 
         if ((contentType.contains("multipart/form-data"))) {
@@ -84,20 +82,15 @@ public class FileServlet extends HttpServlet {
             try {
                 // 解析获取的文件
                 List<FileItem> fileItems = upload.parseRequest(request);
-                System.out.println(fileItems);
                 // 处理上传的文件
                 for (FileItem fileItem : fileItems) {
-                    System.out.println(fileItem);
                     if (!fileItem.isFormField()) {
-                        System.out.println(3);
                         // 获取上传文件的参数
                         // String fieldName = fi.getFieldName();
                         String fileName = fileItem.getName();
                         // boolean isInMemory = fi.isInMemory();
                         // long sizeInBytes = fi.getSize();
                         // 写入文件
-                        System.out.println(filePath);
-                        System.out.println(fileName);
                         File file = new File(filePath, fileName);
                         fileItem.write(file);
                     }
@@ -154,15 +147,15 @@ public class FileServlet extends HttpServlet {
         }
     }
 
-    private String getFileName(final Part part) {
-        final String partHeader = part.getHeader("content-disposition");
-        LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
-        for (String content : part.getHeader("content-disposition").split(";")) {
-            if (content.trim().startsWith("filename")) {
-                return content.substring(
-                        content.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-        return null;
+    /**
+     * 保存文件存储路径
+     *
+     * @param taskName 项目名
+     * @param paths    文件路径
+     */
+    private void storeFile(String taskName, List<String> paths) {
+        FileBlService fileBl = new FileBlImpl();
+
+        fileBl.add(taskName, paths);
     }
 }

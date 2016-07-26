@@ -77,3 +77,7 @@ function checkOK() {
 		$('#deadGroup').removeClass('has-error');
 	}
 }
+
+$('#inputName').on('input propertychange', function () {
+	$('#form').attr('action', '/crc/FileServlet?type=');
+});

@@ -16,6 +16,8 @@ import blservice.AchievementBlService;
 
 /**
  * Created by song on 16-7-25.
+ *
+ * 加载成就
  */
 @WebFilter(filterName = "AchievementFilter", urlPatterns = { "/My CRC.jsp" })
 public class AchievementFilter implements Filter {
