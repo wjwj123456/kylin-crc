@@ -221,7 +221,7 @@
 						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0;" />
 					</a>
 					<lable class="showFileName"></lable>
-					<button type="submit" value="Upload File" class="btn">提交文件</button>
+					<button type="submit" value="Upload File" class="btn" id="upload">提交文件</button>
 					<button class="btn" id="cancel">取消</button>
 				</div>
 			</div>

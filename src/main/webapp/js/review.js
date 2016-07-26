@@ -508,7 +508,7 @@ function commitReport() {
             data: 'type=saveMerge&taskName=' + taskName + '&data=' + JSON.stringify(data),
             success: function (data) {
                 if (data == 404) {
-                    alert('提交冲突')
+                    alert('合并冲突，请等待')
                 } else {
                     afterCodeMerge(report);
                 }
