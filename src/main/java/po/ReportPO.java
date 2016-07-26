@@ -13,6 +13,22 @@ public class ReportPO {
 	private int state;
 	private int origin;
 	private int isMerged;
+	private String operator;
+
+	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description,
+			int state, int origin, int isMerged, String operator) {
+		super();
+		this.taskName = taskName;
+		this.userName = userName;
+		this.fileName = fileName;
+		this.page = page;
+		this.location = location;
+		this.description = description;
+		this.state = state;
+		this.origin = origin;
+		this.isMerged = isMerged;
+		this.operator = operator;
+	}
 
 	public ReportPO(String taskName, String userName, String fileName, int page, int location, String description,
 			int state, int origin) {
@@ -91,6 +107,14 @@ public class ReportPO {
 		this.origin = origin;
 	}
 
+	public String getOperator() {
+		return operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
+
 	public ReportPO(ReportVO vo) {
 		this.taskName = vo.getTaskName();
 		this.userName = vo.getUserName();
@@ -101,6 +125,7 @@ public class ReportPO {
 		this.state = vo.getState();
 		this.origin = vo.getOrigin();
 		this.isMerged = vo.getIsMerged();
+		this.operator = vo.getOperator();
 	}
 
 	public int getIsMerged() {
