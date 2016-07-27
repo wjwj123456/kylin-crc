@@ -74,6 +74,7 @@ public class FileServlet extends HttpServlet {
         // 验证上传内容的类型
         String contentType = request.getContentType();
 
+        System.out.println(contentType);
         if ((contentType.contains("multipart/form-data")) && new File(filePath + "/" + taskName).mkdir()) {
             DiskFileItemFactory factory = new DiskFileItemFactory();
             // 设置内存中存储文件的最大值
