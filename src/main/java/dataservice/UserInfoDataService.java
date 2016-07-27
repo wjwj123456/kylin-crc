@@ -32,4 +32,25 @@ public interface UserInfoDataService {
 	 * @throws ClassNotFoundException 
 	 */
 	public UserInfoPO get(String username) throws ClassNotFoundException, SQLException;
+	
+	
+	/**
+	 * 
+	 * @param userName
+	 * @param path
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public int setPicture(String userName, String path) throws ClassNotFoundException, SQLException;
+	
+	
+	/**
+	 * 
+	 * @param userName
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public String getPicture(String userName) throws ClassNotFoundException, SQLException;
 }

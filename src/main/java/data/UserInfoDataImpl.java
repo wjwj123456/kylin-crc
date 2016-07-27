@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import dataservice.UserInfoDataService;
@@ -91,6 +92,30 @@ public class UserInfoDataImpl implements UserInfoDataService {
 		result.setLanguages(user_language);
 		DBManager.stopAll(rSet, pStatement, connection);
 		return result;
+	}
+
+	@Override
+	public int setPicture(String userName, String path) throws ClassNotFoundException, SQLException {
+		Connection connection = DBManager.connect();
+		String sql = "UPDATE inform SET picture = ? WHERE uname = ?";
+		PreparedStatement pStatement = connection.prepareStatement(sql);
+		pStatement.setString(1, path);
+		pStatement.setString(2, userName);
+		int i = -1;
+		i = pStatement.executeUpdate();
+		DBManager.stopAll(null, pStatement, connection);
+		return i;
+	}
+
+	@Override
+	public String getPicture(String userName) throws ClassNotFoundException, SQLException {
+		Connection connection = DBManager.connect();
+		String sql = "SELECT picture FROM inform WHERE uname = '"+userName+"'";
+		Statement statement = connection.createStatement();
+		ResultSet rSet = statement.executeQuery(sql);
+		String path = null;
+		if(rSet.next()) path = rSet.getString("picture");
+		return path;
 	}
 
 }

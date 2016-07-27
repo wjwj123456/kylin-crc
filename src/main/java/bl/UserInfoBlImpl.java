@@ -55,4 +55,32 @@ public class UserInfoBlImpl implements UserInfoBlService {
 		return vo;
 	}
 
+	@Override
+	public int setPicture(String userName, String path) {
+		int result = -1;
+		try {
+			result = userInfo.setPicture(userName, path);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public String getPicture(String userName) {
+		String path = null;
+		try {
+			path = userInfo.getPicture(userName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return path;
+	}
+
 }
