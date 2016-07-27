@@ -60,7 +60,7 @@
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
 						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
-						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
+						<li><a style="cursor: pointer;" href="My CRC.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
 					</ul></li>
