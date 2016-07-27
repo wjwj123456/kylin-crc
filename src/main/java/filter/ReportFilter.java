@@ -12,10 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import bl.AssessmentBlImpl;
+import bl.MergeBlImpl;
 import bl.ReportBlImpl;
+import bl.ReviewBlImpl;
 import blservice.AssessmentBlService;
+import blservice.MergeBlService;
 import blservice.ReportBlService;
 import tools.Encode;
+import vo.TaskVO;
 
 public class ReportFilter implements Filter {
 
@@ -34,8 +38,12 @@ public class ReportFilter implements Filter {
 
 		req.setCharacterEncoding("UTF-8");
 		String taskName = Encode.transfer(req.getParameter("taskName"));
+		ReviewBlImpl review = new ReviewBlImpl();
+		TaskVO task = review.getTaskVOByTaskName(taskName);
+		session.setAttribute("taskVO", task);
 		ReportBlService reportBl = new ReportBlImpl();
 		AssessmentBlService assessmentBl = new AssessmentBlImpl();
+		MergeBlService mergeBl = new MergeBlImpl();
 		int[][] assessmenAndFault = new int[3][];
 		assessmenAndFault[0]= assessmentBl.getHistoryFaultValues(taskName);
 		assessmenAndFault[1]= assessmentBl.getHistoryAssessmentValues_Mt(taskName);
@@ -44,6 +52,8 @@ public class ReportFilter implements Filter {
 		session.setAttribute("taskHis_"+taskName, assessmenAndFault);
 		//历史评审人数据
 		session.setAttribute("userHis_"+taskName,assessmentBl.getAllAssessments(taskName) );
+		//待合并项目
+				session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
 		chain.doFilter(request, response);
 
 	}
