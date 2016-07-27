@@ -110,7 +110,14 @@
 			<hr>
 		</div>
 	</div>
-
+	<div class="mastfoot">
+		<div class="inner">
+			<p>
+				page for <a href="index.jsp">CRC</a>, by <a
+					href="https://github.com/wjwj123456/kylin-crc" target="_blank">kylin</a>.
+			</p>
+		</div>
+	</div>
 	<script type="text/javascript">
 		
 	</script>

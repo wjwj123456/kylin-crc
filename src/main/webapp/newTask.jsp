@@ -227,7 +227,14 @@
 			</div>
 		</form>
 	</div>
-
+	<div class="mastfoot">
+		<div class="inner">
+			<p>
+				page for <a href="index.jsp">CRC</a>, by <a
+					href="https://github.com/wjwj123456/kylin-crc" target="_blank">kylin</a>.
+			</p>
+		</div>
+	</div>
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
