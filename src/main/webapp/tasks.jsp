@@ -1,3 +1,5 @@
+<%@page import="bl.ReportBlImpl"%>
+<%@page import="blservice.ReportBlService"%>
 <%@page import="bl.UserInfoBlImpl"%>
 <%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
@@ -275,15 +277,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 					</button>
 				</div>
 			</h2>
-			<%
-				if (theState == State.agree || theState == State.commit) {
-			%>
-
-			<div class="row"></div>
-			<%
-				}
-			%>
 			<div id="reviewBlock" class="hideBlock">
+				<%ReportBlService reportBl = new ReportBlImpl(); %>
+				<%List<ReportVO> tempVOs = reportBl.getTempReport(taskVO.getTaskName(), (String)session.getAttribute("username")); %>
 				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
 						<div
@@ -298,6 +294,17 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</tr>
 								</thead>
 								<tbody id="codeStart">
+									<%if(taskVO.getType()==Type.code){ %>
+									<%for(ReportVO vo:tempVOs){%>
+									<tr>
+										<td><%=vo.getFileName() %></td>
+										<td><%=vo.getLocation() %></td>
+										<td><%=vo.getDescription() %></td>
+										<td><button type='button' class='close'
+												aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td>
+									</tr>
+									<% }%>
+									<%} %>
 								</tbody>
 							</table>
 						</div>
@@ -347,7 +354,18 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</tr>
 								</thead>
 								<tbody id="docStart">
-
+									<%if(taskVO.getType()==Type.code){ %>
+									<%for(ReportVO vo:tempVOs){%>
+									<tr>
+										<td><%=vo.getFileName() %></td>
+										<td><%=vo.getPage() %></td>
+										<td><%=vo.getLocation() %></td>
+										<td><%=vo.getDescription() %></td>
+										<td><button type='button' class='close'
+												aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td>
+									</tr>
+									<%} %>
+									<%} %>
 								</tbody>
 							</table>
 						</div>
@@ -439,10 +457,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 								%>
 								<%if(reportVO.getOperator().equals((String)session.getAttribute("username"))){ %>
 								<tr style="background-color: rgb(255, 249, 223)">
-								<%}else{ %>
-								<tr>
-								<%} %>
+									<%}else{ %>
 								
+								<tr>
+									<%} %>
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getLocation()%></td>
@@ -456,6 +474,8 @@ taskName = '<%=request.getParameter("taskName")%>';
  %>
 									</td>
 								</tr>
+
+
 								<tr class="collapse fade">
 									<td colspan="6"></td>
 								</tr>
@@ -480,7 +500,12 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
+								<%if(reportVO.getOperator().equals((String)session.getAttribute("username"))){ %>
+								<tr style="background-color: rgb(255, 249, 223)">
+									<%}else{ %>
+								
 								<tr>
+									<%} %>
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getPage()%></td>
@@ -709,19 +734,19 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script type="text/javascript">
 		
 	<%if (theState == State.agree) {%>
-		currentUserDisp = userDisp[joined];
-	<%} else if (theState == State.refuse) {%>
-		currentUserDisp = userDisp[unJoin];
-	<%} else if (theState == State.commit) {%>
-		currentUserDisp = userDisp[committed];
-	<%} else {%>
-		currentUserDisp = userDisp[merged];
-	<%}%>
-	<%if (taskState == State.ownerfinish || (taskState == State.timefinish && !isOwner)) {%>
-	currentTaskDisp = taskDisp[finished];
-	<%} else {%>
-	currentTaskDisp = taskDisp[running];
-	<%}%>
+	currentUserDisp = userDisp[joined];
+<%} else if (theState == State.refuse) {%>
+	currentUserDisp = userDisp[unJoin];
+<%} else if (theState == State.commit) {%>
+	currentUserDisp = userDisp[committed];
+<%} else {%>
+	currentUserDisp = userDisp[merged];
+<%}%>
+<%if (taskState == State.ownerfinish || (taskState == State.timefinish && !isOwner)) {%>
+currentTaskDisp = taskDisp[finished];
+<%} else {%>
+currentTaskDisp = taskDisp[running];
+<%}%>
 	</script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
