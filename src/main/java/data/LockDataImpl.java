@@ -12,10 +12,10 @@ import java.sql.SQLException;
 import dataservice.LockDataService;
 
 /**
- * TODO: £¨ÀàÃèÊö£©
+ * TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author lpt14
- * @since 2016Äê7ÔÂ26ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½26ï¿½ï¿½
  * @see
  */
 public class LockDataImpl implements LockDataService {
@@ -30,10 +30,10 @@ public class LockDataImpl implements LockDataService {
 	 */
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ26ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½26ï¿½ï¿½
 	 * @param taskName
 	 * @return
 	 * @throws SQLException
@@ -44,7 +44,7 @@ public class LockDataImpl implements LockDataService {
 	@Override
 	public String getCurrentUser(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		String sql = "SELECT uname FROM lock where tname = '" + taskName + "'";
+		String sql = "SELECT uname FROM power where tname = '" + taskName + "'";
 		Connection connection = DBManager.connect();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
@@ -57,10 +57,10 @@ public class LockDataImpl implements LockDataService {
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ26ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½26ï¿½ï¿½
 	 * @param taskName
 	 * @return
 	 * @throws SQLException
@@ -70,7 +70,7 @@ public class LockDataImpl implements LockDataService {
 	@Override
 	public int setCurrentUser(String taskName, String userName) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql1 = "UPDATE lock SET uname = ? WHERE tname = ?";
+		String sql1 = "UPDATE power SET uname = ? WHERE tname = ?";
 		PreparedStatement pStatement1 = DBManager.getPreparedStatement(sql1);
 
 		pStatement1.setString(1, userName);

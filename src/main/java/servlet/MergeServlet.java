@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bl.LockBlImpl;
+import blservice.LockBlService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -110,9 +112,15 @@ public class MergeServlet extends HttpServlet {
      */
     private void handleCommitMerge(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = (String) request.getSession().getAttribute("username");
+        String taskName = request.getParameter("taskName");
 
         MergeBlImpl merge = new MergeBlImpl();
         int result = merge.saveHistory(userName, Encode.transfer(request.getParameter("taskName")));
+
+        // 取消写锁
+		LockBlService lockBl = new LockBlImpl();
+		lockBl.setCurrentUser(taskName, "");
+
 
         PrintWriter out = response.getWriter();
         out.print(result);

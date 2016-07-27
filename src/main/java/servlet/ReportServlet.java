@@ -129,10 +129,6 @@ public class ReportServlet extends HttpServlet {
 		ReportBlImpl report = new ReportBlImpl();
 		int result = report.setCompleteTime(taskName, userName, time);
 
-		// 取消写锁
-		LockBlService lockBl = new LockBlImpl();
-		lockBl.setCurrentUser(taskName, "");
-
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}

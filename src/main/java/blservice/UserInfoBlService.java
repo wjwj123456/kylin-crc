@@ -24,4 +24,21 @@ public interface UserInfoBlService {
 	 * @return
 	 */
 	public UserInfoVO get(String username);
+	
+	
+	/**
+	 * 
+	 * @param userName
+	 * @param path
+	 * @return
+	 */
+	public int setPicture(String userName, String path);
+	
+	
+	/**
+	 * 
+	 * @param userName
+	 * @return
+	 */
+	public String getPicture(String userName);
 }

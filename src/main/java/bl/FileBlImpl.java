@@ -22,7 +22,7 @@ public class FileBlImpl implements FileBlService {
 		try {
 			i = fileData.add(taskName, paths);
 		} catch (ClassNotFoundException | SQLException e) {
-			
+			e.printStackTrace();
 		}
 		return i;
 	}

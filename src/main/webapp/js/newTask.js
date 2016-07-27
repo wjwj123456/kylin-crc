@@ -27,7 +27,7 @@ function createNewTask() {
         data: 'type=createNewTask' + '&data=' + getData(),
         success: function (data) {
             if (data == 0) {
-                $('#createTask').removeClass('btn-success').text('创建成功');
+                $('#createTask').removeClass('btn-success').text('创建成功').unbind('click');
                 uploadFile();
             } else if (data == 1) {
                 alert("项目已存在")
@@ -86,8 +86,12 @@ function checkOK() {
  */
 function uploadFile() {
     $('#form').fadeIn('slow').attr('action',
-        '/crc/FileServlet?type=upload?taskName=' + $('#inputName').val().trim());
-
+        '/crc/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
+    
+    $('#upload').on('click', function () {
+        top.location = 'My CRC.jsp'
+    });
+    
     $('#cancel').on('click', function() {
         top.location = 'My CRC.jsp';
     })

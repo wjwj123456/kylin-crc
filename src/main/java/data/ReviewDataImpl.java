@@ -67,13 +67,15 @@ public class ReviewDataImpl implements ReviewDataService {
 		}
 		DBManager.closeConnection();
 
-		String sql1 = "INSERT INTO lock (tname, uname) VALUES (?, ? )";
+		String sql1 = "INSERT INTO power (tname, uname) VALUES (?, ? )";
 
 		pStatement = DBManager.getPreparedStatement(sql1);
 		pStatement.setString(1, po.getTaskName());
 		pStatement.setString(2, "");
+		System.out.println(po.getTaskName());
 
 		pStatement.executeUpdate();
+		DBManager.closeConnection();
 		return flag;
 	}
 

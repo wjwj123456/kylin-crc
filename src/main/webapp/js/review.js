@@ -508,7 +508,7 @@ function commitReport() {
             data: 'type=saveMerge&taskName=' + taskName + '&data=' + JSON.stringify(data),
             success: function (data) {
                 if (data == 404) {
-                    alert('提交冲突')
+                    alert('合并冲突，请等待')
                 } else {
                     afterCodeMerge(report);
                 }
@@ -552,52 +552,55 @@ function commitReport() {
      * 代码合并条目以后的操作，将合并后的条目加入合并列表，删除原始条目
      */
     function afterCodeMerge(report) {
-        $('#merged-code').append(
-            '<tr><td>' + report.fileName + '</td>' +
-            '<td>' + report.location + '</td>' +
-            '<td>' + report.description + '</td>' +
-            '<td>' + username + '</td>' +
-            '<td><button type="button" class="close"' +
-            'aria-hidden="true" id="delete" onclick="deleteCodeMerge(this)">' +
-            'x</button></td>');
-        var inputs = $('#toMerge-code').find('input');
-        var j = 0;
-        for (i = 0; i < inputs.length; i++) {
-            if ($(inputs[i]).prop('checked') == true) {
-                $($('#toMerge-code tbody').find('tr')[j]).remove();
-                j--;
-            }
-            j++;
-        }
-        $('#chooseModal').modal('hide');
-    }
-
-    /**
-     * 文档合并条目以后的操作，将合并后的条目加入合并列表，删除原始条目
-     */
-    function afterFileMerge(report) {
-        $('#merged-file').append(
-            '<tr><td>' + report.fileName + '</td>' +
-            '<td>' + report.page + '</td>' +
-            '<td>' + report.location + '</td>' +
-            '<td>' + report.description + '</td>' +
-            '<td>' + username + '</td>' +
-            '<td><button type="button" class="close"' +
-            'aria-hidden="true" id="delete" onclick="deleteFileMerge(this)">' +
-            'x</button></td>');
-        var inputs = $('#toMerge-file').find('input');
-        var j = 0;
-        for (i = 0; i < inputs.length; i++) {
-            if ($(inputs[i]).prop('checked') == true) {
-                $($('#toMerge-file tbody').find('tr')[j]).remove();
-                j--;
-            }
-            j++;
-        }
-        $('#chooseModal').modal('hide');
-    }
+		var inputs = $('#toMerge-code').children().children().not('.collapse').find('input');
+		var mark;
+		var j = 0;
+		for( i = 0; i < inputs.length; i++){
+			if($(inputs[i]).prop('checked')==true){
+				mark=$('#toMerge-code tbody').children().not('.collapse')[j+1];
+				$($('#toMerge-code tbody').children().not('.collapse')[j]).remove();
+				j--;
+			}
+			j++;
+		}
+		$(mark).after(
+				'<tr><td>' + report.fileName + '</td>' +
+				'<td>' + report.location + '</td>' + 
+				'<td>' + report.description + '</td>' + 
+				'<td>' + username + '</td>' + 
+				'<td><button type="button" class="close"' +
+				'aria-hidden="true" id="delete" onclick="deleteCodeMerge(this)">' +
+				'x</button></td>');
+		$('#chooseModal').modal('hide');
+	}
+	
+	/**
+	 * 文档合并条目以后的操作，将合并后的条目加入合并列表，删除原始条目
+	 */
+	function afterFileMerge(report) {
+		var inputs = $('#toMerge-file').children().children().not('.collapse').find('input');
+		var j = 0;
+		var mark;
+		for( i = 0; i < inputs.length; i++){
+			if($(inputs[i]).prop('checked')==true){
+				mark=$('#toMerge-code tbody').children().not('.collapse')[j+1];
+				$($('#toMerge-file tbody').children().not('.collapse')[j]).remove();
+				j--;
+			}
+			j++;
+		}
+		$(mark).after(
+				'<tr><td>' + report.fileName + '</td>' +
+				'<td>' + report.page + '</td>' +
+				'<td>' + report.location + '</td>' + 
+				'<td>' + report.description + '</td>' + 
+				'<td>' + username + '</td>' + 
+				'<td><button type="button" class="close"' +
+				'aria-hidden="true" id="delete" onclick="deleteFileMerge(this)">' +
+				'x</button></td>');
+		$('#chooseModal').modal('hide');
+	}
 }
-
 // 删除合并条目相关操作
 {
     /**
@@ -687,14 +690,14 @@ function commitReport() {
 
 // 拆分相关操作
 {
-    // 选择被拆分的报告
-    var report;
-    $('#toMerge-code').find('button').on('click', function () {
-        handleCollapse_code(this);
-    });
-    $('#toMerge-file').find('button').on('click', function () {
-        handleCollapse_file(this);
-    });
+	// 选择被拆分的报告
+	var report;
+	$('#toMerge-code').children().children().not('.collapse').find('button').on('click',function(){
+		handleCollapse_code(this);	
+	});
+	$('#toMerge-file').children().children().not('.collapse').find('button').on('click',function(){
+		handleCollapse_file(this);
+	});
     /**
      * 处理下拉栏
      */

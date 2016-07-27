@@ -55,7 +55,7 @@
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
 						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
-						<li><a style="cursor: pointer;" href="describe.jsp">我的资料</a></li>
+						<li><a style="cursor: pointer;" href="My CRC.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
 					</ul></li>
@@ -221,7 +221,7 @@
 						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0;" />
 					</a>
 					<lable class="showFileName"></lable>
-					<button type="submit" value="Upload File" class="btn">提交文件</button>
+					<button type="submit" value="Upload File" class="btn" id="upload">提交文件</button>
 					<button class="btn" id="cancel">取消</button>
 				</div>
 			</div>

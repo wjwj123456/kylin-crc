@@ -80,10 +80,6 @@ public class FriendDataImpl implements FriendDataService {
 		pStatement.setString(2, friendName);
 		int i = pStatement.executeUpdate();
 		if (i != 1) return 1;
-		pStatement.setString(1, friendName);
-		pStatement.setString(2, userName);
-		i = pStatement.executeUpdate();
-		if (i != 1) return 2;
 		return 0;
 	}
 }
