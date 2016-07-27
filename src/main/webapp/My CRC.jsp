@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="css/style.css">
 
 <link rel="stylesheet"
-	href="https://cdn.rawgit.com/AndreaLombardo/BootSideMenu/master/css/BootSideMenu.css">
+	href="css/BootSideMenu.css">
 <style type="text/css">
 .myrow {
 	padding-bottom: 10px;
@@ -58,7 +58,8 @@ var sex ="${userInfo.sex}";
 
 <%String userName = (String) session.getAttribute("username");
 			AchievementVO achievement = Cast.cast(session.getAttribute("achievement_" + userName));%>
-<%System.out.print(achievement);%>
+<%List<UserInfoVO> friends = Cast.cast(session.getAttribute("friends_"+userName));%>
+
 </script>
 
 <body role="document">
@@ -511,38 +512,33 @@ var sex ="${userInfo.sex}";
 		</div>
 		
 		  <!--Test 2 -->
-	  <div id="test2">
-	   <div class="user">
-	      <img src="img/face_japan_01.gif" alt="Esempio" class="img-thumbnail">
-	      <a href="http://www.htmleaf.com" target="_blank" class="navbar-link">UserName</a>
-	    </div>
-	    <div class="list-group">
-	      <a href="#" class="list-group-item active">Cras justo odio</a>
-	      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-	      <a href="#" class="list-group-item">Morbi leo risus</a>
-	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-	      <a href="#" class="list-group-item">Vestibulum at eros</a>
-	      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-	      <a href="#" class="list-group-item">Morbi leo risus</a>
-	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-	      <a href="#" class="list-group-item">Vestibulum at eros</a>
-	      <a href="#subRight" class="list-group-item">Sub Menu</a>
-	      <a href="#" class="list-group-item">Vestibulum at eros</a>
-	    </div>
+	  <div id="test2" style="width:270px; overflow: unset;">
+	  
+	 <div class=row style="width:260px" position="fixed">
+				<div class="col-md-9"
+					style="padding-left: 20px; padding-top: 5px; padding-right: 0px;">
 
-	    <div class="list-group submenu" id="subRight">
-	      <a href="#" class="list-group-item">a destra</a>
-	      <a href="#subRight2" class="list-group-item">Sub right 2</a>
-	    </div> 
+					<input
+						style="position: fix; vertical-align: top; background-color: transparent;"
+						name="term" placeholder="Search review..." required=""
+						class="store-search typeahead form-control tt-input" type="text" id="search-content">
 
-	        <div class="list-group submenu" id="subRight2">
-	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-	      <a href="#" class="list-group-item">Vestibulum at eros</a>
-	      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-	      <a href="#" class="list-group-item">Morbi leo risus</a>
-	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-	      <a href="#" class="list-group-item">Vestibulum at eros</a>
-	    </div> 
+				</div>
+				<div class="col-md-2 col-md-offest-0" style="padding-top: 5px; margin-left:0px">
+					<button type="submit" class="btn-primary-xs btn" id="search" style="height: 32px;">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+	  <div style="overflow: auto;  height:91%;">
+	  <%for(int i=0;i<friends.size();i++){ %>
+	   <div class="user" >	   
+	      <img src=<%=friends.get(i).getPicture()%> alt="Esempio" class="img-circle" style="width:50px;">
+	     <a href="friend.jsp" target="_blank" class="navbar-link"><%=friends.get(i).getUserName() %></a>
+	      <p><%= friends.get(i).getDescription()%></p>	 
+	   </div>	    
+	    <%} %>  
+	   	</div>
 	  </div>
 	  <!--/Test 2-->
 		
@@ -575,6 +571,9 @@ var sex ="${userInfo.sex}";
 	      $('#test').BootSideMenu({side:"left", autoClose:false});
 	      $('#test2').BootSideMenu({side:"right"});
 	  });
+	  
+/* 	  $('test2').children().children(".col-xs-12").css("overflow","unset"); */
+	  
 	</script>
 </body>
 
