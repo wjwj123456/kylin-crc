@@ -514,13 +514,13 @@ var sex ="${userInfo.sex}";
 		  <!--Test 2 -->
 	  <div id="test2" style="width:270px; overflow: unset;">
 	  
-	 <div class=row style="width:260px" position="fixed">
+	 <div class=row style="width:265px" position="fixed">
 				<div class="col-md-9"
 					style="padding-left: 20px; padding-top: 5px; padding-right: 0px;">
 
 					<input
 						style="position: fix; vertical-align: top; background-color: transparent;"
-						name="term" placeholder="Search review..." required=""
+						name="term" placeholder="Search user..." required=""
 						class="store-search typeahead form-control tt-input" type="text" id="search-content">
 
 				</div>
@@ -532,10 +532,17 @@ var sex ="${userInfo.sex}";
 			</div>
 	  <div style="overflow: auto;  height:91%;">
 	  <%for(int i=0;i<friends.size();i++){ %>
-	   <div class="user" >	   
-	      <img src=<%=friends.get(i).getPicture()%> alt="Esempio" class="img-circle" style="width:50px;">
-	     <a href="friend.jsp" target="_blank" class="navbar-link"><%=friends.get(i).getUserName() %></a>
+	   <div class="user" >	
+	   <div class="col-md-3">
+	        <img src=<%=friends.get(i).getPicture()%> alt="Esempio" class="img-circle" style="width:50px;">
+	   </div>   
+	 <div class="col-md-9">
+	  <a href="friend.jsp" target="_blank" class="navbar-link"><%=friends.get(i).getUserName() %></a>
+	  <button class="mySmallBtn pull-right"><span class="glyphicon glyphicon-plus"></span></button>
 	      <p><%= friends.get(i).getDescription()%></p>	 
+	 
+	 </div>
+	    
 	   </div>	    
 	    <%} %>  
 	   	</div>
