@@ -20,5 +20,7 @@ public interface FriendBlService {
 	
 	public int delete(String userName, String friendUserName);
 	
-	public List<UserInfoVO> getFriendByKeyword(String keyword);
+	public List<UserInfoVO> getFriendByKeyword(String userName, String keyword);
+	
+	public List<UserInfoVO> getStrangerByKeyword(String userName, String keyword);
 }

@@ -31,5 +31,7 @@ public interface FriendDataService {
 
 	public int deleteFriend(String userName, String friendName) throws ClassNotFoundException, SQLException;
 	
-	public List<UserInfoPO> getFriendsByKeywords(String keyword) throws ClassNotFoundException, SQLException;
+	public List<UserInfoPO> getFriendsByKeywords(String userName, String keyword) throws ClassNotFoundException, SQLException;
+
+	public List<UserInfoPO> getStrangerByKeywords(String userName, String keyword) throws ClassNotFoundException, SQLException;
 }

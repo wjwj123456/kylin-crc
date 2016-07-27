@@ -93,17 +93,35 @@ public class FriendBlImpl implements FriendBlService {
 	}
 
 	@Override
-	public List<UserInfoVO> getFriendByKeyword(String keyword) {
+	public List<UserInfoVO> getFriendByKeyword(String userName, String keyword) {
 		List<UserInfoVO> result = new ArrayList<>();
 		List<UserInfoPO> pos = new ArrayList<>();
 		try {
-			pos = friendDataService.getFriendsByKeywords(keyword);
+			pos = friendDataService.getFriendsByKeywords(userName, keyword);
 			for(UserInfoPO po: pos) {
 				UserInfoVO vo = new UserInfoVO(po);
 				result.add(vo);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<UserInfoVO> getStrangerByKeyword(String userName, String keyword) {
+		List<UserInfoVO> result = new ArrayList<>();
+		List<UserInfoPO> pos = new ArrayList<>();
+		try {
+			pos = friendDataService.getStrangerByKeywords(userName, keyword);
+			for(UserInfoPO po: pos) {
+				UserInfoVO vo = new UserInfoVO(po);
+				result.add(vo);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;

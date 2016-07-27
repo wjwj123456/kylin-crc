@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,14 +59,15 @@ public class FriendDataImpl implements FriendDataService {
 	}
 
 	@Override
-	public List<UserInfoPO> getFriendsByKeywords(String keyword) throws ClassNotFoundException, SQLException {
+	public List<UserInfoPO> getFriendsByKeywords(String userName, String keyword) throws ClassNotFoundException, SQLException {
 		List<UserInfoPO> result = new ArrayList<>();
-		String sql = "SELECT friendUserName FROM friend where userName like '%" + keyword + "%'";
+		String sql = "SELECT friendUserName FROM friend where userName = '"+userName+"' "
+				+ "AND friendUserName like '%" + keyword + "%'";
 		Connection connection = DBManager.connect();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			result.add(userInfoDataImpl.get(rs.getString(1)));
+			result.add(userInfoDataImpl.get(rs.getString("friendUserName")));
 		}
 		DBManager.stopAll(rs, ps, connection);
 		return result;
@@ -81,5 +83,20 @@ public class FriendDataImpl implements FriendDataService {
 		int i = pStatement.executeUpdate();
 		if (i != 1) return 1;
 		return 0;
+	}
+
+	@Override
+	public List<UserInfoPO> getStrangerByKeywords(String userName, String keyword) throws ClassNotFoundException, SQLException {
+		List<UserInfoPO> result = new ArrayList<>();
+		String sql = "SELECT friendUserName FROM friend where userName = '"+userName+"' AND friendUserName like '%" + keyword + "%'"
+				+ " AND friendUserName NOT IN (SELECT uname FROM user WHERE uname like '%"+keyword+"%' )";
+		Connection connection = DBManager.connect();
+		Statement statement = connection.createStatement();
+		ResultSet rs = statement.executeQuery(sql);
+		while (rs.next()) {
+			result.add(userInfoDataImpl.get(rs.getString("friendUserName")));
+		}
+		DBManager.stopAll(rs, statement, connection);
+		return result;
 	}
 }
