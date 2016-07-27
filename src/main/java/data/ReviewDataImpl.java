@@ -196,7 +196,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
 		String sql = "SELECT * FROM task WHERE tname like '%" + keyword + "%' and language = '" + language.toString()
-				+ "'";
+				+ "' and power = '" + Power.PUBLIC.toString() + "'";
 		try {
 			rSet = DBManager.getResultSet(sql);
 
