@@ -86,11 +86,12 @@ function checkOK() {
  */
 function uploadFile() {
     $('#form').fadeIn('slow').attr('action',
-        '/crc/FileServlet?type=upload?taskName=' + $('#inputName').val().trim());
-
+        '/crc/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
+    
     $('#upload').on('click', function () {
-        top.location = 'My CRC.jsp' 
+        top.location = 'My CRC.jsp'
     });
+    
     $('#cancel').on('click', function() {
         top.location = 'My CRC.jsp';
     })
