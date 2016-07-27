@@ -5,6 +5,7 @@
 package thread;
 
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.concurrent.*;
 
 import bl.ReviewBlImpl;
 import blservice.ReviewBlService;
+import vo.State;
 import vo.TaskVO;
 
 /**
@@ -38,15 +40,13 @@ public class CheckDeadline implements Runnable{
 	*/
 	public void run() {
 		
-		Date date=new Date();
-		System.out.println(date.toString());
-		List<TaskVO> voList=reviewBlService.getTaskList();
-		DateFormat   df   =   new   SimpleDateFormat( "yyyy-MM-dd   HH:mm:ss ");
+		Date thisTime = new Date();
+		System.out.println(thisTime.toString());
+		List<TaskVO> voList=reviewBlService.getAllDoingTaskList();
 		for(TaskVO vo:voList){
-			if(vo.getDeadline().compareTo(date)==0){
-				System.out.println("vo>date");		
-			}else{
-				System.out.println("gg");
+			Date deadline = vo.getDeadline();
+			if(deadline.before(thisTime)) {
+				reviewBlService.setState(State.timefinish, vo.getTaskName());
 			}
 		}
 		  

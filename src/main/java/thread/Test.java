@@ -22,7 +22,7 @@ public class Test {
 	    executor.scheduleAtFixedRate(  
 	            new CheckDeadline(),  
 	            0,  
-	            100,  
+	            1000,  
 	            TimeUnit.MILLISECONDS);  
 	}  
 	public static void main(String[] args) {

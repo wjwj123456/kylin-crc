@@ -326,10 +326,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+	 * TODO:闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 	 *
 	 * @author lpt14
-	 * @since 2016閿熸枻鎷�7閿熸枻鎷�14閿熸枻鎷�
+	 * @since 2016闁跨喐鏋婚幏锟�7闁跨喐鏋婚幏锟�14闁跨喐鏋婚幏锟�
 	 * @param userName
 	 * @param takName
 	 * @return
@@ -351,10 +351,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
+	 * TODO:闁挎稑鐗婇弻鐔封枖閺囩喎浼庨弶鈺佸簻缁憋拷
 	 *
 	 * @author lpt14
-	 * @since 2016楠烇拷7閺堬拷20閺冿拷
+	 * @since 2016妤犵儑鎷�7闁哄牞鎷�20闁哄喛鎷�
 	 * @param taskName
 	 * @return
 	 * @see blservice.ReviewBlService#getTaskState(java.lang.String)
@@ -385,10 +385,10 @@ public class ReviewBlImpl implements ReviewBlService {
 	}
 
 	/**
-	 * TODO:锛堟柟娉曟弿杩帮級
+	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
 	 *
 	 * @author lpt14
-	 * @since 2016骞�7鏈�22鏃�
+	 * @since 2016楠烇拷7閺堬拷22閺冿拷
 	 * @param userName
 	 * @param taskName
 	 * @return
@@ -406,6 +406,37 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public List<TaskVO> getAllDoingTaskList() {
+		List<TaskPO> pos = new ArrayList<>();
+		List<TaskVO> result = new ArrayList<>();
+		try {
+			pos = reviewDataService.getAllDoingTaskList();
+			for(TaskPO po: pos) {
+				TaskVO vo = new TaskVO(po);
+				result.add(vo);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int setState(State state, String taskName) {
+		int i = -1;
+		try {
+			i = reviewDataService.setTaskState(state, taskName);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
 	}
 
 }
