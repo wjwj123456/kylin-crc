@@ -23,11 +23,24 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+	href="https://cdn.rawgit.com/AndreaLombardo/BootSideMenu/master/css/BootSideMenu.css">
 <style type="text/css">
 .myrow {
 	padding-bottom: 10px;
 }
+
+.user {
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+a:hover {
+	text-decoration: none;
+}
 </style>
+
 <title>My CRC</title>
 
 
@@ -90,8 +103,8 @@ var sex ="${userInfo.sex}";
 		<div id="suspensionNavigation" class="col-md-3" role="complementary"
 			style="text-align: center; padding-top: 102px; width: 18%;">
 			<div class="myrow">
-				<img alt="" src="${userInfo.picture}" width="50px" class="img-circle"
-					height="50px">
+				<img alt="" src="${userInfo.picture}" width="50px"
+					class="img-circle" height="50px">
 			</div>
 			<div class="myrow"><%=session.getAttribute("username")%><a
 					href="describe.jsp"><button class="close" style="float: none;">
@@ -118,7 +131,10 @@ var sex ="${userInfo.sex}";
 		</div>
 		<div class="col-md-9 bs-docs-section">
 			<div>
-				<h2 id="perAnalyze">优秀评审<hr/></h2>
+				<h2 id="perAnalyze">
+					优秀评审
+					<hr />
+				</h2>
 				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_5_achi()) {
@@ -135,7 +151,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到5次</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_10_achi()) {
 					%>
@@ -151,7 +167,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到10次</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isEfficiency_count_20_achi()) {
 					%>
@@ -183,65 +199,68 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">优秀评审达到50次</label>
 				</div>
-				<div class="row" style="padding-top:200px">
-				<div class="col-md-2" style="width:100px"></div>
-				<div class="col-md-3 text-center">
-					<%
-						if (achievement.isEfficiency_count_100_achi()) {
-					%>
-					<img alt="" src="img/achievement1/achievement51.png"
-						style="width: 102px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement1/achievement52.png"
-						style="width: 102px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">优秀评审达到100次</label>
-				</div>
+				<div class="row" style="padding-top: 200px">
+					<div class="col-md-2" style="width: 100px"></div>
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isEfficiency_count_200_achi()) {
-					%>
-					<img alt="" src="img/achievement1/achievement61.png"
-						style="width: 102px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement1/achievement62.png"
-						style="width: 102px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">优秀评审达到200次</label>
-				</div>
+						<%
+							if (achievement.isEfficiency_count_100_achi()) {
+						%>
+						<img alt="" src="img/achievement1/achievement51.png"
+							style="width: 102px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement1/achievement52.png"
+							style="width: 102px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">优秀评审达到100次</label>
+					</div>
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isEfficiency_count_500_achi()) {
-					%>
-					<img alt="" src="img/achievement1/achievement71.png"
-						style="width: 102px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement1/achievement72.png"
-						style="width: 102px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">优秀评审达到500次</label>
+						<%
+							if (achievement.isEfficiency_count_200_achi()) {
+						%>
+						<img alt="" src="img/achievement1/achievement61.png"
+							style="width: 102px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement1/achievement62.png"
+							style="width: 102px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">优秀评审达到200次</label>
+					</div>
+					<div class="col-md-3 text-center">
+						<%
+							if (achievement.isEfficiency_count_500_achi()) {
+						%>
+						<img alt="" src="img/achievement1/achievement71.png"
+							style="width: 102px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement1/achievement72.png"
+							style="width: 102px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">优秀评审达到500次</label>
+					</div>
 				</div>
+
+
 			</div>
-				
-				
-				</div>
-				
-	
+
+
 			<div>
-				<h2 id="perAnalyze">评审时长<hr></h2>
-					<div class="col-md-3 text-center">
+				<h2 id="perAnalyze">
+					评审时长
+					<hr>
+				</h2>
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_20_achi()) {
 					%>
@@ -257,7 +276,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审时长达到20小时</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_50_achi()) {
 					%>
@@ -273,7 +292,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审时长达到50小时</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_100_achi()) {
 					%>
@@ -289,7 +308,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审时长达到100小时</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_time_200_achi()) {
 					%>
@@ -305,67 +324,69 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审时长达到200小时</label>
 				</div>
-				
-				<div class="row" style="padding-top:200px">
-				<div class="col-md-2" style="width:100px"></div>
+
+				<div class="row" style="padding-top: 200px">
+					<div class="col-md-2" style="width: 100px"></div>
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isReview_time_500_achi()) {
-					%>
-					<img alt="" src="img/achievement2/achievement51.png"
-						style="width: 112px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement2/achievement52.png"
-						style="width: 112px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">评审时长达到500小时</label>
-				</div>
+						<%
+							if (achievement.isReview_time_500_achi()) {
+						%>
+						<img alt="" src="img/achievement2/achievement51.png"
+							style="width: 112px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement2/achievement52.png"
+							style="width: 112px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">评审时长达到500小时</label>
+					</div>
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isReview_time_1000_achi()) {
-					%>
-					<img alt="" src="img/achievement2/achievement61.png"
-						style="width: 112px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement2/achievement62.png"
-						style="width: 112px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">评审时长达到1000小时</label>
-				</div>
+						<%
+							if (achievement.isReview_time_1000_achi()) {
+						%>
+						<img alt="" src="img/achievement2/achievement61.png"
+							style="width: 112px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement2/achievement62.png"
+							style="width: 112px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">评审时长达到1000小时</label>
+					</div>
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isReview_time_2000_achi()) {
-					%>
-					<img alt="" src="img/achievement2/achievement71.png"
-						style="width: 112px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement2/achievement72.png"
-						style="width: 112px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">评审时长达到2000小时</label>
-				</div>
+						<%
+							if (achievement.isReview_time_2000_achi()) {
+						%>
+						<img alt="" src="img/achievement2/achievement71.png"
+							style="width: 112px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement2/achievement72.png"
+							style="width: 112px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">评审时长达到2000小时</label>
+					</div>
 				</div>
 
 
 			</div>
-			
-			
-			<div class="row" >	<hr/></div>
+
+
+			<div class="row">
+				<hr />
+			</div>
 			<div>
 				<h2 id="perAnalyze">总计评审次数</h2>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_count_5_achi()) {
 					%>
@@ -381,7 +402,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审累计达到5次</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_count_10_achi()) {
 					%>
@@ -397,7 +418,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审累计达到10次</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_count_20_achi()) {
 					%>
@@ -413,7 +434,7 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审累计达到20次</label>
 				</div>
-					<div class="col-md-3 text-center">
+				<div class="col-md-3 text-center">
 					<%
 						if (achievement.isReview_count_50_achi()) {
 					%>
@@ -429,65 +450,103 @@ var sex ="${userInfo.sex}";
 					%>
 					<label class="text-center">评审累计达到50次</label>
 				</div>
-				<div class="row" style="padding-top:200px">
-				<div class="col-md-2" style="width:100px"></div>
+				<div class="row" style="padding-top: 200px">
+					<div class="col-md-2" style="width: 100px"></div>
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isReview_count_100_achi()) {
-					%>
-					<img alt="" src="img/achievement3/achievement51.png"
-						style="width: 102px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement3/achievement52.png"
-						style="width: 102px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">评审累计达到100次</label>
-				</div>
-				
-				
+						<%
+							if (achievement.isReview_count_100_achi()) {
+						%>
+						<img alt="" src="img/achievement3/achievement51.png"
+							style="width: 102px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement3/achievement52.png"
+							style="width: 102px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">评审累计达到100次</label>
+					</div>
+
+
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isReview_count_200_achi()) {
-					%>
-					<img alt="" src="img/achievement3/achievement61.png"
-						style="width: 102px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement3/achievement62.png"
-						style="width: 102px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">评审累计达到200次</label>
-				</div>
+						<%
+							if (achievement.isReview_count_200_achi()) {
+						%>
+						<img alt="" src="img/achievement3/achievement61.png"
+							style="width: 102px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement3/achievement62.png"
+							style="width: 102px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">评审累计达到200次</label>
+					</div>
 					<div class="col-md-3 text-center">
-					<%
-						if (achievement.isReview_count_500_achi()) {
-					%>
-					<img alt="" src="img/achievement3/achievement71.png"
-						style="width: 102px"> <br>
-					<%
-						} else {
-					%>
-					<img alt="" src="img/achievement3/achievement72.png"
-						style="width: 102px"> <br>
-					<%
-						}
-					%>
-					<label class="text-center">评审累计达到500次</label>
+						<%
+							if (achievement.isReview_count_500_achi()) {
+						%>
+						<img alt="" src="img/achievement3/achievement71.png"
+							style="width: 102px"> <br>
+						<%
+							} else {
+						%>
+						<img alt="" src="img/achievement3/achievement72.png"
+							style="width: 102px"> <br>
+						<%
+							}
+						%>
+						<label class="text-center">评审累计达到500次</label>
+					</div>
 				</div>
-</div>
 				<hr>
 
 
 			</div>
 
 		</div>
+		
+		  <!--Test 2 -->
+	  <div id="test2">
+	   <div class="user">
+	      <img src="img/face_japan_01.gif" alt="Esempio" class="img-thumbnail">
+	      <a href="http://www.htmleaf.com" target="_blank" class="navbar-link">UserName</a>
+	    </div>
+	    <div class="list-group">
+	      <a href="#" class="list-group-item active">Cras justo odio</a>
+	      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+	      <a href="#" class="list-group-item">Morbi leo risus</a>
+	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+	      <a href="#" class="list-group-item">Vestibulum at eros</a>
+	      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+	      <a href="#" class="list-group-item">Morbi leo risus</a>
+	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+	      <a href="#" class="list-group-item">Vestibulum at eros</a>
+	      <a href="#subRight" class="list-group-item">Sub Menu</a>
+	      <a href="#" class="list-group-item">Vestibulum at eros</a>
+	    </div>
+
+	    <div class="list-group submenu" id="subRight">
+	      <a href="#" class="list-group-item">a destra</a>
+	      <a href="#subRight2" class="list-group-item">Sub right 2</a>
+	    </div> 
+
+	        <div class="list-group submenu" id="subRight2">
+	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+	      <a href="#" class="list-group-item">Vestibulum at eros</a>
+	      <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+	      <a href="#" class="list-group-item">Morbi leo risus</a>
+	      <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+	      <a href="#" class="list-group-item">Vestibulum at eros</a>
+	    </div> 
+	  </div>
+	  <!--/Test 2-->
+		
+		
 	</div>
 
 	<script type="text/javascript">
@@ -509,6 +568,14 @@ var sex ="${userInfo.sex}";
 	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
+	
+	  <script src="https://cdn.rawgit.com/AndreaLombardo/BootSideMenu/master/js/BootSideMenu.js"></script>
+    <script type="text/javascript">
+	  $(document).ready(function(){
+	      $('#test').BootSideMenu({side:"left", autoClose:false});
+	      $('#test2').BootSideMenu({side:"right"});
+	  });
+	</script>
 </body>
 
 </html>
