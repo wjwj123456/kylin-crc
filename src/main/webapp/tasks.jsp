@@ -197,16 +197,29 @@ taskName = '<%=request.getParameter("taskName")%>';
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
-					<%List<String> taskFile = Cast.cast(session.getAttribute("taskFile")) ; %>
+					<%
+						List<String> taskFile = Cast.cast(session.getAttribute("taskFile"));
+					%>
 					<p>评审附件：</p>
 					<ul>
-					<%if(taskFile.size()==0){ %>
+						<%
+							if (taskFile.size() == 0) {
+						%>
 						<li>无</li>
-					<%}else{ %>
-						<%for(String s : taskFile){ %>
-							<li><a href="/crc/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>
-						<%} %>
-					<%} %>
+						<%
+							} else {
+						%>
+						<%
+							for (String s : taskFile) {
+						%>
+						<li><a
+							href="/crc/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>
+						<%
+							}
+						%>
+						<%
+							}
+						%>
 					</ul>
 					<a
 						href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName"))%>">
@@ -257,7 +270,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 						Undo
 					</button>
 					<button type="button" class="btn  btn-sm" id="redo">
-						Redo <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						Redo <span class="glyphicon glyphicon-chevron-right"
+							aria-hidden="true"></span>
 					</button>
 				</div>
 			</h2>
@@ -486,9 +500,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 						</table>
 					</div>
 
-					<div class="row pull-right" padding-bottom: 20px">
+					<div class="row pull-right"padding-bottom: 20px">
 						<button class="btn " id="merge">合并</button>
-						<button class="btn " id="confirmMerge"  data-toggle="tooltip" title="查看最终报告">确认合并</button>
+						<button class="btn " id="confirmMerge" data-toggle="tooltip"
+							title="查看最终报告">确认合并</button>
 					</div>
 					<div class="row hidden"
 						style="min-height: 10px; max-height: 400px; overflow: auto;">
@@ -664,7 +679,14 @@ taskName = '<%=request.getParameter("taskName")%>';
 	</div>
 
 
-
+	<div class="mastfoot">
+		<div class="inner">
+			<p>
+				page for <a href="index.jsp">CRC</a>, by <a
+					href="https://github.com/wjwj123456/kylin-crc" target="_blank">kylin</a>.
+			</p>
+		</div>
+	</div>
 
 
 

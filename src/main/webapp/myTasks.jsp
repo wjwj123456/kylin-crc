@@ -240,10 +240,6 @@
 									<%
 										}
 									%>
-									<div class="col-md-1" style="text-align: center;">
-										<button class="btn" data-toggle="modal"
-											data-target="#inviteModal" onclick="initInvite(this)">邀请</button>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -278,7 +274,7 @@
 								<div class="header">
 
 									<div class="price">
-										<span class="amount">已结束</span>
+										<span class="amount" style="font-size: 30px;">已<br>结<br>束</span>
 
 									</div>
 								</div>
@@ -400,7 +396,14 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="mastfoot">
+		<div class="inner">
+			<p>
+				page for <a href="index.jsp">CRC</a>, by <a
+					href="https://github.com/wjwj123456/kylin-crc" target="_blank">kylin</a>.
+			</p>
+		</div>
+	</div>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>

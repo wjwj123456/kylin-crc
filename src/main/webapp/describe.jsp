@@ -196,6 +196,14 @@ var sex ="${userInfo.sex}";
 			<button class="btn btn-success" id="confirm">确认提交</button>
 		</div>
 	</div>
+	<div class="mastfoot">
+		<div class="inner">
+			<p>
+				page for <a href="index.jsp">CRC</a>, by <a
+					href="https://github.com/wjwj123456/kylin-crc" target="_blank">kylin</a>.
+			</p>
+		</div>
+	</div>
 	<script>
 		$.cxSelect.defaults.url = 'js/cityData.min.json';
 		$('#city').cxSelect({
