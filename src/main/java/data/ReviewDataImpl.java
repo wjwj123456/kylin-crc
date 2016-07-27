@@ -1,8 +1,10 @@
 package data;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ import vo.Type;
  * review data impl
  *
  * @author lpt14
- * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
+ * @since 2016闁跨喐鏋婚幏锟�7闁跨喐鏋婚幏锟�8闁跨喐鏋婚幏锟�
  * @see
  */
 public class ReviewDataImpl implements ReviewDataService {
@@ -31,7 +33,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	 * save review infomation to database
 	 *
 	 * @author lpt14
-	 * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
+	 * @since 2016闁跨喐鏋婚幏锟�7闁跨喐鏋婚幏锟�8闁跨喐鏋婚幏锟�
 	 * @param po
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
@@ -80,10 +82,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+	 * TODO:闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 	 *
 	 * @author lpt14
-	 * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
+	 * @since 2016闁跨喐鏋婚幏锟�7闁跨喐鏋婚幏锟�8闁跨喐鏋婚幏锟�
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -95,7 +97,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM task WHERE state = 0 and uname = '" + userName + "'" + "order by " + "'deadline'"
+		String sql = "SELECT * FROM task WHERE state <> 2 and uname = '" + userName + "'" + "order by " + "'deadline'"
 				+ "DESC";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
@@ -112,10 +114,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+	 * TODO:闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 	 *
 	 * @author lpt14
-	 * @since 2016閿熸枻鎷�7閿熸枻鎷�8閿熸枻鎷�
+	 * @since 2016闁跨喐鏋婚幏锟�7闁跨喐鏋婚幏锟�8闁跨喐鏋婚幏锟�
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -127,7 +129,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM task WHERE state = 1 and uname = '" + userName + "'" + "order by " + "'deadline'"
+		String sql = "SELECT * FROM task WHERE state = 2 and uname = '" + userName + "'" + "order by " + "'deadline'"
 				+ "DESC";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
@@ -194,7 +196,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
 		String sql = "SELECT * FROM task WHERE tname like '%" + keyword + "%' and language = '" + language.toString()
-				+ "'";
+				+ "' and power = '" + Power.PUBLIC.toString() + "'";
 		try {
 			rSet = DBManager.getResultSet(sql);
 
@@ -243,7 +245,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	/**
 	 *
 	 * @author ldk14
-	 * @since 2016閿熸枻鎷�7閿熸枻鎷�9閿熸枻鎷�
+	 * @since 2016闁跨喐鏋婚幏锟�7闁跨喐鏋婚幏锟�9闁跨喐鏋婚幏锟�
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -384,10 +386,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+	 * TODO:闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹风兘鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚�
 	 *
 	 * @author lpt14
-	 * @since 2016閿熸枻鎷�7閿熸枻鎷�14閿熸枻鎷�
+	 * @since 2016闁跨喐鏋婚幏锟�7闁跨喐鏋婚幏锟�14闁跨喐鏋婚幏锟�
 	 * @param userName
 	 * @param taskName
 	 * @return
@@ -426,10 +428,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
+	 * TODO:闁挎稑鐗婇弻鐔封枖閺囩喎浼庨弶鈺佸簻缁憋拷
 	 *
 	 * @author lpt14
-	 * @since 2016楠烇拷7閺堬拷20閺冿拷
+	 * @since 2016妤犵儑鎷�7闁哄牞鎷�20闁哄喛鎷�
 	 * @param taskName
 	 * @return
 	 * @throws SQLException
@@ -477,10 +479,10 @@ public class ReviewDataImpl implements ReviewDataService {
 	}
 
 	/**
-	 * TODO:锛堟柟娉曟弿杩帮級
+	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
 	 *
 	 * @author lpt14
-	 * @since 2016骞�7鏈�22鏃�
+	 * @since 2016楠烇拷7閺堬拷22閺冿拷
 	 * @param userName
 	 * @param taskName
 	 * @return
@@ -507,5 +509,25 @@ public class ReviewDataImpl implements ReviewDataService {
 
 		}
 
+	}
+
+	@Override
+	public List<TaskPO> getAllDoingTaskList() throws ClassNotFoundException, SQLException {
+		List<TaskPO> poList = new ArrayList<TaskPO>();
+
+		String sql = "SELECT * FROM task WHERE state = 0";
+		Connection connection = DBManager.connect();
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+		while (resultSet.next()) {
+			TaskPO po = new TaskPO(resultSet.getString(1), resultSet.getString(2), Type.valueOf(resultSet.getString(3)),
+					resultSet.getString(4), resultSet.getString(5), resultSet.getTimestamp(6), resultSet.getInt(7),
+					Language.valueOf(resultSet.getString(8)), Power.valueOf(resultSet.getString(9)));
+			poList.add(po);
+
+		}
+
+		DBManager.stopAll(resultSet, statement, connection);
+		return poList;
 	}
 }
