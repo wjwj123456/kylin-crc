@@ -92,4 +92,6 @@ public interface ReviewDataService {
 	public int setTaskState(State state, String taskName) throws SQLException, ClassNotFoundException;
 
 	public boolean isOwner(String userName, String taskName) throws SQLException, ClassNotFoundException;
+
+	public List<TaskPO> getAllDoingTaskList() throws ClassNotFoundException, SQLException;
 }
