@@ -204,7 +204,14 @@ taskName = '<%=request.getParameter("taskName")%>';
 						List<AssessmentVO> userHis = Cast.cast(session.getAttribute("userHis_" + taskName));
 					%>
 					<h2>
+						<%
+							if (userHis.size() > 0) {
+						%>
 						最新Mt预估缺陷值：<%=userHis.get(0).getAssessfaults_mt()%></h2>
+					<%
+						}
+					%>
+
 					<div class="row">
 						<div class="col-md-6">
 							<table class="table">
@@ -322,7 +329,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 						List<AssessmentVO> userHis2 = Cast.cast(session.getAttribute("userHis_" + taskName));
 					%>
 					<h2>
-						最新Mh预估缺陷值：<%=userHis.get(0).getAssessfaults_mh()%></h2>
+						<%
+							if (userHis.size() > 0) {
+						%>
+						最新Mt预估缺陷值：<%=userHis.get(0).getAssessfaults_mh()%></h2>
+					<%
+						}
+					%>
 					<div class="row">
 						<div class="col-md-6">
 							<table class="table">

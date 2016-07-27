@@ -437,7 +437,12 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
+								<%if(reportVO.getOperator().equals((String)session.getAttribute("username"))){ %>
+								<tr style="background-color: rgb(255, 249, 223)">
+								<%}else{ %>
 								<tr>
+								<%} %>
+								
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getLocation()%></td>
