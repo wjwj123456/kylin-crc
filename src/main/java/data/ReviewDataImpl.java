@@ -97,7 +97,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM task WHERE state = 0 and uname = '" + userName + "'" + "order by " + "'deadline'"
+		String sql = "SELECT * FROM task WHERE state != 2 and uname = '" + userName + "'" + "order by " + "'deadline'"
 				+ "DESC";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
@@ -129,7 +129,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		// TODO Auto-generated method stub
 		List<TaskPO> poList = new ArrayList<TaskPO>();
 
-		String sql = "SELECT * FROM task WHERE state = 1 and uname = '" + userName + "'" + "order by " + "'deadline'"
+		String sql = "SELECT * FROM task WHERE state = 2 and uname = '" + userName + "'" + "order by " + "'deadline'"
 				+ "DESC";
 		rSet = DBManager.getResultSet(sql);
 		while (rSet.next()) {
