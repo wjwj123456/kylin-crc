@@ -29,7 +29,7 @@ public class CommandManager {
 		undoList.add(cmd);
 
 		// 保留最近undoCount次操作，删除最早操作
-		if (undoCount != -1 && undoList.size() > undoCount) {
+		if (undoList.size() > undoCount) {
 			undoList.remove(0);
 		}
 

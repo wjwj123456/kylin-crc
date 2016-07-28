@@ -420,10 +420,7 @@
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script type="text/javascript">
-		var num = $
-		{
-			messageNum
-		};
+		var num = ${messageNum};
 	</script>
 	<script src='js/mesSpan.js'></script>
 </body>
