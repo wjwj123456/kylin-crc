@@ -130,12 +130,12 @@ a:hover {
 		<div class="col-md-9 bs-docs-section">
 			<ul id="myTab" class="nav nav-tabs"
 				style="font-size: 150%; text-align: center;">
-				<li class="active"><a href="#hisTask" data-toggle="tab">他的动态</a></li>
-				<li><a href="#myAchievement" data-toggle="tab">他的成就</a></li>
+				<li ><a href="#hisTask" data-toggle="tab">他的动态</a></li>
+				<li class="active"><a href="#myAchievement" data-toggle="tab">他的成就</a></li>
 				<li><a href="#wall" data-toggle="tab">他的勋章</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade in active" id="hisTask">
+				<div class="tab-pane fade" id="hisTask">
 					<%
 						InviteBlService invite = new InviteBlImpl();
 						UserInfoBlService userBl = new UserInfoBlImpl();
@@ -207,13 +207,8 @@ a:hover {
 
 
 					<hr>
-
-
-
-
-
 				</div>
-				<div class="tab-pane fade " id="myAchievement">
+				<div class="tab-pane fade  in active" id="myAchievement">
 			<div class="row"  style="padding-top:89px">
 
 </div>

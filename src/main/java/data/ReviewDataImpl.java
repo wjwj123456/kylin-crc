@@ -554,7 +554,6 @@ public class ReviewDataImpl implements ReviewDataService {
 		if (resultSet.next()) {
 			power = Power.valueOf(resultSet.getString(9));
 		}
-
 		DBManager.stopAll(resultSet, statement, connection);
 		if (power.equals(Power.PRIVATE)) {
 			return false;

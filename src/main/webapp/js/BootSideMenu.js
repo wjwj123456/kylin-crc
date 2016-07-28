@@ -47,8 +47,6 @@
 		});
 		$(this).addClass('active');
 	});
-
-
 	$(document).on('click', '.sidebar .list-group-item', function(event){
 		var idToToggle, this_offset, this_x, this_y, href, side;
 		event.preventDefault();
