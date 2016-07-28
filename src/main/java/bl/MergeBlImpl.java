@@ -68,6 +68,9 @@ public class MergeBlImpl implements MergeBlService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		System.out.println(flag);
+		System.out.println("MergeBlImpl.saveMergeReport");
 		return flag;
 
 	}
