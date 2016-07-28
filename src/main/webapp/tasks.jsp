@@ -265,7 +265,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<hr>
 			<h2 id="review">
 				评审
-				<div style="float: right;">
+				<div id="undoredo" style="float: right;display: none;">
 
 					<button type="button" class="btn  btn-sm" id="undo">
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -278,8 +278,13 @@ taskName = '<%=request.getParameter("taskName")%>';
 				</div>
 			</h2>
 			<div id="reviewBlock" class="hideBlock">
-				<%ReportBlService reportBl = new ReportBlImpl(); %>
-				<%List<ReportVO> tempVOs = reportBl.getTempReport(taskVO.getTaskName(), (String)session.getAttribute("username")); %>
+				<%
+					ReportBlService reportBl = new ReportBlImpl();
+				%>
+				<%
+					List<ReportVO> tempVOs = reportBl.getTempReport(taskVO.getTaskName(),
+							(String) session.getAttribute("username"));
+				%>
 				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
 						<div
@@ -294,17 +299,25 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</tr>
 								</thead>
 								<tbody id="codeStart">
-									<%if(taskVO.getType()==Type.code){ %>
-									<%for(ReportVO vo:tempVOs){%>
+									<%
+										if (taskVO.getType() == Type.code) {
+									%>
+									<%
+										for (ReportVO vo : tempVOs) {
+									%>
 									<tr>
-										<td><%=vo.getFileName() %></td>
-										<td><%=vo.getLocation() %></td>
-										<td><%=vo.getDescription() %></td>
+										<td><%=vo.getFileName()%></td>
+										<td><%=vo.getLocation()%></td>
+										<td><%=vo.getDescription()%></td>
 										<td><button type='button' class='close'
 												aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td>
 									</tr>
-									<% }%>
-									<%} %>
+									<%
+										}
+									%>
+									<%
+										}
+									%>
 								</tbody>
 							</table>
 						</div>
@@ -354,18 +367,26 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</tr>
 								</thead>
 								<tbody id="docStart">
-									<%if(taskVO.getType()==Type.code){ %>
-									<%for(ReportVO vo:tempVOs){%>
+									<%
+										if (taskVO.getType() == Type.code) {
+									%>
+									<%
+										for (ReportVO vo : tempVOs) {
+									%>
 									<tr>
-										<td><%=vo.getFileName() %></td>
-										<td><%=vo.getPage() %></td>
-										<td><%=vo.getLocation() %></td>
-										<td><%=vo.getDescription() %></td>
+										<td><%=vo.getFileName()%></td>
+										<td><%=vo.getPage()%></td>
+										<td><%=vo.getLocation()%></td>
+										<td><%=vo.getDescription()%></td>
 										<td><button type='button' class='close'
 												aria-hidden='true' id='delete' onclick='deleteItem(this)'>x</button></td>
 									</tr>
-									<%} %>
-									<%} %>
+									<%
+										}
+									%>
+									<%
+										}
+									%>
 								</tbody>
 							</table>
 						</div>
@@ -425,7 +446,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					</div>
 				</div>
 				<div id="mergeBlock" class="hideBlock">
-					<p>请从下方表格中选择要合并的项目，点击“合并”，如要废弃条目，请单独合并后在合并结果中删除</p>
+					<p>请从下方表格中选择要合并的项目，点击“合并”</p>
 					<div class="row" style="">
 						<table class="table table-hover table-expandable"
 							id="toMerge-code">
@@ -455,12 +476,18 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
-								<%if(reportVO.getOperator().equals((String)session.getAttribute("username"))){ %>
+								<%
+									if (reportVO.getOperator().equals((String) session.getAttribute("username"))) {
+								%>
 								<tr style="background-color: rgb(255, 249, 223)">
-									<%}else{ %>
+									<%
+										} else {
+									%>
 								
 								<tr>
-									<%} %>
+									<%
+										}
+									%>
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getLocation()%></td>
@@ -500,12 +527,18 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<%
 									for (ReportVO reportVO : toMergeVOs) {
 								%>
-								<%if(reportVO.getOperator().equals((String)session.getAttribute("username"))){ %>
+								<%
+									if (reportVO.getOperator().equals((String) session.getAttribute("username"))) {
+								%>
 								<tr style="background-color: rgb(255, 249, 223)">
-									<%}else{ %>
+									<%
+										} else {
+									%>
 								
 								<tr>
-									<%} %>
+									<%
+										}
+									%>
 									<td><input type="checkbox"></td>
 									<td><%=reportVO.getFileName()%></td>
 									<td><%=reportVO.getPage()%></td>
@@ -675,7 +708,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 				</div>
 			</div>
 			<div id="overBlock" class="hideBlock">
-				<p>评审已截止，您可以查看评审报告</p>
+				<p>评审已结束，您可以查看评审报告</p>
 			</div>
 			<div id="divideModal" class="modal fade">
 				<div class="modal-dialog" style="width: 800px;">
@@ -732,21 +765,23 @@ taskName = '<%=request.getParameter("taskName")%>';
 	<script src="js/review.js"></script>
 	<script src="js/stateControl.js"></script>
 	<script type="text/javascript">
-		
+	<%if (taskState == State.ownerfinish || (taskState == State.timefinish && !isOwner)) {%>
+	currentTaskDisp = taskDisp[finished];
+	<%} else {%>
+	currentTaskDisp = taskDisp[running];
+	<%}%>		
 	<%if (theState == State.agree) {%>
 	currentUserDisp = userDisp[joined];
 <%} else if (theState == State.refuse) {%>
 	currentUserDisp = userDisp[unJoin];
 <%} else if (theState == State.commit) {%>
 	currentUserDisp = userDisp[committed];
+	
 <%} else {%>
 	currentUserDisp = userDisp[merged];
+	currentTaskDisp = taskDisp[finished];
 <%}%>
-<%if (taskState == State.ownerfinish || (taskState == State.timefinish && !isOwner)) {%>
-currentTaskDisp = taskDisp[finished];
-<%} else {%>
-currentTaskDisp = taskDisp[running];
-<%}%>
+
 	</script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>

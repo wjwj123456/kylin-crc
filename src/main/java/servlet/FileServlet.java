@@ -27,7 +27,14 @@ import java.util.List;
 public class FileServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 文件最大
+     */
     private final int maxFileSize = 5000 * 1024;
+
+    /**
+     * 内存最大
+     */
     private final int maxMemSize = 5000 * 1024;
 
     /**
@@ -70,11 +77,10 @@ public class FileServlet extends HttpServlet {
     private void handleUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String taskName = request.getParameter("taskName");
         ServletContext context = request.getServletContext();
-        String filePath = context.getInitParameter("file-upload");
+        String filePath = context.getRealPath("/data");
         // 验证上传内容的类型
         String contentType = request.getContentType();
 
-        System.out.println(contentType);
         if ((contentType.contains("multipart/form-data")) && new File(filePath + "/" + taskName).mkdir()) {
             DiskFileItemFactory factory = new DiskFileItemFactory();
             // 设置内存中存储文件的最大值
@@ -122,7 +128,7 @@ public class FileServlet extends HttpServlet {
         String taskName = request.getParameter("taskName");
         String fileName = request.getParameter("fileName");
 
-        String file_download = request.getServletContext().getInitParameter("file-upload") + "/" + taskName + "/" + fileName;
+        String file_download = request.getServletContext().getRealPath("/data") + "/" + taskName + "/" + fileName;
         String file_display = fileName;
         file_display = URLEncoder.encode(file_display, "UTF-8");
         response.addHeader("Content-Disposition", "attachment;filename=" + file_display);
@@ -134,7 +140,7 @@ public class FileServlet extends HttpServlet {
             inputStream = new FileInputStream(new File(file_download));
 
             byte[] b = new byte[1024];
-            int i = 0;
+            int i;
 
             while ((i = inputStream.read(b)) > 0) {
                 outputStream.write(b, 0, i);
