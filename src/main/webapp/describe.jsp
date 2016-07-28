@@ -129,7 +129,8 @@ var sex ="${userInfo.sex}";
 							<a href="javascript:void(0)" class="upload-img btn">请先选择图片...
 							 <input type="file" class="" name="upload-file" id="upload-file" /></a>
 						</div>
-						<input type="button" id="btnZoomIn"
+						<input type="button" id="uploadPic" class="Btnsty_peyton btn"
+							value="OK"> <input type="button" id="btnZoomIn"
 							class="Btnsty_peyton btn" value="+"> <input type="button"
 							id="btnZoomOut" class="Btnsty_peyton btn" value="-">
 					</div>
@@ -235,8 +236,8 @@ var sex ="${userInfo.sex}";
 	<script src="js/login.js"></script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
-	<script src="js/fileUpload.js"></script>
 	<script src="js/account.js"></script>
+	<script src="js/fileUpload.js"></script>
 	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>

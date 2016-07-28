@@ -36,8 +36,9 @@ public class AccountServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String type = request.getParameter("type");
+		String type = request.getParameter("type")  + "+++++" ;
 
+		System.out.println(type);
 		if (type.equals("update")) {
 			handleUpdate(request, response);
 		}
@@ -59,6 +60,7 @@ public class AccountServlet extends HttpServlet {
 	 * @param response
 	 */
 	private void handleUpdate(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("AccountServlet.handleUpdate");
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
 		String userName = (String) request.getSession().getAttribute("username");
@@ -73,6 +75,10 @@ public class AccountServlet extends HttpServlet {
 				jsonObject.getEnum(Sex.class, "sex"), jsonObject.getString("job"), jsonObject.getString("province"),
 				jsonObject.getString("city"), jsonObject.getString("description"), jsonObject.getString("picture"),
 				language);
+
+		System.out.println(userInfo.getSex());
+		System.out.println(userInfo.getLanguages()[0]);
+		System.out.println(userInfo.getDescription());
 
 		new UserInfoBlImpl().update(userInfo);
 	}

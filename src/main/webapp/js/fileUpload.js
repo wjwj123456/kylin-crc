@@ -22,7 +22,7 @@ $(window).load(function () {
 
         reader.readAsDataURL(this.files[0]);
         this.files = [];
-
+        
         getImg();
     });
 
@@ -52,22 +52,19 @@ $(window).load(function () {
         cropper.zoomOut();
         getImg();
     });
-});
 
-/**
- * 上传头像
- */
-function uploadPortrait() {
-    $.ajax({
-        type: "post",
-        url: "/crc/ImageServlet?type=store",
-        data: "data=" + cropper.getDataURL().replace('data:image/jpeg;base64,', ''),
-        success: function () {
-            alert("you header pic upload success !")
-        },
-        error: function (e) {
-            alert("you file upload error , error is " + e);
-        }
+    $("#uploadPic").click(function () {
+        $.ajax({
+            type: "post",
+            url: "/crc/ImageServlet?type=store",
+            data: "data=" + cropper.getDataURL().replace('data:image/jpeg;base64,', ''),
+            success: function () {
+                alert("you header pic upload success !")
+            },
+            error: function (e) {
+                alert("you file upload error , error is " + e);
+            }
+        });
     });
-}
+});
 

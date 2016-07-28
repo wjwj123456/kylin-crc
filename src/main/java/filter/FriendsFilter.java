@@ -29,20 +29,18 @@ public class FriendsFilter implements Filter {
 
         String userName = request.getParameter("friend");
 
-        if (userName != null) {
-            UserInfoVO userInfo = new UserInfoBlImpl().get(userName);
-            session.setAttribute("userInfo_" + userName, userInfo);
-            // 成就
-            AchievementVO achievement = new AchievementBlImpl().getAchievement(userName);
-            session.setAttribute("achievement_" + userName, achievement);
-            // 完成的任务（创建者）
-            List<TaskVO> doingTaskList = new ReviewBlImpl().getDoingTaskList(userName);
-            session.setAttribute("doingTaskList_" + userName, doingTaskList);
-            // 已完成的任务（创建者）
-            List<TaskVO> endingTaskList = new ReviewBlImpl().getEndTaskList(userName);
-            session.setAttribute("endingTaskList_" + userName, endingTaskList);
-        }
-
+        UserInfoVO userInfo = new UserInfoBlImpl().get(userName);
+        session.setAttribute("userInfo_" + userName, userInfo);
+        // 成就
+        AchievementVO achievement = new AchievementBlImpl().getAchievement(userName);
+        session.setAttribute("achievement_" + userName, achievement);
+        // 完成的任务（创建者）
+        List<TaskVO> doingTaskList = new ReviewBlImpl().getDoingTaskList(userName);
+        session.setAttribute("doingTaskList_" + userName, doingTaskList);
+        // 已完成的任务（创建者）
+        List<TaskVO> endingTaskList = new ReviewBlImpl().getEndTaskList(userName);
+        session.setAttribute("endingTaskList_" + userName, endingTaskList);
+        
         chain.doFilter(req, resp);
     }
 

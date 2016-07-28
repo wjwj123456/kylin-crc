@@ -16,10 +16,6 @@ $('#confirm').on('click', function () {
  */
 function confirm() {
     run_waitMe();
-    
-    // 上传头像
-    uploadPortrait();
-    
     jQuery.ajax({
         url: '/crc/AccountServlet',
         type: 'post',
@@ -53,8 +49,8 @@ function getData() {
         language: array,
     });
 
-    userInfo.province = $($('#city').find('option:selected')[0]).val();
-    userInfo.city = $($('#city').find('option:selected')[1]).val();
+    userInfo.province = $($('#city option:selected')[0]).val();
+    userInfo.city = $($('#city option:selected')[1]).val();
 
     return JSON.stringify(userInfo);
 }
