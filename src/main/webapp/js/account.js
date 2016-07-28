@@ -16,6 +16,10 @@ $('#confirm').on('click', function () {
  */
 function confirm() {
     run_waitMe();
+    
+    // 上传头像
+    uploadPortrait();
+    
     jQuery.ajax({
         url: '/crc/AccountServlet',
         type: 'post',

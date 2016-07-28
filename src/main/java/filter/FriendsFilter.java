@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by song on 16-7-27.
- *
+ * <p>
  * 加载好友信息
  */
 @WebFilter(filterName = "FriendsFilter", urlPatterns = {"/friend.jsp"})
@@ -27,7 +27,7 @@ public class FriendsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpSession session = request.getSession();
 
-        String userName = (String) session.getAttribute("username");
+        String userName = request.getParameter("friend");
 
         if (userName != null) {
             UserInfoVO userInfo = new UserInfoBlImpl().get(userName);
