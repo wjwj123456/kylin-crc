@@ -1,9 +1,16 @@
 var isOK = false;
-$('#createTask').on('click', function () {
+
+$('#next').on('click', function () {
     isOK = true;
     checkOK();
     if (isOK) {
-        createNewTask();
+        $(this).fadeOut();
+        window.scrollTo(0, document.body.scrollHeight);
+
+        uploadFile();
+        $('#createTask').on('click', function () {
+            createNewTask();
+        }).fadeIn();
     }
 });
 
@@ -27,11 +34,9 @@ function createNewTask() {
         data: 'type=createNewTask' + '&data=' + getData(),
         success: function (data) {
             if (data == 0) {
-                $('#createTask').removeClass('btn-success').text('创建成功').unbind('click');
-                window.scrollTo(0, document.body.scrollHeight);
-                uploadFile();
+                top.location = 'My CRC.jsp';
             } else if (data == 1) {
-                alert("项目已存在")
+                alert("项目已存在");
             }
             stopWait();
         }
@@ -88,12 +93,4 @@ function checkOK() {
 function uploadFile() {
     $('#form').fadeIn('slow').attr('action',
         '/crc/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
-
-    $('#upload').on('click', function () {
-        top.location = 'My CRC.jsp'
-    });
-
-    $('#cancel').on('click', function () {
-        top.location = 'My CRC.jsp';
-    })
 }
