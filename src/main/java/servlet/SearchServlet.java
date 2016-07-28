@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bl.FriendBlImpl;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,6 +18,7 @@ import bl.ReviewBlImpl;
 import blservice.ReviewBlService;
 import vo.Language;
 import vo.TaskVO;
+import vo.UserInfoVO;
 import vo.UserVO;
 
 /**
@@ -69,12 +72,19 @@ public class SearchServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void searchUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		ReviewBlImpl review = new ReviewBlImpl();
-		List<UserVO> users = review.searchUserByKeyword(request.getParameter("keyword"));
+		String userName = (String) request.getSession().getAttribute("username");
+		String keyword = request.getParameter("keyword");
+
+		List<UserInfoVO> userList = new ArrayList<>();
+
+		FriendBlImpl friendBl = new FriendBlImpl();
+
+		userList.addAll(friendBl.getFriendByKeyword(userName, keyword));
+		userList.addAll(friendBl.getStrangerByKeyword(userName, keyword));
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", users.size() == 0 ? "empty" : "success");
-		jsonObject.put("users", users);
+		jsonObject.put("result", userList.size() == 0 ? "empty" : "success");
+		jsonObject.put("users", userList);
 
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.put(jsonObject);
