@@ -209,7 +209,7 @@ var sex ="${userInfo.sex}";
 			</div>
 		</form>
 		<div class="row" style="text-align: right;">
-			<button class="btn btn-success" id="confirm">确认提交</button>
+			<button class="btn" id="confirm">确认提交</button>
 		</div>
 	</div>
 	<div class="mastfoot">
