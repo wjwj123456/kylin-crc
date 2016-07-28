@@ -568,7 +568,7 @@ function commitReport() {
             + JSON.stringify(data),
             success: function (data) {
                 if (data == 404) {
-                    alert('合并冲突，请等待')
+                    alert('当前有用户正在合并，请等待')
                 } else {
                     afterCodeMerge(report);
                 }
@@ -604,7 +604,7 @@ function commitReport() {
             + JSON.stringify(data),
             success: function (data) {
                 if (data == 404) {
-                    alert('合并冲突，请等待')
+                    alert('当前有用户正在合并，请等待')
                 } else {
                     afterFileMerge(report);
                 }
