@@ -190,8 +190,8 @@ a:hover {
 										for (String s : users) {
 									%>
 									<div class="col-md-1" style="text-align: center;">
-										<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
-											src="<%=userBl.get(s).getPicture()%>" width="40px"
+										<a data-toggle="tooltip" title="<%=s%>" href="friend.jsp?friend=<%=s%>"> <img alt=""
+											src="<%=userBl.get(s).getPicture()%>" async width="40px"
 											class="img-circle scaleable" height="40px">
 										</a>
 									</div>
