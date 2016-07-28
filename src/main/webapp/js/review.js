@@ -667,7 +667,7 @@ function commitReport() {
 		}
 		$(mark)
 				.before(
-						'<tr><td>'
+						'<tr><td><input type="checkbox"></td><td>'
 								+ report.fileName
 								+ '</td>'
 								+ '<td>'
@@ -684,7 +684,7 @@ function commitReport() {
 								+ '</td>'
 								+ '<td><button class="btn btn-sm">拆分</button></td></tr>'
 								+'<tr class="collapse fade">'
-								+ '<td colspan="6"></td>' + '</tr>');
+								+ '<td colspan="7"></td>' + '</tr>');
 		$('#chooseModal').modal('hide');
 		reBind();
 	}

@@ -238,8 +238,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 						%>
 
 						<div class="col-md-1" style="text-align: center;">
-							<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
-								src="<%=userInfo.get(s).getPicture()%>" width="40px"
+							<a data-toggle="tooltip" title="<%=s%>"
+								href="friend.jsp?friend=<%=s%>"> <img alt=""
+								src="<%=userInfo.get(s).getPicture()%>" async width="40px"
 								class="img-circle scaleable" height="40px">
 							</a>
 
@@ -265,7 +266,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<hr>
 			<h2 id="review">
 				评审
-				<div id="undoredo" style="float: right;display: none;">
+				<div id="undoredo" style="float: right; display: none;">
 
 					<button type="button" class="btn  btn-sm" id="undo">
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -511,7 +512,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 								%>
 							</tbody>
 						</table>
-						<table class="table" id="toMerge-file">
+						<table class="table table-hover" id="toMerge-file">
 							<thead>
 								<tr>
 									<th></th>
@@ -554,7 +555,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									</td>
 								</tr>
 								<tr class="collapse fade">
-									<td colspan="6"></td>
+									<td colspan="7"></td>
 								</tr>
 								<%
 									}
@@ -565,8 +566,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 
 					<div class="row pull-right"padding-bottom: 20px">
 						<button class="btn " id="merge">合并</button>
-						<button class="btn btn-new" id="confirmMerge" data-toggle="tooltip"
-							title="查看最终报告">确认合并</button>
+						<button class="btn btn-new" id="confirmMerge"
+							data-toggle="tooltip" title="查看最终报告">确认合并</button>
 					</div>
 					<div class="row hidden"
 						style="min-height: 10px; max-height: 400px; overflow: auto;">
