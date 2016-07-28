@@ -102,4 +102,20 @@ public class AssessmentBlImpl implements AssessmentBlService {
 		return aVos;
 	}
 
+	@Override
+	public List<List<String>> getAllFindedReviewerNames(List<ReportVO> vos) {
+		// TODO Auto-generated method stub
+		List<List<String>> names = new ArrayList<List<String>>();
+		try {
+			names = assessmentDataService.getAllFindedReviewerNames(vos);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return names;
+	}
+
 }

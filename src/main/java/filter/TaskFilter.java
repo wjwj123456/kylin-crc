@@ -43,8 +43,10 @@ public class TaskFilter implements Filter {
 		String username = (String)session.getAttribute("username");
 		ReviewBlImpl review = new ReviewBlImpl();
 		TaskVO task = review.getTaskVOByTaskName(taskName);
-		if(!review.isPublic(taskName)&&!review.isReviewer(taskName, username)){
-			req.getRequestDispatcher("index.jsp").forward(request, response);
+		if((!review.isPublic(taskName))&&(!review.isReviewer(taskName, username))){
+			System.out.println(taskName);
+			System.out.println(username);
+			req.getRequestDispatcher("index.jsp?unsigned=2").forward(request, response);
 		}else {
 			session.setAttribute("taskVO", task);
 

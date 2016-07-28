@@ -147,12 +147,14 @@
 				</div>
 				<div id="userAlert" class="hidden" role="alert" style="padding-top:50px ;color:#ffcccc" >
 					请先登陆再进行操作</div>
+				<div id="privateAlert" class="hidden" role="alert" style="padding-top:50px ;color:#ffcccc" >
+					不能进入私有评审</div>
 				<script type="text/javascript">
-					var unsigned =
-				<%=request.getParameter("unsigned")%>
-					;
-					if (unsigned) {
+					var unsigned =<%=request.getParameter("unsigned")%>;
+					if (unsigned==1) {
 						document.getElementById("userAlert").className = "";
+					}else if (unsigned==2) {
+						document.getElementById("privateAlert").className = "";
 					}
 				</script>
 			</div>

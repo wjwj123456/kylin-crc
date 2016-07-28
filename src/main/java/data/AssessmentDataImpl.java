@@ -114,6 +114,8 @@ public class AssessmentDataImpl implements AssessmentDataService {
 	private List<String> getReviewerNames(String taskName) throws SQLException, ClassNotFoundException {
 
 		List<String> nameList = new ArrayList<String>();
+		List<String> nameList2 = new ArrayList<String>();
+		List<String> nameList3 = new ArrayList<String>();
 		// for (ReportVO vo : vos) {
 		// String sql = "SELECT included_id FROM merge where final_id = " +
 		// mergeDataImpl.getID(new ReportPO(vo));
@@ -131,7 +133,21 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		while (rSet.next())
 			nameList.add(rSet.getString(2));
 		DBManager.closeConnection();
-		return nameList;
+
+		String sql1 = "SELECT id,uname FROM history WHERE  tname = '" + taskName + "' ORDER BY id";
+		rSet = DBManager.getResultSet(sql1);
+		while (rSet.next())
+			nameList2.add(rSet.getString(2));
+		DBManager.closeConnection();
+
+		String firstMergeName = "";
+		for (String string : nameList) {
+			if (!nameList2.contains(string))
+				firstMergeName = string;
+		}
+		nameList3.add(firstMergeName);
+		nameList3.addAll(nameList2);
+		return nameList3;
 	}
 
 	public String getUNameById(int id) throws SQLException, ClassNotFoundException {
@@ -228,6 +244,32 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			}
 		}
 		return pos;
+	}
+
+	@Override
+	public List<List<String>> getAllFindedReviewerNames(List<ReportVO> vos)
+			throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		List<List<String>> names = new ArrayList<List<String>>();
+
+		String taskName = vos.get(0).getTaskName();
+
+		List<String> nameList = new ArrayList<String>();
+		nameList = getReviewerNames(taskName);
+
+		int[][] matrix = getMatix(taskName, vos);
+
+		for (int i = 0; i < vos.size(); i++) {
+			List<String> list = new ArrayList<String>();
+			for (int j = 0; j < nameList.size(); j++) {
+				if (matrix[i][j] == 1) {
+					list.add(nameList.get(j));
+				}
+			}
+			names.add(list);
+		}
+
+		return names;
 	}
 
 }
