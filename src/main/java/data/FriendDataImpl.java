@@ -88,13 +88,13 @@ public class FriendDataImpl implements FriendDataService {
 	@Override
 	public List<UserInfoPO> getStrangerByKeywords(String userName, String keyword) throws ClassNotFoundException, SQLException {
 		List<UserInfoPO> result = new ArrayList<>();
-		String sql = "SELECT friendUserName FROM friend where userName = '"+userName+"' AND friendUserName like '%" + keyword + "%'"
-				+ " AND friendUserName NOT IN (SELECT uname FROM user WHERE uname like '%"+keyword+"%' )";
+		String sql = "SELECT uname FROM user where uname like '%" + keyword + "%'"
+				+ " AND uname NOT IN (SELECT friendUserName FROM friend WHERE userName = '" + userName + "')";
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
 		ResultSet rs = statement.executeQuery(sql);
 		while (rs.next()) {
-			result.add(userInfoDataImpl.get(rs.getString("friendUserName")));
+			result.add(userInfoDataImpl.get(rs.getString("uname")));
 		}
 		DBManager.stopAll(rs, statement, connection);
 		return result;
