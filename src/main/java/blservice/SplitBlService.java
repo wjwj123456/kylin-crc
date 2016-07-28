@@ -36,7 +36,7 @@ public interface SplitBlService {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public boolean split(ArrayList<ReportVO> vos, ReportVO vo) throws ClassNotFoundException, SQLException;
+	public boolean split(ArrayList<ReportVO> vos, ReportVO vo, String operator) throws ClassNotFoundException, SQLException;
 	
 	
 	/**
@@ -45,7 +45,7 @@ public interface SplitBlService {
 	 * @param vo
 	 * @return	0 means success, 1 means failure
 	 */
-	public int splitForUndoMerge(List<ReportVO> vos, ReportVO vo);
+	public int splitForUndoMerge(List<ReportVO> vos, ReportVO vo, List<String> operators);
 	
 	/**
 	 * 

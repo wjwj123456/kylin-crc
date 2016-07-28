@@ -35,7 +35,7 @@ public interface SplitDataService {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public boolean splitFaults(ArrayList<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException;
+	public boolean splitFaults(ArrayList<ReportPO> pos, ReportPO po, String operator) throws ClassNotFoundException, SQLException;
 	
 	/**
 	 * 
@@ -55,5 +55,5 @@ public interface SplitDataService {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException;
+	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po, List<String> operators) throws ClassNotFoundException, SQLException;
 }
