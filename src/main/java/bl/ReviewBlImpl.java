@@ -414,7 +414,7 @@ public class ReviewBlImpl implements ReviewBlService {
 		List<TaskVO> result = new ArrayList<>();
 		try {
 			pos = reviewDataService.getAllDoingTaskList();
-			for(TaskPO po: pos) {
+			for (TaskPO po : pos) {
 				TaskVO vo = new TaskVO(po);
 				result.add(vo);
 			}
@@ -437,6 +437,58 @@ public class ReviewBlImpl implements ReviewBlService {
 			e.printStackTrace();
 		}
 		return i;
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月28日
+	 * @param taskName
+	 * @return
+	 * @see blservice.ReviewBlService#isPublic(java.lang.String)
+	 *
+	 */
+	@Override
+	public boolean isPublic(String taskName) {
+		// TODO Auto-generated method stub
+		try {
+			return reviewDataService.isPublic(taskName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月28日
+	 * @param taskName
+	 * @param userName
+	 * @return
+	 * @see blservice.ReviewBlService#isReviewer(java.lang.String,
+	 *      java.lang.String)
+	 *
+	 */
+	@Override
+	public boolean isReviewer(String taskName, String userName) {
+		// TODO Auto-generated method stub
+		try {
+			return reviewDataService.isReviewer(taskName, userName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

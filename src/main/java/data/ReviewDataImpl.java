@@ -530,4 +530,72 @@ public class ReviewDataImpl implements ReviewDataService {
 		DBManager.stopAll(resultSet, statement, connection);
 		return poList;
 	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月28日
+	 * @param taskName
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#isPublic(java.lang.String)
+	 *
+	 */
+	@Override
+	public boolean isPublic(String taskName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM task WHERE tname = '" + taskName + "'";
+		Power power = null;
+		Connection connection = DBManager.connect();
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+		if (resultSet.next()) {
+			power = Power.valueOf(resultSet.getString(9));
+		}
+
+		DBManager.stopAll(resultSet, statement, connection);
+		if (power.equals(Power.PRIVATE)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * TODO:（方法描述）
+	 *
+	 * @author lpt14
+	 * @since 2016年7月28日
+	 * @param taskName
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @see dataservice.ReviewDataService#isReviewer(java.lang.String)
+	 *
+	 */
+	@Override
+	public boolean isReviewer(String taskName, String userName) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		if (isOwner(userName, taskName)) {
+			return true;
+		} else {
+			State state = null;
+			String sql = "SELECT * FROM review WHERE tname = '" + taskName + "' and uname = '" + userName + "'";
+			Connection connection = DBManager.connect();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			if (resultSet.next()) {
+				state = State.valueOf(resultSet.getString(3));
+			}
+
+			DBManager.stopAll(resultSet, statement, connection);
+			if (state.equals(State.refuse)) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
 }

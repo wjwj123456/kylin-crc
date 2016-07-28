@@ -80,9 +80,13 @@ public interface ReviewBlService {
 	public State getTaskState(String taskName);
 
 	public boolean isOwner(String userName, String taskName);
-	
+
 	public List<TaskVO> getAllDoingTaskList();
-	
+
 	public int setState(State state, String taskName);
+
+	public boolean isPublic(String taskName);
+
+	public boolean isReviewer(String taskName, String userName);
 
 }

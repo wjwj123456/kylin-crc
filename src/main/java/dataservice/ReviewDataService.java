@@ -94,4 +94,8 @@ public interface ReviewDataService {
 	public boolean isOwner(String userName, String taskName) throws SQLException, ClassNotFoundException;
 
 	public List<TaskPO> getAllDoingTaskList() throws ClassNotFoundException, SQLException;
+
+	public boolean isPublic(String taskName) throws SQLException, ClassNotFoundException;
+
+	public boolean isReviewer(String taskName, String userName) throws ClassNotFoundException, SQLException;
 }
