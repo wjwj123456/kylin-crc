@@ -27,8 +27,8 @@
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
-<link rel="stylesheet" href="css/fileinput.min.css">
-
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/portraitStyle.css" type="text/css" />
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -50,7 +50,7 @@
 <%UserInfoVO infoVO = Cast.cast(session.getAttribute("userInfo"));%>
 <%Language[] languages = infoVO.getLanguages();%>
 var languages = new Array();
-<%for(Language lg : languages){%>
+<%for (Language lg : languages) {%>
 languages.push('<%=lg.toString()%>');
 <%}%>
 var sex ="${userInfo.sex}";
@@ -76,12 +76,13 @@ var sex ="${userInfo.sex}";
 				<%
 					if (session.getAttribute("username") != null) {
 				%>
-					<li class="dropdown" id="mesSpan"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><%=session.getAttribute("username")%><span class="caret"></span></a>
+				<li class="dropdown" id="mesSpan"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
-						<li><a style="cursor: pointer;" href="message.jsp">我的消息  </a></li>
+						<li><a style="cursor: pointer;" href="message.jsp">我的消息 </a></li>
 						<li><a style="cursor: pointer;" href="My CRC.jsp">我的资料</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="login" style="cursor: pointer;">登出</a></li>
@@ -106,8 +107,8 @@ var sex ="${userInfo.sex}";
 			<div class="form-group">
 				<label for="sex" class="col-sm-2 control-label">性别</label>
 				<div class=" col-sm-4 radio">
-					<label> <input type="radio" name="optionsRadios"
-						id="male" value="male" > 男
+					<label> <input type="radio" name="optionsRadios" id="male"
+						value="male"> 男
 					</label> <label> <input type="radio" name="optionsRadios"
 						id="female" value="female"> 女
 					</label> <label> <input type="radio" name="optionsRadios"
@@ -117,8 +118,23 @@ var sex ="${userInfo.sex}";
 			</div>
 			<div class="form-group row">
 				<label for="fileinput" class="col-sm-2 control-label">头像</label>
-				<div class="col-sm-4">
-					<input id="fileinput" type="file">
+				<div class="col-sm-10" style="transform: scale(0.6);transform-origin:0% 0%;margin-bottom: -180px;">
+					<div class="imageBox">
+						<div class="thumbBox"></div>
+						<div class="spinner" style="display: none"></div>
+					</div>
+					<div class="action">
+						<!-- <input type="file" id="file" style=" width: 200px">-->
+						<div class="new-contentarea tc">
+							<a href="javascript:void(0)" class="upload-img btn">请先选择图片...
+							 <input type="file" class="" name="upload-file" id="upload-file" /></a>
+						</div>
+						<input type="button" id="uploadPic" class="Btnsty_peyton btn"
+							value="OK"> <input type="button" id="btnZoomIn"
+							class="Btnsty_peyton btn" value="+"> <input type="button"
+							id="btnZoomOut" class="Btnsty_peyton btn" value="-">
+					</div>
+					<div class="cropped"></div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -126,44 +142,44 @@ var sex ="${userInfo.sex}";
 				<div class=" col-sm-8">
 					<table class="table" id="goodAt">
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox" value="c">
-								C</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="java">
-								Java</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="Objective_C">
-								Objective_C</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="cpp">
-								C++</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="csharp">
-								C#</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="JavaScript">
-								JavaScript</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="c"> C</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="java"> Java</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="Objective_C"> Objective_C</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="cpp"> C++</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="csharp"> C#</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="JavaScript"> JavaScript</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox" value="pointnet">
-								Pointnet</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="Ruby">
-								Ruby</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="PHP">
-								PHP</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="Swift">
-								Swift</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="D">
-								D</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="R">
-								R</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="pointnet"> Pointnet</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="Ruby"> Ruby</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="PHP"> PHP</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="Swift"> Swift</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="D"> D</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="R"> R</td>
 						</tr>
 						<tr>
-							<td class="no-border no-part-border"><input type="checkbox" value="MATLAB">
-								MATLAB</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="Perl">
-								Perl</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="python">
-								python</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="Groovy">
-								Groovy</td>
-							<td class="no-border no-part-border"><input type="checkbox" value="other">
-								other</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="MATLAB"> MATLAB</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="Perl"> Perl</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="python"> python</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="Groovy"> Groovy</td>
+							<td class="no-border no-part-border"><input type="checkbox"
+								value="other"> other</td>
 
 						</tr>
 					</table>
@@ -172,10 +188,10 @@ var sex ="${userInfo.sex}";
 			<div class="form-group row">
 				<label for="city" class="col-sm-2 control-label">城市</label>
 				<div class="col-sm-5 form-inline" id="city">
-					<select class="province cxselect form-control" data-value="${userInfo.province}"
-						data-first-title="选择省"></select> <select
-						class="city cxselect form-control" data-value="${userInfo.city}" 
-						data-first-title="选择市"></select>
+					<select class="province cxselect form-control"
+						data-value="${userInfo.province}" data-first-title="选择省"></select>
+					<select class="city cxselect form-control"
+						data-value="${userInfo.city}" data-first-title="选择市"></select>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -221,8 +237,6 @@ var sex ="${userInfo.sex}";
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
 	<script src="js/account.js"></script>
-	<script src="js/fileinput.min.js"></script>
-	<script src="js/fileinput_locale_zh.js"></script>
 	<script src="js/fileUpload.js"></script>
 	<script type="text/javascript">
 		initFileInput('fileinput', '/file');
@@ -230,6 +244,7 @@ var sex ="${userInfo.sex}";
 	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
+	<script type="text/javascript" src="js/portrait.js"></script>
 </body>
 
 </html>

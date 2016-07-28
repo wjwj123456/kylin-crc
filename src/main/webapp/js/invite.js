@@ -51,12 +51,11 @@ function loadAgreedReviewer(taskName) {
  * invite
  */
 function invite() {
-	var temp = $('#invited').find('td');
+	var temp = $('#invited tbody').find('tr');
 	var users = '';
 	for (var i = 0; i < temp.length; i++) {
-		users += $(temp[i]).text().trim() + ' ';
+		users += $($(temp[i]).children()[1]).text().trim() + ' ';
 	}
-
 	run_waitMe();
 	$('#inviteModal').modal('hide')
 	jQuery.ajax({

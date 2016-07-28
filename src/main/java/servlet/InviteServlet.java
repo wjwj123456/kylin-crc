@@ -60,6 +60,7 @@ public class InviteServlet extends HttpServlet {
 	 * @return usernames invited
 	 */
 	private String[] getUsers(int userNumber, String users) {
+		System.out.println(users);
 		StringTokenizer tokenizer = new StringTokenizer(users);
 		String[] result = new String[userNumber];
 
