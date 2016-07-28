@@ -40,7 +40,7 @@ public class FriendsFilter implements Filter {
         // 已完成的任务（创建者）
         List<TaskVO> endingTaskList = new ReviewBlImpl().getEndTaskList(userName);
         session.setAttribute("endingTaskList_" + userName, endingTaskList);
-        
+
         chain.doFilter(req, resp);
     }
 
