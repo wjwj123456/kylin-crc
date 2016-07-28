@@ -28,7 +28,7 @@
 							<%
 								if (session.getAttribute("username") != null) {
 							%>
-							<li><a href="My CRC.jsp" id="user-name">${username}</a></li>
+							<li><a href="myTasks.jsp" id="user-name">${username}</a></li>
 							<li><a id="login" style="cursor: pointer;">登出</a></li>
 							<%
 								} else {
