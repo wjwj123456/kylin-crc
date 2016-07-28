@@ -40,24 +40,31 @@ public class TaskFilter implements Filter {
 
 		req.setCharacterEncoding("UTF-8");
 		String taskName = req.getParameter("taskName");
-
+		String username = req.getParameter("username");
 		ReviewBlImpl review = new ReviewBlImpl();
 		TaskVO task = review.getTaskVOByTaskName(taskName);
-		session.setAttribute("taskVO", task);
+		if(!review.isPublic(taskName)&&!review.isReviewer(taskName, username)){
+			req.getRequestDispatcher("index.jsp").forward(request, response);
+		}else {
+			session.setAttribute("taskVO", task);
 
-		InviteBlImpl invite = new InviteBlImpl();
-		// 接受邀请的评审者
-		MergeBlService mergeBl = new MergeBlImpl();
-		ReportBlService reportBl = new ReportBlImpl();
-		AssessmentBlService assessmentBl = new AssessmentBlImpl();
+			InviteBlImpl invite = new InviteBlImpl();
+			// 接受邀请的评审者
+			MergeBlService mergeBl = new MergeBlImpl();
+			ReportBlService reportBl = new ReportBlImpl();
+			AssessmentBlService assessmentBl = new AssessmentBlImpl();
+			
+			session.setAttribute("agree_" + taskName, invite.getAgreeUser(taskName));
+			// 未接受邀请
+			session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
+			//待合并项目
+			session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
+			// 项目文件
+			session.setAttribute("taskFile", new FileBlImpl().get(taskName));
+		}
 		
-		session.setAttribute("agree_" + taskName, invite.getAgreeUser(taskName));
-		// 未接受邀请
-		session.setAttribute("disagree_" + taskName, invite.getDisagreeUser(taskName));
-		//待合并项目
-		session.setAttribute("toMerge_" + taskName, mergeBl.mergeReport(taskName));
-		// 项目文件
-		session.setAttribute("taskFile", new FileBlImpl().get(taskName));
+		
+		
 
 		chain.doFilter(request, response);
 	}
