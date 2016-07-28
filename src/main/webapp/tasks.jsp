@@ -565,7 +565,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 
 					<div class="row pull-right"padding-bottom: 20px">
 						<button class="btn " id="merge">合并</button>
-						<button class="btn " id="confirmMerge" data-toggle="tooltip"
+						<button class="btn btn-new" id="confirmMerge" data-toggle="tooltip"
 							title="查看最终报告">确认合并</button>
 					</div>
 					<div class="row hidden"
@@ -601,10 +601,11 @@ taskName = '<%=request.getParameter("taskName")%>';
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">x</button>
 								<h2 class="text-left text-primary">选择保留项</h2>
+								<p>双击选择已有项或自己填写新描述</p>
 							</div>
 							<div class="modal-body" style="height: 300px; overflow: auto">
 								<div id="codeDiv">
-									<table class="table" id="choose-code">
+									<table class="table table-hover" id="choose-code">
 										<tr>
 											<th>文件名</th>
 											<th>位置</th>
@@ -647,7 +648,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 
 								</div>
 								<div id="fileDiv">
-									<table class="table" id="choose-file">
+									<table class="table table-hover" id="choose-file">
 										<tr>
 											<th>文件名</th>
 											<th>页码</th>

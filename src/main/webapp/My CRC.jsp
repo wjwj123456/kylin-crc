@@ -126,7 +126,7 @@ var sex ="${userInfo.sex}";
 				%>
 
 			</div>
-			<a href="newTask.jsp"><button class="btn">新评审</button></a>
+			<a href="newTask.jsp"><button class="btn btn-new">新评审</button></a>
 
 		</div>
 		<div class="col-md-9 bs-docs-section">
