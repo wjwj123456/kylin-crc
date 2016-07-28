@@ -42,7 +42,7 @@ public class LoginFilter implements Filter {
 
 		if (!req.getServletPath().equals("/index.jsp")) {
 			if (req.getSession().getAttribute("username") == null) {
-				req.getRequestDispatcher("index.jsp?unsigned=true").forward(request, response);
+				req.getRequestDispatcher("index.jsp?unsigned=1").forward(request, response);
 			}else {
 				InviteBlImpl invite = new InviteBlImpl();
 				// 用户收到的邀请

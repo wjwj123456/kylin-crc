@@ -44,7 +44,7 @@ public class TaskFilter implements Filter {
 		ReviewBlImpl review = new ReviewBlImpl();
 		TaskVO task = review.getTaskVOByTaskName(taskName);
 		if(!review.isPublic(taskName)&&!review.isReviewer(taskName, username)){
-			req.getRequestDispatcher("index.jsp").forward(request, response);
+			req.getRequestDispatcher("index.jsp?unsigned=1").forward(request, response);
 		}else {
 			session.setAttribute("taskVO", task);
 

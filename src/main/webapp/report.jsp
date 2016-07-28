@@ -1,3 +1,4 @@
+
 <%@page import="vo.ReportVO"%>
 <%@page import="tools.Encode"%>
 <%@page import="vo.State"%>
@@ -9,6 +10,8 @@
 <%@page import="tools.Cast"%>
 <%@page import="vo.AssessmentVO"%>
 <%@page import="java.util.List"%>
+<%@page import="bl.AssessmentBlImpl"%>
+<%@page import="blservice.AssessmentBlService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -416,6 +419,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 					<tbody>
 						<%
 							List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
+							AssessmentBlService assessmentBlService = new AssessmentBlImpl();
+							List<List<String>> reporters = assessmentBlService.getAllFindedReviewerNames(toMergeVOs);
 						%>
 						<%
 							for (ReportVO reportVO : toMergeVOs) {
@@ -431,7 +436,11 @@ taskName = '<%=request.getParameter("taskName")%>';
 							%>
 							<td><%=reportVO.getLocation()%></td>
 							<td><%=reportVO.getDescription()%></td>
-							<td><%=reportVO.getUserName()%></td>
+							<td><select>
+									<%for(String s : reporters.get(toMergeVOs.indexOf(reportVO)) ){ %>
+										<option><%=s %></option>
+									<%} %>
+							</select></td>
 						</tr>
 						<%
 							}
