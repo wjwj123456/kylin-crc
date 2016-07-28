@@ -4,9 +4,13 @@ $('#searchPeople').keyup(function (e) {
     }
 });
 
+$('#search').click(function () {
+    alert("dsfsdf....x.cvxcv.x.cv.x.cv")
+});
 $('#search').on("click", function () {
     searchPeople();
 });
+console.log(2)
 
 function searchPeople() {
     console.log(3)

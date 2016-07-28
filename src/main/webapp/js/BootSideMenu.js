@@ -56,7 +56,7 @@
 
 		if(href.substr(0,1)=='#'){
 
-			idToToggle = href.substr(1,href.length); 
+			idToToggle = href.substr(1,href.length);
 
 			if(searchSubMenu(idToToggle)){
 
@@ -67,12 +67,12 @@
 					this_x = $(this).width() + 10;
 					this_y = this_offset.top +1;
 					$('#'+idToToggle).css('left', this_x);
-					$('#'+idToToggle).css('top', this_y);			
+					$('#'+idToToggle).css('top', this_y);
 				}else if(side=='right'){
 					this_x = $(this).width()+10;
 					this_y = this_offset.top +1;
 					$('#'+idToToggle).css('right', this_x);
-					$('#'+idToToggle).css('top', this_y);			
+					$('#'+idToToggle).css('top', this_y);
 				}
 
 				$('#'+idToToggle).fadeIn();

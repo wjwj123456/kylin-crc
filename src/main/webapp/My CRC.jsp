@@ -547,7 +547,7 @@ var sex ="${userInfo.sex}";
 						style="padding-left: 20px; padding-top: 5px; padding-right: 0px;">
 
 						<input
-							style="position: fix; vertical-align: top; background-color: transparent;"
+							style="vertical-align: top; background-color: transparent;"
 							name="term" placeholder="Search user..." required=""
 							class="store-search typeahead form-control tt-input" type="text"
 							id="searchPeople">
@@ -555,7 +555,7 @@ var sex ="${userInfo.sex}";
 					</div>
 					<div class="col-md-2 col-md-offest-0"
 						style="padding-top: 5px; margin-left: 0px">
-						<button type="submit" class="btn-primary-xs btn" id="search"
+						<button class="btn-primary-xs btn" id="search"
 							style="height: 32px;">
 							<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 						</button>
@@ -616,7 +616,6 @@ var sex ="${userInfo.sex}";
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 	<script src="js/number.js"></script>
-	<script src="js/mycrc.js"></script>
 	<script
 		src="js/BootSideMenu.js"></script>
 	<script type="text/javascript">
@@ -624,10 +623,11 @@ var sex ="${userInfo.sex}";
 	      $('#test').BootSideMenu({side:"left", autoClose:false});
 	      $('#test2').BootSideMenu({side:"right"});
 	  });
-	  
+
 /* 	  $('test2').children().children(".col-xs-12").css("overflow","unset"); */
-	  
+
 	</script>
+	<script src="js/mycrc.js"></script>
 </body>
 
 </html>
