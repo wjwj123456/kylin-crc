@@ -436,7 +436,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							%>
 							<td><%=reportVO.getLocation()%></td>
 							<td><%=reportVO.getDescription()%></td>
-							<td><select>
+							<td><select class="form-control">
 									<%for(String s : reporters.get(toMergeVOs.indexOf(reportVO)) ){ %>
 										<option><%=s %></option>
 									<%} %>
