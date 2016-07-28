@@ -658,7 +658,7 @@ function commitReport() {
 		var mark;
 		for (i = 0; i < inputs.length; i++) {
 			if ($(inputs[i]).prop('checked') == true) {
-				mark = $('#toMerge-code tbody').children().not('.collapse')[j + 1];
+				mark = $('#toMerge-file tbody').children().not('.collapse')[j + 1];
 				$($('#toMerge-file tbody').children().not('.collapse')[j])
 						.remove();
 				j--;
