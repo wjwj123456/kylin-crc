@@ -40,7 +40,7 @@ public class TaskFilter implements Filter {
 
 		req.setCharacterEncoding("UTF-8");
 		String taskName = req.getParameter("taskName");
-		String username = req.getParameter("username");
+		String username = (String)session.getAttribute("username");
 		ReviewBlImpl review = new ReviewBlImpl();
 		TaskVO task = review.getTaskVOByTaskName(taskName);
 		if(!review.isPublic(taskName)&&!review.isReviewer(taskName, username)){

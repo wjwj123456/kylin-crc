@@ -254,6 +254,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 						<script type="text/javascript">
 						var userChart = echarts.init(document
 								.getElementById('userGraph'));
+						initUserOption(<%=userHis.get(0).getFindedfaults()%>, <%=userHis.get(0).getUniquefaults()%>, <%=userHis.get(0).getAssessfaults_mt()%>);
+						userChart.clear();
+						userChart.setOption(userOption);
 						function show(found,unique,total) {
 							initUserOption(found, unique, total);
 							userChart.clear();
@@ -377,6 +380,9 @@ taskName = '<%=request.getParameter("taskName")%>';
 						<script type="text/javascript">
 						var userChart2 = echarts.init(document
 								.getElementById('userGraph2'));
+						initUserOption(<%=userHis.get(0).getFindedfaults()%>, <%=userHis.get(0).getUniquefaults()%>, <%=userHis.get(0).getAssessfaults_mt()%>);
+						userChart2.clear();
+						userChart2.setOption(userOption);
 						function show2(found,unique,total) {
 							initUserOption(found, unique, total);
 							userChart2.clear();

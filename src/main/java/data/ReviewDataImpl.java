@@ -547,7 +547,7 @@ public class ReviewDataImpl implements ReviewDataService {
 	public boolean isPublic(String taskName) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM task WHERE tname = '" + taskName + "'";
-		Power power = null;
+		Power power = Power.PRIVATE;
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
@@ -581,7 +581,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		if (isOwner(userName, taskName)) {
 			return true;
 		} else {
-			State state = null;
+			State state = State.refuse;
 			String sql = "SELECT * FROM review WHERE tname = '" + taskName + "' and uname = '" + userName + "'";
 			Connection connection = DBManager.connect();
 			Statement statement = connection.createStatement();
