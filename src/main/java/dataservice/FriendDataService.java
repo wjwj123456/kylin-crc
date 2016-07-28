@@ -34,4 +34,6 @@ public interface FriendDataService {
 	public List<UserInfoPO> getFriendsByKeywords(String userName, String keyword) throws ClassNotFoundException, SQLException;
 
 	public List<UserInfoPO> getStrangerByKeywords(String userName, String keyword) throws ClassNotFoundException, SQLException;
+
+	public boolean isFriend(String userName, String friendUserName) throws ClassNotFoundException, SQLException;
 }

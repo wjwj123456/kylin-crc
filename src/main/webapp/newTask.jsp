@@ -215,6 +215,7 @@
 				<div class="col-sm-10">
 					<%--<input type="file" multiple="multiple" id="filein"><br/>--%>
 					<%--<input type="submit" value="upload">--%>
+					<p>按住shift可多选</p>
 					<a href="javascript:;" class="btn fileInput"
 						style="height: 37px; width: 90px;">上传文件 <input type="file" id="theInput"
 						name="file" multiple="multiple" class="btn"

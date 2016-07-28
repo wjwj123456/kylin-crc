@@ -38,6 +38,7 @@ function loadAgreedReviewer(taskName) {
 		success : function(data) {
 			var users = jQuery.parseJSON(data)[0].users;
 			var pictures = jQuery.parseJSON(data)[0].picture;
+			$('#agreed').find('tbody').empty();
 			for (var i = 0; i < users.length; i++) {
 				$('#agreed').find('tbody').append(
 						'<tr><td>'
@@ -109,7 +110,6 @@ function isUnique(obj) {
  */
 function displayUser(users) {
 	$('#toInvite').find('tbody').empty();
-
 	for (var i = 0; i < users.length; i++) {
 		$('#toInvite')
 				.find('tbody')
@@ -118,7 +118,7 @@ function displayUser(users) {
 								+ '<img alt=""'
 								+ 'src="'+ users[i].picture + '" width="30px"'
 								+ 'class="img-circle scaleable" height="30px"></td><td>'
-								+ users[i].name + '</td></tr>');
+								+ users[i].userName + '</td></tr>');
 	}
 
 	$('#toInvite').find('tbody>tr').on('click', function() {

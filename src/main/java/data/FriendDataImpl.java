@@ -99,4 +99,15 @@ public class FriendDataImpl implements FriendDataService {
 		DBManager.stopAll(rs, statement, connection);
 		return result;
 	}
+	
+	public boolean isFriend(String userName, String friendUserName) throws ClassNotFoundException, SQLException {
+		String sql = "SELECT * FROM friend WHERE userName = ? AND friendUserName = ?";
+		Connection connection = DBManager.connect();
+		PreparedStatement pStatement = connection.prepareStatement(sql);
+		pStatement.setString(1, userName);
+		pStatement.setString(2, friendUserName);
+		ResultSet resultset = pStatement.executeQuery();
+		if(resultset.next()) return true;
+		return false;
+	}
 }

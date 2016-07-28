@@ -36,9 +36,8 @@ public class AccountServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String type = request.getParameter("type")  + "+++++" ;
+		String type = request.getParameter("type");
 
-		System.out.println(type);
 		if (type.equals("update")) {
 			handleUpdate(request, response);
 		}
@@ -60,25 +59,23 @@ public class AccountServlet extends HttpServlet {
 	 * @param response
 	 */
 	private void handleUpdate(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("AccountServlet.handleUpdate");
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
 		String userName = (String) request.getSession().getAttribute("username");
 		JSONArray array = jsonObject.getJSONArray("language");
-		Language[] language = new Language[array.length()];
 
+		Language[] language = new Language[array.length()];
 		for (int i = 0; i < array.length(); i++) {
 			language[i] = Language.valueOf(array.getString(i));
 		}
 
-		UserInfoVO userInfo = new UserInfoVO(userName, jsonObject.getString("name"),
-				jsonObject.getEnum(Sex.class, "sex"), jsonObject.getString("job"), jsonObject.getString("province"),
-				jsonObject.getString("city"), jsonObject.getString("description"), jsonObject.getString("picture"),
-				language);
+		String province = jsonObject.has("province") ? jsonObject.getString("province") : "";
+		String city = jsonObject.has("city") ? jsonObject.getString("city") : "";
 
-		System.out.println(userInfo.getSex());
-		System.out.println(userInfo.getLanguages()[0]);
-		System.out.println(userInfo.getDescription());
+		UserInfoVO userInfo = new UserInfoVO(userName, jsonObject.getString("name"),
+				jsonObject.getEnum(Sex.class, "sex"), jsonObject.getString("job"), province,
+				city, jsonObject.getString("description"),
+				jsonObject.getString("picture"), language);
 
 		new UserInfoBlImpl().update(userInfo);
 	}

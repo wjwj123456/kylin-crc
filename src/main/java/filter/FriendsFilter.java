@@ -27,20 +27,26 @@ public class FriendsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpSession session = request.getSession();
 
-        String userName = request.getParameter("friend");
+        String userName = (String) session.getAttribute("username");
+        String friendName = request.getParameter("friend");
 
-        UserInfoVO userInfo = new UserInfoBlImpl().get(userName);
-        session.setAttribute("userInfo_" + userName, userInfo);
+        // 是否是朋友
+        FriendBlImpl friendBl = new FriendBlImpl();
+        boolean isFriend = friendBl.isFriend(userName, friendName);
+        session.setAttribute("isFriend_" + userName + "_" + friendName, isFriend);
+        // 用户信息
+        UserInfoVO userInfo = new UserInfoBlImpl().get(friendName);
+        session.setAttribute("userInfo_" + friendName, userInfo);
         // 成就
-        AchievementVO achievement = new AchievementBlImpl().getAchievement(userName);
-        session.setAttribute("achievement_" + userName, achievement);
+        AchievementVO achievement = new AchievementBlImpl().getAchievement(friendName);
+        session.setAttribute("achievement_" + friendName, achievement);
         // 完成的任务（创建者）
-        List<TaskVO> doingTaskList = new ReviewBlImpl().getDoingTaskList(userName);
-        session.setAttribute("doingTaskList_" + userName, doingTaskList);
+        List<TaskVO> doingTaskList = new ReviewBlImpl().getDoingTaskList(friendName);
+        session.setAttribute("doingTaskList_" + friendName, doingTaskList);
         // 已完成的任务（创建者）
-        List<TaskVO> endingTaskList = new ReviewBlImpl().getEndTaskList(userName);
-        session.setAttribute("endingTaskList_" + userName, endingTaskList);
-        
+        List<TaskVO> endingTaskList = new ReviewBlImpl().getEndTaskList(friendName);
+        session.setAttribute("endingTaskList_" + friendName, endingTaskList);
+
         chain.doFilter(req, resp);
     }
 

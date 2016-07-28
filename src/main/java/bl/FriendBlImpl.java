@@ -126,4 +126,16 @@ public class FriendBlImpl implements FriendBlService {
 		}
 		return result;
 	}
+	
+	public boolean isFriend(String userName, String friendUserName) {
+		boolean result = false;
+		try {
+			result = friendDataService.isFriend(userName, friendUserName);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
