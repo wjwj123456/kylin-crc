@@ -1,5 +1,6 @@
 package bl.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bl.LockBlImpl;
@@ -22,6 +23,11 @@ public class MergeCommand implements Command {
     private String taskName;
     private String operator;
 
+    /**
+     * 备份所有合并条目的操作者
+     */
+    private List<String> operator_backup;
+
     private MergeBlService merge;
 
     private SplitBlService split;
@@ -30,6 +36,11 @@ public class MergeCommand implements Command {
         this.reportList = reportList;
         this.taskName = taskName;
         this.operator = operator;
+
+        operator_backup = new ArrayList<>();
+        for (ReportVO report : reportList) {
+            operator_backup.add(report.getOperator());
+        }
 
         merge = new MergeBlImpl();
         split = new SplitBlImpl();
@@ -62,6 +73,8 @@ public class MergeCommand implements Command {
     public void undo() {
         // ArrayList<ReportVO> temp;
         // temp = split.choose(reportList.get(0));
-        split.splitForUndoMerge(reportList.subList(1, reportList.size()), reportList.get(0));
+        split.splitForUndoMerge(
+                reportList.subList(1, reportList.size()), reportList.get(0),
+                operator_backup.subList(1, reportList.size()));
     }
 }

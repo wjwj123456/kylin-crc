@@ -16,6 +16,6 @@ public class SplitTestSplit {
 		ArrayList<ReportPO> pos = new ArrayList<ReportPO>();
 		pos.add(po1);
 		pos.add(po2);
-		splitDataImpl.splitFaults(pos, po3);
+//		splitDataImpl.splitFaults(pos, po3);
 	}
 }

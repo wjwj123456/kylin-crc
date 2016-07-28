@@ -39,14 +39,14 @@ public class SplitBlImpl implements SplitBlService{
 		return reportVOs;
 	}
 
-	public boolean split(ArrayList<ReportVO> vos, ReportVO vo) throws ClassNotFoundException, SQLException {
+	public boolean split(ArrayList<ReportVO> vos, ReportVO vo, String operator) throws ClassNotFoundException, SQLException {
 		ArrayList<ReportPO> reportPOs = new ArrayList<ReportPO>();
 		for(ReportVO reportVO: vos) {
 			ReportPO reportPO = new ReportPO(reportVO);
 			reportPOs.add(reportPO);
 		}
 		ReportPO po = new ReportPO(vo);
-		boolean isSuc = splitDataService.splitFaults(reportPOs, po);
+		boolean isSuc = splitDataService.splitFaults(reportPOs, po, operator);
 		return isSuc;
 	}
 
@@ -62,14 +62,14 @@ public class SplitBlImpl implements SplitBlService{
 	}
 
 	@Override
-	public int splitForUndoMerge(List<ReportVO> vos, ReportVO vo) {
+	public int splitForUndoMerge(List<ReportVO> vos, ReportVO vo, List<String> operators) {
 		List<ReportPO> pos = new ArrayList<>();
 		for(ReportVO vo0: vos) {
 			pos.add(new ReportPO(vo0));
 		}
 		int i = 1;
 		try {
-			i = splitDataService.splitForUndoMerge(pos, new ReportPO(vo));
+			i = splitDataService.splitForUndoMerge(pos, new ReportPO(vo), operators);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

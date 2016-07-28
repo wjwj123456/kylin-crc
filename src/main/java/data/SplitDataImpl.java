@@ -81,6 +81,13 @@ public class SplitDataImpl implements SplitDataService {
 		}
 	}
 	
+	private int setOperator(int id, String operator, Statement statement) throws SQLException {
+		int i = -1;
+		String sql = "UPDATE report SET operator = '"+operator+"' WHERE id = " + id;
+		i = statement.executeUpdate(sql);
+		return i;
+	}
+	
 	/**
 	 * return all faults that were included in the fault chosen
 	 * @param finalParent
@@ -88,7 +95,7 @@ public class SplitDataImpl implements SplitDataService {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public boolean splitFaults(ArrayList<ReportPO> splitedPOs, ReportPO finalParent) throws ClassNotFoundException, SQLException {
+	public boolean splitFaults(ArrayList<ReportPO> splitedPOs, ReportPO finalParent, String operator) throws ClassNotFoundException, SQLException {
 		int finalParentID = getID(finalParent);
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
@@ -107,6 +114,7 @@ public class SplitDataImpl implements SplitDataService {
 			deleteFromMerge(parentID0, splitID0, statement);
 			setMerge(splitID0, 0, statement);
 			setState(splitID0, 0, statement);
+			setOperator(splitID0, operator, statement);
 		}
 
 		int mergeNumber = mergeNumber(finalParentID, statement);
@@ -361,15 +369,19 @@ public class SplitDataImpl implements SplitDataService {
 	 * @throws ClassNotFoundException 
 	 */
 	@Override
-	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po) throws ClassNotFoundException, SQLException {
+	public int splitForUndoMerge(List<ReportPO> pos, ReportPO po, List<String> operators) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
 		Statement statement = connection.createStatement();
 		int id = getID(po);
+		int order = -1;
 		for(ReportPO po0: pos) {
+			order++;
 			int id0 = getID(po0);
 			if (id0 == id) {
 				continue;
 			}
+			String operator = operators.get(order);
+			setOperator(id0, operator, statement);
 			String sql = "DELETE FROM merge WHERE final_id = " + id + " AND included_id = " + id0;
 			int i = statement.executeUpdate(sql);
 			if(i!=1) {

@@ -66,7 +66,7 @@ public class SplitCommand implements Command {
 	public int execute() {
 		int result = 0;
 		try {
-			boolean flag = splitBl.split(reportList, report);
+			boolean flag = splitBl.split(reportList, report, operator);
 
 			result = flag ? 0 : 1;
 		} catch (ClassNotFoundException | SQLException e) {
@@ -87,7 +87,7 @@ public class SplitCommand implements Command {
 			mergeBl.saveMergeReport(temp, report.getTaskName(), operator);
 			// 2. vo <-\- list[]
 			try {
-				splitBl.split((ArrayList<ReportVO>) reportBackUp[i], report);
+				splitBl.split((ArrayList<ReportVO>) reportBackUp[i], report, operator);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
