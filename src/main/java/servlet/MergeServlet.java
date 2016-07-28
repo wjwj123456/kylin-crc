@@ -82,6 +82,7 @@ public class MergeServlet extends HttpServlet {
         // int result =
         // merge.saveMergeReport(getData(request.getParameter("data")),
         // taskName);
+        System.out.println(result);
 
         PrintWriter out = response.getWriter();
         out.print(result);
