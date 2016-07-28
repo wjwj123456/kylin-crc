@@ -133,12 +133,27 @@
 						<div class="row row-eq-height">
 							<div class="col-md-2">
 								<div class="header">
+									<%
+										if (vo.getState() == 1) {
+									%>
+									<div class="price">
+										<span class="amount" style="font-size: 30px;">待<br>合<br>并
+										</span>
+
+									</div>
+									<%
+										} else {
+									%>
 									<h4 class="package">剩余</h4>
 									<div class="price">
 										<span class="amount"><%=(int) ((vo.getDeadline().getTime() - now.getTime()) / 86400000)%></span>
 										<span class="currency">天</span>
 
 									</div>
+									<%
+										}
+									%>
+
 								</div>
 							</div>
 							<div class="col-md-10">
@@ -201,7 +216,7 @@
 					%>
 					<%
 						for (TaskVO vo : joiningTasks) {
-							List<String> users = invite.getAgreeUser(vo.getTaskName());
+								List<String> users = invite.getAgreeUser(vo.getTaskName());
 					%>
 					<div class="avn-price-table avn-style14 avn-hover"">
 						<div class="row row-eq-height">
@@ -266,7 +281,7 @@
 					%>
 					<%
 						for (TaskVO vo : history) {
-							List<String> users = invite.getAgreeUser(vo.getTaskName());
+								List<String> users = invite.getAgreeUser(vo.getTaskName());
 					%>
 					<div class="avn-price-table avn-style14 avn-hover"">
 						<div class="row row-eq-height">
@@ -274,7 +289,8 @@
 								<div class="header">
 
 									<div class="price">
-										<span class="amount" style="font-size: 30px;">已<br>结<br>束</span>
+										<span class="amount" style="font-size: 30px;">已<br>结<br>束
+										</span>
 
 									</div>
 								</div>
