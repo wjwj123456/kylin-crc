@@ -8,9 +8,9 @@ $('#next').on('click', function () {
         window.scrollTo(0, document.body.scrollHeight);
 
         uploadFile();
-        $('#createTask').fadeIn().on('click', function () {
+        $('#createTask').on('click', function () {
             createNewTask();
-        });
+        }).fadeIn();
     }
 });
 
