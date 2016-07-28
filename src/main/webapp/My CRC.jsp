@@ -550,14 +550,14 @@ var sex ="${userInfo.sex}";
 							style="position: fix; vertical-align: top; background-color: transparent;"
 							name="term" placeholder="Search user..." required=""
 							class="store-search typeahead form-control tt-input" type="text"
-							id="search-content">
+							id="searchPeople">
 
 					</div>
 					<div class="col-md-2 col-md-offest-0"
 						style="padding-top: 5px; margin-left: 0px">
 						<button type="submit" class="btn-primary-xs btn" id="search"
 							style="height: 32px;">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 						</button>
 					</div>
 				</div>
@@ -616,6 +616,7 @@ var sex ="${userInfo.sex}";
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 	<script src="js/number.js"></script>
+	<script src="js/mycrc.js"></script>
 	<script
 		src="https://cdn.rawgit.com/AndreaLombardo/BootSideMenu/master/js/BootSideMenu.js"></script>
 	<script type="text/javascript">
