@@ -76,7 +76,7 @@
 					</button></a>
 			</div>
 
-			<a href="newTask.jsp"><button class="btn btn-new">新评审</button></a>
+			<a href="newTask.jsp"><button class="btn">新评审</button></a>
 
 		</div>
 		<div class="col-md-10 bs-docs-section">
@@ -100,8 +100,8 @@
 					<tr>
 						<td><%=vo.getUserName()%></td>
 						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-						<td><button class="btn" id="accept">接受邀请</button></td>
-						<td><button class="btn" id="read">已读</button></td>
+						<td><button class="btn">接受邀请</button></td>
+						<td><button class="btn btn-new">已读</button></td>
 					</tr>
 					<%
 						}

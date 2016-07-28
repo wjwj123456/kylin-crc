@@ -49,6 +49,20 @@ public class AssessmentDataImpl implements AssessmentDataService {
 		}
 		i = 0;
 		j = 0;
+
+		List<Integer> allFinalId = new ArrayList<Integer>();
+		List<Integer> allIncludedId = new ArrayList<Integer>();
+		List<String> allIncludedName = new ArrayList<String>();
+		String sql1 = "SELECT * FROM merge ";
+		Connection connection = DBManager.connect();
+		PreparedStatement ps = connection.prepareStatement(sql1);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			allFinalId.add(rs.getInt(1));
+			allIncludedId.add(rs.getInt(2));
+			allIncludedName.add(rs.getString(3));
+		}
+
 		for (ReportVO vo : vos) {
 
 			j = nameList.indexOf(vo.getUserName());
@@ -56,7 +70,7 @@ public class AssessmentDataImpl implements AssessmentDataService {
 
 			int id = mergeDataImpl.getID(new ReportPO(vo));
 
-			String sql = "SELECT uname FROM merge where final_id = " + id;
+			String sql = "SELECT uname,included_id FROM merge where final_id = " + id;
 			rSet = DBManager.getResultSet(sql);
 			// if (!rSet.next()) {
 			//
@@ -71,11 +85,23 @@ public class AssessmentDataImpl implements AssessmentDataService {
 			// matrix[i][j] = 1;
 			// }
 			// }
+			List<Integer> includedIdList = new ArrayList<Integer>();
 			String name = "";
 			while (rSet.next()) {
+				includedIdList.add(rSet.getInt(2));
+
 				name = rSet.getString(1);
 				j = nameList.indexOf(name);
 				matrix[i][j] = 1;
+			}
+
+			for (Integer integer : includedIdList) {
+				int tempId = integer;
+				int index = -1;
+				while ((index = allFinalId.indexOf(tempId)) != -1) {
+					matrix[i][nameList.indexOf(allIncludedName.get(index))] = 1;
+					tempId = allIncludedId.get(index);
+				}
 			}
 
 			i++;

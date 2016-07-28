@@ -356,7 +356,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 					</div>
 					<div id="docBlock">
 						<div
-							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
+							style="height: 300px; overflow: auto;width:100% ; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
 							<table class="table" id="docTable">
 								<thead>
 									<tr>

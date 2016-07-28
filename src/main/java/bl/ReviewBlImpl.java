@@ -172,7 +172,7 @@ public class ReviewBlImpl implements ReviewBlService {
 			TaskVO task = getTaskVOByTaskName(taskName);
 			UserBlImpl userBl = new UserBlImpl();
 			UserVO user = userBl.getUserVOByName(task.getUserName());
-			String url = "localhost:8080/crc/tasks.jsp?taskName=" + taskName;
+			String url = "115.159.195.149:8080/crc/tasks.jsp?taskName=" + taskName;
 			String[] userEmails = new String[userName.length];
 
 			System.out.println(user.getEmail());
