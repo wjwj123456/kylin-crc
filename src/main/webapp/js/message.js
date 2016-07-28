@@ -7,14 +7,15 @@
 /**
  * 接受邀请
  */
-$('#accept').on('click', function () {
+$('#messageTable tbody').find('button').not('.btn-new').on('click', function () {
     run_waitMe();
+    var temp = $(this);
     jQuery.ajax({
         url: '/crc/RefuseServlet',
         type: 'post',
-        data: 'type=accept&' + 'taskName=' + $('#accept').parent().prev().children().text(),
+        data: 'type=accept&' + 'taskName=' + temp.parent().prev().children().text(),
         success: function () {
-            $('#accept').removeClass("btn-success").text("已参加");
+            temp.text("已参加");
             stopWait();
         }
     });
@@ -23,14 +24,15 @@ $('#accept').on('click', function () {
 /**
  * 已读消息
  */
-$('#read').on('click', function () {
+$('#messageTable tbody').find('button').filter('.btn-new').on('click', function () {
     run_waitMe();
+    var temp = $(this);
     jQuery.ajax({
         url: '/crc/RefuseServlet',
         type: 'post',
-        data: 'type=delete&' + 'taskName=' + $('#read').parent().prev().prev().children().text(),
+        data: 'type=delete&' + 'taskName=' + temp.parent().prev().prev().children().text(),
         success: function (data) {
-            $(this).parent().parent().remove();
+            temp.parent().parent().remove();
             stopWait();
         }
     });
