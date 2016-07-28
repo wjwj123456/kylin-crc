@@ -89,7 +89,7 @@ $('#add-choosefile').on('click', function() {
 });
 
 function initCodeChoose() {
-	$('#choose-code').find('tr').not(':first').on('click', function() {
+	$('#choose-code').find('tr').not(':first').on('dblclick', function() {
 		var temp = $(this).find('td');
 		var report = new Object({
 			taskName : taskName,
@@ -133,7 +133,7 @@ $('#merge')
 				});
 
 function initFileChoose() {
-	$('#choose-file').find('tr').not(':first').on('click', function() {
+	$('#choose-file').find('tr').not(':first').on('dblclick', function() {
 		var temp = $(this).find('td');
 		var report = new Object({
 			taskName : taskName,
