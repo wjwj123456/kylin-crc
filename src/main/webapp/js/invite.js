@@ -37,9 +37,14 @@ function loadAgreedReviewer(taskName) {
 		data : 'type=agree' + '&taskName=' + taskName,
 		success : function(data) {
 			var users = jQuery.parseJSON(data)[0].users;
+			var pictures = jQuery.parseJSON(data)[0].picture;
 			for (var i = 0; i < users.length; i++) {
 				$('#agreed').find('tbody').append(
-						'<tr><td>' + users[i] + '</td></tr>');
+						'<tr><td>'
+						+ '<img alt=""'
+						+ 'src="'+ pictures[i] + '" width="30px"'
+						+ 'class="img-circle scaleable" height="30px"></td><td>'
+						+ users[i] + '</td></tr>');
 			}
 			stopWait();
 		}
@@ -111,7 +116,7 @@ function displayUser(users) {
 				.append(
 						'<tr><td>'
 								+ '<img alt=""'
-								+ 'src="sculpture/user.png" width="30px"'
+								+ 'src="'+ users[i].picture + '" width="30px"'
 								+ 'class="img-circle scaleable" height="30px"></td><td>'
 								+ users[i].name + '</td></tr>');
 	}

@@ -359,11 +359,7 @@
 								<div style="height: 250px; overflow: auto">
 
 									<table class="table" id="toInvite">
-										<thead>
-											<tr>
-												<th>用户名</th>
-											</tr>
-										</thead>
+										
 										<tbody>
 
 										</tbody>
@@ -375,11 +371,7 @@
 								<div style="height: 250px; overflow: auto">
 
 									<table class="table" id="invited">
-										<thead>
-											<tr>
-												<th>用户名</th>
-											</tr>
-										</thead>
+										
 										<tbody>
 										</tbody>
 									</table>
@@ -390,11 +382,7 @@
 								<div style="height: 250px; overflow: auto">
 
 									<table class="table" id="agreed">
-										<thead>
-											<tr>
-												<th>用户名</th>
-											</tr>
-										</thead>
+										
 										<tbody>
 
 										</tbody>
