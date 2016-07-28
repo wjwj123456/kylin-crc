@@ -38,6 +38,7 @@ function loadAgreedReviewer(taskName) {
 		success : function(data) {
 			var users = jQuery.parseJSON(data)[0].users;
 			var pictures = jQuery.parseJSON(data)[0].picture;
+			$('#agreed').find('tbody').empty();
 			for (var i = 0; i < users.length; i++) {
 				$('#agreed').find('tbody').append(
 						'<tr><td>'

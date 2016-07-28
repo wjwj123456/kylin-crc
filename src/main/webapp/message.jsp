@@ -16,6 +16,7 @@
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<link rel="stylesheet" href="css/style.css">
 <style type="text/css">
 .myrow {
 	padding-bottom: 10px;
@@ -75,7 +76,7 @@
 					</button></a>
 			</div>
 
-			<a href="newTask.jsp"><button class="btn btn-success">新评审</button></a>
+			<a href="newTask.jsp"><button class="btn ">新评审</button></a>
 
 		</div>
 		<div class="col-md-10 bs-docs-section">
@@ -99,8 +100,8 @@
 					<tr>
 						<td><%=vo.getUserName()%></td>
 						<td><a href="tasks.jsp?taskName=<%=vo.getTaskName()%>"><%=vo.getTaskName()%></a></td>
-						<td><button class="btn btn-success" id="accept">接受邀请</button></td>
-						<td><button class="btn btn-danger" id="read">已读</button></td>
+						<td><button class="btn" id="accept">接受邀请</button></td>
+						<td><button class="btn" id="read">已读</button></td>
 					</tr>
 					<%
 						}
