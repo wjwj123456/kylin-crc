@@ -50,19 +50,11 @@ public class MergeCommand implements Command {
     public int execute() {
         LockBlService lockBl = new LockBlImpl();
 
-        System.out.println(operator);
-        System.out.println("MergeCommand.execute");
         if (lockBl.getCurrentUser(taskName).equals("")) {
             lockBl.setCurrentUser(taskName, operator);
         }
 
-        System.out.println(lockBl.getCurrentUser(taskName));
-
         if (lockBl.getCurrentUser(taskName).equals(operator)) {
-            System.out.println(reportList);
-            System.out.println(taskName);
-            System.out.println(operator);
-
             return merge.saveMergeReport(reportList, taskName, operator);
         } else {
             return 404;
