@@ -137,12 +137,24 @@ var sex ="${userInfo.sex}";
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane fade in active" id="myAchievement">
-					<h4 >
-						当前经验值为<%=achievement.getExperience() %>
-					</h4>
-					<h4>已参与评审<%=achievement.getReview_count()%>次</h4>
-					<h4>累计评审时长<%=achievement.getReview_time() %>小时</h4>
-					<h4>评审效率超过50%累计<%=achievement.getEfficiency_count() %>次</h4>
+<div class="row"  style="padding-top:89px">
+
+</div>
+					<ul style="font-size:25px ">
+						<li >当前经验值为 <label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getExperience()%>" data-speed="1500"><b></b></label></li>
+						<li>已参与评审<label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getReview_count()%>" data-speed="1500"><b></b></label>次</li>
+						<li>累计评审时长 <label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getReview_time()%>" data-speed="1500"><b></b></label>小时</li>
+						<li>效率超过50%的评审累计<label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getEfficiency_count()%>" data-speed="1500"><b></b></label>次</li>
+					</ul>
+				
 
 				</div>
 
@@ -268,315 +280,313 @@ var sex ="${userInfo.sex}";
 					</div>
 
 
-				
 
 
-				<div>
-					<h2 id="perAnalyze">
-						评审时长
+
+					<div>
+						<h2 id="perAnalyze">
+							评审时长
+							<hr>
+						</h2>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_time_20_achi()) {
+							%>
+							<img alt="" src="img/achievement2/achievement11.png"
+								style="width: 112px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement2/achievement12.png"
+								style="width: 112px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审时长达到20小时</label>
+						</div>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_time_50_achi()) {
+							%>
+							<img alt="" src="img/achievement2/achievement21.png"
+								style="width: 112px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement2/achievement22.png"
+								style="width: 112px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审时长达到50小时</label>
+						</div>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_time_100_achi()) {
+							%>
+							<img alt="" src="img/achievement2/achievement31.png"
+								style="width: 112px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement2/achievement32.png"
+								style="width: 112px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审时长达到100小时</label>
+						</div>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_time_200_achi()) {
+							%>
+							<img alt="" src="img/achievement2/achievement41.png"
+								style="width: 112px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement2/achievement42.png"
+								style="width: 112px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审时长达到200小时</label>
+						</div>
+
+						<div class="row" style="padding-top: 200px">
+							<div class="col-md-2" style="width: 100px"></div>
+							<div class="col-md-3 text-center">
+								<%
+									if (achievement.isReview_time_500_achi()) {
+								%>
+								<img alt="" src="img/achievement2/achievement51.png"
+									style="width: 112px"> <br>
+								<%
+									} else {
+								%>
+								<img alt="" src="img/achievement2/achievement52.png"
+									style="width: 112px"> <br>
+								<%
+									}
+								%>
+								<label class="text-center">评审时长达到500小时</label>
+							</div>
+							<div class="col-md-3 text-center">
+								<%
+									if (achievement.isReview_time_1000_achi()) {
+								%>
+								<img alt="" src="img/achievement2/achievement61.png"
+									style="width: 112px"> <br>
+								<%
+									} else {
+								%>
+								<img alt="" src="img/achievement2/achievement62.png"
+									style="width: 112px"> <br>
+								<%
+									}
+								%>
+								<label class="text-center">评审时长达到1000小时</label>
+							</div>
+							<div class="col-md-3 text-center">
+								<%
+									if (achievement.isReview_time_2000_achi()) {
+								%>
+								<img alt="" src="img/achievement2/achievement71.png"
+									style="width: 112px"> <br>
+								<%
+									} else {
+								%>
+								<img alt="" src="img/achievement2/achievement72.png"
+									style="width: 112px"> <br>
+								<%
+									}
+								%>
+								<label class="text-center">评审时长达到2000小时</label>
+							</div>
+						</div>
+
+
+					</div>
+
+
+					<div class="row">
+						<hr />
+					</div>
+					<div>
+						<h2 id="perAnalyze">总计评审次数</h2>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_count_5_achi()) {
+							%>
+							<img alt="" src="img/achievement3/achievement11.png"
+								style="width: 102px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement3/achievement12.png"
+								style="width: 102px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审累计达到5次</label>
+						</div>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_count_10_achi()) {
+							%>
+							<img alt="" src="img/achievement3/achievement21.png"
+								style="width: 102px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement3/achievement22.png"
+								style="width: 102px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审累计达到10次</label>
+						</div>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_count_20_achi()) {
+							%>
+							<img alt="" src="img/achievement3/achievement31.png"
+								style="width: 102px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement3/achievement32.png"
+								style="width: 102px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审累计达到20次</label>
+						</div>
+						<div class="col-md-3 text-center">
+							<%
+								if (achievement.isReview_count_50_achi()) {
+							%>
+							<img alt="" src="img/achievement3/achievement41.png"
+								style="width: 102px"> <br>
+							<%
+								} else {
+							%>
+							<img alt="" src="img/achievement3/achievement42.png"
+								style="width: 102px"> <br>
+							<%
+								}
+							%>
+							<label class="text-center">评审累计达到50次</label>
+						</div>
+						<div class="row" style="padding-top: 200px">
+							<div class="col-md-2" style="width: 100px"></div>
+							<div class="col-md-3 text-center">
+								<%
+									if (achievement.isReview_count_100_achi()) {
+								%>
+								<img alt="" src="img/achievement3/achievement51.png"
+									style="width: 102px"> <br>
+								<%
+									} else {
+								%>
+								<img alt="" src="img/achievement3/achievement52.png"
+									style="width: 102px"> <br>
+								<%
+									}
+								%>
+								<label class="text-center">评审累计达到100次</label>
+							</div>
+
+
+							<div class="col-md-3 text-center">
+								<%
+									if (achievement.isReview_count_200_achi()) {
+								%>
+								<img alt="" src="img/achievement3/achievement61.png"
+									style="width: 102px"> <br>
+								<%
+									} else {
+								%>
+								<img alt="" src="img/achievement3/achievement62.png"
+									style="width: 102px"> <br>
+								<%
+									}
+								%>
+								<label class="text-center">评审累计达到200次</label>
+							</div>
+							<div class="col-md-3 text-center">
+								<%
+									if (achievement.isReview_count_500_achi()) {
+								%>
+								<img alt="" src="img/achievement3/achievement71.png"
+									style="width: 102px"> <br>
+								<%
+									} else {
+								%>
+								<img alt="" src="img/achievement3/achievement72.png"
+									style="width: 102px"> <br>
+								<%
+									}
+								%>
+								<label class="text-center">评审累计达到500次</label>
+							</div>
+						</div>
 						<hr>
-					</h2>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_time_20_achi()) {
-						%>
-						<img alt="" src="img/achievement2/achievement11.png"
-							style="width: 112px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement2/achievement12.png"
-							style="width: 112px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审时长达到20小时</label>
-					</div>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_time_50_achi()) {
-						%>
-						<img alt="" src="img/achievement2/achievement21.png"
-							style="width: 112px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement2/achievement22.png"
-							style="width: 112px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审时长达到50小时</label>
-					</div>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_time_100_achi()) {
-						%>
-						<img alt="" src="img/achievement2/achievement31.png"
-							style="width: 112px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement2/achievement32.png"
-							style="width: 112px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审时长达到100小时</label>
-					</div>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_time_200_achi()) {
-						%>
-						<img alt="" src="img/achievement2/achievement41.png"
-							style="width: 112px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement2/achievement42.png"
-							style="width: 112px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审时长达到200小时</label>
+
+
 					</div>
 
-					<div class="row" style="padding-top: 200px">
-						<div class="col-md-2" style="width: 100px"></div>
-						<div class="col-md-3 text-center">
-							<%
-								if (achievement.isReview_time_500_achi()) {
-							%>
-							<img alt="" src="img/achievement2/achievement51.png"
-								style="width: 112px"> <br>
-							<%
-								} else {
-							%>
-							<img alt="" src="img/achievement2/achievement52.png"
-								style="width: 112px"> <br>
-							<%
-								}
-							%>
-							<label class="text-center">评审时长达到500小时</label>
-						</div>
-						<div class="col-md-3 text-center">
-							<%
-								if (achievement.isReview_time_1000_achi()) {
-							%>
-							<img alt="" src="img/achievement2/achievement61.png"
-								style="width: 112px"> <br>
-							<%
-								} else {
-							%>
-							<img alt="" src="img/achievement2/achievement62.png"
-								style="width: 112px"> <br>
-							<%
-								}
-							%>
-							<label class="text-center">评审时长达到1000小时</label>
-						</div>
-						<div class="col-md-3 text-center">
-							<%
-								if (achievement.isReview_time_2000_achi()) {
-							%>
-							<img alt="" src="img/achievement2/achievement71.png"
-								style="width: 112px"> <br>
-							<%
-								} else {
-							%>
-							<img alt="" src="img/achievement2/achievement72.png"
-								style="width: 112px"> <br>
-							<%
-								}
-							%>
-							<label class="text-center">评审时长达到2000小时</label>
-						</div>
-					</div>
-
-
-				</div>
-
-
-				<div class="row">
-					<hr />
-				</div>
-				<div>
-					<h2 id="perAnalyze">总计评审次数</h2>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_count_5_achi()) {
-						%>
-						<img alt="" src="img/achievement3/achievement11.png"
-							style="width: 102px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement3/achievement12.png"
-							style="width: 102px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审累计达到5次</label>
-					</div>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_count_10_achi()) {
-						%>
-						<img alt="" src="img/achievement3/achievement21.png"
-							style="width: 102px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement3/achievement22.png"
-							style="width: 102px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审累计达到10次</label>
-					</div>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_count_20_achi()) {
-						%>
-						<img alt="" src="img/achievement3/achievement31.png"
-							style="width: 102px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement3/achievement32.png"
-							style="width: 102px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审累计达到20次</label>
-					</div>
-					<div class="col-md-3 text-center">
-						<%
-							if (achievement.isReview_count_50_achi()) {
-						%>
-						<img alt="" src="img/achievement3/achievement41.png"
-							style="width: 102px"> <br>
-						<%
-							} else {
-						%>
-						<img alt="" src="img/achievement3/achievement42.png"
-							style="width: 102px"> <br>
-						<%
-							}
-						%>
-						<label class="text-center">评审累计达到50次</label>
-					</div>
-					<div class="row" style="padding-top: 200px">
-						<div class="col-md-2" style="width: 100px"></div>
-						<div class="col-md-3 text-center">
-							<%
-								if (achievement.isReview_count_100_achi()) {
-							%>
-							<img alt="" src="img/achievement3/achievement51.png"
-								style="width: 102px"> <br>
-							<%
-								} else {
-							%>
-							<img alt="" src="img/achievement3/achievement52.png"
-								style="width: 102px"> <br>
-							<%
-								}
-							%>
-							<label class="text-center">评审累计达到100次</label>
-						</div>
-
-
-						<div class="col-md-3 text-center">
-							<%
-								if (achievement.isReview_count_200_achi()) {
-							%>
-							<img alt="" src="img/achievement3/achievement61.png"
-								style="width: 102px"> <br>
-							<%
-								} else {
-							%>
-							<img alt="" src="img/achievement3/achievement62.png"
-								style="width: 102px"> <br>
-							<%
-								}
-							%>
-							<label class="text-center">评审累计达到200次</label>
-						</div>
-						<div class="col-md-3 text-center">
-							<%
-								if (achievement.isReview_count_500_achi()) {
-							%>
-							<img alt="" src="img/achievement3/achievement71.png"
-								style="width: 102px"> <br>
-							<%
-								} else {
-							%>
-							<img alt="" src="img/achievement3/achievement72.png"
-								style="width: 102px"> <br>
-							<%
-								}
-							%>
-							<label class="text-center">评审累计达到500次</label>
-						</div>
-					</div>
-					<hr>
-
-
-				</div>
-
-			</div>
-		</div>
-
-		<!--Test 2 -->
-		<div id="test2" style="width: 270px; overflow: unset;">
-
-			<div class=row style="width: 265px" position="fixed">
-				<div class="col-md-9"
-					style="padding-left: 20px; padding-top: 5px; padding-right: 0px;">
-
-					<input
-						style="position: fix; vertical-align: top; background-color: transparent;"
-						name="term" placeholder="Search user..." required=""
-						class="store-search typeahead form-control tt-input" type="text"
-						id="search-content">
-
-				</div>
-				<div class="col-md-2 col-md-offest-0"
-					style="padding-top: 5px; margin-left: 0px">
-					<button type="submit" class="btn-primary-xs btn" id="search"
-						style="height: 32px;">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					</button>
 				</div>
 			</div>
-			<div style="overflow: auto; height: 91%;">
-				<%
-					for (int i = 0; i < friends.size(); i++) {
-				%>
-				<div class="user">
-					<div class="col-md-3">
-						<img src=<%=friends.get(i).getPicture()%> alt="Esempio"
-							class="img-circle" style="width: 50px;">
+
+			<!--Test 2 -->
+			<div id="test2" style="width: 270px; overflow: unset;">
+
+				<div class=row style="width: 265px" position="fixed">
+					<div class="col-md-9"
+						style="padding-left: 20px; padding-top: 5px; padding-right: 0px;">
+
+						<input
+							style="position: fix; vertical-align: top; background-color: transparent;"
+							name="term" placeholder="Search user..." required=""
+							class="store-search typeahead form-control tt-input" type="text"
+							id="search-content">
+
 					</div>
-					<div class="col-md-9">
-						<a href="friend.jsp?friend=<%=friends.get(i).getUserName()%>"
-							target="_blank" class="navbar-link"><%=friends.get(i).getUserName()%></a>
-						<button class="mySmallBtn pull-right">
-							<span class="glyphicon glyphicon-plus"></span>
+					<div class="col-md-2 col-md-offest-0"
+						style="padding-top: 5px; margin-left: 0px">
+						<button type="submit" class="btn-primary-xs btn" id="search"
+							style="height: 32px;">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
-						<p><%=friends.get(i).getDescription()%></p>
+					</div>
+				</div>
+				<div style="overflow: auto; height: 91%;">
+					<%
+						for (int i = 0; i < friends.size(); i++) {
+					%>
+					<div class="user">
+						<div class="col-md-3">
+							<img src=<%=friends.get(i).getPicture()%> alt="Esempio"
+								class="img-circle" style="width: 50px;">
+						</div>
+						<div class="col-md-9">
+							<a href="friend.jsp?friend=<%=friends.get(i).getUserName()%>"
+								target="_blank" class="navbar-link"><%=friends.get(i).getUserName()%></a>
+						
+							<p><%=friends.get(i).getDescription()%></p>
+
+						</div>
 
 					</div>
-
+					<%
+						}
+					%>
 				</div>
-				<%
-					}
-				%>
 			</div>
-		</div>
-		<!--/Test 2-->
+			<!--/Test 2-->
 
-</div>
+		</div>
 	</div>
 	<div class="mastfoot">
 		<div class="inner">
@@ -605,7 +615,7 @@ var sex ="${userInfo.sex}";
 	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
-
+	<script src="js/number.js"></script>
 	<script
 		src="https://cdn.rawgit.com/AndreaLombardo/BootSideMenu/master/js/BootSideMenu.js"></script>
 	<script type="text/javascript">

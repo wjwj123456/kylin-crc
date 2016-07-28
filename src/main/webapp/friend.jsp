@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet" href="css/BootSideMenu.css">
+<link rel="stylesheet" href="css/avenir2.css">
 <style type="text/css">
 .myrow {
 	padding-bottom: 10px;
@@ -55,8 +55,7 @@ a:hover {
 <script type="text/javascript">
 
 
-
-<%String userName = (String) session.getAttribute("username");%>
+<%String userName = (String) request.getParameter("friend");%>
 			<%AchievementVO achievement = Cast.cast(session.getAttribute("achievement_" + userName));%>
 <%UserInfoVO userInfo = Cast.cast(session.getAttribute("userInfo_" + userName));%>
 <%List<TaskVO> running = Cast.cast(session.getAttribute("doingTaskList_" + userName));%>
@@ -125,7 +124,9 @@ a:hover {
 				%>
 
 			</div>
-			<a href="#"><button class="btn">取消关注</button></a>
+			<a href="#"><button class="btn" id="addfriend" onclick="addBtn()">取消关注</button></a>
+			
+			
 
 		</div>
 		<div class="col-md-9 bs-docs-section">
@@ -214,19 +215,21 @@ a:hover {
 
 
 				</div>
-				<div class="tab-pane fade in active" id="myAchievement">
-					<h4>
-						当前经验值为<%=achievement.getExperience()%>
-					</h4>
-					<h4>
-						已参与评审<%=achievement.getReview_count()%>次
-					</h4>
-					<h4>
-						累计评审时长<%=achievement.getReview_time()%>小时
-					</h4>
-					<h4>
-						评审效率超过50%累计<%=achievement.getEfficiency_count()%>次
-					</h4>
+				<div class="tab-pane fade " id="myAchievement">
+				<ul style="font-size:25px ">
+						<li >当前经验值为 <label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getExperience()%>" data-speed="1500"><b></b></label></li>
+						<li>已参与评审<label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getReview_count()%>" data-speed="1500"><b></b></label>次</li>
+						<li>累计评审时长 <label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getReview_time()%>" data-speed="1500"><b></b></label>小时</li>
+						<li>效率超过50%的评审累计<label style="font-size:38px ;color:#336699"
+							class="timer count-title text-center" id="count-number"
+							data-to="<%=achievement.getEfficiency_count()%>" data-speed="1500"><b></b></label>次</li>
+					</ul>
 
 				</div>
 
@@ -643,6 +646,31 @@ a:hover {
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 
+
+<script type="text/javascript">
+function addBtn(){
+	var friendName='<%= (String) request.getParameter("friend")%>';
+	var userName='<%= (String) session.getAttribute("username")%>';
+	run_waitMe();
+	jQuery.ajax({
+		url : '/crc/FriendsServlet',
+		type : 'post',
+		data : 'type=delete' + '&userName=' + userName+'&friendName='+friendName,
+		success : function(data) {
+				$('#addfriend').text("关注");
+			stopWait();
+		}
+	});
+
+}
+
+
+
+
+
+
+
+</script>
 
 </body>
 
