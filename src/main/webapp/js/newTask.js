@@ -28,6 +28,7 @@ function createNewTask() {
         success: function (data) {
             if (data == 0) {
                 $('#createTask').removeClass('btn-success').text('创建成功').unbind('click');
+                window.scrollTo(0,document.body.scrollHeight);
                 uploadFile();
             } else if (data == 1) {
                 alert("项目已存在")
