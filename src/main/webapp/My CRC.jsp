@@ -561,7 +561,7 @@ var sex ="${userInfo.sex}";
 						</button>
 					</div>
 				</div>
-				<div style="overflow: auto; height: 91%;">
+				<div style="overflow: auto; height: 91%;" >
 					<%
 						for (int i = 0; i < friends.size(); i++) {
 					%>

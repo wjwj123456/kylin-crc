@@ -125,13 +125,7 @@ a:hover {
 				%>
 
 			</div>
-			<a href="#"><button class="btn" id="addfriend" onclick="deleteBtn()">
-			<%if(isFriend){ %>		
-			取消关注
-			<%}else{ %>	
-			关注
-			<%} %>
-			</button></a>
+			<a href="#"><button class="btn" id="addfriend" onclick="deleteBtn()"><%if(isFriend){ %>取消关注<%}else{ %>关注<%} %></button></a>
 		</div>
 		<div class="col-md-9 bs-docs-section">
 			<ul id="myTab" class="nav nav-tabs"
@@ -660,7 +654,8 @@ function deleteBtn(){
 	var friendName='<%= (String) request.getParameter("friend")%>';
 	var userName='<%= (String) session.getAttribute("username")%>';
 	run_waitMe();
-	if($('#addfriend').text()=="取消关注"){
+
+	if($('#addfriend').text().trim()=="取消关注"){
 	jQuery.ajax({
 		url : '/crc/FriendsServlet',
 		type : 'post',
