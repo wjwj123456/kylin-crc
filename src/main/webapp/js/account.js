@@ -18,7 +18,7 @@ function confirm() {
     run_waitMe();
     console.log(getData());
     jQuery.ajax({
-        url: '/crc/AccountServlet',
+        url: '/AccountServlet',
         type: 'post',
         data: 'type=update' + '&data=' + getData(),
         success: function () {

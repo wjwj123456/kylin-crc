@@ -652,7 +652,7 @@ function deleteBtn(){
 
 	if($('#addfriend').text().trim()=="取消关注"){
 	jQuery.ajax({
-		url : '/crc/FriendsServlet',
+		url : '/FriendsServlet',
 		type : 'post',
 		data : 'type=delete' + '&userName=' + userName+'&friendName='+friendName,
 		success : function(data) {
@@ -662,7 +662,7 @@ function deleteBtn(){
 	});
 	}else{
 		jQuery.ajax({
-			url : '/crc/FriendsServlet',
+			url : '/FriendsServlet',
 			type : 'post',
 			data : 'type=add' + '&userName=' + userName+'&friendName='+friendName,
 			success : function(data) {

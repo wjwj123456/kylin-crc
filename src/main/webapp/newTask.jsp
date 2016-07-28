@@ -142,7 +142,7 @@
         <p>创建你的新任务</p>
     </div>
     <iframe name="newFrame" style="display: none;"></iframe>
-    <form class="form-horizontal" action="/crc/FileServlet?type=upload"
+    <form class="form-horizontal" action="/FileServlet?type=upload"
           target="newFrame" method="post" enctype="multipart/form-data">
         <div class="form-group" id="nameGroup">
             <label for="inputName" class="col-sm-2 control-label">评审名</label>
@@ -214,7 +214,7 @@
             <button class="btn" id="next">下一步</button>
         </div>
     </form>
-    <form action="/crc/FileServlet?type=upload" method="post"
+    <form action="/FileServlet?type=upload" method="post"
           target="newFrame" enctype="multipart/form-data" id="form" style="display: none;">
         <div class="form-group" id="file">
             <label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>

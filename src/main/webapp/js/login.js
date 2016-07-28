@@ -80,7 +80,7 @@ function login() {
 	isOK();
 	if(hasUser&&hasPass){
 		jQuery.ajax({
-			url : '/crc/login',
+			url : '/login',
 			style : 'post',
 			data : 'type=login' + '&username=' + $('#username').val().trim()
 					+ '&password=' + $('#password').val(),
@@ -103,7 +103,7 @@ function login() {
  */
 function logout() {
 	jQuery.ajax({
-		url : '/crc/logout',
+		url : '/logout',
 		style : 'post',
 		data : 'type=logout',
 		success : function(data) {
@@ -123,7 +123,7 @@ function register() {
 	var email = $('#signUpModal').find(':input[name="mail"]').val().trim();
 	if(regOK1&&regOK2&&regOK3&&regOK4){
 		jQuery.ajax({
-			url : '/crc/RegisterServlet',
+			url : '/RegisterServlet',
 			style : 'post',
 			data : 'userName=' + userName + '&email=' + email + '&password='
 					+ password,

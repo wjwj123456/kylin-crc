@@ -68,7 +68,7 @@ function searchTask(keyword) {
     
     run_waitMe();
     jQuery.ajax({
-        url: '/crc/SearchServlet',
+        url: '/SearchServlet',
         type: 'post',
         data: 'type=searchTask&keyword=' + keyword,
         success: function (data) {

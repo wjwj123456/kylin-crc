@@ -29,12 +29,12 @@ $('#type').change(function () {
 function createNewTask() {
     run_waitMe();
     jQuery.ajax({
-        url: '/crc/CreateTaskServlet',
+        url: '/CreateTaskServlet',
         style: 'post',
         data: 'type=createNewTask' + '&data=' + getData(),
         success: function (data) {
             if (data == 0) {
-                top.location = 'My CRC.jsp';
+                top.location = 'myTasks.jsp';
             } else if (data == 1) {
                 alert("项目已存在");
             }
@@ -92,5 +92,5 @@ function checkOK() {
  */
 function uploadFile() {
     $('#form').fadeIn('slow').attr('action',
-        '/crc/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
+        '/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
 }

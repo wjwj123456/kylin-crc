@@ -17,7 +17,7 @@ function redoCommand() {
 function sendRequest(type) {
 	run_waitMe();
 	jQuery.ajax({
-		url: '/crc/CommandServlet',
+		url: '/CommandServlet',
 		type: 'post',
 		data: 'type=' + type,
 		success: function(data) {

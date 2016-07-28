@@ -215,7 +215,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 							for (String s : taskFile) {
 						%>
 						<li><a
-							href="/crc/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>
+							href="/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>
 						<%
 							}
 						%>

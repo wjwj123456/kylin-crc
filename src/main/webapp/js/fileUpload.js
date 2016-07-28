@@ -56,7 +56,7 @@ $(window).load(function () {
     $("#uploadPic").click(function () {
         $.ajax({
             type: "post",
-            url: "/crc/ImageServlet?type=store",
+            url: "/ImageServlet?type=store",
             data: "data=" + cropper.getDataURL().replace('data:image/jpeg;base64,', ''),
             success: function () {
                 alert("you header pic upload success !")
