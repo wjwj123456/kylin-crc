@@ -618,7 +618,7 @@ var sex ="${userInfo.sex}";
 	<script src="js/number.js"></script>
 	<script src="js/mycrc.js"></script>
 	<script
-		src="https://cdn.rawgit.com/AndreaLombardo/BootSideMenu/master/js/BootSideMenu.js"></script>
+		src="js/BootSideMenu.js"></script>
 	<script type="text/javascript">
 	  $(document).ready(function(){
 	      $('#test').BootSideMenu({side:"left", autoClose:false});
