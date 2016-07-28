@@ -94,8 +94,8 @@ function isUnique(obj) {
 	var username = $('#invited').find('tr');
 
 	for (var i = 0; i < username.length; i++) {
-		if ($(username[i]).children(':first').text().trim() == $(obj).children(
-				':first').text().trim()) {
+		if ($(username[i]).children(':last').text().trim() == $(obj).children(
+				':last').text().trim()) {
 			return false;
 		}
 	}

@@ -89,7 +89,7 @@
 		<div id="suspensionNavigation" class="col-md-2" role="complementary"
 			style="text-align: center; padding-top: 80px">
 			<div class="myrow">
-				<img alt="" src="${userInfo.picture} " width="50px"
+				<img alt="" src="${userInfo.picture} " async width="50px"
 					class="img-circle" height="50px">
 			</div>
 			<div class="myrow"><%=session.getAttribute("username")%><a
@@ -174,8 +174,8 @@
 										for (String s : users) {
 									%>
 									<div class="col-md-1" style="text-align: center;">
-										<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
-											src="<%=userInfo.get(s).getPicture()%>" width="40px"
+										<a data-toggle="tooltip" title="<%=s%>" href="friend.jsp?friend=<%=s%>"> <img alt=""
+											src="<%=userInfo.get(s).getPicture()%>" async width="40px"
 											class="img-circle scaleable" height="40px">
 										</a>
 									</div>
@@ -247,8 +247,8 @@
 										for (String s : users) {
 									%>
 									<div class="col-md-1" style="text-align: center;">
-										<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
-											src="<%=userInfo.get(s).getPicture()%>" width="40px"
+										<a data-toggle="tooltip" title="<%=s%>" href="friend.jsp?friend=<%=s%>"> <img alt=""
+											src="<%=userInfo.get(s).getPicture()%>" async width="40px"
 											class="img-circle scaleable" height="40px">
 										</a>
 									</div>
@@ -312,8 +312,8 @@
 										for (String s : users) {
 									%>
 									<div class="col-md-1" style="text-align: center;">
-										<a data-toggle="tooltip" title="<%=s%>"> <img alt=""
-											src="<%=userInfo.get(s).getPicture()%>" width="40px"
+										<a data-toggle="tooltip" title="<%=s%>" href="friend.jsp?friend=<%=s%>"> <img alt=""
+											src="<%=userInfo.get(s).getPicture()%>" async width="40px"
 											class="img-circle scaleable" height="40px">
 										</a>
 									</div>
