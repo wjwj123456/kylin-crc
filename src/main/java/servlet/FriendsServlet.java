@@ -30,7 +30,6 @@ public class FriendsServlet extends HttpServlet {
 		if (type.equals("add")) {
 			handleAdd(request, response);
 		} else if (type.equals("delete")) {
-			System.out.println("11111");
 			handleDelete(request, response);
 		}
 	}

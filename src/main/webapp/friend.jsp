@@ -54,12 +54,13 @@ a:hover {
 </head>
 <script type="text/javascript">
 
-
-<%String userName = (String) request.getParameter("friend");%>
-			<%AchievementVO achievement = Cast.cast(session.getAttribute("achievement_" + userName));%>
-<%UserInfoVO userInfo = Cast.cast(session.getAttribute("userInfo_" + userName));%>
-<%List<TaskVO> running = Cast.cast(session.getAttribute("doingTaskList_" + userName));%>
-<%List<TaskVO> endList = Cast.cast(session.getAttribute("endingTaskList_" + userName));%>
+<% String userName= (String) session.getAttribute("username");%>
+<%String friendName = (String) request.getParameter("friend");%>
+			<%AchievementVO achievement = Cast.cast(session.getAttribute("achievement_" + friendName));%>
+<%UserInfoVO userInfo = Cast.cast(session.getAttribute("userInfo_" + friendName));%>
+<%List<TaskVO> running = Cast.cast(session.getAttribute("doingTaskList_" + friendName));%>
+<%List<TaskVO> endList = Cast.cast(session.getAttribute("endingTaskList_" + friendName));%>
+<%boolean isFriend = Cast.cast(session.getAttribute("isFriend_" + userName+"_"+friendName));%>
 </script>
 
 <body role="document">
@@ -124,10 +125,13 @@ a:hover {
 				%>
 
 			</div>
-			<a href="#"><button class="btn" id="addfriend" onclick="addBtn()">取消关注</button></a>
-			
-			
-
+			<a href="#"><button class="btn" id="addfriend" onclick="deleteBtn()">
+			<%if(isFriend){ %>		
+			取消关注
+			<%}else{ %>	
+			关注
+			<%} %>
+			</button></a>
 		</div>
 		<div class="col-md-9 bs-docs-section">
 			<ul id="myTab" class="nav nav-tabs"
@@ -216,7 +220,10 @@ a:hover {
 
 				</div>
 				<div class="tab-pane fade " id="myAchievement">
-				<ul style="font-size:25px ">
+			<div class="row"  style="padding-top:89px">
+
+</div>
+					<ul style="font-size:25px ">
 						<li >当前经验值为 <label style="font-size:38px ;color:#336699"
 							class="timer count-title text-center" id="count-number"
 							data-to="<%=achievement.getExperience()%>" data-speed="1500"><b></b></label></li>
@@ -230,6 +237,7 @@ a:hover {
 							class="timer count-title text-center" id="count-number"
 							data-to="<%=achievement.getEfficiency_count()%>" data-speed="1500"><b></b></label>次</li>
 					</ul>
+				
 
 				</div>
 
@@ -645,13 +653,14 @@ a:hover {
 	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
-
+<script src="js/number.js"></script>
 
 <script type="text/javascript">
-function addBtn(){
+function deleteBtn(){
 	var friendName='<%= (String) request.getParameter("friend")%>';
 	var userName='<%= (String) session.getAttribute("username")%>';
 	run_waitMe();
+	if($('#addfriend').text()=="取消关注"){
 	jQuery.ajax({
 		url : '/crc/FriendsServlet',
 		type : 'post',
@@ -661,11 +670,19 @@ function addBtn(){
 			stopWait();
 		}
 	});
+	}else{
+		jQuery.ajax({
+			url : '/crc/FriendsServlet',
+			type : 'post',
+			data : 'type=add' + '&userName=' + userName+'&friendName='+friendName,
+			success : function(data) {
+					$('#addfriend').text("取消关注");
+				stopWait();
+			}
+		});
+	}
 
 }
-
-
-
 
 
 
