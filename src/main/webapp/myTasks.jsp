@@ -358,7 +358,7 @@
 								<p>可邀请</p>
 								<div style="height: 250px; overflow: auto">
 
-									<table class="table" id="toInvite">
+									<table class="table table-hover" id="toInvite">
 										
 										<tbody>
 
@@ -391,9 +391,9 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
+							<button type="button" class="btn btn-new"
 								data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary" id="confirmInvite">确认邀请</button>
+							<button type="button" class="btn " id="confirmInvite">确认邀请</button>
 						</div>
 					</div>
 				</div>
