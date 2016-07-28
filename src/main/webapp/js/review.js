@@ -643,7 +643,7 @@ function commitReport() {
                 + report.description
                 + '</td>'
                 + '<td>'
-                + username
+                + report.userName
                 + '</td>'
                 + '<td><button class="btn btn-sm">拆分</button></td></tr>'
                 + '<tr class="collapse fade">'
@@ -684,7 +684,7 @@ function commitReport() {
                 + report.description
                 + '</td>'
                 + '<td>'
-                + username
+                + report.userName
                 + '</td>'
                 + '<td><button class="btn btn-sm">拆分</button></td></tr>'
                 + '<tr class="collapse fade">'
