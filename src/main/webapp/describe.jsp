@@ -239,9 +239,6 @@ var sex ="${userInfo.sex}";
 	<script src="js/account.js"></script>
 	<script src="js/fileUpload.js"></script>
 	<script type="text/javascript">
-		initFileInput('fileinput', '/file');
-	</script>
-	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 	<script type="text/javascript" src="js/portrait.js"></script>

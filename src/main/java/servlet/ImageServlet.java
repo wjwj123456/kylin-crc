@@ -65,18 +65,19 @@ public class ImageServlet extends HttpServlet {
      */
     private void storePortrait(HttpServletRequest request, HttpServletResponse response) {
         String userName = (String) request.getSession().getAttribute("username");
+        // 头像存储路径
+        String filePath = request.getServletContext().getRealPath("/portrait");
 
-        BASE64Decoder decoder = new BASE64Decoder();
-        System.out.println(request.getServletContext().getRealPath("/file"));
         try {
             String temp = request.getParameter("data");
             // 不知为什么，所有‘+’都被替换为了‘ ’，只能换回来
             temp = temp.replaceAll(" ", "+");
 
             // Base64解码
+            BASE64Decoder decoder = new BASE64Decoder();
             byte[] bytes = decoder.decodeBuffer(temp);
             // 生成jpeg图片
-            OutputStream out = new FileOutputStream(new File("/home/song/program/crc/data/" + userName + ".jpeg"));
+            OutputStream out = new FileOutputStream(new File(filePath + File.separator+ userName + ".jpeg"));
             out.write(bytes);
             out.flush();
             out.close();
