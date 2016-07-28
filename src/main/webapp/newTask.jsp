@@ -219,7 +219,7 @@
 					<a href="javascript:;" class="btn fileInput"
 						style="height: 37px; width: 90px;">上传文件 <input type="file" id="theInput"
 						name="file" multiple="multiple" class="btn"
-						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0;" />
+						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 30px;" />
 					</a>
 					<lable class="showFileName"></lable>
 					<button type="submit" value="Upload File" class="btn" id="upload">提交文件</button>
