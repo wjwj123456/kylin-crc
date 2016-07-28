@@ -565,7 +565,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 
 					<div class="row pull-right"padding-bottom: 20px">
 						<button class="btn " id="merge">合并</button>
-						<button class="btn " id="confirmMerge" data-toggle="tooltip"
+						<button class="btn btn-new" id="confirmMerge" data-toggle="tooltip"
 							title="查看最终报告">确认合并</button>
 					</div>
 					<div class="row hidden"
