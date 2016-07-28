@@ -11,6 +11,7 @@ var currentUserDisp;
 $(function(){
 	$('#preJoinBlock').css('display',currentTaskDisp[0]);
 	$('#reviewBlock').css('display',currentTaskDisp[0]);
+	$('#undoredo').css('display',currentTaskDisp[0]);
 	$('#overBlock').css('display',currentTaskDisp[1]);
 	$('#joinBlock').css('display',currentUserDisp[0]);
 	$('#commitBlock').css('display',currentUserDisp[1]);

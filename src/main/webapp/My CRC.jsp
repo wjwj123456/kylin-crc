@@ -155,7 +155,7 @@ var sex ="${userInfo.sex}";
 						<%
 							if (achievement.isEfficiency_count_5_achi()) {
 						%>
-						<img alt="" src="img/achievement1/achievement14.png"
+						<img alt="" src="img/achievement1/achievement11.png"
 							style="width: 102px"> <br>
 						<%
 							} else {
