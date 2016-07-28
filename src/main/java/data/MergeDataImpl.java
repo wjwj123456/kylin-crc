@@ -41,7 +41,7 @@ public class MergeDataImpl implements MergeDataService {
 		Connection connection = DBManager.connect();
 		PreparedStatement pStatement = null;
 		String sql = "SELECT * FROM report WHERE tname = '" + taskName
-				+ "' and state <>1 and state<>3  order by filename and page and location ";
+				+ "' and state <>1 and state<>3  order by filename , page ,location";
 		pStatement = connection.prepareStatement(sql);
 		ResultSet rSet = pStatement.executeQuery();
 		while (rSet.next()) {
