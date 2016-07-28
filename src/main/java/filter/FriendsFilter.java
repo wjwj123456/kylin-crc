@@ -29,7 +29,9 @@ public class FriendsFilter implements Filter {
 
         String userName = (String) session.getAttribute("username");
         String friendName = request.getParameter("friend");
-
+        if(userName.equals(friendName)){
+        	req.getRequestDispatcher("My CRC.jsp").forward(req, resp);
+        }
         // 是否是朋友
         FriendBlImpl friendBl = new FriendBlImpl();
         boolean isFriend = friendBl.isFriend(userName, friendName);
