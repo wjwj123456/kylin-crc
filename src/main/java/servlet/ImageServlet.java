@@ -83,7 +83,7 @@ public class ImageServlet extends HttpServlet {
             out.close();
 
             UserInfoBlImpl userInfoBl = new UserInfoBlImpl();
-            userInfoBl.setPicture(userName, filePath + File.separator + userName + ".jpeg");
+            userInfoBl.setPicture(userName, "portrait" + File.separator + userName + ".jpeg");
         } catch (Exception e) {
             e.printStackTrace();
         }

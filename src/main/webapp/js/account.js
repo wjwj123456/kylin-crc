@@ -16,6 +16,7 @@ $('#confirm').on('click', function () {
  */
 function confirm() {
     run_waitMe();
+    console.log(getData());
     jQuery.ajax({
         url: '/crc/AccountServlet',
         type: 'post',
@@ -46,11 +47,12 @@ function getData() {
         city: "",
         description: $('#describe').val().trim(),
         picture: '',
-        language: array,
+        language: array
     });
 
     userInfo.province = $($('#city option:selected')[0]).val();
     userInfo.city = $($('#city option:selected')[1]).val();
+    console.log($($('#city option:selected')[0]).val());
 
     return JSON.stringify(userInfo);
 }

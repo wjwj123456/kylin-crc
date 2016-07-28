@@ -23,4 +23,6 @@ public interface FriendBlService {
 	public List<UserInfoVO> getFriendByKeyword(String userName, String keyword);
 	
 	public List<UserInfoVO> getStrangerByKeyword(String userName, String keyword);
+	
+	public boolean isFriend(String userName, String friendUserName);
 }
