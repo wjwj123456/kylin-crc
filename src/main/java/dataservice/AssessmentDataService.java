@@ -36,4 +36,13 @@ public interface AssessmentDataService {
 	public List<AssessmentPO> getAllAssessments(String taskName, List<ReportVO> vos)
 			throws SQLException, ClassNotFoundException;
 
+	/**
+	 * ldk get all faults' finded ReviewrNames
+	 * 
+	 * @param List<ReportVO>
+	 *            vos
+	 * 
+	 * @return
+	 */
+	public List<List<String>> getAllFindedReviewerNames(List<ReportVO> vos) throws SQLException, ClassNotFoundException;
 }

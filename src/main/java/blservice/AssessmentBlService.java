@@ -3,6 +3,7 @@ package blservice;
 import java.util.List;
 
 import vo.AssessmentVO;
+import vo.ReportVO;
 
 public interface AssessmentBlService {
 
@@ -37,5 +38,15 @@ public interface AssessmentBlService {
 	 * @return
 	 */
 	public int[] getHistoryAssessmentValues_Mh(String taskName);
+
+	/**
+	 * ldk get all faults' finded ReviewrNames
+	 * 
+	 * @param List<ReportVO>
+	 *            vos
+	 * 
+	 * @return
+	 */
+	public List<List<String>> getAllFindedReviewerNames(List<ReportVO> vos);
 
 }
