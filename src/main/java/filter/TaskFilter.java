@@ -64,10 +64,6 @@ public class TaskFilter implements Filter {
 			// 项目文件
 			session.setAttribute("taskFile", new FileBlImpl().get(taskName));
 		}
-		
-		
-		
-
 		chain.doFilter(request, response);
 	}
 

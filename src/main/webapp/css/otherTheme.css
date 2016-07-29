@@ -66,6 +66,7 @@ body {
 
 .badge {
 	padding: 2px 4px;
+	margin-left: 3px;
 }
 
 .row-eq-height {
