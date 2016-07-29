@@ -1,5 +1,5 @@
 var taskDisp = [['inline','none'],['none','inline']];
-var userDisp = [['inline','none','none'],['none','inline','none'],['none','none','inline'],['none','none','none']];
+var userDisp = [['inline','none','none', 'none'],['none','inline','none', 'inline'],['none','none','inline', 'inline'],['none','none','none', 'inline']];
 var userState = [0,1,2,3];
 var unJoin = 0;
 var joined = 1;
@@ -13,6 +13,7 @@ $(function(){
 	$('#reviewBlock').css('display',currentTaskDisp[0]);
 	$('#undoredo').css('display',currentTaskDisp[0]);
 	$('#overBlock').css('display',currentTaskDisp[1]);
+	$('#taskUndoRedo').css('display', currentUserDisp[3]);
 	$('#joinBlock').css('display',currentUserDisp[0]);
 	$('#commitBlock').css('display',currentUserDisp[1]);
 	$('#mergeBlock').css('display',currentUserDisp[2]);

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bl.ReviewBlImpl;
+import blservice.ReviewBlService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -44,6 +46,8 @@ public class TaskServlet extends HttpServlet {
 
 		if (type.equals("agree")) {
 			handleAgree(request, response);
+		} else if (type.equals("join")) {
+			handleJoin(request, response);
 		}
 	}
 
@@ -56,6 +60,13 @@ public class TaskServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	/**
+	 * 接收邀请
+	 *
+	 * @param request
+	 * @param response
+	 * @throws IOException
+     */
 	private void handleAgree(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String taskName = Encode.transfer(request.getParameter("taskName"));
 		UserInfoBlService userInfoBl = new UserInfoBlImpl();
@@ -74,5 +85,22 @@ public class TaskServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		out.print(array);
+	}
+
+	/**
+	 * 加入项目
+	 *
+	 * @param request
+	 * @param response
+     */
+	private void handleJoin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String userName = (String) request.getSession().getAttribute("username");
+		String taskName = request.getParameter("taskName");
+
+		ReviewBlService reviewBl = new ReviewBlImpl();
+		int result = reviewBl.joinReview(taskName, userName);
+
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 }

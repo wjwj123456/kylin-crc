@@ -643,7 +643,7 @@ function commitReport() {
         }
         $(mark)
             .before(
-                '<tr><td><input type="checkbox"></td>'
+                '<tr style="background-color: rgb(255, 249, 223)"><td><input type="checkbox"></td>'
                 + '<td>'
                 + report.fileName
                 + '</td>'
@@ -683,7 +683,7 @@ function commitReport() {
         }
         $(mark)
             .before(
-                '<tr><td><input type="checkbox"></td><td>'
+                '<tr style="background-color: rgb(255, 249, 223)"><td><input type="checkbox"></td><td>'
                 + report.fileName
                 + '</td>'
                 + '<td>'
@@ -1091,4 +1091,20 @@ function removeClose(obj) {
 
         return JSON.stringify(result);
     }
+}
+
+// 参加评审
+{
+    $('#join').on('click', function() {
+        run_waitMe();
+        jQuery.ajax({
+            url: '/TaskServlet',
+            type: 'post',
+            data: 'type=join&taskName=' + taskName,
+            success: function(data) {
+                location.reload(true);
+                stopWait();
+            }
+        })
+    });
 }

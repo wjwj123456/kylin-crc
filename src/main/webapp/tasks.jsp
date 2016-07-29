@@ -269,6 +269,7 @@ var isOwner = <%=isOwner%>;
 			<hr>
 			<h2 id="review">
 				评审
+				<div id="taskUndoRedo" style="float: right; display: none">
 				<div id="undoredo" style="float: right; display: none;">
 
 					<button type="button" class="btn  btn-sm" id="undo">
@@ -279,6 +280,7 @@ var isOwner = <%=isOwner%>;
 						Redo <span class="glyphicon glyphicon-chevron-right"
 							aria-hidden="true"></span>
 					</button>
+				</div>
 				</div>
 			</h2>
 			<div id="reviewBlock" class="hideBlock">
