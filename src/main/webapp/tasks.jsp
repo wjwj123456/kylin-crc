@@ -291,7 +291,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
 						<div
-							style="height: 300px; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
+							style="height: 300px;width:100%; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
 							<table class="table" id="codeTable">
 								<thead>
 									<tr>
@@ -503,9 +503,8 @@ taskName = '<%=request.getParameter("taskName")%>';
  	}
  %>
 									</td>
+									
 								</tr>
-
-
 								<tr class="collapse fade">
 									<td colspan="6"></td>
 								</tr>
@@ -555,6 +554,7 @@ taskName = '<%=request.getParameter("taskName")%>';
  	}
  %>
 									</td>
+									
 								</tr>
 								<tr class="collapse fade">
 									<td colspan="7"></td>

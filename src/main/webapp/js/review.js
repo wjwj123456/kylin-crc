@@ -650,6 +650,7 @@ function commitReport() {
                 + '<td colspan="6"></td>' + '</tr>');
         $('#chooseModal').modal('hide');
         reBind();
+        closeRebind();
     }
 
     /**
@@ -691,6 +692,7 @@ function commitReport() {
                 + '<td colspan="7"></td>' + '</tr>');
         $('#chooseModal').modal('hide');
         reBind();
+        closeRebind();
     }
 }
 // 删除合并条目相关操作
@@ -782,6 +784,42 @@ function commitReport() {
         });
     })
 }
+$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
+    appendClose_code(this);
+});
+$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
+    removeClose(this);
+});
+$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
+    appendClose_file(this);
+});
+$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
+    removeClose(this);
+});
+function closeRebind() {
+	$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
+	    appendClose_code(this);
+	});
+	$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
+	    removeClose(this);
+	});
+	$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
+	    appendClose_file(this);
+	});
+	$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
+	    removeClose(this);
+	});
+}
+function appendClose_code(obj) {
+	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteCodeMerge(this)"></button></td>');
+}
+function appendClose_file(obj) {
+	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteFileMerge(this)"></button></td>');
+}
+function removeClose(obj) {
+	$(obj).children('.close').remove();
+}
+
 
 // 拆分相关操作
 {
@@ -798,11 +836,11 @@ function commitReport() {
         });
     function reBind() {
         $('#toMerge-code').children().children().not('.collapse')
-            .find('button').on('click', function () {
+            .find('button').not('.close').on('click', function () {
             handleCollapse_code(this);
         });
         $('#toMerge-file').children().children().not('.collapse')
-            .find('button').on('click', function () {
+            .find('button').not('.close').on('click', function () {
             handleCollapse_file(this);
         });
     }
