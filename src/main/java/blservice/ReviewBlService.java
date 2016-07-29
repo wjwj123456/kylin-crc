@@ -9,6 +9,7 @@ import vo.TaskVO;
 import vo.UserVO;
 
 public interface ReviewBlService {
+
 	public int saveReviewInfo(TaskVO vo);
 
 	public List<TaskVO> getDoingTaskList(String userName);
@@ -38,6 +39,8 @@ public interface ReviewBlService {
 	 * @author lpt14
 	 */
 	public int saveAcceptReviewer(String userName, String taskName);
+
+	public int joinReview(String taskName, String userName);
 
 	/**
 	 * TODO:������������

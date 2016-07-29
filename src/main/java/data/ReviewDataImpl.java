@@ -242,6 +242,30 @@ public class ReviewDataImpl implements ReviewDataService {
 		return flag;
 	}
 
+	@Override
+	public int joinReview(String taskName, String userName) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		int flag = 0;
+		try {
+			String sql = "INSERT INTO review (tname ,uname, state) VALUES (?, ?, ?)";
+
+			pStatement = DBManager.getPreparedStatement(sql);
+			pStatement.setString(1, taskName);
+			pStatement.setString(2, userName);
+			pStatement.setString(3, State.agree.toString());
+			int j = pStatement.executeUpdate();
+			if (j == 0) {
+				flag = 2;
+			}
+			DBManager.closeConnection();
+
+		} catch (Exception SQLIntegrityConstraintViolationException) {
+			flag = 1;
+		}
+
+		return flag;
+	}
+
 	/**
 	 *
 	 * @author ldk14
@@ -599,4 +623,5 @@ public class ReviewDataImpl implements ReviewDataService {
 			}
 		}
 	}
+
 }

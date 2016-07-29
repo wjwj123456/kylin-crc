@@ -49,6 +49,8 @@ public interface ReviewDataService {
 	 */
 	public int saveAcceptReviewer(String userName, String taskName) throws SQLException, ClassNotFoundException;
 
+	public int joinReview(String taskName, String userName) throws SQLException, ClassNotFoundException;
+
 	/**
 	 * TODO:������������
 	 *

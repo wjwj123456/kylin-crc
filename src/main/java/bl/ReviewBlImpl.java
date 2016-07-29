@@ -217,6 +217,23 @@ public class ReviewBlImpl implements ReviewBlService {
 		return flag;
 	}
 
+	@Override
+	public int joinReview(String taskName, String userName) {
+		// TODO Auto-generated method stub
+		int flag = 0;
+		try {
+			flag = reviewDataService.joinReview(taskName, userName);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+
 	/**
 	 *
 	 *
