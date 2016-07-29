@@ -73,13 +73,13 @@ public class MergeServlet extends HttpServlet {
         String userName = (String) request.getSession().getAttribute("username");
         String taskName = request.getParameter("taskName");
 
+        System.out.println(userName);
+        System.out.println(taskName);
         int result = CommandManager.executeCommand(new MergeCommand(getData(request.getParameter("data")), taskName, userName));
         // MergeBlImpl merge = new MergeBlImpl();
         // int result =
         // merge.saveMergeReport(getData(request.getParameter("data")),
         // taskName);
-        System.out.println("MergeServlet.handleSaveMerge");
-        System.out.println(result);
 
         PrintWriter out = response.getWriter();
         out.print(result);

@@ -60,7 +60,7 @@ public class MergeDataImpl implements MergeDataService {
 	 * submit 4-can't seen no submit
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ25ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½25ï¿½ï¿½
 	 * @param reportList
 	 * @param taskName
 	 * @return
@@ -218,6 +218,16 @@ public class MergeDataImpl implements MergeDataService {
 	public int saveHistory(String userName, String taskName, int fault, int assessfalut_mt, int assessfalut_mh)
 			throws SQLException, ClassNotFoundException {
 		int flag = 0;
+		try {
+			String sql1 = "delete from history where tname = '" + taskName + "' and uname = '" + userName + "' and fault = 0;";
+			PreparedStatement preparedStatement = DBManager.getPreparedStatement(sql1);
+			preparedStatement.executeUpdate();
+			DBManager.closeConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("history not found");
+		}
+
 		String sql = "INSERT INTO history (tname, uname, fault,assessfault_mt,assessfault_mh) VALUES (?, ?, ?,?,?)";
 		PreparedStatement pStatement = DBManager.getPreparedStatement(sql);
 		pStatement.setString(1, taskName);

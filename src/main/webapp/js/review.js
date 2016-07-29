@@ -795,20 +795,28 @@ function commitReport() {
         });
     })
 }
-$('#toMerge-code tbody').children().not('.collapse').on('mouseenter', function () {
-    appendClose_code(this);
+$(function() {
+    if (isOwner) {
+        $('#toMerge-code tbody').children().not('.collapse').on('mouseenter', function () {
+          appendClose_code(this);
+        });
+        $('#toMerge-file tbody').children().not('.collapse').on('mouseenter', function () {
+         appendClose_file(this);
+        });
+    }
 });
-$('#toMerge-file tbody').children().not('.collapse').on('mouseenter', function () {
-    appendClose_file(this);
-});
+
 function closeRebind() {
-	$('#toMerge-code tbody').children().not('.collapse').on('mouseenter', function () {
-	    appendClose_code(this);
-	});
-	$('#toMerge-file tbody').children().not('.collapse').on('mouseenter', function () {
-	    appendClose_file(this);
-	});
+    if (isOwner) {
+        $('#toMerge-code tbody').children().not('.collapse').on('mouseenter', function () {
+            appendClose_code(this);
+        });
+        $('#toMerge-file tbody').children().not('.collapse').on('mouseenter', function () {
+            appendClose_file(this);
+        });
+    }
 }
+
 function appendClose_code(obj) {
     $(obj).parent().children().not('.collapse').find('button').filter('.close').parent().remove();
 	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteCodeMerge(this)">X</button></td>');

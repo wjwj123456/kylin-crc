@@ -48,7 +48,7 @@ public class LockDataImpl implements LockDataService {
 		Connection connection = DBManager.connect();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
-		String i = null;
+		String i = "";
 		if (rs.next()) {
 			i = rs.getString(1);
 		}

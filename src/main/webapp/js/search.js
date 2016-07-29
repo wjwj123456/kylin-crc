@@ -1,6 +1,6 @@
 var content = '';
 
-$(function() {	
+$(function() {
 	$('#searchContent').keypress(function(e) {
 		if (e.which == 13) {
 			content = $('#searchContent').val();

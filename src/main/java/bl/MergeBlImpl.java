@@ -116,6 +116,13 @@ public class MergeBlImpl implements MergeBlService {
 				e1.printStackTrace();
 			}
 
+			try {
+				mergeDataService.saveHistory(userName, taskName, 0, 0, 0);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 			ReportBlImpl reportBlImpl = new ReportBlImpl();
 			List<ReportVO> vos = reportBlImpl.getMergeReport(taskName);
 			int[] assessFault = assessmentBlImpl.getAssessmentValue(taskName, vos);

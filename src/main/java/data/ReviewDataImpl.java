@@ -418,7 +418,7 @@ public class ReviewDataImpl implements ReviewDataService {
 		} else {
 			String sql = "SELECT * FROM review WHERE uname = '" + userName + "' and tname='" + taskName + "'";
 			rSet = DBManager.getResultSet(sql);
-			State state = null;
+			State state = State.refuse;
 			while (rSet.next()) {
 				state = State.valueOf(rSet.getString(3));
 			}

@@ -119,7 +119,8 @@ function addTask(tab, taskList) {
             '<div class="avn-price-table avn-style14 avn-hover">' +
             '<div class="row">' +
             '<div class="col-md-1 header"><p style="margin-left: -11px;">' + language[tab] + '</p></div>' +
-            '<div class="col-md-11"><h2 title="' + taskList[i].taskName + '">' + taskList[i].taskName + '</h2>' +
+            '<div class="col-md-11"><a href="tasks.jsp?taskName=' + taskList[i].taskName + '">' +
+            '<h2 title="' + taskList[i].taskName + '">' + taskList[i].taskName + '</h2></a>' +
             '<p>' + taskList[i].describe + '</p>' +
             '<p><strong>截止时间：' + taskList[i].deadline.substr(0, taskList[i].deadline.length - 5) + '</strong></p>' +
             '</div></div></div>'

@@ -57,6 +57,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 			State theState = reviewBl.getUserState((String) session.getAttribute("username"), taskVO.getTaskName());
 			State taskState = reviewBl.getTaskState(taskVO.getTaskName());
 			boolean isOwner = reviewBl.isOwner((String) session.getAttribute("username"), taskVO.getTaskName());%>
+var isOwner = <%=isOwner%>;
 </script>
 <script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
