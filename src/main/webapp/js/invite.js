@@ -32,7 +32,7 @@ $(function() {
 function loadAgreedReviewer(taskName) {
 	run_waitMe();
 	jQuery.ajax({
-		url : '/crc/TaskServlet',
+		url : '/TaskServlet',
 		type : 'post',
 		data : 'type=agree' + '&taskName=' + taskName,
 		success : function(data) {
@@ -65,7 +65,7 @@ function invite() {
 	run_waitMe();
 	$('#inviteModal').modal('hide')
 	jQuery.ajax({
-		url : '/crc/InviteServlet',
+		url : '/InviteServlet',
 		type : 'post',
 		data : 'taskName=' + taskName + '&userNumber=' + temp.length
 				+ '&users=' + users,
@@ -133,7 +133,7 @@ function accept(taskButton) {
 	var name = $(taskButton).parent().prev().find('a').text();
 	run_waitMe();
 	jQuery.ajax({
-		url : '/crc/RefuseServlet',
+		url : '/RefuseServlet',
 		style : 'post',
 		data : 'type=accept&taskName=' + name,
 		success : function(data) {
@@ -155,7 +155,7 @@ function refuse(taskItem) {
 	var name = $($(taskItem).find('td')[1]).text().trim();
 	run_waitMe();
 	jQuery.ajax({
-		url : '/crc/RefuseServlet',
+		url : '/RefuseServlet',
 		style : 'post',
 		data : 'type=refuse&taskName=' + name,
 		success : function(data) {

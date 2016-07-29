@@ -6,20 +6,20 @@
 </head>
 <body>
 
-<form action="/crc/ImageServlet" method="post"
+<form action="/ImageServlet" method="post"
       enctype="multipart/form-data">
     <input type="file"><br/> <input type="submit">
 </form>
 <h3>File Upload:</h3>
 Select a file to upload:
 <br/>
-<form action="/crc/FileServlet?type=upload" method="post"
+<form action="/FileServlet?type=upload" method="post"
       target="_blank" enctype="multipart/form-data" id="form">
     <input type="file" name="file" multiple size="50"/> <br/> <input
         type="submit" value="Upload File"/>
     <input id="upload" type="button" value="upload with ajax">
 </form>
-<a href="/crc/FileServlet?type=download">
+<a href="/FileServlet?type=download">
     点击下载
 </a>
 <script src="js/jquery.min.js"></script>
@@ -37,7 +37,7 @@ Select a file to upload:
         var formData = new FormData($('#form'));
         console.log(formData);
         $.ajax({
-            url: '/crc/FileServlet?type=upload',  //server script to process data
+            url: '/FileServlet?type=upload',  //server script to process data
             type: 'POST',
             xhr: function() {  // custom xhr
                 myXhr = $.ajaxSettings.xhr();

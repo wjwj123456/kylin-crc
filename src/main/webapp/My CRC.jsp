@@ -543,9 +543,8 @@ var sex ="${userInfo.sex}";
 
 			<!--Test 2 -->
 			<div id="test2" style="width: 270px; overflow: unset;">
-
-				<div class=row style="width: 265px" position="fixed">
-					<div class="col-md-9"
+		<div class="row "style="width: 265px; ">
+					<!-- <div class="col-md-9"
 						style="padding-left: 20px; padding-top: 5px; padding-right: 0px;">
 
 						<input
@@ -557,23 +556,25 @@ var sex ="${userInfo.sex}";
 					</div>
 					<div class="col-md-2 col-md-offest-0"
 						style="padding-top: 5px; margin-left: 0px">
-						<button class="btn-primary-xs btn" id="search"
+						<button  type="submit" class="btn-primary-xs btn" id="search"
 							style="height: 32px;">
 							<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 						</button>
-					</div>
+					</div> -->
+					<h3 class="pull-right" style="color:#336699 ;font-family:">我的评审圈</h3>
 				</div>
+				
 				<div style="overflow: auto; height: 91%;" >
 					<%
 						for (int i = 0; i < friends.size(); i++) {
 					%>
-					<div class="user">
+					<div class="user" style="height:80px">
 						<div class="col-md-3">
-							<img src=<%=friends.get(i).getPicture()%> alt="Esempio"
-								class="img-circle" style="width: 50px;">
+							<a href="friend.jsp?friend=<%=friends.get(i).getUserName()%>" ><img  src=<%=friends.get(i).getPicture()%> alt="Esempio"
+								class="img-circle" style="width: 50px;"></a>
 						</div>
 						<div class="col-md-9">
-							<a href="friend.jsp?friend=<%=friends.get(i).getUserName()%>"
+							<a 
 								target="_blank" class="navbar-link"><%=friends.get(i).getUserName()%></a>
 						
 							<p><%=friends.get(i).getDescription()%></p>
@@ -625,9 +626,6 @@ var sex ="${userInfo.sex}";
 	      $('#test').BootSideMenu({side:"left", autoClose:false});
 	      $('#test2').BootSideMenu({side:"right"});
 	  });
-
-/* 	  $('test2').children().children(".col-xs-12").css("overflow","unset"); */
-
 	</script>
 	<script src="js/mycrc.js"></script>
 </body>

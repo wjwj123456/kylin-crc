@@ -444,7 +444,7 @@ function storeFile() {
 function store(data) {
     run_waitMe();
     jQuery.ajax({
-        url: '/crc/ReportServlet',
+        url: '/ReportServlet',
         type: 'post',
         data: 'type=store' + '&data=' + JSON.stringify(data),
         success: function (data) {
@@ -502,7 +502,7 @@ function deleteFile(data, obj) {
 function deleteCodeAndFile(data, obj) {
     run_waitMe();
     jQuery.ajax({
-        url: '/crc/ReportServlet',
+        url: '/ReportServlet',
         type: 'post',
         data: 'type=delete' + '&data=' + JSON.stringify(data),
         success: function (data) {
@@ -525,7 +525,7 @@ function commitReport() {
     if (isReportOK()) {
         run_waitMe();
         jQuery.ajax({
-            url: '/crc/ReportServlet',
+            url: '/ReportServlet',
             type: 'post',
             data: 'type=commit&taskName=' + taskName + '&time='
             + $('#timeCost').val().trim(),
@@ -562,7 +562,7 @@ function commitReport() {
         run_waitMe();
         console.log(JSON.stringify(data));
         jQuery.ajax({
-            url: '/crc/MergeServlet',
+            url: '/MergeServlet',
             type: 'post',
             data: 'type=saveMerge&taskName=' + taskName + '&data='
             + JSON.stringify(data),
@@ -598,7 +598,7 @@ function commitReport() {
         }
         run_waitMe();
         jQuery.ajax({
-            url: '/crc/MergeServlet',
+            url: '/MergeServlet',
             type: 'post',
             data: 'type=saveMerge&taskName=' + taskName + '&data='
             + JSON.stringify(data),
@@ -750,7 +750,7 @@ function commitReport() {
         data.push(report);
         run_waitMe();
         jQuery.ajax({
-            url: '/crc/MergeServlet',
+            url: '/MergeServlet',
             type: 'post',
             data: 'type=deleteMerge&data=' + JSON.stringify(data),
             success: function (data) {
@@ -770,7 +770,7 @@ function commitReport() {
     $('#confirmMerge').on('click', function () {
         run_waitMe();
         jQuery.ajax({
-            url: '/crc/MergeServlet',
+            url: '/MergeServlet',
             type: 'post',
             data: 'type=commitMerge&taskName=' + taskName,
             success: function (data) {
@@ -871,7 +871,7 @@ function commitReport() {
     function getData(type, obj) {
         run_waitMe();
         jQuery.ajax({
-            url: '/crc/SplitServlet',
+            url: '/SplitServlet',
             type: 'post',
             data: 'type=getData' + '&data=' + JSON.stringify(report),
             success: function (data) {
@@ -939,7 +939,7 @@ function commitReport() {
                 var data = getDivideItem();
                 console.log(data);
                 jQuery.ajax({
-                    url: '/crc/SplitServlet',
+                    url: '/SplitServlet',
                     type: 'post',
                     data: 'type=split' + '&origin='
                     + JSON.stringify(report) + '&data=' + data,

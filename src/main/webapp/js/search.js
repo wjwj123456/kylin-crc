@@ -19,7 +19,7 @@ function searchUser(keyword) {
 	var users = [];
 	
 	jQuery.ajax({
-		url: '/crc/SearchServlet',
+		url: '/SearchServlet',
 		type: 'post',
 		data: 'type=searchUser&keyword=' + keyword,
 		success: function(data) {

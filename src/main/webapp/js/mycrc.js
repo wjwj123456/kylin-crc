@@ -17,7 +17,7 @@ function searchPeople() {
     var users = [];
     var keyword = $('#searchPeople').text().trim();
     jQuery.ajax({
-        url: '/crc/SearchServlet',
+        url: '/SearchServlet',
         type: 'post',
         data: 'type=searchUser&keyword=' + keyword,
         success: function (data) {

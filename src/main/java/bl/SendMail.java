@@ -57,7 +57,7 @@ public class SendMail {
 			message.setText(text.toString());
 			// 鍙戦�佹秷鎭�
 			Transport.send(message);
-
+			System.out.println("success");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 			return 1;
