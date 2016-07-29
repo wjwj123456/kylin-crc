@@ -784,31 +784,40 @@ function commitReport() {
         });
     })
 }
-$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
-    appendClose_code(this);
+$(function(){
+	if(isOwner){
+		$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
+		    appendClose_code(this);
+		});
+		$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
+		    removeClose(this);
+		});
+		$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
+		    appendClose_file(this);
+		});
+		$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
+		    removeClose(this);
+		});
+	}
 });
-$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
-    removeClose(this);
-});
-$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
-    appendClose_file(this);
-});
-$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
-    removeClose(this);
-});
+
+
 function closeRebind() {
-	$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
-	    appendClose_code(this);
-	});
-	$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
-	    removeClose(this);
-	});
-	$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
-	    appendClose_file(this);
-	});
-	$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
-	    removeClose(this);
-	});
+	if(isOwner){
+		
+		$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
+			appendClose_code(this);
+		});
+		$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
+			removeClose(this);
+		});
+		$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
+			appendClose_file(this);
+		});
+		$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
+			removeClose(this);
+		});
+	}
 }
 function appendClose_code(obj) {
 	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteCodeMerge(this)"></button></td>');
