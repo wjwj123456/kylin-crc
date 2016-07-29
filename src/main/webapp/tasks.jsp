@@ -30,6 +30,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <style type="text/css">
 .drop {
@@ -81,7 +82,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 				%>
 				<li class="dropdown" id="mesSpan"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
-					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+					aria-haspopup="true" aria-expanded="false"><img alt="" src="${userInfo.picture} " async width="27px"
+					class="img-circle" height="27px"> <%=session.getAttribute("username")%><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>

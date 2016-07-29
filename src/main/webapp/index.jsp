@@ -11,6 +11,7 @@
 <link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <title>CRC Index</title>
 </head>
 <body id="waitArea">

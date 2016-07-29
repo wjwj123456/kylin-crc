@@ -32,6 +32,7 @@
 <link href="http://v3.bootcss.com/assets/css/docs.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
+<link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -71,7 +72,8 @@ taskName = '<%=request.getParameter("taskName")%>';
 				%>
 				<li class="dropdown" id="mesSpan"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
-					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+					aria-haspopup="true" aria-expanded="false"><img alt="" src="${userInfo.picture} " async width="27px"
+					class="img-circle" height="27px"> <%=session.getAttribute("username")%><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
@@ -401,7 +403,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 			<div>
 				<h2>报告结果</h2>
 				<table class="table">
-					<thead>
+					<thead class="text-center">
 						<tr>
 							<th width="20%">文件名</th>
 							<%
@@ -413,10 +415,10 @@ taskName = '<%=request.getParameter("taskName")%>';
 							%>
 							<th width="10%">位置</th>
 							<th>描述</th>
-							<th>评审人</th>
+							<th width="20%">评审人</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="text-center">
 						<%
 							List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
 							AssessmentBlService assessmentBlService = new AssessmentBlImpl();

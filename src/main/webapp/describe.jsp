@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/portraitStyle.css" type="text/css" />
+<link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -78,7 +79,8 @@ var sex ="${userInfo.sex}";
 				%>
 				<li class="dropdown" id="mesSpan"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
-					aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%><span
+					aria-haspopup="true" aria-expanded="false"><img alt="" src="${userInfo.picture} " async width="27px"
+					class="img-circle" height="27px"> <%=session.getAttribute("username")%><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
