@@ -406,6 +406,8 @@ public class ReviewDataImpl implements ReviewDataService {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		System.out.println(userName);
+		System.out.println(name);
 		if (userName.equals(name)) {
 			if (getTaskState(taskName).equals(State.ownerfinish)) {
 				return State.merged;

@@ -29,6 +29,4 @@ function initUserOption(found,unique,total) {
 		    ]
 		};
 }
-$(function(){
-	$('#mh').removeClass('in active');
-});
+

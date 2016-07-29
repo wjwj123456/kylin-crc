@@ -119,10 +119,12 @@ public class MergeServlet extends HttpServlet {
         MergeBlImpl merge = new MergeBlImpl();
         int result = merge.saveHistory(userName, Encode.transfer(request.getParameter("taskName")));
 
+        System.out.println(userName);
+        System.out.println(request.getParameter("taskName"));
+
         // 取消写锁
 		LockBlService lockBl = new LockBlImpl();
 		lockBl.setCurrentUser(taskName, "");
-
 
         PrintWriter out = response.getWriter();
         out.print(result);

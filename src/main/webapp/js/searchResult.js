@@ -45,7 +45,7 @@ var language = new Object({
 $(function () {
     searchTask(getUrlParam("content"));
     
-    $('#search').on('click', function () {
+    $('#search').unbind('click').on('click', function () {
         searchTask($('#search-content').val().trim())
     });
 
@@ -65,7 +65,7 @@ function searchTask(keyword) {
     if (keyword == '') {
         return;
     }
-    
+
     run_waitMe();
     jQuery.ajax({
         url: '/SearchServlet',

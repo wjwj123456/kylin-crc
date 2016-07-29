@@ -52,13 +52,10 @@ $('#add-choosecode').on('click', function () {
     }
 
 });
-$('#add-file')
-    .on(
-        'click',
+$('#add-file').on('click',
         function () {
             if (isFileItemOK()) {
-                $('#docStart')
-                    .append(
+                $('#docStart').append(
                         "<tr> <td>"
                         + $('#fileName-file').val()
                         + "</td> <td>"
@@ -71,6 +68,7 @@ $('#add-file')
                 storeFile();
             }
         });
+
 $('#add-choosefile').on('click', function () {
     if (ischooseFileItemOK()) {
         var report = new Object({
@@ -231,7 +229,7 @@ function isCodeItemOK() {
         $('#fileGroup-code').removeClass('has-error');
     }
     if ($('#lineNum-code').val() == ""
-        || isNaN($('#lineNum-code').val().trim())) {
+        || notNumber($('#lineNum-code').val().trim())) {
         $('#lineGroup-code').addClass('has-error');
         itemOK = false;
     } else {
@@ -260,7 +258,7 @@ function ischooseCodeItemOK() {
         $('#fileGroup-choosecode').removeClass('has-error');
     }
     if ($('#lineNum-choosecode').val() == ""
-        || isNaN($('#lineNum-code').val().trim())) {
+        || notNumber($('#lineNum-code').val().trim())) {
         $('#lineGroup-choosecode').addClass('has-error');
         itemOK = false;
     } else {
@@ -282,7 +280,7 @@ function ischooseCodeItemOK() {
  * @returns
  */
 function codeUnique() {
-    var items = $('#codeTable').find('tr').filter(
+    var items = $('#codeTable tbody').find('tr').filter(
         function () {
             var fileName = $(this).find('td:first');
 
@@ -294,30 +292,33 @@ function codeUnique() {
                 return $(this);
             }
         });
-    if (!(items.length == 0)) {
-        alert("重复项目");
+
+    if (items.length != 0) {
+        alert("报告项目已存在");
     }
 
     return items.length == 0;
 }
 function fileUnique() {
-    var items = $('#fileTable').find('tr').filter(
+    var items = $('#docTable tbody').find('tr').filter(
         function () {
             var fileName = $(this).find('td:first');
 
             if ($(fileName).text() == $('#fileName-file').val().trim()
-                && $(fileName).next().text() == $('#pageNum-code')
-                    .val().trim()
-                && $(fileName).next().text().next() == $(
-                    '#lineNum-file').val().trim()
-                && $(fileName).next().next().text().next() == $(
-                    '#discription-file').val().trim()) {
+                && $(fileName).next().text() == $('#pageNum-file')
+                    .val()
+                && $(fileName).next().next().text() == $(
+                    '#lineNum-file').val()
+                && $(fileName).next().next().next().text() == $(
+                    '#discription-file').val()) {
                 return $(this);
             }
         });
-    if (!(items.length == 0)) {
-        alert("重复项目");
+
+    if (items.length != 0) {
+        alert("报告条目已存在");
     }
+
     return items.length == 0;
 }
 
@@ -330,7 +331,7 @@ function isFileItemOK() {
         $('#fileGroup-file').removeClass('has-error');
     }
     if ($('#lineNum-file').val() == ""
-        || isNaN($('#lineNum-file').val().trim())) {
+        || notNumber($('#lineNum-file').val().trim())) {
         $('#lineGroup-file').addClass('has-error');
         itemOK = false;
     } else {
@@ -343,7 +344,7 @@ function isFileItemOK() {
         $('#discripGroup-file').removeClass('has-error');
     }
     if ($('#pageNum-file').val() == ""
-        || isNaN($('#lineNum-file').val().trim())) {
+        || notNumber($('#pageNum-file').val().trim())) {
         $('#pageGroup-file').addClass('has-error');
         itemOK = false;
     } else {
@@ -367,7 +368,7 @@ function ischooseFileItemOK() {
         $('#fileGroup-choosefile').removeClass('has-error');
     }
     if ($('#lineNum-choosefile').val() == ""
-        || isNaN($('#lineNum-code').val().trim())) {
+        || notNumber($('#lineNum-code').val().trim())) {
         $('#lineGroup-choosefile').addClass('has-error');
         itemOK = false;
     } else {
@@ -380,7 +381,7 @@ function ischooseFileItemOK() {
         $('#discripGroup-choosefile').removeClass('has-error');
     }
     if ($('#pageNum-choosefile').val() == ""
-        || isNaN($('#lineNum-code').val().trim())) {
+        || notNumber($('#lineNum-code').val().trim())) {
         $('#pageGroup-choosefile').addClass('has-error');
         itemOK = false;
     } else {
@@ -392,13 +393,23 @@ function ischooseFileItemOK() {
 function isReportOK() {
     reportOK = true;
     if ($('#timeCost').val() == ""
-        && !isNaN(Number($('#timeCost').val().trim()))) {
+        || isNaN($('#timeCost').val().trim())
+        || Number($('#timeCost').val().trim()) <= 0) {
         $('#timeGroup').addClass('has-error');
         reportOK = false;
     } else {
         $('#timeGroup').removeClass('has-error');
     }
     return reportOK;
+}
+
+/**
+ * 判断是否是正整数
+ * @param number
+ */
+function notNumber(number) {
+    var re = /^[0-9]*[1-9][0-9]*$/ ;
+    return !re.test(number);
 }
 
 /**
@@ -707,11 +718,11 @@ function commitReport() {
         var temp = $(obj).parent().parent().find('td');
         var report = new Object({
             taskName: taskName,
-            userName: $(temp[3]).text(),
-            fileName: $(temp[0]).text(),
+            userName: $(temp[4]).text(),
+            fileName: $(temp[1]).text(),
             page: 0,
-            location: $(temp[1]).text(),
-            description: $(temp[2]).text(),
+            location: $(temp[2]).text(),
+            description: $(temp[3]).text(),
             state: 1,
             origin: 0
         });
@@ -729,11 +740,11 @@ function commitReport() {
         var temp = $(obj).parent().parent().find('td');
         var report = new Object({
             taskName: taskName,
-            userName: $(temp[4]).text(),
-            fileName: $(temp[0]).text(),
-            page: $(temp[1]).text(),
-            location: $(temp[2]).text(),
-            description: $(temp[3]).text(),
+            userName: $(temp[5]).text(),
+            fileName: $(temp[1]).text(),
+            page: $(temp[2]).text(),
+            location: $(temp[3]).text(),
+            description: $(temp[4]).text(),
             state: 1,
             origin: 0
         });
@@ -784,40 +795,29 @@ function commitReport() {
         });
     })
 }
-$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
+$('#toMerge-code tbody').children().not('.collapse').on('mouseenter', function () {
     appendClose_code(this);
 });
-$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
-    removeClose(this);
-});
-$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
+$('#toMerge-file tbody').children().not('.collapse').on('mouseenter', function () {
     appendClose_file(this);
 });
-$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
-    removeClose(this);
-});
 function closeRebind() {
-	$('#toMerge-code').children().children().not('.collapse').on('mouseenter', function () {
+	$('#toMerge-code tbody').children().not('.collapse').on('mouseenter', function () {
 	    appendClose_code(this);
 	});
-	$('#toMerge-code').children().children().not('.collapse').on('mouseleave', function () {
-	    removeClose(this);
-	});
-	$('#toMerge-file').children().children().not('.collapse').on('mouseenter', function () {
+	$('#toMerge-file tbody').children().not('.collapse').on('mouseenter', function () {
 	    appendClose_file(this);
-	});
-	$('#toMerge-file').children().children().not('.collapse').on('mouseleave', function () {
-	    removeClose(this);
 	});
 }
 function appendClose_code(obj) {
-	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteCodeMerge(this)"></button></td>');
+    $(obj).parent().children().not('.collapse').find('button').filter('.close').parent().remove();
+	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteCodeMerge(this)">X</button></td>');
 }
 function appendClose_file(obj) {
-	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteFileMerge(this)"></button></td>');
+    $(obj).parent().children().not('.collapse').find('button').filter('.close').parent().remove();
+	$(obj).append('<td><button class="close" style="float: none;" onclick="deleteFileMerge(this)">X</button></td>');
 }
 function removeClose(obj) {
-	$(obj).children('.close').remove();
 }
 
 
@@ -917,7 +917,6 @@ function removeClose(obj) {
                 $('#divideTable tbody').empty();
 
                 if (type == 'code') {
-                    alert(JSON.stringify(report))
                     displayCode(result);
                 } else {
                     displayFile(result);

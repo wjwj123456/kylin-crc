@@ -1,13 +1,17 @@
-$(function() {
+var content = '';
+
+$(function() {	
 	$('#searchContent').keypress(function(e) {
 		if (e.which == 13) {
-			top.location = 'searchResult.jsp?content=' + $('#searchContent').val().trim();
+			content = $('#searchContent').val();
+			top.location = 'searchResult.jsp?content=' + content;
 		}
 	});
 
 	$('#search').on('click', function() {
-		top.location = 'searchResult.jsp?content=' + $('#searchContent').val().trim();
-	})
+		content = $('#searchContent').val();
+		top.location = 'searchResult.jsp?content=' + content;
+	});
 });
 
 /**

@@ -371,7 +371,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 								</thead>
 								<tbody id="docStart">
 									<%
-										if (taskVO.getType() == Type.code) {
+										if (taskVO.getType() == Type.document) {
 									%>
 									<%
 										for (ReportVO vo : tempVOs) {
@@ -461,6 +461,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<th>描述</th>
 									<th>评审人</th>
 									<th width=20px></th>
+									<th width="10px"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -503,7 +504,6 @@ taskName = '<%=request.getParameter("taskName")%>';
  	}
  %>
 									</td>
-									
 								</tr>
 								<tr class="collapse fade">
 									<td colspan="6"></td>
@@ -523,6 +523,7 @@ taskName = '<%=request.getParameter("taskName")%>';
 									<th>描述</th>
 									<th>评审人</th>
 									<th width=20px></th>
+									<th width="10px"></th>
 								</tr>
 							</thead>
 							<tbody>
