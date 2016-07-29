@@ -129,7 +129,7 @@ public class ReportDataImpl implements ReportDataService {
 	public List<ReportPO> getMergeReport(String taskname) throws ClassNotFoundException, SQLException {
 		Connection connection = DBManager.connect();
 		String sql1 = "SELECT * FROM report r WHERE r.tname = ? AND r.state = 0 AND r.uname IN (SELECT v.uname FROM review v"
-				+ " WHERE v.tname = r.tname AND v.state = ?)";
+				+ " WHERE v.tname = r.tname AND v.state = ?) ORDER BY r.filename, r.page, r.location";
 		PreparedStatement pStatement = connection.prepareStatement(sql1);
 		pStatement.setString(1, taskname);
 		pStatement.setString(2, "merged");
