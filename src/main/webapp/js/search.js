@@ -4,13 +4,13 @@ $(function() {
 	$('#searchContent').keypress(function(e) {
 		if (e.which == 13) {
 			content = $('#searchContent').val();
-			top.location = 'searchResult.jsp?content=' + content;
+			top.location = 'searchResult.jsp?content=' + encodeURI(encodeURI(content));
 		}
 	});
 
 	$('#search').on('click', function() {
 		content = $('#searchContent').val();
-		top.location = 'searchResult.jsp?content=' + content;
+		top.location = 'searchResult.jsp?content=' + encodeURI(encodeURI(content));
 	});
 });
 
