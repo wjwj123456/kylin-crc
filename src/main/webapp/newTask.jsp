@@ -162,8 +162,8 @@
 				<label for="grant" class="col-sm-2 control-label ">评审权限</label>
 				<div class="col-sm-4">
 					<select class="form-control" id="privacy">
-						<option id="public">公有</option>
-						<option id="private">私有</option>
+						<option id="public">公开</option>
+						<option id="private">非公开</option>
 					</select>
 				</div>
 			</div>

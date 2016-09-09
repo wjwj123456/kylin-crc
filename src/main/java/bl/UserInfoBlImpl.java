@@ -46,10 +46,11 @@ public class UserInfoBlImpl implements UserInfoBlService {
 		UserInfoPO po = null;
 		try {
 			po = userInfo.get(username);
+			
 		} catch (ClassNotFoundException e) {
-
+			e.printStackTrace();
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
 		UserInfoVO vo = new UserInfoVO(po);
 		return vo;

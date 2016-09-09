@@ -83,8 +83,9 @@ var isOwner = <%=isOwner%>;
 				%>
 				<li class="dropdown" id="mesSpan"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
-					aria-haspopup="true" aria-expanded="false"><img alt="" src="${userInfo.picture} " async width="27px"
-					class="img-circle" height="27px"> <%=session.getAttribute("username")%><span
+					aria-haspopup="true" aria-expanded="false"><img alt=""
+						src="${userInfo.picture} " async width="27px" class="img-circle"
+						height="27px"> <%=session.getAttribute("username")%><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
@@ -226,10 +227,24 @@ var isOwner = <%=isOwner%>;
 							}
 						%>
 					</ul>
+					<%
+						int[][] taskHis = Cast.cast(session.getAttribute("taskHis_" + request.getParameter("taskName")));
+						if (taskHis[0].length == 0) {
+					%>
+					<a>
+						<button class="btn disabled">查看已生成报告</button>
+					</a>
+					<%
+						} else {
+					%>
 					<a
 						href="report.jsp?taskName=<%=Encode.transfer(request.getParameter("taskName"))%>">
 						<button class="btn ">查看已生成报告</button>
 					</a>
+					<%
+						}
+					%>
+
 					<div class="row">
 						<p>参与者：</p>
 						<%
@@ -270,17 +285,17 @@ var isOwner = <%=isOwner%>;
 			<h2 id="review">
 				评审
 				<div id="taskUndoRedo" style="float: right; display: none">
-				<div id="undoredo" style="float: right; display: none;">
+					<div id="undoredo" style="float: right; display: none;">
 
-					<button type="button" class="btn  btn-sm" id="undo">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						Undo
-					</button>
-					<button type="button" class="btn  btn-sm" id="redo">
-						Redo <span class="glyphicon glyphicon-chevron-right"
-							aria-hidden="true"></span>
-					</button>
-				</div>
+						<button type="button" class="btn  btn-sm" id="undo">
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							Undo
+						</button>
+						<button type="button" class="btn  btn-sm" id="redo">
+							Redo <span class="glyphicon glyphicon-chevron-right"
+								aria-hidden="true"></span>
+						</button>
+					</div>
 				</div>
 			</h2>
 			<div id="reviewBlock" class="hideBlock">
@@ -294,7 +309,7 @@ var isOwner = <%=isOwner%>;
 				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
 						<div
-							style="height: 300px;width:100%; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
+							style="height: 300px; width: 100%; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
 							<table class="table" id="codeTable">
 								<thead>
 									<tr>
@@ -361,7 +376,7 @@ var isOwner = <%=isOwner%>;
 					</div>
 					<div id="docBlock">
 						<div
-							style="height: 300px; overflow: auto;width:100% ; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
+							style="height: 300px; overflow: auto; width: 100%; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">
 							<table class="table" id="docTable">
 								<thead>
 									<tr>
@@ -440,13 +455,26 @@ var isOwner = <%=isOwner%>;
 						<div class="form-group col-sm-5" id="timeGroup">
 							<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="timeCost"
-									placeholder="小时">
+								<input type="text" class="form-control" id="timeCost">小时
 							</div>
 
 						</div>
 						<div class="col-sm-2">
-							<button class="btn" id="confirmReport" onclick="commitReport()">提交报告</button>
+							<button class="btn" data-toggle="modal" href="#reportModal">提交报告</button>
+						</div>
+						<div id="reportModal" class="modal hide fade in"
+							style="display: none;">
+							<div class="modal-header">
+								<a class="close" data-dismiss="modal">×</a>
+							</div>
+							<div class="modal-body">
+								<p>提交后将无法修改，确认提交吗？</p>
+							</div>
+							<div class="modal-footer">
+							    <button class="btn" id="confirmReport" onclick="commitReport()">确认</button>
+							    <a href="#"
+									class="btn" data-dismiss="modal">取消</a>
+							</div>
 						</div>
 
 					</div>
@@ -558,7 +586,7 @@ var isOwner = <%=isOwner%>;
  	}
  %>
 									</td>
-									
+
 								</tr>
 								<tr class="collapse fade">
 									<td colspan="7"></td>
@@ -573,8 +601,22 @@ var isOwner = <%=isOwner%>;
 					<div class="row pull-right"padding-bottom: 20px">
 						<button class="btn " id="merge">合并</button>
 						<button class="btn btn-new" id="confirmMerge"
-							data-toggle="tooltip" title="查看最终报告">提交</button>
+							data-toggle="modal" href="#mergeModal">提交</button>
 					</div>
+					<div id="mergeModal" class="modal hide fade in"
+							style="display: none;">
+							<div class="modal-header">
+								<a class="close" data-dismiss="modal">×</a>
+							</div>
+							<div class="modal-body">
+								<p>提交后将无法修改，确认提交吗？</p>
+							</div>
+							<div class="modal-footer">
+							    <button class="btn btn-new" id="confirmMerge">确认</button>
+							    <a href="#"
+									class="btn" data-dismiss="modal">取消</a>
+							</div>
+						</div>
 					<div class="row hidden"
 						style="min-height: 10px; max-height: 400px; overflow: auto;">
 						<table class="table" id="merged-code">

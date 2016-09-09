@@ -12,11 +12,11 @@ public class DBManager {
 	public static Connection connect() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
 
-		String url = "jdbc:mysql://115.159.195.149:3306/crc";
-		String username = "admin";
-		String password = "123456";
+		String url = "jdbc:mysql://172.17.160.156:3306/crc";
+		String username = "root";
+		String password = "1129009";
 
-		Connection connection = DriverManager.getConnection(url + "?useUnicode=true&characterEncoding=UTF-8", username,
+		Connection connection = DriverManager.getConnection(url + "?serverTimezone=UTC", username,
 				password);
 		return connection;
 	}
@@ -38,10 +38,10 @@ public class DBManager {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://115.159.195.149:3306/crc";
-			String username = "admin";
-			String password = "123456";
-			conn = DriverManager.getConnection(url + "?useUnicode=true&characterEncoding=UTF-8", username, password);
+			String url = "jdbc:mysql://172.17.160.156:3306/crc";
+			String username = "root";
+			String password = "1129009";
+			conn = DriverManager.getConnection(url + "?serverTimezone=UTC", username, password);
 			pstmt = conn.prepareStatement(sql);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

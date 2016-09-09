@@ -118,7 +118,7 @@
 					</div>
 				</div>
 				<div class="inner cover"  style="padding-top: -20px; ">
-					<h1 class="cover-heading">Let's Start Review.</h1>
+					<h1 class="cover-heading">Let's Start Reviewing.</h1>
 
 					<div>
 						<div class=row>
