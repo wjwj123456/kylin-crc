@@ -65,7 +65,7 @@ public class CreateTaskServlet extends HttpServlet {
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 		String date = jsonObject.getString("deadline");
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date deadline = null;
 		try {
 			deadline = dateFormat.parse(date + ":00");
@@ -87,7 +87,7 @@ public class CreateTaskServlet extends HttpServlet {
 		String date = request.getParameter("deadline");
 		String taskName = request.getParameter("taskName");
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date deadline = null;
 		try {
 			deadline = dateFormat.parse(date + ":00");

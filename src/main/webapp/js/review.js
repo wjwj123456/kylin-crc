@@ -1112,7 +1112,7 @@ function removeClose(obj) {
 //修改截止日期
 {
     $('#changeTime').on('click', function() {
-        var changedDeadline = $('#deadline').val();
+        var changedDeadline = $('#deadlineZone').val();
     	run_waitMe();
         jQuery.ajax({
             url: '/CreateTaskServlet',

@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class Tools {
 	public static Date stringToDate(String date) {
-		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date2 = null;
 		try {
 			date2 = dFormat.parse(date);
@@ -29,7 +29,7 @@ public class Tools {
 	}
 
 	public static String dateToString(Date date) {
-		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String result = dFormat.format(date);
 		return result;
 	}

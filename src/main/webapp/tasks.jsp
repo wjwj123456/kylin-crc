@@ -281,7 +281,7 @@ var isOwner = <%=isOwner%>;
 				<div class="col-sm-4">
 					<link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
 					<div class='input-group date' id='datetimepicker1'>
-						<input type='text' class="form-control" id="deadline" /> <span
+						<input type='text' class="form-control" id="deadlineZone" /> <span
 							class="input-group-addon"> <span
 							class="glyphicon glyphicon-calendar"></span>
 						</span>
