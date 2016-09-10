@@ -278,28 +278,34 @@ var isOwner = <%=isOwner%>;
 			<hr>
 			<h2 id="deadline">截止时间</h2>
 			<div id="master" class="row hide">
-			<div class="col-sm-4">
-			<link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
-				<div class='input-group date' id='datetimepicker1'>
-					<input type='text' class="form-control" id="deadline" /> <span
-						class="input-group-addon"> <span
-						class="glyphicon glyphicon-calendar"></span>
-					</span>
+				<div class="col-sm-4">
+					<link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+					<div class='input-group date' id='datetimepicker1'>
+						<input type='text' class="form-control" id="deadline" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
 				</div>
-			</div>
-			<button id="changeTime" class="btn">确认修改</button>
-			<button id="changeTime" class="btn" onclick="$('#master').addClass('hide');$('#normal').removeClass('hide');">取消</button>
+				<button id="changeTime" class="btn">确认修改</button>
+				<button id="changeTime" class="btn"
+					onclick="$('#master').addClass('hide');$('#normal').removeClass('hide');">取消</button>
 			</div>
 			<div id="normal">
 				<strong><%=Tools.dateToString(taskVO.getDeadline())%></strong>
-				<%if(isOwner){ %>
-				<button class="btn" onclick="$('#normal').addClass('hide');$('#master').removeClass('hide');">修改</button>
-				<%} %>
+				<%
+					if (isOwner&&theState!=State.merged) {
+				%>
+				<button class="btn"
+					onclick="$('#normal').addClass('hide');$('#master').removeClass('hide');">修改</button>
+				<%
+					}
+				%>
 			</div>
 			<script type="text/javascript">
 				time = "<%=Tools.dateToString(taskVO.getDeadline())%>";
 			</script>
-			
+
 			<hr>
 			<h2 id="review">
 				评审
@@ -481,17 +487,22 @@ var isOwner = <%=isOwner%>;
 						<div class="col-sm-2">
 							<button class="btn" data-toggle="modal" href="#reportModal">提交报告</button>
 						</div>
-						<div id="reportModal" class="modal hide fade in"
-							style="display: none;">
-							<div class="modal-header">
-								<a class="close" data-dismiss="modal">×</a>
-							</div>
-							<div class="modal-body">
-								<p>提交后将无法修改，确认提交吗？</p>
-							</div>
-							<div class="modal-footer">
-								<button class="btn" id="confirmReport" onclick="commitReport()">确认</button>
-								<a href="#" class="btn" data-dismiss="modal">取消</a>
+						<div id="reportModal" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header" style="height: 50px;">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">x</button>
+									</div>
+									<div class="modal-body" style="height: 50px">
+										<p>提交后将无法修改，确认提交吗？</p>
+									</div>
+									<div class="modal-footer">
+										<button class="btn" id="confirmReport"
+											onclick="commitReport()">确认</button>
+										<a href="#" class="btn" data-dismiss="modal">取消</a>
+									</div>
+								</div>
 							</div>
 						</div>
 
@@ -618,20 +629,24 @@ var isOwner = <%=isOwner%>;
 
 					<div class="row pull-right"padding-bottom: 20px">
 						<button class="btn " id="merge">合并</button>
-						<button class="btn btn-new" id="confirmMerge" data-toggle="modal"
-							href="#mergeModal">提交</button>
+						<button class="btn btn-new" data-toggle="modal" href="#mergeModal">提交</button>
 					</div>
-					<div id="mergeModal" class="modal hide fade in"
-						style="display: none;">
-						<div class="modal-header">
-							<a class="close" data-dismiss="modal">×</a>
-						</div>
-						<div class="modal-body">
-							<p>提交后将无法修改，确认提交吗？</p>
-						</div>
-						<div class="modal-footer">
-							<button class="btn btn-new" id="confirmMerge">确认</button>
-							<a href="#" class="btn" data-dismiss="modal">取消</a>
+
+					<div id="mergeModal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="height: 50px;">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">x</button>
+								</div>
+								<div class="modal-body" style="height: 50px">
+									<p>提交后将无法修改，确认提交吗？</p>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-new" id="confirmMerge">确认</button>
+									<a href="#" class="btn" data-dismiss="modal">取消</a>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="row hidden"
