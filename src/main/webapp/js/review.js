@@ -1108,3 +1108,4 @@ function removeClose(obj) {
         })
     });
 }
+
