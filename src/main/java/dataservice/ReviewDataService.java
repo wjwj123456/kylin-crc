@@ -1,6 +1,7 @@
 package dataservice;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import po.TaskPO;
@@ -92,6 +93,8 @@ public interface ReviewDataService {
 	public State getTaskState(String taskName) throws SQLException, ClassNotFoundException;
 
 	public int setTaskState(State state, String taskName) throws SQLException, ClassNotFoundException;
+
+	public int setDeadline(String taskName, Date deadline) throws SQLException, ClassNotFoundException;
 
 	public boolean isOwner(String userName, String taskName) throws SQLException, ClassNotFoundException;
 

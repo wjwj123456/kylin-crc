@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dataservice.ReviewDataService;
@@ -501,6 +502,23 @@ public class ReviewDataImpl implements ReviewDataService {
 		else
 			flag = 3;
 		DBManager.closeConnection();
+		return flag;
+	}
+
+	public int setDeadline(String taskName, Date deadline) throws SQLException {
+		int flag = -1;
+		Timestamp tt = new Timestamp(deadline.getTime());
+
+		String sql = "UPDATE task SET deadline  = ?  WHERE tname = '" + taskName + "'";
+		pStatement = DBManager.getPreparedStatement(sql);
+		pStatement.setTimestamp(1, tt);
+		int i = pStatement.executeUpdate();
+		if (i == 1)
+			flag = 0;
+		else
+			flag = 1;
+		DBManager.closeConnection();
+
 		return flag;
 	}
 
