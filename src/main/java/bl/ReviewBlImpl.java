@@ -400,6 +400,17 @@ public class ReviewBlImpl implements ReviewBlService {
 		return flag;
 	}
 
+	public int setDeadline(String taskName, Date deadline) {
+		int flag = -1;
+		try {
+			flag = reviewDataService.setDeadline(taskName, deadline);
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 	/**
 	 * TODO:閿涘牊鏌熷▔鏇熷伎鏉╁府绱�
 	 *

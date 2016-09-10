@@ -1,6 +1,7 @@
 package blservice;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import vo.Language;
@@ -87,6 +88,8 @@ public interface ReviewBlService {
 	public List<TaskVO> getAllDoingTaskList();
 
 	public int setState(State state, String taskName);
+
+	public int setDeadline(String taskName, Date deadline);
 
 	public boolean isPublic(String taskName);
 
