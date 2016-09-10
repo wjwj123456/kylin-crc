@@ -1109,3 +1109,21 @@ function removeClose(obj) {
     });
 }
 
+//修改截止日期
+{
+    $('#changeTime').on('click', function() {
+        var changedDeadline = $('#deadline').val();
+    	run_waitMe();
+        jQuery.ajax({
+            url: '/CreateTaskServlet',
+            type: 'post',
+            data: 'type=changeTime&deadline=' +changedDeadline +'&taskName=' + taskName,
+            success: function(data) {
+                location.reload(true);
+                stopWait();
+            }
+        })
+    });
+}
+
+
