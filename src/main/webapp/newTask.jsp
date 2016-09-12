@@ -271,12 +271,9 @@
 		})
 	</script>
 	<script type="text/javascript">
-		var num = $
-		{
-			messageNum
-		};
+		var num = ${messageNum};
 	</script>
-	<script src='js/mesSpan.js'></script>
+	<script src='js/mesSpan.js' type="javascript"></script>
 </body>
 
 </html>

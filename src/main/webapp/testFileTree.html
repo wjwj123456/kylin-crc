@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>测试文件目录树</title>
+    <link rel="stylesheet" href="ref/file_tree/dist/themes/default/style.min.css"/>
+</head>
+<body>
+<em>either click the button or a node in the tree</em>
+<div id="evts" class="demo"></div>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="ref/file_tree/dist/jstree.min.js"></script>
+<script>
+    // interaction and events
+    $('#evts_button').on("click", function () {
+        var instance = $('#evts').jstree(true);
+        instance.deselect_all();
+        instance.select_node('1');
+    });
+
+    $('#evts').on("changed.jstree", function (e, data) {
+        if (data.selected.length) {
+            alert('The selected node is: ' + data.instance.get_node(data.selected[0]).text);
+            console.log(data.instance.get_node(data.selected[0]));
+        }
+    }).jstree({
+        'core': {
+            'data': [
+                {
+                    "text": "Root node",
+                    "id": "root",
+                    "children": [
+                        {
+                            "text": "Child node 1",
+                            "id": "child",
+                            "children": [
+                                {
+                                    "text": "test"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Child node 2"
+                        }
+                    ]
+                }
+            ]
+        }
+    });
+</script>
+</html>
