@@ -43,6 +43,7 @@ public class CheckDeadline implements Runnable{
 		Date thisTime = new Date();
 		System.out.println(thisTime.toString());
 		List<TaskVO> voList=reviewBlService.getAllDoingTaskList();
+		System.out.println(voList.size());
 		for(TaskVO vo:voList){
 			Date deadline = vo.getDeadline();
 			if(deadline.before(thisTime)) {
