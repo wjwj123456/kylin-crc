@@ -2,15 +2,17 @@ package blservice;
 
 import java.util.List;
 
+import vo.Message;
+
 public interface FileBlService {
 
 	/**
 	 * 
 	 * @param taskName
 	 * @param paths
-	 * @return	0 means success, 1 means failure
+	 * @return	
 	 */
-	public int add(String taskName, List<String> paths);
+	public Message add(String taskName, List<String> paths);
 
 	/**
 	 * 
@@ -18,4 +20,6 @@ public interface FileBlService {
 	 * @return
 	 */
 	public List<String> get(String taskName);
+	
+	public Message delete(String taskName, List<String> paths);
 }
