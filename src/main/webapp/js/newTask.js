@@ -94,3 +94,15 @@ function uploadFile() {
     $('#form').fadeIn('slow').attr('action',
         '/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
 }
+/**
+ * 上传类型
+ */
+$('.selectOne').change(function(){
+	if ($(this).children('option:selected').text() == "文件") {
+        $('#fileUp').removeClass('hidden');
+        $('#folderUp').addClass('hidden');
+    } else {
+    	$('#fileUp').addClass('hidden');
+        $('#folderUp').removeClass('hidden');
+    }
+});

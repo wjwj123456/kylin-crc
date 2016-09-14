@@ -51,8 +51,9 @@
 				%>
 				<li class="dropdown" id="mesSpan"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
-					aria-haspopup="true" aria-expanded="false"><img alt="" src="${userInfo.picture} " async width="27px"
-					class="img-circle" height="27px"> <%=session.getAttribute("username")%><span
+					aria-haspopup="true" aria-expanded="false"><img alt=""
+						src="${userInfo.picture} " async width="27px" class="img-circle"
+						height="27px"> <%=session.getAttribute("username")%><span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a style="cursor: pointer;" href="myTasks.jsp">我的评审 </a></li>
@@ -210,7 +211,7 @@
 				<button class="btn" id="next">下一步</button>
 			</div>
 		</form>
-		<form action="/FileServlet?type=upload" method="post"
+		<form class="form-horizontal" action="/FileServlet?type=upload" method="post"
 			target="newFrame" enctype="multipart/form-data" id="form"
 			style="display: none;">
 			<div class="form-group" id="file">
@@ -218,14 +219,36 @@
 				<div class="col-sm-10">
 					<%--<input type="file" multiple="multiple" id="filein"><br/>--%>
 					<%--<input type="submit" value="upload">--%>
-					<p>按住shift可多选</p>
-					<a href="javascript:;" class="btn fileInput"
-						style="height: 37px; width: 90px;">上传文件 <input type="file"
-						id="theInput" name="file" multiple="multiple" class="btn"
-						style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 30px;" />
-					</a>
-					<lable class="showFileName"></lable>
-					<button type="submit" value="Upload File" class="btn" id="upload">提交文件</button>
+					<div class="col-md-2 " style="padding-left: 0px;">
+						<select class="form-control selectOne" >
+							<option>文件</option>
+							<option>文件夹</option>
+						</select>
+					</div>
+					<div class="col-md-8">
+						<div id="fileUp">
+						<a href="javascript:;" class="btn fileInput"
+							style="height: 37px; width: 90px;">选择文件 <input type="file"
+							id="theInput" name="file" multiple="multiple" class="btn"
+							style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px;" />
+						</a><br/>
+						<div class="jumbotron" style="width: 100%;height: 150px;margin-top: 20px;margin-bottom: 20px;">
+						<h2 style="margin-top: 10px;color: #aaa">拖拽以上传</h2>
+						</div>
+						<lable class="showFileName"></lable>
+						</div>
+						<div id="folderUp" class="hidden">
+							<a href="javascript:;" class="btn"
+								style="height: 37px; width: 110px;">选择文件夹<input type="file"
+								id="theInput2" name="folder" multiple="multiple" class="btn"
+								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px;" />
+							</a>
+						</div>
+					</div>
+					<div class="col-md-2" style="padding-right: 0px;">
+						<button type="submit" value="Upload File" class="btn pull-right" id="upload">提交</button>
+					</div>
+
 				</div>
 			</div>
 		</form>
