@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.FileDataService;
+import vo.Message;
 
 public class FileDataImpl implements FileDataService {
 
 	@Override
-	public int add(String taskName, List<String> paths) throws ClassNotFoundException, SQLException {
+	public Message add(String taskName, List<String> paths) throws ClassNotFoundException, SQLException {
+		Message message = new Message();
 		Connection connection = DBManager.connect();
 		String sql = "INSERT INTO file (tname, path) VALUES (?, ?)";
 		PreparedStatement pStatement = connection.prepareStatement(sql);
@@ -22,12 +24,13 @@ public class FileDataImpl implements FileDataService {
 			pStatement.setString(2, path);
 			int i = pStatement.executeUpdate();
 			if(i != 1) {
-				DBManager.stopAll(null, pStatement, connection);
-				return 1;
+				message.setStatus(0);
+				message.setInform(path + "dbfail");
+				break;
 			}
 		}
 		DBManager.stopAll(null, pStatement, connection);
-		return 0;
+		return message;
 	}
 
 	@Override
@@ -42,6 +45,26 @@ public class FileDataImpl implements FileDataService {
 			result.add(path);
 		}
 		return result;
+	}
+
+	@Override
+	public Message delete(String taskName, List<String> paths) throws ClassNotFoundException, SQLException {
+		Message message = new Message();
+		Connection connection = DBManager.connect();
+		String sql = "DELETE FROM file (tname, path) WHERE tname = ? and path = ?";
+		PreparedStatement pStatement = connection.prepareStatement(sql);
+		for (String path: paths) {
+			pStatement.setString(1, taskName);
+			pStatement.setString(2, path);
+			int i = pStatement.executeUpdate();
+			if(i != 1) {
+				message.setStatus(0);
+				message.setInform(path + "dbfail");
+				break;
+			}
+		}
+		DBManager.stopAll(null, pStatement, connection);
+		return message;
 	}
 
 }

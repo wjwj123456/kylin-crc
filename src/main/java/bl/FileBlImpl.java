@@ -7,6 +7,7 @@ import java.util.List;
 import blservice.FileBlService;
 import data.FileDataImpl;
 import dataservice.FileDataService;
+import vo.Message;
 
 public class FileBlImpl implements FileBlService {
 
@@ -17,14 +18,14 @@ public class FileBlImpl implements FileBlService {
 	}
 	
 	@Override
-	public int add(String taskName, List<String> paths) {
-		int i = 1;
+	public Message add(String taskName, List<String> paths) {
+		Message message = null;
 		try {
-			i = fileData.add(taskName, paths);
+			message = fileData.add(taskName, paths);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		return i;
+		return message;
 	}
 
 	@Override
@@ -33,9 +34,23 @@ public class FileBlImpl implements FileBlService {
 		try {
 			result = fileData.get(taskName);
 		} catch (ClassNotFoundException | SQLException e) {
-			
+			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public Message delete(String taskName, List<String> paths) {
+		Message message = null;
+		try {
+			message = fileData.delete(taskName, paths);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return message;
 	}
 
 }

@@ -3,17 +3,20 @@ package dataservice;
 import java.sql.SQLException;
 import java.util.List;
 
+import vo.Message;
+
+
 public interface FileDataService {
 
 	/**
 	 * 
 	 * @param taskName
 	 * @param paths
-	 * @return	0 means success, 1 means failure
+	 * @return	
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public int add(String taskName, List<String> paths) throws ClassNotFoundException, SQLException;
+	public Message add(String taskName, List<String> paths) throws ClassNotFoundException, SQLException;
 	
 	/**
 	 * 
@@ -23,4 +26,14 @@ public interface FileDataService {
 	 * @throws ClassNotFoundException 
 	 */
 	public List<String> get(String taskName) throws ClassNotFoundException, SQLException;
+	
+	/**
+	 * 
+	 * @param taskName
+	 * @param paths
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public Message delete(String taskName, List<String> paths) throws ClassNotFoundException, SQLException;
 }
