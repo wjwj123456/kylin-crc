@@ -230,7 +230,7 @@
 						<a href="javascript:;" class="btn fileInput"
 							style="height: 37px; width: 90px;">选择文件 <input type="file"
 							id="theInput" name="file" multiple="multiple" class="btn"
-							style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px;" />
+							style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px;top: 0px;" />
 						</a><br/>
 						<div class="jumbotron" style="width: 100%;height: 150px;margin-top: 20px;margin-bottom: 20px;">
 						<h2 style="margin-top: 10px;color: #aaa">拖拽以上传</h2>
@@ -241,7 +241,7 @@
 							<a href="javascript:;" class="btn"
 								style="height: 37px; width: 110px;">选择文件夹<input type="file"
 								id="theInput2" name="folder" multiple="multiple" class="btn"
-								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px;" />
+								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px;top: 0px;" />
 							</a>
 						</div>
 					</div>
