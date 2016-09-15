@@ -53,4 +53,10 @@ public class FileBlImpl implements FileBlService {
 		return message;
 	}
 
+	@Override
+	public Message rename(String taskName, List<String> fromPaths, List<String> toPaths) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -22,4 +22,6 @@ public interface FileBlService {
 	public List<String> get(String taskName);
 	
 	public Message delete(String taskName, List<String> paths);
+	
+	public Message rename(String taskName, List<String> fromPaths, List<String> toPaths);
 }
