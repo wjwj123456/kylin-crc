@@ -51,9 +51,12 @@ public class FileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String type = request.getParameter("type");
-
+        System.out.println(type);
         if (type.equals("upload")) {
             handleUpload(request, response);
+        } else if (type.equals("uploadDir")) {
+            System.out.println("FileServlet.doGet");
+            handleUploadDir(request, response);
         } else if (type.equals("download")) {
             handleDownload(request, response);
         }
@@ -70,9 +73,6 @@ public class FileServlet extends HttpServlet {
 
     /**
      * upload files
-     *
-     * @param request
-     * @param response
      */
     private void handleUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String taskName = request.getParameter("taskName");
@@ -115,11 +115,52 @@ public class FileServlet extends HttpServlet {
     }
 
     /**
+     * upload dir
+     */
+    private void handleUploadDir(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("FileServlet.handleUploadDir");
+        String taskName = request.getParameter("taskName");
+        ServletContext context = request.getServletContext();
+        String filePath = context.getRealPath("/data");
+        // 验证上传内容的类型
+        String contentType = request.getContentType();
+
+//        if ((contentType.contains("multipart/form-data")) && new File(filePath + "/" + taskName).mkdir()) {
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            // 设置内存中存储文件的最大值
+            factory.setSizeThreshold(maxMemSize);
+            // 创建一个新的文件上传处理程序
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            // 设置最大上传的文件大小
+            upload.setSizeMax(maxFileSize);
+
+//            FileBlService fileBl = new FileBlImpl();
+//            List<String> fileList = new ArrayList<>();
+
+            try {
+                // 解析获取的文件
+                List<FileItem> fileItems = upload.parseRequest(request);
+                // 处理上传的文件
+                for (FileItem fileItem : fileItems) {
+                    if (!fileItem.isFormField()) {
+                        String fileName = fileItem.getName();
+                        System.out.println(fileName);
+                        // 写入文件
+//                        File file = new File(filePath + "/" + taskName, fileName);
+//                        fileItem.write(file);
+//                        fileList.add(fileName);
+                    }
+                }
+
+//                fileBl.add(taskName, fileList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+//        }
+    }
+
+    /**
      * download files of task from server
-     *
-     * @param request
-     * @param response
-     * @throws IOException
      */
     private void handleDownload(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.reset();

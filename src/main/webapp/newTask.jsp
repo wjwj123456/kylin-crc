@@ -14,6 +14,7 @@
 <link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" href="css/filedrag.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <style type="text/css">
@@ -227,22 +228,28 @@
 					</div>
 					<div class="col-md-8">
 						<div id="fileUp">
-						<a href="javascript:;" class="btn fileInput"
-							style="height: 37px; width: 90px;">选择文件 <input type="file"
-							id="theInput" name="file" multiple="multiple" class="btn"
-							style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px;top: 0px;" />
-						</a><br/>
-						<div class="jumbotron" style="width: 100%;height: 150px;margin-top: 20px;margin-bottom: 20px;">
-						<h2 style="margin-top: 10px;color: #aaa">拖拽以上传</h2>
+							<a href="javascript:;" class="btn fileInput"
+								style="height: 37px; width: 90px;">选择文件 <input type="file"
+                                id="theInput" name="file" multiple="multiple" class="btn"
+                                style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px;top: 0px;" />
+                            </a><br/>
+                            <lable class="showFileName"></lable>
+                            <div id="filedrag" style="width: 100%;height: 150px;margin-top: 20px;margin-bottom: 20px;">
+                            <h2 style="margin-top: 10px;color: #aaa">拖拽以上传</h2>
+                            <%--文件信息--%>
+                            <div id="messages"></div>
 						</div>
-						<lable class="showFileName"></lable>
 						</div>
 						<div id="folderUp" class="hidden">
-							<a href="javascript:;" class="btn"
-								style="height: 37px; width: 110px;">选择文件夹<input type="file"
-								id="theInput2" name="folder" multiple="multiple" class="btn"
-								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px;top: 0px;" />
-							</a>
+							<%--<a href="javascript:;" class="btn"--%>
+								<%--style="height: 37px; width: 110px;">选择文件夹<input type="file"--%>
+								<%--id="theInput2" name="folder" multiple="multiple" class="btn"--%>
+								<%--style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px;top: 0px;" />--%>
+							<%--</a>--%>
+							<form enctype="multipart/form-data" id="upForm" action="/FileServlet?type=uploadDir" method="post">
+								<input type="file" name="file_input[]" id="file_input" multiple webkitdirectory="" directory="" mozdirectory>
+								<input type="submit" value="上传文件" />
+							</form>
 						</div>
 					</div>
 					<div class="col-md-2" style="padding-right: 0px;">
@@ -262,6 +269,7 @@
 			</p>
 		</div>
 	</div>
+	<script src="js/filedrag.js" type="javascript"></script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -298,5 +306,4 @@
 	</script>
 	<script src='js/mesSpan.js' type="javascript"></script>
 </body>
-
 </html>
