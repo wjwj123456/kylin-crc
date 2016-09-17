@@ -209,7 +209,7 @@
     <description>文件上传地址</description>
     <param-name>file-upload</param-name>
     <param-value>
-		<!--/home/song/program/crc/data-->
+		
      </param-value>
   </context-param>
   <servlet>
@@ -221,5 +221,15 @@
   <servlet-mapping>
     <servlet-name>FileServlet</servlet-name>
     <url-pattern>/FileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CodePreviewServlet</display-name>
+    <servlet-name>CodePreviewServlet</servlet-name>
+    <servlet-class>servlet.CodePreviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CodePreviewServlet</servlet-name>
+    <url-pattern>/CodePreviewServlet</url-pattern>
   </servlet-mapping>
 </web-app>

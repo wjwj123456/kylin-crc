@@ -30,8 +30,12 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/shCore.css">
+<link rel="stylesheet" href="css/shCoreDefault.css">
+<link rel="stylesheet" href="css/jquery.webui-popover.min.css">
 <link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -59,7 +63,6 @@ taskName = '<%=request.getParameter("taskName")%>';
 			boolean isOwner = reviewBl.isOwner((String) session.getAttribute("username"), taskVO.getTaskName());%>
 var isOwner = <%=isOwner%>;
 </script>
-<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
 <body role="document">
 	<nav class="navbar ">
 	<div class="container">
@@ -323,6 +326,22 @@ var isOwner = <%=isOwner%>;
 					</div>
 				</div>
 			</h2>
+			<pre type="syntaxhighlighter" class="brush: java;">
+package blservice;
+
+import vo.AchievementVO;
+
+public interface AchievementBlService {
+
+	/**
+	 * ldk get one's achievement
+	 * 
+	 * @param userName
+	 * @return
+	 */
+	public AchievementVO getAchievement(String userName);
+}
+		</pre>
 			<div id="reviewBlock" class="hideBlock">
 				<%
 					ReportBlService reportBl = new ReportBlImpl();
@@ -883,6 +902,8 @@ var isOwner = <%=isOwner%>;
 	<script type="text/javascript">
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
+	<script src="js/codeScriptImporter.js"></script>
+	<script src="js/codePreview.js"></script>
 </body>
 
 </html>
