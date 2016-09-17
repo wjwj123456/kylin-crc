@@ -36,4 +36,15 @@ public interface FileDataService {
 	 * @throws SQLException
 	 */
 	public Message delete(String taskName, List<String> paths) throws ClassNotFoundException, SQLException;
+	
+	/**
+	 * 
+	 * @param taskName
+	 * @param fromPaths
+	 * @param toPaths
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public Message rename(String taskName, List<String> fromPaths, List<String> toPaths) throws ClassNotFoundException, SQLException;
 }
