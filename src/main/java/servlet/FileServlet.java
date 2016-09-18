@@ -18,6 +18,7 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Servlet implementation class FileServlet
@@ -51,14 +52,16 @@ public class FileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String type = request.getParameter("type");
-        System.out.println(type);
-        if (type.equals("upload")) {
-            handleUpload(request, response);
-        } else if (type.equals("uploadDir")) {
-            System.out.println("FileServlet.doGet");
-            handleUploadDir(request, response);
-        } else if (type.equals("download")) {
-            handleDownload(request, response);
+        switch (type) {
+            case "upload":
+                handleUpload(request);
+                break;
+            case "uploadFolder":
+                handleUploadFolder(request);
+                break;
+            case "download":
+                handleDownload(request, response);
+                break;
         }
     }
 
@@ -74,14 +77,15 @@ public class FileServlet extends HttpServlet {
     /**
      * upload files
      */
-    private void handleUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void handleUpload(HttpServletRequest request) throws IOException, ServletException {
         String taskName = request.getParameter("taskName");
         ServletContext context = request.getServletContext();
-        String filePath = context.getRealPath("/data");
+        String filePath = context.getRealPath("/data/" + taskName);
+        filePath = "/home/song/opt/data/" + taskName;
         // 验证上传内容的类型
         String contentType = request.getContentType();
 
-        if ((contentType.contains("multipart/form-data")) && new File(filePath + "/" + taskName).mkdir()) {
+        if ((contentType.contains("multipart/form-data")) && new File(filePath).mkdir()) {
             DiskFileItemFactory factory = new DiskFileItemFactory();
             // 设置内存中存储文件的最大值
             factory.setSizeThreshold(maxMemSize);
@@ -100,14 +104,15 @@ public class FileServlet extends HttpServlet {
                 for (FileItem fileItem : fileItems) {
                     if (!fileItem.isFormField()) {
                         String fileName = fileItem.getName();
+
                         // 写入文件
-                        File file = new File(filePath + "/" + taskName, fileName);
-                        fileItem.write(file);
+                        writeFile(fileItem, filePath, fileName);
+
                         fileList.add(fileName);
                     }
                 }
 
-                fileBl.add(taskName, fileList);
+//                fileBl.add(taskName, fileList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -115,17 +120,19 @@ public class FileServlet extends HttpServlet {
     }
 
     /**
-     * upload dir
+     * upload folder
      */
-    private void handleUploadDir(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("FileServlet.handleUploadDir");
+    private void handleUploadFolder(HttpServletRequest request) {
         String taskName = request.getParameter("taskName");
         ServletContext context = request.getServletContext();
-        String filePath = context.getRealPath("/data");
+        // TODO 部署时更改路径
+        // 项目根目录
+        String rootPath = context.getRealPath("/data/" + taskName);
+        rootPath = "/home/song/opt/data/" + taskName;
         // 验证上传内容的类型
         String contentType = request.getContentType();
 
-//        if ((contentType.contains("multipart/form-data")) && new File(filePath + "/" + taskName).mkdir()) {
+        if ((contentType.contains("multipart/form-data")) && new File(rootPath).mkdir()) {
             DiskFileItemFactory factory = new DiskFileItemFactory();
             // 设置内存中存储文件的最大值
             factory.setSizeThreshold(maxMemSize);
@@ -134,8 +141,8 @@ public class FileServlet extends HttpServlet {
             // 设置最大上传的文件大小
             upload.setSizeMax(maxFileSize);
 
-//            FileBlService fileBl = new FileBlImpl();
-//            List<String> fileList = new ArrayList<>();
+            FileBlService fileBl = new FileBlImpl();
+            List<String> fileList = new ArrayList<>();
 
             try {
                 // 解析获取的文件
@@ -144,11 +151,21 @@ public class FileServlet extends HttpServlet {
                 for (FileItem fileItem : fileItems) {
                     if (!fileItem.isFormField()) {
                         String fileName = fileItem.getName();
+
+                        List<String> separatedPath = getSeparatedPath(fileName);
+                        System.out.println(separatedPath);
+                        // 扫描文件目录结构
+                        String temp = rootPath;
+                        for (int i = 0; i < separatedPath.size() - 2; i++) {
+                            temp += "/" + separatedPath.get(i);
+                            // 若父级目录目录不存在，创建之
+                            if (!new File(temp).exists()) {
+                                new File(temp).mkdir();
+                            }
+                        }
                         System.out.println(fileName);
                         // 写入文件
-//                        File file = new File(filePath + "/" + taskName, fileName);
-//                        fileItem.write(file);
-//                        fileList.add(fileName);
+//                        writeFile(fileItem, rootPath, fileName);
                     }
                 }
 
@@ -156,7 +173,41 @@ public class FileServlet extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-//        }
+        }
+    }
+
+    /**
+     * 向磁盘写入文件
+     *
+     * @param fileItem 文件项，包含文件内容
+     * @param filePath 文件路径，不包含文件名
+     * @param fileName 文件名，不包含路径
+     */
+    private void writeFile(FileItem fileItem, String filePath, String fileName) throws Exception {
+        File file = new File(filePath, fileName);
+
+        fileItem.write(file);
+    }
+
+    /**
+     * 从文件路径中获取文件名及各级父目录
+     *
+     * @param filePath 文件相对项目目录的路径
+     * @return List<String> (0 ~ n - 2) :各级父目录名称
+     * n - 1       :不包含路径的文件名
+     * 示例：filePath --- taskName/src/main/java/test.java
+     * 返回["taskName", "src", "main", "java", "test.java"]
+     */
+    private List<String> getSeparatedPath(String filePath) {
+        List<String> result = new ArrayList<>();
+
+        StringTokenizer tokenizer = new StringTokenizer(filePath, "/");
+
+        while (tokenizer.hasMoreElements()) {
+            result.add(tokenizer.nextToken());
+        }
+
+        return result;
     }
 
     /**

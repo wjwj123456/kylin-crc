@@ -228,10 +228,10 @@
 					<div id="fileUp">
 						<form class="form-horizontal" action="/FileServlet?type=upload"
 							method="post" target="newFrame" enctype="multipart/form-data"
-							id="form" >
+							id="form_file">
 							<a href="javascript:;" class="btn fileInput"
 								style="height: 37px; width: 90px;">选择文件 <input type="file"
-								id="theInput" name="file" multiple="multiple" class="btn"
+								id="theInput" name="file" class="btn"
 								style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0px;" />
 							</a><br />
 							<div class="jumbotron"
@@ -241,21 +241,21 @@
 							<lable class="showFileName"></lable>
 							
 								<button type="submit" value="Upload File" class="btn pull-right pull-right"
-									id="upload">提交</button>	
+									id="upload_file">提交</button>
 						</form>
 					</div>
 					<div id="folderUp" class="hidden">
-						<form class="form-horizontal" action="/FileServlet?type=upload"
+						<form class="form-horizontal" action="/FileServlet?type=uploadFolder"
 							method="post" target="newFrame" enctype="multipart/form-data"
-							id="form">
-							<a href="javascript:;" class="btn"
-								style="height: 37px; width: 110px;">选择文件夹<input type="file"
-								id="theInput2" name="folder" multiple="multiple" class="btn"
+							id="form_folder">
+							<a href="javascript:;" class="btn" style="height: 37px; width: 110px;" id="folder">
+								选择文件夹
+								<input type="file" id="theInput2" name="folder" class="btn" multiple webkitdirectory=""
 								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px; top: 0px;" />
 							</a>
-							
-								<button type="submit" value="Upload File" class="btn pull-right pull-right"
-									id="upload">提交</button>
+							<button type="submit" value="Upload File" class="btn pull-right pull-right" id="upload_folder">提交</button>
+							<%--文件夹下所有文件的信息--%>
+							<div id="folder_message" style="height: 100px; width: 200px;"></div>
 						</form>
 					</div>
 				</div>
@@ -295,14 +295,24 @@
 		});
 	</script>
 	<script type="text/javascript">
+		// 文件
 		$(".fileInput").on("change", "input[type='file']", function() {
 			var filePath = $(this).val();
 			$(".fileerrorTip").html("").hide();
 			var arr = filePath.split('\\');
 			var fileName = arr[arr.length - 1];
 			$(".showFileName").html(fileName);
+		});
 
-		})
+		// 文件夹
+		$("#folder").on("change", "input[type='file']", function(e) {
+			console.log(1);
+			var files = e.target.files; // FileList
+			for (var i = 0, f; f = files[i]; ++i){
+				console.log(files[i].webkitRelativePath);
+				$("#folder_message").innerText  = $("#folder_message").innerText + files[i].webkitRelativePath+"\n";
+			}
+		});
 	</script>
 	<script type="text/javascript">
 		var num = ${messageNum};
