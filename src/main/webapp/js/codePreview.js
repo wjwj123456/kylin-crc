@@ -118,13 +118,33 @@ function deleteWithCode(obj) {
     });
 }
 function load() {
-	SyntaxHighlighter.highlight();
-	var fileName = "xxx.java";
-	var length = $('.gutter').children().length;
 	jQuery.ajax({
 		url : '/CodePreviewServlet',
 		type : 'post',
-		data : 'taskName=' + taskName,
+		data : 'path=D:/CRC/src/main/java/bl/FileBlImpl.java&type=read',
+		success : function(data) {
+			var tempData = jQuery.parseJSON(data);
+			$('#codePreview').empty();
+			$('#codePreview').append($('<pre type="syntaxhighlighter" class="brush: java;"></pre>'));
+			var code = new String();
+			for(var i = 0;i<tempData.length;i++){
+				code = code+tempData[i]+'\n';
+			}
+			$('pre').text(code);
+			registView();
+		}
+	});
+	
+}
+function registView() {
+	SyntaxHighlighter.highlight();
+	var fileName = "xxx.java";
+	var length = $('.gutter').children().length;
+	
+	jQuery.ajax({
+		url : '/CodePreviewServlet',
+		type : 'post',
+		data : 'taskName=' + taskName+'&type=temp',
 		success : function(data) {
 			var tempData = jQuery.parseJSON(data);
 			var recordList = [];

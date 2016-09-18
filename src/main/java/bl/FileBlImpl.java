@@ -65,17 +65,17 @@ public class FileBlImpl implements FileBlService {
 
 	public static List<String> readFile(String path) {
 		List<String> list = new ArrayList<String>();
-
 		File file = new File(path);
+		System.out.println(file.getPath());
 		BufferedReader reader = null;
 		try {
-			// System.out.println("以行为单位读取文件内容，一次读一整行：");
+			// System.out.println("锟斤拷锟斤拷为锟斤拷位锟斤拷取锟侥硷拷锟斤拷锟捷ｏ拷一锟轿讹拷一锟斤拷锟叫ｏ拷");
 			reader = new BufferedReader(new FileReader(file));
 			String tempString = "";
 			int line = 1;
-			// 一次读入一行，直到读入null为文件结束
+			// 一锟轿讹拷锟斤拷一锟叫ｏ拷直锟斤拷锟斤拷锟斤拷null为锟侥硷拷锟斤拷锟斤拷
 			while ((tempString = reader.readLine()) != null) {
-				// // 显示行号
+				// // 锟斤拷示锟叫猴拷
 				// System.out.println("line " + line + ": " + tempString);
 				// line++;
 				list.add(tempString);

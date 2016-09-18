@@ -297,7 +297,7 @@ var isOwner = <%=isOwner%>;
 			<div id="normal">
 				<strong><%=Tools.dateToString(taskVO.getDeadline())%></strong>
 				<%
-					if (isOwner&&theState!=State.merged) {
+					if (isOwner && theState != State.merged) {
 				%>
 				<button class="btn"
 					onclick="$('#normal').addClass('hide');$('#master').removeClass('hide');">修改</button>
@@ -326,7 +326,8 @@ var isOwner = <%=isOwner%>;
 					</div>
 				</div>
 			</h2>
-			<pre type="syntaxhighlighter" class="brush: java;">
+			<div id="codePreview">
+				<pre type="syntaxhighlighter" class="brush: java;">
 package blservice;
 
 import vo.AchievementVO;
@@ -341,7 +342,9 @@ public interface AchievementBlService {
 	 */
 	public AchievementVO getAchievement(String userName);
 }
-		</pre>
+				</pre>
+			</div>
+
 			<div id="reviewBlock" class="hideBlock">
 				<%
 					ReportBlService reportBl = new ReportBlImpl();
