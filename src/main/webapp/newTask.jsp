@@ -241,8 +241,7 @@
 							<lable class="showFileName"></lable>
 							
 								<button type="submit" value="Upload File" class="btn pull-right pull-right"
-									id="upload">提交</button>
-							
+									id="upload">提交</button>	
 						</form>
 					</div>
 					<div id="folderUp" class="hidden">
@@ -257,13 +256,9 @@
 							
 								<button type="submit" value="Upload File" class="btn pull-right pull-right"
 									id="upload">提交</button>
-							
 						</form>
 					</div>
-
 				</div>
-
-
 			</div>
 		</div>
 		</form>
