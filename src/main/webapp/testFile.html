@@ -15,9 +15,11 @@ Select a file to upload:
 <br/>
 <form action="/FileServlet?type=upload" method="post"
       target="_blank" enctype="multipart/form-data" id="form">
-    <input type="file" name="file" multiple size="50"/> <br/> <input
-        type="submit" value="Upload File"/>
-    <input id="upload" type="button" value="upload with ajax">
+    <fieldset/>
+    <legend>HTML File Upload</legend>
+    <input type="file" name="file" multiple size="50"/> <br/>
+    <input type="submit" value="Upload File"/>
+    <input id="upload" type="button" value="upload with ajax"/>
 </form>
 <a href="/FileServlet?type=download">
     点击下载
@@ -33,15 +35,15 @@ Select a file to upload:
             console.log(file[i].type);
         }
     });
-    $('#upload').click(function(){
+    $('#upload').click(function () {
         var formData = new FormData($('#form'));
         console.log(formData);
         $.ajax({
             url: '/FileServlet?type=upload',  //server script to process data
             type: 'POST',
-            xhr: function() {  // custom xhr
+            xhr: function () {  // custom xhr
                 myXhr = $.ajaxSettings.xhr();
-                if(myXhr.upload){ // check if upload property exists
+                if (myXhr.upload) { // check if upload property exists
                     myXhr.upload.addEventListener('progress', function () {
                         console.log("test")
                     }, false); // for handling the progress of the upload
@@ -50,7 +52,7 @@ Select a file to upload:
             },
             //Ajax事件
             beforeSend: function () {
-                
+
             },
             success: function () {
                 console.log("success")

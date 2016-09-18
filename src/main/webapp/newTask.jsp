@@ -14,6 +14,7 @@
 <link href="css/otherTheme.css" rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" href="css/filedrag.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <style type="text/css">
@@ -276,6 +277,7 @@
 			</p>
 		</div>
 	</div>
+	<script src="js/filedrag.js" type="javascript"></script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -312,5 +314,4 @@
 	</script>
 	<script src='js/mesSpan.js' type="javascript"></script>
 </body>
-
 </html>
