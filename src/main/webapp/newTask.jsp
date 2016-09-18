@@ -211,46 +211,60 @@
 				<button class="btn" id="next">下一步</button>
 			</div>
 		</form>
-		<form class="form-horizontal" action="/FileServlet?type=upload" method="post"
-			target="newFrame" enctype="multipart/form-data" id="form"
-			style="display: none;">
-			<div class="form-group" id="file">
-				<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
-				<div class="col-sm-10">
-					<%--<input type="file" multiple="multiple" id="filein"><br/>--%>
-					<%--<input type="submit" value="upload">--%>
-					<div class="col-md-2 " style="padding-left: 0px;">
-						<select class="form-control selectOne" >
-							<option>文件</option>
-							<option>文件夹</option>
-						</select>
+
+		<div class="form-group" id="file" style="display: none;">
+			<label for="filein" class="col-sm-2 control-label">文件上传（可选）</label>
+			<div class="col-sm-10">
+				<%--<input type="file" multiple="multiple" id="filein"><br/>--%>
+				<%--<input type="submit" value="upload">--%>
+				<div class="col-md-2 " style="padding-left: 0px;">
+					<select class="form-control selectOne">
+						<option>文件</option>
+						<option>文件夹</option>
+					</select>
+				</div>
+				<div class="col-md-10">
+					<div id="fileUp">
+						<form class="form-horizontal" action="/FileServlet?type=upload"
+							method="post" target="newFrame" enctype="multipart/form-data"
+							id="form" >
+							<a href="javascript:;" class="btn fileInput"
+								style="height: 37px; width: 90px;">选择文件 <input type="file"
+								id="theInput" name="file" multiple="multiple" class="btn"
+								style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0px;" />
+							</a><br />
+							<div class="jumbotron"
+								style="width: 100%; height: 150px; margin-top: 20px; margin-bottom: 20px;">
+								<h2 style="margin-top: 10px; color: #aaa">拖拽以上传</h2>
+							</div>
+							<lable class="showFileName"></lable>
+							
+								<button type="submit" value="Upload File" class="btn pull-right pull-right"
+									id="upload">提交</button>
+							
+						</form>
 					</div>
-					<div class="col-md-8">
-						<div id="fileUp">
-						<a href="javascript:;" class="btn fileInput"
-							style="height: 37px; width: 90px;">选择文件 <input type="file"
-							id="theInput" name="file" multiple="multiple" class="btn"
-							style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px;top: 0px;" />
-						</a><br/>
-						<div class="jumbotron" style="width: 100%;height: 150px;margin-top: 20px;margin-bottom: 20px;">
-						<h2 style="margin-top: 10px;color: #aaa">拖拽以上传</h2>
-						</div>
-						<lable class="showFileName"></lable>
-						</div>
-						<div id="folderUp" class="hidden">
+					<div id="folderUp" class="hidden">
+						<form class="form-horizontal" action="/FileServlet?type=upload"
+							method="post" target="newFrame" enctype="multipart/form-data"
+							id="form">
 							<a href="javascript:;" class="btn"
 								style="height: 37px; width: 110px;">选择文件夹<input type="file"
 								id="theInput2" name="folder" multiple="multiple" class="btn"
-								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px;top: 0px;" />
+								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px; top: 0px;" />
 							</a>
-						</div>
-					</div>
-					<div class="col-md-2" style="padding-right: 0px;">
-						<button type="submit" value="Upload File" class="btn pull-right" id="upload">提交</button>
+							
+								<button type="submit" value="Upload File" class="btn pull-right pull-right"
+									id="upload">提交</button>
+							
+						</form>
 					</div>
 
 				</div>
+
+
 			</div>
+		</div>
 		</form>
 		<button class="btn pull-right" id="createTask" style="display: none">创建任务</button>
 	</div>

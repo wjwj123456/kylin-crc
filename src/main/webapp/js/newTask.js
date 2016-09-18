@@ -91,7 +91,7 @@ function checkOK() {
  * 创建任务成功后，可选择上传文件
  */
 function uploadFile() {
-    $('#form').fadeIn('slow').attr('action',
+    $('#file').fadeIn('slow').attr('action',
         '/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
 }
 /**
