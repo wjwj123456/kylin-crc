@@ -121,16 +121,10 @@ function load() {
 	jQuery.ajax({
 		url : '/CodePreviewServlet',
 		type : 'post',
-		data : 'path=D:/CRC/src/main/java/bl/FileBlImpl.java&type=read',
+		data : 'path=D:/CRC/src/main/webapp/js/command.js&type=read',
 		success : function(data) {
 			var tempData = jQuery.parseJSON(data);
-			$('#codePreview').empty();
-			$('#codePreview').append($('<pre type="syntaxhighlighter" class="brush: java;"></pre>'));
-			var code = new String();
-			for(var i = 0;i<tempData.length;i++){
-				code = code+tempData[i]+'\n';
-			}
-			$('pre').text(code);
+			generatePre(tempData, "D:\CRC\src\main\webapp\js\command.js");
 			registView();
 		}
 	});
@@ -166,5 +160,41 @@ function registView() {
 
 		}
 	});
+}
+function generatePre(codeData,path) {
+	var type=findType(path);
+	$('#codePreview').empty();
+	$('#codePreview').append($('<pre type="syntaxhighlighter" class="brush: '+type+';"></pre>'));
+	var code = new String();
+	for(var i = 0;i<codeData.length;i++){
+		code = code+codeData[i]+'\n';
+	}
+	$('pre').text(code);
+}
+function findType(path) {
+	var temp = path.split('.');
+	var lastName=temp[temp.length-1].toLowerCase();
+	var type;
+	if(lastName=='java'){
+		type = 'java';
+	}else if (lastName=='cs') {
+		type = 'csharp';
+	}else if (lastName=='js') {
+		type = 'js';
+	}else if (lastName=='rb') {
+		type = 'ruby';
+	}else if (lastName=='php') {
+		type = 'php';
+	}else if (lastName=='pl'||lastName=='pm') {
+		type = 'perl';
+	}else if (lastName=='py') {
+		type = 'python';
+	}else if (lastName=='groovy') {
+		type = 'groovy';
+	}else {
+		type = 'cpp';
+	}
+	alert(type)
+	return type;
 }
 load();
