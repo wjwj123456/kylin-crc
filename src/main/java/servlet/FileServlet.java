@@ -3,6 +3,7 @@ package servlet;
 import bl.FileBlImpl;
 import blservice.FileBlService;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -11,10 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +37,19 @@ public class FileServlet extends HttpServlet {
     private final int maxMemSize = 5000 * 1024;
 
     /**
+     * 项目根目录
+     */
+    private String rootPath;
+
+    private FileBlService fileBl;
+
+    /**
      * @see HttpServlet#HttpServlet()
      */
     public FileServlet() {
         super();
+
+        fileBl = new FileBlImpl();
     }
 
     /**
@@ -54,10 +61,10 @@ public class FileServlet extends HttpServlet {
         String type = request.getParameter("type");
         switch (type) {
             case "upload":
-                handleUpload(request);
+                handleUploadFile(request, response);
                 break;
             case "uploadFolder":
-                handleUploadFolder(request);
+                handleUploadFolder(request, response);
                 break;
             case "download":
                 handleDownload(request, response);
@@ -77,42 +84,28 @@ public class FileServlet extends HttpServlet {
     /**
      * upload files
      */
-    private void handleUpload(HttpServletRequest request) throws IOException, ServletException {
-        String taskName = request.getParameter("taskName");
-        ServletContext context = request.getServletContext();
-        String filePath = context.getRealPath("/data/" + taskName);
-        filePath = "/home/song/opt/data/" + taskName;
-        // 验证上传内容的类型
-        String contentType = request.getContentType();
-
-        if ((contentType.contains("multipart/form-data")) && new File(filePath).mkdir()) {
-            DiskFileItemFactory factory = new DiskFileItemFactory();
-            // 设置内存中存储文件的最大值
-            factory.setSizeThreshold(maxMemSize);
-            // 创建一个新的文件上传处理程序
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            // 设置最大上传的文件大小
-            upload.setSizeMax(maxFileSize);
-
-            FileBlService fileBl = new FileBlImpl();
+    private void handleUploadFile(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if (createRoot(request, response)) {
             List<String> fileList = new ArrayList<>();
 
             try {
                 // 解析获取的文件
-                List<FileItem> fileItems = upload.parseRequest(request);
+                List<FileItem> fileItems = getFileItem(request);
                 // 处理上传的文件
                 for (FileItem fileItem : fileItems) {
                     if (!fileItem.isFormField()) {
                         String fileName = fileItem.getName();
 
                         // 写入文件
-                        writeFile(fileItem, filePath, fileName);
+                        writeFile(fileItem, rootPath, fileName);
 
                         fileList.add(fileName);
                     }
                 }
 
 //                fileBl.add(taskName, fileList);
+            } catch (FileUploadException e) {
+                response.getWriter().print("文件过大,无法上传");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -122,41 +115,23 @@ public class FileServlet extends HttpServlet {
     /**
      * upload folder
      */
-    private void handleUploadFolder(HttpServletRequest request) {
-        String taskName = request.getParameter("taskName");
-        ServletContext context = request.getServletContext();
-        // TODO 部署时更改路径
-        // 项目根目录
-        String rootPath = context.getRealPath("/data/" + taskName);
-        rootPath = "/home/song/opt/data/" + taskName;
-        // 验证上传内容的类型
-        String contentType = request.getContentType();
-
-        if ((contentType.contains("multipart/form-data")) && new File(rootPath).mkdir()) {
-            DiskFileItemFactory factory = new DiskFileItemFactory();
-            // 设置内存中存储文件的最大值
-            factory.setSizeThreshold(maxMemSize);
-            // 创建一个新的文件上传处理程序
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            // 设置最大上传的文件大小
-            upload.setSizeMax(maxFileSize);
-
-            FileBlService fileBl = new FileBlImpl();
+    private void handleUploadFolder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        if (createRoot(request, response)) {
             List<String> fileList = new ArrayList<>();
 
             try {
                 // 解析获取的文件
-                List<FileItem> fileItems = upload.parseRequest(request);
+                List<FileItem> fileItems = getFileItem(request);
                 // 处理上传的文件
                 for (FileItem fileItem : fileItems) {
                     if (!fileItem.isFormField()) {
                         String fileName = fileItem.getName();
-
+                        // 获取文件的各级目录
                         List<String> separatedPath = getSeparatedPath(fileName);
                         System.out.println(separatedPath);
                         // 扫描文件目录结构
                         String temp = rootPath;
-                        for (int i = 0; i < separatedPath.size() - 2; i++) {
+                        for (int i = 0; i < separatedPath.size() - 1; i++) {
                             temp += "/" + separatedPath.get(i);
                             // 若父级目录目录不存在，创建之
                             if (!new File(temp).exists()) {
@@ -165,15 +140,65 @@ public class FileServlet extends HttpServlet {
                         }
                         System.out.println(fileName);
                         // 写入文件
-//                        writeFile(fileItem, rootPath, fileName);
+                        writeFile(fileItem, temp, separatedPath.get(separatedPath.size() - 1));
                     }
                 }
 
 //                fileBl.add(taskName, fileList);
+            } catch (FileUploadException e) {
+                response.getWriter().print("文件夹过大,无法上传");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 创建项目根目录
+     *
+     * @return 创建成功, 返回true;否则返回false
+     */
+    private boolean createRoot(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String taskName = request.getParameter("taskName");
+        ServletContext context = request.getServletContext();
+        // 项目根目录
+        rootPath = context.getRealPath("/data/" + taskName);
+//        rootPath = "/home/song/opt/data/" + taskName;
+        // 验证上传内容的类型
+        String contentType = request.getContentType();
+
+        PrintWriter out = response.getWriter();
+
+        if (!contentType.contains("multipart/form-data")) {
+            out.print("上传内容类型错误");
+
+            return false;
+        }
+
+        if (!new File(rootPath).mkdir()) {
+            out.print("项目已存在");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 获取request对象中包含的文件列表
+     *
+     * @throws FileUploadException
+     */
+    private List<FileItem> getFileItem(HttpServletRequest request) throws FileUploadException {
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        // 设置内存中存储文件的最大值
+        factory.setSizeThreshold(maxMemSize);
+        // 创建一个新的文件上传处理程序
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        // 设置最大上传的文件大小
+        upload.setSizeMax(maxFileSize);
+
+        return upload.parseRequest(request);
     }
 
     /**

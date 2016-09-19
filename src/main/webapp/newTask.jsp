@@ -306,7 +306,6 @@
 
 		// 文件夹
 		$("#folder").on("change", "input[type='file']", function(e) {
-			console.log(1);
 			var files = e.target.files; // FileList
 			for (var i = 0, f; f = files[i]; ++i){
 				console.log(files[i].webkitRelativePath);
