@@ -272,7 +272,7 @@
 			</p>
 		</div>
 	</div>
-	<script src="js/filedrag.js" type="javascript"></script>
+	<script src="js/fileDrag.js" type="javascript"></script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

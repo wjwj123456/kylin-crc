@@ -47,6 +47,7 @@ public class AccountFilter implements Filter {
 
 		if (userName != null) {
 			UserInfoVO userInfoVO = userInfo.get(userName);
+
 			session.setAttribute("userInfo", userInfoVO);
 		}
 

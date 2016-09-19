@@ -28,14 +28,12 @@ public class CodePreviewServlet extends HttpServlet {
      */
     public CodePreviewServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String type = (String) request.getParameter("type");
 		switch (type) {
 		case "temp":
@@ -54,7 +52,6 @@ public class CodePreviewServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	private void handleTemp(HttpServletRequest request,HttpServletResponse response) throws IOException {

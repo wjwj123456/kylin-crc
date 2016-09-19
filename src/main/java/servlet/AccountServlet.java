@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,11 +56,8 @@ public class AccountServlet extends HttpServlet {
 
 	/**
 	 * update user information
-	 * 
-	 * @param request
-	 * @param response
 	 */
-	private void handleUpdate(HttpServletRequest request, HttpServletResponse response) {
+	private void handleUpdate(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		JSONObject jsonObject = new JSONObject(request.getParameter("data"));
 
 		String userName = (String) request.getSession().getAttribute("username");

@@ -9,14 +9,22 @@ import java.sql.Statement;
 
 public class DBManager {
 
+	// 172.17.243.193
+	// root
+	// 1129009
+//	private static final String IP = "115.159.195.149";
+	private static final String IP = "172.17.243.193";
+
+	private static final String userName = "root";
+
+	private static final String password = "1129009";
+
 	public static Connection connect() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
 
-		String url = "jdbc:mysql://172.17.243.193:3306/crc";
-		String username = "root";
-		String password = "1129009";
+		String url = "jdbc:mysql://" + IP + ":3306/crc";
 
-		Connection connection = DriverManager.getConnection(url + "?serverTimezone=UTC", username,
+		Connection connection = DriverManager.getConnection(url + "?serverTimezone=UTC&characterEncoding=UTF-8", userName,
 				password);
 		return connection;
 	}
@@ -38,10 +46,8 @@ public class DBManager {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://172.17.243.193:3306/crc";
-			String username = "root";
-			String password = "1129009";
-			conn = DriverManager.getConnection(url + "?serverTimezone=UTC", username, password);
+			String url = "jdbc:mysql://" + IP + ":3306/crc";
+			conn = DriverManager.getConnection(url + "?serverTimezone=UTC&characterEncoding=UTF-8", userName, password);
 			pstmt = conn.prepareStatement(sql);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
