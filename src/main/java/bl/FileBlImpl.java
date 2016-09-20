@@ -48,9 +48,7 @@ public class FileBlImpl implements FileBlService {
 		Message message = null;
 		try {
 			message = fileData.delete(taskName, paths);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -59,25 +57,17 @@ public class FileBlImpl implements FileBlService {
 
 	@Override
 	public Message rename(String taskName, List<String> fromPaths, List<String> toPaths) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public static List<String> readFile(String path) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		File file = new File(path);
-		System.out.println(file.getPath());
 		BufferedReader reader = null;
 		try {
-			// System.out.println("����Ϊ��λ��ȡ�ļ����ݣ�һ�ζ�һ���У�");
 			reader = new BufferedReader(new FileReader(file));
-			String tempString = "";
-			int line = 1;
-			// һ�ζ���һ�У�ֱ������nullΪ�ļ�����
+			String tempString;
 			while ((tempString = reader.readLine()) != null) {
-				// // ��ʾ�к�
-				// System.out.println("line " + line + ": " + tempString);
-				// line++;
 				list.add(tempString);
 			}
 			reader.close();
@@ -88,6 +78,7 @@ public class FileBlImpl implements FileBlService {
 				try {
 					reader.close();
 				} catch (IOException e1) {
+					e1.printStackTrace();
 				}
 			}
 		}

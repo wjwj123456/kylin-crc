@@ -1,7 +1,5 @@
 package servlet;
 
-import bl.FileBlImpl;
-import blservice.FileBlService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -29,27 +27,23 @@ public class FileServlet extends HttpServlet {
     /**
      * 文件最大
      */
-    private final int maxFileSize = 5000 * 1024;
+    private static final int maxFileSize = 5000 * 1024;
 
     /**
      * 内存最大
      */
-    private final int maxMemSize = 5000 * 1024;
+    private static final int maxMemSize = 5000 * 1024;
 
     /**
      * 项目根目录
      */
     private String rootPath;
 
-    private FileBlService fileBl;
-
     /**
      * @see HttpServlet#HttpServlet()
      */
     public FileServlet() {
         super();
-
-        fileBl = new FileBlImpl();
     }
 
     /**
@@ -59,6 +53,7 @@ public class FileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String type = request.getParameter("type");
+        System.out.println(type);
         switch (type) {
             case "upload":
                 handleUploadFile(request, response);
@@ -68,6 +63,9 @@ public class FileServlet extends HttpServlet {
                 break;
             case "download":
                 handleDownload(request, response);
+                break;
+            case "getFileStruct":
+                handleFileStruct(request, response);
                 break;
         }
     }
@@ -86,8 +84,6 @@ public class FileServlet extends HttpServlet {
      */
     private void handleUploadFile(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (createRoot(request, response)) {
-            List<String> fileList = new ArrayList<>();
-
             try {
                 // 解析获取的文件
                 List<FileItem> fileItems = getFileItem(request);
@@ -98,12 +94,8 @@ public class FileServlet extends HttpServlet {
 
                         // 写入文件
                         writeFile(fileItem, rootPath, fileName);
-
-                        fileList.add(fileName);
                     }
                 }
-
-//                fileBl.add(taskName, fileList);
             } catch (FileUploadException e) {
                 response.getWriter().print("文件过大,无法上传");
             } catch (Exception e) {
@@ -117,8 +109,6 @@ public class FileServlet extends HttpServlet {
      */
     private void handleUploadFolder(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (createRoot(request, response)) {
-            List<String> fileList = new ArrayList<>();
-
             try {
                 // 解析获取的文件
                 List<FileItem> fileItems = getFileItem(request);
@@ -143,8 +133,6 @@ public class FileServlet extends HttpServlet {
                         writeFile(fileItem, temp, separatedPath.get(separatedPath.size() - 1));
                     }
                 }
-
-//                fileBl.add(taskName, fileList);
             } catch (FileUploadException e) {
                 response.getWriter().print("文件夹过大,无法上传");
             } catch (Exception e) {
@@ -162,8 +150,8 @@ public class FileServlet extends HttpServlet {
         String taskName = request.getParameter("taskName");
         ServletContext context = request.getServletContext();
         // 项目根目录
-        rootPath = context.getRealPath("/data/" + taskName);
-//        rootPath = "/home/song/opt/data/" + taskName;
+//        rootPath = context.getRealPath("/data/" + taskName);
+        rootPath = "/home/song/opt/data/" + taskName;
         // 验证上传内容的类型
         String contentType = request.getContentType();
 
@@ -187,7 +175,7 @@ public class FileServlet extends HttpServlet {
     /**
      * 获取request对象中包含的文件列表
      *
-     * @throws FileUploadException
+     * @throws FileUploadException 文件（夹）大小超出限制抛出异常
      */
     private List<FileItem> getFileItem(HttpServletRequest request) throws FileUploadException {
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -278,5 +266,13 @@ public class FileServlet extends HttpServlet {
                 outputStream.close();
             }
         }
+    }
+
+
+    private void handleFileStruct(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String taskName = request.getParameter("taskName");
+        String path = request.getParameter("path");
+
+
     }
 }

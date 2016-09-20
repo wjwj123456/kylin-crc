@@ -34,25 +34,25 @@ function confirm() {
  */
 function getData() {
     var language = $('#goodAt tbody').find('input:checked');
-    var array = new Array();
+    var array = [];
 
     for (var i = 0; i < language.length; i++) {
         array.push($(language[i]).val())
     }
     var userInfo = new Object({
-        name: $('#name').val().trim(),
-        sex: $('.radio').find('input:checked').val(),
-        job: $('#job').val().trim(),
+        name: encodeURI($('#name').val().trim()),
+        sex: encodeURI($('.radio').find('input:checked').val()),
+        job: encodeURI($('#job').val().trim()),
         province: "",
         city: "",
-        description: $('#describe').val().trim(),
+        description: encodeURI($('#describe').val().trim()),
         picture: '',
         language: array
     });
 
-    userInfo.province = $($('#city option:selected')[0]).val();
-    userInfo.city = $($('#city option:selected')[1]).val();
-    console.log($($('#city option:selected')[0]).val());
+    var city = $('#city');
+    userInfo.province = encodeURI($($(city).find('option:selected')[0]).val());
+    userInfo.city = encodeURI($($(city).find('option:selected')[1]).val());
 
     return JSON.stringify(userInfo);
 }
