@@ -131,6 +131,7 @@ function load() {
 	
 }
 function registView() {
+	$('.webui-popover').remove();
 	SyntaxHighlighter.highlight();
 	var fileName = "xxx.java";
 	var length = $('.gutter').children().length;
@@ -194,7 +195,6 @@ function findType(path) {
 	}else {
 		type = 'cpp';
 	}
-	alert(type)
 	return type;
 }
 load();

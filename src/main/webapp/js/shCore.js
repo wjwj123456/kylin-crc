@@ -931,7 +931,6 @@ function attachEvent(obj, type, func, scope)
 		}
 			
 		func.call(scope || window, e);
-		alert($('.gutter').text());
 	};
 	
 	if (obj.attachEvent) 
