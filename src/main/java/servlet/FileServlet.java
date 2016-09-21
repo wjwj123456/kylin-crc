@@ -4,6 +4,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.json.JSONArray;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -53,7 +54,6 @@ public class FileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String type = request.getParameter("type");
-        System.out.println(type);
         switch (type) {
             case "upload":
                 handleUploadFile(request, response);
@@ -118,7 +118,6 @@ public class FileServlet extends HttpServlet {
                         String fileName = fileItem.getName();
                         // 获取文件的各级目录
                         List<String> separatedPath = getSeparatedPath(fileName);
-                        System.out.println(separatedPath);
                         // 扫描文件目录结构
                         String temp = rootPath;
                         for (int i = 0; i < separatedPath.size() - 1; i++) {
@@ -128,7 +127,7 @@ public class FileServlet extends HttpServlet {
                                 new File(temp).mkdir();
                             }
                         }
-                        System.out.println(fileName);
+
                         // 写入文件
                         writeFile(fileItem, temp, separatedPath.get(separatedPath.size() - 1));
                     }
@@ -148,6 +147,10 @@ public class FileServlet extends HttpServlet {
      */
     private boolean createRoot(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String taskName = request.getParameter("taskName");
+        if (taskName == null) {
+            return false;
+        }
+
         ServletContext context = request.getServletContext();
         // 项目根目录
 //        rootPath = context.getRealPath("/data/" + taskName);
@@ -268,11 +271,25 @@ public class FileServlet extends HttpServlet {
         }
     }
 
-
+    /**
+     * 查询文件路径
+     * @param request 包含项目名，文件夹路径
+     * @param response 返回文件（夹）名称列表，不包含路径
+     */
     private void handleFileStruct(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String taskName = request.getParameter("taskName");
         String path = request.getParameter("path");
 
+//        rootPath = request.getServletContext().getRealPath("/data/" + taskName + "/" + path);
+        rootPath = "/home/song/opt/data/" + taskName + "/" + path;
 
+        File file = new File(rootPath);
+        String[] list = file.list();
+
+        assert list != null;
+        JSONArray array = new JSONArray(list);
+
+        PrintWriter out = response.getWriter();
+        out.print(array.toString());
     }
 }

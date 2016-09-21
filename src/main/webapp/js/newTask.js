@@ -1,5 +1,12 @@
 var isOK = false;
 
+$('#inputName').on('change', function () {
+    var text = $('#inputName').val().trim();
+
+    $('#form_file').attr('action', '/FileServlet?type=upload&taskName=' + text);
+    $('#form_folder').attr('action', '/FileServlet?type=uploadFolder&taskName=' + text);
+});
+
 $('#next').on('click', function () {
     isOK = true;
     checkOK();
@@ -60,9 +67,9 @@ function getData() {
         power: power
     });
 
-    task.language = task.type == '文档评审' ? 'none' : $('#language option:selected').val();
+    task.language = task.type == '文档评审' ? 'none' : $('#language').find('option:selected').val();
 
-    console.log(JSON.stringify(task))
+    console.log(JSON.stringify(task));
     return JSON.stringify(task);
 }
 
@@ -92,19 +99,16 @@ function checkOK() {
  */
 function uploadFile() {
     $('#file').fadeIn('slow');
-
-    $('#form_file').attr('action', '/FileServlet?type=upload&taskName=' + $('#inputName').val().trim());
-    $('#form_folder').attr('action', '/FileServlet?type=uploadFolder&taskName=' + $('#inputName').val().trim());
 }
 /**
  * 上传类型
  */
-$('.selectOne').change(function(){
-	if ($(this).children('option:selected').text() == "文件") {
+$('.selectOne').change(function () {
+    if ($(this).children('option:selected').text() == "文件") {
         $('#fileUp').removeClass('hidden');
         $('#folderUp').addClass('hidden');
     } else {
-    	$('#fileUp').addClass('hidden');
+        $('#fileUp').addClass('hidden');
         $('#folderUp').removeClass('hidden');
     }
 });

@@ -12,16 +12,16 @@ public interface FileBlService {
 	 * @param paths
 	 * @return
 	 */
-	public Message add(String taskName, List<String> paths);
+	Message add(String taskName, List<String> paths);
 
 	/**
 	 * 
 	 * @param taskName
 	 * @return
 	 */
-	public List<String> get(String taskName);
+	List<String> get(String taskName);
 
-	public Message delete(String taskName, List<String> paths);
+	Message delete(String taskName, List<String> paths);
 
-	public Message rename(String taskName, List<String> fromPaths, List<String> toPaths);
+	Message rename(String taskName, List<String> fromPaths, List<String> toPaths);
 }

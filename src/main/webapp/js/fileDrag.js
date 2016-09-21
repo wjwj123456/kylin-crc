@@ -6,6 +6,10 @@
  * 文件拖拽支持
  */
 (function () {
+
+    // 文件最大传输大小
+    var maxSize = 1024 * 1024 * 50;
+
     // output information
     function Output(msg) {
         var m = document.getElementById("messages");
@@ -24,8 +28,13 @@
             ParseFile(f);
         }
 
-        console.log(files.length);
-        console.log(totalSize);
+        console.log(e.target);
+        alert(1);
+        if (totalSize > maxSize) {
+            alert("文件(夹)过大，无法上传");
+        } else {
+            console.log(e.target);
+        }
     }
 
     // output file information
@@ -40,7 +49,7 @@
 
     // initialize
     function Init() {
-        var fileSelect = document.getElementById("fileSelect");
+        var fileSelect = document.getElementById("fileInput");
         // file select
         fileSelect.addEventListener("change", FileSelectHandler, false);
     }
