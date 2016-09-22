@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试专用</title>
+</head>
+<body>
+<label for="text">测试</label><input type="text" id="text">
+<button>123</button>
+</body>
+<script src="js/jquery.min.js"></script>
+<script>
+    $('#text').on('keypress', function () {
+        console.log($('#text').val());
+    });
+
+    $('button').click(function () {
+
+    }).on('mousedown', function () {
+        setTimeout(function () {
+            console.log(1);
+        }, 3000);
+    }).on('click', function () {
+        console.log(2);
+    }).on('mouseup', function () {
+        console.log(3);
+    })
+</script>
+</html>

@@ -1,3 +1,5 @@
+import org.json.JSONArray;
+
 import java.io.File;
 
 /**
@@ -7,8 +9,11 @@ import java.io.File;
  */
 public class FileTest {
     public static void main(String[] args) {
-        System.out.println(new File("/opt/test").mkdir());
-        System.out.println(new File("/home/song/opt/test").mkdir());
-        System.out.println(new File("/home").exists());
+        File file = new File("/home/song/opt");
+        String[] list = file.list();
+
+        assert list != null;
+        JSONArray array = new JSONArray(list);
+        System.out.println(array.toString());
     }
 }

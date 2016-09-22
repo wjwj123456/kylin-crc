@@ -226,26 +226,22 @@
 				</div>
 				<div class="col-md-10">
 					<div id="fileUp">
-						<form class="form-horizontal" action="/FileServlet?type=upload"
+						<form class="form-horizontal" action=""
 							method="post" target="newFrame" enctype="multipart/form-data"
 							id="form_file">
 							<a href="javascript:;" class="btn fileInput"
 								style="height: 37px; width: 90px;">选择文件 <input type="file"
-								id="theInput" name="file" class="btn"
+								id="theInput" name="file" class="btn" multiple
 								style="opacity: 0; height: 37px; width: 90px; position: absolute; left: 15px; top: 0px;" />
-							</a><br />
-							<div class="jumbotron"
-								style="width: 100%; height: 150px; margin-top: 20px; margin-bottom: 20px;">
-								<h2 style="margin-top: 10px; color: #aaa">拖拽以上传</h2>
-							</div>
+							</a>
 							<lable class="showFileName"></lable>
-							
-								<button type="submit" value="Upload File" class="btn pull-right pull-right"
-									id="upload_file">提交</button>
+								<button type="submit" value="Upload File" class="btn pull-right pull-right disabled"
+									id="upload_file">上传</button>
+							<textarea id="file_message" class="form-control" rows="5" cols="" style="display: none; margin-top: 10px"></textarea>
 						</form>
 					</div>
 					<div id="folderUp" class="hidden">
-						<form class="form-horizontal" action="/FileServlet?type=uploadFolder"
+						<form class="form-horizontal" action=""
 							method="post" target="newFrame" enctype="multipart/form-data"
 							id="form_folder">
 							<a href="javascript:;" class="btn" style="height: 37px; width: 110px;" id="folder">
@@ -253,16 +249,16 @@
 								<input type="file" id="theInput2" name="folder" class="btn" multiple webkitdirectory=""
 								style="opacity: 0; height: 37px; width: 110px; position: absolute; left: 15px; top: 0px;" />
 							</a>
-							<button type="submit" value="Upload File" class="btn pull-right pull-right" id="upload_folder">提交</button>
+							<button type="submit" value="Upload File" class="btn pull-right pull-right disabled" id="upload_folder">上传</button>
 							<%--文件夹下所有文件的信息--%>
-							<div id="folder_message" style="height: 100px; width: 200px;"></div>
+							<textarea id="folder_message" class="form-control" rows="5" cols="" style="display: none; margin-top: 10px"></textarea>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 		</form>
-		<button class="btn pull-right" id="createTask" style="display: none">创建任务</button>
+		<button class="btn pull-right" id="createTask" style="display: none; margin-top: 20px">创建任务</button>
 	</div>
 	<div class="mastfoot">
 		<div class="inner">
@@ -272,7 +268,6 @@
 			</p>
 		</div>
 	</div>
-	<script src="js/fileDrag.js" type="javascript"></script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -285,6 +280,7 @@
 	<script src="js/newTask.js"></script>
 	<script src='js/waitFunction.js'></script>
 	<script src='js/waitMe.min.js'></script>
+	<script src="js/fileDrag.js" type="javascript"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('#datetimepicker1').datetimepicker({
@@ -295,21 +291,45 @@
 		});
 	</script>
 	<script type="text/javascript">
+		// 文件上传最大50M
+        var maxSize = 1024 * 1024 * 50;
+
 		// 文件
-		$(".fileInput").on("change", "input[type='file']", function() {
-			var filePath = $(this).val();
-			$(".fileerrorTip").html("").hide();
-			var arr = filePath.split('\\');
-			var fileName = arr[arr.length - 1];
-			$(".showFileName").html(fileName);
+		$(".fileInput").on("change", "input[type='file']", function(e) {
+		    var files = e.target.files;
+
+			var totalSize = 0;
+
+			$('#file_message').show();
+			for (var i = 0; i < files.length; i++) {
+				totalSize = totalSize + files[i].size;
+				$('#file_message').text($('#file_message').text() + files[i].name + '\n');
+			}
+
+			if (totalSize > maxSize) {
+				alert("文件过大，无法上传");
+			} else {
+				$('#upload_file').removeClass('disabled');
+			}
 		});
 
 		// 文件夹
 		$("#folder").on("change", "input[type='file']", function(e) {
 			var files = e.target.files; // FileList
+
+			var totalSize = 0;
+
+            $('#folder_message').show();
 			for (var i = 0, f; f = files[i]; ++i){
-				console.log(files[i].webkitRelativePath);
-				$("#folder_message").innerText  = $("#folder_message").innerText + files[i].webkitRelativePath+"\n";
+				totalSize = totalSize + f.size;
+
+				$('#folder_message').text($('#folder_message').text() + f.name + "\n");
+			}
+
+			if (totalSize > maxSize) {
+				alert("文件夹过大，无法上传");
+			} else {
+				$('#upload_folder').removeClass('disabled');
 			}
 		});
 	</script>
