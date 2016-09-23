@@ -30,6 +30,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/fileTree.css">
 <link rel="stylesheet" href="css/shCore.css">
 <link rel="stylesheet" href="css/shCoreDefault.css">
 <link rel="stylesheet" href="css/jquery.webui-popover.min.css">
@@ -309,6 +310,35 @@ var isOwner = <%=isOwner%>;
 				time = "<%=Tools.dateToString(taskVO.getDeadline())%>";
 			</script>
 
+			<%--文件目录结构--%>
+			<hr/>
+			<div class="file-tree panel panel-info">
+				<div class="panel-head">
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Home</a>
+						</li>
+						<li>
+							<a href="#">Library</a>
+						</li>
+						<li class="active">
+                            data
+						</li>
+					</ul>
+				</div>
+                <div class="panel-body">
+					<table class="table">
+						<tbody id="fill-list">
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<%--文件目录结构End--%>
 			<hr>
 			<h2 id="review">
 				评审
@@ -885,10 +915,11 @@ public interface AchievementBlService {
 	currentUserDisp = userDisp[merged];
 	currentTaskDisp = taskDisp[finished];
 <%}%>
-
 	</script>
+</body>
 	<script src='js/moment-with-locales.js'></script>
 	<script src='js/bootstrap-datetimepicker.js'></script>
+	<script src="js/fileTree.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('#datetimepicker1').datetimepicker({
@@ -907,6 +938,5 @@ public interface AchievementBlService {
 	<script src='js/mesSpan.js'></script>
 	<script src="js/codeScriptImporter.js"></script>
 	<script src="js/codePreview.js"></script>
-</body>
 
 </html>

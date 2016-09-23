@@ -48,15 +48,14 @@ public class FileBlImpl implements FileBlService {
 	}
 
 	@Override
-	public String[] getFileList(String taskName) {
-        String path = ROOT_PATH + taskName + "/";
-
+	public List<String> getFileList(String taskName) {
+        String path = ROOT_PATH + "/" + taskName + "/";
 		return listFile(path);
 	}
 
 	@Override
-	public String[] getFileList(String taskName, String path) {
-        String absolutePath = ROOT_PATH + taskName + "/" + path;
+	public List<String> getFileList(String taskName, String path) {
+		String absolutePath = ROOT_PATH + "/" + taskName + "/" + path;
 
 		return listFile(absolutePath);
 	}
@@ -108,9 +107,23 @@ public class FileBlImpl implements FileBlService {
 	 * @param path 文件夹路径
 	 * @return path对应文件夹下的文件(夹)名称,不包含路径
 	 */
-	private String[] listFile(String path) {
-		File file = new File(path);
+	private List<String> listFile(String path) {
+		List<String> result = new ArrayList<>();
 
-		return file.list();
+		path = "/home/song/opt/lampp/htdocs";
+
+		File file = new File(path);
+		File[] fileList = file.listFiles();
+
+		assert fileList != null;
+		for (File aFileList : fileList) {
+			if (aFileList.isDirectory()) {
+				result.add("d" + aFileList.getName());
+			} else if (aFileList.isFile()) {
+				result.add("f" + aFileList.getName());
+			}
+		}
+
+		return result;
 	}
 }

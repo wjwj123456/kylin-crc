@@ -26,7 +26,7 @@ public interface FileBlService {
 	 * @param taskName 项目名
 	 * @return 名称列表，不包含路径
 	 */
-    String[] getFileList(String taskName);
+    List<String> getFileList(String taskName);
 
 	/**
 	 * 获取项目某一文件夹下的文件(夹)列表
@@ -34,7 +34,7 @@ public interface FileBlService {
 	 * @param path 目标文件夹相对项目目录的相对路径
 	 * @return 名称列表,不包含路径
 	 */
-	String[] getFileList(String taskName, String path);
+	List<String> getFileList(String taskName, String path);
 
 	Message delete(String taskName, List<String> paths);
 

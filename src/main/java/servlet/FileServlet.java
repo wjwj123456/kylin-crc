@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -277,7 +278,8 @@ public class FileServlet extends HttpServlet {
         String path = request.getParameter("path");
 
         FileBlImpl fileBl = new FileBlImpl();
-        String[] fileList = fileBl.getFileList(taskName, path);
+
+        List<String> fileList = path.equals("") ? fileBl.getFileList(taskName) : fileBl.getFileList(taskName, path);
 
         JSONArray array = new JSONArray(fileList);
 
