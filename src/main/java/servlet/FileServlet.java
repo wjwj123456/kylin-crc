@@ -1,5 +1,6 @@
 package servlet;
 
+import bl.FileBlImpl;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -254,11 +255,6 @@ public class FileServlet extends HttpServlet {
                 outputStream.write(b, 0, i);
             }
             outputStream.flush();
-            // 要加以下两句话，否则会报错
-            // java.lang.IllegalStateException: getOutputStream() has already
-            // been called for //this response
-            // out.clear();
-            // out = pageContext.pushBody();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -280,14 +276,10 @@ public class FileServlet extends HttpServlet {
         String taskName = request.getParameter("taskName");
         String path = request.getParameter("path");
 
-//        rootPath = request.getServletContext().getRealPath("/data/" + taskName + "/" + path);
-        rootPath = "/home/song/opt/data/" + taskName + "/" + path;
+        FileBlImpl fileBl = new FileBlImpl();
+        String[] fileList = fileBl.getFileList(taskName, path);
 
-        File file = new File(rootPath);
-        String[] list = file.list();
-
-        assert list != null;
-        JSONArray array = new JSONArray(list);
+        JSONArray array = new JSONArray(fileList);
 
         PrintWriter out = response.getWriter();
         out.print(array.toString());

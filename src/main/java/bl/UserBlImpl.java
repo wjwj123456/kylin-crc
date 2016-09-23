@@ -13,7 +13,6 @@ public class UserBlImpl implements UserBlService {
 	private UserDataService userDataService = new UserDataImpl();
 
 	public UserVO getUserVOByName(String userName) {
-		// TODO Auto-generated method stub
 		String name = "";
 		String mail = "";
 		String password = "";
@@ -23,12 +22,7 @@ public class UserBlImpl implements UserBlService {
 			mail = po.getEmail();
 			password = po.getPassword();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 

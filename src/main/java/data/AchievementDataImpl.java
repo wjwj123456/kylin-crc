@@ -14,7 +14,6 @@ public class AchievementDataImpl implements AchievementDataService {
 
 	@Override
 	public int initAchievement(String userName) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		int flag = -1;
 		String sql = "INSERT INTO achievement (uname, experience, review_time,review_count,efficiency_count) VALUES (?, ?, ?,?,?)";
 		pStatement = DBManager.getPreparedStatement(sql);
@@ -35,7 +34,6 @@ public class AchievementDataImpl implements AchievementDataService {
 
 	@Override
 	public AchievementPO getAchievement(String userName) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM achievement WHERE uname = '" + userName + "'";
 		rSet = DBManager.getResultSet(sql);
 		AchievementPO po = null;
@@ -48,7 +46,6 @@ public class AchievementDataImpl implements AchievementDataService {
 
 	@Override
 	public int updateReviewCount(String userName) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		String sql = "UPDATE achievement SET review_count = review_count+1 WHERE uname='" + userName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		int i = pStatement.executeUpdate();
@@ -64,7 +61,6 @@ public class AchievementDataImpl implements AchievementDataService {
 
 	@Override
 	public int updateReviewTime(String userName, double time) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		String sql = "UPDATE achievement SET review_time = review_time+" + time + " WHERE uname='" + userName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		int i = pStatement.executeUpdate();
@@ -79,7 +75,6 @@ public class AchievementDataImpl implements AchievementDataService {
 
 	@Override
 	public int updateEfficiencyCount(String userName) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		String sql = "UPDATE achievement SET efficiency_count = efficiency_count+1 WHERE uname='" + userName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		int i = pStatement.executeUpdate();
@@ -94,7 +89,6 @@ public class AchievementDataImpl implements AchievementDataService {
 
 	@Override
 	public int updateExperience(String userName, int experience) throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
 		String sql = "UPDATE achievement SET experience = experience+" + experience + " WHERE uname='" + userName + "'";
 		pStatement = DBManager.getPreparedStatement(sql);
 		int i = pStatement.executeUpdate();

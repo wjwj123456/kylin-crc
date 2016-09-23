@@ -21,7 +21,6 @@ public class AssessmentDataImpl implements AssessmentDataService {
 
     @Override
     public int[] getAssessmentValue(String taskName, List<ReportVO> vos) throws SQLException, ClassNotFoundException {
-        // TODO Auto-generated method stub
         int[] assess = {0, 0};
         if (vos.size() != 0) {
 
@@ -171,7 +170,6 @@ public class AssessmentDataImpl implements AssessmentDataService {
 
     @Override
     public int[][] getHistoryValues(String taskName) throws SQLException, ClassNotFoundException {
-        // TODO Auto-generated method stub
         List<Integer> faults = new ArrayList<Integer>();
         List<Integer> assessfaults_mt = new ArrayList<Integer>();
         List<Integer> assessfaults_mh = new ArrayList<Integer>();
@@ -197,7 +195,6 @@ public class AssessmentDataImpl implements AssessmentDataService {
     @Override
     public List<AssessmentPO> getAllAssessments(String taskName, List<ReportVO> vos)
             throws SQLException, ClassNotFoundException {
-        // TODO Auto-generated method stub
         List<AssessmentPO> pos = new ArrayList<AssessmentPO>();
 
         List<String> nameList = new ArrayList<String>();
@@ -255,7 +252,6 @@ public class AssessmentDataImpl implements AssessmentDataService {
     @Override
     public List<List<String>> getAllFindedReviewerNames(List<ReportVO> vos)
             throws SQLException, ClassNotFoundException {
-        // TODO Auto-generated method stub
         List<List<String>> names = new ArrayList<>();
 
         if (vos.size() == 0) {

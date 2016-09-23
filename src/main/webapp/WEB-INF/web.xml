@@ -40,7 +40,7 @@
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <!--TODO 修改配置,过滤全部请求-->
-    <url-pattern>/index.jsp</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
   <servlet>
     <description>invite one or several reviewers</description>
