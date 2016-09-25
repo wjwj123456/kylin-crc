@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="bl.InviteBlImpl"%>
+<%@page import="blservice.InviteBlService"%>
 <%@page import="vo.ReportVO" %>
 <%@page import="tools.Encode" %>
 <%@page import="vo.State" %>
@@ -378,7 +381,7 @@
                                     }
                             %>
                             <tr
-                                    onmouseover="show2(<%=assessmentVO.getFindedfaults()%>, <%=assessmentVO.getUniquefaults()%>, <%=userHis.get(0).getAssessfaults_mt()%>)">
+                                    onmouseover="show2(<%=assessmentVO.getFindedfaults()%>, <%=assessmentVO.getUniquefaults()%>, <%=userHis.get(0).getAssessfaults_mh()%>)">
                                 <td><%=assessmentVO.getReviewerName()%>
                                 </td>
                                 <td><%=assessmentVO.getFindedfaults()%>
@@ -413,10 +416,75 @@
                 </div>
                 <hr>
             </div>
-            <div class="tab-pane fade" id="report-result">
+            <div class="tab-pane fade active" id="report-result">
+            <%
+                 List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
+                 AssessmentBlService assessmentBlService = new AssessmentBlImpl();
+                 List<List<String>> reporters = assessmentBlService.getAllFindedReviewerNames(toMergeVOs);
+                 InviteBlService inviteBl = new InviteBlImpl();
+                 List<String> users = inviteBl.getAgreeUser(taskName);
+                 ArrayList<int[]> matrix = new ArrayList<int[]>();
+             %>
+             <%for(int i = 0;i<reporters.size();i++){
+            	 for(int j = 0;j<reporters.get(i).size();j++){
+            		 if(users.contains(reporters.get(i).get(j))){
+            			 int[] temp = {users.indexOf(reporters.get(i).get(j)),i};
+ 						matrix.add(temp);
+ 					}
+            	 }
+             }
+             %>
+            <div class="row" id="resultTableGraph" style="height: 400px"></div>
+                <script type="text/javascript">
+                	var users = new Array();
+                	<%for(String s : users){%>
+                	users.push('<%=s%>');
+                	<%}%>
+                	var matrix = new Array();
+                	<%for(int[] is : matrix){%>
+                	var temp = new Array();
+                	temp.push(<%=is[0]%>);
+                	temp.push(<%=is[1]%>);
+                	matrix.push(temp);
+                	<%}%>
+                    var myChart3 = echarts.init(document
+                            .getElementById('resultTableGraph'));
+                    var option3 = {
+                        title: {
+                            text: '具体缺陷发现状况'
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+
+                            axisPointer: {
+                                animation: true
+                            }
+                        },
+                        legend: {
+                           
+                        },
+                        xAxis: {
+                            name: '参与者',
+                            type: 'category',
+                            data: users
+                        },
+                        yAxis: {
+                            name: '缺陷编号',
+                            type: 'category',
+                            data: [1,2,3,4,5,6,7,8,9,10]
+                        },
+                        series: {
+                            name: '总体缺陷发现',
+                            type: 'scatter',
+                            data: matrix
+                        }
+                    };
+                    myChart3.setOption(option3);
+                </script>
                 <table class="table">
                     <thead class="text-center">
                     <tr>
+                    	<th class="text-center" width="5%">编号</th>
                         <th class="text-center" width="20%">文件名</th>
                         <%
                             if (taskVO.getType() == Type.document) {
@@ -431,15 +499,13 @@
                     </tr>
                     </thead>
                     <tbody class="text-center">
-                    <%
-                        List<ReportVO> toMergeVOs = Cast.cast(session.getAttribute("toMerge_" + taskVO.getTaskName()));
-                        AssessmentBlService assessmentBlService = new AssessmentBlImpl();
-                        List<List<String>> reporters = assessmentBlService.getAllFindedReviewerNames(toMergeVOs);
-                    %>
+                    
                     <%
                         for (ReportVO reportVO : toMergeVOs) {
                     %>
                     <tr>
+                    	<td><%=toMergeVOs.indexOf(reportVO)+1%>
+                        </td>
                         <td><%=reportVO.getFileName()%>
                         </td>
                         <%
@@ -495,13 +561,13 @@
 <script
         src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="js/login.js"></script>
-<script src="js/review.js"></script>
 <script src='js/waitFunction.js'></script>
 <script src='js/waitMe.min.js'></script>
 <script src='js/countDown.js'></script>
 <script type="text/javascript">
+	$('#mh').removeClass('active');
+	$('#report-result').removeClass('active');
     var num = ${messageNum};
-    $('#mh').removeClass('active');
 </script>
 <script src='js/mesSpan.js'></script>
 </body>

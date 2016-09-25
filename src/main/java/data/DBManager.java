@@ -13,7 +13,7 @@ public class DBManager {
 	// root
 	// 1129009
 //	private static final String IP = "115.159.195.149";
-	private static final String IP = "172.17.243.193";
+	private static final String IP = "172.17.208.122";
 
 	private static final String userName = "root";
 
