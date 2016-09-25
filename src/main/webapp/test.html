@@ -5,25 +5,28 @@
     <title>测试专用</title>
 </head>
 <body>
-<label for="text">测试</label><input type="text" id="text">
-<button>123</button>
+
 </body>
 <script src="js/jquery.min.js"></script>
+<script src="js/fileTree.js"></script>
 <script>
-    $('#text').on('keypress', function () {
-        console.log($('#text').val());
-    });
+    console.log(getTaskName());
+    console.log(encodeURI(getTaskName()));
 
-    $('button').click(function () {
+    /**
+     * 获取项目名
+     *
+     * @returns {string}
+     */
+    function getTaskName() {
+        console.log(window.location);
+        var reg = new RegExp("(^|&)taskName=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) {
+            return unescape(r[2]);
+        }
 
-    }).on('mousedown', function () {
-        setTimeout(function () {
-            console.log(1);
-        }, 3000);
-    }).on('click', function () {
-        console.log(2);
-    }).on('mouseup', function () {
-        console.log(3);
-    })
+        return ''; //返回参数值
+    }
 </script>
 </html>

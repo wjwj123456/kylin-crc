@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import blservice.FileBlService;
@@ -14,6 +15,11 @@ import dataservice.FileDataService;
 import vo.Message;
 
 public class FileBlImpl implements FileBlService {
+
+	/**
+	 * 文件存储根目录
+	 */
+	private static final String ROOT_PATH = "home/song/opt/data";
 
 	private FileDataService fileData;
 
@@ -34,13 +40,24 @@ public class FileBlImpl implements FileBlService {
 
 	@Override
 	public List<String> get(String taskName) {
-		List<String> result = new ArrayList<>();
-		try {
-			result = fileData.get(taskName);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
+        // TODO 修改实现
+        String[] stub = new String[]{"src", "main", "java"};
+
+		return Arrays.asList(stub);
+//        return Arrays.asList(getFileList(taskName));
+	}
+
+	@Override
+	public List<String> getFileList(String taskName) {
+        String path = ROOT_PATH + "/" + taskName + "/";
+		return listFile(path);
+	}
+
+	@Override
+	public List<String> getFileList(String taskName, String path) {
+		String absolutePath = ROOT_PATH + "/" + taskName + "/" + path;
+
+		return listFile(absolutePath);
 	}
 
 	@Override
@@ -85,4 +102,28 @@ public class FileBlImpl implements FileBlService {
 		return list;
 	}
 
+	/**
+	 * 获取文件夹下的文件(夹)名称
+	 * @param path 文件夹路径
+	 * @return path对应文件夹下的文件(夹)名称,不包含路径
+	 */
+	private List<String> listFile(String path) {
+		List<String> result = new ArrayList<>();
+
+		path = "/home/song/opt/lampp/htdocs";
+
+		File file = new File(path);
+		File[] fileList = file.listFiles();
+
+		assert fileList != null;
+		for (File aFileList : fileList) {
+			if (aFileList.isDirectory()) {
+				result.add("d" + aFileList.getName());
+			} else if (aFileList.isFile()) {
+				result.add("f" + aFileList.getName());
+			}
+		}
+
+		return result;
+	}
 }

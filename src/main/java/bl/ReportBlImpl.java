@@ -16,7 +16,6 @@ public class ReportBlImpl implements ReportBlService {
 	private MergeBlImpl mergeBlImpl = new MergeBlImpl();
 
 	public int createReport(List<ReportVO> vos) {
-		// TODO Auto-generated method stub
 		int flag = -1;
 		List<ReportPO> pos = new ArrayList<ReportPO>();
 		for (int i = 0; i < vos.size(); i++) {

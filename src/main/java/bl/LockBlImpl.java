@@ -11,20 +11,20 @@ import data.LockDataImpl;
 import dataservice.LockDataService;
 
 /**
- * TODO: £¨ÀàÃèÊö£©
+ * TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author lpt14
- * @since 2016Äê7ÔÂ26ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½26ï¿½ï¿½
  * @see
  */
 public class LockBlImpl implements LockBlService {
 	LockDataService lockDataService = new LockDataImpl();
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ26ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½26ï¿½ï¿½
 	 * @param taskName
 	 * @return
 	 * @see blservice.LockBlService#getCurrentUser(java.lang.String)
@@ -32,25 +32,20 @@ public class LockBlImpl implements LockBlService {
 	 */
 	@Override
 	public String getCurrentUser(String taskName) {
-		// TODO Auto-generated method stub
 		String name = null;
 		try {
 			name = lockDataService.getCurrentUser(taskName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return name;
 	}
 
 	/**
-	 * TODO:£¨·½·¨ÃèÊö£©
+	 * TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @author lpt14
-	 * @since 2016Äê7ÔÂ26ÈÕ
+	 * @since 2016ï¿½ï¿½7ï¿½ï¿½26ï¿½ï¿½
 	 * @param taskName
 	 * @param userName
 	 * @return
@@ -60,12 +55,10 @@ public class LockBlImpl implements LockBlService {
 	 */
 	@Override
 	public int setCurrentUser(String taskName, String userName) {
-		// TODO Auto-generated method stub
 		int i = 0;
 		try {
 			i = lockDataService.setCurrentUser(taskName, userName);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return i;

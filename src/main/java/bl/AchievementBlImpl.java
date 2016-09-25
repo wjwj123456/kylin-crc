@@ -17,11 +17,7 @@ public class AchievementBlImpl implements AchievementBlService {
 		int flag = -1;
 		try {
 			flag = achievementDataService.initAchievement(userName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return flag;
@@ -29,15 +25,10 @@ public class AchievementBlImpl implements AchievementBlService {
 
 	@Override
 	public AchievementVO getAchievement(String userName) {
-		// TODO Auto-generated method stub
 		AchievementVO vo = null;
 		try {
 			vo = new AchievementVO(achievementDataService.getAchievement(userName));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return vo;
@@ -61,11 +52,7 @@ public class AchievementBlImpl implements AchievementBlService {
 				break;
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return flag;

@@ -15,20 +15,15 @@ public class InviteBlImpl implements InviteBlService {
 	private InviteDataService inviteDataService = new InviteDataImpl();
 
 	/**
-	 * ldk ²éÕÒÑûÇëÐÅÏ¢
+	 * ldk ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 
 	public List<TaskVO> getInvitationInfo(String reviewerName) {
-		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = inviteDataService.getInvitationInfo(reviewerName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
@@ -41,31 +36,21 @@ public class InviteBlImpl implements InviteBlService {
 	 * ldk 0: delete success 1:delete fail
 	 */
 	public int deleteInvitationInfo(String userName, String taskName) {
-		// TODO Auto-generated method stub
 		int flag = -1;
 		try {
 			flag = inviteDataService.deleteInvitationInfo(userName, taskName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return flag;
 	}
 
 	public List<TaskVO> getAllDoingTask(String createrName) {
-		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = inviteDataService.getAllDoingTask(createrName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
@@ -75,16 +60,11 @@ public class InviteBlImpl implements InviteBlService {
 	}
 
 	public List<TaskVO> getAllCompleteTask(String createrName) {
-		// TODO Auto-generated method stub
 		List<TaskVO> result = new ArrayList<TaskVO>();
 		List<TaskPO> list = new ArrayList<TaskPO>();
 		try {
 			list = inviteDataService.getAllCompleteTask(createrName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		for (TaskPO po : list) {
@@ -94,30 +74,20 @@ public class InviteBlImpl implements InviteBlService {
 	}
 
 	public List<String> getAgreeUser(String taskName) {
-		// TODO Auto-generated method stub
 		List<String> nameList = new ArrayList<String>();
 		try {
 			nameList = inviteDataService.getAgreeUser(taskName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return nameList;
 	}
 
 	public List<String> getDisagreeUser(String taskName) {
-		// TODO Auto-generated method stub
 		List<String> nameList = new ArrayList<String>();
 		try {
 			nameList = inviteDataService.getDisagreeUser(taskName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return nameList;

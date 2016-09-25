@@ -15,10 +15,8 @@ import blservice.MergeBlService;
 import vo.ReportVO;
 
 /**
- * TODO: £¨ÀàÃèÊö£©
- *
  * @author lpt14
- * @since 2016Äê7ÔÂ11ÈÕ
+ * @since 2016ï¿½ï¿½7ï¿½ï¿½11ï¿½ï¿½
  * @see
  */
 public class MergeBlTest {
@@ -55,9 +53,9 @@ public class MergeBlTest {
 	public void testSaveMergeReport() {
 		// List<ReportVO> vos = new ArrayList<ReportVO>();
 		// ReportVO vo1 = new ReportVO("task1", "aoliao", "Hello.java", 0, 6,
-		// "Óï·¨´íÎó");
+		// "ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½");
 		// ReportVO vo2 = new ReportVO("task1", "cr", "Hello.java", 0, 5,
-		// "Óï·¨´íÎó");
+		// "ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½");
 		// ReportVO vo3 = new ReportVO("task1", "iii", "Hello.java", 0, 6,
 		// "yus");
 		// ReportVO vo4 = new ReportVO("task1", "iiii", "Hello.java", 0, 6,
@@ -79,8 +77,8 @@ public class MergeBlTest {
 	@Test
 	public void testSaveAddedMergeReport() {
 		List<ReportVO> vos = new ArrayList<ReportVO>();
-		ReportVO vo1 = new ReportVO("task1", "aoliao", "Hello.java", 0, 10, "Óï·¨´íÎó1");
-		ReportVO vo2 = new ReportVO("task1", "cr", "Hello.java", 0, 5, "Óï·¨´íÎó");
+		ReportVO vo1 = new ReportVO("task1", "aoliao", "Hello.java", 0, 10, "ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½1");
+		ReportVO vo2 = new ReportVO("task1", "cr", "Hello.java", 0, 5, "ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½");
 		ReportVO vo3 = new ReportVO("task1", "iii", "Hello.java", 0, 6, "yus");
 		ReportVO vo4 = new ReportVO("task1", "iiii", "Hello.java", 0, 6, "yus");
 
