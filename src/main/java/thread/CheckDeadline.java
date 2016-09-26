@@ -26,7 +26,7 @@ import vo.TaskVO;
 */
 public class CheckDeadline implements Runnable{
 
-	ReviewBlService reviewBlService=new ReviewBlImpl();
+	private ReviewBlService reviewBlService=new ReviewBlImpl();
 	
 	
 	
