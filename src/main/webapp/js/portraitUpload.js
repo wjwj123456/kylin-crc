@@ -59,10 +59,10 @@ $(window).load(function () {
             url: "/ImageServlet?type=store",
             data: "data=" + cropper.getDataURL().replace('data:image/jpeg;base64,', ''),
             success: function () {
-                alert("you header pic upload success !")
+                alert("上传成功")
             },
             error: function (e) {
-                alert("you file upload error , error is " + e);
+                alert("错误代码：" + e);
             }
         });
     });
