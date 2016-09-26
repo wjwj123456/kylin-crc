@@ -428,7 +428,7 @@
              <%for(int i = 0;i<reporters.size();i++){
             	 for(int j = 0;j<reporters.get(i).size();j++){
             		 if(users.contains(reporters.get(i).get(j))){
-            			 int[] temp = {users.indexOf(reporters.get(i).get(j)),i};
+            			 int[] temp = {users.indexOf(reporters.get(i).get(j)),i+1};
  						matrix.add(temp);
  					}
             	 }
@@ -453,31 +453,43 @@
                         title: {
                             text: '具体缺陷发现状况'
                         },
-                        tooltip: {
-                            trigger: 'axis',
-
-                            axisPointer: {
-                                animation: true
-                            }
-                        },
+                        
                         legend: {
                            
                         },
                         xAxis: {
                             name: '参与者',
                             type: 'category',
-                            data: users
+                            data: users,
+                            axisLine: {
+                            	show:true,
+                            	onZero:false,
+                            },
                         },
                         yAxis: {
                             name: '缺陷编号',
-                            type: 'category',
-                            data: [1,2,3,4,5,6,7,8,9,10]
+                            type: 'value',
+                            scale: true,
+                            interval: 1,
+                            axisLabel:{
+                            	formatter: function (value, index) {
+                                    // 格式化成月/日，只在第一个刻度显示年份
+                                    if(index==0){
+                                    	return"";
+                                    }else {
+    									return value;
+    								}
+                                }
+                            }
+                        
+                            
                         },
                         series: {
                             name: '总体缺陷发现',
                             type: 'scatter',
                             data: matrix
-                        }
+                        },
+                        color:['#347ABF']
                     };
                     myChart3.setOption(option3);
                 </script>
