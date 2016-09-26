@@ -53,6 +53,11 @@ function getData() {
     var city = $('#city');
     userInfo.province = encodeURI($($(city).find('option:selected')[0]).val());
     userInfo.city = encodeURI($($(city).find('option:selected')[1]).val());
-
+    if( userInfo.city=='undefined'||userInfo.city==0){
+    	userInfo.city=encodeURI('-');
+    }
+    if( userInfo.province=='undefined'||userInfo.province==0){
+    	userInfo.province=encodeURI('-');
+    }
     return JSON.stringify(userInfo);
 }
