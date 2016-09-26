@@ -1,6 +1,8 @@
 
-.file-tree > .panel-heading > .breadcrumb {
+.breadcrumb {
     margin: 0;
+    padding: 0;
+    background-color: transparent;
 }
 
 .file-tree > .panel-body {
@@ -21,4 +23,8 @@
 
 .file-tree > .panel-body > .table > td.folder {
     background: url("../img/add.png");
+}
+
+#collapse-file-list {
+    cursor: pointer;
 }

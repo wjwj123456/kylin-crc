@@ -74,7 +74,7 @@ public class FileBlImpl implements FileBlService {
 
     public static List<String> readFile(String path) {
         List<String> list = new ArrayList<>();
-        File file = new File(path);
+        File file = new File(ROOT_PATH + "/" + path);
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(file));

@@ -314,10 +314,18 @@ var isOwner = <%=isOwner%>;
 			<hr/>
 			<div class="file-tree panel panel-default">
 				<div class="panel-heading">
-					<ul class="breadcrumb" id="dir-path">
-					</ul>
+					<div class="row">
+						<div class="col-sm-11 col-md-11 col-lg-11">
+                            <ul class="breadcrumb" id="dir-path">
+                            </ul>
+                        </div>
+						<div class="col-sm-1 col-md-1 col-lg-1">
+                            <span id="collapse-file-list" class="pull-right glyphicon glyphicon-chevron-up"
+								  data-toggle="collapse" data-target="#panel-body"></span>
+                        </div>
+					</div>
 				</div>
-                <div class="panel-body">
+                <div class="panel-body collapse in" id="panel-body">
 					<table class="table">
 						<tbody id="file-list">
 						</tbody>

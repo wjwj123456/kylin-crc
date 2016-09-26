@@ -34,7 +34,7 @@ public class CodePreviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String type = (String) request.getParameter("type");
+		String type = request.getParameter("type");
 		switch (type) {
 		case "temp":
 			handleTemp(request,response);

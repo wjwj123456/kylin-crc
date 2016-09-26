@@ -11,8 +11,19 @@ var fileList = $('#file-list');
 var dirPath = $('#dir-path');
 
 $(function () {
-    console.log(taskName);
     fileTree.getData();
+
+    $('#collapse-file-list').on('click', function() {
+        var collapse = $('#collapse-file-list');
+
+        if ($(collapse).hasClass('glyphicon-chevron-up')) {
+            $(collapse).removeClass('glyphicon-chevron-up')
+                .addClass('glyphicon-chevron-down');
+        } else {
+            $(collapse).removeClass('glyphicon-chevron-down')
+                .addClass('glyphicon-chevron-up');
+        }
+    });
 });
 
 var fileTree = {
@@ -31,29 +42,48 @@ var fileTree = {
 
         return path.substr(0, path.length - 1);
     },
-
     /**
-     * 打开文件
-     * @param name
+     * 判断当前路径是否是文件
+     * 若是,执行两次弹出操作,对应'..'和文件名
      */
-    openFile: function (name) {
-        console.log(name);
+    checkFile: function() {
+       if (fileTree.path[fileTree.path.length - 1] === '..') {
+            // 弹出两次,包括'..'和文件名
+            fileTree.path.pop();
+            fileTree.path.pop();
+        }
     },
     /**
      * 在当前文件夹下打开子文件夹
      * @param dir 文件夹名称，不含路径
      */
     openChildDir: function (dir) {
+        fileTree.checkFile();
+
         fileTree.path.push(dir);
 
         fileTree.getData();
+    },
+    /**
+     * 打开文件
+     * @param fileName
+     */
+    openFile: function (fileName) {
+        fileTree.checkFile();
+
+        fileTree.path.push(fileName);
+        loadPreview(fileTree.getCurrentPath());
+
+        // 向路径数组中添加文件名时,额外添加'..'以区分文件夹与文件
+        // 文件(夹)名不能为'..',不会与引起歧义
+        fileTree.path.push('..');
     },
     /**
      * 点击路径导航栏打开文件夹
      * @param dirNum 文件夹编号，项目根目录编号为0，以后各级目录依次递增，与path中的值一一对应
      */
     openDir: function (dirNum) {
-        alert(dirNum);
+        fileTree.checkFile();
 
         for (var i = fileTree.path.length - 1; i > dirNum; i--) {
             fileTree.path.pop();
@@ -65,6 +95,8 @@ var fileTree = {
      * 返回上一级目录
      */
     goBack: function () {
+        fileTree.checkFile();
+
         if (fileTree.path.length === 1) { // 根目录下，无法返回上一级
             return;
         }
@@ -88,6 +120,10 @@ var fileTree = {
 
                 fileTree.showFileList(fileList);
                 fileTree.showPath(fileTree.getCurrentPath());
+            },
+            error: function() {
+                // 无文件时隐藏文件路径列表
+                $(dirPath).parents('.file-tree').hide().next().hide();
             }
         })
     },
@@ -158,7 +194,7 @@ var fileTree = {
         }
         $(fileList).append(
             '<tr>' +
-            '<td class="file"></td>' +
+            '<td><img src="../img/add.png"></td>' +
             '<td>' + '<a href="javascript: void(0)">' + name + '</a></td>' +
             '<td class="text-right">' + size + '</td>' +
             '</tr>'
@@ -172,7 +208,7 @@ var fileTree = {
     addDir: function (name, size) {
         $(fileList).append(
             '<tr>' +
-            '<td class="folder"></td>' +
+            '<td><img src="../img/add.png"></td>' +
             '<td>' + '<a href="javascript: void(0)">' + name + '</a></td>' +
             '<td class="text-right">' + size + '</td>' +
             '</tr>'
