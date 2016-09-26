@@ -43,7 +43,7 @@ function createNewTask() {
             if (data == 0) {
                 top.location = 'myTasks.jsp';
             } else if (data == 1) {
-                alert("项目已存在");
+                alert("项目名称已存在");
             }
             stopWait();
         }

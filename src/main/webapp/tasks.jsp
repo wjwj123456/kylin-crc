@@ -312,9 +312,9 @@ var isOwner = <%=isOwner%>;
 
 			<%--文件目录结构--%>
 			<hr/>
-			<div class="file-tree panel panel-info">
-				<div class="panel-head">
-					<ul class="breadcrumb">
+			<div class="file-tree panel panel-default">
+				<div class="panel-heading">
+					<ul class="breadcrumb" id="dir-path">
 						<li>
 							<a href="#">Home</a>
 						</li>
@@ -328,12 +328,7 @@ var isOwner = <%=isOwner%>;
 				</div>
                 <div class="panel-body">
 					<table class="table">
-						<tbody id="fill-list">
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						<tbody id="file-list">
 						</tbody>
 					</table>
 				</div>

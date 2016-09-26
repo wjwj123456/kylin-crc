@@ -274,12 +274,11 @@ public class FileServlet extends HttpServlet {
      * @param response 返回文件（夹）名称列表，不包含路径
      */
     private void handleFileStruct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String taskName = request.getParameter("taskName");
         String path = request.getParameter("path");
 
         FileBlImpl fileBl = new FileBlImpl();
 
-        List<String> fileList = path.equals("") ? fileBl.getFileList(taskName) : fileBl.getFileList(taskName, path);
+        List<String> fileList = fileBl.getFileList(path);
 
         JSONArray array = new JSONArray(fileList);
 

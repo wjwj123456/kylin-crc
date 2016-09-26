@@ -19,7 +19,7 @@ public class FileBlImpl implements FileBlService {
 	/**
 	 * 文件存储根目录
 	 */
-	private static final String ROOT_PATH = "home/song/opt/data";
+	private static final String ROOT_PATH = "/home/song/opt/data";
 
 	private FileDataService fileData;
 
@@ -48,16 +48,8 @@ public class FileBlImpl implements FileBlService {
 	}
 
 	@Override
-	public List<String> getFileList(String taskName) {
-        String path = ROOT_PATH + "/" + taskName + "/";
-		return listFile(path);
-	}
-
-	@Override
-	public List<String> getFileList(String taskName, String path) {
-		String absolutePath = ROOT_PATH + "/" + taskName + "/" + path;
-
-		return listFile(absolutePath);
+	public List<String> getFileList(String path) {
+		return listFile(ROOT_PATH + "/" + path);
 	}
 
 	@Override
@@ -109,8 +101,6 @@ public class FileBlImpl implements FileBlService {
 	 */
 	private List<String> listFile(String path) {
 		List<String> result = new ArrayList<>();
-
-		path = "/home/song/opt/lampp/htdocs";
 
 		File file = new File(path);
 		File[] fileList = file.listFiles();
