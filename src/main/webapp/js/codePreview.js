@@ -117,14 +117,14 @@ function deleteWithCode(obj) {
         }
     });
 }
-function load() {
+function loadPreview(path) {
 	jQuery.ajax({
 		url : '/CodePreviewServlet',
 		type : 'post',
-		data : 'path=D:/CRC/src/main/webapp/js/command.js&type=read',
+		data : 'path='+path+'&type=read',
 		success : function(data) {
 			var tempData = jQuery.parseJSON(data);
-			generatePre(tempData, "D:\CRC\src\main\webapp\js\command.js");
+			generatePre(tempData, path);
 			registView();
 		}
 	});
@@ -197,4 +197,3 @@ function findType(path) {
 	}
 	return type;
 }
-load();
