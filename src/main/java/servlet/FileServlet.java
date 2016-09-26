@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.JSONArray;
+import vo.FileVO;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -278,7 +279,7 @@ public class FileServlet extends HttpServlet {
 
         FileBlImpl fileBl = new FileBlImpl();
 
-        List<String> fileList = fileBl.getFileList(path);
+        List<FileVO> fileList = fileBl.getFileList(path);
 
         JSONArray array = new JSONArray(fileList);
 

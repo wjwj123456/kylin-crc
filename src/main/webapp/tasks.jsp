@@ -315,15 +315,6 @@ var isOwner = <%=isOwner%>;
 			<div class="file-tree panel panel-default">
 				<div class="panel-heading">
 					<ul class="breadcrumb" id="dir-path">
-						<li>
-							<a href="#">Home</a>
-						</li>
-						<li>
-							<a href="#">Library</a>
-						</li>
-						<li class="active">
-                            data
-						</li>
 					</ul>
 				</div>
                 <div class="panel-body">

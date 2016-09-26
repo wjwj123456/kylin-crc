@@ -14,3 +14,11 @@
 .file-tree > .panel-body > .table a {
     cursor: pointer;
 }
+
+.file-tree > .panel-body > .table > td.file {
+    background: url("../img/add.png");
+}
+
+.file-tree > .panel-body > .table > td.folder {
+    background: url("../img/add.png");
+}

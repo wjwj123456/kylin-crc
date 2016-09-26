@@ -26,7 +26,7 @@ var fileTree = {
         var path = '';
 
         for (var i = 0; i < fileTree.path.length; i++) {
-            path = path  + fileTree.path[i] + '/';
+            path = path + fileTree.path[i] + '/';
         }
 
         return path.substr(0, path.length - 1);
@@ -37,7 +37,7 @@ var fileTree = {
      * @param name
      */
     openFile: function (name) {
-        console.log(2);
+        console.log(name);
     },
     /**
      * 在当前文件夹下打开子文件夹
@@ -50,15 +50,25 @@ var fileTree = {
     },
     /**
      * 点击路径导航栏打开文件夹
-     * @param dir
+     * @param dirNum 文件夹编号，项目根目录编号为0，以后各级目录依次递增，与path中的值一一对应
      */
-    openDir: function (dir) {
+    openDir: function (dirNum) {
+        alert(dirNum);
 
+        for (var i = fileTree.path.length - 1; i > dirNum; i--) {
+            fileTree.path.pop();
+        }
+
+        fileTree.getData();
     },
     /**
      * 返回上一级目录
      */
     goBack: function () {
+        if (fileTree.path.length === 1) { // 根目录下，无法返回上一级
+            return;
+        }
+
         fileTree.path.pop();
 
         fileTree.getData();
@@ -87,28 +97,22 @@ var fileTree = {
      */
     showFileList: function (fileList) {
         // 清空文件列表
-        $(fileList).empty();
+        $('#file-list').empty();
 
         // 返回上一级
-        fileTree.addFile('..');
+        fileTree.addFile("..");
         // 文件and文件夹
         for (var i = 0; i < fileList.length; i++) {
-            var file = fileList[i];
+            var file = eval(fileList[i]);
 
-            if (file.charAt(0) === 'f') {
-                fileTree.addFile(file.substr(1));
+            if (file.name.charAt(0) === 'f') {
+                fileTree.addFile(file.name.substr(1), file.size);
             } else {
-                fileTree.addDir(file.substr(1));
+                fileTree.addDir(file.name.substr(1), file.size);
             }
         }
     },
-    /**
-     * 获取路径导航栏中某个文件夹相对项目根目录的路径
-     * @param dirNum 文件夹序号，根目录为0，以后每级目录递增
-     */
-    getPath: function(dirNum) {
 
-    },
     /**
      * 在路径导航栏中显示路径
      * @param path
@@ -118,40 +122,61 @@ var fileTree = {
         $(dirPath).empty();
 
         var pathList = path.split('/');
-        console.log(pathList);
 
-        for (var i = 0; i < pathList.length; i++) {
+        for (var i = 0; i < pathList.length - 1; i++) {
             $(dirPath).append(
                 '<li>' +
-                '<a href="javascript: void(0)" onclick="fileTree.getPath(i)">' + pathList[i] + '</a>' +
+                '<a href="javascript: void(0)">' + pathList[i] + '</a>' +
                 '</li>'
             );
         }
-        $(dirPath).find('li').last().addClass('active');
+        // 当前目录
+        $(dirPath).append(
+            '<li class="active">' + pathList[pathList.length - 1] + '</li>'
+        );
+
+        // 添加点击事件
+        $(dirPath).find('a').each(function (index) {
+            $(this).on('click', function () {
+                fileTree.openDir(index);
+            });
+        });
     },
     /**
      * 向文件列表中添加文件
      */
-    addFile: function (name) {
+    addFile: function (name, size) {
+        if (name === '..') {
+            $(fileList).append(
+                '<tr>' +
+                '<td>' + '<a href="javascript: void(0)" onclick="fileTree.goBack()">..</a></td>' +
+                '<td></td><td></td>' +
+                '</tr>'
+            );
+
+            return;
+        }
         $(fileList).append(
             '<tr>' +
-            '<td>' + '文件' + '</td>' +
-            '<td>' + '<a href="" onclick="fileTree.openFile(' + name + ')">' + name + '</a></td>' +
-            '<td>' + 'test' + '</td>' +
+            '<td class="file"></td>' +
+            '<td>' + '<a href="javascript: void(0)">' + name + '</a></td>' +
+            '<td class="text-right">' + size + '</td>' +
             '</tr>'
-        );
+        ).find('a').last().on('click', function () {
+            fileTree.openFile(name);
+        });
     },
     /**
      * 向文件列表中添加文件夹
      */
-    addDir: function (name) {
+    addDir: function (name, size) {
         $(fileList).append(
             '<tr>' +
-            '<td>' + '文件夹' + '</td>' +
+            '<td class="folder"></td>' +
             '<td>' + '<a href="javascript: void(0)">' + name + '</a></td>' +
-            '<td>' + 'test' + '</td>' +
+            '<td class="text-right">' + size + '</td>' +
             '</tr>'
-        ).find('a').last().on('click', function() {
+        ).find('a').last().on('click', function () {
             fileTree.openChildDir(name);
         });
     }
