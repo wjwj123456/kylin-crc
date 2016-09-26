@@ -1,4 +1,24 @@
 
+.file-tree > .panel-heading > .breadcrumb {
+    margin: 0;
+}
+
 .file-tree > .panel-body {
     padding: 0;
+}
+
+.file-tree > .panel-body > .table {
+    margin: 0;
+}
+
+.file-tree > .panel-body > .table a {
+    cursor: pointer;
+}
+
+.file-tree > .panel-body > .table > td.file {
+    background: url("../img/add.png");
+}
+
+.file-tree > .panel-body > .table > td.folder {
+    background: url("../img/add.png");
 }

@@ -65,8 +65,7 @@ public class ReviewDataImpl implements ReviewDataService {
 				flag = 2;
 			}
 		} catch (Exception SQLIntegrityConstraintViolationException) {
-			flag = 1;
-			System.out.println("conflict!");
+			return 1;
 		}
 		DBManager.closeConnection();
 
@@ -75,10 +74,10 @@ public class ReviewDataImpl implements ReviewDataService {
 		pStatement = DBManager.getPreparedStatement(sql1);
 		pStatement.setString(1, po.getTaskName());
 		pStatement.setString(2, "");
-		System.out.println(po.getTaskName());
 
 		pStatement.executeUpdate();
 		DBManager.closeConnection();
+
 		return flag;
 	}
 
