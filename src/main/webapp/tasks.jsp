@@ -207,30 +207,30 @@ var isOwner = <%=isOwner%>;
 						}
 					%>
 					<p><%=taskVO.getDescribe()%></p>
-					<%
-						List<String> taskFile = Cast.cast(session.getAttribute("taskFile"));
-					%>
-					<p>评审附件：</p>
-					<ul>
-						<%
-							if (taskFile.size() == 0) {
-						%>
-						<li>无</li>
-						<%
-							} else {
-						%>
-						<%
-							for (String s : taskFile) {
-						%>
-						<li><a
-							href="/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>
-						<%
-							}
-						%>
-						<%
-							}
-						%>
-					</ul>
+					<%--<%--%>
+						<%--List<String> taskFile = Cast.cast(session.getAttribute("taskFile"));--%>
+					<%--%>--%>
+					<%--<p>评审附件：</p>--%>
+					<%--<ul>--%>
+						<%--<%--%>
+							<%--if (taskFile.size() == 0) {--%>
+						<%--%>--%>
+						<%--<li>无</li>--%>
+						<%--<%--%>
+							<%--} else {--%>
+						<%--%>--%>
+						<%--<%--%>
+							<%--for (String s : taskFile) {--%>
+						<%--%>--%>
+						<%--<li><a--%>
+							<%--href="/FileServlet?type=download&taskName=<%=taskVO.getTaskName()%>&fileName=<%=s%>"><%=s%></a></li>--%>
+						<%--<%--%>
+							<%--}--%>
+						<%--%>--%>
+						<%--<%--%>
+							<%--}--%>
+						<%--%>--%>
+					<%--</ul>--%>
 					<%
 						int[][] taskHis = Cast.cast(session.getAttribute("taskHis_" + request.getParameter("taskName")));
 						if (taskHis[0].length == 0) {

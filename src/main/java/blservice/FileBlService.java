@@ -20,6 +20,7 @@ public interface FileBlService {
 	 * @param taskName
 	 * @return
 	 */
+	@Deprecated
 	List<String> get(String taskName);
 
 	/**
