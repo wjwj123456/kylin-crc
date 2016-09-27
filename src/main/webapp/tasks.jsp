@@ -310,6 +310,33 @@ var isOwner = <%=isOwner%>;
 				time = "<%=Tools.dateToString(taskVO.getDeadline())%>";
 			</script>
 
+			<hr>
+			<h2 id="review">
+				评审
+				<div id="taskUndoRedo" style="float: right; display: none">
+					<div id="undoredo" style="float: right; display: none;">
+
+						<button type="button" class="btn  btn-sm" id="undo">
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							Undo
+						</button>
+						<button type="button" class="btn  btn-sm" id="redo">
+							Redo <span class="glyphicon glyphicon-chevron-right"
+								aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+			</h2>
+
+			<div id="reviewBlock" class="hideBlock">
+				<%
+					ReportBlService reportBl = new ReportBlImpl();
+				%>
+				<%
+					List<ReportVO> tempVOs = reportBl.getTempReport(taskVO.getTaskName(),
+							(String) session.getAttribute("username"));
+				%>
+				<div id="commitBlock" class="hideBlock">
 			<%--文件目录结构--%>
 			<hr/>
 			<div class="file-tree panel panel-default">
@@ -333,35 +360,8 @@ var isOwner = <%=isOwner%>;
 				</div>
 			</div>
 			<%--文件目录结构End--%>
-			<hr>
-			<h2 id="review">
-				评审
-				<div id="taskUndoRedo" style="float: right; display: none">
-					<div id="undoredo" style="float: right; display: none;">
-
-						<button type="button" class="btn  btn-sm" id="undo">
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							Undo
-						</button>
-						<button type="button" class="btn  btn-sm" id="redo">
-							Redo <span class="glyphicon glyphicon-chevron-right"
-								aria-hidden="true"></span>
-						</button>
-					</div>
-				</div>
-			</h2>
 			<div id="codePreview">
 			</div>
-
-			<div id="reviewBlock" class="hideBlock">
-				<%
-					ReportBlService reportBl = new ReportBlImpl();
-				%>
-				<%
-					List<ReportVO> tempVOs = reportBl.getTempReport(taskVO.getTaskName(),
-							(String) session.getAttribute("username"));
-				%>
-				<div id="commitBlock" class="hideBlock">
 					<div id="codeBlock">
 						<div
 							style="height: 300px; width: 100%; overflow: auto; border: 1px solid #AAAAAA; border-radius: 10px; margin-bottom: 20px">

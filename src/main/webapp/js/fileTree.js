@@ -124,6 +124,7 @@ var fileTree = {
             error: function() {
                 // 无文件时隐藏文件路径列表
                 $(dirPath).parents('.file-tree').hide().next().hide();
+                $('#codeBlock').hide();
             }
         })
     },
