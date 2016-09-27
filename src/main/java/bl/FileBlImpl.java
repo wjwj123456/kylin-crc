@@ -44,12 +44,11 @@ public class FileBlImpl implements FileBlService {
     }
 
     @Override
+    @Deprecated
     public List<String> get(String taskName) {
-        // TODO 修改实现
         String[] stub = new String[]{"src", "main", "java"};
 
         return Arrays.asList(stub);
-//        return Arrays.asList(getFileList(taskName));
     }
 
     @Override
@@ -168,5 +167,13 @@ public class FileBlImpl implements FileBlService {
         }
 
         return result;
+    }
+
+    private String getFileType(File file) {
+        if (file.isDirectory()) {
+            return "dir";
+        }
+
+        return "";
     }
 }

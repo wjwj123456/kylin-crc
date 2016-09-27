@@ -120,11 +120,13 @@ var fileTree = {
 
                 fileTree.showFileList(fileList);
                 fileTree.showPath(fileTree.getCurrentPath());
+
+                // 隐藏代码手动填写
+                $('#codeBlock').hide();
             },
             error: function() {
                 // 无文件时隐藏文件路径列表
                 $(dirPath).parents('.file-tree').hide().next().hide();
-                $('#codeBlock').hide();
             }
         })
     },
@@ -195,13 +197,13 @@ var fileTree = {
         }
         $(fileList).append(
             '<tr>' +
-            '<td><img src="../img/add.png"></td>' +
-            '<td>' + '<a href="javascript: void(0)">' + name + '</a></td>' +
+            '<td><img src="../img/file.png"><a href="javascript: void(0)">' + name + '</a></td>' +
+            '<td><a href="">下载</a></td>' +
             '<td class="text-right">' + size + '</td>' +
             '</tr>'
-        ).find('a').last().on('click', function () {
+        ).find('tr').last().find('a').first().on('click', function () {
             fileTree.openFile(name);
-        });
+        }).css('margin-left', '10px');
     },
     /**
      * 向文件列表中添加文件夹
@@ -209,13 +211,13 @@ var fileTree = {
     addDir: function (name, size) {
         $(fileList).append(
             '<tr>' +
-            '<td><img src="../img/add.png"></td>' +
-            '<td>' + '<a href="javascript: void(0)">' + name + '</a></td>' +
+            '<td><img src="../img/folder.png"><a href="javascript: void(0)">' + name + '</a></td>' +
+            '<td><a href=""><img src="../img/download.png" ></a></td>' +
             '<td class="text-right">' + size + '</td>' +
             '</tr>'
-        ).find('a').last().on('click', function () {
+        ).find('tr').last().find('a').first().on('click', function () {
             fileTree.openChildDir(name);
-        });
+        }).css('margin-left', '10px');
     }
 };
 
