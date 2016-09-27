@@ -17,14 +17,6 @@
     cursor: pointer;
 }
 
-.file-tree > .panel-body > .table > td.file {
-    background: url("../img/add.png");
-}
-
-.file-tree > .panel-body > .table > td.folder {
-    background: url("../img/add.png");
-}
-
 #collapse-file-list {
     cursor: pointer;
 }

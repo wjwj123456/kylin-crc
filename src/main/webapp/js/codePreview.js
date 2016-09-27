@@ -80,7 +80,7 @@ function storeWithCode(obj) {
         data: 'type=store' + '&data=' + JSON.stringify(report),
         success: function (data) {
         	load();
-            stopWait(); 
+            stopWait();
         },
         error: function () {
             alert('出错了，更改无法保存')
@@ -128,14 +128,14 @@ function loadPreview(path) {
 			registView();
 		}
 	});
-	
+
 }
 function registView() {
 	$('.webui-popover').remove();
 	SyntaxHighlighter.highlight();
 	var fileName = "xxx.java";
 	var length = $('.gutter').children().length;
-	
+
 	jQuery.ajax({
 		url : '/CodePreviewServlet',
 		type : 'post',
@@ -164,11 +164,12 @@ function registView() {
 }
 function generatePre(codeData,path) {
 	var type=findType(path);
-	$('#codePreview').empty();
-	$('#codePreview').append($('<pre type="syntaxhighlighter" class="brush: '+type+';"></pre>'));
-	var code = new String();
+	$('#codePreview').empty().append($('<pre type="syntaxhighlighter" class="brush: '+type+';"></pre>'));
+
+	var code = String();
 	for(var i = 0;i<codeData.length;i++){
-		code = code+codeData[i]+'\n';
+		// 两次解码,不能使用decodeURI方法
+		code = code+decodeURIComponent(decodeURIComponent(codeData[i]))+'\n';
 	}
 	$('pre').text(code);
 }

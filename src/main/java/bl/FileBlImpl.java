@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.SimpleTimeZone;
 import blservice.FileBlService;
 import data.FileDataImpl;
 import dataservice.FileDataService;
+import tools.MyURLEncoder;
 import vo.FileVO;
 import vo.Message;
 
@@ -80,7 +82,7 @@ public class FileBlImpl implements FileBlService {
             reader = new BufferedReader(new FileReader(file));
             String tempString;
             while ((tempString = reader.readLine()) != null) {
-                list.add(tempString);
+                list.add(MyURLEncoder.encode(tempString, "utf-8"));
             }
             reader.close();
         } catch (IOException e) {
