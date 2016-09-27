@@ -17,6 +17,19 @@
     cursor: pointer;
 }
 
+.file-tree > .panel-body > .table a.download {
+    float: right;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    background: url(../img/download.png) no-repeat 0 0;
+}
+
+.file-tree > .panel-body > .table a.download:hover {
+    background-position: -16px 0;
+}
+
 #collapse-file-list {
     cursor: pointer;
 }
+

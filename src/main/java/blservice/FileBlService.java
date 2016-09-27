@@ -33,4 +33,6 @@ public interface FileBlService {
 	Message delete(String taskName, List<String> paths);
 
 	Message rename(String taskName, List<String> fromPaths, List<String> toPaths);
+
+
 }
