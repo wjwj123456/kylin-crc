@@ -117,7 +117,24 @@ function deleteWithCode(obj) {
         }
     });
 }
-function loadPreview(path) {
+function loadPreview(path,type) {
+	switch (type) {
+	case 'txt':
+		handleTxt(path);
+		break;
+	case 'pdf':
+		handlePdf(path);
+		break;
+	case 'other':
+		handleOther();
+		break;
+	default:
+		break;
+	}
+	
+
+}
+function handleTxt(path) {
 	jQuery.ajax({
 		url : '/CodePreviewServlet',
 		type : 'post',
@@ -128,7 +145,13 @@ function loadPreview(path) {
 			registView();
 		}
 	});
-
+}
+function handlePdf(path) {
+	$('#codePreview').before($('<a class="media" href="'+path+'"></a>'));
+	$('a.media').media({width:800, height:600});
+}
+function handleOther() {
+	
 }
 function registView() {
 	$('.webui-popover').remove();

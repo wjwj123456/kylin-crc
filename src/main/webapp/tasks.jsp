@@ -915,6 +915,7 @@ var isOwner = <%=isOwner%>;
 	var num = ${messageNum};</script>
 	<script src='js/mesSpan.js'></script>
 	<script src="js/codeScriptImporter.js"></script>
+	<script type="text/javascript" src="js/jquery.media.js"></script>
 	<script src="js/codePreview.js"></script>
 
 </html>
