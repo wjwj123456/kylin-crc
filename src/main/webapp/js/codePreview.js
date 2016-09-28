@@ -118,21 +118,23 @@ function deleteWithCode(obj) {
     });
 }
 function loadPreview(path,type) {
-	switch (type) {
-	case 'txt':
+	var txtLike=['txt', 'css', 'html', 'java', 'c', 'cpp', 'php', 'python', 'jsp', 'matlab', 'sql', 'markdown'];
+	var pdfLike=['pdf'];
+	if(contains(txtLike,type)){
 		handleTxt(path);
-		break;
-	case 'pdf':
+	}else if (contains(pdfLike,type)) {
 		handlePdf(path);
-		break;
-	case 'other':
+	}else {
 		handleOther();
-		break;
-	default:
-		break;
 	}
-	
-
+}
+function contains(array,item) {
+	for(var i = 0;i<array.length;i++){
+		if (array[i]==item) {
+			return true;
+		}
+	}
+	return false;
 }
 function handleTxt(path) {
 	jQuery.ajax({
