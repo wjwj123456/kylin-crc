@@ -13,9 +13,11 @@
         name: '',
         size: 0
     };
+    console.log(JSON.stringify(obj));
 
-    var str = '{"name": "test", "size": 10}';
+    var test = encodeURI("test test");
+    console.log(test);
 
-    console.log(eval(str));
+    console.log(decodeURI(test));
 </script>
 </html>
