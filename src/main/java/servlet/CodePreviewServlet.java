@@ -65,6 +65,8 @@ public class CodePreviewServlet extends HttpServlet {
 
     private void handleRead(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String path = request.getParameter("path");
+        // 转换为绝对路径
+        path = request.getServletContext().getRealPath("/data") + "/" + path;
         List<String> fileLines = FileUtil.readFile(path);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("records", fileLines);

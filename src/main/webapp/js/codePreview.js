@@ -152,7 +152,7 @@ function handleTxt(path) {
 function handlePdf(path) {
 	$('a .media').remove();
 	$('pre').remove();
-	$('#codePreview').before($('<a class="media" href="'+path+'"></a>'));
+	$('#codePreview').before($('<a class="media" href="data/'+path+'"></a>'));
 	$('a.media').media({width:800, height:600});
 }
 function handleOther() {
