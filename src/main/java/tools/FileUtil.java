@@ -35,6 +35,15 @@ public class FileUtil {
     }
 
     /**
+     * 获取文件类型,判断纯文本代码文件的语言类型
+     * @param name 文件名
+     * @return 文件类型
+     */
+    public static String getFileType(String name) {
+        return "";
+    }
+
+    /**
      * 向磁盘写入文件
      *
      * @param fileItem 文件项，包含文件内容

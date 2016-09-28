@@ -4,18 +4,21 @@ import java.io.Serializable;
 
 /**
  * Created by song on 16-9-26.
- *
+ * <p>
  * 文件(夹)对象
  */
 public class FileVO implements Serializable {
 
-    private String name;
+    private final String name;
 
-    private String size;
+    private final String size;
 
-    public FileVO(String name, String size) {
+    private final String type;
+
+    public FileVO(String name, String size, String type) {
         this.name = name;
         this.size = size;
+        this.type = type;
     }
 
     public String getSize() {
@@ -24,5 +27,9 @@ public class FileVO implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getType() {
+        return type;
     }
 }
