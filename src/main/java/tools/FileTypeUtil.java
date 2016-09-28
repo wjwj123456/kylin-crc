@@ -132,8 +132,12 @@ public class FileTypeUtil {
      * 4. 压缩文件: 'compressed'
      * 5. 应用文件:
      *      ['javascript', 'xml', 'java-vm', 'shell', 'pdf', 'apk', 'exe', 'chm', 'word', 'powerpoint', 'excel', 'other']
+     * 6. 文件夹: 'dir'
      */
-    public static String getFileType(File file) {
+    static String getFileType(File file) {
+        if (file.isDirectory()) {
+            return "dir";
+        }
         String mimeType = getMimeType(file);
 
         if (mimeType.startsWith("text")) {

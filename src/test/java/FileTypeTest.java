@@ -20,7 +20,7 @@ import java.util.HashMap;
  */
 public class FileTypeTest {
     public static void main(String args[]) throws IOException, TikaException, SAXException {
-        File file = new File("/home/song/音乐/CloudMusic/林俊杰 - 我还想她.mp3");
+        File file = new File("/home/song/音乐");
 
         AutoDetectParser parser = new AutoDetectParser();
         parser.setParsers(new HashMap<MediaType, Parser>());

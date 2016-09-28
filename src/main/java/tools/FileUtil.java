@@ -93,10 +93,10 @@ public class FileUtil {
         assert fileList != null;
         for (File aFileList : fileList) {
             if (aFileList.isDirectory()) {
-                result.add(new FileVO("d" + aFileList.getName(),
+                result.add(new FileVO(aFileList.getName(),
                         transferSize(getFileSize(aFileList)), FileTypeUtil.getFileType(aFileList)));
             } else if (aFileList.isFile()) {
-                result.add(new FileVO("f" + aFileList.getName(),
+                result.add(new FileVO(aFileList.getName(),
                         transferSize(getFileSize(aFileList)), FileTypeUtil.getFileType(aFileList)));
             }
         }
