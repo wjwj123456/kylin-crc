@@ -142,6 +142,7 @@ function handleTxt(path) {
 		type : 'post',
 		data : 'path='+path+'&type=read',
 		success : function(data) {
+			$('a .media').remove();
 			var tempData = jQuery.parseJSON(data);
 			generatePre(tempData, path);
 			registView();
@@ -149,11 +150,14 @@ function handleTxt(path) {
 	});
 }
 function handlePdf(path) {
+	$('a .media').remove();
+	$('pre').remove();
 	$('#codePreview').before($('<a class="media" href="'+path+'"></a>'));
 	$('a.media').media({width:800, height:600});
 }
 function handleOther() {
-	
+	$('a .media').remove();
+	$('pre').remove();
 }
 function registView() {
 	$('.webui-popover').remove();
