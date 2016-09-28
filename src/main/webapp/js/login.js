@@ -157,3 +157,9 @@ function isOK(){
 		hasPass=true;
 	}
 }
+
+$('#password').on('keydown',function (e){
+	if(e.which==13){
+		login();
+	}
+});

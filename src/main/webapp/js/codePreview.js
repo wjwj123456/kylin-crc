@@ -11,15 +11,15 @@ var settings = {
 function generateSetting(i, recordList) {
 	var deleteString ;
 	if(recordList[i-1]==''){
-		deleteString = '';
+		deleteString = "<button class='btn pull-right' onclick='submitWithCode(this)'>提交</button></div></div>";
 	}else {
-		deleteString = "<button class = 'btn btn-new' onclick = 'deleteWithCode(this)'>删除</button>";
+		deleteString = "<button class = 'btn btn-new' onclick = 'deleteWithCode(this)'>删除</button></div></div>";
 	}
 	var settings = {
 		title : '第' + i + '行',
-		content : "<div class='form-group'><input class = 'form-control' value = "
+		content : "<div class='form-group'><div class='col-md-10'><input class = 'form-control' value = "
 				+ recordList[i - 1]
-				+ ">"+deleteString+"<button class='btn pull-right' onclick='submitWithCode(this)'>提交</button></div>",
+				+ "></div><div class='col-md-2'>"+deleteString,
 	}
 	return settings;
 }
@@ -79,7 +79,7 @@ function storeWithCode(obj) {
         type: 'post',
         data: 'type=store' + '&data=' + JSON.stringify(report),
         success: function (data) {
-        	load();
+        	loadPreview(lastPath,lastType);
             stopWait();
         },
         error: function () {
@@ -109,7 +109,7 @@ function deleteWithCode(obj) {
         type: 'post',
         data: 'type=delete' + '&data=' + JSON.stringify(report),
         success: function (data) {
-        	load();
+        	loadPreview(lastPath,lastType);
             stopWait();
         },
         error: function () {
@@ -117,7 +117,11 @@ function deleteWithCode(obj) {
         }
     });
 }
+var lastPath;
+var lastType;
 function loadPreview(path,type) {
+	lastPath = path;
+	lastType = type;
 	var txtLike=['txt', 'css', 'html', 'java', 'c', 'cpp', 'php', 'python', 'jsp', 'matlab', 'sql', 'markdown'];
 	var pdfLike=['pdf'];
 	if(contains(txtLike,type)){
@@ -137,6 +141,7 @@ function contains(array,item) {
 	return false;
 }
 function handleTxt(path) {
+	fileName = path.substring(path.lastIndexOf("/")+1,path.length);
 	jQuery.ajax({
 		url : '/CodePreviewServlet',
 		type : 'post',

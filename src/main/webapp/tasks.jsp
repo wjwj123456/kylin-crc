@@ -510,7 +510,7 @@ var isOwner = <%=isOwner%>;
 						<div class="form-group col-sm-5" id="timeGroup">
 							<label for="timeCost" class="col-sm-4 control-label">评审时间</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="timeCost">小时
+								<div class="col-md-8"><input type="text" class="form-control" id="timeCost"></div><div class="col-md-4" style="padding-left:5px;margin-left:0px;margin-top:13px">小时</div>
 							</div>
 
 						</div>
