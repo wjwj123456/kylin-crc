@@ -3,10 +3,7 @@ package tools;
 import org.apache.commons.fileupload.FileItem;
 import vo.FileVO;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +33,7 @@ public class FileUtil {
 
     /**
      * 获取文件类型,判断纯文本代码文件的语言类型
+     *
      * @param name 文件名
      * @return 文件类型
      */
@@ -92,12 +90,16 @@ public class FileUtil {
 
         assert fileList != null;
         for (File aFileList : fileList) {
-            if (aFileList.isDirectory()) {
-                result.add(new FileVO(aFileList.getName(),
-                        transferSize(getFileSize(aFileList)), FileTypeUtil.getFileType(aFileList)));
-            } else if (aFileList.isFile()) {
-                result.add(new FileVO(aFileList.getName(),
-                        transferSize(getFileSize(aFileList)), FileTypeUtil.getFileType(aFileList)));
+            try {
+                if (aFileList.isDirectory()) {
+                    result.add(new FileVO(MyURLEncoder.encode(aFileList.getName(), "utf-8"),
+                            transferSize(getFileSize(aFileList)), FileTypeUtil.getFileType(aFileList)));
+                } else if (aFileList.isFile()) {
+                    result.add(new FileVO(MyURLEncoder.encode(aFileList.getName(), "utf-8"),
+                            transferSize(getFileSize(aFileList)), FileTypeUtil.getFileType(aFileList)));
+                }
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
         }
 
