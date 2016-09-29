@@ -52,16 +52,16 @@ function initButtons(length, recordList) {
 	}
 }
 function submitWithCode(obj) {
-	if ($(obj).parent().children('input').val() == '') {
-		$(obj).parent().addClass('has-error');
+	if ($(obj).parent().prev().children('input').val() == '') {
+		$(obj).parent().parent().addClass('has-error');
 	} else {
-		$(obj).parent().removeClass('has-error');
+		$(obj).parent().parent().removeClass('has-error');
 		storeWithCode(obj);
 	}
 }
 function storeWithCode(obj) {
 	var number;
-	var numString = $(obj).parent().parent().parent().children('h3').text().trim();
+	var numString = $(obj).parent().parent().parent().parent().children('h3').text().trim();
 	numString = numString.replace('第', '').replace('行', '');
 	number = Number(numString.trim());
 	var report = new Object({
@@ -69,7 +69,7 @@ function storeWithCode(obj) {
 		fileName : fileName,
 		page : 0,
 		location : number,
-		description : $(obj).parent().children('input').val().trim(),
+		description : $(obj).parent().prev().children('input').val().trim(),
 		state : 0,
 		origin : 0
 	});
@@ -90,7 +90,7 @@ function storeWithCode(obj) {
 }
 function deleteWithCode(obj) {
 	var number;
-	var numString = $(obj).parent().parent().parent().children('h3').text().trim();
+	var numString = $(obj).parent().parent().parent().parent().children('h3').text().trim();
 	numString = numString.replace('第', '').replace('行', '');
 	number = Number(numString.trim());
 	var report = new Object({
@@ -99,7 +99,7 @@ function deleteWithCode(obj) {
         fileName: fileName,
         page: 0,
         location: number,
-        description: $(obj).parent().children('input').val().trim(),
+        description: $(obj).parent().prev().children('input').val().trim(),
         state: 0,
         origin: 0
     });
