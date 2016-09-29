@@ -273,6 +273,7 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script
 		src="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script src="js/jQuery.form.min.js" type="text/javascript"></script>
 	<script src='js/moment-with-locales.js'></script>
 	<script src='js/bootstrap-datetimepicker.js'></script>
 	<script src="js/login.js"></script>
@@ -317,12 +318,13 @@
 			var files = e.target.files; // FileList
 
 			var totalSize = 0;
+			var folder_message = $('#folder_message');
 
-            $('#folder_message').show();
+            $(folder_message).show();
 			for (var i = 0, f; f = files[i]; ++i){
 				totalSize = totalSize + f.size;
 
-				$('#folder_message').text($('#folder_message').text() + f.name + "\n");
+				$(folder_message).text($(folder_message).text() + f.name + "\n");
 			}
 
 			if (totalSize > maxSize) {
@@ -330,14 +332,6 @@
 			} else {
 				$('#upload_folder').removeClass('disabled');
 			}
-		});
-
-		$('#upload_file').on('click', function(e) {
-			if ($('#upload_file').hasClass('disabled')) {
-				return;
-			}
-
-
 		});
 	</script>
 	<script type="text/javascript">

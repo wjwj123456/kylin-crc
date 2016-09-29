@@ -214,7 +214,7 @@ var fileTree = {
 
         $(fileList).append(
             '<tr>' +
-            '<td><img src="../img/file.png"><a href="javascript: void(0)">' + fileName + '</a></td>' +
+            '<td><label class="file-' + file.type + '"></label><a href="javascript: void(0)">' + fileName + '</a></td>' +
             '<td><a href="" class="download"></a></td>' +
             '<td class="text-right">' + file.size + '</td>' +
             '</tr>'
@@ -231,7 +231,7 @@ var fileTree = {
 
         $(fileList).append(
             '<tr>' +
-            '<td><img src="../img/folder.png"><a href="javascript: void(0)">' + dirName + '</a></td>' +
+            '<td><label class="file-dir"></label><a href="javascript: void(0)">' + dirName + '</a></td>' +
             '<td></td>' +
             '<td class="text-right">' + dir.size + '</td>' +
             '</tr>'
@@ -259,3 +259,13 @@ var fileTree = {
     }
 };
 
+var fileType = {
+    type: ['txt', 'css', 'html', 'java', 'c', 'cpp', 'php',
+        'python', 'jsp', 'matlab', 'sql', 'markdown', 'javascript',
+        'xml', 'java-vm', 'shell', 'pdf', 'apk', 'exe', 'chm',
+        'word', 'powerpoint', 'excel', 'image', 'video', 'compressed', 'dir'
+    ]
+
+
+
+};

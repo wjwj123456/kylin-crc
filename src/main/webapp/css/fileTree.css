@@ -33,3 +33,332 @@
     cursor: pointer;
 }
 
+.file-tree > .panel-body > .table label.file-xml {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: 0;
+    background-position-y: 0;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-body > .table label.file-word {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -20px;
+    background-position-y: 0;
+    -ms-background-position-x: -20px;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-body > .table label. {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -40px;
+    background-position-y: 0;
+    -ms-background-position-x: -40px;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-body > .table label.file-exe {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -60px;
+    background-position-y: 0;
+    -ms-background-position-x: -60px;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-body > .table label.file-compressed {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -80px;
+    background-position-y: 0;
+    -ms-background-position-x: -80px;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-body > .table label.file-c {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -100px;
+    background-position-y: 0;
+    -ms-background-position-x: -100px;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-body > .table label.file-dir {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: 0;
+    background-position-y: -20px;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: -20px;
+}
+
+.file-tree > .panel-body > .table label.file-asp {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -20px;
+    background-position-y: -20px;
+    -ms-background-position-x: -20px;
+    -ms-background-position-y: -20px;
+}
+
+.file-tree > .panel-body > .table label.file-chm {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -40px;
+    background-position-y: -20px;
+    -ms-background-position-x: -40px;
+    -ms-background-position-y: -20px;
+}
+
+.file-tree > .panel-body > .table label.file-java {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -60px;
+    background-position-y: -20px;
+    -ms-background-position-x: -60px;
+    -ms-background-position-y: -20px;
+}
+
+.file-tree > .panel-body > .table label.file-css {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -80px;
+    background-position-y: -20px;
+    -ms-background-position-x: -80px;
+    -ms-background-position-y: -20px;
+}
+
+.file-tree > .panel-body > .table label.file-java-vm {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -100px;
+    background-position-y: -20px;
+    -ms-background-position-x: -100px;
+    -ms-background-position-y: -20px;
+}
+
+.file-tree > .panel-body > .table label.file-txt {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: 0;
+    background-position-y: -40px;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: -40px;
+}
+
+.file-tree > .panel-body > .table label.file-cpp {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -20px;
+    background-position-y: -40px;
+    -ms-background-position-x: -20px;
+    -ms-background-position-y: -40px;
+}
+
+.file-tree > .panel-body > .table label.file-apk {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -40px;
+    background-position-y: -40px;
+    -ms-background-position-x: -40px;
+    -ms-background-position-y: -40px;
+}
+
+.file-tree > .panel-body > .table label.file-jsp {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -60px;
+    background-position-y: -40px;
+    -ms-background-position-x: -60px;
+    -ms-background-position-y: -40px;
+}
+
+.file-tree > .panel-body > .table label.file-js {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -80px;
+    background-position-y: -40px;
+    -ms-background-position-x: -80px;
+    -ms-background-position-y: -40px;
+}
+
+.file-tree > .panel-body > .table label.file-python {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -100px;
+    background-position-y: -40px;
+    -ms-background-position-x: -100px;
+    -ms-background-position-y: -40px;
+}
+
+.file-tree > .panel-body > .table label.file-video {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: 0;
+    background-position-y: -60px;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: -60px;
+}
+
+.file-tree > .panel-body > .table label.file-pdf {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -20px;
+    background-position-y: -60px;
+    -ms-background-position-x: -20px;
+    -ms-background-position-y: -60px;
+}
+
+.file-tree > .panel-body > .table label.file-markdown {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -40px;
+    background-position-y: -60px;
+    -ms-background-position-x: -40px;
+    -ms-background-position-y: -60px;
+}
+
+.file-tree > .panel-body > .table label.file-picture {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -60px;
+    background-position-y: -60px;
+    -ms-background-position-x: -60px;
+    -ms-background-position-y: -60px;
+}
+
+.file-tree > .panel-body > .table label.file-html {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -80px;
+    background-position-y: -60px;
+    -ms-background-position-x: -80px;
+    -ms-background-position-y: -60px;
+}
+
+.file-tree > .panel-body > .table label.file-ppt {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -100px;
+    background-position-y: -60px;
+    -ms-background-position-x: -100px;
+    -ms-background-position-y: -60px;
+}
+
+.file-tree > .panel-body > .table label.file-sql {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: 0;
+    background-position-y: -80px;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: -80px;
+}
+
+.file-tree > .panel-body > .table label.file-matlab {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -20px;
+    background-position-y: -80px;
+    -ms-background-position-x: -20px;
+    -ms-background-position-y: -80px;
+}
+
+.file-tree > .panel-body > .table label.file-other {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -40px;
+    background-position-y: -80px;
+    -ms-background-position-x: -40px;
+    -ms-background-position-y: -80px;
+}
+
+.file-tree > .panel-body > .table label.file-shell {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -60px;
+    background-position-y: -80px;
+    -ms-background-position-x: -60px;
+    -ms-background-position-y: -80px;
+}
+
+.file-tree > .panel-body > .table .file-excel {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -80px;
+    background-position-y: -80px;
+    -ms-background-position-x: -80px;
+    -ms-background-position-y: -80px;
+}
+
+.file-tree > .panel-body > .table .file-php {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon.png) no-repeat;
+    background-position-x: -100px;
+    background-position-y: -79px;
+    -ms-background-position-x: -100px;
+    -ms-background-position-y: -79px;
+}

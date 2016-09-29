@@ -147,7 +147,7 @@ function handleTxt(path) {
 		type : 'post',
 		data : 'path='+path+'&type=read',
 		success : function(data) {
-			$('a .media').remove();
+			$('div .media').remove();
 			var tempData = jQuery.parseJSON(data);
 			generatePre(tempData, path);
 			registView();
@@ -155,19 +155,17 @@ function handleTxt(path) {
 	});
 }
 function handlePdf(path) {
-	$('a .media').remove();
-	$('pre').remove();
-	$('#codePreview').before($('<a class="media" href="data/'+path+'"></a>'));
-	$('a.media').media({width:800, height:600});
+	$('div .media').remove();
+	$('#codePreview').empty().before($('<a class="media" href="data/' + path + '"></a>')).before($('<div style="height: 20px"></div>'));
+	$('div .media').media({width:$('.file-tree').width(), height:600});
 }
 function handleOther() {
-	$('a .media').remove();
-	$('pre').remove();
+	$('div .media').remove();
+	$('#codePreview').empty();
 }
 function registView() {
 	$('.webui-popover').remove();
 	SyntaxHighlighter.highlight();
-	var fileName = "xxx.java";
 	var length = $('.gutter').children().length;
 
 	jQuery.ajax({

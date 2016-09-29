@@ -292,7 +292,7 @@ var isOwner = <%=isOwner%>;
 					</div>
 				</div>
 				<button id="changeTime" class="btn">确认修改</button>
-				<button id="changeTime" class="btn"
+				<button class="btn"
 					onclick="$('#master').addClass('hide');$('#normal').removeClass('hide');">取消</button>
 			</div>
 			<div id="normal">
@@ -309,7 +309,29 @@ var isOwner = <%=isOwner%>;
 			<script type="text/javascript">
 				time = "<%=Tools.dateToString(taskVO.getDeadline())%>";
 			</script>
-
+            <%--文件目录结构--%>
+			<hr/>
+			<div class="file-tree panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-sm-11 col-md-11 col-lg-11">
+                            <ul class="breadcrumb" id="dir-path">
+                            </ul>
+                        </div>
+						<div class="col-sm-1 col-md-1 col-lg-1">
+                            <span id="collapse-file-list" class="pull-right glyphicon glyphicon-chevron-up"
+								  data-toggle="collapse" data-target="#panel-body"></span>
+                        </div>
+					</div>
+				</div>
+                <div class="panel-body collapse in" id="panel-body">
+					<table class="table">
+						<tbody id="file-list">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<%--文件目录结构End--%>
 			<hr>
 			<h2 id="review">
 				评审
@@ -337,29 +359,6 @@ var isOwner = <%=isOwner%>;
 							(String) session.getAttribute("username"));
 				%>
 				<div id="commitBlock" class="hideBlock">
-			<%--文件目录结构--%>
-			<hr/>
-			<div class="file-tree panel panel-default">
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-sm-11 col-md-11 col-lg-11">
-                            <ul class="breadcrumb" id="dir-path">
-                            </ul>
-                        </div>
-						<div class="col-sm-1 col-md-1 col-lg-1">
-                            <span id="collapse-file-list" class="pull-right glyphicon glyphicon-chevron-up"
-								  data-toggle="collapse" data-target="#panel-body"></span>
-                        </div>
-					</div>
-				</div>
-                <div class="panel-body collapse in" id="panel-body">
-					<table class="table">
-						<tbody id="file-list">
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<%--文件目录结构End--%>
 			<div id="codePreview">
 			</div>
 					<div id="codeBlock">

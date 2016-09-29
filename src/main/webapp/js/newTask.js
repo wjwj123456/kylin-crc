@@ -67,7 +67,7 @@ function getData() {
         power: power
     });
 
-    task.language = task.type == '文档评审' ? 'none' : $('#language').find('option:selected').val();
+    task.language = task.type == 'document' ? 'none' : $('#language').find('option:selected').val();
 
     console.log(JSON.stringify(task));
     return JSON.stringify(task);
@@ -111,4 +111,38 @@ $('.selectOne').change(function () {
         $('#fileUp').addClass('hidden');
         $('#folderUp').removeClass('hidden');
     }
+});
+
+// wait for the DOM to be loaded
+$(document).ready(function () {
+    $('#upload_file').on('click', function () {
+        if ($('#upload_file').hasClass('disabled')) {
+            return;
+        }
+
+        run_waitMe();
+    });
+
+    $('#upload_folder').on('click', function() {
+        if ($('#upload_folder').hasClass('disabled')) {
+            return;
+        }
+
+        run_waitMe();
+    });
+
+    // 添加文件上传结束后的回调函数
+    $('#form_file').ajaxForm(function () {
+        alert("文件上传成功!");
+        stopWait();
+
+        $('#upload_file').addClass('disabled');
+    });
+
+    $('#form_folder').ajaxForm(function () {
+        alert("文件夹上传成功!");
+        stopWait();
+
+        $('#upload_folder').addClass('disabled');
+    })
 });
