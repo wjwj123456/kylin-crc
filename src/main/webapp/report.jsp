@@ -493,7 +493,8 @@
                     };
                     myChart3.setOption(option3);
                 </script>
-                <table class="table">
+                <table id="bug" class="table table-striped table-bordered"
+                       data-name="cool-table">
                     <thead class="text-center">
                     <tr>
                     	<th class="text-center" width="5%">编号</th>
@@ -552,6 +553,48 @@
                     %>
                     </tbody>
                 </table>
+
+
+
+
+
+
+<!---->
+                <table id="BugReport" class="table table-striped table-bordered"
+                       data-name="cool-table" >
+                    <thead class="text-center">
+                    <tr>
+                      <!--  <th>project</th>  -->
+                        <th hidden>Type</th>
+                        <th hidden>Summary</th>
+                        <th hidden>Description</th>
+                        <th hidden>Reporter</th>
+                    </tr>
+                    </thead>
+                    <tbody hidden>
+
+                    <%
+                        for (ReportVO reportVO : toMergeVOs) {
+                        String s2="";
+                        for (String s : reporters.get(toMergeVOs.indexOf(reportVO))) {
+                            s2+=s+"&";
+                        }
+                        s2=s2.substring(0,s2.lastIndexOf('&'));
+                    %>
+                    <tr>
+                        <td>Bug</td>
+                        <td><%="文件:"+reportVO.getFileName()+"-位置:"+reportVO.getLocation()%></td>
+                        <td><%=reportVO.getDescription()%></td>
+                        <td>
+                            <%=s2%>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
+            <!-->
             </div>
         </div>
     </div>
@@ -582,6 +625,18 @@
     var num = ${messageNum};
 </script>
 <script src='js/mesSpan.js'></script>
+
+<script src="js/xlsx.core.min.js"></script>
+<script src="js/blob.js"></script>
+<script src="js/FileSaver.min.js"></script>
+<script src="js/tableexport.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#BugReport').tableExport({formats:["xlsx","xls","csv","txt"]});
+    })
+</script>
+
+
 </body>
 
 </html>

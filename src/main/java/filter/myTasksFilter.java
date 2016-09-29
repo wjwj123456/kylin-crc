@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import bl.FriendBlImpl;
 import bl.InviteBlImpl;
 import bl.ReviewBlImpl;
 import bl.UserInfoBlImpl;
@@ -79,6 +80,10 @@ public class myTasksFilter implements Filter {
 		if (userName != null) {
 			UserInfoVO userInfoVO = userInfo.get(userName);
 			session.setAttribute("userInfo", userInfoVO);
+			FriendBlImpl friendBl = new FriendBlImpl();
+			List<UserInfoVO> userList = friendBl.getFriends(userName);
+			session.setAttribute("friends_" + userName, userList);
+
 		}
 	
 		chain.doFilter(request, response);

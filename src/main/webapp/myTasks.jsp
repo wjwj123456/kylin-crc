@@ -12,6 +12,7 @@
 <%@page import="tools.Cast"%>
 <%@page import="vo.AssessmentVO"%>
 <%@page import="java.util.List"%>
+<%@page import="vo.UserInfoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,6 +33,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/avenir2.css">
 <link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
+	<link rel="stylesheet" href="css/BootSideMenu.css">
 <style type="text/css">
 .drop {
 	text-decoration: line-through;
@@ -43,6 +45,11 @@
 }
 </style>
 <title>我的评审</title>
+
+
+	<%String userName = (String) session.getAttribute("username");
+
+		List<UserInfoVO> friends = Cast.cast(session.getAttribute("friends_" + userName));%>
 </head>
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/jquery.cxselect.min.js"></script>
@@ -399,7 +406,45 @@
 					</div>
 				</div>
 			</div>
+
+	<div id="test2" style="width: 270px; overflow: unset;">
+		<div class="row "style="width: 265px; ">
+			<h3 class="pull-right" style="color:#336699 ;font-family:">我的评审圈</h3>
 		</div>
+
+		<div style="overflow: auto; height: 91%;" >
+			<%
+				for (int i = 0; i < friends.size(); i++) {
+			%>
+			<div class="user" style="height:80px">
+				<div class="col-md-3">
+					<a href="friend.jsp?friend=<%=friends.get(i).getUserName()%>" ><img  src=<%=friends.get(i).getPicture()%> alt="Esempio"
+																						 class="img-circle" style="width: 50px;"></a>
+				</div>
+				<div class="col-md-9">
+					<a
+							target="_blank" class="navbar-link"><%=friends.get(i).getUserName()%></a>
+
+					<p><%=friends.get(i).getDescription()%></p>
+
+				</div>
+
+			</div>
+			<%
+				}
+			%>
+		</div>
+	</div>
+	<!--/Test 2-->
+
+
+
+
+
+
+
+
+	</div>
 	</div>
 	<div class="mastfoot">
 		<div class="inner">
@@ -424,6 +469,13 @@
 		var num = ${messageNum};
 	</script>
 	<script src='js/mesSpan.js'></script>
+	<script
+			src="js/BootSideMenu.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#test2').BootSideMenu({side:"right"});
+		});
+	</script>
 </body>
 
 </html>

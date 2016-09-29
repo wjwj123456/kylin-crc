@@ -21,11 +21,11 @@
 
 			<div class="cover-container">
 
-				<div class="masthead clearfix"  style="margin-left: -292px;">
+				<div class="masthead clearfix" >
 					<div class="inner">
 						<h3 class="masthead-brand">CRC Review System</h3>
 						<nav >
-						<ul class="nav masthead-nav" style="margin-right: -560px;">
+						<ul class="nav masthead-nav">
 							<%
 								if (session.getAttribute("username") != null) {
 							%>
@@ -117,23 +117,26 @@
 						</div>
 					</div>
 				</div>
-				<div class="inner cover"  style="padding-top: -20px; ">
+				<div class="inner cover">
 					<h1 class="cover-heading">Let's Start Reviewing.</h1>
 
 					<div>
-						<div class=row>
-							<div class="col-md-10 col-md-offest-2" style="padding-left: 98px; padding-top: 27px;padding-right: 0px;">
+						<div class=row >
+							<div class="col-md-3"></div>
+							<div class="col-md-6" style=" padding-top: 27px;">
 								<input
 									style="position: relative; vertical-align: top; background-color: transparent; color:white"
 									name="term" placeholder="Search review..." required=""
 									class="store-search form-control tt-input"
 									type="text" id="searchContent">
 							</div>
-							<div class="col-md-2 col-md-offest-0" style="padding-top: 26px;">
-								<button type="submit" class="btn-primary btn"  style="height:36px;margin-left: -71px;" id="search">
+
+							<div class="col-md-1 text-center " style="padding-top: 26px;">
+								<button type="submit" class="btn-primary btn"  style="height:36px" id="search">
 									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 								</button>
 							</div>
+							<div class="col-md-2"></div>
 						</div>
 					</div>
 				</div>

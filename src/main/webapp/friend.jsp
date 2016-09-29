@@ -31,6 +31,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/waitMe.min.css">
 <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/BootSideMenu.css">
 <link rel='icon' href='img/icon.ico ' type=‘image/x-ico’ />
 <link rel="stylesheet" href="css/avenir2.css">
 <style type="text/css">
@@ -61,6 +62,8 @@ a:hover {
 <%List<TaskVO> running = Cast.cast(session.getAttribute("doingTaskList_" + friendName));%>
 <%List<TaskVO> endList = Cast.cast(session.getAttribute("endingTaskList_" + friendName));%>
 <%boolean isFriend = Cast.cast(session.getAttribute("isFriend_" + userName+"_"+friendName));%>
+
+<%List<UserInfoVO> friends = Cast.cast(session.getAttribute("friends_" + userName));%>
 </script>
 
 <body role="document">
@@ -637,6 +640,40 @@ a:hover {
 
 
 
+		<div id="test2" style="width: 270px; overflow: unset;">
+			<div class="row "style="width: 265px; ">
+				<h3 class="pull-right" style="color:#336699 ;font-family:">我的评审圈</h3>
+			</div>
+
+			<div style="overflow: auto; height: 91%;" >
+				<%
+					for (int i = 0; i < friends.size(); i++) {
+				%>
+				<div class="user" style="height:80px">
+					<div class="col-md-3">
+						<a href="friend.jsp?friend=<%=friends.get(i).getUserName()%>" ><img  src=<%=friends.get(i).getPicture()%> alt="Esempio"
+																							 class="img-circle" style="width: 50px;"></a>
+					</div>
+					<div class="col-md-9">
+						<a
+								target="_blank" class="navbar-link"><%=friends.get(i).getUserName()%></a>
+
+						<p><%=friends.get(i).getDescription()%></p>
+
+					</div>
+
+				</div>
+				<%
+					}
+				%>
+			</div>
+		</div>
+		<!--/Test 2-->
+
+
+
+
+
 		</div>
 	</div>
 	<div class="mastfoot">
@@ -668,7 +705,7 @@ a:hover {
 	<script src='js/mesSpan.js'></script>
 <script src="js/number.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 function deleteBtn(){
 	var friendName='<%= (String) request.getParameter("friend")%>';
 	var userName='<%= (String) session.getAttribute("username")%>';
@@ -697,12 +734,15 @@ function deleteBtn(){
 	}
 
 }
-
-
-
-
 </script>
 
+	<script
+			src="js/BootSideMenu.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#test2').BootSideMenu({side:"right"});
+		});
+	</script>
 </body>
 
 </html>

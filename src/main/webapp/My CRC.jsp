@@ -541,26 +541,9 @@ var sex ="${userInfo.sex}";
 				</div>
 			</div>
 
-			<!--Test 2 -->
+
 			<div id="test2" style="width: 270px; overflow: unset;">
-		<div class="row "style="width: 265px; ">
-					<!-- <div class="col-md-9"
-						style="padding-left: 20px; padding-top: 5px; padding-right: 0px;">
-
-						<input
-							style="vertical-align: top; background-color: transparent;"
-							name="term" placeholder="Search user..." required=""
-							class="store-search typeahead form-control tt-input" type="text"
-							id="searchPeople">
-
-					</div>
-					<div class="col-md-2 col-md-offest-0"
-						style="padding-top: 5px; margin-left: 0px">
-						<button  type="submit" class="btn-primary-xs btn" id="search"
-							style="height: 32px;">
-							<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
-						</button>
-					</div> -->
+				<div class="row "style="width: 265px; ">
 					<h3 class="pull-right" style="color:#336699 ;font-family:">我的评审圈</h3>
 				</div>
 				
