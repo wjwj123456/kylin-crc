@@ -331,6 +331,14 @@
 				$('#upload_folder').removeClass('disabled');
 			}
 		});
+
+		$('#upload_file').on('click', function(e) {
+			if ($('#upload_file').hasClass('disabled')) {
+				return;
+			}
+
+
+		});
 	</script>
 	<script type="text/javascript">
 		var num = ${messageNum};

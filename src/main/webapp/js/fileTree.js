@@ -209,29 +209,34 @@ var fileTree = {
 
             return;
         }
+
+        var fileName = decodeURIComponent(file.name);
+
         $(fileList).append(
             '<tr>' +
-            '<td><img src="../img/file.png"><a href="javascript: void(0)">' + file.name + '</a></td>' +
+            '<td><img src="../img/file.png"><a href="javascript: void(0)">' + fileName + '</a></td>' +
             '<td><a href="" class="download"></a></td>' +
             '<td class="text-right">' + file.size + '</td>' +
             '</tr>'
         ).find('tr').last().find('a').first().on('click', function () { // 点击文件名打开文件
             fileTree.openFile(file);
         }).css('margin-left', '10px').parent().next().find('a').attr('href', // 下载文件
-            fileTree.getRelativePath(file.name));
+            fileTree.getRelativePath(fileName));
     },
     /**
      * 向文件列表中添加文件夹
      */
     addDir: function (dir) {
+        var dirName = decodeURIComponent(dir.name);
+
         $(fileList).append(
             '<tr>' +
-            '<td><img src="../img/folder.png"><a href="javascript: void(0)">' + dir.name + '</a></td>' +
+            '<td><img src="../img/folder.png"><a href="javascript: void(0)">' + dirName + '</a></td>' +
             '<td></td>' +
             '<td class="text-right">' + dir.size + '</td>' +
             '</tr>'
         ).find('tr').last().find('a').first().on('click', function () { // 点击文件夹名打开文件夹
-            fileTree.openChildDir(dir.name);
+            fileTree.openChildDir(dirName);
         }).css('margin-left', '10px');
     },
     /**
