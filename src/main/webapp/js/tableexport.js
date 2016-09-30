@@ -162,14 +162,14 @@
 
     $.fn.tableExport.xlsx = {
         defaultClass: "xlsx",
-        buttonContent: "Export to xlsx",
+        buttonContent: "导出xlsx",
         mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         fileExtension: ".xlsx"
     };
 
     $.fn.tableExport.xls = {
         defaultClass: "xls",
-        buttonContent: "Export to xls",
+        buttonContent: "导出xls",
         separator: "\t",
         mimeType: "application/vnd.ms-excel",
         fileExtension: ".xls"
@@ -177,7 +177,7 @@
 
     $.fn.tableExport.csv = {
         defaultClass: "csv",
-        buttonContent: "Export to Jira(csv)",
+        buttonContent: "导出Jira(csv)",
         separator: ",",
         mimeType: "application/csv",
         fileExtension: ".csv"
@@ -185,7 +185,7 @@
 
     $.fn.tableExport.txt = {
         defaultClass: "txt",
-        buttonContent: "Export to txt",
+        buttonContent: "导出txt",
         separator: "  ",
         mimeType: "text/plain",
         fileExtension: ".txt"

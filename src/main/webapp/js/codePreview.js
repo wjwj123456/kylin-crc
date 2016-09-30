@@ -73,6 +73,7 @@ function storeWithCode(obj) {
 		state : 0,
 		origin : 0
 	});
+	console.log("de"+report.description);
 	run_waitMe();
     jQuery.ajax({
         url: '/ReportServlet',
@@ -189,6 +190,8 @@ function registView() {
 					recordList.push('');
 				}
 			}
+			console.log(recordList);
+
 			initButtons(length, recordList);
 
 		}
