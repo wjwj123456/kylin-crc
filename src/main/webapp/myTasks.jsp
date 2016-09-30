@@ -360,7 +360,6 @@
 									<input size="40" type="text" class="form-control typeahead"
 										id="searchName" placeholder="用户名关键字">
 								</div>
-								<button type="button" class="btn btn-success" id="search">搜索</button>
 							</div>
 							<div class="col-md-4">
 								<p>可邀请</p>
