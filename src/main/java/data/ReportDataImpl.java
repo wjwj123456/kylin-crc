@@ -1,5 +1,6 @@
 package data;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import dataservice.ReportDataService;
 import po.ReportPO;
+import tools.MyURLEncoder;
 import vo.State;
 
 public class ReportDataImpl implements ReportDataService {
@@ -77,10 +79,15 @@ public class ReportDataImpl implements ReportDataService {
 		ResultSet rSet = DBManager.getResultSet(sql1);
 		List<ReportPO> reportPOs = new ArrayList<>();
 		while (rSet.next()) {
-			ReportPO po = new ReportPO(taskName, rSet.getString("uname"), rSet.getString("filename"),
-					rSet.getInt("page"), rSet.getInt("location"), rSet.getString("description"), rSet.getInt("State"),
-					rSet.getInt("origin"));
-			reportPOs.add(po);
+			try {
+				ReportPO po;
+				po = new ReportPO(taskName, rSet.getString("uname"), rSet.getString("filename"),
+                        rSet.getInt("page"), rSet.getInt("location"), MyURLEncoder.encode(rSet.getString("description"), "utf-8"), rSet.getInt("State"),
+                        rSet.getInt("origin"));
+				reportPOs.add(po);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 		DBManager.closeConnection();
 		return reportPOs;

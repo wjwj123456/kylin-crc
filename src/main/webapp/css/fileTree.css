@@ -17,16 +17,67 @@
     cursor: pointer;
 }
 
+.file-tree > .panel-heading > a.add-file {
+    float: right;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    background: url(../img/icon.png);
+    background-position-x: 0;
+    background-position-y: 0;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-heading > a.add-file:hover {
+    background-position-y: -16px;
+    -ms-background-position-y: -16px;
+}
+
+.file-tree > .panel-heading > a.expand {
+    float: right;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    background: url(../img/icon.png);
+    background-position-x: -32px;
+    background-position-y: -32px;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-heading > a.expand:hover {
+    background-position-y: -16px;
+    -ms-background-position-x: -16px;
+}
+
+.file-tree > .panel-heading > a.collapse {
+    float: right;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    background: url(../img/icon.png);
+    background-position-x: -32px;
+    background-position-y: -32px;
+    -ms-background-position-x: 0;
+    -ms-background-position-y: 0;
+}
+
+.file-tree > .panel-heading > a.collapse:hover {
+    background-position-y: -16px;
+    -ms-background-position-x: -16px;
+}
+
 .file-tree > .panel-body > .table a.download {
     float: right;
     width: 16px;
     height: 16px;
     position: relative;
-    background: url(../img/download.png) no-repeat 0 0;
+    background: url(../img/icon.png) no-repeat -48px 0;
 }
 
 .file-tree > .panel-body > .table a.download:hover {
-    background-position: -16px 0;
+    background-position: -48px -16px;
 }
 
 #collapse-file-list {
@@ -37,7 +88,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: 0;
     background-position-y: 0;
     -ms-background-position-x: 0;
@@ -48,7 +99,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -20px;
     background-position-y: 0;
     -ms-background-position-x: -20px;
@@ -59,7 +110,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -40px;
     background-position-y: 0;
     -ms-background-position-x: -40px;
@@ -70,7 +121,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -60px;
     background-position-y: 0;
     -ms-background-position-x: -60px;
@@ -81,7 +132,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -80px;
     background-position-y: 0;
     -ms-background-position-x: -80px;
@@ -92,7 +143,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -100px;
     background-position-y: 0;
     -ms-background-position-x: -100px;
@@ -103,7 +154,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: 0;
     background-position-y: -20px;
     -ms-background-position-x: 0;
@@ -114,7 +165,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -20px;
     background-position-y: -20px;
     -ms-background-position-x: -20px;
@@ -125,7 +176,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -40px;
     background-position-y: -20px;
     -ms-background-position-x: -40px;
@@ -136,7 +187,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -60px;
     background-position-y: -20px;
     -ms-background-position-x: -60px;
@@ -147,7 +198,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -80px;
     background-position-y: -20px;
     -ms-background-position-x: -80px;
@@ -158,7 +209,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -100px;
     background-position-y: -20px;
     -ms-background-position-x: -100px;
@@ -169,7 +220,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: 0;
     background-position-y: -40px;
     -ms-background-position-x: 0;
@@ -180,7 +231,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -20px;
     background-position-y: -40px;
     -ms-background-position-x: -20px;
@@ -191,7 +242,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -40px;
     background-position-y: -40px;
     -ms-background-position-x: -40px;
@@ -202,18 +253,18 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -60px;
     background-position-y: -40px;
     -ms-background-position-x: -60px;
     -ms-background-position-y: -40px;
 }
 
-.file-tree > .panel-body > .table label.file-js {
+.file-tree > .panel-body > .table label.file-javascript {
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -80px;
     background-position-y: -40px;
     -ms-background-position-x: -80px;
@@ -224,7 +275,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -100px;
     background-position-y: -40px;
     -ms-background-position-x: -100px;
@@ -235,7 +286,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: 0;
     background-position-y: -60px;
     -ms-background-position-x: 0;
@@ -246,7 +297,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -20px;
     background-position-y: -60px;
     -ms-background-position-x: -20px;
@@ -257,7 +308,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -40px;
     background-position-y: -60px;
     -ms-background-position-x: -40px;
@@ -268,7 +319,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -60px;
     background-position-y: -60px;
     -ms-background-position-x: -60px;
@@ -279,7 +330,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -80px;
     background-position-y: -60px;
     -ms-background-position-x: -80px;
@@ -290,7 +341,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -100px;
     background-position-y: -60px;
     -ms-background-position-x: -100px;
@@ -301,7 +352,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: 0;
     background-position-y: -80px;
     -ms-background-position-x: 0;
@@ -312,7 +363,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -20px;
     background-position-y: -80px;
     -ms-background-position-x: -20px;
@@ -323,7 +374,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -40px;
     background-position-y: -80px;
     -ms-background-position-x: -40px;
@@ -334,7 +385,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -60px;
     background-position-y: -80px;
     -ms-background-position-x: -60px;
@@ -345,7 +396,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -80px;
     background-position-y: -80px;
     -ms-background-position-x: -80px;
@@ -356,7 +407,7 @@
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../img/icon.png) no-repeat;
+    background: url(../img/icon-file.png) no-repeat;
     background-position-x: -100px;
     background-position-y: -79px;
     -ms-background-position-x: -100px;

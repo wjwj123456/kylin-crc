@@ -1,6 +1,6 @@
 var normalColor = '#fff';//原色
-var notedColor = '#eee';//上次记录颜色
-var hoverColor = '#ddd';//鼠标悬停颜色
+var notedColor = '#f3c84d';//上次记录颜色
+var hoverColor = '#f5f5f5';//鼠标悬停颜色
 var fileName = "xxx.java";
 var settings = {
 	trigger : 'click',
@@ -32,7 +32,7 @@ function initButtons(length, recordList) {
 				$.extend({}, settings, generateSetting(i + 1, recordList)));
 		if (recordList[i] == '') {
 			$($('.gutter').children()[i]).css("cssText",
-			"background-color:#fff!important");
+			"background-color:" + normalColor + "!important");
 			$($('.gutter').children()[i]).hover(function() {
 				$(this).css("cssText", "background-color:"+hoverColor+"!important");
 				$(this).text('+');
@@ -42,7 +42,7 @@ function initButtons(length, recordList) {
 			});
 		} else {
 			$($('.gutter').children()[i]).css("cssText",
-					"background-color:#eee!important");
+					"background-color:" + notedColor + "!important");
 			$($('.gutter').children()[i]).hover(function() {
 				$(this).css("cssText", "background-color:"+hoverColor+"!important");
 				$(this).text('+');
@@ -184,7 +184,7 @@ function registView() {
 				for (var j = 0; j < tempData.length; j++) {
 					if (tempData[j].fileName == fileName
 							&& tempData[j].location == i + 1) {
-						recordList.push(tempData[j].description);
+						recordList.push(decodeURIComponent(decodeURIComponent(tempData[j].description)));
 						has = true;
 					}
 				}
