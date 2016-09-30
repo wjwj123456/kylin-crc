@@ -1,4 +1,6 @@
-
+var normalColor = '#fff';//原色
+var notedColor = '#eee';//上次记录颜色
+var hoverColor = '#ddd';//鼠标悬停颜色
 var fileName = "xxx.java";
 var settings = {
 	trigger : 'click',
@@ -32,20 +34,20 @@ function initButtons(length, recordList) {
 			$($('.gutter').children()[i]).css("cssText",
 			"background-color:#fff!important");
 			$($('.gutter').children()[i]).hover(function() {
-				$(this).css("cssText", "background-color:#ddd!important");
+				$(this).css("cssText", "background-color:"+hoverColor+"!important");
 				$(this).text('+');
 			}, function() {
-				$(this).css("cssText", "background-color:#fff!important");
+				$(this).css("cssText", "background-color:"+normalColor+"!important");
 				$(this).text($($('.gutter').children()).index($(this)) + 1);
 			});
 		} else {
 			$($('.gutter').children()[i]).css("cssText",
 					"background-color:#eee!important");
 			$($('.gutter').children()[i]).hover(function() {
-				$(this).css("cssText", "background-color:#ddd!important");
+				$(this).css("cssText", "background-color:"+hoverColor+"!important");
 				$(this).text('+');
 			}, function() {
-				$(this).css("cssText", "background-color:#eee!important");
+				$(this).css("cssText", "background-color:"+notedColor+"!important");
 				$(this).text($($('.gutter').children()).index($(this)) + 1);
 			});
 		}
