@@ -60,7 +60,10 @@ public class CodePreviewServlet extends HttpServlet {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("records", tempVOs);
         JSONArray jsonArray = jsonObject.getJSONArray("records");
+//        String jsonEncode=new String(jsonArray.toString().getBytes("iso-8859-1"), "utf-8");
+//        response.setCharacterEncoding("gbk");
         response.getWriter().write(jsonArray.toString());
+
     }
 
     private void handleRead(HttpServletRequest request, HttpServletResponse response) throws IOException {

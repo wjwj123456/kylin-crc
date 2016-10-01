@@ -1,4 +1,6 @@
-
+var normalColor = '#fff';//原色
+var notedColor = '#f3c84d';//上次记录颜色
+var hoverColor = '#f5f5f5';//鼠标悬停颜色
 var fileName = "xxx.java";
 var settings = {
 	trigger : 'click',
@@ -30,22 +32,22 @@ function initButtons(length, recordList) {
 				$.extend({}, settings, generateSetting(i + 1, recordList)));
 		if (recordList[i] == '') {
 			$($('.gutter').children()[i]).css("cssText",
-			"background-color:#fff!important");
+			"background-color:" + normalColor + "!important");
 			$($('.gutter').children()[i]).hover(function() {
-				$(this).css("cssText", "background-color:#ddd!important");
+				$(this).css("cssText", "background-color:"+hoverColor+"!important");
 				$(this).text('+');
 			}, function() {
-				$(this).css("cssText", "background-color:#fff!important");
+				$(this).css("cssText", "background-color:"+normalColor+"!important");
 				$(this).text($($('.gutter').children()).index($(this)) + 1);
 			});
 		} else {
 			$($('.gutter').children()[i]).css("cssText",
-					"background-color:#eee!important");
+					"background-color:" + notedColor + "!important");
 			$($('.gutter').children()[i]).hover(function() {
-				$(this).css("cssText", "background-color:#ddd!important");
+				$(this).css("cssText", "background-color:"+hoverColor+"!important");
 				$(this).text('+');
 			}, function() {
-				$(this).css("cssText", "background-color:#eee!important");
+				$(this).css("cssText", "background-color:"+notedColor+"!important");
 				$(this).text($($('.gutter').children()).index($(this)) + 1);
 			});
 		}
@@ -73,6 +75,7 @@ function storeWithCode(obj) {
 		state : 0,
 		origin : 0
 	});
+	console.log("de"+report.description);
 	run_waitMe();
     jQuery.ajax({
         url: '/ReportServlet',
@@ -187,7 +190,7 @@ function registView() {
 				for (var j = 0; j < tempData.length; j++) {
 					if (tempData[j].fileName == fileName
 							&& tempData[j].location == i + 1) {
-						recordList.push(tempData[j].description);
+						recordList.push(decodeURIComponent(decodeURIComponent(tempData[j].description)));
 						has = true;
 					}
 				}
@@ -195,6 +198,8 @@ function registView() {
 					recordList.push('');
 				}
 			}
+			console.log(recordList);
+
 			initButtons(length, recordList);
 
 		}
