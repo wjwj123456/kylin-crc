@@ -209,7 +209,7 @@
     -ms-background-position-y: -40px;
 }
 
-.file-tree > .panel-body > .table label.file-js {
+.file-tree > .panel-body > .table label.file-javascript {
     float: left;
     width: 20px;
     height: 20px;

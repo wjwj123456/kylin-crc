@@ -122,7 +122,7 @@ var lastType;
 function loadPreview(path,type) {
 	lastPath = path;
 	lastType = type;
-	var txtLike=['txt', 'css', 'html', 'java', 'c', 'cpp', 'php', 'python', 'jsp', 'matlab', 'sql', 'markdown'];
+	var txtLike=['txt', 'javascript', 'xml', 'shell', 'css', 'html', 'java', 'c', 'cpp', 'php', 'python', 'jsp', 'matlab', 'sql', 'markdown'];
 	var pdfLike=['pdf'];
 	if(contains(txtLike,type)){
 		handleTxt(path);
@@ -141,7 +141,12 @@ function contains(array,item) {
 	return false;
 }
 function handleTxt(path) {
+	if (taskType == 'file') {
+		return;
+	}
+	
 	fileName = path.substring(path.lastIndexOf("/")+1,path.length);
+
 	jQuery.ajax({
 		url : '/CodePreviewServlet',
 		type : 'post',
@@ -149,6 +154,7 @@ function handleTxt(path) {
 		success : function(data) {
 			$('div .media').remove();
 			var tempData = jQuery.parseJSON(data);
+
 			generatePre(tempData, path);
 			registView();
 		}

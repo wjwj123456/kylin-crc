@@ -300,7 +300,7 @@
 
 			var totalSize = 0;
 
-			$('#file_message').show();
+			$('#file_message').show().empty();
 			for (var i = 0; i < files.length; i++) {
 				totalSize = totalSize + files[i].size;
 				$('#file_message').text($('#file_message').text() + files[i].name + '\n');
@@ -320,7 +320,7 @@
 			var totalSize = 0;
 			var folder_message = $('#folder_message');
 
-            $(folder_message).show();
+            $(folder_message).show().empty();
 			for (var i = 0, f; f = files[i]; ++i){
 				totalSize = totalSize + f.size;
 

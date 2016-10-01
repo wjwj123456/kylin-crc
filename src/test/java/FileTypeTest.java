@@ -20,7 +20,7 @@ import java.util.HashMap;
  */
 public class FileTypeTest {
     public static void main(String args[]) throws IOException, TikaException, SAXException {
-        File file = new File("/home/song/音乐");
+        File file = new File("/home/song/program/crc/target/crc-0.0.1-SNAPSHOT/data/test/mr/server/jquery-3.0.0.min.js");
 
         AutoDetectParser parser = new AutoDetectParser();
         parser.setParsers(new HashMap<MediaType, Parser>());
